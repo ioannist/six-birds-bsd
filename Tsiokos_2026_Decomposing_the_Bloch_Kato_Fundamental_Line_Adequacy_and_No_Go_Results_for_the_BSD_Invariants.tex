@@ -1,0 +1,3364 @@
+\documentclass[11pt]{article}
+
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,fit,positioning}
+\usepackage{pdflscape}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{orcidlink}
+\usepackage{titling}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{warning}[theorem]{Warning}
+\newtheorem{obligation}[theorem]{Obligation}
+\newtheorem{nonclaim}[theorem]{Nonclaim}
+
+\urlstyle{same}
+\captionsetup{font=small, labelfont=bf, labelsep=period}
+\captionsetup[table]{skip=6pt, position=top}
+\captionsetup[figure]{skip=6pt}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{warning}{warning}{warnings}
+\Crefname{warning}{Warning}{Warnings}
+\crefname{obligation}{obligation}{obligations}
+\Crefname{obligation}{Obligation}{Obligations}
+\crefname{nonclaim}{nonclaim}{nonclaims}
+\Crefname{nonclaim}{Nonclaim}{Nonclaims}
+\setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=4pt}
+\setlength{\droptitle}{-3.2em}
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vspace{0.5em}}
+\preauthor{\begin{center}\normalsize}
+\postauthor{\par\end{center}\vspace{-0.4em}}
+\predate{\begin{center}\small}
+\postdate{\par\end{center}\vspace{0.6em}}
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\interfootnotelinepenalty=10000
+\allowdisplaybreaks[2]
+\fancypagestyle{firstpage}{\fancyhf{}
+  \fancyfoot[C]{\scriptsize Automorph Inc., Wilmington, DE, USA \quad \texttt{ioannis@automorph.io} \quad \textcopyright\ 2026 \quad CC-BY 4.0 \quad \doi{10.5281/zenodo.20713981}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+
+
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Tam}{\operatorname{Tam}}
+\newcommand{\tors}{\operatorname{tors}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\newcommand{\Fitt}{\operatorname{Fitt}}
+\newcommand{\cores}{\operatorname{cores}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Hf}{H^1_f}
+\newcommand{\kapr}{\kappa_r}
+
+\newcommand{\XiC}{\Xi_C(D\mid L)}        \newcommand{\KDD}{K_{DD}}
+\newcommand{\KDL}{K_{DL}}
+\newcommand{\KLL}{K_{LL}}
+\newcommand{\Kdagger}{K_{LL}^{\dagger}}  \newcommand{\vsrc}{\mathrm{vsrc}}        \newcommand{\Jone}{J_1}
+\newcommand{\Jtwo}{J_2}
+\newcommand{\Jtwelve}{J_{12}}
+\newcommand{\MCphi}{M_C^{\varphi}}
+
+\setlength{\emergencystretch}{3.5em}
+\sloppy
+
+\title{Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go
+Results for the BSD Invariants}
+\author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
+\date{31 August 2026}
+\hypersetup{
+  pdftitle={Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go Results for the BSD Invariants},
+  pdfauthor={Ioannis Tsiokos},
+  hidelinks
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+\begin{abstract}
+For an elliptic curve \(E/\Q\), the Bloch--Kato fundamental line is often
+read through a product of public scalar invariants.  This paper asks,
+column by column, which typed source data such a scalar retains.  We
+decompose the BSD/Bloch--Kato carrier into five typed columns:
+height/regulator, analytic/period, finite/Tamagawa, \(p\)-adic, and
+determinant-assembly.  Each column is equipped with a Schur-complement
+adequacy residual \(\XiC\), which vanishes exactly when the admitted native
+source acts as the identity on the readout; this is a finite,
+mathlib-free linear-algebra criterion.  A comparison theorem contracts the
+typed five-column atlas to the standard Bloch--Kato/Tamagawa scalar
+package, with zero residual for that contraction, so the usual scalar is
+recovered as a projection of a richer typed object and the
+determinant-orientation coordinate lies in the kernel.  The accompanying
+no-go audit suite records where public scalar rows underdetermine their
+typed targets: finite scalar shadows, dimension-only \(\Sha\) data, the
+Gram-matrix/regulator shadow, finite-window promotion, and finite-prime
+coverage.  The results are finite typed statements; recognition sources
+and classical arithmetic inputs such as Gross--Zagier, Iwasawa main
+conjecture input, and Cassels--Tate comparison are carried as hypotheses,
+not proved.  The paper does not prove BSD; its finite adequacy and no-go
+claims are mechanized in a mathlib-free Lean development.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords.} Birch--Swinnerton-Dyer conjecture; Bloch--Kato fundamental line; elliptic curves; Schur complement; regulator; Tate--Shafarevich group; formal verification (Lean); Six Birds Theory; emergence calculus.
+
+\medskip
+\noindent
+Standing conventions: $E/\Q$ an elliptic curve, $M_E=h^1(E)(1)$,
+$r=\rank E(\Q)$, $r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)$. The Schur
+adequacy residual is $\XiC=K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}$; a column
+readout is \emph{adequate} when $\XiC=0$. The five per-column source
+transports are recognition obligations, supplied or imported and carried as
+hypotheses rather than derived here.
+
+\section{Introduction}\label{sec:introduction}
+
+
+The Birch--Swinnerton-Dyer formula~\citep{BirchSwinnertonDyer1965,Tate1966bsd} is usually first met as a scalar
+identity.  For an elliptic curve $E/\Q$ of rank $r$, the standard leading
+coefficient form compares
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  \quad\text{with}\quad
+  \Omega_E\,\Reg(E/\Q)\,
+  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}} .
+\]
+This product is already visibly composite: an analytic leading term and
+period, a height regulator, a finite Tamagawa--torsion--$\Sha$ factor, local
+$p$-adic data, and the determinant-line conventions that make all of these
+terms live in a common orientation.  The question addressed in this paper is
+not whether the scalar BSD identity is true.  It is the more local diagnostic
+question: when one separates the Bloch--Kato fundamental line~\citep{BlochKato1990,FontainePerrinRiou1994} into these
+typed pieces, which pieces carry enough native data to recover their intended
+readout, and where is information lost by passing to a public scalar shadow?
+
+The word ``typed'' is used here in its elementary sense.  We keep the five
+classes of data in five labelled slots rather than immediately multiplying
+them into one number.  The height/regulator slot contains the Mordell--Weil
+lattice and the Neron--Tate pairing; the analytic/period slot contains the
+leading Taylor coefficient and the real period; the finite slot contains
+Tamagawa factors, torsion, the $p$-primary $\Sha$ data, and Cassels--Tate
+pairings; the $p$-adic slot contains the ordinary or signed local data; and
+the determinant slot contains the orientation, sign, and unit conventions
+needed for a single determinant line.  This decomposition is bookkeeping
+only in the innocuous sense that a direct-sum decomposition is: it is
+precisely the bookkeeping needed to ask whether each column is adequate.
+
+The adequacy test is a Schur-complement calculation~\citep{Zhang2005schur,HornJohnson2013}.  Suppose that $L$ is
+the native family admitted in a column and $D$ is the readout one wants to
+recover from that column.  Form the block Gram quantities
+\[
+  \KLL,\qquad \KDL,\qquad \KDD,
+\]
+where $\KLL$ records the covariance of the admitted source directions,
+$\KDL$ records the pairing between the readout and those source directions,
+and $\KDD$ records the readout's own pre-source energy.  The adequacy
+residual is
+\[
+  \XiC=\KDD-\KDL\,\Kdagger\,K_{LD},
+\]
+with $\Kdagger$ the Moore--Penrose inverse of $\KLL$ in the finite
+calculation at hand.  The column is called \emph{adequate} when
+$\XiC=0$: after projecting the desired readout onto the admitted source
+directions, no residual direction remains.  If $\XiC>0$ in a scalar trace
+calculation, then the admitted row is not enough; it has forgotten a
+direction that is present in the typed target.
+
+All adequacy computations in this paper are finite and explicit.  The
+linear algebra is deliberately elementary: finite index sets, row vectors,
+dot products, identity matrices, matrix multiplication, and traces.  The
+collapses are not appeals to a black-box functional-analytic statement.
+They are the finite identity-matrix action
+\[
+  I v=v
+\]
+and its Schur-complement consequence.  For example, if the full native
+height matrix is admitted, the readout row $d_H$ for
+$d(\log\det)_H$ projects through the identity source, so
+$d_Hd_H^{\mathsf T}-d_H I d_H^{\mathsf T}=0$.  If only a scalar determinant
+is admitted, the orthogonal complement has positive trace.  The same
+pattern recurs in the analytic/period, finite-source, ordinary $p$-adic,
+signed $p$-adic, and rank-two height calculations.
+
+This finite Schur-complement language is the specialization, for the BSD
+fundamental line, of the adequacy calculus developed in the surrounding
+Six Birds framework \citep{TsiokosNeedles2026,TsiokosFoundationsII2026}.
+For the reader of the present paper, no framework machinery is needed
+beyond the following translation.  An ``adequacy residual'' is simply the
+Schur complement above.  A ``typed five-column decomposition'' is simply
+the decision to keep the height, period, finite, $p$-adic, and determinant
+data in separate labelled columns.  An ``audit-result no-go'' is a recorded
+boundary statement: it identifies where the theorem-grade literature, in
+the audited form used here, does not supply the missing identity.  The
+interaction vocabulary and audit discipline are inherited from the finite
+calculus of \citet{TsiokosFoundationsIII2026}; the mathematical statements
+below are written directly in the language of the BSD factors.
+
+A low-conductor example makes the separation concrete.  For the curve
+$11a1$~\citep{Cremona1997,LMFDB}, the scalar rank-zero BSD comparison has
+\[
+  \frac{L(E,1)}{\Omega_E^+}=0.2
+  \qquad\text{and}\qquad
+  \frac{\prod_v c_v\,\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}
+  =\frac{5}{25}=0.2.
+\]
+As a scalar check this is a single equality.  In the five-column atlas it is
+not a single source.  The analytic/period column contributes the quotient
+$L(E,1)/\Omega_E^+$; the height/regulator column is rank-zero and therefore
+vacuous; the finite column remembers that the number $5/25$ arose from a
+Tamagawa factor and torsion rather than from Cassels--Tate pairing data;
+the local $p$-adic columns ask which ordinary or signed source data are
+present at each prime; and the determinant column records the orientation
+needed to assemble the product.  The scalar equality is therefore compatible
+with, but coarser than, the typed comparison.  The point of the apparatus is
+to measure this coarsening column by column.
+
+This is also the reason for working with readouts rather than only with
+equalities of final products.  A scalar product can be correct for several
+different reasons.  In the finite factor, a valuation can sit in the
+Tamagawa part or in the $\Sha$ part and still contribute the same exponent
+to the public scalar quotient.  In the signed supersingular local theory,
+the two signed directions can have the same unsigned aggregate while
+differing in their $+$ and $-$ components.  In rank at least two, a Gram
+matrix can give the regulator once a Mordell--Weil basis is already known,
+but the matrix itself does not name independent motivic-cycle sources.
+These are not paradoxes.  They are exactly what one should expect when a
+multi-column object is projected to a single row.  The Schur residual is the
+linear-algebraic device that records which directions survive the projection
+and which directions have been lost.
+
+The paper therefore uses ``native family'' in a modest sense: it means the
+data one is willing to admit as the source for a column before applying the
+readout.  For the analytic/period column, the native family is the pair
+$(A_E,\Omega_E^+)$, where
+$A_E=L^{(r_{\mathrm{an}})}(E,1)/r_{\mathrm{an}}!$ is the analytic leading
+coefficient and $\Omega_E^+$ is the real period, rather than the quotient
+alone.  For the finite column, it is the tower containing Tamagawa, torsion,
+$\Sha$, and Cassels--Tate
+pairing data rather than the scalar finite factor alone.  For the signed
+$p$-adic column, it is the signed pair of local directions rather than their
+unsigned sum.  The adequacy theorem for a column says that this admitted
+native family is large enough for the intended readout.  A no-go theorem
+says that a smaller public row is not large enough, and it identifies an
+explicit pair of inputs or an explicit residual direction witnessing the
+loss.
+
+Nothing in this setup requires the reader to adopt the surrounding
+terminology as a black box.  The relevant matrices are small: identity
+matrices of sizes $2$, $3$, $4$, and $5$, rank-one projectors, and diagonal
+traces.  The Moore--Penrose notation is used only where the finite matrix
+has an evident inverse or pseudoinverse in the displayed calculation.  The
+rank-one residuals are ordinary rational computations such as
+\[
+  \tr(I_4-P_s)=4-1=3
+\]
+for the scalar finite row $s=(1,-2,1,0)$, or
+\[
+  \tr(I_3-P_{\mathrm{uns}})=3-2=1
+\]
+for the unsigned signed-local projection.  Thus the reader can check the
+adequacy and inadequacy claims at the same level at which the statements are
+made: finite-dimensional linear algebra over explicit coordinates.
+
+The first part of the paper constructs the five columns.  The
+Bloch--Kato component map sends the integrated BSD carrier to the
+determinant-line target by the direct sum of the height/regulator,
+analytic/period, finite, local $p$-adic, and determinant-assembly
+components.  After choosing a comparison trivialization, the corresponding
+defect decomposes additively into the five component defects.  Consequently,
+if every component defect vanishes in the declared comparison, then the
+total Bloch--Kato defect vanishes; contrapositively, a nonzero total defect
+must be witnessed by at least one nonzero or legally incomparable component.
+
+The order of the paper follows this diagnostic structure.  The
+decomposition section fixes the five columns and the additive defect
+equation.  The next four sections treat the height/regulator,
+analytic/period, finite-source, and $p$-adic columns separately, always
+asking the same question: does the declared native family collapse the
+Schur residual for the declared readout?  The determinant-assembly section
+then records the one remaining orientation coordinate needed to assemble
+the local tensor into a global determinant-line object.  The comparison
+section contracts the typed atlas back to the usual Bloch--Kato scalar
+readout and proves that the typed source is adequate for that contraction.
+
+The middle sections prove the adequacy collapses.  The height/regulator
+column admits the full Neron--Tate pairing and collapses by the identity
+action.  The analytic/period column admits both logarithmic coordinates
+$(\log A_E,\log\Omega_E^+)$ and collapses for the readout
+$\log A_E-\log\Omega_E^+$.  The finite-source column collapses only when
+the Tamagawa, torsion, $\Sha$, and Cassels--Tate coordinates are all present;
+the scalar finite factor and the dimension-only $\Sha$ row leave positive
+residuals.  The ordinary $p$-adic row collapses with ordinary-control data
+included, while omitting that coordinate leaves a one-dimensional residual.
+The signed supersingular row collapses only after separating the $+$ and
+$-$ directions; unsigned aggregation forgets their difference.  The
+determinant-assembly calculation then shows a structural residual exactly
+in the determinant-orientation coordinate when the four constructed
+components are assembled without the final determinant row.
+
+The comparison section contracts the typed five-column tensor to the usual
+Bloch--Kato scalar package.  At the log-tangent level the comparison is the
+row $(1,1,1,1,0)$: it reads the height, analytic, finite, and local
+$p$-adic columns and kills the determinant-orientation coordinate.  Its
+Schur residual is zero against the typed source, so the typed source is
+adequate for the scalar Bloch--Kato readout.  At the same time, the kernel
+contains the determinant coordinate, so the scalar package is a strict
+one-dimensional shadow of the typed atlas.
+
+Two calibrations complete the apparatus.  The first is the exterior algebra
+$\vsrc$, generated in rank two by symbols $\Jone,\Jtwo$ and
+$\Jtwelve=\Jone\Jtwo$ with $\Jone^2=\Jtwo^2=0$ and
+$\Jtwo\Jone=-\Jtwelve$.  It is a determinant-shaped source algebra: the
+wedge $\Jone\wedge\Jtwo$ records independence of two virtual motivic-cycle
+directions without pretending that the corresponding motivic cycles have
+been constructed.  The second is the normalization constant $\kapr$.  Once
+the cascade convention $c_E=\Tam(E)$ is fixed, the cascade leading-term
+form is equivalent to the standard Strong-BSD leading-coefficient form
+exactly when
+\[
+  \kapr(E)=\frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+This is an equivalence of forms, not a derivation of BSD.
+
+The calibration sections have a different purpose from the column
+sections.  The column sections test whether a given source row is adequate
+for an already specified readout.  The $\vsrc$ section asks what sort of
+formal source algebra would be capable of expressing rank-two independence
+before any descent to actual motivic cycles is supplied.  The
+$\kapr$ section asks how the cascade normalization must be chosen so that
+the cascade leading-term expression is not a new conjecture but the
+standard Strong-BSD expression written in the apparatus coordinates.  These
+two calibrations constrain the apparatus at opposite ends: $\vsrc$ marks
+the source-side independence problem, while $\kapr$ fixes the scalar
+normalization at the target side.
+
+The final mathematical contribution is the bounded no-go suite.  The
+finite scalar factor is noninjective on the typed finite tower; the
+dimension of $\Sha[p]$ is a shadow of Cassels--Tate determinant data; the
+Neron--Tate Gram matrix does not by itself construct rank-$r$ motivic-cycle
+sources; a five-curve window cannot promote to a global theorem depending
+only on those five rows; and no fixed finite prime list certifies all local
+support-prime rows.  These statements are useful because they are local and
+typed: each identifies a precise missing direction rather than replacing
+the missing direction by an undifferentiated failure of BSD.
+
+The scope is deliberately narrow.  The no-go suite (NG-1--NG-5,
+higher-rank, global, support-prime) records where theorem-grade Mode-A
+literature (the established arithmetic results audited as external
+provenance) does \textbf{not} reach; it is \textbf{not} a claim that the
+missing identities cannot exist.  Adequacy collapses are proved at the
+finite, mathlib-free, typed level (identity-matrix action; $\Q$ rank-1
+projector traces); operator/motivic full generality is not claimed.  The
+$\vsrc$ exterior-product relations are represented structurally on the
+$2^r$ coordinate space; the dimension/calibration content is faithful,
+full axiomatization is not claimed.  The five per-column transports are
+recognition sources (carriers), not derived theorems.
+ \section{Decomposition: the typed five columns}
+\label{sec:decomposition}
+
+The introduction separated the scalar BSD product into five kinds of data:
+height/regulator, analytic/period, finite-source, local $p$-adic, and
+determinant-assembly data.  We now make this separation into a typed object.
+The point is not to replace the Bloch--Kato determinant line by five
+unrelated objects, but to keep track of the five native sources before they
+are assembled into the common determinant-line target.
+
+Fix an elliptic curve $E/\Q$ and put $M_E=h^1(E)(1)$.  The five columns are
+as follows.  The height/regulator column records the Mordell--Weil lattice
+and the Neron--Tate determinant.  The analytic/period column records the
+leading coefficient and period data.  The finite-source column records
+Tamagawa factors, torsion, the $p$-primary $\Sha$ data, and Cassels--Tate
+pairings.  For each prime $p$, the local $p$-adic column records the
+ordinary or signed local source data.  The determinant-assembly column
+records the orientation, sign, and unit conventions needed to compare all
+four arithmetic columns in one determinant line.
+
+The five-column map and the common Schur-residual test are summarized in
+\Cref{tab:five-column-map,fig:five-column-schematic}.  The table fixes the
+paper-prose names used in the later column sections; the figure records the
+same bookkeeping as a source-to-target diagram.
+\begin{table}[tbp]
+\centering
+\small
+\caption{The five typed columns and their adequacy residuals.  Each row
+separates the native source data from the determinant-line target before the
+scalar BSD product is read out.}
+\label{tab:five-column-map}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}p{0.22\textwidth}
+>{\raggedright\arraybackslash}X@{}}
+\toprule
+Column & Carrier map & Residual & Adequate when \\
+\midrule
+Height/regulator &
+\(\rho_{\mathrm{ht/reg}}^{\R}\) from the Mordell--Weil lattice and
+Neron--Tate pairing &
+\(\XiC\) for the trace of \(d(\log\det)_H\) &
+the full height pairing is admitted, so the identity source kills the Schur
+residual. \\
+\addlinespace
+Analytic/period &
+\(\rho_{\mathrm{an/period}}^{\R}\) from \((A_E,\Omega_E^+)\) &
+\(\XiC\) for \(\log A_E-\log\Omega_E^+\) &
+both logarithmic coordinates are present; either coordinate alone leaves a
+one-dimensional residual. \\
+\addlinespace
+Finite/Tamagawa &
+\(\rho_{\mathrm{finite}}^{\R}\) from Tamagawa, torsion, \(\Sha[p^\infty]\),
+and Cassels--Tate data &
+\(\XiC\) for the typed finite-source readout &
+the full finite-source tower, including the Cassels--Tate pairing, is
+retained. \\
+\addlinespace
+\(p\)-adic &
+\(\rho_p\) from ordinary or signed local data &
+\(\XiC\) for the ordinary/signed local readout &
+the appropriate ordinary or signed local source is admitted, not merely an
+unsigned public shadow. \\
+\addlinespace
+Determinant assembly &
+\(\rho_{\det}\) for orientation, sign, and unit compatibility &
+\(\XiC\) for the assembled determinant comparison &
+the determinant-orientation coordinate is included with the four arithmetic
+columns. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+ \begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  column/.style={draw, rounded corners=2pt, align=center, minimum width=2.6cm,
+    minimum height=1.05cm, fill=black!3},
+  residual/.style={draw, rounded corners=2pt, align=center, minimum width=7.5cm,
+    minimum height=0.95cm, fill=white},
+  target/.style={draw, rounded corners=2pt, align=center, minimum width=4.1cm,
+    minimum height=1.05cm, fill=black!8},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[column] (ht) at (-5.6,1.7) {height\\regulator};
+\node[column] (an) at (-2.8,1.7) {analytic\\period};
+\node[column] (fin) at (0,1.7) {finite\\Tamagawa};
+\node[column] (pad) at (2.8,1.7) {\(p\)-adic\\local};
+\node[column] (det) at (5.6,1.7) {determinant\\assembly};
+\node[residual] (xi) at (0,0) {Schur residual:\quad
+  \(\XiC=K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}\)};
+\node[target] (bk) at (0,-1.55) {Bloch--Kato determinant-line target};
+
+\foreach \n/\shift in {ht/-3cm,an/-1.5cm,fin/0cm,pad/1.5cm,det/3cm}
+  \draw[arrow] (\n.south) .. controls +(0,-0.45) and +(0,0.45) ..
+    ([xshift=\shift]xi.north);
+
+\draw[arrow] (xi.south) -- (bk.north);
+\node[align=center, font=\footnotesize] at (0,-2.6)
+  {adequacy means the admitted native source leaves no Schur residual};
+\end{tikzpicture}
+\caption{The five native source columns are tested before they are assembled in
+the common determinant-line target.}
+\label{fig:five-column-schematic}
+\end{figure}
+
+The Bloch--Kato target is the determinant-line package attached to $M_E$~\citep{Deligne1987}:
+the motive, its finite determinant line, the zeta element, and the chosen
+trivialization.  The integrated BSD carrier is the corresponding typed
+source object: it keeps the height/regulator, analytic/period,
+finite-source, local $p$-adic, and determinant-assembly data in their
+separate slots.  The first structural map of the paper is the
+component-assembly map from this typed source to the determinant-line
+target.
+
+\begin{definition}[Bloch--Kato component-assembly map]
+\label{def:apparatus:bk-component-map}
+For $M_E=h^1(E)(1)$, let
+\[
+  C_{\mathrm{BSD}}(E)
+  =
+  \bigl(C_{\mathrm{ht}}(E),C_{\mathrm{an}}(E),C_{\mathrm{fin}}(E),
+  \{C_p(E)\}_p,C_{\det}(E)\bigr)
+\]
+be the integrated BSD carrier with its typed height/regulator,
+analytic/period, finite-source, local $p$-adic, and
+determinant-assembly slots.  The source-side determinant slot
+\(C_{\det}(E)\) is distinct from the Bloch--Kato target below.  Let
+\[
+  C_{\mathrm{BK}}(E)
+  =
+  \bigl(M_E,\Delta_f(M_E),z_{\mathrm{BK}}(M_E),\tau_{\mathrm{BK}}(M_E)\bigr)
+\]
+be the Bloch--Kato determinant-line target.  The component-assembly map is
+the direct sum
+\[
+  \rho_{\mathrm{BK}}
+  =
+  \rho_{\mathrm{ht}}
+  \oplus \rho_{\mathrm{an}}
+  \oplus \rho_{\mathrm{fin}}
+  \oplus \Bigl(\bigoplus_p \rho_p\Bigr)
+  \oplus \rho_{\det}
+  \;:\;
+  C_{\mathrm{BSD}}(E)\longrightarrow C_{\mathrm{BK}}(E).
+\]
+Here $\rho_{\mathrm{ht}}$ sends the Mordell--Weil height and regulator
+data to the global cohomological determinant side; $\rho_{\mathrm{an}}$
+sends central leading-term and period data to the analytic
+zeta/trivialization side; $\rho_{\mathrm{fin}}$ sends Tamagawa, torsion,
+$\Sha[p^\infty]$, and Cassels--Tate data to the finite arithmetic
+determinant side; $\rho_p$ sends the local $p$-adic analytic/Selmer data,
+control data, and local normalization to the $p$-primary determinant side;
+and $\rho_{\det}$ records the orientation, sign, and unit compatibility in
+the same determinant line.
+\end{definition}
+
+The definition is a decomposition of the source side, not a theorem about
+the truth of BSD.  Its role is to make the columns visible enough that the
+adequacy residual of each column can be tested.  Once the columns are
+visible, one may compare them through a common determinant-line
+trivialization.  In additive coordinates, the comparison defect splits into
+one contribution from each column.
+
+\begin{definition}[Bridge-defect equation]
+\label{def:apparatus:bridge-defect-equation}
+After choosing a comparison trivialization of the determinant-line target,
+write $\Delta_{\mathrm{BSD}}^{\mathrm{BK}}$ for the total Bloch--Kato defect
+of the BSD bridge.  The bridge-defect equation is the additive
+decomposition
+\[
+  \Delta_{\mathrm{BSD}}^{\mathrm{BK}}
+  =
+  E_{\mathrm{ht/reg}}
+  +E_{\mathrm{an/period}}
+  +E_{\mathrm{finite}}
+  +\sum_p E_p
+  +E_{\det}.
+\]
+The five summands are respectively the height/regulator defect, the
+analytic/period defect, the finite-source defect, the local $p$-adic
+defects, and the determinant-assembly defect.  Equivalently, in
+multiplicative coordinates the same assertion says that the total component
+ratio is the product of the corresponding five component ratios.
+\end{definition}
+
+\begin{theorem}[Component-killing]
+\label{thm:apparatus:component-killing}
+Assume that the five component defects are all legally comparable in the
+chosen determinant-line trivialization.  If
+\[
+  E_{\mathrm{ht/reg}}=0,\qquad
+  E_{\mathrm{an/period}}=0,\qquad
+  E_{\mathrm{finite}}=0,\qquad
+  E_p=0\ \text{for every }p,\qquad
+  E_{\det}=0,
+\]
+then $\Delta_{\mathrm{BSD}}^{\mathrm{BK}}=0$.  Equivalently, if
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}\neq 0$, then at least one component
+defect is nonzero or one of the asserted component comparisons is not
+legally available.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Decomposition.componentKilling}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The comparison trivialization puts all five summands in the same additive
+defect group.  Hence the bridge-defect equation of
+Definition~\ref{def:apparatus:bridge-defect-equation} applies:
+\[
+  \Delta_{\mathrm{BSD}}^{\mathrm{BK}}
+  =
+  E_{\mathrm{ht/reg}}
+  +E_{\mathrm{an/period}}
+  +E_{\mathrm{finite}}
+  +\sum_p E_p
+  +E_{\det}.
+\]
+Under the stated hypotheses every summand on the right is zero.  The sum of
+zero component defects is zero, so
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}=0$.
+
+For the contraposition, suppose
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}\neq0$.  If all five component
+comparisons were legally available and every component defect vanished, the
+first part of the proof would force
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}=0$, a contradiction.  Therefore either
+some declared component defect is nonzero, or the attempted componentwise
+comparison is not legal in the determinant-line trivialization under
+discussion.
+\end{proof}
+
+\begin{theorem}[Finite scalar factor is a public shadow]
+\label{thm:apparatus:finite-scalar-public-shadow}
+Let
+\[
+  C_{\mathrm{fin}}
+  =
+  C_{\mathrm{Tamagawa}}\oplus C_{\tors}\oplus
+  C_{\Sha[p^\infty]}\oplus C_{\mathrm{CT}}
+\]
+be the typed finite-source tower.  The public scalar finite factor
+\[
+  \phi_{\mathrm{fin}}(C_{\mathrm{fin}})
+  =
+  \frac{|\Sha|\prod_\ell c_\ell}{|E(\Q)_{\tors}|^2}
+\]
+is not injective on this typed tower.  Equivalently, at a fixed prime $p$,
+the valuation readout
+\[
+  q_p
+  =
+  v_p|\Sha|+v_p\Bigl(\prod_\ell c_\ell\Bigr)
+  -2v_p|E(\Q)_{\tors}|
+\]
+does not determine the typed finite-source datum.  Thus a scalar
+finite-factor row cannot be promoted to a finite-source carrier row without
+additional source data.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Decomposition.finiteScalarPublicShadow}; see
+App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Fix a prime $p$ and consider only the three valuation coordinates appearing
+in $q_p$: the $p$-primary part of $\Sha$, the Tamagawa product, and torsion.
+The typed finite tower remembers which block carries a valuation, while the
+scalar readout only remembers the integer combination
+\[
+  v_p|\Sha|+v_p\Bigl(\prod_\ell c_\ell\Bigr)
+  -2v_p|E(\Q)_{\tors}|.
+\]
+Now compare two typed finite inputs.  In the first, put the valuation in the
+$\Sha[p^\infty]$ block:
+\[
+  \bigl(v_p|\Sha|,\ v_p(\prod_\ell c_\ell),\
+  v_p|E(\Q)_{\tors}|\bigr)=(1,0,0).
+\]
+In the second, put it in the Tamagawa block:
+\[
+  \bigl(v_p|\Sha|,\ v_p(\prod_\ell c_\ell),\
+  v_p|E(\Q)_{\tors}|\bigr)=(0,1,0).
+\]
+The two typed inputs are distinct, since the first records a
+$p$-primary $\Sha$ contribution and the second records a Tamagawa
+contribution.  Nevertheless the scalar valuation is the same:
+\[
+  q_p=1+0-2\cdot0=1
+  \qquad\text{and}\qquad
+  q_p=0+1-2\cdot0=1.
+\]
+Thus the scalar map identifies two different typed finite-source rows.
+Moreover the Cassels--Tate datum is absent from the displayed expression
+for $q_p$ altogether.  Changing the Cassels--Tate pairing while holding the
+three scalar valuation coordinates fixed leaves $q_p$ unchanged.  Hence the
+scalar finite factor is a noninjective public shadow of the typed finite
+tower.
+
+This is an audit no-go in the sense used throughout the paper: it records
+that the scalar finite row alone does not contain enough information to
+recover the typed finite-source row.  It is not a claim that no stronger
+arithmetic theorem, supplied with additional source data, can identify or
+transport the missing finite information.
+\end{proof}
+
+\begin{nonclaim}[Decomposition scope]
+\label{nonclaim:apparatus:decomposition-scope}
+This section does not prove BSD, the Bloch--Kato conjecture, or ETNC~\citep{BurnsFlach2001}.  It
+defines the five-column component map, proves the component-killing
+consequence of the bridge-defect equation, and records the finite scalar
+public-shadow no-go for the typed bridge.  The no-go is an audit result
+about what the scalar row fails to determine; it is not a mathematical
+non-existence claim about possible richer finite-source identities.  The
+external transports from the five native columns to the determinant-line
+target remain recognition sources carried separately, not derived theorems
+of this decomposition section.
+\end{nonclaim}
+ \section{Height/regulator column}
+\label{sec:height-regulator}
+
+The height/regulator column is the part of the typed BSD carrier that keeps
+the Mordell--Weil lattice and its Neron--Tate pairing~\citep{Neron1965,Silverman2009} before any comparison
+with the global determinant line is made.  In classical BSD notation this is
+the source of the regulator.  In the five-column language of
+\Cref{sec:decomposition}, the native object is the real height pairing on
+the free Mordell--Weil lattice, while the readout is the corresponding
+cohomological determinant factor.
+
+\begin{definition}[Real height-regulator map]\label{def:apparatus:height-regulator-map}
+Let
+\[
+  \Lambda_E=E(\Q)/E(\Q)_{\tors},
+  \qquad
+  V_E=\Lambda_E\otimes_{\Z}\R,
+\]
+and let $\langle\cdot,\cdot\rangle_{\mathrm{NT}}$ be the Neron--Tate
+pairing on $V_E$.  Write
+\[
+  h_{\mathrm{NT}}:V_E\longrightarrow V_E^*,
+  \qquad
+  P\longmapsto \langle P,\cdot\rangle_{\mathrm{NT}},
+\]
+for the associated linear map to the dual space.  The real
+height-regulator map is
+\[
+  \rho_{\mathrm{ht/reg}}^{\R}:(V_E,\Lambda_E,\langle\cdot,\cdot\rangle_{\mathrm{NT}})
+  \longmapsto \det(h_{\mathrm{NT}})\in\det(V_E^*)\otimes\det(V_E)^*,
+\]
+where the determinant is taken as an element of the indicated determinant
+line.  If $(P_1,\ldots,P_r)$ is a $\Z$-basis of $\Lambda_E$ and
+\[
+  H_E=\bigl(\langle P_i,P_j\rangle_{\mathrm{NT}}\bigr)_{1\leq i,j\leq r},
+\]
+then the scalar coefficient of this determinant element in the induced
+basis is
+\[
+  \det H_E=\Reg(E/\Q),
+\]
+with the empty determinant equal to $1$ when $r=0$.  This coefficient is
+basis-independent: if the basis is changed by
+$A\in\mathrm{GL}_r(\Z)$, then $H_E$ is replaced by
+$A^{\mathsf T}H_EA$, and
+\[
+  \det(A^{\mathsf T}H_EA)
+  =
+  \det(A)^2\det(H_E)
+  =
+  \det(H_E),
+\]
+since $\det(A)=\pm1$.
+\end{definition}
+
+\begin{theorem}[Height tangent Schur collapse]\label{thm:apparatus:height-schur-collapse}
+On the tangent height carrier $S_r=\operatorname{Sym}_r(\R)$, write
+$x=\operatorname{vech}(\delta H)$ for the coordinate vector of a symmetric
+height variation.  Take the audit energy to be the identity matrix $C=I$.
+With the full native source $L_{\mathrm{full}}(x)=x$ and with readout
+\[
+  D_H(\delta H)
+  =
+  d(\log\det)_H(\delta H)
+  =
+  \tr(H^{-1}\delta H)
+  =
+  d_Hx,
+\]
+one has
+\[
+  \XiC=d_Hd_H^{\mathsf T}-d_H I d_H^{\mathsf T}=0 .
+\]
+The pre-source residual is $K_{DD}=\|d_H\|^2$ (e.g.\ $37a1$: $382.79\ldots$);
+rank-$0$ rows are vacuous ($K_{DD}=0$).\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.HeightRegulator.heightSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Let $n=\dim S_r=r(r+1)/2$ and identify a tangent vector with its
+half-vectorized coordinate vector $x\in\R^n$.  The differential of
+$\log\det$ at $H$ is the linear functional
+\[
+  x\longmapsto d_Hx,
+\]
+where $d_H$ is a row vector with one coordinate for each entry of
+$\operatorname{vech}(\delta H)$.  Before admitting the height source, the
+readout variance is simply
+\[
+  K_{DD}=d_Hd_H^{\mathsf T}
+  =
+  \sum_{i=1}^n (d_H)_i^2
+  =
+  \|d_H\|^2.
+\]
+
+Now admit the full tangent height carrier as the source.  Since
+$L_{\mathrm{full}}(x)=x$ and $C=I$, the source block is
+$K_{LL}=I$, its Moore--Penrose inverse is again $I$, and the cross blocks
+are $K_{DL}=d_H$ and $K_{LD}=d_H^{\mathsf T}$.  The only computation is the
+identity-matrix action.  If $v=(v_1,\ldots,v_n)^{\mathsf T}$, then the
+$i$-th coordinate of $Iv$ is
+\[
+  \sum_{j=1}^n \delta_{ij}v_j=v_i,
+\]
+so $Iv=v$.  Applying this to $v=d_H^{\mathsf T}$ gives
+$I d_H^{\mathsf T}=d_H^{\mathsf T}$, and therefore
+\[
+  K_{DL}K_{LL}^{\dagger}K_{LD}
+  =
+  d_H I d_H^{\mathsf T}
+  =
+  d_Hd_H^{\mathsf T}.
+\]
+Substituting into the Schur-complement residual gives
+\[
+  \XiC
+  =
+  K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}
+  =
+  d_Hd_H^{\mathsf T}-d_Hd_H^{\mathsf T}
+  =
+  0.
+\]
+
+If $r=0$, then $S_0$ is the zero tangent space, $n=0$, and the row vector
+$d_H$ has no coordinates.  The empty sum defining
+$d_Hd_H^{\mathsf T}$ is $0$, so $K_{DD}=0$ already before any source is
+admitted.  Thus rank-$0$ rows are vacuous in exactly the stated sense.
+\end{proof}
+
+\begin{obligation}[Refined height-regulator BK transport]\label{obl:apparatus:rho-ht-reg-transport}
+The full Bloch--Kato height/regulator component also requires a comparison
+transport
+\[
+  \beta_{\mathrm{BK,ht}}:
+  \det(V_E^*)\otimes\det(V_E)^*
+  \longrightarrow
+  \Delta_f(M_E)_{\mathrm{ht/reg}}.
+\]
+This transport identifies the Neron--Tate determinant with the
+Beilinson--Deligne regulator normalization~\citep{Beilinson1985,Schneider1982}, including the coefficient
+convention, the archimedean Deligne-cohomology normalization, the determinant
+orientation and trivialization, and compatibility with the finite and
+determinant-assembly columns without absorbing them.  In this paper it is a
+recognition-source carrier: the comparison is named as external arithmetic
+content and carried separately, not derived from the finite typed
+height-column calculation.
+\end{obligation}
+
+\begin{warning}[Carrier discipline for $571a1$]\label{warn:apparatus:571a1-carrier}
+The curve $571a1$ has Mordell--Weil rank $0$ with nontrivial
+$\Sha[2]$/Cassels--Tate data.  Its lawful height/regulator row is therefore
+the rank-$0$ row described above: no nonzero height tangent is present in
+this column.  Rank-$2$ height/regulator examples in this paper use $389a1$.
+\end{warning}
+
+ \section{Analytic/period column}
+\label{sec:analytic-period}
+
+The analytic/period column keeps the analytic leading coefficient and the
+real period before they are mixed with height, finite, or local data.  Thus
+the native pair is $(A_E,\Omega_E^+)$, where
+$A_E=L^{(r_{\mathrm{an}})}(E,1)/r_{\mathrm{an}}!$ is the standard BSD
+leading coefficient and $\Omega_E^+$ is the real period.  In log-tangent
+coordinates the readout is the quotient coordinate
+$\log A_E-\log\Omega_E^+$.
+
+\begin{definition}[Real analytic/period map]\label{def:apparatus:analytic-period-map}
+By modularity~\citep{Wiles1995,BreuilConradDiamondTaylor2001} $L(E,s)=L(f_E,s)$.  Let
+\[
+  A_E=\frac{L^{(r_{\mathrm{an}})}(E,1)}{r_{\mathrm{an}}!}
+\]
+be the analytic leading coefficient, equivalently the leading Taylor
+coefficient of $L(E,s)$ at $s=1$, and let
+\[
+  \Omega_E^+=\int_{\gamma_\infty}\omega_E
+\]
+be the real period.  The native analytic/period family is
+\[
+  L_{\mathrm{an/per}}(E)=(A_E,\Omega_E^+).
+\]
+Its isolated scalar readout is $A_E/\Omega_E^+$, and the real
+analytic/period map is
+\[
+  \rho_{\mathrm{an/period}}^{\R}:(A_E,\Omega_E^+)\longmapsto
+  (A_E/\Omega_E^+)\,e_{\mathrm{an/per}}
+  \in L_{\mathrm{an/per}}(E)_{\R}.
+\]
+This native column contains only analytic leading-term and period data:
+height, torsion, Tamagawa, and $\Sha$ data are excluded.
+\end{definition}
+
+\begin{theorem}[Analytic/period tangent Schur collapse]\label{thm:apparatus:analytic-period-schur-collapse}
+In the log-tangent chart
+\[
+  x=(x_A,x_\Omega)=(\log A_E,\log\Omega_E^+)\in\R^2,
+\]
+take $C=I_2$, take the full native source to be
+$L_{\mathrm{full}}(x)=x$, and take the dissolving readout to be
+\[
+  D(x)=x_A-x_\Omega.
+\]
+Equivalently, $D(x)=dx$ for the row vector $d=(1,-1)$.  Then
+$\KLL=I_2$, $\KDD=dd^{\mathsf T}=2$, and
+\[
+  \XiC=2-dI_2d^{\mathsf T}=0.
+\]
+With no source admitted the residual is $2$; with only the $x_A$ coordinate
+admitted the residual is $1$; with both native coordinates admitted the
+residual is $0$.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.AnalyticPeriod.analyticPeriodSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The readout row is $d=(1,-1)$, so before admitting any source its readout
+energy is
+\[
+  \KDD=dd^{\mathsf T}=1^2+(-1)^2=2.
+\]
+Now admit the full analytic/period source
+$L_{\mathrm{full}}(x)=x$ with audit energy $C=I_2$.  Then the source block
+is $\KLL=I_2$, its Moore--Penrose inverse is again
+$\Kdagger=I_2$, and the cross blocks are $\KDL=d$ and
+$K_{LD}=d^{\mathsf T}$.  The identity matrix acts on a column vector
+$v=(v_A,v_\Omega)^{\mathsf T}$ by
+\[
+  I_2v
+  =
+  \begin{pmatrix}1&0\\0&1\end{pmatrix}
+  \begin{pmatrix}v_A\\v_\Omega\end{pmatrix}
+  =
+  \begin{pmatrix}v_A\\v_\Omega\end{pmatrix}
+  =
+  v.
+\]
+Applying this to $v=d^{\mathsf T}$ gives
+$I_2d^{\mathsf T}=d^{\mathsf T}$.  Hence
+\[
+  \KDL\Kdagger K_{LD}
+  =
+  dI_2d^{\mathsf T}
+  =
+  dd^{\mathsf T}
+  =
+  2.
+\]
+The Schur-complement residual is therefore
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  2-2
+  =
+  0.
+\]
+
+The two orientation numbers in the statement are the same finite
+calculation with smaller source.  With no source, no projection is removed,
+so the residual is $\KDD=2$.  If only $x_A$ is admitted, the row
+$d=(1,-1)$ decomposes orthogonally as the admitted part $(1,0)$ plus the
+unseen part $(0,-1)$; the unseen part has squared length $1$.  Thus the
+one-coordinate source leaves residual $1$, while the two-coordinate source
+leaves none.
+\end{proof}
+
+\begin{obligation}[Refined analytic/period BK transport]\label{obl:apparatus:rho-an-period-transport}
+The full Bloch--Kato analytic/period component requires a comparison
+transport
+\[
+  \beta_{\mathrm{BK,an}}:
+  L_{\mathrm{an/per}}(E)_{\R}
+  \longrightarrow
+  \Delta_f(M_E)_{\mathrm{an/per}}.
+\]
+This transport identifies
+\[
+  \frac{L^{(r_{\mathrm{an}})}(E,1)}
+       {r_{\mathrm{an}}!\,\Omega_E^+}
+\]
+with the analytic zeta-element factor, including the rational-versus-integral
+normalization, the Betti--de Rham comparison and real orientation, the
+positive-rank leading-term convention, and separation from the other four
+columns.  The rank-$0$ comparison is classical; in positive rank the
+comparison is named external arithmetic content.  In this paper it is a
+recognition-source carrier, not a theorem derived from the finite
+analytic/period Schur calculation.
+\end{obligation}
+
+ \section{Finite-source column and the finite no-gos}
+\label{sec:finite-source}
+
+The finite-source column keeps the arithmetic finite data before it is
+contracted to the public scalar finite factor.  Its typed tower separates
+Tamagawa factors~\citep{Silverman1994}, torsion, the $p$-primary \(\Sha\) data, and the
+Cassels--Tate pairing.  The point of this column is that the determinant
+readout is pairing-aware: the Cassels--Tate form~\citep{PoonenStoll1999,Cassels1962} is source data, not a
+number to be recovered from the scalar finite product after the fact.
+
+\begin{definition}[Real finite-source map]\label{def:apparatus:finite-source-map}
+The finite-source tower is
+\[
+  C_{\mathrm{fin}}(E)
+  =
+  C_{\mathrm{Tam}}\oplus C_{\tors}\oplus
+  C_{\Sha[p^\infty]}\oplus C_{\mathrm{CT}}.
+\]
+Its native family is
+\[
+  L_{\mathrm{finite}}(E)
+  =
+  \bigl((c_v(E))_{v\mid N},\,E(\Q)_{\tors},\,
+  (\Sha(E/\Q)[p^\infty])_p,\,\langle\cdot,\cdot\rangle_{\mathrm{CT}}\bigr).
+\]
+The real finite-source map is the tensor
+\[
+  \rho_{\mathrm{finite}}^{\R}
+  =
+  \rho_{\mathrm{Tam}}^{\R}
+  \otimes
+  \rho_{\tors}^{\R}
+  \otimes
+  \bigotimes_p \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}.
+\]
+The Tamagawa factor is
+\[
+  \rho_{\mathrm{Tam}}^{\R}:
+  (c_v)_{v\mid N}
+  \longmapsto
+  \bigotimes_{v\mid N} c_v e_v^{\mathrm{loc}},
+  \qquad
+  c_v=|\Phi_v(E)|,\quad
+  \Phi_v=E(\Q_v)/E^0(\Q_v).
+\]
+The torsion factor is
+\[
+  \rho_{\tors}^{\R}:
+  T(E)
+  \longmapsto
+  \bigotimes_p |T_p(E)|^{-2}e_p^{\tors}.
+\]
+For the \(\Sha\)--Cassels--Tate factor, put
+\[
+  S_p=\Sha[p^\infty]/\Sha_{\mathrm{div}}[p^\infty],
+\]
+equipped with its perfect alternating Cassels--Tate pairing
+\(\langle\cdot,\cdot\rangle_{\mathrm{CT},p}\).  Then
+\[
+  \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}:
+  (S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p})
+  \longmapsto
+  \Pf(\langle\cdot,\cdot\rangle_{\mathrm{CT},p})
+  e_p^{\Sha\text{-}\mathrm{CT}}.
+\]
+For a trivial \(S_p\), the Pfaffian contribution is the unit.  The source
+datum in this block is the pair
+\((S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p})\), not merely
+\(|S_p|\) and not merely \(\dim_{\mathbb F_p}S_p[p]\).
+\end{definition}
+
+\begin{theorem}[Pairing-aware finite Schur collapse]\label{thm:apparatus:finite-source-schur-collapse}
+At a support prime $p$, use finite tangent coordinates
+\[
+  x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4,
+\]
+where \(x_T=v_p(\prod_v c_v)\), \(x_{\tors}=v_p|E(\Q)_{\tors}|\),
+\(x_{\Sha}=v_p|S_p|\), and \(x_{\mathrm{CT}}\) is the
+Cassels--Tate-pairing coordinate.  With the pairing-aware full readout
+\[
+  D_{\mathrm{full}}(x)=x,
+  \qquad
+  L_{\mathrm{full}}(x)=x,
+  \qquad
+  C=I_4,
+\]
+the Schur residual collapses:
+\[
+  \XiC
+  =
+  I_4-I_4I_4^{\dagger}I_4
+  =
+  0.
+\]
+Thus the full typed finite tower is adequate for the pairing-aware finite
+readout.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.FiniteSource.finiteSourceSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Because the full readout and the full source are both the identity on
+\(\R^4\), the readout block is
+\[
+  \KDD=I_4.
+\]
+The source block is also \(\KLL=I_4\).  Since the Moore--Penrose inverse of
+the identity matrix is the identity matrix, \(\Kdagger=I_4\).  The two cross
+blocks are \(\KDL=I_4\) and \(K_{LD}=I_4\).
+
+It remains to compute the projection term rather than name it.  For any
+vector \(v=(v_1,v_2,v_3,v_4)^{\mathsf T}\),
+\[
+  I_4v=v.
+\]
+Equivalently, in coordinates,
+\[
+  (I_4v)_i=\sum_{j=1}^4\delta_{ij}v_j=v_i.
+\]
+Applying the same identity-matrix action column by column to \(I_4\) gives
+\[
+  I_4I_4=I_4.
+\]
+Therefore
+\[
+  \KDL\Kdagger K_{LD}
+  =
+  I_4I_4I_4
+  =
+  I_4.
+\]
+Substitution into the Schur-complement residual gives
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  I_4-I_4
+  =
+  0.
+\]
+This calculation uses all four finite coordinates.  The scalar and
+dimension-only shadows treated below are different readouts: they forget
+part of the typed finite tower and therefore leave positive residuals.
+\end{proof}
+
+\begin{theorem}[Scalar finite projection (NG-1, Schur form)]\label{thm:apparatus:scalar-finite-shadow}
+Let \(x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4\), and let the
+scalar finite projection be
+\[
+  q=s\cdot x,
+  \qquad
+  s=(1,-2,1,0).
+\]
+The orthogonal rank-one projector onto the scalar row is
+\[
+  P_s=s^{\mathsf T}(ss^{\mathsf T})^{-1}s,
+\]
+and the residual against the full typed finite readout is
+\[
+  \Xi_{\mathrm{scalar}}=I_4-P_s,
+  \qquad
+  \tr(\Xi_{\mathrm{scalar}})=3>0.
+\]
+Moreover the scalar map is noninjective on the typed finite tower: the typed
+finite inputs \((0,0,2,H)\) and \((2,0,0,0)\) both give \(q=2\), but place
+the valuation in the \(\Sha\)--Cassels--Tate block and the Tamagawa block,
+respectively.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.FiniteSource.scalarFiniteShadow}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+First compute the Schur residual.  The squared length of the scalar row is
+\[
+  ss^{\mathsf T}
+  =
+  1^2+(-2)^2+1^2+0^2
+  =
+  6.
+\]
+Thus the rank-one projector has entries
+\[
+  (P_s)_{ij}=\frac{s_i s_j}{6}.
+\]
+Its trace is the sum of its diagonal entries:
+\[
+  \tr(P_s)
+  =
+  \sum_{i=1}^4 \frac{s_i^2}{6}
+  =
+  \frac{1^2+(-2)^2+1^2+0^2}{6}
+  =
+  \frac{6}{6}
+  =
+  1.
+\]
+Since \(\tr(I_4)=4\), the residual trace is
+\[
+  \tr(\Xi_{\mathrm{scalar}})
+  =
+  \tr(I_4-P_s)
+  =
+  \tr(I_4)-\tr(P_s)
+  =
+  4-1
+  =
+  3.
+\]
+This is positive, so the scalar row leaves a three-dimensional residual
+relative to the full four-coordinate finite source.
+
+The same failure is visible without linear algebra.  Evaluate \(q\) on the
+two displayed typed inputs.  For the \(\Sha\)--Cassels--Tate input
+\((0,0,2,H)\),
+\[
+  q=1\cdot0-2\cdot0+1\cdot2+0\cdot H=2.
+\]
+For the Tamagawa input \((2,0,0,0)\),
+\[
+  q=1\cdot2-2\cdot0+1\cdot0+0\cdot0=2.
+\]
+The scalar value is the same, but the typed data are different: one input
+records the contribution in the \(\Sha\)--Cassels--Tate block, while the
+other records it in the Tamagawa block.  The scalar projection also ignores
+the Cassels--Tate coordinate \(H\) itself, since the fourth coefficient of
+\(s\) is zero.  Hence the scalar finite row is a public shadow of the typed
+finite tower.  This is an audit no-go: it says the scalar row alone does not
+recover the typed source; it is not a claim that no richer theorem can
+supply the missing finite data.
+\end{proof}
+
+\begin{theorem}[{$\dim\Sha[p]$ projection (NG-2, Schur form)}]\label{thm:apparatus:dim-sha-shadow}
+On the \(\Sha\)--Cassels--Tate subcarrier \(y=(m,\theta)\in\R^2\), where
+\(m\) records the \(p\)-power elementary-divisor length and \(\theta\)
+records the Cassels--Tate coordinate, the dimension-only projection
+\[
+  L_{\dim}(y)=(1,0)y
+\]
+leaves
+\[
+  \Xi_{\dim}
+  =
+  I_2-(1,0)^{\mathsf T}(1,0)
+  =
+  \operatorname{diag}(0,1),
+  \qquad
+  \tr(\Xi_{\dim})=1>0.
+\]
+It is noninjective on Cassels--Tate data: \((\Z/2\Z)^2\) with
+\(\langle e,f\rangle=\tfrac12\) and \((\Z/4\Z)^2\) with
+\(\langle e,f\rangle=\tfrac14\) have the same
+\(\mathbb F_2\)-dimension of their \(2\)-torsion but different
+Cassels--Tate determinant factors.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Let \(e=(1,0)\).  The dimension-only source keeps the \(m\)-coordinate and
+forgets the \(\theta\)-coordinate.  Its projector is
+\[
+  e^{\mathsf T}e
+  =
+  \begin{pmatrix}1&0\\0&0\end{pmatrix}.
+\]
+Therefore the residual projector is
+\[
+  \Xi_{\dim}
+  =
+  I_2-e^{\mathsf T}e
+  =
+  \begin{pmatrix}1&0\\0&1\end{pmatrix}
+  -
+  \begin{pmatrix}1&0\\0&0\end{pmatrix}
+  =
+  \begin{pmatrix}0&0\\0&1\end{pmatrix}
+  =
+  \operatorname{diag}(0,1).
+\]
+Taking traces gives
+\[
+  \tr(\Xi_{\dim})=0+1=1>0.
+\]
+Thus the dimension-only row leaves exactly the Cassels--Tate direction
+unexplained.
+
+The witness shows that this residual is not a bookkeeping artifact.  The
+group \(U_1=(\Z/2\Z)^2\) has \(U_1[2]=U_1\), so
+\(\dim_{\mathbb F_2}U_1[2]=2\).  The group \(U_2=(\Z/4\Z)^2\) has
+\[
+  U_2[2]\cong(\Z/2\Z)^2,
+\]
+so \(\dim_{\mathbb F_2}U_2[2]=2\) as well.  The dimension readout therefore
+cannot distinguish \(U_1\) from \(U_2\).
+
+Their Cassels--Tate determinant factors differ.  For a two-generator
+alternating pairing with matrix
+\[
+  \begin{pmatrix}0&a\\-a&0\end{pmatrix},
+\]
+the Pfaffian is \(a\).  The pairings in the statement have \(a=\tfrac12\)
+and \(a=\tfrac14\), respectively, so they give different Pfaffian
+contributions to the determinant-line trivialization.  Hence the dimension
+\(\dim_{\mathbb F_2}\Sha[2]\) is a noninjective public shadow of the
+\(\Sha\)--Cassels--Tate source.  As above, this is an audit no-go about a
+specific public readout, not a non-existence claim about all possible
+arithmetic refinements.
+\end{proof}
+
+\begin{obligation}[Refined finite-source BK transport]\label{obl:apparatus:rho-finite-transport}
+The full Bloch--Kato finite component requires a comparison transport
+\[
+  \beta_{\mathrm{BK,finite}}:
+  L_{\mathrm{finite}}(E)_{\R}
+  \longrightarrow
+  \Delta_f(M_E)_{\mathrm{finite}}.
+\]
+This transport fixes the integral local-condition conventions at bad primes,
+the squared-torsion normalization, the Cassels--Tate Pfaffian and orientation
+conventions, and compatibility with the determinant-assembly column.  In
+this paper it is a recognition-source carrier: the finite-source transport
+is named external arithmetic content and carried separately, not derived
+from the finite typed Schur calculation.
+\end{obligation}
+
+ \section{p-adic column}
+\label{sec:p-adic}
+
+The local \(p\)-adic column records the local source data before it is
+contracted to a public local scalar.  At an ordinary prime this means keeping
+the ordinary-control coordinate together with the finite local condition and
+dual exponential.  At a supersingular prime it means keeping the signed
+\(+\) and \(-\) local directions separately, rather than replacing them by
+their unsigned aggregate.
+
+\begin{definition}[Real p-adic map]\label{def:apparatus:p-adic-map}
+Let \(T=T_pE\) and \(V=V_p(E)=T\otimes\Qp\), viewed as a representation of
+\(G_{\Qp}\).  The finite local condition~\citep{BlochKato1990,Fontaine1994} is
+\[
+  \Hf(\Qp,V)
+  =
+  \ker\bigl(H^1(\Qp,V)\to H^1(\Qp,V\otimes B_{\mathrm{cris}})\bigr),
+\]
+and the dual exponential is
+\[
+  \exp^*:\Hf(\Qp,V)\longrightarrow
+  D_{\mathrm{dR}}(V)/\operatorname{Fil}^0D_{\mathrm{dR}}(V).
+\]
+
+If \(E\) has good ordinary reduction at \(p\)~\citep{Mazur1972}, so \(a_p\) is a \(p\)-unit
+and the ordinary filtration is
+\[
+  0\longrightarrow T^+\longrightarrow T\longrightarrow T^-\longrightarrow0,
+\]
+then the native ordinary family is
+\[
+  L_p^{\mathrm{ord}}(E)=(T^+,\Hf(\Qp,V),\exp^*),
+\]
+and the real ordinary local map is
+\[
+  \rho_{p,\mathrm{ord}}^{\R}:
+  (T^+,\Hf(\Qp,V),\exp^*)
+  \longmapsto
+  e_{T^+}\otimes\det(\exp^*)\,e_{\mathrm{loc},p}
+  \in \Delta_f(V,T)_{p,\R}^{\mathrm{ord}}.
+\]
+If \(E\) has good supersingular reduction at \(p\)~\citep{Kobayashi2003,Pollack2003}, with \(a_p\equiv0\),
+then the signed native family is
+\[
+  L_p^{\pm}(E)=(H^1_+,H^1_-,\exp^*),
+\]
+and the signed real local map is
+\[
+  \rho_{p,\pm}^{\R}:
+  (H^1_+,H^1_-,\exp^*)
+  \longmapsto
+  e_+\otimes e_-\otimes\det(\exp^*)\,e_{\mathrm{loc},p}^{\pm}.
+\]
+\end{definition}
+
+\begin{theorem}[Ordinary local Schur collapse]\label{thm:apparatus:ordinary-schur-collapse}
+For a good-ordinary row, let
+\[
+  x=(x_{\mathrm{ord}},x_f,x_{\exp})\in\R^3
+\]
+be the ordinary-control, finite-local-condition, and dual-exponential
+tangent coordinates.  With
+\[
+  D_{\mathrm{ord}}(x)=x,\qquad
+  L_{\mathrm{ord,full}}(x)=x,\qquad
+  C=I_3,
+\]
+one has \(\XiC=0\).  If the ordinary-control coordinate
+\(x_{\mathrm{ord}}\) is omitted, the trace residual is \(1\); the unit-root
+control coordinate is therefore necessary for the full ordinary local
+source.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.PAdic.ordinarySchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+With the full ordinary source admitted, both the readout and source maps are
+the identity on \(\R^3\).  Hence
+\[
+  \KDD=I_3,\qquad
+  \KLL=I_3,\qquad
+  \Kdagger=I_3,\qquad
+  \KDL=I_3,\qquad
+  K_{LD}=I_3.
+\]
+The projection term is computed by the identity-matrix action.  For
+\(v=(v_1,v_2,v_3)^{\mathsf T}\),
+\[
+  (I_3v)_i=\sum_{j=1}^3\delta_{ij}v_j=v_i,
+\]
+so \(I_3v=v\), and applying this column by column gives \(I_3I_3=I_3\).
+Therefore
+\[
+  \KDL\Kdagger K_{LD}
+  =
+  I_3I_3I_3
+  =
+  I_3.
+\]
+Substituting into the Schur residual gives
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  I_3-I_3
+  =
+  0.
+\]
+
+Now omit \(x_{\mathrm{ord}}\).  The admitted source is the coordinate
+subspace spanned by \(e_f=(0,1,0)\) and \(e_{\exp}=(0,0,1)\).  The
+orthogonal projector onto this subspace is
+\[
+  P_{\mathrm{omit}}
+  =
+  \operatorname{diag}(0,1,1).
+\]
+The residual projector is
+\[
+  I_3-P_{\mathrm{omit}}
+  =
+  \operatorname{diag}(1,0,0),
+\]
+whose trace is \(1\).  Thus omitting the ordinary-control coordinate leaves
+exactly one unexplained local direction.
+\end{proof}
+
+\begin{theorem}[Signed local Schur collapse]\label{thm:apparatus:signed-schur-collapse}
+For a good-supersingular row, let
+\[
+  y=(y_+,y_-,y_{\exp})\in\R^3
+\]
+be the signed \(+\), signed \(-\), and dual-exponential tangent coordinates.
+With
+\[
+  D_{\pm}(y)=y,\qquad
+  L_{\pm,\mathrm{full}}(y)=y,\qquad
+  C=I_3,
+\]
+one has \(\XiC=0\).  The unsigned projection
+\[
+  L_{\mathrm{uns}}(y)=(y_++y_-,y_{\exp})
+\]
+has rank \(2\), leaves the difference direction \(y_+-y_-\) invisible, and
+has trace residual \(1\).  Thus the signed decomposition is structural;
+unsigned aggregation is a public shadow.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.PAdic.signedSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The full signed source is again the identity source on \(\R^3\).  Therefore
+the same identity-matrix computation as in the ordinary case gives
+\[
+  \KDD=I_3,\qquad
+  \KLL=I_3,\qquad
+  \Kdagger=I_3,\qquad
+  \KDL=I_3,\qquad
+  K_{LD}=I_3,
+\]
+and hence
+\[
+  \XiC
+  =
+  I_3-I_3I_3I_3
+  =
+  0.
+\]
+
+It remains to compute the unsigned residual.  The unsigned source is the
+two-dimensional subspace spanned by
+\[
+  u_1=(1,1,0),\qquad u_2=(0,0,1).
+\]
+These two vectors are orthogonal, with \(u_1\cdot u_1=2\),
+\(u_2\cdot u_2=1\), and \(u_1\cdot u_2=0\).  Hence the orthogonal projector
+onto the unsigned source is
+\[
+  P_{\mathrm{uns}}
+  =
+  \frac{u_1u_1^{\mathsf T}}{2}
+  +
+  u_2u_2^{\mathsf T}.
+\]
+Its trace is
+\[
+  \tr(P_{\mathrm{uns}})
+  =
+  \frac{u_1\cdot u_1}{2}
+  +
+  u_2\cdot u_2
+  =
+  \frac{2}{2}+1
+  =
+  2.
+\]
+Since \(\tr(I_3)=3\), the unsigned residual has trace
+\[
+  \tr(I_3-P_{\mathrm{uns}})=3-2=1.
+\]
+
+The invisible direction is explicit.  The vector
+\[
+  w=(1,-1,0)
+\]
+is orthogonal to \(u_1\) and \(u_2\), so it lies in the residual line.
+Equivalently,
+\[
+  L_{\mathrm{uns}}(1,0,0)=(1,0)=L_{\mathrm{uns}}(0,1,0),
+\]
+although the two signed inputs are distinct.  Thus unsigned aggregation
+forgets the \(+\) versus \(-\) difference, while the signed carrier retains
+it.
+\end{proof}
+
+\begin{obligation}[Refined p-adic BK-local transport]\label{obl:apparatus:rho-p-transport}
+The full Bloch--Kato local component requires a comparison transport
+\[
+  \beta_{\mathrm{BK},p}:
+  \Delta_f(V,T)_{p,\R}
+  \longrightarrow
+  \Delta_f(M_E)_p.
+\]
+This transport fixes the integral Fontaine--Laffaille or Wach data, the
+local Tate-pairing~\citep{Milne1986} and dual-exponential orientation, the Nekov\'a\v{r}
+Selmer-complex local-global compatibility~\citep{Nekovar2006}, the signed normalization at
+supersingular primes, and compatibility with the determinant-assembly
+column.  In this paper it is a recognition-source carrier: the arithmetic
+comparison is named external content and carried separately, not derived
+from the finite typed local calculations above.
+\end{obligation}
+
+ \section{Determinant-assembly column and cascade completion}
+\label{sec:det-assembly}
+
+The determinant-assembly column records the orientation, sign, and unit
+conventions needed to place the four arithmetic columns in one determinant
+line.  The height/regulator, analytic/period, finite-source, and local
+\(p\)-adic columns produce native determinant factors; the assembly column
+is the final coordinate that makes their tensor a global determinant-line
+object rather than a four-column product with an unspecified orientation.
+
+\begin{definition}[Real determinant-assembly map]\label{def:apparatus:det-assembly-map}
+Let
+\[
+  \lambda_{\mathrm{loc}}(E)
+  =
+  \rho_{\mathrm{ht/reg}}^{\R}
+  \otimes
+  \rho_{\mathrm{an/period}}^{\R}
+  \otimes
+  \rho_{\mathrm{finite}}^{\R}
+  \otimes
+  \bigotimes_{p\in S(E)}\rho_p^{\R}
+\]
+be the tensor of the four constructed arithmetic columns over the support
+set \(S(E)\).  Let \(o_{\det}\) denote the determinant orientation and
+trivialization coordinate.  The real determinant-assembly map is
+\[
+  \rho_{\det}^{\R}:
+  \lambda_{\mathrm{loc}}(E)\otimes o_{\det}
+  \longmapsto
+  \lambda_{\mathrm{loc}}(E)\cdot o_{\det}
+  \in\Delta_f(M_E)_{\R}.
+\]
+\end{definition}
+
+\begin{theorem}[Cascade-completion Schur signature]\label{thm:apparatus:cascade-completion-signature}
+Let the cascade tangent coordinate be
+\[
+  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5.
+\]
+The four constructed arithmetic columns have source row
+\[
+  \ell=(1,1,1,1,0),
+\]
+while the global determinant target has row
+\[
+  d=(1,1,1,1,1).
+\]
+With \(C=I_5\), one has
+\[
+  \KDD=dd^{\mathsf T}=5,\qquad
+  \KLL=\ell\ell^{\mathsf T}=4,\qquad
+  \KDL=d\ell^{\mathsf T}=4,
+\]
+and therefore
+\[
+  \XiC=5-4\cdot4^{-1}\cdot4=1.
+\]
+The residual is exactly the determinant-orientation coordinate
+\(x_{\det}\): the four constructed arithmetic components explain all
+coordinates except the final determinant row.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.DetAssembly.cascadeCompletionSignature}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The readout row is \(d=(1,1,1,1,1)\), so its squared norm is
+\[
+  \KDD
+  =
+  dd^{\mathsf T}
+  =
+  1+1+1+1+1
+  =
+  5.
+\]
+The source row supplied by the four constructed arithmetic columns is
+\(\ell=(1,1,1,1,0)\).  Its squared norm is
+\[
+  \KLL
+  =
+  \ell\ell^{\mathsf T}
+  =
+  1+1+1+1+0
+  =
+  4.
+\]
+Since this is a one-dimensional source block, its Moore--Penrose inverse is
+multiplication by \(4^{-1}\).  The cross term is
+\[
+  \KDL
+  =
+  d\ell^{\mathsf T}
+  =
+  1+1+1+1+0
+  =
+  4,
+\]
+and \(K_{LD}=4\) as well.  The Schur-complement residual is therefore
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  5-4\cdot4^{-1}\cdot4
+  =
+  5-4
+  =
+  1.
+\]
+
+This scalar residual is precisely the determinant-orientation direction.
+Indeed
+\[
+  d=(1,1,1,1,1)=\ell+e_{\det},
+  \qquad
+  e_{\det}=(0,0,0,0,1).
+\]
+The two summands are orthogonal for the identity calibration:
+\(\ell\cdot e_{\det}=0\).  Projection onto the source row
+\(\ell\) removes the \(\ell\)-component of \(d\) and leaves
+\(e_{\det}\).  The squared norm of \(e_{\det}\) is \(1\), matching the
+computed residual.  Thus the cascade is incomplete until the determinant
+orientation coordinate is supplied.
+\end{proof}
+
+\begin{obligation}[Integral determinant assembly]\label{obl:apparatus:rho-det-assembly}
+The full determinant comparison requires a transport
+\[
+  \beta_{\det\text{-}\mathrm{assembly}}:
+  \Bigl(
+  \Delta_{\mathrm{ht/reg}}
+  \otimes
+  \Delta_{\mathrm{an/period}}
+  \otimes
+  \Delta_{\mathrm{finite}}
+  \otimes
+  \bigotimes_p\Delta_p
+  \Bigr)
+  \longrightarrow
+  \Delta_f(M_E).
+\]
+This transport fixes the Knudsen--Mumford determinant signs~\citep{KnudsenMumford1976}, the
+Selmer-complex local-global compatibility, the zeta-element versus motivic
+trivialization convention, and compatibility with the four refined
+transports.  In this paper it is a recognition-source carrier: the
+arithmetic determinant assembly is named external content and carried
+separately, not derived from the finite cascade residual computation.
+\end{obligation}
+
+ \section[Comparison: literature gap and five-column/BK map]{Comparison: literature gap and $\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}$}
+\label{sec:comparison}
+
+The preceding sections built the five typed columns separately.  This
+section contracts that typed atlas back to the usual Bloch--Kato scalar
+package and asks whether the typed source is adequate for that contraction.
+The answer is yes for the scalar readout: the typed source has zero Schur
+residual for the comparison row, while the determinant-orientation
+coordinate lies in the kernel of the scalar contraction.
+
+\begin{remark}[Five-column literature gap (support only; audit observation)]\label{rmk:apparatus:five-column-literature-gap}
+The literature audit used here reads Bloch--Kato~\citep[\S5]{BlochKato1990},
+Fontaine--Perrin-Riou~\citep{FontainePerrinRiou1994}, and Nekov\'a\v{r}~\citep{Nekovar1994}
+as presenting \(\Delta_f(M_E)\) as a single
+global Tamagawa-number package, rather than as a typed decomposition into
+height/regulator, analytic/period, finite-source, local \(p\)-adic, and
+determinant-assembly slots.  Relative to that audited corpus, the
+five-column decomposition is recorded here as a structural contribution of
+this apparatus.  This is an audit observation about what that theorem-grade
+literature supplies; it is not a non-existence claim about possible
+equivalent decompositions elsewhere, and it is not a theorem of this paper.
+\end{remark}
+
+\begin{definition}[Five-column tensor]\label{def:apparatus:five-column-tensor}
+The typed five-column tensor is
+\[
+  T_{\mathrm{5col}}(E)
+  =
+  \rho_{\mathrm{ht/reg}}^{\R}(E)
+  \otimes
+  \rho_{\mathrm{an/period}}^{\R}(E)
+  \otimes
+  \rho_{\mathrm{finite}}^{\R}(E)
+  \otimes
+  \bigotimes_{p\in S(E)}\rho_p^{\R}(E)
+  \otimes
+  \rho_{\det}^{\R}(E).
+\]
+Its source family \(L\) consists of the five separated log-tangent
+coordinates
+\[
+  (x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det}),
+\]
+and its target readout \(D\) is the single Bloch--Kato
+Tamagawa-package coordinate obtained after scalar contraction.
+\end{definition}
+
+\begin{theorem}[Five-column to BK scalar contraction]\label{thm:apparatus:five-col-bk-comparison}
+At the log-tangent level, write
+\[
+  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5.
+\]
+Define the five-column to Bloch--Kato scalar contraction by
+\[
+  \Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}(x)=d\cdot x,
+  \qquad
+  d=(1,1,1,1,0).
+\]
+With the full typed five-column source \(L(x)=x\), \(C=I_5\),
+\(\KLL=I_5\), \(\KDL=d\), and \(\KDD=\|d\|^2=4\), one has
+\[
+  \Xi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}
+  =
+  4-dI_5d^{\mathsf T}
+  =
+  0.
+\]
+Thus the typed five-column source is adequate for the Bloch--Kato scalar
+projection.  Moreover the determinant-orientation coordinate lies in the
+kernel: \(x_{\det}\in\ker\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}\).
+Consequently the scalar Bloch--Kato package is a strict shadow of the typed
+atlas, forgetting at least the determinant-orientation coordinate.  The
+integral arithmetic interpretation remains conditional on the five refined
+transports.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Comparison.fiveColBkComparison}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The comparison row is \(d=(1,1,1,1,0)\).  Its squared norm is
+\[
+  \KDD
+  =
+  dd^{\mathsf T}
+  =
+  1+1+1+1+0
+  =
+  4.
+\]
+The full typed source is the identity source on \(\R^5\), so
+\[
+  \KLL=I_5,\qquad
+  \Kdagger=I_5,\qquad
+  \KDL=d,\qquad
+  K_{LD}=d^{\mathsf T}.
+\]
+The projection term is again the identity-matrix action.  For any vector
+\(v\in\R^5\), \(I_5v=v\), and hence
+\[
+  dI_5d^{\mathsf T}
+  =
+  dd^{\mathsf T}
+  =
+  4.
+\]
+Therefore
+\[
+  \Xi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  4-dI_5d^{\mathsf T}
+  =
+  4-4
+  =
+  0.
+\]
+This proves adequacy of the typed source for the scalar contraction.
+
+It remains to identify the shadow.  Let
+\[
+  e_{\det}=(0,0,0,0,1).
+\]
+Then
+\[
+  d\cdot e_{\det}
+  =
+  1\cdot0+1\cdot0+1\cdot0+1\cdot0+0\cdot1
+  =
+  0.
+\]
+Thus \(e_{\det}\in\ker\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}\).
+Changing only \(x_{\det}\) changes the typed five-column coordinate but
+does not change the Bloch--Kato scalar readout.  The scalar package is
+therefore a strict shadow of the typed atlas: it is adequately computed from
+the typed source, but it does not remember all typed coordinates.
+\end{proof}
+
+ \section{Higher-rank no-go and the rank-2 Kummer source}
+\label{sec:higher-rank-no-go}
+
+The higher-rank no-go records a boundary of the height/regulator column.
+Once a Mordell--Weil basis is known, the Neron--Tate Gram matrix computes
+the regulator determinant.  It does not, by itself, construct independent
+motivic-cycle sources in rank at least \(2\).  This is an audit result about
+what the height matrix fails to determine; it is not a non-existence claim
+about generalized Gross--Zagier~\citep{GrossZagier1986}, Beilinson--Kato~\citep{Beilinson1985,Kato2004}, \(K_2(E)\), or
+higher-Chow constructions~\citep{Bloch1986} supplied by other means.
+
+\begin{definition}[Rank-2 Mordell--Weil/Kummer source]\label{def:apparatus:rank-two-kummer-source}
+Let
+\[
+  \Lambda_E=E(\Q)/E(\Q)_{\tors}.
+\]
+For a prime \(p\), the Kummer map
+\[
+  \kappa_p:\Lambda_E\otimes\Qp\longrightarrow \Hf(\Q,V_p(E))
+\]
+sends Mordell--Weil classes to finite Selmer classes.  For the curve
+\(389a1\), fix a Mordell--Weil basis \((P_1,P_2)\).  The rank-\(2\)
+Mordell--Weil/Kummer candidate is
+\[
+  c_2^{\mathrm{MW}}(P_i)=\kappa_p(P_i),\qquad i=1,2,
+\]
+viewed after tensoring with \(\Qp\).  This is a classical rank-\(2\)
+Selmer source once the basis is known.  It is not, by this definition
+alone, a generalized Heegner-cycle construction or a motivic-cycle source.
+\end{definition}
+
+\begin{theorem}[Rank-2 height Schur collapse]\label{thm:apparatus:rank-two-height-schur-collapse}
+For the \(389a1\) rank-\(2\) Gram representative, write the symmetric
+height variation in coordinates
+\[
+  (\delta h_{11},\delta h_{12},\delta h_{22})
+\]
+and write
+\[
+  d(\log\det)_H
+  =
+  \ell
+  =
+  (3.12679\ldots,-0.76771\ldots,2.14483\ldots).
+\]
+With the full symmetric height-matrix source, \(\KLL=I_3\) and
+\[
+  \KDD=\|\ell\|^2=14.96650\ldots.
+\]
+The Schur residual vanishes:
+\[
+  \Xi_{NT\to\Reg}
+  =
+  \|\ell\|^2-\ell I_3\ell^{\mathsf T}
+  =
+  0.
+\]
+Thus the full rank-\(2\) Neron--Tate Gram carrier is adequate for its
+regulator determinant.  By contrast, the scalar-determinant-only source is
+one-dimensional and leaves trace residual \(3-1=2\).\footnote{Verified in
+Lean as
+\texttt{SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoHeightSchurCollapse};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The tangent space of symmetric \(2\times2\) height matrices has the three
+coordinates
+\[
+  (\delta h_{11},\delta h_{12},\delta h_{22}).
+\]
+The differential of the regulator determinant in logarithmic form is the
+row vector \(\ell\).  Hence the readout energy before admitting a source is
+\[
+  \KDD
+  =
+  \ell\ell^{\mathsf T}
+  =
+  \|\ell\|^2
+  =
+  14.96650\ldots.
+\]
+When the full symmetric height-matrix carrier is admitted, the source block
+is \(I_3\), its Moore--Penrose inverse is again \(I_3\), and the cross
+blocks are \(\KDL=\ell\) and \(K_{LD}=\ell^{\mathsf T}\).  The projection
+term is the identity-matrix action:
+\[
+  \ell I_3\ell^{\mathsf T}
+  =
+  \ell\ell^{\mathsf T}
+  =
+  \|\ell\|^2.
+\]
+Therefore
+\[
+  \Xi_{NT\to\Reg}
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  \|\ell\|^2-\|\ell\|^2
+  =
+  0.
+\]
+
+For the scalar-determinant-only comparison, the admitted source is the line
+spanned by the nonzero vector \(\ell\) inside the three-dimensional
+symmetric tangent space.  The orthogonal projector onto this line is
+\[
+  P_{\ell}=\frac{\ell^{\mathsf T}\ell}{\ell\ell^{\mathsf T}}.
+\]
+Its trace is
+\[
+  \tr(P_{\ell})
+  =
+  \frac{\ell\ell^{\mathsf T}}{\ell\ell^{\mathsf T}}
+  =
+  1.
+\]
+Since \(\tr(I_3)=3\), the scalar-determinant-only residual has trace
+\[
+  \tr(I_3-P_{\ell})=3-1=2.
+\]
+Thus the determinant scalar is adequate as a readout of the determinant
+itself, but it does not retain the full three-coordinate height matrix.
+\end{proof}
+
+\begin{theorem}[Gram matrix is a noninjective shadow (NG-3)]\label{thm:apparatus:gram-matrix-shadow}
+For \(r\geq2\), the Neron--Tate Gram matrix is a noninjective public shadow
+of the rank-\(r\) motivic-cycle source.  The Gram construction records the
+pairings
+\[
+  H_E=(\langle P_i,P_j\rangle_{\mathrm{NT}})_{1\leq i,j\leq r}
+\]
+for a known Mordell--Weil basis, and therefore supplies
+\(\Reg(E/\Q)=\det H_E\).  It does not construct the independent rank-\(r\)
+cycle source: distinct motivic-cycle data, including orientation, motivic
+labels, and Abel--Jacobi provenance, can have the same Gram matrix.  Thus
+the Mordell--Weil height matrix alone cannot be promoted to a rank-\(r\)
+cycle-source carrier.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.HigherRankNoGo.gramMatrixShadow}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Fix \(r\geq2\).  The Gram construction is a forgetful map.  Its input, if
+one is seeking a motivic-cycle source, contains more than the numerical
+height pairings: it must also specify which independent source classes are
+being realized, their orientation, and their provenance through the relevant
+cycle or Abel--Jacobi construction.  The Gram matrix keeps only the numbers
+\(\langle P_i,P_j\rangle_{\mathrm{NT}}\).
+
+This forgetfulness gives an explicit noninjectivity witness.  Take the same
+Mordell--Weil basis \((P_1,\ldots,P_r)\) and attach two different motivic
+source labels or two different Abel--Jacobi provenance records to the same
+ordered basis.  These are distinct as motivic-cycle data, because the
+source labels or provenance records differ.  Their Neron--Tate pairings are
+identical, since the underlying Mordell--Weil points have not changed.
+Therefore both data sets map to the same matrix
+\[
+  (\langle P_i,P_j\rangle_{\mathrm{NT}})_{i,j}.
+\]
+Equivalently, any height-orthogonal change of representatives that preserves
+all pairings also leaves the Gram matrix unchanged while not supplying the
+missing motivic labels or provenance.
+
+Once a Mordell--Weil basis is known, the Gram matrix does compute the
+regulator: \(\Reg(E/\Q)=\det H_E\).  That is exactly the content used by the
+height/regulator column.  The additional claim needed for a rank-\(r\)
+cycle source is different: it must construct or recognize independent
+motivic classes whose regulator is being measured.  The Gram matrix contains
+no such construction.  The no-go is therefore an audit result about the
+naive route from height matrix to motivic source; it does not rule out BDP~\citep{BertoliniDarmonPrasanna2013},
+Beilinson--Kato, \(K_2(E)\), or higher-Chow constructions imported under
+their own hypotheses.
+\end{proof}
+
+The rank-\(\geq2\) generalized-Gross--Zagier gap is handled in the
+conditional closure of \citet{TsiokosBSDClosure2026}, as a recognition
+source rather than a closed theorem.
+
+ \section{Global-audit no-go}
+\label{sec:global-audit-no-go}
+
+The global-audit no-go records the simplest obstruction to promoting a
+finite table of elliptic curves to a global theorem.  The five-curve window
+used in the audit is valuable evidence about those five rows, but a theorem
+whose conclusion ranges over all curves over \(\Q\) cannot be determined
+from those rows alone.  This is an audit result: it marks what the finite
+window does not certify, and is not a claim that the missing global theorem
+or a separate exhaustivity argument cannot exist.
+
+\begin{theorem}[Finite-window promotion no-go (NG-4)]\label{thm:apparatus:finite-window-no-go}
+Let
+\[
+  C_{\mathrm{BSD}}^{\mathrm{typed},+}
+  =
+  \operatorname*{colim}_{N_0\to\infty}
+  \{E/\Q:\operatorname{cond}(E)\leq N_0\}
+\]
+be the conductor-colimit carrier of typed BSD rows, and let
+\[
+  W_{50}=\{11a1,37a1,121b1,960d1,571a1\}
+\]
+be the five-curve audit window.  No theorem-grade promotion from the
+\(W_{50}\) rows to the global typed predicate
+\[
+  \forall E/\Q,\ \mathrm{BSD}(E)
+\]
+can depend only on \(W_{50}\).  In Schur form, at a conductor bound \(B\)
+with \(M(B)=\# C_{\mathrm{BSD}}(B)\), the window source has
+\(\KLL=I_5\), the full target has \(\KDD=I_{M(B)}\), and
+\[
+  \tr(\Xi_B)=M(B)-5\longrightarrow\infty
+  \qquad (B\to\infty).
+\]
+Equivalently, two global completions agreeing on \(W_{50}\) but differing
+at a curve \(E_*\notin W_{50}\) are indistinguishable to every
+\(W_{50}\)-only operator.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.GlobalAuditNoGo.finiteWindowNoGo}; see
+App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Fix a conductor bound \(B\) large enough that the bounded carrier
+\[
+  C_{\mathrm{BSD}}(B)=\{E/\Q:\operatorname{cond}(E)\leq B\}
+\]
+contains the five curves in \(W_{50}\).  Its typed audit space has one
+coordinate for each row, so its target covariance block is the identity
+matrix \(I_{M(B)}\), where \(M(B)=\#C_{\mathrm{BSD}}(B)\).  A source that
+depends only on \(W_{50}\) sees exactly the five coordinate directions
+corresponding to the five window rows.  Thus its source block is \(I_5\),
+and the Schur projection is the coordinate projection from the
+\(M(B)\)-dimensional row space onto those five window coordinates.
+
+The trace of a coordinate projection is the number of retained coordinates.
+Hence the window projection has trace \(5\), while the identity on the full
+bounded carrier has trace \(M(B)\).  The unexplained residual is therefore
+\[
+  \tr(\Xi_B)
+  =
+  \tr(I_{M(B)})-\tr(P_{W_{50}})
+  =
+  M(B)-5.
+\]
+As the conductor bound increases, the carrier contains arbitrarily many
+curves, so \(M(B)\) is unbounded and the residual trace tends to infinity.
+
+The same obstruction can be seen without matrices.  Choose any
+\(E_*\in C_{\mathrm{BSD}}^{\mathrm{typed},+}\setminus W_{50}\).  Consider two
+formal global completions of the typed predicate.  They assign exactly the
+same typed rows to all curves in \(W_{50}\), but assign different values at
+\(E_*\); for instance, one completion marks the \(E_*\)-row as satisfying the
+global predicate and the other marks it as not satisfying that predicate.
+Any operator whose input is only the \(W_{50}\) table receives identical
+data from these two completions, and therefore must return the same output
+on both.  But the two completions differ on the global statement
+\(\forall E/\Q,\mathrm{BSD}(E)\), since they differ at \(E_*\).  Therefore a
+promotion depending only on the five window rows cannot determine the
+global predicate.  A global closure requires some additional tail,
+exhaustivity, or density-to-pointwise bridge; it is not supplied by the
+finite window itself.
+\end{proof}
+
+ \section{Support-prime no-go and atlas}
+\label{sec:support-prime-no-go}
+
+The support-prime no-go is the local analogue of the finite-window
+obstruction.  A finite list of primes can record useful local evidence, but
+it cannot certify an all-prime support carrier by itself.  The result below
+is therefore an audit result about non-exhaustive prime coverage, not a
+claim that the missing local comparison rows cannot be supplied by other
+arguments.
+
+\begin{theorem}[Finite-prime cover no-go (NG-5)]\label{thm:apparatus:finite-prime-cover-no-go}
+No fixed finite prime set certifies the all-prime support-prime carrier
+\[
+  \bigotimes_p \Delta_f(M_E)_p.
+\]
+More precisely, for every finite prime set \(P_0\), there is a prime
+\(q\notin P_0\) and two support-prime completions which agree at every prime
+in \(P_0\) but assign different coverage status to the \(q\)-local row.
+Every \(P_0\)-only operator is therefore unable to distinguish the two
+completions, and so cannot determine the all-prime target.\footnote{Verified
+in Lean as
+\texttt{SixBirdsBSD.Apparatus.SupportPrimeNoGo.finitePrimeCoverNoGo}; see
+App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Let \(P_0\) be any finite set of primes.  Since the set of primes is
+infinite, choose a prime \(q\notin P_0\).  We now compare two formal
+support-prime completions for the same global row.  They agree on all local
+data indexed by primes in \(P_0\).  At the new prime \(q\), the first
+completion marks the local row as covered, while the second marks it as
+uncovered.
+
+By definition, a \(P_0\)-only operator factors through the restriction of
+the all-prime support carrier to the primes in \(P_0\).  The two completions
+have the same restriction to \(P_0\), so such an operator receives identical
+input from them and must return the same value on both.  But the all-prime
+target distinguishes them, because the \(q\)-coordinate has different
+coverage status.  Hence the \(P_0\)-restricted data do not determine the
+all-prime carrier.
+
+Since \(P_0\) was arbitrary, no fixed finite list of primes certifies
+\(\bigotimes_p\Delta_f(M_E)_p\).  Finite-prime evidence can support a
+bounded audit, but all-prime coverage requires an additional exhaustivity or
+local-completion certificate for the residual support-prime rows.
+\end{proof}
+
+\begin{definition}[Support-prime truncation residual (finite diagnostic)]\label{def:apparatus:support-prime-truncation-residual}
+For a finite prime truncation
+\[
+  S_B=\{p:p\leq B\},
+\]
+classify each local row into the covered class R4a or the residual class
+R4b.  Here R4a denotes a row whose ordinary or signed local hypotheses
+contribute no residual in the audit, while R4b denotes a row with one unit
+of unexplained local data.  The finite-truncation residual is
+\[
+  \Xi_B(E)=u_B(E),
+\]
+where \(u_B(E)\) is the number of R4b rows in \(S_B\).  This is a finite
+diagnostic only, distinct from
+\Cref{thm:apparatus:finite-prime-cover-no-go}; it does not by itself prove
+all-prime non-exhaustivity.  For the b50 rows below \(50\),
+\[
+  \Xi(11a1)=\Xi(37a1)=\Xi(121b1)=1,\qquad
+  \Xi(960d1)=3,\qquad
+  \Xi(571a1)=0.
+\]
+The last value becomes \(1\) once the bad prime \(571\) is included.
+\end{definition}
+
+\begin{remark}[Support-prime atlas (support only)]\label{rmk:apparatus:support-prime-atlas}
+The support-prime atlas is a \(76\)-row audit table of pairs \((E,p)\) for
+the b50 curves.  For each row it records the reduction type, the value
+\(a_p\) obtained by point counting, ordinarity, applicability of the local
+Iwasawa main-conjecture input~\citep{SkinnerUrban2014}, and the R4a/R4b assignment.  The R4b rows
+below \(50\) are
+\[
+  11a1:\{11\},\qquad
+  37a1:\{37\},\qquad
+  121b1:\{11\},\qquad
+  960d1:\{2,3,5\},\qquad
+  571a1:\varnothing.
+\]
+The prime \(571\) for \(571a1\) lies outside the \(<50\) sample, and the
+b50 bad-prime R4b count is \(7\).  This atlas is a support table for the
+audit, not a theorem.
+\end{remark}
+
+The full apparatus no-go suite is collected in \Cref{tab:no-go-suite}.  The
+shared reading is that each row marks a loss of source information in the
+available public or finite record, not a theorem excluding future richer
+source data.
+\begin{table}[tbp]
+\centering
+\footnotesize
+\caption{The apparatus no-go suite.  Each item is an audit result about what
+the displayed public row does not determine; none is a non-existence theorem
+about richer external source data.}
+\label{tab:no-go-suite}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.15\textwidth}
+>{\raggedright\arraybackslash}p{0.27\textwidth}
+>{\raggedright\arraybackslash}p{0.36\textwidth}
+>{\raggedright\arraybackslash}X@{}}
+\toprule
+No-go & Form & What the literature or public row lacks & Status \\
+\midrule
+NG-1 & Finite scalar shadow & The scalar finite factor does not identify
+which finite-source block carries the valuation. & mechanized finite
+noninjectivity witness. \\
+\addlinespace
+NG-2 & \(\dim \Sha[p]\) shadow & Dimension-only data forgets the
+Cassels--Tate determinant and pairing structure. & mechanized projector
+trace residual. \\
+\addlinespace
+NG-3 & Gram-matrix/regulator shadow & A regulator determinant does not
+construct the rank-\(2\) source whose Gram matrix it would measure. &
+mechanized typed shadow statement. \\
+\addlinespace
+NG-4 & Finite-window promotion & A bounded audit window cannot certify an
+unbounded operator family. & mechanized finite-window obstruction. \\
+\addlinespace
+NG-5 & Finite-prime coverage & A fixed finite prime set cannot determine an
+all-prime support carrier. & mechanized finite-prime cover obstruction. \\
+\addlinespace
+Higher-rank GZ & Rank-\(\geq2\) source gap & The theorem-grade
+generalized Gross--Zagier identity is not supplied by the audited inputs. &
+recorded as an audit-result gap. \\
+\addlinespace
+Global audit & Operator promotion gap & Local or finite scalar evidence does
+not by itself promote to the global determinant-line carrier. & recorded as
+scope boundary. \\
+\addlinespace
+Support-prime atlas & Local support gap & The \(b50\) support table is finite
+evidence, not all-prime coverage. & support-only audit table. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+ \section{Vsrc: Non-Descending Translation calibration}
+\label{sec:vsrc}
+
+The \(\vsrc\) calibration isolates the determinant-shaped source content
+that is visible before any descent to actual motivic cycles is supplied.
+In rank \(2\) it is the exterior algebra on two formal source symbols:
+the product \(\Jone\Jtwo\) records independence, while the relations
+\(\Jone^2=\Jtwo^2=0\) and \(\Jtwo\Jone=-\Jone\Jtwo\) make the construction
+alternating rather than Clifford-like.
+
+\begin{definition}[Virtual source algebra]\label{def:apparatus:vsrc-algebra}
+For an elliptic curve \(E/\Q\) whose source problem is considered in rank
+\(2\), let
+\[
+  V_2=\Q\Jone\oplus\Q\Jtwo.
+\]
+The virtual source algebra is
+\[
+  \vsrc_2(E)=\Lambda_{\Q}(V_2),
+\]
+with unit \(1\) and ordered basis
+\[
+  1,\qquad \Jone,\qquad \Jtwo,\qquad \Jtwelve:=\Jone\Jtwo.
+\]
+Its multiplication is the exterior product, so
+\[
+  \Jone^2=0,\qquad \Jtwo^2=0,\qquad
+  \Jone\Jtwo=\Jtwelve,\qquad
+  \Jtwo\Jone=-\Jtwelve.
+\]
+The symbols \(\Jone\) and \(\Jtwo\) are non-descending virtual independent
+source classes; the element \(\Jtwelve\) is their determinant-shaped
+independence witness.\footnote{Realized in Lean as
+\texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcAlgebra} over a narrowed
+representation: the rank-2 exterior-algebra relations are encoded
+structurally on the \(2^r\) coordinate space (dimension/calibration content
+faithful; full axiomatization not claimed). See App~\ref{app:formalization}.}
+\end{definition}
+
+\Cref{fig:vsrc-wedge} displays the rank-\(2\) exterior product used in the
+definition.  The diagram is only the finite structural calibration; it is not a
+descent to motivic cycles.
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  node/.style={draw, rounded corners=2pt, align=center, minimum width=1.6cm,
+    minimum height=0.8cm, fill=black!3},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[node] (one) at (0,2.2) {\(1\)};
+\node[node] (j1) at (-2.2,0.7) {\(\Jone\)};
+\node[node] (j2) at (2.2,0.7) {\(\Jtwo\)};
+\node[node] (j12) at (0,-1.1) {\(\Jtwelve\)};
+
+\draw[arrow] (j1) -- node[above, sloped] {\(\wedge\,\Jtwo\)} (j12);
+\draw[arrow] (j2) -- node[above, sloped] {\(\wedge\,\Jone=-\)} (j12);
+\draw[arrow] (one) -- node[left] {\(\wedge\,\Jone\)} (j1);
+\draw[arrow] (one) -- node[right] {\(\wedge\,\Jtwo\)} (j2);
+\draw[loop left, looseness=6, -{Latex[length=2mm]}] (j1) to node[left]
+  {\(\Jone^2=0\)} (j1);
+\draw[loop right, looseness=6, -{Latex[length=2mm]}] (j2) to node[right]
+  {\(\Jtwo^2=0\)} (j2);
+\node[align=center, font=\footnotesize] at (0,-2.25)
+  {\(\dim_{\Q}\vsrc_2=4\), with \(\Jone\Jtwo=\Jtwelve\) the determinant-shaped witness};
+\end{tikzpicture}
+\caption{The rank-\(2\) \(\vsrc\) exterior-algebra calibration.}
+\label{fig:vsrc-wedge}
+\end{figure}
+
+\begin{theorem}[Stage I consistency]\label{thm:apparatus:vsrc-stage-i-consistency}
+The rank-\(2\) virtual source algebra is a consistent finite-dimensional
+associative unital graded-commutative \(\Q\)-algebra.  Every element has a
+unique ordered normal form
+\[
+  a_{\varnothing}\,1+a_1\Jone+a_2\Jtwo+a_{12}\Jtwelve,
+  \qquad a_{\varnothing},a_1,a_2,a_{12}\in\Q,
+\]
+and therefore
+\[
+  \dim_{\Q}\vsrc_2(E)=4=2^2.
+\]
+The low-rank cases are preserved: \(\vsrc_0(E)=\Q\), and
+\(\vsrc_1(E)=\Q\oplus \Q J_1\) with \(J_1^2=0\).  Under the usual
+Gross--Zagier hypotheses, the rank-\(1\) symbol is the one that later
+descends to the Heegner point \(P_K\).\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcStageIConsistency} over the narrowed
+\(2^r\)-coordinate representation (structural encoding; full axiomatization
+not claimed). See App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Construct the algebra on the \(\Q\)-vector space with basis indexed by the
+subsets of \(\{1,2\}\).  The empty subset gives the basis vector \(1\), the
+singletons give \(\Jone\) and \(\Jtwo\), and the full subset gives the
+ordered product \(\Jtwelve=\Jone\Jtwo\).  On basis elements define the
+product as follows.  If two subsets meet, their product is \(0\).  If they
+are disjoint, their product is the basis element of the union, multiplied
+by the sign needed to move the concatenated list into increasing order.
+Extend this rule \(\Q\)-bilinearly.
+
+This rule immediately gives the displayed rank-\(2\) multiplication table:
+\[
+  \Jone^2=0,\qquad \Jtwo^2=0,
+\]
+because each singleton meets itself, and
+\[
+  \Jone\Jtwo=\Jtwelve,\qquad
+  \Jtwo\Jone=-\Jtwelve,
+\]
+because reversing the two singleton factors introduces one transposition.
+The empty subset is a two-sided unit, since adjoining the empty list changes
+neither the union nor the sign.
+
+Associativity may be checked on basis vectors and then extended by
+bilinearity.  If any index is repeated among three basis factors, both
+parenthesizations are zero: at the step where the repeated index is
+multiplied into a factor already containing it, the intersection is
+nonempty.  If all indices appearing in the three factors are distinct, then
+both parenthesizations produce the basis vector of the same union.  The
+sign in each case is the parity of the same permutation that orders the
+three concatenated lists; splitting the multiplication into two stages only
+splits the inversion count into two summands.  Thus the signs agree, and
+the product is associative.
+
+The graded-commutativity is the same sign rule: moving a homogeneous basis
+monomial of degree \(a\) past one of degree \(b\) contributes
+\((-1)^{ab}\), and an overlap gives zero on both sides.  Hence the algebra
+is associative, unital, and graded-commutative.
+
+Finally, the four subset-indexed basis vectors are linearly independent by
+construction, so every element has the unique normal form
+\[
+  a_{\varnothing}\,1+a_1\Jone+a_2\Jtwo+a_{12}\Jtwelve.
+\]
+There are \(2^2=4\) subsets of \(\{1,2\}\), giving dimension \(4\).  The
+same subset construction in rank \(0\) has only the empty subset and gives
+\(\Q\); in rank \(1\) it has the two subsets \(\varnothing\) and
+\(\{1\}\), giving \(\Q\oplus\Q J_1\) with \(J_1^2=0\).  This proves the
+Stage-I consistency assertions.
+\end{proof}
+
+\begin{remark}[No licensed rank-$r$ descent (support only; ledger predicate)]\label{rmk:apparatus:vsrc-no-licensed-descent}
+For \(r\geq2\), the inherited audit records do not license a descent
+\[
+  \vsrc_r(E)\longrightarrow \mathrm{CH}^*(\mathcal X)_{\Q}
+\]
+or a descent to a Selmer or Mordell--Weil carrier that realizes all symbols
+\(J_i\) as independent motivic classes.  This is a statement about the
+recorded inputs: the Gram-matrix no-go leaves motivic labels and provenance
+unconstructed; the Kato Euler-system~\citep{Kato2004} audit does not supply \(r\) independent
+source classes; and the BDP~\citep{BertoliniDarmonPrasanna2013} generalized-Heegner audit records motivic
+provenance without a two-class closure for \(389a1\).  The remark is a
+support-only ledger observation, not a mathematical non-existence claim
+about possible future or externally supplied descents.
+\end{remark}
+
+\begin{theorem}[Stage II Gross--Zagier partial descent]\label{thm:apparatus:vsrc-stage-ii-gz-partial}
+In rank \(1\), the \(\vsrc_1\) calculus recovers the Gross--Zagier~\citep{GrossZagier1986,Kolyvagin1990}
+source/regulator side under the usual Heegner hypotheses.  If
+\[
+  r_{\mathrm{GZ}}(J_1)=P_K
+\]
+and the virtual height form is sent to the Neron--Tate height pairing, then
+\[
+  h_{\vsrc}(J_1,J_1)
+  \longmapsto
+  \langle P_K,P_K\rangle_{\mathrm{NT}},
+  \qquad
+  \Reg=\langle P_K,P_K\rangle_{\mathrm{NT}}.
+\]
+The same symbolic descent does not recover the full Gross--Zagier identity
+\[
+  \frac{L'(E/K,1)}{\Omega_{E,K}}
+  =
+  c(E,K)\,\langle P_K,P_K\rangle_{\mathrm{NT}}
+\]
+unless the analytic-height theorem is supplied separately.  Thus the strict
+descent residual is the named analytic-height import
+\[
+  \Xi_{\mathrm{GZ}}
+  =
+  E_{\mathrm{analytic\text{-}height\text{-}import}}
+  \neq 0
+\]
+relative to the source/regulator calculus alone.\footnote{Verified in Lean
+as \texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIGzPartial}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The rank-\(1\) algebra is
+\[
+  \vsrc_1(E)=\Q\oplus\Q J_1,\qquad J_1^2=0.
+\]
+Under the Gross--Zagier hypotheses one has a Heegner point \(P_K\).  Define
+the rank-\(1\) descent on the source generator by
+\[
+  r_{\mathrm{GZ}}(J_1)=P_K
+\]
+and send the virtual height form to the Neron--Tate height form.  Then the
+unique nontrivial regulator entry in rank \(1\) is carried to
+\[
+  h_{\vsrc}(J_1,J_1)
+  \mapsto
+  \langle P_K,P_K\rangle_{\mathrm{NT}}.
+\]
+For a rank-\(1\) Mordell--Weil lattice, the regulator is exactly the
+\(1\times1\) determinant of this height matrix, hence
+\[
+  \Reg=\langle P_K,P_K\rangle_{\mathrm{NT}}.
+\]
+This proves the source/regulator part.
+
+The full Gross--Zagier formula contains additional analytic information:
+the leading derivative \(L'(E/K,1)\), the period \(\Omega_{E,K}\), and the
+normalizing factor \(c(E,K)\).  These quantities do not appear in the
+rank-\(1\) exterior algebra or in the descent of \(J_1\) to \(P_K\).  Indeed,
+two formal data sets can have the same \(P_K\) and the same
+\(\langle P_K,P_K\rangle_{\mathrm{NT}}\) while assigning different analytic
+leading quotients \(L'(E/K,1)/\Omega_{E,K}\).  The symbolic descent therefore
+cannot determine the displayed analytic-height identity.  The missing
+assertion is precisely the external analytic-height theorem, recorded here
+as the residual
+\[
+  E_{\mathrm{analytic\text{-}height\text{-}import}}.
+\]
+Thus Stage II recovers the Gross--Zagier source/regulator side, but strict
+descent to the full identity requires that separate theorem.
+\end{proof}
+
+\begin{theorem}[Stage III translation (389a1)]\label{thm:apparatus:vsrc-stage-iii-translation}
+For \(389a1\), take the rank-\(2\) algebra
+\[
+  \vsrc_2(E)=\Q\oplus\Q\Jone\oplus\Q\Jtwo\oplus\Q\Jtwelve,
+  \qquad
+  \Jone\Jtwo=\Jtwelve.
+\]
+Since the finite factors for this calibration satisfy
+\[
+  \prod c_v=\#\Sha=|E_{\tors}|=1,
+\]
+the scalar residual is
+\[
+  \Xi_{\mathrm{Sc}}=0
+  \quad\Longleftrightarrow\quad
+  A_{\mathrm{lead}}=\Omega_E^+\,\Reg(E/\Q).
+\]
+The motivic residual \(\Xi_{\mathrm{Mot}}\) vanishes exactly when there is a
+rank-\(2\) realization
+\[
+  (r_2,z_{12},\mathcal B_{\mathrm{an\text{-}ht}}^{(2)})
+\]
+with
+\[
+  z_{12}=r_2(\Jtwelve)\neq0
+\]
+and with \(\mathcal B_{\mathrm{an\text{-}ht}}^{(2)}\) identifying the
+rank-\(2\) analytic leading term with the height/regulator determinant of
+that wedge source.  Under this bridge,
+\[
+  \Xi_{\mathrm{Mot}}=0\quad\Longrightarrow\quad \Xi_{\mathrm{Sc}}=0.
+\]
+The reverse implication is not established by the inherited records: the
+scalar equality does not construct \(z_{12}\), does not certify its
+independence, and therefore requires the named external content
+\(\mathcal R_{\mathrm{BSD}\to\mathrm{mot}}^{(2)}\).\footnote{Verified in
+Lean as \texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIITranslation}; see
+App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Assume first that \(\Xi_{\mathrm{Mot}}=0\).  By the stated meaning of the
+motivic residual, this gives a realization \(r_2\), a nonzero wedge source
+\[
+  z_{12}=r_2(\Jtwelve),
+\]
+and a rank-\(2\) analytic-height bridge
+\(\mathcal B_{\mathrm{an\text{-}ht}}^{(2)}\).  The bridge identifies the
+analytic leading coefficient attached to the rank-\(2\) source with the
+height determinant of that source.  For the fixed \(389a1\) calibration, the
+finite correction factors are all \(1\):
+\[
+  \prod c_v=\#\Sha=|E_{\tors}|=1.
+\]
+Thus the bridge gives exactly
+\[
+  A_{\mathrm{lead}}=\Omega_E^+\,\Reg(E/\Q),
+\]
+which is the condition \(\Xi_{\mathrm{Sc}}=0\).  This proves the forward
+translation.
+
+Now suppose only that \(\Xi_{\mathrm{Sc}}=0\).  This is the scalar equality
+\[
+  A_{\mathrm{lead}}=\Omega_E^+\,\Reg(E/\Q).
+\]
+It is an equality of numerical determinant readouts.  It contains no choice
+of realization map \(r_2\), no element \(z_{12}\), and no certificate that a
+nonzero image of \(\Jtwelve\) is an independent motivic wedge source.  The
+Gram-matrix shadow obstruction from the higher-rank no-go is exactly this
+loss of source data: the regulator can be known without constructing the
+rank-\(2\) motivic source whose regulator it would measure.  Therefore the
+reverse implication is not supplied by the scalar equality.  It would
+require the separate recognition content
+\[
+  \mathcal R_{\mathrm{BSD}\to\mathrm{mot}}^{(2)}
+\]
+together with the corresponding bridge and independence certificate.  The
+statement is consequently a one-way translation, not a converse failure.
+\end{proof}
+
+\begin{remark}[Rank-$r$ stronger-than-scalar reading (support only)]\label{rmk:apparatus:vsrc-rank-r-stronger}
+The one-way Stage-III translation exposes a structural asymmetry: the scalar
+leading-coefficient formula records a determinant value, while the rank-\(r\)
+source statement also asks for the existence and independence of the wedge
+class
+\[
+  J_1\wedge\cdots\wedge J_r.
+\]
+In that sense, the rank-\(r\) source reading carries more information than
+the scalar equality.  This is a support-only interpretation of the
+Stage-III asymmetry, not an independently proven meta-theorem that scalar
+BSD is strictly weaker in every external theory.
+\end{remark}
+
+ \section[Canonical kappa-r normalization]{$\kapr$ normalization}
+\label{sec:kappa-normalization}
+
+The normalization constant \(\kapr\) is the scalar that makes the cascade
+leading-term form use the same arithmetic factor as the standard Strong BSD
+leading-coefficient formula.  The point of this section is only to identify
+that scalar after the cascade convention \(c_E=\Tam(E)\) is fixed.  It is an
+equivalence of two ways of writing the same conjectural identity, not a
+derivation of BSD.
+
+\begin{theorem}[Canonical $\kapr$ normalization equivalence]\label{thm:apparatus:kappa-r-normalization-equivalence}
+Fix the cascade convention
+\[
+  c_E:=\Tam(E)=\prod_{\ell} c_{\ell}(E).
+\]
+Then the cascade leading-term form
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \kapr(E)\,\Omega_E\,\Reg_r(E)\,c_E
+\]
+agrees with the standard Strong BSD leading-coefficient form
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \Omega_E\,\Reg_r(E)\,
+  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
+\]
+if and only if
+\[
+  \kapr(E)=
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+Under this canonical normalization, the cascade form is equivalent to the
+standard Strong BSD identity as a restatement in cascade target coordinates.
+It does not prove the identity.\footnote{\raggedright Verified in Lean as
+\texttt{SixBirdsBSD.\allowbreak Apparatus.\allowbreak KappaNormalization.\allowbreak kappaRNormalizationEquivalence};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+After the convention \(c_E=\Tam(E)\), the right-hand side of the cascade
+form is
+\[
+  \kapr(E)\,\Omega_E\,\Reg_r(E)\,\Tam(E).
+\]
+The right-hand side of the standard Strong BSD leading-coefficient formula
+is
+\[
+  \Omega_E\,\Reg_r(E)\,
+  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
+  =
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}\,
+  \Omega_E\,\Reg_r(E)\,\Tam(E).
+\]
+Thus the two formulas have the same left-hand side and differ only in the
+coefficient multiplying the common factor
+\[
+  \Omega_E\,\Reg_r(E)\,\Tam(E).
+\]
+In the BSD normalization this factor is nonzero: the period is positive,
+the regulator determinant is positive in positive rank and equal to \(1\)
+in rank \(0\), and the Tamagawa product is a positive integer.  Therefore
+the two right-hand sides are equal if and only if their scalar coefficients
+are equal, namely if and only if
+\[
+  \kapr(E)
+  =
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+
+If this equality of coefficients is imposed, substituting it into the
+cascade form gives exactly the standard Strong BSD leading-coefficient
+formula.  Conversely, if the cascade form and the standard form agree under
+the fixed convention \(c_E=\Tam(E)\), cancellation of the same nonzero common
+factor forces the displayed value of \(\kapr(E)\).  The proof is only this
+algebraic comparison of normalizations; it supplies no proof that either
+leading-coefficient identity is true for \(E\).
+\end{proof}
+
+The conditional Strong-BSD closure of \citet{TsiokosBSDClosure2026}
+consumes this normalization.  The role of the present section is only to
+supply the normalization equivalence used there.
+ \section{Scope and non-claims}\label{sec:scope}
+
+
+The preceding sections build a typed apparatus for comparing the usual
+BSD/Bloch--Kato scalar packages with finer source carriers.  The apparatus
+is deliberately limited.  It separates what is proved at the finite typed
+level from what is supplied by external arithmetic input, and it records
+several audit no-gos without turning them into mathematical non-existence
+claims.
+
+The four non-claims governing this paper are the following.
+
+\begin{itemize}
+  \item \textbf{A-NC-1 --- No-gos are audit results, not non-existence claims.}
+  The no-go suite (NG-1--NG-5, higher-rank, global, support-prime)
+  records where theorem-grade Mode-A literature does not reach; it is not
+  a claim that the missing identities cannot exist.  Here ``Mode-A''
+  denotes the theorem-grade arithmetic literature audited as external
+  provenance, as opposed to a finite diagnostic, numerical example, or
+  support table.
+
+  \item \textbf{A-NC-2 --- Finite typed level.}
+  Adequacy collapses are proved at the finite, mathlib-free, typed level
+  (identity-matrix action; \(\Q\) rank-1 projector traces);
+  operator/motivic full generality is not claimed.  Thus the Schur
+  residual calculations in this paper are finite vector and matrix
+  computations over explicit typed carriers.  They are not asserted as
+  analytic operator theorems or as constructions of motivic cycles.
+
+  \item \textbf{A-NC-3 --- \(\vsrc\) structural narrowing.}
+  The \(\vsrc\) exterior-product relations are represented structurally on
+  the \(2^r\) coordinate space; the dimension/calibration content is
+  faithful, full axiomatization is not claimed.  The \(\vsrc\) section
+  therefore calibrates the determinant
+  shape of a rank-\(r\) source and the low-rank relations used in the
+  paper; it does not present a complete general exterior-algebra
+  formalization or a descent to actual motivic cycles.
+
+  \item \textbf{A-NC-4 --- Recognition-source transports are carriers.}
+  The five per-column transports are recognition sources (carriers), not
+  derived theorems.  They are supplied or imported as named arithmetic
+  comparison content and carried as hypotheses where needed; they are not
+  established from the finite typed apparatus itself.
+\end{itemize}
+
+Consequently, this paper should not be read as proving BSD, an Iwasawa main
+conjecture, or a Gross--Zagier theorem.  The column computations prove
+adequacy or residual statements for the typed carriers introduced here.
+The recognition sources and imports are supplied, imported, or carried as
+hypotheses; they are never claimed to be established by the apparatus.
+ \section{Discussion}\label{sec:discussion}
+
+
+The apparatus developed here is meant to be reusable.  Its basic question is
+not whether a given BSD or Bloch--Kato identity is true, but which typed
+source data are adequate for a specified readout.  The Schur residual
+\(\XiC\) makes that question finite and local to a chosen column: if the
+native source coordinates act as the identity on the tangent readout, the
+residual vanishes; if a public scalar keeps only a projection, the residual
+measures the lost directions.  This turns a familiar informal observation
+about scalar invariants into a computable diagnostic.  One asks, column by
+column, whether the available datum is the source itself or only its public
+shadow.
+
+This diagnostic is useful because the standard BSD formula is naturally
+read as a product of scalar factors.  The leading analytic coefficient is
+divided by a period; the height pairing contributes its determinant; finite
+arithmetic enters through Tamagawa numbers, torsion, and \(\Sha\); local
+\(p\)-adic data are typically compressed through ordinary, signed, or
+control-theoretic normalizations; and determinant signs and units are
+hidden in the final assembly.  The scalar formula is therefore a powerful
+summary, but it is not a complete description of the source data behind
+each factor.  The five-column decomposition refines this summary into
+height/regulator, analytic/period, finite-source, \(p\)-adic, and
+determinant-assembly columns.  It keeps the sources separated until the
+comparison map deliberately contracts them back to the usual
+Bloch--Kato/Tamagawa-number package.
+
+Seen from the classical Bloch--Kato perspective, the point is not to replace
+the fundamental line by a new object.  The point is to expose the internal
+typing that is suppressed when the global Tamagawa-number package is treated
+as a single scalar row.  The comparison theorem shows that the typed
+five-column source is adequate for the Bloch--Kato scalar contraction: the
+Schur residual for that contraction is zero.  At the same time, the kernel
+contains the determinant-orientation coordinate.  Thus the usual scalar
+package is recovered, but it is recovered as a projection of a richer typed
+atlas.  This is exactly what one expects from a determinant-line
+formalism: the global scalar is the visible readout, while the determinant
+trivializations, local orientations, and source-specific normalizations
+explain how the readout is assembled.
+
+The per-column collapses have a similarly modest interpretation.  The
+height/regulator column collapses because the full Neron--Tate pairing is
+admitted as source data; the analytic/period column collapses because both
+\(\log A_E\) and \(\log\Omega_E^+\) are present; the finite-source column
+collapses only when Tamagawa, torsion, \(\Sha[p^\infty]\), and
+Cassels--Tate pairing data are all retained; the \(p\)-adic columns collapse
+only after including the ordinary-control coordinate or separating the
+signed supersingular directions.  These are finite identity-matrix
+computations.  Their value is that they make explicit which coordinates
+must be present before a row deserves to be treated as a source rather than
+as a quotient or shadow.
+
+The no-go suite records the complementary boundary.  The finite scalar
+factor forgets where a valuation lies: a contribution in the \(\Sha\)-block
+and a contribution in the Tamagawa block can have the same scalar value.
+The dimension-only \(\Sha[p]\) readout forgets the Cassels--Tate
+determinant data.  The Neron--Tate Gram matrix gives the regulator once a
+Mordell--Weil basis is known, but it does not construct independent
+motivic-cycle sources.  A finite curve window cannot certify a universal
+statement depending on all curves, and a finite prime list cannot certify
+all local support-prime rows.  None of these no-gos says that the missing
+arithmetic identities or constructions do not exist.  They say that the
+particular public row under inspection is not enough to determine the
+typed target without additional source data or an external recognition
+input.
+
+Recording that boundary precisely matters.  In classical prose, it is easy
+to slide from ``this scalar agrees numerically'' to ``this source has been
+constructed,'' or from ``this finite sample supports the pattern'' to
+``this global statement is certified.''  The Schur residual prevents that
+slide by asking what the operator can see.  If two typed completions agree
+on the public row but differ in the target coordinate, then the public row
+is not an adequate source for that target.  Conversely, when the full typed
+source is admitted and the residual vanishes by an identity action, the
+adequacy statement is exactly as strong as the declared source.  This
+separation is the central conceptual point of the apparatus.
+
+The \(\vsrc\) calibration guards the source end of the story.  In rank
+\(2\), the exterior product \(\Jone\Jtwo=\Jtwelve\) is a compact way to
+record determinant-shaped independence before any descent to motivic
+cycles has been supplied.  The Stage I algebra is consistent, and the
+Stage II rank-\(1\) descent recovers the Gross--Zagier source/regulator
+side once a Heegner point is available.  Stage III then explains the
+asymmetry in rank \(2\): a motivic wedge source together with the analytic
+height bridge implies the scalar leading-coefficient equality, while the
+scalar equality alone does not construct the wedge source.  This is the
+same lesson as the Gram-matrix shadow no-go, now expressed at the source
+end of the apparatus.
+
+The \(\kapr\) normalization guards the target end.  Once
+\[
+  c_E=\Tam(E)
+\]
+is fixed, the cascade leading-term form agrees with the standard Strong
+BSD leading-coefficient form exactly when
+\[
+  \kapr(E)=\frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+This is only an equality of normalizations, but it is an important one:
+it prevents the cascade coordinates from silently changing the arithmetic
+constant.  Together, the \(\vsrc\) calibration and the \(\kapr\)
+normalization keep the apparatus honest at both ends.  The source side
+does not pretend that scalar regulator data construct motivic classes, and
+the target side does not pretend that a differently normalized cascade
+formula is the standard Strong BSD formula.
+
+The framework lineage supplies the language of typed carriers, visibility,
+and residual accounting \citep{TsiokosNeedles2026,TsiokosFoundationsII2026,
+TsiokosFoundationsIII2026}.  The mathematical content of this paper is the
+specialization of that language to the BSD/Bloch--Kato setting: a
+five-column typed atlas, finite Schur adequacy calculations, audit no-gos
+for public shadows, and normalization checks at the source and target
+interfaces.  The resulting layer can be consumed by later conditional
+closures or by independent audits, but it is already useful on its own: it
+turns the question ``what does this BSD scalar know?'' into a precise
+finite calculation about what the chosen source row retains and what it
+forgets.
+ \section{Conclusion}\label{sec:conclusion}
+
+
+This paper has isolated a typed five-column decomposition of the
+BSD/Bloch--Kato fundamental-line data and used finite Schur-complement
+calculations to test adequacy column by column.  The height/regulator,
+analytic/period, finite-source, \(p\)-adic, and determinant-assembly
+columns each come with an explicit residual calculation; the comparison
+map contracts the resulting typed atlas back to the standard scalar
+Bloch--Kato/Tamagawa package.  The accompanying no-go suite (NG-1--NG-5,
+higher-rank, global, and support-prime) marks where a public scalar row
+underdetermines its typed target: scalar finite factors forget source
+blocks, dimension-only \(\Sha[p]\) data forget Cassels--Tate structure,
+Gram matrices do not construct motivic sources, finite curve windows do
+not certify global statements, and finite prime lists do not certify
+all-prime support.
+
+The boundary is part of the result.  The adequacy collapses proved here
+are finite, typed, identity-action statements; they do not assert full
+operator or motivic generality.  The recognition-source transports and
+external arithmetic identities are carried as hypotheses or imported
+comparison content, not proved by the apparatus.  The open gaps left
+explicit include an all-prime exhaustivity certificate, a
+density-to-pointwise or global-promotion bridge, and a genuinely general
+operator/motivic form of the column collapses.
+
+The reusable value is the diagnostic itself: the apparatus turns the
+question ``what does this scalar know?'' into a finite, per-column,
+checkable question about which source directions are retained and which
+are lost.
+ \appendix
+\section{Lean formalization}\label{app:formalization}
+\subsection*{Trust base and methodology}
+
+The Lean development for this paper is mathlib-free.  It imports no
+external mathematics library, so no mathlib axioms enter the dependency
+closure.  Every declaration registered as a theorem was audited with
+\texttt{\#print axioms}.  The only axioms that occur are Lean's standard
+foundational ones: \texttt{propext}, \texttt{Quot.sound}, and
+\texttt{Classical.choice}, with \texttt{funext} and the \texttt{choice}
+recursor appearing as their standard consequences in the audited closures.
+There are no project-local axioms behind any theorem-marked result.  Thus
+the trust base for the formalized theorem claims is precisely Lean's kernel
+plus classical logic, and nothing project-specific.
+
+This limited trust base is possible because the formalized content is
+finite and typed.  The adequacy collapses and no-go residuals are not
+mechanized as analytic estimates, operator-theoretic assertions, or
+motivic constructions.  They are finite vector and matrix computations:
+the source and target covariance blocks are explicit finite matrices, the
+full-source collapses reduce to identity-matrix action, and the scalar
+shadow residuals are computed from rank-\(1\) projectors over \(\Q\).
+Each Schur-complement residual is therefore a decidable calculation in a
+small finite algebraic model.  This is the reason a mathlib-free kernel can
+check the main adequacy and no-go statements.
+
+The surrounding arithmetic geometry is treated separately from those finite
+calculations.  The Lean development checks the typed identities appearing
+in the apparatus: for example, that an identity source kills the Schur
+residual, that the relevant projector traces have the stated values, and
+that the finite noninjectivity witnesses have the claimed public shadows.
+It does not certify Gross--Zagier, Iwasawa main conjecture inputs,
+Cassels--Tate comparison theory, Bloch--Kato local comparison maps, or the
+motivic descents named in the body.  Such arithmetic content enters the
+paper either as cited external input, as a recognition-source carrier, or
+as an explicitly stated hypothesis.
+
+The statements-of-record inventory for this paper contains \(41\) items.
+Of these, \(19\) are theorem-grade Lean results with substantive finite
+proofs, \(11\) are typed definition mirrors, and \(11\) are not mechanized:
+the five recognition-source transport obligations, the four support-only
+remarks, the warning, and the scope nonclaim.  Those non-mechanized items
+are paper-level statements carried as motivation, scope, or hypotheses,
+not Lean declarations.  Two mechanized items, the \(\vsrc\) algebra
+definition and the Stage-I \(\vsrc\) consistency theorem, are checked over
+a narrowed structural representation; the following subsections record the
+per-label coverage, declaration map, and standing narrowings in detail.
+\subsection*{Wording-discipline table}
+
+Each theorem in the body carries exactly one mechanization footnote, and
+the wording of that footnote is canonical rather than editorial.  The
+wording records the fidelity class of the formal counterpart: a faithful
+Lean theorem, a Lean theorem over a narrowed representation, a typed
+definition mirror, or an unmechanized paper-level statement.  Narrowing and
+non-mechanization are therefore visible in the disclosure convention rather
+than hidden in prose.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.31\textwidth}X@{}}
+\toprule
+Statement class & Footnote convention \\
+\midrule
+Theorem, faithful &
+Verified in Lean as \texttt{[decl]}; see App~\ref{app:formalization}. \\
+\addlinespace
+Theorem, narrowed representation &
+Verified in Lean as \texttt{[decl]} over a narrowed representation
+(e.g.\ the \(2^r\)-coordinate space); the narrowing is recorded below.  The
+narrowing qualifier is mandatory; never bare ``verified in Lean''. \\
+\addlinespace
+Definition, narrowed representation &
+Realized in Lean as \texttt{[decl]} over a narrowed representation; the
+narrowing is recorded below. \\
+\addlinespace
+Definition, faithful (typed mirror) &
+No footnote; the declaration appears only in the per-label coverage table
+below. \\
+\addlinespace
+Obligation / remark / warning / non-claim (not mechanized) &
+No footnote and no Lean identifier in the body; recorded as a paper-level
+statement only. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\subsection*{Standing narrowings}
+
+There are two standing qualifications behind the coverage claims in this
+appendix.  Both are part of the formalization contract: they delimit what
+the finite Lean development checks, and they keep the surrounding
+arithmetic content visible rather than implicit.
+
+First, two \(\vsrc\) items are checked over a narrowed structural
+representation: the \(\vsrc\) algebra definition and the Stage-I
+\(\vsrc\) consistency theorem.  On the \(2^r\)-coordinate model, the
+determinant-shaped content of a rank-\(r\) source is represented, and the
+low-rank exterior relations actually used in the paper are checked.  In
+rank \(2\), this includes the wedge relation
+\[
+  \Jone\Jtwo=\Jtwelve
+\]
+together with the accompanying nilpotence and anticommutation relations.
+The dimension count and the calibration of the determinant shape are
+faithful to the intended exterior-algebra source.
+
+What is not claimed is equally important.  The formalization is not a
+complete general exterior-algebra development: it does not provide general
+\(\bigwedge^k\) functoriality, nor a full axiomatization of exterior
+algebras in arbitrary rank.  It is also not a descent from \(\vsrc\) to
+actual motivic cycles.  The Lean check certifies the finite structural
+relations on the coordinate representation, not a general motivic
+construction.  This is why those two body items carry the ``narrowed
+representation'' footnote convention rather than a bare ``verified in
+Lean'' disclosure, and why the \(\vsrc\) statements in
+\Cref{sec:vsrc} are calibration and consistency results rather than
+constructions of motivic sources.
+
+Second, the five per-column transports are recognition sources, not
+derived theorems and not Lean declarations.  These are the
+height/regulator, analytic/period, finite-source, \(p\)-adic, and
+determinant-assembly comparison transports appearing in
+\Cref{sec:height-regulator,sec:analytic-period,sec:finite-source,sec:p-adic,sec:det-assembly}.
+Each column's Schur-adequacy collapse is proved at the finite typed level
+once the column's native source is admitted.  The corresponding transport
+is precisely the named arithmetic comparison content that admits that
+source into the Bloch--Kato determinant-line target.  It is supplied or
+imported externally and then carried as a hypothesis.
+
+Thus the apparatus does not prove these five transports.  It records them
+as obligations and proves the per-column collapses conditional on the
+native source data that those transports are meant to recognize.  In the
+per-label coverage table below they appear as not-mechanized obligations.
+Neither standing narrowing enlarges the Lean trust base: no new axioms are
+introduced; the qualifications bound the finite mechanization claims, with
+the remaining arithmetic content carried explicitly.
+\begin{table}[tbp]
+\centering
+\small
+\caption{Standing representation notes for the apparatus formalization.}
+\label{tab:representation-notes}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.24\textwidth}
+>{\raggedright\arraybackslash}p{0.28\textwidth}
+>{\raggedright\arraybackslash}X@{}}
+\toprule
+Representation issue & Where it appears & Disclosure effect \\
+\midrule
+\(\vsrc\) structural encoding &
+\(\Cref{sec:vsrc}\), App~\ref{app:formalization} &
+The rank-\(2\) exterior relations are checked on the \(2^r\)-coordinate
+model.  The paper claims calibration and consistency, not a full exterior
+algebra or motivic descent formalization. \\
+\addlinespace
+\(\Q\) rank-\(1\) projector traces &
+Finite-source and no-go statements &
+Scalar-shadow residuals are finite rational projector computations; the
+Lean result is the finite trace calculation, not an arithmetic
+classification theorem. \\
+\addlinespace
+Identity-matrix action &
+Schur-collapse statements &
+Full-source adequacy reduces to \(I\)-action on an explicit finite carrier.
+The external transport that admits the native source remains a carried
+recognition obligation. \\
+\bottomrule
+\end{tabularx}
+\end{table}
+ \subsection*{Per-label coverage}
+
+The following table lists every statement of record in document order,
+with its environment kind, its mechanization fidelity, and its body
+location.  The paper labels in the first column elide the
+\texttt{apparatus:} prefix.  Faithful and narrowed rows have Lean
+declarations, mapped in the next subsection; not-mechanized rows do not.
+
+\begin{small}
+\begin{longtable}{@{}>{\ttfamily}p{0.45\textwidth} l l l@{}}
+\caption{Per-label coverage for the apparatus statements of record (41 rows, document order). The first column is the paper label (the \texttt{apparatus:} prefix elided); the last column points to the body location.}\label{tab:formalization-coverage}\\
+\toprule
+\normalfont Paper label & Kind & Fidelity & Body \\
+\midrule
+\endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape continued from previous page}\\
+\toprule \normalfont Paper label & Kind & Fidelity & Body \\ \midrule
+\endhead
+\midrule \multicolumn{4}{r@{}}{\footnotesize\itshape continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+def:bk-component-map & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:decomposition} \\
+def:bridge-defect-equation & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:decomposition} \\
+thm:component-killing & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:decomposition} \\
+thm:finite-scalar-public-shadow & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:decomposition} \\
+nonclaim:decomposition-scope & \normalfont nonclaim & \normalfont not mechanized & \normalfont \Cref{sec:decomposition} \\
+def:height-regulator-map & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:height-regulator} \\
+thm:height-schur-collapse & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:height-regulator} \\
+obl:rho-ht-reg-transport & \normalfont obligation & \normalfont not mechanized & \normalfont \Cref{sec:height-regulator} \\
+warn:571a1-carrier & \normalfont warning & \normalfont not mechanized & \normalfont \Cref{sec:height-regulator} \\
+def:analytic-period-map & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:analytic-period} \\
+thm:analytic-period-schur-collapse & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:analytic-period} \\
+obl:rho-an-period-transport & \normalfont obligation & \normalfont not mechanized & \normalfont \Cref{sec:analytic-period} \\
+def:finite-source-map & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:finite-source} \\
+thm:finite-source-schur-collapse & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:finite-source} \\
+thm:scalar-finite-shadow & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:finite-source} \\
+thm:dim-sha-shadow & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:finite-source} \\
+obl:rho-finite-transport & \normalfont obligation & \normalfont not mechanized & \normalfont \Cref{sec:finite-source} \\
+def:p-adic-map & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:p-adic} \\
+thm:ordinary-schur-collapse & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:p-adic} \\
+thm:signed-schur-collapse & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:p-adic} \\
+obl:rho-p-transport & \normalfont obligation & \normalfont not mechanized & \normalfont \Cref{sec:p-adic} \\
+def:det-assembly-map & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:det-assembly} \\
+thm:cascade-completion-signature & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:det-assembly} \\
+obl:rho-det-assembly & \normalfont obligation & \normalfont not mechanized & \normalfont \Cref{sec:det-assembly} \\
+rmk:five-column-literature-gap & \normalfont remark & \normalfont not mechanized & \normalfont \Cref{sec:comparison} \\
+def:five-column-tensor & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:comparison} \\
+thm:five-col-bk-comparison & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:comparison} \\
+def:rank-two-kummer-source & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:higher-rank-no-go} \\
+thm:rank-two-height-schur-collapse & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:higher-rank-no-go} \\
+thm:gram-matrix-shadow & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:higher-rank-no-go} \\
+thm:finite-window-no-go & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:global-audit-no-go} \\
+thm:finite-prime-cover-no-go & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:support-prime-no-go} \\
+def:support-prime-truncation-residual & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:support-prime-no-go} \\
+rmk:support-prime-atlas & \normalfont remark & \normalfont not mechanized & \normalfont \Cref{sec:support-prime-no-go} \\
+def:vsrc-algebra & \normalfont definition & \normalfont narrowed & \normalfont \Cref{sec:vsrc} \\
+thm:vsrc-stage-i-consistency & \normalfont theorem & \normalfont narrowed & \normalfont \Cref{sec:vsrc} \\
+rmk:vsrc-no-licensed-descent & \normalfont remark & \normalfont not mechanized & \normalfont \Cref{sec:vsrc} \\
+thm:vsrc-stage-ii-gz-partial & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:vsrc} \\
+thm:vsrc-stage-iii-translation & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:vsrc} \\
+rmk:vsrc-rank-r-stronger & \normalfont remark & \normalfont not mechanized & \normalfont \Cref{sec:vsrc} \\
+thm:kappa-r-normalization-equivalence & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:kappa-normalization} \\
+\end{longtable}
+\end{small}
+ \subsection*{Lean declaration map}
+
+The \(30\) mechanized statements, consisting of the \(11\) typed
+definitions and \(19\) theorems, each correspond to a Lean declaration
+listed here for citation and auditing.  Paper labels elide the
+\texttt{apparatus:} prefix, and declarations elide the
+\texttt{SixBirdsBSD.Apparatus.} namespace.  The not-mechanized
+obligations, remarks, warning, and nonclaim have no declaration and are
+therefore omitted; the full coverage table, including those rows, is
+\Cref{tab:formalization-coverage}.
+
+\begin{small}
+\begin{longtable}{@{}>{\ttfamily\raggedright\arraybackslash}p{0.44\textwidth} >{\ttfamily\raggedright\arraybackslash}p{0.50\textwidth}@{}}
+\caption{Lean declaration map for the 30 mechanized apparatus statements (definitions and theorems). Paper labels elide the \texttt{apparatus:} prefix; declarations elide the \texttt{SixBirdsBSD.Apparatus.} namespace.}\label{tab:appd-declmap}\\
+\toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize\itshape continued from previous page}\\
+\toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule
+\endhead
+\midrule \multicolumn{2}{r@{}}{\footnotesize\itshape continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+def:\allowbreak bk-\allowbreak component-\allowbreak map & Decomposition.\allowbreak bk\allowbreak Component\allowbreak Map \\
+def:\allowbreak bridge-\allowbreak defect-\allowbreak equation & Decomposition.\allowbreak bridge\allowbreak Defect\allowbreak Equation \\
+thm:\allowbreak component-\allowbreak killing & Decomposition.\allowbreak component\allowbreak Killing \\
+thm:\allowbreak finite-\allowbreak scalar-\allowbreak public-\allowbreak shadow & Decomposition.\allowbreak finite\allowbreak Scalar\allowbreak Public\allowbreak Shadow \\
+def:\allowbreak height-\allowbreak regulator-\allowbreak map & Height\allowbreak Regulator.\allowbreak height\allowbreak Regulator\allowbreak Map \\
+thm:\allowbreak height-\allowbreak schur-\allowbreak collapse & Height\allowbreak Regulator.\allowbreak height\allowbreak Schur\allowbreak Collapse \\
+def:\allowbreak analytic-\allowbreak period-\allowbreak map & Analytic\allowbreak Period.\allowbreak analytic\allowbreak Period\allowbreak Map \\
+thm:\allowbreak analytic-\allowbreak period-\allowbreak schur-\allowbreak collapse & Analytic\allowbreak Period.\allowbreak analytic\allowbreak Period\allowbreak Schur\allowbreak Collapse \\
+def:\allowbreak finite-\allowbreak source-\allowbreak map & Finite\allowbreak Source.\allowbreak finite\allowbreak Source\allowbreak Map \\
+thm:\allowbreak finite-\allowbreak source-\allowbreak schur-\allowbreak collapse & Finite\allowbreak Source.\allowbreak finite\allowbreak Source\allowbreak Schur\allowbreak Collapse \\
+thm:\allowbreak scalar-\allowbreak finite-\allowbreak shadow & Finite\allowbreak Source.\allowbreak scalar\allowbreak Finite\allowbreak Shadow \\
+thm:\allowbreak dim-\allowbreak sha-\allowbreak shadow & Finite\allowbreak Source.\allowbreak dim\allowbreak Sha\allowbreak Shadow \\
+def:\allowbreak p-\allowbreak adic-\allowbreak map & PAdic.\allowbreak p\allowbreak Adic\allowbreak Map \\
+thm:\allowbreak ordinary-\allowbreak schur-\allowbreak collapse & PAdic.\allowbreak ordinary\allowbreak Schur\allowbreak Collapse \\
+thm:\allowbreak signed-\allowbreak schur-\allowbreak collapse & PAdic.\allowbreak signed\allowbreak Schur\allowbreak Collapse \\
+def:\allowbreak det-\allowbreak assembly-\allowbreak map & Det\allowbreak Assembly.\allowbreak det\allowbreak Assembly\allowbreak Map \\
+thm:\allowbreak cascade-\allowbreak completion-\allowbreak signature & Det\allowbreak Assembly.\allowbreak cascade\allowbreak Completion\allowbreak Signature \\
+def:\allowbreak five-\allowbreak column-\allowbreak tensor & Comparison.\allowbreak five\allowbreak Column\allowbreak Tensor \\
+thm:\allowbreak five-\allowbreak col-\allowbreak bk-\allowbreak comparison & Comparison.\allowbreak five\allowbreak Col\allowbreak Bk\allowbreak Comparison \\
+def:\allowbreak rank-\allowbreak two-\allowbreak kummer-\allowbreak source & Higher\allowbreak Rank\allowbreak No\allowbreak Go.\allowbreak rank\allowbreak Two\allowbreak Kummer\allowbreak Source \\
+thm:\allowbreak rank-\allowbreak two-\allowbreak height-\allowbreak schur-\allowbreak collapse & Higher\allowbreak Rank\allowbreak No\allowbreak Go.\allowbreak rank\allowbreak Two\allowbreak Height\allowbreak Schur\allowbreak Collapse \\
+thm:\allowbreak gram-\allowbreak matrix-\allowbreak shadow & Higher\allowbreak Rank\allowbreak No\allowbreak Go.\allowbreak gram\allowbreak Matrix\allowbreak Shadow \\
+thm:\allowbreak finite-\allowbreak window-\allowbreak no-\allowbreak go & Global\allowbreak Audit\allowbreak No\allowbreak Go.\allowbreak finite\allowbreak Window\allowbreak No\allowbreak Go \\
+thm:\allowbreak finite-\allowbreak prime-\allowbreak cover-\allowbreak no-\allowbreak go & Support\allowbreak Prime\allowbreak No\allowbreak Go.\allowbreak finite\allowbreak Prime\allowbreak Cover\allowbreak No\allowbreak Go \\
+def:\allowbreak support-\allowbreak prime-\allowbreak truncation-\allowbreak residual & Support\allowbreak Prime\allowbreak No\allowbreak Go.\allowbreak support\allowbreak Prime\allowbreak Truncation\allowbreak Residual \\
+def:\allowbreak vsrc-\allowbreak algebra & Vsrc.\allowbreak vsrc\allowbreak Algebra \\
+thm:\allowbreak vsrc-\allowbreak stage-\allowbreak i-\allowbreak consistency & Vsrc.\allowbreak vsrc\allowbreak Stage\allowbreak IConsistency \\
+thm:\allowbreak vsrc-\allowbreak stage-\allowbreak ii-\allowbreak gz-\allowbreak partial & Vsrc.\allowbreak vsrc\allowbreak Stage\allowbreak IIGz\allowbreak Partial \\
+thm:\allowbreak vsrc-\allowbreak stage-\allowbreak iii-\allowbreak translation & Vsrc.\allowbreak vsrc\allowbreak Stage\allowbreak IIITranslation \\
+thm:\allowbreak kappa-\allowbreak r-\allowbreak normalization-\allowbreak equivalence & Kappa\allowbreak Normalization.\allowbreak kappa\allowbreak RNormalization\allowbreak Equivalence \\
+\end{longtable}
+\end{small}
+
+\clearpage
+\begingroup
+\raggedright
+\small
+\bibliographystyle{plainnat}
+\begin{thebibliography}{37}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Beilinson(1985)]{Beilinson1985}
+A.~A. Beilinson.
+\newblock Higher regulators and values of {L}-functions.
+\newblock \emph{J. Soviet Math.}, 30:\penalty0 2036--2070, 1985.
+\newblock \doi{10.1007/BF02105861}.
+
+\bibitem[Bertolini et~al.(2013)Bertolini, Darmon, and Prasanna]{BertoliniDarmonPrasanna2013}
+Massimo Bertolini, Henri Darmon, and Kartik Prasanna.
+\newblock Generalized {Heegner} cycles and p-adic {Rankin} {L}-series.
+\newblock \emph{Duke Math. J.}, 162\penalty0 (6):\penalty0 1033--1148, 2013.
+\newblock \doi{10.1215/00127094-2142056}.
+
+\bibitem[Birch and Swinnerton-Dyer(1965)]{BirchSwinnertonDyer1965}
+B.~J. Birch and H.~P.~F. Swinnerton-Dyer.
+\newblock Notes on elliptic curves. {II}.
+\newblock \emph{J. Reine Angew. Math.}, 218:\penalty0 79--108, 1965.
+\newblock \doi{10.1515/crll.1965.218.79}.
+
+\bibitem[Bloch(1986)]{Bloch1986}
+Spencer Bloch.
+\newblock Algebraic cycles and higher {K}-theory.
+\newblock \emph{Adv. Math.}, 61\penalty0 (3):\penalty0 267--304, 1986.
+\newblock \doi{10.1016/0001-8708(86)90081-2}.
+
+\bibitem[Bloch and Kato(1990)]{BlochKato1990}
+Spencer Bloch and Kazuya Kato.
+\newblock {L}-functions and {T}amagawa numbers of motives.
+\newblock In \emph{The {Grothendieck} {Festschrift}, Vol.~I}, volume~86 of \emph{Progr. Math.}, pages 333--400. Birkh\"auser, 1990.
+\newblock \doi{10.1007/978-0-8176-4574-8_9}.
+
+\bibitem[Breuil et~al.(2001)Breuil, Conrad, Diamond, and Taylor]{BreuilConradDiamondTaylor2001}
+Christophe Breuil, Brian Conrad, Fred Diamond, and Richard Taylor.
+\newblock On the modularity of elliptic curves over {$\mathbf{Q}$}: wild 3-adic exercises.
+\newblock \emph{J. Amer. Math. Soc.}, 14\penalty0 (4):\penalty0 843--939, 2001.
+\newblock \doi{10.1090/S0894-0347-01-00370-8}.
+
+\bibitem[Burns and Flach(2001)]{BurnsFlach2001}
+David Burns and Matthias Flach.
+\newblock Tamagawa numbers for motives with (non-commutative) coefficients.
+\newblock \emph{Doc. Math.}, 6:\penalty0 501--570, 2001.
+\newblock \doi{10.4171/DM/113}.
+
+\bibitem[Cassels(1962)]{Cassels1962}
+J.~W.~S. Cassels.
+\newblock Arithmetic on curves of genus 1. {IV}. {Proof} of the {Hauptvermutung}.
+\newblock \emph{J. Reine Angew. Math.}, 211:\penalty0 95--112, 1962.
+
+\bibitem[Cremona(1997)]{Cremona1997}
+J.~E. Cremona.
+\newblock \emph{Algorithms for Modular Elliptic Curves}.
+\newblock Cambridge Univ. Press, 2 edition, 1997.
+
+\bibitem[Deligne(1987)]{Deligne1987}
+Pierre Deligne.
+\newblock Le d\'eterminant de la cohomologie.
+\newblock In \emph{Current Trends in Arithmetical Algebraic Geometry}, volume~67 of \emph{Contemp. Math.}, pages 93--177. Amer. Math. Soc., 1987.
+
+\bibitem[Fontaine(1994)]{Fontaine1994}
+Jean-Marc Fontaine.
+\newblock Expos\'e {II}: Le corps des p\'eriodes {$p$}-adiques.
+\newblock In Jean-Marc Fontaine, editor, \emph{P\'eriodes {$p$}-adiques -- S\'eminaire de {Bures}, 1988}, number 223 in Ast\'erisque, pages 59--101. Soc. Math. France, 1994.
+\newblock URL \url{https://www.numdam.org/item/AST_1994__223__59_0/}.
+
+\bibitem[Fontaine and Perrin-Riou(1994)]{FontainePerrinRiou1994}
+Jean-Marc Fontaine and Bernadette Perrin-Riou.
+\newblock Autour des conjectures de {Bloch} et {Kato}: cohomologie galoisienne et valeurs de fonctions {L}.
+\newblock In \emph{Motives ({Seattle}, 1991)}, volume 55.1 of \emph{Proc. Sympos. Pure Math.}, pages 599--706. Amer. Math. Soc., 1994.
+
+\bibitem[Gross and Zagier(1986)]{GrossZagier1986}
+Benedict~H. Gross and Don~B. Zagier.
+\newblock Heegner points and derivatives of {L}-series.
+\newblock \emph{Invent. Math.}, 84\penalty0 (2):\penalty0 225--320, 1986.
+\newblock \doi{10.1007/BF01388809}.
+
+\bibitem[Horn and Johnson(2013)]{HornJohnson2013}
+Roger~A. Horn and Charles~R. Johnson.
+\newblock \emph{Matrix Analysis}.
+\newblock Cambridge Univ. Press, 2 edition, 2013.
+
+\bibitem[Kato(2004)]{Kato2004}
+Kazuya Kato.
+\newblock p-adic {Hodge} theory and values of zeta functions of modular forms.
+\newblock \emph{Ast\'erisque}, 295:\penalty0 117--290, 2004.
+
+\bibitem[Knudsen and Mumford(1976)]{KnudsenMumford1976}
+Finn~Faye Knudsen and David Mumford.
+\newblock The projectivity of the moduli space of stable curves. {I}. {Preliminaries} on ``det'' and ``div''.
+\newblock \emph{Math. Scand.}, 39\penalty0 (1):\penalty0 19--55, 1976.
+\newblock \doi{10.7146/math.scand.a-11642}.
+
+\bibitem[Kobayashi(2003)]{Kobayashi2003}
+Shin-ichi Kobayashi.
+\newblock Iwasawa theory for elliptic curves at supersingular primes.
+\newblock \emph{Invent. Math.}, 152\penalty0 (1):\penalty0 1--36, 2003.
+\newblock \doi{10.1007/s00222-002-0265-4}.
+
+\bibitem[Kolyvagin(1990)]{Kolyvagin1990}
+V.~A. Kolyvagin.
+\newblock Euler systems.
+\newblock In \emph{The {Grothendieck} {Festschrift}, Vol.~II}, volume~87 of \emph{Progr. Math.}, pages 435--483. Birkh\"auser, 1990.
+
+\bibitem[Mazur(1972)]{Mazur1972}
+Barry Mazur.
+\newblock Rational points of abelian varieties with values in towers of number fields.
+\newblock \emph{Invent. Math.}, 18:\penalty0 183--266, 1972.
+\newblock \doi{10.1007/BF01389815}.
+
+\bibitem[Milne(1986)]{Milne1986}
+J.~S. Milne.
+\newblock \emph{Arithmetic Duality Theorems}, volume~1 of \emph{Perspectives in Mathematics}.
+\newblock Academic Press, 1986.
+
+\bibitem[Nekov\'a\v{r}(1994)]{Nekovar1994}
+Jan Nekov\'a\v{r}.
+\newblock {Beilinson's} conjectures.
+\newblock In \emph{Motives ({Seattle}, 1991)}, volume 55.1 of \emph{Proc. Sympos. Pure Math.}, pages 537--570. Amer. Math. Soc., 1994.
+
+\bibitem[Nekov\'a\v{r}(2006)]{Nekovar2006}
+Jan Nekov\'a\v{r}.
+\newblock \emph{Selmer Complexes}.
+\newblock Number 310 in Ast\'erisque. Soc. Math. France, 2006.
+
+\bibitem[N\'eron(1965)]{Neron1965}
+Andr\'e N\'eron.
+\newblock Quasi-fonctions et hauteurs sur les vari\'et\'es ab\'eliennes.
+\newblock \emph{Ann. of Math. (2)}, 82:\penalty0 249--331, 1965.
+\newblock \doi{10.2307/1970644}.
+
+\bibitem[Pollack(2003)]{Pollack2003}
+Robert Pollack.
+\newblock On the p-adic {L}-function of a modular form at a supersingular prime.
+\newblock \emph{Duke Math. J.}, 118\penalty0 (3):\penalty0 523--558, 2003.
+\newblock \doi{10.1215/S0012-7094-03-11835-9}.
+
+\bibitem[Poonen and Stoll(1999)]{PoonenStoll1999}
+Bjorn Poonen and Michael Stoll.
+\newblock The {Cassels--Tate} pairing on polarized abelian varieties.
+\newblock \emph{Ann. of Math. (2)}, 150\penalty0 (3):\penalty0 1109--1149, 1999.
+\newblock \doi{10.2307/121064}.
+
+\bibitem[Schneider(1982)]{Schneider1982}
+Peter Schneider.
+\newblock p-adic height pairings. {I}.
+\newblock \emph{Invent. Math.}, 69\penalty0 (3):\penalty0 401--409, 1982.
+\newblock \doi{10.1007/BF01389362}.
+
+\bibitem[Silverman(1994)]{Silverman1994}
+Joseph~H. Silverman.
+\newblock \emph{Advanced Topics in the Arithmetic of Elliptic Curves}, volume 151 of \emph{Graduate Texts in Mathematics}.
+\newblock Springer, 1994.
+\newblock \doi{10.1007/978-1-4612-0851-8}.
+
+\bibitem[Silverman(2009)]{Silverman2009}
+Joseph~H. Silverman.
+\newblock \emph{The Arithmetic of Elliptic Curves}, volume 106 of \emph{Graduate Texts in Mathematics}.
+\newblock Springer, 2 edition, 2009.
+\newblock \doi{10.1007/978-0-387-09494-6}.
+
+\bibitem[Skinner and Urban(2014)]{SkinnerUrban2014}
+Christopher Skinner and Eric Urban.
+\newblock The {Iwasawa} main conjectures for {$\mathrm{GL}_2$}.
+\newblock \emph{Invent. Math.}, 195\penalty0 (1):\penalty0 1--277, 2014.
+\newblock \doi{10.1007/s00222-013-0448-1}.
+
+\bibitem[Tate(1966)]{Tate1966bsd}
+John~T. Tate.
+\newblock On the conjectures of {Birch} and {Swinnerton-Dyer} and a geometric analog.
+\newblock In \emph{S\'eminaire Bourbaki, Vol.~9}, pages Exp.~No.~306, 415--440. Soc. Math. France, 1966.
+
+\bibitem[{The LMFDB Collaboration}(2024)]{LMFDB}
+{The LMFDB Collaboration}.
+\newblock The {L}-functions and modular forms database.
+\newblock \url{https://www.lmfdb.org}, 2024.
+\newblock Online database.
+
+\bibitem[Tsiokos(2026{\natexlab{a}})]{TsiokosBSDClosure2026}
+Ioannis Tsiokos.
+\newblock {A Conditional Proof of the Strong Birch--Swinnerton-Dyer Conjecture}, 2026{\natexlab{a}}.
+\newblock Preprint. \doi{10.5281/zenodo.20713968}.
+
+\bibitem[Tsiokos(2026{\natexlab{b}})]{TsiokosFoundationsII2026}
+Ioannis Tsiokos.
+\newblock {Six Birds Foundations II: Admissibility Meta-Theory and the Exact Six Program}, 2026{\natexlab{b}}.
+
+\bibitem[Tsiokos(2026{\natexlab{c}})]{TsiokosFoundationsIII2026}
+Ioannis Tsiokos.
+\newblock {Six Birds Foundations III: A Finite Audited Interaction Calculus for SBT}, 2026{\natexlab{c}}.
+
+\bibitem[Tsiokos(2026{\natexlab{d}})]{TsiokosNeedles2026}
+Ioannis Tsiokos.
+\newblock {Six Birds: The Needles Framework Apparatus (adequacy, Schur-complement diagnostics)}, 2026{\natexlab{d}}.
+
+\bibitem[Wiles(1995)]{Wiles1995}
+Andrew Wiles.
+\newblock Modular elliptic curves and {Fermat's} last theorem.
+\newblock \emph{Ann. of Math. (2)}, 141\penalty0 (3):\penalty0 443--551, 1995.
+\newblock \doi{10.2307/2118559}.
+
+\bibitem[Zhang(2005)]{Zhang2005schur}
+Fuzhen Zhang, editor.
+\newblock \emph{The {Schur} Complement and Its Applications}, volume~4 of \emph{Numerical Methods and Algorithms}.
+\newblock Springer, 2005.
+\newblock \doi{10.1007/b105056}.
+
+\end{thebibliography}
+
+\endgroup
+\end{document}

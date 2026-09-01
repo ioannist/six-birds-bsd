@@ -1,0 +1,169 @@
+\section{BSD as a non-eliminative AOR instance}
+\label{sec:aor-instance}
+
+The conditional landing of \Cref{sec:landing} gives the scalar
+Strong-BSD identity under the standing shell-closure record, the named
+recognition sources, and the headline imports.
+This final technical section records the corresponding
+Audited Operational Realisability reading.  In the sense of
+\cite{TsiokosAOR2026}, an AOR instance is a refinement-stable,
+audit-closed membership predicate: informally, the framework's
+``holds in reality'' assertion for an object, meaning that the
+residual defects left by refinement have all been accounted for by
+approved records.  The reading here is non-eliminative.  The open
+arithmetic content is not erased; it is recorded as recognition-source
+content, while the mechanical pieces and imported theorem stacks are
+accounted for by construction or by approved external citation.
+
+\begin{definition}[BSD AOR-instance object]\label{def:closure:aor-sel-instance}
+The AOR-instance object attached to \(\SelBSD\) is the carrier whose
+membership witness is the bundle of closure records for the BSD trace
+shell.  The bundle has two kinds of entries.  The mechanical entries
+are the construction of \(\SelBSD\), the \(\kapr\) normalization, and
+the imported theorem stacks recorded through an approved
+external-record citation chain.  The substantive entries are the three
+recognition-source records of \Cref{sec:recognition-sources}.  The
+object is built using the AOR primitives of \cite{TsiokosAOR2026}:
+refinement-stable membership, structural-defect accounting, and
+discharge records.
+\end{definition}
+
+\begin{theorem}[Mechanical-record discharges]\label{thm:closure:aor-mechanical-records}
+The mechanical membership components discharge cleanly.  The
+\(\SelBSD\) construction and the \(\kapr\) normalization are
+discharged by construction.  The \(\chiCTp\), \(\AofE\), and
+Beilinson import structures are discharged by an approved
+external-record citation chain: they are cited as imported theorem
+stacks, not reproved.
+
+For the normalization record, we use \citet{TsiokosBSDApparatus2026}.
+Fix the cascade convention
+\[
+  c_E := \Tam(E)=\prod_{\ell} c_{\ell}(E).
+\]
+Then the cascade leading-term form
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \kapr(E)\,\Omega_E\,\Reg_r(E)\,c_E
+\]
+agrees with the standard Strong-BSD leading-coefficient form
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \Omega_E\,\Reg_r(E)\,
+  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
+\]
+if and only if
+\[
+  \kapr(E)=
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+This is a restatement in cascade coordinates, not a proof of the
+Strong-BSD identity.
+\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Closure.AORInstance.aorMechanicalRecords};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The shell itself is one of the constructed objects of the closure
+architecture, so its mechanical entry is accounted for by construction.
+The displayed \(\kapr\) equivalence is likewise a constructed
+normalization record: once the cascade convention \(c_E=\Tam(E)\) is
+fixed, it identifies the scalar that makes the cascade leading-term
+form and the standard Strong-BSD leading-coefficient form the same
+formula.  It does not assert that the formula is true independently of
+the conditional landing.
+
+It remains only to account for the imported theorem stacks.  The
+\(\chiCTp\) Cassels--Tate stack, the \(\AofE\) Selmer-complex pairing
+stack, and the Beilinson comparison stack enter as named external
+records.  They are therefore discharged by an approved citation chain,
+not by a derivation inside the closure.  These three citation records,
+together with the constructed shell and the \(\kapr\) normalization,
+exhaust the mechanical part of the AOR membership witness.
+\end{proof}
+
+\begin{theorem}[Recognition-source discharges]\label{thm:closure:aor-recognition-discharge}
+The three recognition sources discharge as bridged records.  Here a
+bridged record means a recognition residual that is reclassified as
+supplied closure content rather than eliminated by a derivation.  Each
+\(\Gamma_{\mathrm{BSD}}^{*}\) is a primary structural defect of
+source type, carrying its forced secondary defects of role, target,
+transport, and limit, and is discharged by such a bridged record.  In
+particular, none of the three recognition sources is eliminated.
+\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Closure.AORInstance.aorRecognitionDischarge};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Each of the three recognition sources is an open arithmetic obligation
+that the closure names and consumes but does not derive.  In the audit
+presentation, such an obligation is therefore recorded as a
+source-type structural defect, together with the secondary information
+that specifies its role in the argument, its target factor in the BSD
+residual, its transport through the shell, and the limit of what the
+closure claims about it.
+
+The discharge is by bridging.  That is, the record says that the
+obligation is supplied as recognition content and is available to the
+conditional landing; it does not say that the obligation has been
+proved away.  This applies to the \(p\)-adic descent source, the
+signed-Selmer persistence source, and the higher-rank fixity source.
+Thus all three recognition records are accounted for, and all three
+remain non-eliminated.
+\end{proof}
+
+\Cref{tab:aor-discharge-register} lists the mechanical, imported, and
+recognition-source atoms that enter the local AOR membership witness.
+\input{tables/aor-discharge-register}
+
+\begin{theorem}[AOR-instance membership]\label{thm:closure:aor-instance}
+\(\SelBSD\) is refinement-stable audit-closed, hence an AOR instance,
+under the declared presentation: its declared audit records discharge
+the structural defects that remain under refinement.  This is the
+framework's ``Strong BSD holds in reality'' statement, and it is
+non-eliminative.  The recognition records are reclassified as bridged
+records, not discharged of their open arithmetic.
+\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Closure.AORInstance.aorInstance} over a narrowed
+representation -- the local syntactic refinement-stable predicate, not
+the full Audited Operational Realisability meta-theory; the narrowing
+is recorded in App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+By \Cref{thm:closure:aor-mechanical-records}, the mechanical
+components of the BSD trace shell are accounted for: the shell
+construction and the \(\kapr\) normalization are discharged by
+construction, while the imported theorem stacks are discharged by
+approved external citation.  By
+\Cref{thm:closure:aor-recognition-discharge}, the three recognition
+sources are accounted for as bridged records.
+
+These two groups exhaust the declared structural defects that persist
+under refinement of the BSD trace shell.  The mechanical records are
+closed by construction or citation; the recognition records are
+carried forward as supplied recognition content.  Therefore every
+remaining defect is matched by a declared audit record, so the shell is
+refinement-stable audit-closed under the declared presentation.
+
+The last clause is essential.  The membership statement does not
+convert the recognition sources into classical proofs of the open
+arithmetic obligations.  It records that those obligations are present,
+named, and bridged in the audit, which is exactly the non-eliminative
+AOR reading.
+\end{proof}
+
+\begin{remark}[AOR partial status]\label{rmk:closure:aor-partial-status}
+The AOR-instance reading does not close the open obligations.  The
+rank-\(\geq 2\) generalized Gross--Zagier identity and the additive
+\(p\leq 3\) Iwasawa main conjecture remain open in the literature.
+What the AOR reading records is that the BSD carrier is audit-closed
+under the declared refinement-stable presentation, with the
+recognition records reclassified as bridged content rather than
+discarded.  Only the local syntactic refinement-stable predicate is
+mechanized here, not the full AOR meta-theory.
+\end{remark}

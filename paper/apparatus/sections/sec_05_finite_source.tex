@@ -1,0 +1,324 @@
+\section{Finite-source column and the finite no-gos}
+\label{sec:finite-source}
+
+The finite-source column keeps the arithmetic finite data before it is
+contracted to the public scalar finite factor.  Its typed tower separates
+Tamagawa factors~\citep{Silverman1994}, torsion, the $p$-primary \(\Sha\) data, and the
+Cassels--Tate pairing.  The point of this column is that the determinant
+readout is pairing-aware: the Cassels--Tate form~\citep{PoonenStoll1999,Cassels1962} is source data, not a
+number to be recovered from the scalar finite product after the fact.
+
+\begin{definition}[Real finite-source map]\label{def:apparatus:finite-source-map}
+The finite-source tower is
+\[
+  C_{\mathrm{fin}}(E)
+  =
+  C_{\mathrm{Tam}}\oplus C_{\tors}\oplus
+  C_{\Sha[p^\infty]}\oplus C_{\mathrm{CT}}.
+\]
+Its native family is
+\[
+  L_{\mathrm{finite}}(E)
+  =
+  \bigl((c_v(E))_{v\mid N},\,E(\Q)_{\tors},\,
+  (\Sha(E/\Q)[p^\infty])_p,\,\langle\cdot,\cdot\rangle_{\mathrm{CT}}\bigr).
+\]
+The real finite-source map is the tensor
+\[
+  \rho_{\mathrm{finite}}^{\R}
+  =
+  \rho_{\mathrm{Tam}}^{\R}
+  \otimes
+  \rho_{\tors}^{\R}
+  \otimes
+  \bigotimes_p \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}.
+\]
+The Tamagawa factor is
+\[
+  \rho_{\mathrm{Tam}}^{\R}:
+  (c_v)_{v\mid N}
+  \longmapsto
+  \bigotimes_{v\mid N} c_v e_v^{\mathrm{loc}},
+  \qquad
+  c_v=|\Phi_v(E)|,\quad
+  \Phi_v=E(\Q_v)/E^0(\Q_v).
+\]
+The torsion factor is
+\[
+  \rho_{\tors}^{\R}:
+  T(E)
+  \longmapsto
+  \bigotimes_p |T_p(E)|^{-2}e_p^{\tors}.
+\]
+For the \(\Sha\)--Cassels--Tate factor, put
+\[
+  S_p=\Sha[p^\infty]/\Sha_{\mathrm{div}}[p^\infty],
+\]
+equipped with its perfect alternating Cassels--Tate pairing
+\(\langle\cdot,\cdot\rangle_{\mathrm{CT},p}\).  Then
+\[
+  \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}:
+  (S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p})
+  \longmapsto
+  \Pf(\langle\cdot,\cdot\rangle_{\mathrm{CT},p})
+  e_p^{\Sha\text{-}\mathrm{CT}}.
+\]
+For a trivial \(S_p\), the Pfaffian contribution is the unit.  The source
+datum in this block is the pair
+\((S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p})\), not merely
+\(|S_p|\) and not merely \(\dim_{\mathbb F_p}S_p[p]\).
+\end{definition}
+
+\begin{theorem}[Pairing-aware finite Schur collapse]\label{thm:apparatus:finite-source-schur-collapse}
+At a support prime $p$, use finite tangent coordinates
+\[
+  x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4,
+\]
+where \(x_T=v_p(\prod_v c_v)\), \(x_{\tors}=v_p|E(\Q)_{\tors}|\),
+\(x_{\Sha}=v_p|S_p|\), and \(x_{\mathrm{CT}}\) is the
+Cassels--Tate-pairing coordinate.  With the pairing-aware full readout
+\[
+  D_{\mathrm{full}}(x)=x,
+  \qquad
+  L_{\mathrm{full}}(x)=x,
+  \qquad
+  C=I_4,
+\]
+the Schur residual collapses:
+\[
+  \XiC
+  =
+  I_4-I_4I_4^{\dagger}I_4
+  =
+  0.
+\]
+Thus the full typed finite tower is adequate for the pairing-aware finite
+readout.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.FiniteSource.finiteSourceSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Because the full readout and the full source are both the identity on
+\(\R^4\), the readout block is
+\[
+  \KDD=I_4.
+\]
+The source block is also \(\KLL=I_4\).  Since the Moore--Penrose inverse of
+the identity matrix is the identity matrix, \(\Kdagger=I_4\).  The two cross
+blocks are \(\KDL=I_4\) and \(K_{LD}=I_4\).
+
+It remains to compute the projection term rather than name it.  For any
+vector \(v=(v_1,v_2,v_3,v_4)^{\mathsf T}\),
+\[
+  I_4v=v.
+\]
+Equivalently, in coordinates,
+\[
+  (I_4v)_i=\sum_{j=1}^4\delta_{ij}v_j=v_i.
+\]
+Applying the same identity-matrix action column by column to \(I_4\) gives
+\[
+  I_4I_4=I_4.
+\]
+Therefore
+\[
+  \KDL\Kdagger K_{LD}
+  =
+  I_4I_4I_4
+  =
+  I_4.
+\]
+Substitution into the Schur-complement residual gives
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  I_4-I_4
+  =
+  0.
+\]
+This calculation uses all four finite coordinates.  The scalar and
+dimension-only shadows treated below are different readouts: they forget
+part of the typed finite tower and therefore leave positive residuals.
+\end{proof}
+
+\begin{theorem}[Scalar finite projection (NG-1, Schur form)]\label{thm:apparatus:scalar-finite-shadow}
+Let \(x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4\), and let the
+scalar finite projection be
+\[
+  q=s\cdot x,
+  \qquad
+  s=(1,-2,1,0).
+\]
+The orthogonal rank-one projector onto the scalar row is
+\[
+  P_s=s^{\mathsf T}(ss^{\mathsf T})^{-1}s,
+\]
+and the residual against the full typed finite readout is
+\[
+  \Xi_{\mathrm{scalar}}=I_4-P_s,
+  \qquad
+  \tr(\Xi_{\mathrm{scalar}})=3>0.
+\]
+Moreover the scalar map is noninjective on the typed finite tower: the typed
+finite inputs \((0,0,2,H)\) and \((2,0,0,0)\) both give \(q=2\), but place
+the valuation in the \(\Sha\)--Cassels--Tate block and the Tamagawa block,
+respectively.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.FiniteSource.scalarFiniteShadow}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+First compute the Schur residual.  The squared length of the scalar row is
+\[
+  ss^{\mathsf T}
+  =
+  1^2+(-2)^2+1^2+0^2
+  =
+  6.
+\]
+Thus the rank-one projector has entries
+\[
+  (P_s)_{ij}=\frac{s_i s_j}{6}.
+\]
+Its trace is the sum of its diagonal entries:
+\[
+  \tr(P_s)
+  =
+  \sum_{i=1}^4 \frac{s_i^2}{6}
+  =
+  \frac{1^2+(-2)^2+1^2+0^2}{6}
+  =
+  \frac{6}{6}
+  =
+  1.
+\]
+Since \(\tr(I_4)=4\), the residual trace is
+\[
+  \tr(\Xi_{\mathrm{scalar}})
+  =
+  \tr(I_4-P_s)
+  =
+  \tr(I_4)-\tr(P_s)
+  =
+  4-1
+  =
+  3.
+\]
+This is positive, so the scalar row leaves a three-dimensional residual
+relative to the full four-coordinate finite source.
+
+The same failure is visible without linear algebra.  Evaluate \(q\) on the
+two displayed typed inputs.  For the \(\Sha\)--Cassels--Tate input
+\((0,0,2,H)\),
+\[
+  q=1\cdot0-2\cdot0+1\cdot2+0\cdot H=2.
+\]
+For the Tamagawa input \((2,0,0,0)\),
+\[
+  q=1\cdot2-2\cdot0+1\cdot0+0\cdot0=2.
+\]
+The scalar value is the same, but the typed data are different: one input
+records the contribution in the \(\Sha\)--Cassels--Tate block, while the
+other records it in the Tamagawa block.  The scalar projection also ignores
+the Cassels--Tate coordinate \(H\) itself, since the fourth coefficient of
+\(s\) is zero.  Hence the scalar finite row is a public shadow of the typed
+finite tower.  This is an audit no-go: it says the scalar row alone does not
+recover the typed source; it is not a claim that no richer theorem can
+supply the missing finite data.
+\end{proof}
+
+\begin{theorem}[{$\dim\Sha[p]$ projection (NG-2, Schur form)}]\label{thm:apparatus:dim-sha-shadow}
+On the \(\Sha\)--Cassels--Tate subcarrier \(y=(m,\theta)\in\R^2\), where
+\(m\) records the \(p\)-power elementary-divisor length and \(\theta\)
+records the Cassels--Tate coordinate, the dimension-only projection
+\[
+  L_{\dim}(y)=(1,0)y
+\]
+leaves
+\[
+  \Xi_{\dim}
+  =
+  I_2-(1,0)^{\mathsf T}(1,0)
+  =
+  \operatorname{diag}(0,1),
+  \qquad
+  \tr(\Xi_{\dim})=1>0.
+\]
+It is noninjective on Cassels--Tate data: \((\Z/2\Z)^2\) with
+\(\langle e,f\rangle=\tfrac12\) and \((\Z/4\Z)^2\) with
+\(\langle e,f\rangle=\tfrac14\) have the same
+\(\mathbb F_2\)-dimension of their \(2\)-torsion but different
+Cassels--Tate determinant factors.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Let \(e=(1,0)\).  The dimension-only source keeps the \(m\)-coordinate and
+forgets the \(\theta\)-coordinate.  Its projector is
+\[
+  e^{\mathsf T}e
+  =
+  \begin{pmatrix}1&0\\0&0\end{pmatrix}.
+\]
+Therefore the residual projector is
+\[
+  \Xi_{\dim}
+  =
+  I_2-e^{\mathsf T}e
+  =
+  \begin{pmatrix}1&0\\0&1\end{pmatrix}
+  -
+  \begin{pmatrix}1&0\\0&0\end{pmatrix}
+  =
+  \begin{pmatrix}0&0\\0&1\end{pmatrix}
+  =
+  \operatorname{diag}(0,1).
+\]
+Taking traces gives
+\[
+  \tr(\Xi_{\dim})=0+1=1>0.
+\]
+Thus the dimension-only row leaves exactly the Cassels--Tate direction
+unexplained.
+
+The witness shows that this residual is not a bookkeeping artifact.  The
+group \(U_1=(\Z/2\Z)^2\) has \(U_1[2]=U_1\), so
+\(\dim_{\mathbb F_2}U_1[2]=2\).  The group \(U_2=(\Z/4\Z)^2\) has
+\[
+  U_2[2]\cong(\Z/2\Z)^2,
+\]
+so \(\dim_{\mathbb F_2}U_2[2]=2\) as well.  The dimension readout therefore
+cannot distinguish \(U_1\) from \(U_2\).
+
+Their Cassels--Tate determinant factors differ.  For a two-generator
+alternating pairing with matrix
+\[
+  \begin{pmatrix}0&a\\-a&0\end{pmatrix},
+\]
+the Pfaffian is \(a\).  The pairings in the statement have \(a=\tfrac12\)
+and \(a=\tfrac14\), respectively, so they give different Pfaffian
+contributions to the determinant-line trivialization.  Hence the dimension
+\(\dim_{\mathbb F_2}\Sha[2]\) is a noninjective public shadow of the
+\(\Sha\)--Cassels--Tate source.  As above, this is an audit no-go about a
+specific public readout, not a non-existence claim about all possible
+arithmetic refinements.
+\end{proof}
+
+\begin{obligation}[Refined finite-source BK transport]\label{obl:apparatus:rho-finite-transport}
+The full Bloch--Kato finite component requires a comparison transport
+\[
+  \beta_{\mathrm{BK,finite}}:
+  L_{\mathrm{finite}}(E)_{\R}
+  \longrightarrow
+  \Delta_f(M_E)_{\mathrm{finite}}.
+\]
+This transport fixes the integral local-condition conventions at bad primes,
+the squared-torsion normalization, the Cassels--Tate Pfaffian and orientation
+conventions, and compatibility with the determinant-assembly column.  In
+this paper it is a recognition-source carrier: the finite-source transport
+is named external arithmetic content and carried separately, not derived
+from the finite typed Schur calculation.
+\end{obligation}
+
+% ===========================================================================

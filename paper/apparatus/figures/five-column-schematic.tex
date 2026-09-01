@@ -1,0 +1,33 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  column/.style={draw, rounded corners=2pt, align=center, minimum width=2.6cm,
+    minimum height=1.05cm, fill=black!3},
+  residual/.style={draw, rounded corners=2pt, align=center, minimum width=7.5cm,
+    minimum height=0.95cm, fill=white},
+  target/.style={draw, rounded corners=2pt, align=center, minimum width=4.1cm,
+    minimum height=1.05cm, fill=black!8},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[column] (ht) at (-5.6,1.7) {height\\regulator};
+\node[column] (an) at (-2.8,1.7) {analytic\\period};
+\node[column] (fin) at (0,1.7) {finite\\Tamagawa};
+\node[column] (pad) at (2.8,1.7) {\(p\)-adic\\local};
+\node[column] (det) at (5.6,1.7) {determinant\\assembly};
+\node[residual] (xi) at (0,0) {Schur residual:\quad
+  \(\XiC=K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}\)};
+\node[target] (bk) at (0,-1.55) {Bloch--Kato determinant-line target};
+
+\foreach \n/\shift in {ht/-3cm,an/-1.5cm,fin/0cm,pad/1.5cm,det/3cm}
+  \draw[arrow] (\n.south) .. controls +(0,-0.45) and +(0,0.45) ..
+    ([xshift=\shift]xi.north);
+
+\draw[arrow] (xi.south) -- (bk.north);
+\node[align=center, font=\footnotesize] at (0,-2.6)
+  {adequacy means the admitted native source leaves no Schur residual};
+\end{tikzpicture}
+\caption{The five native source columns are tested before they are assembled in
+the common determinant-line target.}
+\label{fig:five-column-schematic}
+\end{figure}

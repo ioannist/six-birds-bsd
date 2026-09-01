@@ -1,0 +1,134 @@
+\section{Analytic/period column}
+\label{sec:analytic-period}
+
+The analytic/period column keeps the analytic leading coefficient and the
+real period before they are mixed with height, finite, or local data.  Thus
+the native pair is $(A_E,\Omega_E^+)$, where
+$A_E=L^{(r_{\mathrm{an}})}(E,1)/r_{\mathrm{an}}!$ is the standard BSD
+leading coefficient and $\Omega_E^+$ is the real period.  In log-tangent
+coordinates the readout is the quotient coordinate
+$\log A_E-\log\Omega_E^+$.
+
+\begin{definition}[Real analytic/period map]\label{def:apparatus:analytic-period-map}
+By modularity~\citep{Wiles1995,BreuilConradDiamondTaylor2001} $L(E,s)=L(f_E,s)$.  Let
+\[
+  A_E=\frac{L^{(r_{\mathrm{an}})}(E,1)}{r_{\mathrm{an}}!}
+\]
+be the analytic leading coefficient, equivalently the leading Taylor
+coefficient of $L(E,s)$ at $s=1$, and let
+\[
+  \Omega_E^+=\int_{\gamma_\infty}\omega_E
+\]
+be the real period.  The native analytic/period family is
+\[
+  L_{\mathrm{an/per}}(E)=(A_E,\Omega_E^+).
+\]
+Its isolated scalar readout is $A_E/\Omega_E^+$, and the real
+analytic/period map is
+\[
+  \rho_{\mathrm{an/period}}^{\R}:(A_E,\Omega_E^+)\longmapsto
+  (A_E/\Omega_E^+)\,e_{\mathrm{an/per}}
+  \in L_{\mathrm{an/per}}(E)_{\R}.
+\]
+This native column contains only analytic leading-term and period data:
+height, torsion, Tamagawa, and $\Sha$ data are excluded.
+\end{definition}
+
+\begin{theorem}[Analytic/period tangent Schur collapse]\label{thm:apparatus:analytic-period-schur-collapse}
+In the log-tangent chart
+\[
+  x=(x_A,x_\Omega)=(\log A_E,\log\Omega_E^+)\in\R^2,
+\]
+take $C=I_2$, take the full native source to be
+$L_{\mathrm{full}}(x)=x$, and take the dissolving readout to be
+\[
+  D(x)=x_A-x_\Omega.
+\]
+Equivalently, $D(x)=dx$ for the row vector $d=(1,-1)$.  Then
+$\KLL=I_2$, $\KDD=dd^{\mathsf T}=2$, and
+\[
+  \XiC=2-dI_2d^{\mathsf T}=0.
+\]
+With no source admitted the residual is $2$; with only the $x_A$ coordinate
+admitted the residual is $1$; with both native coordinates admitted the
+residual is $0$.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.AnalyticPeriod.analyticPeriodSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The readout row is $d=(1,-1)$, so before admitting any source its readout
+energy is
+\[
+  \KDD=dd^{\mathsf T}=1^2+(-1)^2=2.
+\]
+Now admit the full analytic/period source
+$L_{\mathrm{full}}(x)=x$ with audit energy $C=I_2$.  Then the source block
+is $\KLL=I_2$, its Moore--Penrose inverse is again
+$\Kdagger=I_2$, and the cross blocks are $\KDL=d$ and
+$K_{LD}=d^{\mathsf T}$.  The identity matrix acts on a column vector
+$v=(v_A,v_\Omega)^{\mathsf T}$ by
+\[
+  I_2v
+  =
+  \begin{pmatrix}1&0\\0&1\end{pmatrix}
+  \begin{pmatrix}v_A\\v_\Omega\end{pmatrix}
+  =
+  \begin{pmatrix}v_A\\v_\Omega\end{pmatrix}
+  =
+  v.
+\]
+Applying this to $v=d^{\mathsf T}$ gives
+$I_2d^{\mathsf T}=d^{\mathsf T}$.  Hence
+\[
+  \KDL\Kdagger K_{LD}
+  =
+  dI_2d^{\mathsf T}
+  =
+  dd^{\mathsf T}
+  =
+  2.
+\]
+The Schur-complement residual is therefore
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  2-2
+  =
+  0.
+\]
+
+The two orientation numbers in the statement are the same finite
+calculation with smaller source.  With no source, no projection is removed,
+so the residual is $\KDD=2$.  If only $x_A$ is admitted, the row
+$d=(1,-1)$ decomposes orthogonally as the admitted part $(1,0)$ plus the
+unseen part $(0,-1)$; the unseen part has squared length $1$.  Thus the
+one-coordinate source leaves residual $1$, while the two-coordinate source
+leaves none.
+\end{proof}
+
+\begin{obligation}[Refined analytic/period BK transport]\label{obl:apparatus:rho-an-period-transport}
+The full Bloch--Kato analytic/period component requires a comparison
+transport
+\[
+  \beta_{\mathrm{BK,an}}:
+  L_{\mathrm{an/per}}(E)_{\R}
+  \longrightarrow
+  \Delta_f(M_E)_{\mathrm{an/per}}.
+\]
+This transport identifies
+\[
+  \frac{L^{(r_{\mathrm{an}})}(E,1)}
+       {r_{\mathrm{an}}!\,\Omega_E^+}
+\]
+with the analytic zeta-element factor, including the rational-versus-integral
+normalization, the Betti--de Rham comparison and real orientation, the
+positive-rank leading-term convention, and separation from the other four
+columns.  The rank-$0$ comparison is classical; in positive rank the
+comparison is named external arithmetic content.  In this paper it is a
+recognition-source carrier, not a theorem derived from the finite
+analytic/period Schur calculation.
+\end{obligation}
+
+% ===========================================================================

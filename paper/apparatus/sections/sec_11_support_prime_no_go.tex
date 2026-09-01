@@ -1,0 +1,96 @@
+\section{Support-prime no-go and atlas}
+\label{sec:support-prime-no-go}
+
+The support-prime no-go is the local analogue of the finite-window
+obstruction.  A finite list of primes can record useful local evidence, but
+it cannot certify an all-prime support carrier by itself.  The result below
+is therefore an audit result about non-exhaustive prime coverage, not a
+claim that the missing local comparison rows cannot be supplied by other
+arguments.
+
+\begin{theorem}[Finite-prime cover no-go (NG-5)]\label{thm:apparatus:finite-prime-cover-no-go}
+No fixed finite prime set certifies the all-prime support-prime carrier
+\[
+  \bigotimes_p \Delta_f(M_E)_p.
+\]
+More precisely, for every finite prime set \(P_0\), there is a prime
+\(q\notin P_0\) and two support-prime completions which agree at every prime
+in \(P_0\) but assign different coverage status to the \(q\)-local row.
+Every \(P_0\)-only operator is therefore unable to distinguish the two
+completions, and so cannot determine the all-prime target.\footnote{Verified
+in Lean as
+\texttt{SixBirdsBSD.Apparatus.SupportPrimeNoGo.finitePrimeCoverNoGo}; see
+App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Let \(P_0\) be any finite set of primes.  Since the set of primes is
+infinite, choose a prime \(q\notin P_0\).  We now compare two formal
+support-prime completions for the same global row.  They agree on all local
+data indexed by primes in \(P_0\).  At the new prime \(q\), the first
+completion marks the local row as covered, while the second marks it as
+uncovered.
+
+By definition, a \(P_0\)-only operator factors through the restriction of
+the all-prime support carrier to the primes in \(P_0\).  The two completions
+have the same restriction to \(P_0\), so such an operator receives identical
+input from them and must return the same value on both.  But the all-prime
+target distinguishes them, because the \(q\)-coordinate has different
+coverage status.  Hence the \(P_0\)-restricted data do not determine the
+all-prime carrier.
+
+Since \(P_0\) was arbitrary, no fixed finite list of primes certifies
+\(\bigotimes_p\Delta_f(M_E)_p\).  Finite-prime evidence can support a
+bounded audit, but all-prime coverage requires an additional exhaustivity or
+local-completion certificate for the residual support-prime rows.
+\end{proof}
+
+\begin{definition}[Support-prime truncation residual (finite diagnostic)]\label{def:apparatus:support-prime-truncation-residual}
+For a finite prime truncation
+\[
+  S_B=\{p:p\leq B\},
+\]
+classify each local row into the covered class R4a or the residual class
+R4b.  Here R4a denotes a row whose ordinary or signed local hypotheses
+contribute no residual in the audit, while R4b denotes a row with one unit
+of unexplained local data.  The finite-truncation residual is
+\[
+  \Xi_B(E)=u_B(E),
+\]
+where \(u_B(E)\) is the number of R4b rows in \(S_B\).  This is a finite
+diagnostic only, distinct from
+\Cref{thm:apparatus:finite-prime-cover-no-go}; it does not by itself prove
+all-prime non-exhaustivity.  For the b50 rows below \(50\),
+\[
+  \Xi(11a1)=\Xi(37a1)=\Xi(121b1)=1,\qquad
+  \Xi(960d1)=3,\qquad
+  \Xi(571a1)=0.
+\]
+The last value becomes \(1\) once the bad prime \(571\) is included.
+\end{definition}
+
+\begin{remark}[Support-prime atlas (support only)]\label{rmk:apparatus:support-prime-atlas}
+The support-prime atlas is a \(76\)-row audit table of pairs \((E,p)\) for
+the b50 curves.  For each row it records the reduction type, the value
+\(a_p\) obtained by point counting, ordinarity, applicability of the local
+Iwasawa main-conjecture input~\citep{SkinnerUrban2014}, and the R4a/R4b assignment.  The R4b rows
+below \(50\) are
+\[
+  11a1:\{11\},\qquad
+  37a1:\{37\},\qquad
+  121b1:\{11\},\qquad
+  960d1:\{2,3,5\},\qquad
+  571a1:\varnothing.
+\]
+The prime \(571\) for \(571a1\) lies outside the \(<50\) sample, and the
+b50 bad-prime R4b count is \(7\).  This atlas is a support table for the
+audit, not a theorem.
+\end{remark}
+
+The full apparatus no-go suite is collected in \Cref{tab:no-go-suite}.  The
+shared reading is that each row marks a loss of source information in the
+available public or finite record, not a theorem excluding future richer
+source data.
+\input{tables/no-go-suite}
+
+% ===========================================================================

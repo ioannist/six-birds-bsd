@@ -1,0 +1,232 @@
+\section{p-adic column}
+\label{sec:p-adic}
+
+The local \(p\)-adic column records the local source data before it is
+contracted to a public local scalar.  At an ordinary prime this means keeping
+the ordinary-control coordinate together with the finite local condition and
+dual exponential.  At a supersingular prime it means keeping the signed
+\(+\) and \(-\) local directions separately, rather than replacing them by
+their unsigned aggregate.
+
+\begin{definition}[Real p-adic map]\label{def:apparatus:p-adic-map}
+Let \(T=T_pE\) and \(V=V_p(E)=T\otimes\Qp\), viewed as a representation of
+\(G_{\Qp}\).  The finite local condition~\citep{BlochKato1990,Fontaine1994} is
+\[
+  \Hf(\Qp,V)
+  =
+  \ker\bigl(H^1(\Qp,V)\to H^1(\Qp,V\otimes B_{\mathrm{cris}})\bigr),
+\]
+and the dual exponential is
+\[
+  \exp^*:\Hf(\Qp,V)\longrightarrow
+  D_{\mathrm{dR}}(V)/\operatorname{Fil}^0D_{\mathrm{dR}}(V).
+\]
+
+If \(E\) has good ordinary reduction at \(p\)~\citep{Mazur1972}, so \(a_p\) is a \(p\)-unit
+and the ordinary filtration is
+\[
+  0\longrightarrow T^+\longrightarrow T\longrightarrow T^-\longrightarrow0,
+\]
+then the native ordinary family is
+\[
+  L_p^{\mathrm{ord}}(E)=(T^+,\Hf(\Qp,V),\exp^*),
+\]
+and the real ordinary local map is
+\[
+  \rho_{p,\mathrm{ord}}^{\R}:
+  (T^+,\Hf(\Qp,V),\exp^*)
+  \longmapsto
+  e_{T^+}\otimes\det(\exp^*)\,e_{\mathrm{loc},p}
+  \in \Delta_f(V,T)_{p,\R}^{\mathrm{ord}}.
+\]
+If \(E\) has good supersingular reduction at \(p\)~\citep{Kobayashi2003,Pollack2003}, with \(a_p\equiv0\),
+then the signed native family is
+\[
+  L_p^{\pm}(E)=(H^1_+,H^1_-,\exp^*),
+\]
+and the signed real local map is
+\[
+  \rho_{p,\pm}^{\R}:
+  (H^1_+,H^1_-,\exp^*)
+  \longmapsto
+  e_+\otimes e_-\otimes\det(\exp^*)\,e_{\mathrm{loc},p}^{\pm}.
+\]
+\end{definition}
+
+\begin{theorem}[Ordinary local Schur collapse]\label{thm:apparatus:ordinary-schur-collapse}
+For a good-ordinary row, let
+\[
+  x=(x_{\mathrm{ord}},x_f,x_{\exp})\in\R^3
+\]
+be the ordinary-control, finite-local-condition, and dual-exponential
+tangent coordinates.  With
+\[
+  D_{\mathrm{ord}}(x)=x,\qquad
+  L_{\mathrm{ord,full}}(x)=x,\qquad
+  C=I_3,
+\]
+one has \(\XiC=0\).  If the ordinary-control coordinate
+\(x_{\mathrm{ord}}\) is omitted, the trace residual is \(1\); the unit-root
+control coordinate is therefore necessary for the full ordinary local
+source.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.PAdic.ordinarySchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+With the full ordinary source admitted, both the readout and source maps are
+the identity on \(\R^3\).  Hence
+\[
+  \KDD=I_3,\qquad
+  \KLL=I_3,\qquad
+  \Kdagger=I_3,\qquad
+  \KDL=I_3,\qquad
+  K_{LD}=I_3.
+\]
+The projection term is computed by the identity-matrix action.  For
+\(v=(v_1,v_2,v_3)^{\mathsf T}\),
+\[
+  (I_3v)_i=\sum_{j=1}^3\delta_{ij}v_j=v_i,
+\]
+so \(I_3v=v\), and applying this column by column gives \(I_3I_3=I_3\).
+Therefore
+\[
+  \KDL\Kdagger K_{LD}
+  =
+  I_3I_3I_3
+  =
+  I_3.
+\]
+Substituting into the Schur residual gives
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  I_3-I_3
+  =
+  0.
+\]
+
+Now omit \(x_{\mathrm{ord}}\).  The admitted source is the coordinate
+subspace spanned by \(e_f=(0,1,0)\) and \(e_{\exp}=(0,0,1)\).  The
+orthogonal projector onto this subspace is
+\[
+  P_{\mathrm{omit}}
+  =
+  \operatorname{diag}(0,1,1).
+\]
+The residual projector is
+\[
+  I_3-P_{\mathrm{omit}}
+  =
+  \operatorname{diag}(1,0,0),
+\]
+whose trace is \(1\).  Thus omitting the ordinary-control coordinate leaves
+exactly one unexplained local direction.
+\end{proof}
+
+\begin{theorem}[Signed local Schur collapse]\label{thm:apparatus:signed-schur-collapse}
+For a good-supersingular row, let
+\[
+  y=(y_+,y_-,y_{\exp})\in\R^3
+\]
+be the signed \(+\), signed \(-\), and dual-exponential tangent coordinates.
+With
+\[
+  D_{\pm}(y)=y,\qquad
+  L_{\pm,\mathrm{full}}(y)=y,\qquad
+  C=I_3,
+\]
+one has \(\XiC=0\).  The unsigned projection
+\[
+  L_{\mathrm{uns}}(y)=(y_++y_-,y_{\exp})
+\]
+has rank \(2\), leaves the difference direction \(y_+-y_-\) invisible, and
+has trace residual \(1\).  Thus the signed decomposition is structural;
+unsigned aggregation is a public shadow.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.PAdic.signedSchurCollapse}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The full signed source is again the identity source on \(\R^3\).  Therefore
+the same identity-matrix computation as in the ordinary case gives
+\[
+  \KDD=I_3,\qquad
+  \KLL=I_3,\qquad
+  \Kdagger=I_3,\qquad
+  \KDL=I_3,\qquad
+  K_{LD}=I_3,
+\]
+and hence
+\[
+  \XiC
+  =
+  I_3-I_3I_3I_3
+  =
+  0.
+\]
+
+It remains to compute the unsigned residual.  The unsigned source is the
+two-dimensional subspace spanned by
+\[
+  u_1=(1,1,0),\qquad u_2=(0,0,1).
+\]
+These two vectors are orthogonal, with \(u_1\cdot u_1=2\),
+\(u_2\cdot u_2=1\), and \(u_1\cdot u_2=0\).  Hence the orthogonal projector
+onto the unsigned source is
+\[
+  P_{\mathrm{uns}}
+  =
+  \frac{u_1u_1^{\mathsf T}}{2}
+  +
+  u_2u_2^{\mathsf T}.
+\]
+Its trace is
+\[
+  \tr(P_{\mathrm{uns}})
+  =
+  \frac{u_1\cdot u_1}{2}
+  +
+  u_2\cdot u_2
+  =
+  \frac{2}{2}+1
+  =
+  2.
+\]
+Since \(\tr(I_3)=3\), the unsigned residual has trace
+\[
+  \tr(I_3-P_{\mathrm{uns}})=3-2=1.
+\]
+
+The invisible direction is explicit.  The vector
+\[
+  w=(1,-1,0)
+\]
+is orthogonal to \(u_1\) and \(u_2\), so it lies in the residual line.
+Equivalently,
+\[
+  L_{\mathrm{uns}}(1,0,0)=(1,0)=L_{\mathrm{uns}}(0,1,0),
+\]
+although the two signed inputs are distinct.  Thus unsigned aggregation
+forgets the \(+\) versus \(-\) difference, while the signed carrier retains
+it.
+\end{proof}
+
+\begin{obligation}[Refined p-adic BK-local transport]\label{obl:apparatus:rho-p-transport}
+The full Bloch--Kato local component requires a comparison transport
+\[
+  \beta_{\mathrm{BK},p}:
+  \Delta_f(V,T)_{p,\R}
+  \longrightarrow
+  \Delta_f(M_E)_p.
+\]
+This transport fixes the integral Fontaine--Laffaille or Wach data, the
+local Tate-pairing~\citep{Milne1986} and dual-exponential orientation, the Nekov\'a\v{r}
+Selmer-complex local-global compatibility~\citep{Nekovar2006}, the signed normalization at
+supersingular primes, and compatibility with the determinant-assembly
+column.  In this paper it is a recognition-source carrier: the arithmetic
+comparison is named external content and carried separately, not derived
+from the finite typed local calculations above.
+\end{obligation}
+
+% ===========================================================================

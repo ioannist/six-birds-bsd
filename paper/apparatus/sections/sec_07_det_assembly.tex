@@ -1,0 +1,150 @@
+\section{Determinant-assembly column and cascade completion}
+\label{sec:det-assembly}
+
+The determinant-assembly column records the orientation, sign, and unit
+conventions needed to place the four arithmetic columns in one determinant
+line.  The height/regulator, analytic/period, finite-source, and local
+\(p\)-adic columns produce native determinant factors; the assembly column
+is the final coordinate that makes their tensor a global determinant-line
+object rather than a four-column product with an unspecified orientation.
+
+\begin{definition}[Real determinant-assembly map]\label{def:apparatus:det-assembly-map}
+Let
+\[
+  \lambda_{\mathrm{loc}}(E)
+  =
+  \rho_{\mathrm{ht/reg}}^{\R}
+  \otimes
+  \rho_{\mathrm{an/period}}^{\R}
+  \otimes
+  \rho_{\mathrm{finite}}^{\R}
+  \otimes
+  \bigotimes_{p\in S(E)}\rho_p^{\R}
+\]
+be the tensor of the four constructed arithmetic columns over the support
+set \(S(E)\).  Let \(o_{\det}\) denote the determinant orientation and
+trivialization coordinate.  The real determinant-assembly map is
+\[
+  \rho_{\det}^{\R}:
+  \lambda_{\mathrm{loc}}(E)\otimes o_{\det}
+  \longmapsto
+  \lambda_{\mathrm{loc}}(E)\cdot o_{\det}
+  \in\Delta_f(M_E)_{\R}.
+\]
+\end{definition}
+
+\begin{theorem}[Cascade-completion Schur signature]\label{thm:apparatus:cascade-completion-signature}
+Let the cascade tangent coordinate be
+\[
+  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5.
+\]
+The four constructed arithmetic columns have source row
+\[
+  \ell=(1,1,1,1,0),
+\]
+while the global determinant target has row
+\[
+  d=(1,1,1,1,1).
+\]
+With \(C=I_5\), one has
+\[
+  \KDD=dd^{\mathsf T}=5,\qquad
+  \KLL=\ell\ell^{\mathsf T}=4,\qquad
+  \KDL=d\ell^{\mathsf T}=4,
+\]
+and therefore
+\[
+  \XiC=5-4\cdot4^{-1}\cdot4=1.
+\]
+The residual is exactly the determinant-orientation coordinate
+\(x_{\det}\): the four constructed arithmetic components explain all
+coordinates except the final determinant row.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.DetAssembly.cascadeCompletionSignature}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The readout row is \(d=(1,1,1,1,1)\), so its squared norm is
+\[
+  \KDD
+  =
+  dd^{\mathsf T}
+  =
+  1+1+1+1+1
+  =
+  5.
+\]
+The source row supplied by the four constructed arithmetic columns is
+\(\ell=(1,1,1,1,0)\).  Its squared norm is
+\[
+  \KLL
+  =
+  \ell\ell^{\mathsf T}
+  =
+  1+1+1+1+0
+  =
+  4.
+\]
+Since this is a one-dimensional source block, its Moore--Penrose inverse is
+multiplication by \(4^{-1}\).  The cross term is
+\[
+  \KDL
+  =
+  d\ell^{\mathsf T}
+  =
+  1+1+1+1+0
+  =
+  4,
+\]
+and \(K_{LD}=4\) as well.  The Schur-complement residual is therefore
+\[
+  \XiC
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  5-4\cdot4^{-1}\cdot4
+  =
+  5-4
+  =
+  1.
+\]
+
+This scalar residual is precisely the determinant-orientation direction.
+Indeed
+\[
+  d=(1,1,1,1,1)=\ell+e_{\det},
+  \qquad
+  e_{\det}=(0,0,0,0,1).
+\]
+The two summands are orthogonal for the identity calibration:
+\(\ell\cdot e_{\det}=0\).  Projection onto the source row
+\(\ell\) removes the \(\ell\)-component of \(d\) and leaves
+\(e_{\det}\).  The squared norm of \(e_{\det}\) is \(1\), matching the
+computed residual.  Thus the cascade is incomplete until the determinant
+orientation coordinate is supplied.
+\end{proof}
+
+\begin{obligation}[Integral determinant assembly]\label{obl:apparatus:rho-det-assembly}
+The full determinant comparison requires a transport
+\[
+  \beta_{\det\text{-}\mathrm{assembly}}:
+  \Bigl(
+  \Delta_{\mathrm{ht/reg}}
+  \otimes
+  \Delta_{\mathrm{an/period}}
+  \otimes
+  \Delta_{\mathrm{finite}}
+  \otimes
+  \bigotimes_p\Delta_p
+  \Bigr)
+  \longrightarrow
+  \Delta_f(M_E).
+\]
+This transport fixes the Knudsen--Mumford determinant signs~\citep{KnudsenMumford1976}, the
+Selmer-complex local-global compatibility, the zeta-element versus motivic
+trivialization convention, and compatibility with the four refined
+transports.  In this paper it is a recognition-source carrier: the
+arithmetic determinant assembly is named external content and carried
+separately, not derived from the finite cascade residual computation.
+\end{obligation}
+
+% ===========================================================================

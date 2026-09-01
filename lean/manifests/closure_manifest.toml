@@ -1,0 +1,241 @@
+# Lean validation manifest for the closure paper axis (Paper B, flagship).
+#
+# Each entry corresponds to a paper_label from
+# formalization/inventory/closure_paper_inventory.toml whose
+# intended_status is "mechanize_now". Entries record the accepted Lean
+# realizations.
+#
+# Status meanings (verbatim from F2/F3):
+# - definition:   paper definition has a Lean definition-like declaration
+# - theorem:      paper claim has a Lean theorem/lemma whose dependency audit passes
+# - axiomatic:    declaration is or depends on project-local axioms (NOT allowed in this repo)
+# - partial:      declaration mechanizes only a supporting fragment
+# - unformalized: no Lean correspondent is present yet
+#
+# Recognition sources (the three Γ_BSD^*) are mechanize_now typed
+# structure carriers and appear below as definition entries. Imported
+# theorem stacks (χ_{CT,p}/T_E1–T_E8, A_E, Beilinson) are also
+# proof-carrying structures with status = definition.
+#
+# Schema (per entry):
+#   paper_label    = "<kind>:closure:<short-name>"  # from closure_paper_inventory.toml
+#   paper_section  = "<section title>"
+#   description    = "<one-line summary>"
+#   status         = "<one of the values above>"
+#   lean_subproject = "."
+#   lean_module    = "SixBirdsBSD.Closure.<Section>"
+#   lean_decl      = "SixBirdsBSD.Closure.<Section>.<name>"
+#   notes          = ""
+#
+# Use `[[definition]]` for definition_kind entries, `[[claim]]` for
+# theorem/lemma/proposition/corollary entries.
+
+[[definition]]
+paper_label = "def:closure:chi-ct-p-import"
+paper_section = "Imports"
+description = "Proof-carrying imported chi_CT,p theorem stack with eight external theorem certificates and Nekovar-Cassels-Tate sign closure."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.Imports"
+lean_decl = "SixBirdsBSD.Closure.Imports.chiCTpImport"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:a-e-import"
+paper_section = "Imports"
+description = "Proof-carrying imported A_E Selmer-complex target category and bilinear or categorical pairing substrate."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.Imports"
+lean_decl = "SixBirdsBSD.Closure.Imports.aEImport"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:beilinson-import"
+paper_section = "Imports"
+description = "Proof-carrying imported Beilinson rank at least two determinant and L-value comparison substrate."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.Imports"
+lean_decl = "SixBirdsBSD.Closure.Imports.beilinsonImport"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:gamma-padic-descent"
+paper_section = "RecognitionSources"
+description = "Typed recognition-source carrier for additive-prime p-adic OC descent with Tamagawa and Stage-6 trace certificates."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.RecognitionSources"
+lean_decl = "SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:gamma-sha-persistence"
+paper_section = "RecognitionSources"
+description = "Typed recognition-source carrier for signed-Selmer cover-change determinant persistence modulo p-adic units."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.RecognitionSources"
+lean_decl = "SixBirdsBSD.Closure.RecognitionSources.gammaShaPersistence"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:gamma-higher-gz-fixity"
+paper_section = "RecognitionSources"
+description = "Typed recognition-source carrier for rank at least two higher-Gross-Zagier anti-invariant fixity."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.RecognitionSources"
+lean_decl = "SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:sel-bsd-shell"
+paper_section = "SelShell"
+description = "Saturated BSD trace shell with residual, scalar algebra laws, and recognition-audit master payload."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.SelShell"
+lean_decl = "SixBirdsBSD.Closure.SelShell.selBSDShell"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:pi-bsd"
+paper_section = "SelShell"
+description = "Quantified BSD predicate with shell-typed factor-tied recognition readouts and lower-rank identity lane."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.SelShell"
+lean_decl = "SixBirdsBSD.Closure.SelShell.piBSD"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:pi-bsd-iff-strong-bsd"
+paper_section = "SelShell"
+description = "Readout-level equivalence (residual=0 iff Strong-BSD identity)."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.SelShell"
+lean_decl = "SixBirdsBSD.Closure.SelShell.piBSDIffStrongBSD"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:master-theorem-applicability"
+paper_section = "SelShell"
+description = "Closure master-theorem applicability derived from the three recognition-source Foundations-IV audit triples and smuggle audit."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.SelShell"
+lean_decl = "SixBirdsBSD.Closure.SelShell.masterTheoremApplicability"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:composite-signature"
+paper_section = "SelShell"
+description = "Composite BSD operational signature with Stage-6 trace state and Gamma-carried factor ablation."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.SelShell"
+lean_decl = "SixBirdsBSD.Closure.SelShell.compositeSignature"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:chi-ct-p-comparison"
+paper_section = "ChiCTp"
+description = "Conditional chi_CT,p Pfaffian comparison projected from the complete imported comparison record."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.ChiCTp"
+lean_decl = "SixBirdsBSD.Closure.ChiCTp.chiCTpComparison"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:eta-published-imports"
+paper_section = "EtaFormula"
+description = "Complete proof-carrying eta import record with distinct provenance fields and concrete formula data."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.EtaFormula"
+lean_decl = "SixBirdsBSD.Closure.EtaFormula.etaPublishedImports"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:oc-eta-formula"
+paper_section = "EtaFormula"
+description = "Conditional overconvergent eta formula projected from the complete published import record."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.EtaFormula"
+lean_decl = "SixBirdsBSD.Closure.EtaFormula.ocEtaFormula"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:t-cascade-import"
+paper_section = "TCascade"
+description = "Proof-carrying T_CASCADE external theorem stack for CM and non-CM branches."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.TCascade"
+lean_decl = "SixBirdsBSD.Closure.TCascade.tCascadeImport"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:t-cascade-rank-le-1"
+paper_section = "TCascade"
+description = "Conditional p-part Strong BSD identity vp(L^(r)/(r! Omega Reg)) = vp(#Sha Tam/torsion^2) in rank at most one."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.TCascade"
+lean_decl = "SixBirdsBSD.Closure.TCascade.tCascadeRankLeOne"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:strong-bsd-conditional"
+paper_section = "Landing"
+description = "Conditional Strong BSD scalar identity from explicit higher-GZ fixity, recognition-audit master applicability, and Gamma-factor composite evidence."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.Landing"
+lean_decl = "SixBirdsBSD.Closure.Landing.strongBSDConditional"
+notes = ""
+
+[[definition]]
+paper_label = "def:closure:aor-sel-instance"
+paper_section = "AORInstance"
+description = "BSD AOR-instance object attached to Sel!_BSD with closure, recognition, import, discharge, and nonclaim records."
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.AORInstance"
+lean_decl = "SixBirdsBSD.Closure.AORInstance.aorSelInstance"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:aor-mechanical-records"
+paper_section = "AORInstance"
+description = "Mechanical AOR records discharge by construction or approved-other, including the reused kappa_r normalization."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.AORInstance"
+lean_decl = "SixBirdsBSD.Closure.AORInstance.aorMechanicalRecords"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:aor-recognition-discharge"
+paper_section = "AORInstance"
+description = "The three BSD recognition sources discharge as non-eliminative bridged source records with forced secondaries."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.AORInstance"
+lean_decl = "SixBirdsBSD.Closure.AORInstance.aorRecognitionDischarge"
+notes = ""
+
+[[claim]]
+paper_label = "thm:closure:aor-instance"
+paper_section = "AORInstance"
+description = "Sel!_BSD AOR carrier is refinement-stable audit-closed under the declared non-eliminative presentation."
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Closure.AORInstance"
+lean_decl = "SixBirdsBSD.Closure.AORInstance.aorInstance"
+notes = ""

@@ -1,0 +1,211 @@
+\section{The saturated trace shell and its readout}
+\label{sec:shell-readout}
+
+The preceding section isolated the three arithmetic recognition sources.
+We now assemble the object on which they act.  The saturated BSD trace
+shell is a typed carrier for the Strong-BSD scalar comparison: it keeps
+the analytic leading coefficient, the arithmetic product, and the audit
+data in one place, so that the closure can record which input governs
+which scalar factor.  Here ``trace shell'' means a formed mathematical
+object together with its visible scalar readout and the bookkeeping
+needed to prevent the readout from being a tautological restatement of
+the desired identity.
+
+\begin{definition}[Saturated BSD trace shell]\label{def:closure:sel-bsd-shell}
+\(\SelBSD\) is the five-tuple
+\[
+  \SelBSD
+  =
+  \bigl(E,\ \rhoE,\ J^{!}_{\mathrm{BSD}},\
+    \mathrm{Vis}^{!}_{\mathrm{BSD}},\
+    \mathrm{Audit}^{!}_{\mathrm{BSD}}\bigr).
+\]
+Here \(E/\Q\) is the elliptic curve and \(\rhoE\) is the scalar
+residual
+\[
+  \rhoE
+  =
+  \frac{L^{(r)}(E,1)}{r!}
+  -
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {|E(\Q)_{\tors}|^2}.
+\]
+Thus \(\rhoE=0\) is exactly the Strong-BSD scalar identity, with
+\(\Tam(E)\) read as the Tamagawa product.  The datum
+\(J^{!}_{\mathrm{BSD}}\) records the involutive or duality structure
+that compares the analytic and arithmetic sides.  The datum
+\(\mathrm{Vis}^{!}_{\mathrm{BSD}}\) records the visible scalar readout
+of the shell.  The datum \(\mathrm{Audit}^{!}_{\mathrm{BSD}}\) records
+the admissibility, anti-tautology, and lawfulness information attached
+to the formed object.  The standing closure assumption used here is the
+standard assumption that the formed object carries this fixed content
+itself: admissibility, anti-tautology, and lawfulness data are part of
+the shell rather than consequences inferred after the fact.
+\end{definition}
+
+\Cref{fig:sel-bsd-shell-schematic,tab:sel-bsd-shell-fields} summarize the
+shell fields and the residual readout used below.
+\input{figures/sel-bsd-shell-schematic}
+\input{tables/sel-bsd-shell-fields}
+
+The predicate placed on the shell is not the Strong-BSD identity by
+definition.  It is a structured readout predicate: it asks for the three
+recognition-source statements, quantified over the local and rank data
+where they apply.  This distinction is essential.  The next theorem can
+then identify the readout with the Strong-BSD scalar identity; it is not
+merely unfolding a definition.
+
+\begin{definition}[$\Pi_{\mathrm{BSD}}$ predicate]\label{def:closure:pi-bsd}
+\(\PiBSD(E)\) is the conjunction of the three recognition-source
+readouts on \(\SelBSD\), with the relevant quantifiers retained.  First,
+for every additive bad prime \(p\) in scope and every tame
+inertia-trivializing local lift \(L/\Qp\) in scope, the
+\(\GammaPD\) readout supplies the \(p\)-adic descent/Tamagawa
+correction.  Second, for every signed-Selmer-admissible prime \(p\),
+the \(\GammaSP\) readout supplies the signed-Selmer local determinant
+matching.  Third, for analytic rank \(r\geq 2\), the \(\GammaGZ\)
+readout supplies the higher-rank fixity assertion
+\(\psi_-(E,r)=0\); for \(r\in\{0,1\}\), the predicate uses the
+classical low-rank lane.  In particular, \(\PiBSD\) is a structured
+quantified predicate over recognition readouts, not the definition
+\(\PiBSD:=\mathrm{StrongBSD}\).
+\end{definition}
+
+\begin{theorem}[Readout-level equivalence]\label{thm:closure:pi-bsd-iff-strong-bsd}
+The scalar readout of \(\PiBSD\) on \(\SelBSD\) is equivalent to the
+standard Strong-BSD scalar identity
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,
+    \prod_v c_v(E)}
+       {|E(\Q)_{\tors}|^2}.
+\]
+This is a readout-level equivalence: it identifies the visible scalar
+readout with the Strong-BSD scalar identity, but it does not define
+\(\PiBSD\) to be Strong BSD and it does not manufacture the recognition
+sources from the scalar identity alone.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak piBSDIffStrongBSD};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+By definition of the shell, the visible scalar residual is
+\[
+  \rhoE
+  =
+  \frac{L^{(r)}(E,1)}{r!}
+  -
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {|E(\Q)_{\tors}|^2}.
+\]
+The readout predicate \(\PiBSD\) supplies the three pieces entering this
+residual.  The higher-rank source \(\GammaGZ\) gives
+\(\psi_-(E,r)=0\).  After applying the \(\kapr\) normalization of
+\citet{TsiokosBSDApparatus2026},
+\[
+  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2},
+  \qquad
+  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)
+  =
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
+    \prod_v c_v(E)}
+       {|E(\Q)_{\tors}|^2}.
+\]
+Thus the equation \(\psi_-(E,r)=0\) is exactly the assertion
+\(\rhoE=0\) in rank at least two.  The source \(\GammaPD\) supplies the
+local \(p\)-adic/Tamagawa correction entering the Tamagawa product, and
+\(\GammaSP\) supplies the signed-Selmer persistence of the \(\Sha\)
+factor; these readouts fix the remaining scalar factors in the same
+residual.  Therefore the forward scalar readout of \(\PiBSD\) is
+\(\rhoE=0\).
+
+Finally, the equation \(\rhoE=0\) is algebraically the displayed
+Strong-BSD scalar identity: moving the arithmetic product to the other
+side gives the identity, and subtracting the right-hand side from the
+left gives \(\rhoE=0\).  Conversely, if the displayed scalar identity is
+already known as a scalar readout, then the same subtraction gives
+\(\rhoE=0\).  This reverse implication is only an equivalence of
+scalar readouts; it does not construct any of the three
+\(\Gamma_{\mathrm{BSD}}^{*}\) predicates.
+\end{proof}
+
+\begin{theorem}[Master-theorem applicability]\label{thm:closure:master-theorem-applicability}
+The closure master theorem applies to \(\SelBSD\): for the audited
+interaction calculus \cite{TsiokosFoundationsIII2026}, correctly
+instantiated recognition sources that exhaust the residual factors, and
+that pass the no-smuggling audit, force the residual readout
+\(\rhoE=0\).\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak masterTheoremApplicability};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+We verify the two applicability requirements for the shell.  First, the
+recognition sources are instantiated on exactly the scalar factors of
+\(\rhoE\).  The source \(\GammaPD\) governs the local
+\(p\)-adic/Tamagawa correction: it supplies the descent congruence and
+the Tamagawa factor \(c_p(E)\) up to a \(p\)-adic unit.  The source
+\(\GammaSP\) governs the persistence of the \(\Sha\)-factor under the
+signed-Selmer cover change: its determinant comparison is the local
+component entering the same arithmetic product.  The source
+\(\GammaGZ\) governs the rank-\(r\) regulator/fixity factor: it states
+that the analytic leading coefficient equals the arithmetic regulator
+product after the \(\kapr\) normalization.  These three pieces account
+for the local \(p\)-adic/Tamagawa factor, the \(\Sha\)-persistence
+factor, and the regulator/fixity factor respectively.  No scalar factor
+of \(\rhoE\) remains outside this list, and no factor is assigned to two
+different sources.
+
+Second, the no-smuggling condition holds.  The imported theorem stacks
+enter only as hypotheses, and the recognition sources enter only as
+carried readouts.  The closure does not silently turn an open
+arithmetic obligation into a derivation target; it records the
+obligation as supplied content and then derives consequences from it.
+Thus the recognition-source instantiation is exhaustive for the
+residual and the audit contains no hidden derivation of out-of-scope
+arithmetic.  The closure master theorem is therefore applicable to
+\(\SelBSD\), and its residual conclusion is \(\rhoE=0\).
+\end{proof}
+
+\begin{theorem}[Composite signature with anti-tautology hardening]\label{thm:closure:composite-signature}
+The composite recognition predicate attached to \(\SelBSD\) is
+computable and falsifiable, carries a framework trace signature as a
+fingerprint of the composite operator, and is anti-tautological: it
+genuinely consumes all three recognition records.  In particular, the
+three components are independent but not disposable.  Ablating
+\(\GammaPD\), \(\GammaSP\), or \(\GammaGZ\) breaks the Strong-BSD
+scalar factor package, so the composite does not collapse to a
+tautological restatement of Strong BSD.\footnote{\raggedright Tracked in the
+formalization harness as a conditional schema
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak compositeSignature}
+-- a checked projection over an explicit proof-carrying record
+(conditional on the imports and recognition sources), not an independent
+Lean derivation. See App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The composite predicate is a finite conjunction of the three readouts
+introduced above, together with the shell data on which those readouts
+are evaluated.  It is therefore computable in the framework sense: once
+the shell and the recognition records are supplied, the predicate has a
+definite list of components to inspect.  It is also falsifiable: failure
+of any one component is a failure of the composite readout.
+
+The substantive point is non-disposability.  Removing \(\GammaPD\)
+leaves the local \(p\)-adic/Tamagawa factor undetermined; the shell no
+longer knows that the descent comparison repairs the Tamagawa
+coarsening by the required factor.  Removing \(\GammaSP\) leaves the
+\(\Sha\)-persistence factor undetermined; the signed-Selmer determinant
+comparison no longer supplies the component entering the arithmetic
+product.  Removing \(\GammaGZ\) leaves the rank-\(r\)
+regulator/fixity factor undetermined; there is then no assertion that
+the analytic leading coefficient agrees with the normalized regulator
+product.  Each recognition source governs a different scalar factor of
+the residual, and each factor is required for the Strong-BSD scalar
+package.  Hence the composite predicate depends genuinely on the
+formed BSD layer's data and cannot be replaced by the bare sentence
+``Strong BSD holds.''
+\end{proof}
+
+% ===========================================================================

@@ -1,0 +1,138 @@
+\section[Comparison: literature gap and five-column/BK map]{Comparison: literature gap and $\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}$}
+\label{sec:comparison}
+
+The preceding sections built the five typed columns separately.  This
+section contracts that typed atlas back to the usual Bloch--Kato scalar
+package and asks whether the typed source is adequate for that contraction.
+The answer is yes for the scalar readout: the typed source has zero Schur
+residual for the comparison row, while the determinant-orientation
+coordinate lies in the kernel of the scalar contraction.
+
+\begin{remark}[Five-column literature gap (support only; audit observation)]\label{rmk:apparatus:five-column-literature-gap}
+The literature audit used here reads Bloch--Kato~\citep[\S5]{BlochKato1990},
+Fontaine--Perrin-Riou~\citep{FontainePerrinRiou1994}, and Nekov\'a\v{r}~\citep{Nekovar1994}
+as presenting \(\Delta_f(M_E)\) as a single
+global Tamagawa-number package, rather than as a typed decomposition into
+height/regulator, analytic/period, finite-source, local \(p\)-adic, and
+determinant-assembly slots.  Relative to that audited corpus, the
+five-column decomposition is recorded here as a structural contribution of
+this apparatus.  This is an audit observation about what that theorem-grade
+literature supplies; it is not a non-existence claim about possible
+equivalent decompositions elsewhere, and it is not a theorem of this paper.
+\end{remark}
+
+\begin{definition}[Five-column tensor]\label{def:apparatus:five-column-tensor}
+The typed five-column tensor is
+\[
+  T_{\mathrm{5col}}(E)
+  =
+  \rho_{\mathrm{ht/reg}}^{\R}(E)
+  \otimes
+  \rho_{\mathrm{an/period}}^{\R}(E)
+  \otimes
+  \rho_{\mathrm{finite}}^{\R}(E)
+  \otimes
+  \bigotimes_{p\in S(E)}\rho_p^{\R}(E)
+  \otimes
+  \rho_{\det}^{\R}(E).
+\]
+Its source family \(L\) consists of the five separated log-tangent
+coordinates
+\[
+  (x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det}),
+\]
+and its target readout \(D\) is the single Bloch--Kato
+Tamagawa-package coordinate obtained after scalar contraction.
+\end{definition}
+
+\begin{theorem}[Five-column to BK scalar contraction]\label{thm:apparatus:five-col-bk-comparison}
+At the log-tangent level, write
+\[
+  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5.
+\]
+Define the five-column to Bloch--Kato scalar contraction by
+\[
+  \Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}(x)=d\cdot x,
+  \qquad
+  d=(1,1,1,1,0).
+\]
+With the full typed five-column source \(L(x)=x\), \(C=I_5\),
+\(\KLL=I_5\), \(\KDL=d\), and \(\KDD=\|d\|^2=4\), one has
+\[
+  \Xi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}
+  =
+  4-dI_5d^{\mathsf T}
+  =
+  0.
+\]
+Thus the typed five-column source is adequate for the Bloch--Kato scalar
+projection.  Moreover the determinant-orientation coordinate lies in the
+kernel: \(x_{\det}\in\ker\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}\).
+Consequently the scalar Bloch--Kato package is a strict shadow of the typed
+atlas, forgetting at least the determinant-orientation coordinate.  The
+integral arithmetic interpretation remains conditional on the five refined
+transports.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Comparison.fiveColBkComparison}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The comparison row is \(d=(1,1,1,1,0)\).  Its squared norm is
+\[
+  \KDD
+  =
+  dd^{\mathsf T}
+  =
+  1+1+1+1+0
+  =
+  4.
+\]
+The full typed source is the identity source on \(\R^5\), so
+\[
+  \KLL=I_5,\qquad
+  \Kdagger=I_5,\qquad
+  \KDL=d,\qquad
+  K_{LD}=d^{\mathsf T}.
+\]
+The projection term is again the identity-matrix action.  For any vector
+\(v\in\R^5\), \(I_5v=v\), and hence
+\[
+  dI_5d^{\mathsf T}
+  =
+  dd^{\mathsf T}
+  =
+  4.
+\]
+Therefore
+\[
+  \Xi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}
+  =
+  \KDD-\KDL\Kdagger K_{LD}
+  =
+  4-dI_5d^{\mathsf T}
+  =
+  4-4
+  =
+  0.
+\]
+This proves adequacy of the typed source for the scalar contraction.
+
+It remains to identify the shadow.  Let
+\[
+  e_{\det}=(0,0,0,0,1).
+\]
+Then
+\[
+  d\cdot e_{\det}
+  =
+  1\cdot0+1\cdot0+1\cdot0+1\cdot0+0\cdot1
+  =
+  0.
+\]
+Thus \(e_{\det}\in\ker\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}\).
+Changing only \(x_{\det}\) changes the typed five-column coordinate but
+does not change the Bloch--Kato scalar readout.  The scalar package is
+therefore a strict shadow of the typed atlas: it is adequately computed from
+the typed source, but it does not remember all typed coordinates.
+\end{proof}
+
+% ===========================================================================

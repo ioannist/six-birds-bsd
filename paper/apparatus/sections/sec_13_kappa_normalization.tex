@@ -1,0 +1,83 @@
+\section[Canonical kappa-r normalization]{$\kapr$ normalization}
+\label{sec:kappa-normalization}
+
+The normalization constant \(\kapr\) is the scalar that makes the cascade
+leading-term form use the same arithmetic factor as the standard Strong BSD
+leading-coefficient formula.  The point of this section is only to identify
+that scalar after the cascade convention \(c_E=\Tam(E)\) is fixed.  It is an
+equivalence of two ways of writing the same conjectural identity, not a
+derivation of BSD.
+
+\begin{theorem}[Canonical $\kapr$ normalization equivalence]\label{thm:apparatus:kappa-r-normalization-equivalence}
+Fix the cascade convention
+\[
+  c_E:=\Tam(E)=\prod_{\ell} c_{\ell}(E).
+\]
+Then the cascade leading-term form
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \kapr(E)\,\Omega_E\,\Reg_r(E)\,c_E
+\]
+agrees with the standard Strong BSD leading-coefficient form
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \Omega_E\,\Reg_r(E)\,
+  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
+\]
+if and only if
+\[
+  \kapr(E)=
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+Under this canonical normalization, the cascade form is equivalent to the
+standard Strong BSD identity as a restatement in cascade target coordinates.
+It does not prove the identity.\footnote{\raggedright Verified in Lean as
+\texttt{SixBirdsBSD.\allowbreak Apparatus.\allowbreak KappaNormalization.\allowbreak kappaRNormalizationEquivalence};
+see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+After the convention \(c_E=\Tam(E)\), the right-hand side of the cascade
+form is
+\[
+  \kapr(E)\,\Omega_E\,\Reg_r(E)\,\Tam(E).
+\]
+The right-hand side of the standard Strong BSD leading-coefficient formula
+is
+\[
+  \Omega_E\,\Reg_r(E)\,
+  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
+  =
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}\,
+  \Omega_E\,\Reg_r(E)\,\Tam(E).
+\]
+Thus the two formulas have the same left-hand side and differ only in the
+coefficient multiplying the common factor
+\[
+  \Omega_E\,\Reg_r(E)\,\Tam(E).
+\]
+In the BSD normalization this factor is nonzero: the period is positive,
+the regulator determinant is positive in positive rank and equal to \(1\)
+in rank \(0\), and the Tamagawa product is a positive integer.  Therefore
+the two right-hand sides are equal if and only if their scalar coefficients
+are equal, namely if and only if
+\[
+  \kapr(E)
+  =
+  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+
+If this equality of coefficients is imposed, substituting it into the
+cascade form gives exactly the standard Strong BSD leading-coefficient
+formula.  Conversely, if the cascade form and the standard form agree under
+the fixed convention \(c_E=\Tam(E)\), cancellation of the same nonzero common
+factor forces the displayed value of \(\kapr(E)\).  The proof is only this
+algebraic comparison of normalizations; it supplies no proof that either
+leading-coefficient identity is true for \(E\).
+\end{proof}
+
+The conditional Strong-BSD closure of \citet{TsiokosBSDClosure2026}
+consumes this normalization.  The role of the present section is only to
+supply the normalization equivalence used there.

@@ -1,0 +1,280 @@
+# Formalization boundary overlay for the Lean 4 inventory.
+# Categories: lean_definition, fully_formal_math, schema_theorem, sourced_assumption, prose_only.
+# This file is curated. The extractor updates missing entries but preserves existing categories.
+items:
+  "def:apparatus:analytic-period-map":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: b6157445896095018f448ec6ced2dfbf330f4e327f8072416f0d7163bc6455d9
+  "def:apparatus:bk-component-map":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: a9c0dc9816c5d25dce011f70608b3f29f00bff61b7c6a21c3a372f10f0b16a19
+  "def:apparatus:bridge-defect-equation":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: 5200d1c1ebb8e960e51c827d149b159953ab9dc4fc003f1b692e65cebc137826
+  "def:apparatus:det-assembly-map":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: d494533f5ee41325cc15efc823251af11a04252cac93f1302cbc97af3afa3593
+  "def:apparatus:finite-source-map":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: b1a2fb83be07fd6c95a7316954cc13954a7de0247320f0dfef25d1587c116d1c
+  "def:apparatus:five-column-tensor":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: 686fad43f04f942f9ee4f5d4fa6135ff844977c0199da116816f85cb6dbb94e9
+  "def:apparatus:height-regulator-map":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: a8587c461d2ff6149abade76ea5692ac4e276807e48ca6080df3ae5590bf8939
+  "def:apparatus:p-adic-map":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: 0dd6c1b44d4407515adee8ac6831c6edfb96611a4a2b2b819598655ba4ecdce1
+  "def:apparatus:rank-two-kummer-source":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: d817d0a9bc7d271521554bfef33fde3f9dc3d3b0f89637864d7ae6173f08ad5b
+  "def:apparatus:support-prime-truncation-residual":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: ce4969e2fe4adc515b6f86106531dcdcd188706d89acf9646c9ac52552dc9aa1
+  "def:apparatus:vsrc-algebra":
+    category: lean_definition
+    source_file: paper/apparatus/main.tex
+    statement_hash: fbc9a960dbc39e1c2d58724d5a14e9c92873d9f2cacb8b7fa62c0208c78ce866
+  "def:closure:a-e-import":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: e72999e1cc81d281b649fdeb146e180689c905574589bd00d85e90c2febd6912
+  "def:closure:aor-sel-instance":
+    category: lean_definition
+    source_file: paper/closure/main.tex
+    statement_hash: 29ef15075a9d222faf7ac100963e2e7c59b8fa548eda4851e03df413e2844a98
+  "def:closure:beilinson-import":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: 936d92ec3c873c6176fadc899f6f78a997f6c9dcc39ac17b66655486fa0e7355
+  "def:closure:chi-ct-p-import":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: 1ea88eb8c60765e2aeac6a923c9ddf1c08e1f7d90914f7230dd2843285ffba61
+  "def:closure:eta-published-imports":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: dad8277583f402b1466d98ec94ede624ec0fea951002b5c542c6f6dbdda6788f
+  "def:closure:gamma-higher-gz-fixity":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: 2180189b4fc03a2f735d1c736829a9ef209ed3d8d53b41212fb0e53f9278a4ea
+  "def:closure:gamma-padic-descent":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: 6d7be7a0fbee229a80f123348d187d713699baa39dea76a14d4068b41fd787e1
+  "def:closure:gamma-sha-persistence":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: 126438c803d863a9a0f7aa831f25732ef6c52d6c7debcc0d2d28409a2cf16475
+  "def:closure:pi-bsd":
+    category: lean_definition
+    source_file: paper/closure/main.tex
+    statement_hash: 3c324d8ffb1755af17b69f274d05821ed9f6bbe39a4fc3cf039073be2f2555ab
+  "def:closure:sel-bsd-shell":
+    category: lean_definition
+    source_file: paper/closure/main.tex
+    statement_hash: fff189b8415a6922dc49fd73b4e9ba56c4c2876ba48576730dd51966b3503379
+  "def:closure:t-cascade-import":
+    category: sourced_assumption
+    source_file: paper/closure/main.tex
+    statement_hash: 0be476b4ddfac1c076436acffe452ea3b3d676b651eb4cabcdb6496b1bc64edc
+  "nonclaim:apparatus:decomposition-scope":
+    category: prose_only
+    source_file: paper/apparatus/main.tex
+    statement_hash: aa03ff2cb4b83b0d6ab04341ba3403bcb997b607689d79d45874206a3445e24c
+  "nonclaim:closure:imports-not-derived":
+    category: prose_only
+    source_file: paper/closure/main.tex
+    statement_hash: f1f349c050416b2ce02aa180e0fecba3519f5ba9ff071cfe37968e54c320f19f
+  "nonclaim:closure:landing-conditional":
+    category: prose_only
+    source_file: paper/closure/main.tex
+    statement_hash: 35553f33cf6c3436c9785d323068d7e83ad54e5055d1b82ecbaa277995a998bb
+  "nonclaim:closure:recognition-sources-not-derived":
+    category: prose_only
+    source_file: paper/closure/main.tex
+    statement_hash: f30274f5dbf6693f08505b23e7a788bb64239d0018d5c21d361c60752c0c3fa6
+  "obl:apparatus:rho-an-period-transport":
+    category: sourced_assumption
+    source_file: paper/apparatus/main.tex
+    statement_hash: 474cb1d7470e0ca8efd817ad1161361cd2d9f3a9cec42cd2b61bfc9eb93a4730
+  "obl:apparatus:rho-det-assembly":
+    category: sourced_assumption
+    source_file: paper/apparatus/main.tex
+    statement_hash: 6155f69e8bdeddb094675df4ffb0417c9e7644fdda69945cb979f8e15dfcca4b
+  "obl:apparatus:rho-finite-transport":
+    category: sourced_assumption
+    source_file: paper/apparatus/main.tex
+    statement_hash: 7c4e9726e19d73ea47c1652e048314bf6042d9bf9dd65d406418b4c75bf30a2d
+  "obl:apparatus:rho-ht-reg-transport":
+    category: sourced_assumption
+    source_file: paper/apparatus/main.tex
+    statement_hash: 6950e2b4a8fcd19818d4992f8a08091a04ee81b9806028ea13ca88d93fbe61a0
+  "obl:apparatus:rho-p-transport":
+    category: sourced_assumption
+    source_file: paper/apparatus/main.tex
+    statement_hash: 57e66e40bf90cb25ec074f5f0b79de106a9ef22adc4d20d90f3ca04dcad81370
+  "rmk:apparatus:five-column-literature-gap":
+    category: prose_only
+    source_file: paper/apparatus/main.tex
+    statement_hash: 2ca5a31bd4bc0c0673d58fc8779608d3e685c1e0db0c22a6e58775d39ad477ba
+  "rmk:apparatus:support-prime-atlas":
+    category: prose_only
+    source_file: paper/apparatus/main.tex
+    statement_hash: daf3eb014dd7ac8269e0112b0ca57b847ce43a3a704f9bd424eeba7cedd41396
+  "rmk:apparatus:vsrc-no-licensed-descent":
+    category: prose_only
+    source_file: paper/apparatus/main.tex
+    statement_hash: 78bfe09981ed7c38ff9349cf08c02593ee51fb62b0a48db15b8997944f7c20e7
+  "rmk:apparatus:vsrc-rank-r-stronger":
+    category: prose_only
+    source_file: paper/apparatus/main.tex
+    statement_hash: e554acb6b5c7309577302ba8cc301ff0aeced5ed340c827a13c0cb4a1ebf9aaf
+  "rmk:closure:aor-partial-status":
+    category: prose_only
+    source_file: paper/closure/main.tex
+    statement_hash: 8ac9eb45396fd19dee64c2d5b3f4bbe5a2dac30b5c74a4cf4dfc6ee70958ba7a
+  "rmk:closure:mode-b-residuals":
+    category: prose_only
+    source_file: paper/closure/main.tex
+    statement_hash: 0e21a3b5376e2220b79f515d1fb2c85b2147ca1283ab7d8b0670664707e5ca5b
+  "thm:apparatus:analytic-period-schur-collapse":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 0d06c0a9d77c8ae0c4decd623c49c1cf57e1f01326b3dbccb9aece7e0d4f4e3b
+  "thm:apparatus:cascade-completion-signature":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 7e062e9562bff0da64f527948680a686da3b67c1442bcc586e8701317d8cd6b5
+  "thm:apparatus:component-killing":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 06bc5136bbc4a168ab0eda224446b14e04e5c04bf57be7fbf8cdb11029a50846
+  "thm:apparatus:dim-sha-shadow":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 233ae020338b2dcb26432ea296bc0b25888e78d581a9c1b1afe0bbc4f3d70f81
+  "thm:apparatus:finite-prime-cover-no-go":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 4a908fd45e6401e07825803ddf7a96075d89ec5f178c6c3a8be05044e250dd8f
+  "thm:apparatus:finite-scalar-public-shadow":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 4d885305a9c9493a812bb7cf809a0ef457981bfffac6035967837ba62a4507ba
+  "thm:apparatus:finite-source-schur-collapse":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 2ae738c7aa75c76e5d17beae6f53ac0168e4fd02dcfa2ab260eec1756adcf4bc
+  "thm:apparatus:finite-window-no-go":
+    category: schema_theorem
+    source_file: paper/apparatus/main.tex
+    statement_hash: 8cf7eebecd3a2724f2b2f889c46e145c8e84b6092ae57c95e4bdca903de6941f
+  "thm:apparatus:five-col-bk-comparison":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 0d4c13cfec75d0fe4bd0197e9fc38c57506699e137958cce227036aecd65375f
+  "thm:apparatus:gram-matrix-shadow":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: bc2341a463ca6c7c090b49b6032cd41d7ca58dbc1eeb26557eeaaf03e2233051
+  "thm:apparatus:height-schur-collapse":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: f75b3d1e46ade626138776ef534edb6ac63c19200798c816e768072c7651aafc
+  "thm:apparatus:kappa-r-normalization-equivalence":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: c797212f5bb384de0d9094e8eaaf1e5c3109838ed0ccd47f17aa405580adb0a9
+  "thm:apparatus:ordinary-schur-collapse":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 7040c4c43e71341bbe497cac200fd056b916925495badd956d5fa64858816ef4
+  "thm:apparatus:rank-two-height-schur-collapse":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 86cd71d173766f4bd1bd99004684d5b8157e25e5d996c04b980a4c7598e5de6a
+  "thm:apparatus:scalar-finite-shadow":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: db1dc72b2cdca9876dec8bbc4288f9b7eeec90e766d5ab5e7bb380fd696513a8
+  "thm:apparatus:signed-schur-collapse":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: e514b04643da30813e09ab05ac2a9ee081a82d06d87d35dcffc5dbe86d6be785
+  "thm:apparatus:vsrc-stage-i-consistency":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 74396b41242f840bb85495138e8503ec12880a0bc963bf8eec17b1951368d172
+  "thm:apparatus:vsrc-stage-ii-gz-partial":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: 955c6c01cb118c0333826dcd8bb0338ef2ac571cca6d241525a38799932f1fb6
+  "thm:apparatus:vsrc-stage-iii-translation":
+    category: fully_formal_math
+    source_file: paper/apparatus/main.tex
+    statement_hash: b78b1b3ded7873f87a921292696ba7e263aff88c7588611d5ef03bac8dab8ab2
+  "thm:closure:aor-instance":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: 16ef8abd38584b6395d357831b2e156b63884b8d7fa9ffaecf9c26977b0af47c
+  "thm:closure:aor-mechanical-records":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: 470184d0ab170188e6db7013c8d14d5639528398d9d78e655e4251752ce068c8
+  "thm:closure:aor-recognition-discharge":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: bc9c404299b17136346a9b6911b80fce11057b65d1bb4601891db9cb7903398a
+  "thm:closure:chi-ct-p-comparison":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: f02801f87a96f8ac0a4dbfbff51f4ceec3c2ddd7aa4fc1798fa3071e50e79a25
+  "thm:closure:composite-signature":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: 0f8a3fe0b66d61b38206e780fd655bd22062589ba7d230c494c509d9991ca3c7
+  "thm:closure:master-theorem-applicability":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: b7399fdd2cac4a55be0dfaf30090c5c5051ac0cd7242ccb6a3b97fc8b7b3b1a8
+  "thm:closure:oc-eta-formula":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: 735bfaeb408e4216b2de3210d4c93d46e60fdbf5305f670ed6b5731220ea28b5
+  "thm:closure:pi-bsd-iff-strong-bsd":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: ba20bbadb4c8c4fe94367f40bd28fc9824aca16e13ef8b230d5f69e5d90f3fd8
+  "thm:closure:strong-bsd-conditional":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: e1fd5aeaa74baec19ebbd35f3d1342ec2d21982b8029e68defdde8782e9684ed
+  "thm:closure:t-bad-no-go":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: 6a2ea660982c3fbc6bf6ca19226ad18f3585223ce86c49d90c1ddf02f59b456d
+  "thm:closure:t-cascade-rank-le-1":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: 4b949463c1810daba6785c5fe396f1e174191f09759ab38d730a19ef6b8158f0
+  "thm:closure:t-e12-no-go":
+    category: schema_theorem
+    source_file: paper/closure/main.tex
+    statement_hash: fed00c082e8fb02c22720cfa8e9af35a662f249500f6d5f769eaa4fa85857529
+  "warn:apparatus:571a1-carrier":
+    category: prose_only
+    source_file: paper/apparatus/main.tex
+    statement_hash: 48f577f70c06cc830bbcf37f8d08f8bd9e6701780cfa603949df73ace4d0a31d

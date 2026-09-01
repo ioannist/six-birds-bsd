@@ -1,0 +1,79 @@
+\section{The Cassels--Tate comparison}
+\label{sec:chi-ct-p}
+
+The first supporting comparison used by the closure is the
+Cassels--Tate Pfaffian comparison~\citep{Cassels1962,PoonenStoll1999}.  The import stack introduced in
+Definition~\ref{def:closure:chi-ct-p-import} packages the relevant external
+results as hypotheses: the Selmer-complex inputs of Sakamoto~\citep{Sakamoto2018}
+and Macias Castillo--Sano~\citep{MaciasCastilloSano2026}, the determinant
+and orientation inputs of Knudsen--Mumford and Nekov\'a\v{r}, and Flach's
+pairing comparison.  Fisher--Schaefer--Stoll~\citep{FisherSchaeferStoll2010}
+fix the classical 2-Selmer pairing normalization; they are not used as a
+Fitting-ideal theorem.  This section states the
+comparison in the form consumed by the closure.  It is conditional on
+that stack; no part of the argument below reproves the imported
+arithmetic geometry.
+
+\begin{theorem}[$\chi_{CT,p}$ comparison (v5)]\label{thm:closure:chi-ct-p-comparison}
+Let \(E/\Q\) be an elliptic curve such that \(\Sha(E)[p^\infty]\) is
+finite, the Cassels--Tate pairing is nondegenerate, the standard
+Sakamoto and Macias Castillo--Sano Selmer-complex hypotheses hold, and
+\(p\nmid \Tam(E/\Q)\).  Conditional on the imported \(\chiCTp\)
+structure, there is a canonical orientation-respecting Pfaffian
+comparison map
+\[
+  \Pf_{\mathrm{Nek},p}^{\mathrm{or},\sqrt{\ }}:
+  \sqrt{\Fitt}_{\mathrm{CT}}
+    \bigl(H^1(C_p(E))/\mathrm{div},\,U_{2,2}\bigr)
+  \longrightarrow
+  \mathrm{vctp}_p
+\]
+from the square-root Cassels--Tate Fitting ideal on the quotient by the
+divisible subgroup, paired by the Nekov\'a\v{r} cup-product
+\(U_{2,2}\) identified with the Flach pairing, to the
+Cassels--Tate Pfaffian scalar line \(\mathrm{vctp}_p\).  This map sends
+the square-root Stark generator~\citep{MazurRubin2004} \(\sqrt{F}_E^p\) to the
+Cassels--Tate height \(h_p^{\mathrm{CT}}(E)\), and the Nekov\'a\v{r}
+sign convention satisfies \(\Sigma_{\mathrm{NekCT}}=+1\).\footnote{Tracked in the formalization harness as a conditional schema
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak ChiCTp.\allowbreak chiCTpComparison}
+-- a checked projection over an explicit proof-carrying record
+(conditional on the imported \(\chiCTp\) stack), not an independent Lean
+derivation. See App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Assume the imported \(\chiCTp\) structure.  Its named components supply
+the ingredients in the statement.  The Selmer-complex hypotheses and
+the Cassels--Tate nondegeneracy input place the quotient
+\(H^1(C_p(E))/\mathrm{div}\) in the self-dual setting in which a
+Pfaffian comparison is defined.  The determinant-line and orientation
+inputs identify the square-root Fitting ideal
+\(\sqrt{\Fitt}_{\mathrm{CT}}(H^1(C_p(E))/\mathrm{div},U_{2,2})\) as the
+source of the comparison map.  Here the square-root Fitting ideal is
+the square-root determinant object attached to the Cassels--Tate
+pairing; the notation \(U_{2,2}\) records the Nekov\'a\v{r}
+cup-product, and the imported Flach comparison identifies it with the
+classical Cassels--Tate pairing used on the target side.
+
+The Pfaffian input in the stack then gives the canonical
+orientation-respecting map
+\[
+  \Pf_{\mathrm{Nek},p}^{\mathrm{or},\sqrt{\ }}:
+  \sqrt{\Fitt}_{\mathrm{CT}}
+    \bigl(H^1(C_p(E))/\mathrm{div},U_{2,2}\bigr)
+  \longrightarrow
+  \mathrm{vctp}_p .
+\]
+The square-root Stark-generator identification supplies the image
+formula: the distinguished generator \(\sqrt{F}_E^p\) maps to the
+Cassels--Tate height \(h_p^{\mathrm{CT}}(E)\).  Finally, the sign
+closure component of the same imported record fixes the orientation
+sign as \(\Sigma_{\mathrm{NekCT}}=+1\).  Combining these imported
+components proves exactly the displayed comparison.  The proof is
+therefore an assembly under the stated hypotheses; it is precisely as
+strong as the imported theorem stack and does not rederive the
+Sakamoto, Macias Castillo--Sano, Nekov\'a\v{r}, Flach, or classical
+Cassels--Tate comparison inputs.
+\end{proof}
+
+% ===========================================================================

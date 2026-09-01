@@ -1,0 +1,27 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  input/.style={draw, rounded corners=2pt, align=center, minimum width=4.7cm,
+    minimum height=1.35cm, fill=black!3},
+  box/.style={draw, rounded corners=2pt, align=center, minimum width=3.0cm,
+    minimum height=1.0cm, fill=black!3},
+  result/.style={draw, rounded corners=2pt, align=center, minimum width=4.0cm,
+    minimum height=1.35cm, fill=black!8},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[input] (inputs) at (-4.9,0.25) {shell-closure record\\
+  three recognition records\\headline imports};
+\node[box] (master) at (0,0.25) {closure master\\theorem applies};
+\node[result] (landing) at (4.9,0.25) {\(\rhoE=0\)\\
+  {\scriptsize readout equivalence}\\Strong-BSD identity};
+
+\draw[arrow] (inputs) -- (master);
+\draw[arrow] (master) -- (landing);
+\node[align=center, font=\footnotesize] at (0,-1.15)
+  {conditional on the supplied records, the shell residual vanishes and the scalar identity follows};
+\end{tikzpicture}
+\caption{The conditional landing chain from the shell-closure record,
+recognition records, and headline imports to the Strong-BSD scalar identity.}
+\label{fig:landing-chain-diagram}
+\end{figure}

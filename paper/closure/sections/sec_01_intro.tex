@@ -1,0 +1,162 @@
+\section{Introduction}\label{sec:introduction}
+% statements-of-record rows resolved here: none
+
+What would a conditional closure of Strong Birch--Swinnerton-Dyer~\citep{BirchSwinnertonDyer1965,Tate1966bsd} look
+like, and what exactly would it rest on?  The classical landscape already
+contains powerful conditional and partial routes: Gross--Zagier and
+Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989} control the rank-one Heegner setting; Skinner--Urban and
+Iwasawa-main-conjecture methods~\citep{SkinnerUrban2014} control large ordinary regions;
+Cassels--Tate and Selmer-complex formalisms~\citep{Flach1990,Nekovar2006} control part of the
+quadratic and determinant bookkeeping.  These results do not, by
+themselves, give a single uniform proof of the strong formula in every
+rank and at every bad prime.  The question addressed here is narrower
+and more structural: if the remaining arithmetic inputs are isolated
+with precise names, can one assemble them into a single audited closure
+whose scalar readout is exactly the Strong-BSD identity?
+
+The answer is deliberately conditional.  This is \emph{not} an
+unconditional classical proof of BSD, scalar or strong.  The result is
+theorem-grade within the Six Birds closure discipline, conditional on
+the standing shell-closure record, the named recognition sources, and the
+headline imported theorem stacks.  Outside the framework it reads as the
+conditional theorem
+\[
+  \begin{aligned}
+  &\SelBSD\text{-closure}
+    \wedge \GammaPD \wedge \GammaSP \wedge \GammaGZ
+    \wedge \chiCTp\text{-imports}
+    \wedge \AofE\text{-imports} \\
+  &\qquad {}\wedge\ \text{Beilinson-imports}
+    \Longrightarrow \text{Strong BSD}.
+  \end{aligned}
+\]
+This implication is the paper's result in its plainest form.  The work
+below does not erase the hypotheses; it makes their roles explicit and
+shows that, once they are supplied, the Strong-BSD scalar identity is
+forced by a single closure architecture.
+
+The first component of the architecture is a separation of the deep
+arithmetic into two kinds of inputs.  The first kind consists of three
+recognition sources.  A recognition source is named arithmetic content
+carried by the formed BSD layer: it is supplied as part of the closure
+object and used as a hypothesis, not derived from the general framework.
+The three sources are \(\GammaPD\), the additive-prime \(p\)-adic
+descent/Tamagawa correction; \(\GammaSP\), the signed-Selmer
+persistence of the \(\Sha\)-factor through local cover change; and
+\(\GammaGZ\), the higher-rank Gross--Zagier-type fixity of the
+archimedean regulator readout.  They correspond, respectively, to the
+local \(p\)-adic factor, the \(\Sha\)-persistence factor, and the
+rank-\(\geq 2\) regulator/fixity factor in the Strong-BSD product.  In
+the formal development they are typed carriers of hypotheses, not
+free-standing assumptions of the framework; in the paper they are treated
+as named recognition content and are introduced before they are used.
+
+The second kind of input consists of imported theorem stacks.  The three
+headline imports are the ones used directly in the landing theorem.  The
+\(\chiCTp\) stack packages the Cassels--Tate Pfaffian comparison and its
+sign convention.  The \(\AofE\) stack packages the Selmer-complex pairing
+substrate needed to compare the determinant formulation with the
+Cassels--Tate side.  The Beilinson stack packages the rank-\(\geq 2\)
+archimedean determinant--\(L\)-value comparison.  Later sections also
+record the overconvergent \(\eta\) and \(T_{\mathrm{CASCADE}}\) stacks as
+supporting conditional imports, but those are not hidden inside the three
+headline imports.  These imports name classical arithmetic geometry as
+provenance: Sakamoto, Macias Castillo--Sano, Nekov\'a\v{r}, Flach, the
+Cassels--Tate literature, Burns--Flach, Beilinson, and the surrounding
+Selmer-complex and determinant technology.  They are not reproved here.
+They enter as proof-carrying assumptions, and later sections keep their
+individual roles separate.
+
+The second component is the saturated BSD trace shell.  It is the
+five-part object
+\[
+  \SelBSD=(E,\rhoE,J^{!}_{\mathrm{BSD}},
+  \mathrm{Vis}^{!}_{\mathrm{BSD}},\mathrm{Audit}^{!}_{\mathrm{BSD}}),
+\]
+where \(E/\Q\) is the elliptic curve, \(J^{!}_{\mathrm{BSD}}\) records
+the duality or involutive datum, \(\mathrm{Vis}^{!}_{\mathrm{BSD}}\)
+records the visible scalar readout, and
+\(\mathrm{Audit}^{!}_{\mathrm{BSD}}\) records the closure audit.  The
+central scalar is the residual
+\[
+  \rhoE
+  =
+  \frac{L^{(r)}(E,1)}{r!}
+  -
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
+    \prod_v c_v(E)}
+       {|E(\Q)_{\tors}|^2}.
+\]
+Thus \(\rhoE=0\) is not a new BSD-like statement: it is exactly the
+standard Strong-BSD scalar identity written as a residual equation.
+The point of the shell is to keep the analytic side, the arithmetic
+product, the duality datum, the visible readout, and the audit data in
+one typed object, so that later arguments can say precisely which input
+changes which part of the scalar package.
+
+The recognition predicate \(\PiBSD\) is the shell's structured readout.
+It is not defined to be Strong BSD.  It is a quantified predicate that
+asks for the three recognition-source readouts in their proper ranges:
+the \(p\)-adic descent readout for every additive bad prime and
+trivializing local lift in scope, the signed-Selmer persistence readout
+for every admissible signed-Selmer prime, and the higher-Gross--Zagier
+fixity readout in rank at least two, with the classical low-rank lane
+for ranks \(0\) and \(1\).  The readout-level equivalence says that
+vanishing of the shell residual is equivalent to the usual Strong-BSD
+scalar identity.  This equivalence is a genuine algebraic step: it
+rewrites the residual, rather than making \(\PiBSD\) a synonym for the
+conjecture.
+
+The headline landing then has a short conceptual chain.  The recognition
+sources and imports are supplied.  The higher-rank fixity source forces
+the shell residual to vanish, after the \(\kapr\)-normalization identifies
+the cascade regulator product with the standard
+\(\#\Sha/|E(\Q)_{\tors}|^2\) factor.  The readout equivalence converts
+\(\rhoE=0\) into
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
+    \prod_v c_v(E)}
+       {|E(\Q)_{\tors}|^2}.
+\]
+The master-theorem applicability audit checks that the three recognition
+sources have the correct framework profile, and the composite signature
+checks that the three source-governed factors are not disposable: changing
+the \(\Sha\)-factor, the regulator factor, or the Tamagawa factor changes
+the scalar package.  This is the sense in which the conclusion is a
+closure result rather than a restatement of its target.
+
+Two ingredients are imported from \citet{TsiokosBSDApparatus2026}.
+First, the \(\kapr\) normalization in that work is the bridge from the cascade leading-term
+form to the standard Strong-BSD factor \(\#\Sha/|E(\Q)_{\tors}|^2\).
+Second, its adequacy and five-column framing provide the
+diagnostic language for separating height, period, finite, \(p\)-adic,
+and determinant contributions.  This article uses those results as cited
+inputs; it does not refer to internal labels of the cited work.  The AOR
+terminology used at the end of the paper is the Audited Operational
+Realisability language of \cite{TsiokosAOR2026}, and the recognition-mode
+discipline is part of the audited interaction calculus of
+\cite{TsiokosFoundationsIII2026}.
+
+The final move is a reading of the completed carrier as a refinement-stable
+audited object.  Audited Operational Realisability is a refinement-stable,
+audit-closed membership criterion: informally, an object qualifies when
+the residuals left by refinement have been accounted for by approved
+mechanical records, imported records, or bridged recognition records.  In
+this paper the object is \(\SelBSD\).  The resulting statement is the
+framework's ``Strong BSD holds in reality'' reading, but it is
+non-eliminative: the recognition records are reclassified as bridged
+records, not made to disappear.
+
+We close the introduction by fixing the scope.  This is not an
+unconditional classical proof of BSD.  It is a conditional closure under
+the standing shell-closure record, the three recognition sources, and the
+headline imported theorem stacks displayed above.  The rank-\(\geq 2\)
+generalized Gross--Zagier identity
+\(T_{E12}\) and the additive \(p\leq 3\) Iwasawa main conjecture
+\(T_{\mathrm{BAD}}\) remain open audit-result no-gos: the paper records
+where they are needed and how the recognition sources carry them, but
+does not prove them.  Likewise, the AOR-instance reading is
+non-eliminative; it records an audit-closed presentation of the conditional
+closure, not the discharge of every open arithmetic obligation.

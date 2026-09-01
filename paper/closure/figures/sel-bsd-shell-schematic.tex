@@ -1,0 +1,27 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  box/.style={draw, rounded corners=2pt, align=center, minimum width=2.5cm,
+    minimum height=0.85cm, fill=black!3},
+  shell/.style={draw, rounded corners=3pt, align=center, minimum width=4.2cm,
+    minimum height=1.1cm, fill=black!8},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[shell] (shell) at (0,0) {\(\SelBSD=(E,\rhoE,J^{!},\mathrm{Vis}^{!},\mathrm{Audit}^{!})\)};
+\node[box] (analytic) at (-4.6,1.7) {analytic\\leading term};
+\node[box] (arith) at (0,1.7) {arithmetic\\product};
+\node[box] (audit) at (4.6,1.7) {audit\\records};
+\node[box] (readout) at (0,-1.8) {\(\rhoE=0\)\\readout};
+
+\draw[arrow] (analytic) -- (shell);
+\draw[arrow] (arith) -- (shell);
+\draw[arrow] (audit) -- (shell);
+\draw[arrow] (shell) -- (readout);
+\node[align=center, font=\footnotesize] at (0,-2.75)
+  {the readout is equivalent to the Strong-BSD scalar identity};
+\end{tikzpicture}
+\caption{The saturated BSD trace shell packages the residual, readout data, and
+audit records used by the conditional closure.}
+\label{fig:sel-bsd-shell-schematic}
+\end{figure}

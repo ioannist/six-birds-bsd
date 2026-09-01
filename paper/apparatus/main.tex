@@ -1,0 +1,179 @@
+\documentclass[11pt]{article}
+
+% ============================================================================
+% Apparatus axis (Paper A) — modular statements-of-record root.
+%
+% main.tex carries the preamble + front matter + the ordered \input of the
+% sections/ and appendices/ files (the labeled environments live there; the
+% inventory extractor reads those files). Preamble adopted from
+% ../paper-template (publication style: lmodern/microtype, titling, fancyhdr
+% footer, orcidlink author, caption/booktabs); BSD macros are in
+% includes/paper_macros.tex.
+%
+% Label schema: <kind>:apparatus:<short-name>, kind-prefix matching env:
+%   definition->def  theorem->thm  remark->rmk  warning->warn
+%   obligation->obl  nonclaim->nonclaim
+% ============================================================================
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[margin=1in]{geometry}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{mathtools}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,fit,positioning}
+\usepackage{pdflscape}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage[numbers]{natbib}
+\usepackage{doi}
+\usepackage{xurl}
+\usepackage{hyperref}
+\usepackage{cleveref}
+\usepackage{orcidlink}
+\usepackage{titling}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{warning}[theorem]{Warning}
+\newtheorem{obligation}[theorem]{Obligation}
+\newtheorem{nonclaim}[theorem]{Nonclaim}
+
+\urlstyle{same}
+\captionsetup{font=small, labelfont=bf, labelsep=period}
+\captionsetup[table]{skip=6pt, position=top}
+\captionsetup[figure]{skip=6pt}
+\crefname{theorem}{theorem}{theorems}
+\Crefname{theorem}{Theorem}{Theorems}
+\crefname{lemma}{lemma}{lemmas}
+\Crefname{lemma}{Lemma}{Lemmas}
+\crefname{proposition}{proposition}{propositions}
+\Crefname{proposition}{Proposition}{Propositions}
+\crefname{corollary}{corollary}{corollaries}
+\Crefname{corollary}{Corollary}{Corollaries}
+\crefname{definition}{definition}{definitions}
+\Crefname{definition}{Definition}{Definitions}
+\crefname{remark}{remark}{remarks}
+\Crefname{remark}{Remark}{Remarks}
+\crefname{warning}{warning}{warnings}
+\Crefname{warning}{Warning}{Warnings}
+\crefname{obligation}{obligation}{obligations}
+\Crefname{obligation}{Obligation}{Obligations}
+\crefname{nonclaim}{nonclaim}{nonclaims}
+\Crefname{nonclaim}{Nonclaim}{Nonclaims}
+\setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=4pt}
+\setlength{\droptitle}{-3.2em}
+\pretitle{\begin{center}\LARGE\bfseries}
+\posttitle{\par\end{center}\vspace{0.5em}}
+\preauthor{\begin{center}\normalsize}
+\postauthor{\par\end{center}\vspace{-0.4em}}
+\predate{\begin{center}\small}
+\postdate{\par\end{center}\vspace{0.6em}}
+\clubpenalty=10000
+\widowpenalty=10000
+\displaywidowpenalty=10000
+\interfootnotelinepenalty=10000
+\allowdisplaybreaks[2]
+\fancypagestyle{firstpage}{\fancyhf{}
+  \fancyfoot[C]{\scriptsize Automorph Inc., Wilmington, DE, USA \quad \texttt{ioannis@automorph.io} \quad \textcopyright\ 2026 \quad CC-BY 4.0 \quad \doi{10.5281/zenodo.20713981}}
+  \renewcommand{\headrulewidth}{0pt}
+  \renewcommand{\footrulewidth}{0pt}
+}
+
+% BSD macros + the math-heavy-skeleton layout settings (\emergencystretch, \sloppy).
+\input{includes/paper_macros.tex}
+
+\title{Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go
+Results for the BSD Invariants}
+\author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
+\date{31 August 2026}
+\hypersetup{
+  pdftitle={Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go Results for the BSD Invariants},
+  pdfauthor={Ioannis Tsiokos},
+  hidelinks
+}
+
+\begin{document}
+\maketitle
+\thispagestyle{firstpage}
+
+\begin{abstract}
+For an elliptic curve \(E/\Q\), the Bloch--Kato fundamental line is often
+read through a product of public scalar invariants.  This paper asks,
+column by column, which typed source data such a scalar retains.  We
+decompose the BSD/Bloch--Kato carrier into five typed columns:
+height/regulator, analytic/period, finite/Tamagawa, \(p\)-adic, and
+determinant-assembly.  Each column is equipped with a Schur-complement
+adequacy residual \(\XiC\), which vanishes exactly when the admitted native
+source acts as the identity on the readout; this is a finite,
+mathlib-free linear-algebra criterion.  A comparison theorem contracts the
+typed five-column atlas to the standard Bloch--Kato/Tamagawa scalar
+package, with zero residual for that contraction, so the usual scalar is
+recovered as a projection of a richer typed object and the
+determinant-orientation coordinate lies in the kernel.  The accompanying
+no-go audit suite records where public scalar rows underdetermine their
+typed targets: finite scalar shadows, dimension-only \(\Sha\) data, the
+Gram-matrix/regulator shadow, finite-window promotion, and finite-prime
+coverage.  The results are finite typed statements; recognition sources
+and classical arithmetic inputs such as Gross--Zagier, Iwasawa main
+conjecture input, and Cassels--Tate comparison are carried as hypotheses,
+not proved.  The paper does not prove BSD; its finite adequacy and no-go
+claims are mechanized in a mathlib-free Lean development.
+\end{abstract}
+
+\medskip
+\noindent\textbf{Keywords.} Birch--Swinnerton-Dyer conjecture; Bloch--Kato fundamental line; elliptic curves; Schur complement; regulator; Tate--Shafarevich group; formal verification (Lean); Six Birds Theory; emergence calculus.
+
+\medskip
+\noindent
+Standing conventions: $E/\Q$ an elliptic curve, $M_E=h^1(E)(1)$,
+$r=\rank E(\Q)$, $r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)$. The Schur
+adequacy residual is $\XiC=K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}$; a column
+readout is \emph{adequate} when $\XiC=0$. The five per-column source
+transports are recognition obligations, supplied or imported and carried as
+hypotheses rather than derived here.
+
+% ===========================================================================
+\input{sections/sec_01_intro}
+\input{sections/sec_02_decomposition}
+\input{sections/sec_03_height_regulator}
+\input{sections/sec_04_analytic_period}
+\input{sections/sec_05_finite_source}
+\input{sections/sec_06_p_adic}
+\input{sections/sec_07_det_assembly}
+\input{sections/sec_08_comparison}
+\input{sections/sec_09_higher_rank_no_go}
+\input{sections/sec_10_global_audit_no_go}
+\input{sections/sec_11_support_prime_no_go}
+\input{sections/sec_12_vsrc}
+\input{sections/sec_13_kappa_normalization}
+\input{sections/sec_14_scope}
+\input{sections/sec_15_discussion}
+\input{sections/sec_16_conclusion}
+\appendix
+\input{appendices/app_d_formalization}
+
+% Per-axis bibliography; role-level citations are maintained in the prose.
+\clearpage
+\begingroup
+\raggedright
+\small
+\bibliographystyle{plainnat}
+\bibliography{references}
+\endgroup
+\end{document}

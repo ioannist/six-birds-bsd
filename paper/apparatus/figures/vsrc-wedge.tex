@@ -1,0 +1,27 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[
+  font=\small,
+  node/.style={draw, rounded corners=2pt, align=center, minimum width=1.6cm,
+    minimum height=0.8cm, fill=black!3},
+  arrow/.style={-{Latex[length=2mm]}, thick}
+]
+\node[node] (one) at (0,2.2) {\(1\)};
+\node[node] (j1) at (-2.2,0.7) {\(\Jone\)};
+\node[node] (j2) at (2.2,0.7) {\(\Jtwo\)};
+\node[node] (j12) at (0,-1.1) {\(\Jtwelve\)};
+
+\draw[arrow] (j1) -- node[above, sloped] {\(\wedge\,\Jtwo\)} (j12);
+\draw[arrow] (j2) -- node[above, sloped] {\(\wedge\,\Jone=-\)} (j12);
+\draw[arrow] (one) -- node[left] {\(\wedge\,\Jone\)} (j1);
+\draw[arrow] (one) -- node[right] {\(\wedge\,\Jtwo\)} (j2);
+\draw[loop left, looseness=6, -{Latex[length=2mm]}] (j1) to node[left]
+  {\(\Jone^2=0\)} (j1);
+\draw[loop right, looseness=6, -{Latex[length=2mm]}] (j2) to node[right]
+  {\(\Jtwo^2=0\)} (j2);
+\node[align=center, font=\footnotesize] at (0,-2.25)
+  {\(\dim_{\Q}\vsrc_2=4\), with \(\Jone\Jtwo=\Jtwelve\) the determinant-shaped witness};
+\end{tikzpicture}
+\caption{The rank-\(2\) \(\vsrc\) exterior-algebra calibration.}
+\label{fig:vsrc-wedge}
+\end{figure}

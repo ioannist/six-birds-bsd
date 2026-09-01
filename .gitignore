@@ -1,0 +1,48 @@
+# Python bytecode caches
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editor / OS noise
+.DS_Store
+*.swp
+*.swo
+.pytest_cache/
+
+# Local secrets
+.env
+
+# Lake build artifacts (do not check vendored Foundations' lake builds either)
+.lake/
+lake-manifest.json
+*.olean
+*.ilean
+
+# Foundation validator scratch logs (regenerated per run)
+**/.validate-logs/
+
+# codex CLI internal marker file (zero bytes; per-environment)
+/.codex
+
+# Local agent, prompt, and review-harness state
+/.codex/
+/.claude/
+/memory/
+/prompts/
+/reviews/
+/skills/
+**/.codex_thread_id*
+**/CODEX_RUNBOOK.md
+**/codex_kickoff.md
+
+# LaTeX build artifacts (paper/ and any latex-build subtrees)
+build/
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc

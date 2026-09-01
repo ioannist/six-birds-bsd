@@ -1,0 +1,236 @@
+\section{Decomposition: the typed five columns}
+\label{sec:decomposition}
+
+The introduction separated the scalar BSD product into five kinds of data:
+height/regulator, analytic/period, finite-source, local $p$-adic, and
+determinant-assembly data.  We now make this separation into a typed object.
+The point is not to replace the Bloch--Kato determinant line by five
+unrelated objects, but to keep track of the five native sources before they
+are assembled into the common determinant-line target.
+
+Fix an elliptic curve $E/\Q$ and put $M_E=h^1(E)(1)$.  The five columns are
+as follows.  The height/regulator column records the Mordell--Weil lattice
+and the Neron--Tate determinant.  The analytic/period column records the
+leading coefficient and period data.  The finite-source column records
+Tamagawa factors, torsion, the $p$-primary $\Sha$ data, and Cassels--Tate
+pairings.  For each prime $p$, the local $p$-adic column records the
+ordinary or signed local source data.  The determinant-assembly column
+records the orientation, sign, and unit conventions needed to compare all
+four arithmetic columns in one determinant line.
+
+The five-column map and the common Schur-residual test are summarized in
+\Cref{tab:five-column-map,fig:five-column-schematic}.  The table fixes the
+paper-prose names used in the later column sections; the figure records the
+same bookkeeping as a source-to-target diagram.
+\input{tables/five-column-map}
+\input{figures/five-column-schematic}
+
+The Bloch--Kato target is the determinant-line package attached to $M_E$~\citep{Deligne1987}:
+the motive, its finite determinant line, the zeta element, and the chosen
+trivialization.  The integrated BSD carrier is the corresponding typed
+source object: it keeps the height/regulator, analytic/period,
+finite-source, local $p$-adic, and determinant-assembly data in their
+separate slots.  The first structural map of the paper is the
+component-assembly map from this typed source to the determinant-line
+target.
+
+\begin{definition}[Bloch--Kato component-assembly map]
+\label{def:apparatus:bk-component-map}
+For $M_E=h^1(E)(1)$, let
+\[
+  C_{\mathrm{BSD}}(E)
+  =
+  \bigl(C_{\mathrm{ht}}(E),C_{\mathrm{an}}(E),C_{\mathrm{fin}}(E),
+  \{C_p(E)\}_p,C_{\det}(E)\bigr)
+\]
+be the integrated BSD carrier with its typed height/regulator,
+analytic/period, finite-source, local $p$-adic, and
+determinant-assembly slots.  The source-side determinant slot
+\(C_{\det}(E)\) is distinct from the Bloch--Kato target below.  Let
+\[
+  C_{\mathrm{BK}}(E)
+  =
+  \bigl(M_E,\Delta_f(M_E),z_{\mathrm{BK}}(M_E),\tau_{\mathrm{BK}}(M_E)\bigr)
+\]
+be the Bloch--Kato determinant-line target.  The component-assembly map is
+the direct sum
+\[
+  \rho_{\mathrm{BK}}
+  =
+  \rho_{\mathrm{ht}}
+  \oplus \rho_{\mathrm{an}}
+  \oplus \rho_{\mathrm{fin}}
+  \oplus \Bigl(\bigoplus_p \rho_p\Bigr)
+  \oplus \rho_{\det}
+  \;:\;
+  C_{\mathrm{BSD}}(E)\longrightarrow C_{\mathrm{BK}}(E).
+\]
+Here $\rho_{\mathrm{ht}}$ sends the Mordell--Weil height and regulator
+data to the global cohomological determinant side; $\rho_{\mathrm{an}}$
+sends central leading-term and period data to the analytic
+zeta/trivialization side; $\rho_{\mathrm{fin}}$ sends Tamagawa, torsion,
+$\Sha[p^\infty]$, and Cassels--Tate data to the finite arithmetic
+determinant side; $\rho_p$ sends the local $p$-adic analytic/Selmer data,
+control data, and local normalization to the $p$-primary determinant side;
+and $\rho_{\det}$ records the orientation, sign, and unit compatibility in
+the same determinant line.
+\end{definition}
+
+The definition is a decomposition of the source side, not a theorem about
+the truth of BSD.  Its role is to make the columns visible enough that the
+adequacy residual of each column can be tested.  Once the columns are
+visible, one may compare them through a common determinant-line
+trivialization.  In additive coordinates, the comparison defect splits into
+one contribution from each column.
+
+\begin{definition}[Bridge-defect equation]
+\label{def:apparatus:bridge-defect-equation}
+After choosing a comparison trivialization of the determinant-line target,
+write $\Delta_{\mathrm{BSD}}^{\mathrm{BK}}$ for the total Bloch--Kato defect
+of the BSD bridge.  The bridge-defect equation is the additive
+decomposition
+\[
+  \Delta_{\mathrm{BSD}}^{\mathrm{BK}}
+  =
+  E_{\mathrm{ht/reg}}
+  +E_{\mathrm{an/period}}
+  +E_{\mathrm{finite}}
+  +\sum_p E_p
+  +E_{\det}.
+\]
+The five summands are respectively the height/regulator defect, the
+analytic/period defect, the finite-source defect, the local $p$-adic
+defects, and the determinant-assembly defect.  Equivalently, in
+multiplicative coordinates the same assertion says that the total component
+ratio is the product of the corresponding five component ratios.
+\end{definition}
+
+\begin{theorem}[Component-killing]
+\label{thm:apparatus:component-killing}
+Assume that the five component defects are all legally comparable in the
+chosen determinant-line trivialization.  If
+\[
+  E_{\mathrm{ht/reg}}=0,\qquad
+  E_{\mathrm{an/period}}=0,\qquad
+  E_{\mathrm{finite}}=0,\qquad
+  E_p=0\ \text{for every }p,\qquad
+  E_{\det}=0,
+\]
+then $\Delta_{\mathrm{BSD}}^{\mathrm{BK}}=0$.  Equivalently, if
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}\neq 0$, then at least one component
+defect is nonzero or one of the asserted component comparisons is not
+legally available.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Decomposition.componentKilling}; see App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+The comparison trivialization puts all five summands in the same additive
+defect group.  Hence the bridge-defect equation of
+Definition~\ref{def:apparatus:bridge-defect-equation} applies:
+\[
+  \Delta_{\mathrm{BSD}}^{\mathrm{BK}}
+  =
+  E_{\mathrm{ht/reg}}
+  +E_{\mathrm{an/period}}
+  +E_{\mathrm{finite}}
+  +\sum_p E_p
+  +E_{\det}.
+\]
+Under the stated hypotheses every summand on the right is zero.  The sum of
+zero component defects is zero, so
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}=0$.
+
+For the contraposition, suppose
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}\neq0$.  If all five component
+comparisons were legally available and every component defect vanished, the
+first part of the proof would force
+$\Delta_{\mathrm{BSD}}^{\mathrm{BK}}=0$, a contradiction.  Therefore either
+some declared component defect is nonzero, or the attempted componentwise
+comparison is not legal in the determinant-line trivialization under
+discussion.
+\end{proof}
+
+\begin{theorem}[Finite scalar factor is a public shadow]
+\label{thm:apparatus:finite-scalar-public-shadow}
+Let
+\[
+  C_{\mathrm{fin}}
+  =
+  C_{\mathrm{Tamagawa}}\oplus C_{\tors}\oplus
+  C_{\Sha[p^\infty]}\oplus C_{\mathrm{CT}}
+\]
+be the typed finite-source tower.  The public scalar finite factor
+\[
+  \phi_{\mathrm{fin}}(C_{\mathrm{fin}})
+  =
+  \frac{|\Sha|\prod_\ell c_\ell}{|E(\Q)_{\tors}|^2}
+\]
+is not injective on this typed tower.  Equivalently, at a fixed prime $p$,
+the valuation readout
+\[
+  q_p
+  =
+  v_p|\Sha|+v_p\Bigl(\prod_\ell c_\ell\Bigr)
+  -2v_p|E(\Q)_{\tors}|
+\]
+does not determine the typed finite-source datum.  Thus a scalar
+finite-factor row cannot be promoted to a finite-source carrier row without
+additional source data.\footnote{Verified in Lean as
+\texttt{SixBirdsBSD.Apparatus.Decomposition.finiteScalarPublicShadow}; see
+App~\ref{app:formalization}.}
+\end{theorem}
+
+\begin{proof}
+Fix a prime $p$ and consider only the three valuation coordinates appearing
+in $q_p$: the $p$-primary part of $\Sha$, the Tamagawa product, and torsion.
+The typed finite tower remembers which block carries a valuation, while the
+scalar readout only remembers the integer combination
+\[
+  v_p|\Sha|+v_p\Bigl(\prod_\ell c_\ell\Bigr)
+  -2v_p|E(\Q)_{\tors}|.
+\]
+Now compare two typed finite inputs.  In the first, put the valuation in the
+$\Sha[p^\infty]$ block:
+\[
+  \bigl(v_p|\Sha|,\ v_p(\prod_\ell c_\ell),\
+  v_p|E(\Q)_{\tors}|\bigr)=(1,0,0).
+\]
+In the second, put it in the Tamagawa block:
+\[
+  \bigl(v_p|\Sha|,\ v_p(\prod_\ell c_\ell),\
+  v_p|E(\Q)_{\tors}|\bigr)=(0,1,0).
+\]
+The two typed inputs are distinct, since the first records a
+$p$-primary $\Sha$ contribution and the second records a Tamagawa
+contribution.  Nevertheless the scalar valuation is the same:
+\[
+  q_p=1+0-2\cdot0=1
+  \qquad\text{and}\qquad
+  q_p=0+1-2\cdot0=1.
+\]
+Thus the scalar map identifies two different typed finite-source rows.
+Moreover the Cassels--Tate datum is absent from the displayed expression
+for $q_p$ altogether.  Changing the Cassels--Tate pairing while holding the
+three scalar valuation coordinates fixed leaves $q_p$ unchanged.  Hence the
+scalar finite factor is a noninjective public shadow of the typed finite
+tower.
+
+This is an audit no-go in the sense used throughout the paper: it records
+that the scalar finite row alone does not contain enough information to
+recover the typed finite-source row.  It is not a claim that no stronger
+arithmetic theorem, supplied with additional source data, can identify or
+transport the missing finite information.
+\end{proof}
+
+\begin{nonclaim}[Decomposition scope]
+\label{nonclaim:apparatus:decomposition-scope}
+This section does not prove BSD, the Bloch--Kato conjecture, or ETNC~\citep{BurnsFlach2001}.  It
+defines the five-column component map, proves the component-killing
+consequence of the bridge-defect equation, and records the finite scalar
+public-shadow no-go for the typed bridge.  The no-go is an audit result
+about what the scalar row fails to determine; it is not a mathematical
+non-existence claim about possible richer finite-source identities.  The
+external transports from the five native columns to the determinant-line
+target remain recognition sources carried separately, not derived theorems
+of this decomposition section.
+\end{nonclaim}

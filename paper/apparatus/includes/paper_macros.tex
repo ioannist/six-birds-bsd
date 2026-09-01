@@ -1,0 +1,37 @@
+% Paper macros for the apparatus axis (Phase 1). \input by main.tex.
+% Reserved-symbol policy binds Lean naming (see paper/notation_and_terminology.md).
+% This file is the canonical macro source; paper/notes/macro-audit.md mirrors it.
+
+% --- Shared / framework macros (identical block in both papers) ---
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Tam}{\operatorname{Tam}}
+\newcommand{\tors}{\operatorname{tors}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\newcommand{\Fitt}{\operatorname{Fitt}}
+\newcommand{\cores}{\operatorname{cores}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Hf}{H^1_f}
+\newcommand{\kapr}{\kappa_r}
+
+% --- Apparatus-specific macros ---
+\newcommand{\XiC}{\Xi_C(D\mid L)}        % adequacy / Schur residual
+\newcommand{\KDD}{K_{DD}}
+\newcommand{\KDL}{K_{DL}}
+\newcommand{\KLL}{K_{LL}}
+\newcommand{\Kdagger}{K_{LL}^{\dagger}}  % pseudo-inverse block
+\newcommand{\vsrc}{\mathrm{vsrc}}        % exterior-algebra calibrator
+\newcommand{\Jone}{J_1}
+\newcommand{\Jtwo}{J_2}
+\newcommand{\Jtwelve}{J_{12}}
+\newcommand{\MCphi}{M_C^{\varphi}}       % typed column (Lean M_C_phi)
+
+% Math-heavy SoR skeleton: allow interword stretch to avoid overfull boxes
+\setlength{\emergencystretch}{3.5em}
+\sloppy

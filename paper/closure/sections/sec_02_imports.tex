@@ -1,0 +1,117 @@
+\section{The imported theorem stacks}
+\label{sec:imports}
+
+The closure separates its inputs into two classes.  The present section
+records the imported theorem stacks: established arithmetic geometry
+that the closure consumes as proof-carrying hypotheses.  The next section
+records the recognition sources: arithmetic content carried by the
+formed BSD layer.  This distinction matters.  The imported stacks are not
+new theorems here, and the closure never derives them
+from the framework.  It derives consequences from them, after their
+provenance and downstream role have been made explicit.
+
+There are three headline imports in this section.  The first controls the
+Cassels--Tate side of the finite \(p\)-primary comparison.  The second
+supplies the Selmer-complex pairing substrate \( \AofE \).  The third
+supplies the rank-\(\geq 2\) archimedean determinant comparison.  Together
+they keep the classical arithmetic geometry used by the landing theorem out
+of the framework argument while still making clear exactly which classical
+inputs are being used.  The overconvergent \(\eta\) and
+\(T_{\mathrm{CASCADE}}\) imports are introduced later as supporting
+conditional stacks and are counted separately in App~\ref{app:formalization}.
+
+The symbol \(\chiCTp\) refers here to a Cassels--Tate comparison: a
+comparison between a square-root Fitting object on a Selmer-complex
+cohomology group and the Pfaffian scalar attached to the Cassels--Tate
+pairing.  In ordinary terms, this is the input that lets the \(p\)-primary
+finite piece be read with the correct orientation and sign.
+
+\begin{definition}[Imported $\chi_{CT,p}$ theorem stack]\label{def:closure:chi-ct-p-import}
+A proof-carrying structure bundling the eight named external inputs
+\(T_{E1}\ldots T_{E8}\): Sakamoto's Stark-system theory~\citep{Sakamoto2018};
+the determinant/Stark-system and derived-height comparisons of Macias
+Castillo--Sano~\citep[Thms.~3.4 and~4.2]{MaciasCastilloSano2026};
+Knudsen--Mumford determinant theory~\citep{KnudsenMumford1976};
+Nekov\'a\v{r}'s Selmer-complex pairing~\citep[\S10.8.7]{Nekovar2006};
+Flach's pairing comparison~\citep{Flach1990}; and the classical
+2-Selmer normalization of Fisher--Schaefer--Stoll~\citep[Thm.~6.3]{FisherSchaeferStoll2010}.
+The results are stored as proposition fields,
+plus the unconditional sign closure
+\(\Sigma_{\mathrm{NekCT}}=+1\).  It is taken as a hypothesis by
+\Cref{thm:closure:chi-ct-p-comparison}; it is not derived in this
+paper.\footnote{Encoded in Lean as a typed structure carrier
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak chiCTpImport}
+bundling the imported theorems as hypothesis fields; not a Lean axiom.
+See App~\ref{app:formalization}.}
+\end{definition}
+
+The downstream role of this stack is narrow.  It is not a general
+replacement for the Cassels--Tate literature.  It is the specific
+orientation-respecting package needed for the \(\chiCTp\) theorem:
+given the usual finite \(\Sha[p^\infty]\), nondegeneracy, and
+Selmer-complex hypotheses, it supplies the Pfaffian comparison and the
+sign closure \(\Sigma_{\mathrm{NekCT}}=+1\).
+
+The second import packages the Selmer-complex pairing substrate denoted
+\(\AofE\).  This notation is local to this article: \(\AofE\) is the
+unified Selmer-complex pairing object, not the analytic leading coefficient
+written \(A_E\) in \citet{TsiokosBSDApparatus2026}.  Mathematically, it is the
+ambient category, Selmer complex, and pairing target in which the
+Cassels--Tate pairing is intrinsic and compatible with the
+determinant-line formulation.
+
+\begin{definition}[Imported $\AofE$ Selmer-complex pairing]\label{def:closure:a-e-import}
+A proof-carrying structure for the \(\AofE\) unified Selmer-complex
+substrate (Nekov\'a\v{r} Selmer complex~\citep{Nekovar2006} with intrinsic Cassels--Tate
+pairing; Burns--Flach and related Macias Castillo--Sano--Nekov\'a\v{r}
+ETNC-adjacent input~\citep{BurnsFlach2001,BlochKato1990,FontainePerrinRiou1994,BurnsMaciasCastilloSeo2024,MaciasCastilloSano2026}
+\(\AofE^{\mathrm{Sel}}\)): a typed target category with a
+bilinear/categorical pairing field.  It is used only as a
+hypothesis.\footnote{Encoded in Lean as a typed structure carrier
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak aEImport}
+bundling the imported theorem as a hypothesis field; not a Lean axiom.
+See App~\ref{app:formalization}.}
+\end{definition}
+
+This import is the bridge between two ways of seeing the same finite
+arithmetic information.  On one side is the Selmer-complex description
+with its intrinsic Cassels--Tate pairing.  On the other is the
+determinant-line language used in the closure landing.  The \(\AofE\)
+carrier records that the target category and pairing data have already
+been supplied, so later arguments may use the pairing without
+reconstructing the Selmer-complex theory.
+
+The third import is archimedean.  In rank at least two, the landing
+needs a comparison between the Beilinson determinant side and the
+leading \(L\)-value side.  This is where the regulator-to-determinant
+identification enters.  The closure treats it as a classical imported
+comparison, separate from the higher-rank recognition source that will
+encode the remaining Gross--Zagier-type fixity.
+
+\begin{definition}[Imported Beilinson rank-$\geq 2$ comparison]\label{def:closure:beilinson-import}
+A proof-carrying structure for the Beilinson determinant/\(L\)-value~\citep{Beilinson1985}
+comparison in rank \(r\geq 2\): the archimedean
+regulator-to-determinant-line identification used by the rank-\(\geq 2\)
+landing.  It is used only as a hypothesis.\footnote{Encoded in Lean as a
+typed structure carrier
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak beilinsonImport}
+bundling the imported theorem as a hypothesis field; not a Lean axiom.
+See App~\ref{app:formalization}.}
+\end{definition}
+
+The point of isolating this comparison is to prevent the closure
+argument from hiding an archimedean theorem inside the recognition
+predicate.  The Beilinson import supplies the determinant/\(L\)-value
+identification; the recognition source introduced later supplies the
+formed-layer fixity condition that makes the rank-\(\geq 2\) readout
+land on the Strong-BSD scalar.
+
+\begin{nonclaim}\label{nonclaim:closure:imports-not-derived}
+The \(\chiCTp\) comparison remains conditional on its imported stack
+\(T_{E1}\ldots T_{E8}\); the import structures are sourced assumptions,
+not results of this paper.  The closure derives consequences
+\emph{from} them and never proves them.  They are carried as typed
+hypothesis structures and introduce no project-local axioms.
+\end{nonclaim}
+
+% ===========================================================================

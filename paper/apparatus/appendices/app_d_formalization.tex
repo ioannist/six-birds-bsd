@@ -1,0 +1,198 @@
+\section{Lean formalization}\label{app:formalization}
+\subsection*{Trust base and methodology}
+
+The Lean development for this paper is mathlib-free.  It imports no
+external mathematics library, so no mathlib axioms enter the dependency
+closure.  Every declaration registered as a theorem was audited with
+\texttt{\#print axioms}.  The only axioms that occur are Lean's standard
+foundational ones: \texttt{propext}, \texttt{Quot.sound}, and
+\texttt{Classical.choice}, with \texttt{funext} and the \texttt{choice}
+recursor appearing as their standard consequences in the audited closures.
+There are no project-local axioms behind any theorem-marked result.  Thus
+the trust base for the formalized theorem claims is precisely Lean's kernel
+plus classical logic, and nothing project-specific.
+
+This limited trust base is possible because the formalized content is
+finite and typed.  The adequacy collapses and no-go residuals are not
+mechanized as analytic estimates, operator-theoretic assertions, or
+motivic constructions.  They are finite vector and matrix computations:
+the source and target covariance blocks are explicit finite matrices, the
+full-source collapses reduce to identity-matrix action, and the scalar
+shadow residuals are computed from rank-\(1\) projectors over \(\Q\).
+Each Schur-complement residual is therefore a decidable calculation in a
+small finite algebraic model.  This is the reason a mathlib-free kernel can
+check the main adequacy and no-go statements.
+
+The surrounding arithmetic geometry is treated separately from those finite
+calculations.  The Lean development checks the typed identities appearing
+in the apparatus: for example, that an identity source kills the Schur
+residual, that the relevant projector traces have the stated values, and
+that the finite noninjectivity witnesses have the claimed public shadows.
+It does not certify Gross--Zagier, Iwasawa main conjecture inputs,
+Cassels--Tate comparison theory, Bloch--Kato local comparison maps, or the
+motivic descents named in the body.  Such arithmetic content enters the
+paper either as cited external input, as a recognition-source carrier, or
+as an explicitly stated hypothesis.
+
+The statements-of-record inventory for this paper contains \(41\) items.
+Of these, \(19\) are theorem-grade Lean results with substantive finite
+proofs, \(11\) are typed definition mirrors, and \(11\) are not mechanized:
+the five recognition-source transport obligations, the four support-only
+remarks, the warning, and the scope nonclaim.  Those non-mechanized items
+are paper-level statements carried as motivation, scope, or hypotheses,
+not Lean declarations.  Two mechanized items, the \(\vsrc\) algebra
+definition and the Stage-I \(\vsrc\) consistency theorem, are checked over
+a narrowed structural representation; the following subsections record the
+per-label coverage, declaration map, and standing narrowings in detail.
+\subsection*{Wording-discipline table}
+
+Each theorem in the body carries exactly one mechanization footnote, and
+the wording of that footnote is canonical rather than editorial.  The
+wording records the fidelity class of the formal counterpart: a faithful
+Lean theorem, a Lean theorem over a narrowed representation, a typed
+definition mirror, or an unmechanized paper-level statement.  Narrowing and
+non-mechanization are therefore visible in the disclosure convention rather
+than hidden in prose.
+
+\begin{center}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.31\textwidth}X@{}}
+\toprule
+Statement class & Footnote convention \\
+\midrule
+Theorem, faithful &
+Verified in Lean as \texttt{[decl]}; see App~\ref{app:formalization}. \\
+\addlinespace
+Theorem, narrowed representation &
+Verified in Lean as \texttt{[decl]} over a narrowed representation
+(e.g.\ the \(2^r\)-coordinate space); the narrowing is recorded below.  The
+narrowing qualifier is mandatory; never bare ``verified in Lean''. \\
+\addlinespace
+Definition, narrowed representation &
+Realized in Lean as \texttt{[decl]} over a narrowed representation; the
+narrowing is recorded below. \\
+\addlinespace
+Definition, faithful (typed mirror) &
+No footnote; the declaration appears only in the per-label coverage table
+below. \\
+\addlinespace
+Obligation / remark / warning / non-claim (not mechanized) &
+No footnote and no Lean identifier in the body; recorded as a paper-level
+statement only. \\
+\bottomrule
+\end{tabularx}
+\end{center}
+\subsection*{Standing narrowings}
+
+There are two standing qualifications behind the coverage claims in this
+appendix.  Both are part of the formalization contract: they delimit what
+the finite Lean development checks, and they keep the surrounding
+arithmetic content visible rather than implicit.
+
+First, two \(\vsrc\) items are checked over a narrowed structural
+representation: the \(\vsrc\) algebra definition and the Stage-I
+\(\vsrc\) consistency theorem.  On the \(2^r\)-coordinate model, the
+determinant-shaped content of a rank-\(r\) source is represented, and the
+low-rank exterior relations actually used in the paper are checked.  In
+rank \(2\), this includes the wedge relation
+\[
+  \Jone\Jtwo=\Jtwelve
+\]
+together with the accompanying nilpotence and anticommutation relations.
+The dimension count and the calibration of the determinant shape are
+faithful to the intended exterior-algebra source.
+
+What is not claimed is equally important.  The formalization is not a
+complete general exterior-algebra development: it does not provide general
+\(\bigwedge^k\) functoriality, nor a full axiomatization of exterior
+algebras in arbitrary rank.  It is also not a descent from \(\vsrc\) to
+actual motivic cycles.  The Lean check certifies the finite structural
+relations on the coordinate representation, not a general motivic
+construction.  This is why those two body items carry the ``narrowed
+representation'' footnote convention rather than a bare ``verified in
+Lean'' disclosure, and why the \(\vsrc\) statements in
+\Cref{sec:vsrc} are calibration and consistency results rather than
+constructions of motivic sources.
+
+Second, the five per-column transports are recognition sources, not
+derived theorems and not Lean declarations.  These are the
+height/regulator, analytic/period, finite-source, \(p\)-adic, and
+determinant-assembly comparison transports appearing in
+\Cref{sec:height-regulator,sec:analytic-period,sec:finite-source,sec:p-adic,sec:det-assembly}.
+Each column's Schur-adequacy collapse is proved at the finite typed level
+once the column's native source is admitted.  The corresponding transport
+is precisely the named arithmetic comparison content that admits that
+source into the Bloch--Kato determinant-line target.  It is supplied or
+imported externally and then carried as a hypothesis.
+
+Thus the apparatus does not prove these five transports.  It records them
+as obligations and proves the per-column collapses conditional on the
+native source data that those transports are meant to recognize.  In the
+per-label coverage table below they appear as not-mechanized obligations.
+Neither standing narrowing enlarges the Lean trust base: no new axioms are
+introduced; the qualifications bound the finite mechanization claims, with
+the remaining arithmetic content carried explicitly.
+\input{tables/representation-notes}
+\subsection*{Per-label coverage}
+
+The following table lists every statement of record in document order,
+with its environment kind, its mechanization fidelity, and its body
+location.  The paper labels in the first column elide the
+\texttt{apparatus:} prefix.  Faithful and narrowed rows have Lean
+declarations, mapped in the next subsection; not-mechanized rows do not.
+
+\input{tables/formalization-coverage}
+\subsection*{Lean declaration map}
+
+The \(30\) mechanized statements, consisting of the \(11\) typed
+definitions and \(19\) theorems, each correspond to a Lean declaration
+listed here for citation and auditing.  Paper labels elide the
+\texttt{apparatus:} prefix, and declarations elide the
+\texttt{SixBirdsBSD.Apparatus.} namespace.  The not-mechanized
+obligations, remarks, warning, and nonclaim have no declaration and are
+therefore omitted; the full coverage table, including those rows, is
+\Cref{tab:formalization-coverage}.
+
+\begin{small}
+\begin{longtable}{@{}>{\ttfamily\raggedright\arraybackslash}p{0.44\textwidth} >{\ttfamily\raggedright\arraybackslash}p{0.50\textwidth}@{}}
+\caption{Lean declaration map for the 30 mechanized apparatus statements (definitions and theorems). Paper labels elide the \texttt{apparatus:} prefix; declarations elide the \texttt{SixBirdsBSD.Apparatus.} namespace.}\label{tab:appd-declmap}\\
+\toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule
+\endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize\itshape continued from previous page}\\
+\toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule
+\endhead
+\midrule \multicolumn{2}{r@{}}{\footnotesize\itshape continued on next page}\\
+\endfoot
+\bottomrule
+\endlastfoot
+def:\allowbreak bk-\allowbreak component-\allowbreak map & Decomposition.\allowbreak bk\allowbreak Component\allowbreak Map \\
+def:\allowbreak bridge-\allowbreak defect-\allowbreak equation & Decomposition.\allowbreak bridge\allowbreak Defect\allowbreak Equation \\
+thm:\allowbreak component-\allowbreak killing & Decomposition.\allowbreak component\allowbreak Killing \\
+thm:\allowbreak finite-\allowbreak scalar-\allowbreak public-\allowbreak shadow & Decomposition.\allowbreak finite\allowbreak Scalar\allowbreak Public\allowbreak Shadow \\
+def:\allowbreak height-\allowbreak regulator-\allowbreak map & Height\allowbreak Regulator.\allowbreak height\allowbreak Regulator\allowbreak Map \\
+thm:\allowbreak height-\allowbreak schur-\allowbreak collapse & Height\allowbreak Regulator.\allowbreak height\allowbreak Schur\allowbreak Collapse \\
+def:\allowbreak analytic-\allowbreak period-\allowbreak map & Analytic\allowbreak Period.\allowbreak analytic\allowbreak Period\allowbreak Map \\
+thm:\allowbreak analytic-\allowbreak period-\allowbreak schur-\allowbreak collapse & Analytic\allowbreak Period.\allowbreak analytic\allowbreak Period\allowbreak Schur\allowbreak Collapse \\
+def:\allowbreak finite-\allowbreak source-\allowbreak map & Finite\allowbreak Source.\allowbreak finite\allowbreak Source\allowbreak Map \\
+thm:\allowbreak finite-\allowbreak source-\allowbreak schur-\allowbreak collapse & Finite\allowbreak Source.\allowbreak finite\allowbreak Source\allowbreak Schur\allowbreak Collapse \\
+thm:\allowbreak scalar-\allowbreak finite-\allowbreak shadow & Finite\allowbreak Source.\allowbreak scalar\allowbreak Finite\allowbreak Shadow \\
+thm:\allowbreak dim-\allowbreak sha-\allowbreak shadow & Finite\allowbreak Source.\allowbreak dim\allowbreak Sha\allowbreak Shadow \\
+def:\allowbreak p-\allowbreak adic-\allowbreak map & PAdic.\allowbreak p\allowbreak Adic\allowbreak Map \\
+thm:\allowbreak ordinary-\allowbreak schur-\allowbreak collapse & PAdic.\allowbreak ordinary\allowbreak Schur\allowbreak Collapse \\
+thm:\allowbreak signed-\allowbreak schur-\allowbreak collapse & PAdic.\allowbreak signed\allowbreak Schur\allowbreak Collapse \\
+def:\allowbreak det-\allowbreak assembly-\allowbreak map & Det\allowbreak Assembly.\allowbreak det\allowbreak Assembly\allowbreak Map \\
+thm:\allowbreak cascade-\allowbreak completion-\allowbreak signature & Det\allowbreak Assembly.\allowbreak cascade\allowbreak Completion\allowbreak Signature \\
+def:\allowbreak five-\allowbreak column-\allowbreak tensor & Comparison.\allowbreak five\allowbreak Column\allowbreak Tensor \\
+thm:\allowbreak five-\allowbreak col-\allowbreak bk-\allowbreak comparison & Comparison.\allowbreak five\allowbreak Col\allowbreak Bk\allowbreak Comparison \\
+def:\allowbreak rank-\allowbreak two-\allowbreak kummer-\allowbreak source & Higher\allowbreak Rank\allowbreak No\allowbreak Go.\allowbreak rank\allowbreak Two\allowbreak Kummer\allowbreak Source \\
+thm:\allowbreak rank-\allowbreak two-\allowbreak height-\allowbreak schur-\allowbreak collapse & Higher\allowbreak Rank\allowbreak No\allowbreak Go.\allowbreak rank\allowbreak Two\allowbreak Height\allowbreak Schur\allowbreak Collapse \\
+thm:\allowbreak gram-\allowbreak matrix-\allowbreak shadow & Higher\allowbreak Rank\allowbreak No\allowbreak Go.\allowbreak gram\allowbreak Matrix\allowbreak Shadow \\
+thm:\allowbreak finite-\allowbreak window-\allowbreak no-\allowbreak go & Global\allowbreak Audit\allowbreak No\allowbreak Go.\allowbreak finite\allowbreak Window\allowbreak No\allowbreak Go \\
+thm:\allowbreak finite-\allowbreak prime-\allowbreak cover-\allowbreak no-\allowbreak go & Support\allowbreak Prime\allowbreak No\allowbreak Go.\allowbreak finite\allowbreak Prime\allowbreak Cover\allowbreak No\allowbreak Go \\
+def:\allowbreak support-\allowbreak prime-\allowbreak truncation-\allowbreak residual & Support\allowbreak Prime\allowbreak No\allowbreak Go.\allowbreak support\allowbreak Prime\allowbreak Truncation\allowbreak Residual \\
+def:\allowbreak vsrc-\allowbreak algebra & Vsrc.\allowbreak vsrc\allowbreak Algebra \\
+thm:\allowbreak vsrc-\allowbreak stage-\allowbreak i-\allowbreak consistency & Vsrc.\allowbreak vsrc\allowbreak Stage\allowbreak IConsistency \\
+thm:\allowbreak vsrc-\allowbreak stage-\allowbreak ii-\allowbreak gz-\allowbreak partial & Vsrc.\allowbreak vsrc\allowbreak Stage\allowbreak IIGz\allowbreak Partial \\
+thm:\allowbreak vsrc-\allowbreak stage-\allowbreak iii-\allowbreak translation & Vsrc.\allowbreak vsrc\allowbreak Stage\allowbreak IIITranslation \\
+thm:\allowbreak kappa-\allowbreak r-\allowbreak normalization-\allowbreak equivalence & Kappa\allowbreak Normalization.\allowbreak kappa\allowbreak RNormalization\allowbreak Equivalence \\
+\end{longtable}
+\end{small}

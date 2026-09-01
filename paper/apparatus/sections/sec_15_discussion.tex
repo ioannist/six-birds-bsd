@@ -1,0 +1,118 @@
+\section{Discussion}\label{sec:discussion}
+% statements-of-record rows resolved here: none
+
+The apparatus developed here is meant to be reusable.  Its basic question is
+not whether a given BSD or Bloch--Kato identity is true, but which typed
+source data are adequate for a specified readout.  The Schur residual
+\(\XiC\) makes that question finite and local to a chosen column: if the
+native source coordinates act as the identity on the tangent readout, the
+residual vanishes; if a public scalar keeps only a projection, the residual
+measures the lost directions.  This turns a familiar informal observation
+about scalar invariants into a computable diagnostic.  One asks, column by
+column, whether the available datum is the source itself or only its public
+shadow.
+
+This diagnostic is useful because the standard BSD formula is naturally
+read as a product of scalar factors.  The leading analytic coefficient is
+divided by a period; the height pairing contributes its determinant; finite
+arithmetic enters through Tamagawa numbers, torsion, and \(\Sha\); local
+\(p\)-adic data are typically compressed through ordinary, signed, or
+control-theoretic normalizations; and determinant signs and units are
+hidden in the final assembly.  The scalar formula is therefore a powerful
+summary, but it is not a complete description of the source data behind
+each factor.  The five-column decomposition refines this summary into
+height/regulator, analytic/period, finite-source, \(p\)-adic, and
+determinant-assembly columns.  It keeps the sources separated until the
+comparison map deliberately contracts them back to the usual
+Bloch--Kato/Tamagawa-number package.
+
+Seen from the classical Bloch--Kato perspective, the point is not to replace
+the fundamental line by a new object.  The point is to expose the internal
+typing that is suppressed when the global Tamagawa-number package is treated
+as a single scalar row.  The comparison theorem shows that the typed
+five-column source is adequate for the Bloch--Kato scalar contraction: the
+Schur residual for that contraction is zero.  At the same time, the kernel
+contains the determinant-orientation coordinate.  Thus the usual scalar
+package is recovered, but it is recovered as a projection of a richer typed
+atlas.  This is exactly what one expects from a determinant-line
+formalism: the global scalar is the visible readout, while the determinant
+trivializations, local orientations, and source-specific normalizations
+explain how the readout is assembled.
+
+The per-column collapses have a similarly modest interpretation.  The
+height/regulator column collapses because the full Neron--Tate pairing is
+admitted as source data; the analytic/period column collapses because both
+\(\log A_E\) and \(\log\Omega_E^+\) are present; the finite-source column
+collapses only when Tamagawa, torsion, \(\Sha[p^\infty]\), and
+Cassels--Tate pairing data are all retained; the \(p\)-adic columns collapse
+only after including the ordinary-control coordinate or separating the
+signed supersingular directions.  These are finite identity-matrix
+computations.  Their value is that they make explicit which coordinates
+must be present before a row deserves to be treated as a source rather than
+as a quotient or shadow.
+
+The no-go suite records the complementary boundary.  The finite scalar
+factor forgets where a valuation lies: a contribution in the \(\Sha\)-block
+and a contribution in the Tamagawa block can have the same scalar value.
+The dimension-only \(\Sha[p]\) readout forgets the Cassels--Tate
+determinant data.  The Neron--Tate Gram matrix gives the regulator once a
+Mordell--Weil basis is known, but it does not construct independent
+motivic-cycle sources.  A finite curve window cannot certify a universal
+statement depending on all curves, and a finite prime list cannot certify
+all local support-prime rows.  None of these no-gos says that the missing
+arithmetic identities or constructions do not exist.  They say that the
+particular public row under inspection is not enough to determine the
+typed target without additional source data or an external recognition
+input.
+
+Recording that boundary precisely matters.  In classical prose, it is easy
+to slide from ``this scalar agrees numerically'' to ``this source has been
+constructed,'' or from ``this finite sample supports the pattern'' to
+``this global statement is certified.''  The Schur residual prevents that
+slide by asking what the operator can see.  If two typed completions agree
+on the public row but differ in the target coordinate, then the public row
+is not an adequate source for that target.  Conversely, when the full typed
+source is admitted and the residual vanishes by an identity action, the
+adequacy statement is exactly as strong as the declared source.  This
+separation is the central conceptual point of the apparatus.
+
+The \(\vsrc\) calibration guards the source end of the story.  In rank
+\(2\), the exterior product \(\Jone\Jtwo=\Jtwelve\) is a compact way to
+record determinant-shaped independence before any descent to motivic
+cycles has been supplied.  The Stage I algebra is consistent, and the
+Stage II rank-\(1\) descent recovers the Gross--Zagier source/regulator
+side once a Heegner point is available.  Stage III then explains the
+asymmetry in rank \(2\): a motivic wedge source together with the analytic
+height bridge implies the scalar leading-coefficient equality, while the
+scalar equality alone does not construct the wedge source.  This is the
+same lesson as the Gram-matrix shadow no-go, now expressed at the source
+end of the apparatus.
+
+The \(\kapr\) normalization guards the target end.  Once
+\[
+  c_E=\Tam(E)
+\]
+is fixed, the cascade leading-term form agrees with the standard Strong
+BSD leading-coefficient form exactly when
+\[
+  \kapr(E)=\frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
+\]
+This is only an equality of normalizations, but it is an important one:
+it prevents the cascade coordinates from silently changing the arithmetic
+constant.  Together, the \(\vsrc\) calibration and the \(\kapr\)
+normalization keep the apparatus honest at both ends.  The source side
+does not pretend that scalar regulator data construct motivic classes, and
+the target side does not pretend that a differently normalized cascade
+formula is the standard Strong BSD formula.
+
+The framework lineage supplies the language of typed carriers, visibility,
+and residual accounting \citep{TsiokosNeedles2026,TsiokosFoundationsII2026,
+TsiokosFoundationsIII2026}.  The mathematical content of this paper is the
+specialization of that language to the BSD/Bloch--Kato setting: a
+five-column typed atlas, finite Schur adequacy calculations, audit no-gos
+for public shadows, and normalization checks at the source and target
+interfaces.  The resulting layer can be consumed by later conditional
+closures or by independent audits, but it is already useful on its own: it
+turns the question ``what does this BSD scalar know?'' into a precise
+finite calculation about what the chosen source row retains and what it
+forgets.

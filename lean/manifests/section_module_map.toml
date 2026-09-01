@@ -1,0 +1,37 @@
+# Paper section title → Lean module path mapping, per axis.
+#
+# Used by the inventory and manifest checks to bind paper sections to Lean
+# modules. Section titles are matched verbatim against
+# the `section` field in the per-axis paper inventory
+# (formalization/inventory/<axis>_paper_inventory.toml) for entries with
+# `intended_status = mechanize_now`.
+#
+# If a section is renamed in a source paper, update both the inventory
+# toml and this map in lockstep (the section title here equals the
+# AXIS_SECTIONS leaf name in scripts/build_paper_inventories.py and the
+# Lean module leaf under SixBirdsBSD.<Axis>.<Section>).
+
+[apparatus]
+"Decomposition" = "SixBirdsBSD.Apparatus.Decomposition"
+"HeightRegulator" = "SixBirdsBSD.Apparatus.HeightRegulator"
+"AnalyticPeriod" = "SixBirdsBSD.Apparatus.AnalyticPeriod"
+"FiniteSource" = "SixBirdsBSD.Apparatus.FiniteSource"
+"PAdic" = "SixBirdsBSD.Apparatus.PAdic"
+"DetAssembly" = "SixBirdsBSD.Apparatus.DetAssembly"
+"Comparison" = "SixBirdsBSD.Apparatus.Comparison"
+"HigherRankNoGo" = "SixBirdsBSD.Apparatus.HigherRankNoGo"
+"GlobalAuditNoGo" = "SixBirdsBSD.Apparatus.GlobalAuditNoGo"
+"SupportPrimeNoGo" = "SixBirdsBSD.Apparatus.SupportPrimeNoGo"
+"Vsrc" = "SixBirdsBSD.Apparatus.Vsrc"
+"KappaNormalization" = "SixBirdsBSD.Apparatus.KappaNormalization"
+
+[closure]
+"Imports" = "SixBirdsBSD.Closure.Imports"
+"RecognitionSources" = "SixBirdsBSD.Closure.RecognitionSources"
+"SelShell" = "SixBirdsBSD.Closure.SelShell"
+"ChiCTp" = "SixBirdsBSD.Closure.ChiCTp"
+"EtaFormula" = "SixBirdsBSD.Closure.EtaFormula"
+"TCascade" = "SixBirdsBSD.Closure.TCascade"
+"Obstructions" = "SixBirdsBSD.Closure.Obstructions"
+"Landing" = "SixBirdsBSD.Closure.Landing"
+"AORInstance" = "SixBirdsBSD.Closure.AORInstance"

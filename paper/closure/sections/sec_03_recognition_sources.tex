@@ -1,0 +1,145 @@
+\section{The three recognition sources}
+\label{sec:recognition-sources}
+% Each carrier is mechanized as a typed structure (mechanize_now); its Prop
+% content is the recognition source (lean_coverage = recognition_source).
+
+This section names the three recognition sources used by the closure.
+A recognition source is named arithmetic content on which the closure
+rests: it is supplied to the construction, not derived from the general
+framework, and it is carried as a typed hypothesis.  The concrete
+example to keep in mind is the \(p\)-adic descent congruence below,
+which says how a local descent comparison repairs the Tamagawa
+coarsening at an additive prime.
+
+The three sources govern the three factors that are not supplied by the
+formal shell alone.  The source \(\GammaPD\) governs the local
+\(p\)-adic/Tamagawa correction in the odd-additive scope of its definition.
+The source \(\GammaSP\) governs the
+persistence of the \(\Sha\)-factor through signed-Selmer cover change.
+The source \(\GammaGZ\) governs the rank-\(\geq 2\)
+regulator/fixity readout.  Together they are the arithmetic content that
+the conditional landing will consume.
+\Cref{tab:recognition-sources} records the same three sources as a compact
+audit table.
+\input{tables/recognition-sources}
+
+\begin{definition}[$\GammaPD$ p-adic descent carrier]\label{def:closure:gamma-padic-descent}
+For \(E/\Q\), an odd additive prime \(p\)~\citep{Silverman1994} with shallow Kodaira type
+II/III, \(c_p(E)\in\{1,2\}\), \(p\nmid c_p(E)\),
+\(\Sha(E/\Q)[p^\infty]=0\), and a finite tame
+inertia-trivializing extension \(L/\Qp\), the formed local layer carries
+an ordinary/anticyclotomic descent comparison
+\[
+  \mathrm{descent}_p^{\mathrm{OC}}:
+  LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L))
+  \longrightarrow
+  LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E))
+\]
+and a unit \(\varepsilon_p(E,L)\in\Zp^\times\) with
+\[
+  LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E)) \equiv
+  c_p(E)^{-1}\,\varepsilon_p(E,L)\,
+  \mathrm{descent}_p^{\mathrm{OC}}
+    (LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L)))
+  \pmod{\Zp^\times}.
+\]
+This congruence recognizes that the descent comparison repairs the
+Tamagawa coarsening through the factor \(c_p(E)^{-1}\), while the unit
+\(\varepsilon_p(E,L)\) records the residue introduced by changing the
+local cover.  The arithmetic assertion is used as a hypothesis in the
+closure.\footnote{Supplied as a recognition source, encoded in Lean as a
+typed structure carrier
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaPadicDescent}
+over a narrowed structural representation; its arithmetic content is a
+hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+\end{definition}
+
+The second source records persistence of the component measured by
+\(\Sha\).  A signed local pairing~\citep{Kobayashi2003,Pollack2003} changes when one passes to a tame
+inertia-trivializing extension and then corestricts back.  The source
+\(\GammaSP\) says that the determinant of this cover-change operation
+is exactly the local component factor modulo a \(p\)-adic unit.
+
+\begin{definition}[$\GammaSP$ signed-Selmer carrier]\label{def:closure:gamma-sha-persistence}
+For \(E/\Q\), a signed-Selmer-admissible additive prime \(p\), and a tame
+inertia-trivializing extension \(L/\Qp\), the signed-Selmer persistence
+layer carries the cover-change determinant, where
+\(\mathrm{sp}_p(E,L)\) denotes the signed local pairing,
+\[
+  C_{\mathrm{loc}}^{\mathrm{III}}(E,p)
+  :=
+  \det\!\bigl(\cores_{L/\Qp}\circ \mathrm{sp}_p(E,L)\bigr)
+\]
+and asserts
+\[
+  C_{\mathrm{loc}}^{\mathrm{III}}(E,p)
+  \equiv c_p(E)\pmod{\Zp^\times}.
+\]
+Thus the signed-Selmer local determinant persists as the Tamagawa
+component \(c_p(E)\), up to the unit ambiguity natural in the
+\(p\)-adic comparison.\footnote{Supplied as a recognition source,
+encoded in Lean as a typed structure carrier
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaShaPersistence}
+over a narrowed structural representation; its arithmetic content is a
+hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+\end{definition}
+
+The third source is the higher-rank fixity source.  It measures the
+difference between the analytic leading coefficient and the arithmetic
+regulator product.  The anti-invariant readout is simply
+``analytic minus arithmetic''.  In the arithmetic factor, the regulator
+is the N\'eron--Tate Gram determinant
+\(\det\langle P_i,P_j\rangle\), understood over the
+\(\mathrm{GL}_r(\Z)\)-orbit of choices of Mordell--Weil basis.
+
+\begin{definition}[$\GammaGZ$ higher-rank fixity carrier]\label{def:closure:gamma-higher-gz-fixity}
+For non-CM \(E/\Q\) of analytic rank \(r\geq 2\), the formed
+rank-\(r\) arithmetic/analytic duality layer has anti-invariant readout
+\[
+  \psi_-(E,r)
+  =
+  \frac{L^{(r)}(E,1)}{r!}
+  -
+  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E),
+\]
+and asserts the higher-Gross--Zagier fixity
+\[
+  \psi_-(E,r)=0.
+\]
+Equivalently, the analytic leading coefficient equals the rank-\(r\)
+arithmetic product built from \(\kapr(E)\), the N\'eron--Tate regulator,
+the period, and the Tamagawa product.  This assertion is used as a
+recognition source in the landing.\footnote{Supplied as a recognition source, encoded in Lean as a
+typed structure carrier
+\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaHigherGZFixity}
+over a narrowed structural representation; its arithmetic content is a
+hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+\end{definition}
+
+This is the source that directly meets the shell residual in high rank.
+By the \(\kapr\) normalization of \citet{TsiokosBSDApparatus2026},
+the normalization factor identifies
+\[
+  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2}.
+\]
+Consequently
+\[
+  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)
+  =
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
+    \prod_v c_v(E)}
+       {|E(\Q)_{\tors}|^2},
+\]
+after reading \(\Tam(E)\) as the Tamagawa product.  Thus
+\(\GammaGZ\), through the assertion \(\psi_-(E,r)=0\), is precisely the
+higher-rank fixity that will force the residual \(\rhoE\) to vanish in
+the landing theorem.
+
+\begin{nonclaim}\label{nonclaim:closure:recognition-sources-not-derived}
+No recognition source is derived from framework primitives.  Each
+\(\Gamma_{\mathrm{BSD}}^{*}\) is closure content of the formed BSD
+layer, encoded as a typed structure carrier whose arithmetic content is
+a hypothesis field, not a Lean axiom.
+\end{nonclaim}
+
+% ===========================================================================

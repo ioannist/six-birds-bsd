@@ -1,0 +1,12 @@
+# Allowed non-project axioms for theorem dependency audits.
+#
+# scripts/check_manifests.py rejects project-local axioms for manifest
+# entries marked `theorem`. These names are accepted as the Lean trust
+# base when reported by `#print axioms`. No mathlib axioms appear here
+# because the bsd repo does not import mathlib.
+
+Classical.choice
+propext
+Quot.sound
+choice
+funext

@@ -1,0 +1,38 @@
+% Paper macros for the closure axis (Phase 1). \input by main.tex.
+% Reserved-symbol policy binds Lean naming (see paper/notation_and_terminology.md).
+% This file is the canonical macro source; paper/notes/macro-audit.md mirrors it.
+
+% --- Shared / framework macros (identical block in both papers) ---
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Qp}{\mathbb{Q}_p}
+\newcommand{\Zp}{\mathbb{Z}_p}
+\newcommand{\Sha}{\operatorname{Sha}}
+\newcommand{\Reg}{\operatorname{Reg}}
+\newcommand{\Tam}{\operatorname{Tam}}
+\newcommand{\tors}{\operatorname{tors}}
+\newcommand{\tr}{\operatorname{tr}}
+\newcommand{\Pf}{\operatorname{Pf}}
+\newcommand{\Fitt}{\operatorname{Fitt}}
+\newcommand{\cores}{\operatorname{cores}}
+\newcommand{\rank}{\operatorname{rank}}
+\newcommand{\Hf}{H^1_f}
+\newcommand{\kapr}{\kappa_r}
+
+% --- Closure-specific macros ---
+\newcommand{\Sel}{\operatorname{Sel}}
+\newcommand{\SelBSD}{\mathrm{Sel}^{!}_{\mathrm{BSD}}}   % the trace shell
+\newcommand{\rhoE}{\rho_E}                              % shell residual
+\newcommand{\PiBSD}{\Pi_{\mathrm{BSD}}}                 % recognition predicate
+\newcommand{\GammaPD}{\Gamma_{\mathrm{BSD}}^{\mathrm{padic\text{-}descent}}}
+\newcommand{\GammaSP}{\Gamma_{\mathrm{BSD}}^{\mathrm{Sha\text{-}persistence}}}
+\newcommand{\GammaGZ}{\Gamma_{\mathrm{BSD}}^{\mathrm{higher\text{-}GZ\text{-}fixity}}}
+\newcommand{\chiCTp}{\chi_{CT,p}}                       % Cassels--Tate comparison
+\newcommand{\AofE}{\mathcal{A}_E}                        % Selmer-complex pairing substrate (calligraphic, distinct from apparatus A_E)
+\newcommand{\etap}{\eta_p}                              % OC eta
+\newcommand{\RefStable}{\mathbf{RefStable\,AOR}}        % AOR membership
+
+% Math-heavy SoR skeleton: allow interword stretch to avoid overfull boxes
+\setlength{\emergencystretch}{3.5em}
+\sloppy

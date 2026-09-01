@@ -1,0 +1,326 @@
+# Lean validation manifest for the apparatus paper axis (Paper A).
+#
+# Each entry corresponds to a paper_label from
+# formalization/inventory/apparatus_paper_inventory.toml whose
+# intended_status is "mechanize_now". Entries record the accepted Lean
+# realizations.
+#
+# Status meanings (verbatim from F2/F3):
+# - definition:   paper definition has a Lean definition-like declaration
+# - theorem:      paper claim has a Lean theorem/lemma whose dependency audit passes
+# - axiomatic:    declaration is or depends on project-local axioms (NOT allowed in this repo)
+# - partial:      declaration mechanizes only a supporting fragment
+# - unformalized: no Lean correspondent is present yet
+#
+# Schema (per entry):
+#   paper_label    = "<kind>:apparatus:<short-name>"  # from apparatus_paper_inventory.toml
+#   paper_section  = "<section title>"
+#   description    = "<one-line summary>"
+#   status         = "<one of the values above>"
+#   lean_subproject = "."
+#   lean_module    = "SixBirdsBSD.Apparatus.<Section>"
+#   lean_decl      = "SixBirdsBSD.Apparatus.<Section>.<name>"
+#   notes          = ""
+#
+# Use `[[definition]]` for definition_kind entries, `[[claim]]` for
+# theorem/lemma/proposition/corollary entries.
+
+[[definition]]
+paper_label = "def:apparatus:bk-component-map"
+paper_section = "Decomposition"
+description = "Bloch--Kato component-assembly map over the typed BSD source columns"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Decomposition"
+lean_decl = "SixBirdsBSD.Apparatus.Decomposition.bkComponentMap"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:bridge-defect-equation"
+paper_section = "Decomposition"
+description = "Additive bridge-defect equation after choosing a comparison trivialization"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Decomposition"
+lean_decl = "SixBirdsBSD.Apparatus.Decomposition.bridgeDefectEquation"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:component-killing"
+paper_section = "Decomposition"
+description = "Vanishing component defects force the total Bloch--Kato defect to vanish"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Decomposition"
+lean_decl = "SixBirdsBSD.Apparatus.Decomposition.componentKilling"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:finite-scalar-public-shadow"
+paper_section = "Decomposition"
+description = "Finite scalar BSD valuation is non-injective on the typed finite-source tower"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Decomposition"
+lean_decl = "SixBirdsBSD.Apparatus.Decomposition.finiteScalarPublicShadow"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:height-regulator-map"
+paper_section = "HeightRegulator"
+description = "Real height-regulator map from the Neron--Tate pairing carrier to determinant target"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.HeightRegulator"
+lean_decl = "SixBirdsBSD.Apparatus.HeightRegulator.heightRegulatorMap"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:height-schur-collapse"
+paper_section = "HeightRegulator"
+description = "Identity-source tangent height carrier has zero Schur residual"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.HeightRegulator"
+lean_decl = "SixBirdsBSD.Apparatus.HeightRegulator.heightSchurCollapse"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:analytic-period-map"
+paper_section = "AnalyticPeriod"
+description = "Real analytic-period map from leading coefficient and real period to analytic line"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.AnalyticPeriod"
+lean_decl = "SixBirdsBSD.Apparatus.AnalyticPeriod.analyticPeriodMap"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:analytic-period-schur-collapse"
+paper_section = "AnalyticPeriod"
+description = "Two-coordinate analytic-period tangent carrier has zero full-source Schur residual"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.AnalyticPeriod"
+lean_decl = "SixBirdsBSD.Apparatus.AnalyticPeriod.analyticPeriodSchurCollapse"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:finite-source-map"
+paper_section = "FiniteSource"
+description = "Real finite-source map tensoring Tamagawa, torsion, and Sha--Cassels--Tate rows"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.FiniteSource"
+lean_decl = "SixBirdsBSD.Apparatus.FiniteSource.finiteSourceMap"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:finite-source-schur-collapse"
+paper_section = "FiniteSource"
+description = "Pairing-aware finite source has zero full identity Schur residual"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.FiniteSource"
+lean_decl = "SixBirdsBSD.Apparatus.FiniteSource.finiteSourceSchurCollapse"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:scalar-finite-shadow"
+paper_section = "FiniteSource"
+description = "Scalar finite projection has positive residual trace and noninjective witnesses"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.FiniteSource"
+lean_decl = "SixBirdsBSD.Apparatus.FiniteSource.scalarFiniteShadow"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:dim-sha-shadow"
+paper_section = "FiniteSource"
+description = "Dimension-only Sha projection leaves the Cassels--Tate coordinate as residual"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.FiniteSource"
+lean_decl = "SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:p-adic-map"
+paper_section = "PAdic"
+description = "Real p-adic map with ordinary and signed local branches"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.PAdic"
+lean_decl = "SixBirdsBSD.Apparatus.PAdic.pAdicMap"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:ordinary-schur-collapse"
+paper_section = "PAdic"
+description = "Good-ordinary local full source collapses and omitting ordinary control leaves residual one"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.PAdic"
+lean_decl = "SixBirdsBSD.Apparatus.PAdic.ordinarySchurCollapse"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:signed-schur-collapse"
+paper_section = "PAdic"
+description = "Signed local full source collapses and unsigned aggregation forgets the difference row"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.PAdic"
+lean_decl = "SixBirdsBSD.Apparatus.PAdic.signedSchurCollapse"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:det-assembly-map"
+paper_section = "DetAssembly"
+description = "Real determinant-assembly map multiplying the local tensor by the orientation coordinate"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.DetAssembly"
+lean_decl = "SixBirdsBSD.Apparatus.DetAssembly.detAssemblyMap"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:cascade-completion-signature"
+paper_section = "DetAssembly"
+description = "Cascade Schur signature leaves exactly the determinant-orientation coordinate"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.DetAssembly"
+lean_decl = "SixBirdsBSD.Apparatus.DetAssembly.cascadeCompletionSignature"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:five-column-tensor"
+paper_section = "Comparison"
+description = "Five-column tensor assembling analytic, height, finite, p-adic, and determinant columns"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Comparison"
+lean_decl = "SixBirdsBSD.Apparatus.Comparison.fiveColumnTensor"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:five-col-bk-comparison"
+paper_section = "Comparison"
+description = "Five-column typed source is adequate for the BK scalar contraction with determinant kernel"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Comparison"
+lean_decl = "SixBirdsBSD.Apparatus.Comparison.fiveColBkComparison"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:rank-two-kummer-source"
+paper_section = "HigherRankNoGo"
+description = "Rank-two Mordell--Weil Kummer source from a known two-element basis"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.HigherRankNoGo"
+lean_decl = "SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoKummerSource"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:rank-two-height-schur-collapse"
+paper_section = "HigherRankNoGo"
+description = "Rank-two full height matrix carrier collapses while scalar determinant leaves residual two"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.HigherRankNoGo"
+lean_decl = "SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoHeightSchurCollapse"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:gram-matrix-shadow"
+paper_section = "HigherRankNoGo"
+description = "Gram matrix is a noninjective public shadow of rank-r motivic cycle data for r at least two"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.HigherRankNoGo"
+lean_decl = "SixBirdsBSD.Apparatus.HigherRankNoGo.gramMatrixShadow"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:finite-window-no-go"
+paper_section = "GlobalAuditNoGo"
+description = "Finite W50 window rows leave unbounded tail residual and cannot distinguish outside completions"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.GlobalAuditNoGo"
+lean_decl = "SixBirdsBSD.Apparatus.GlobalAuditNoGo.finiteWindowNoGo"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:finite-prime-cover-no-go"
+paper_section = "SupportPrimeNoGo"
+description = "No bounded finite prime set distinguishes all-prime support coverage completions"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.SupportPrimeNoGo"
+lean_decl = "SixBirdsBSD.Apparatus.SupportPrimeNoGo.finitePrimeCoverNoGo"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:support-prime-truncation-residual"
+paper_section = "SupportPrimeNoGo"
+description = "Finite diagnostic residual counting R4b rows in a support-prime truncation"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.SupportPrimeNoGo"
+lean_decl = "SixBirdsBSD.Apparatus.SupportPrimeNoGo.supportPrimeTruncationResidual"
+notes = ""
+
+[[definition]]
+paper_label = "def:apparatus:vsrc-algebra"
+paper_section = "Vsrc"
+description = "Virtual source algebra indexed by ordered exterior monomial coefficient slots"
+status = "definition"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Vsrc"
+lean_decl = "SixBirdsBSD.Apparatus.Vsrc.vsrcAlgebra"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:vsrc-stage-i-consistency"
+paper_section = "Vsrc"
+description = "Stage I normal forms have exactly two-power coefficient slots with low ranks preserved"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Vsrc"
+lean_decl = "SixBirdsBSD.Apparatus.Vsrc.vsrcStageIConsistency"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:vsrc-stage-ii-gz-partial"
+paper_section = "Vsrc"
+description = "Stage II recovers the GZ source-regulator side but leaves analytic-height import residual"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Vsrc"
+lean_decl = "SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIGzPartial"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:vsrc-stage-iii-translation"
+paper_section = "Vsrc"
+description = "Stage III gives one-way rank-two motivic-to-scalar translation under bridge with reverse externalized"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.Vsrc"
+lean_decl = "SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIITranslation"
+notes = ""
+
+[[claim]]
+paper_label = "thm:apparatus:kappa-r-normalization-equivalence"
+paper_section = "KappaNormalization"
+description = "Canonical kappa_r normalization is equivalent to equality of cascade and standard BSD forms"
+status = "theorem"
+lean_subproject = "."
+lean_module = "SixBirdsBSD.Apparatus.KappaNormalization"
+lean_decl = "SixBirdsBSD.Apparatus.KappaNormalization.kappaRNormalizationEquivalence"
+notes = ""
