@@ -139,6 +139,30 @@ example : ¬ SixBirdsBSD.Apparatus.SupportPrimeNoGo.IsPrime 8 := by decide +kern
 
 open SixBirdsBSD.Closure.RationalLocalGlobal
 
+/-- Composite-only flags contribute nothing to the prime diagnostic. -/
+example : SupportPrimeNoGo.supportPrimeTruncationResidual (fun p => p == 4) 4 = 0 := by
+  decide +kernel
+
+example : SupportPrimeNoGo.supportPrimeTruncationResidual (fun _ => true) 10 = 4 := by
+  decide +kernel
+
+example : SupportPrimeNoGo.b50ResidualBelow50 .c11a1 = 1 ∧
+    SupportPrimeNoGo.b50ResidualBelow50 .c37a1 = 1 ∧
+    SupportPrimeNoGo.b50ResidualBelow50 .c121b1 = 1 ∧
+    SupportPrimeNoGo.b50ResidualBelow50 .c960d1 = 3 ∧
+    SupportPrimeNoGo.b50ResidualBelow50 .c571a1 = 0 := by
+  decide +kernel
+
+example : ∃ q, SupportPrimeNoGo.IsPrime q ∧ q ∉ [2, 3, 5] ∧
+    SupportPrimeNoGo.AllPrimeRowsCovered SupportPrimeNoGo.coverageBase ∧
+    ¬ SupportPrimeNoGo.AllPrimeRowsCovered (SupportPrimeNoGo.coverageVariant q) := by
+  obtain ⟨q, hq, hmissing, hbase, hvariant, _⟩ :=
+    SupportPrimeNoGo.finitePrimeCoverSeparatesTarget.{0} [2, 3, 5] (by
+      intro p hp
+      simp at hp
+      rcases hp with rfl | rfl | rfl <;> decide +kernel)
+  exact ⟨q, hq, hmissing, hbase, hvariant⟩
+
 /-- Both sources are required for exact recovery on the declared {2,3}
 support: source A sees prime 2 and source B sees prime 3. -/
 example :
@@ -225,5 +249,10 @@ example : ¬ ForcesScalarOnSupport (fun p => p = 2) (fun p => p % 2 = 1) :=
 #print axioms SixBirdsBSD.Closure.RationalLocalGlobal.twoSourcesIndispensableForScalar
 #print axioms SixBirdsBSD.Closure.RationalLocalGlobal.fixityNecessaryForUnitAssembly
 #print axioms SixBirdsBSD.Closure.RationalLocalGlobal.finitePrimeUnitNoGo
+#print axioms SixBirdsBSD.Apparatus.SupportPrimeNoGo.finitePrimeCoverSeparatesTarget
+#print axioms SixBirdsBSD.Apparatus.SupportPrimeNoGo.countR4bUpToCongr
+#print axioms SixBirdsBSD.Apparatus.NormalizationChecks.pfaffianDependsOnLift
+#print axioms SixBirdsBSD.Apparatus.NormalizationChecks.noLiftInvariantNumericalPfaffian
+#print axioms SixBirdsBSD.Apparatus.NormalizationChecks.assembledColumnDoubleCounts
 
 end SixBirdsBSD.Verification.Regression

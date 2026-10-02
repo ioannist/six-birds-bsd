@@ -5,6 +5,7 @@ import SixBirdsBSD.Apparatus.FiniteSource
 import SixBirdsBSD.Apparatus.PAdic
 import SixBirdsBSD.Apparatus.DetAssembly
 import SixBirdsBSD.Apparatus.Comparison
+import SixBirdsBSD.Apparatus.NormalizationChecks
 import SixBirdsBSD.Apparatus.HigherRankNoGo
 import SixBirdsBSD.Apparatus.GlobalAuditNoGo
 import SixBirdsBSD.Apparatus.SupportPrimeNoGo

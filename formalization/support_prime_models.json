@@ -1,0 +1,106 @@
+{
+  "source_url": "https://raw.githubusercontent.com/JohnCremona/ecdata/master/allcurves/allcurves.00000-09999",
+  "retrieved_utc": "2026-10-02",
+  "download_sha256": "259f3846329395b371e8079c77a6f1097adaebc98a054974573e241416efa968",
+  "curve_label_convention": "Cremona",
+  "models": {
+    "11a1": {
+      "conductor": 11,
+      "a_invariants": [
+        0,
+        -1,
+        1,
+        -10,
+        -20
+      ],
+      "rank_recorded": 0,
+      "torsion_order_recorded": 5
+    },
+    "121b1": {
+      "conductor": 121,
+      "a_invariants": [
+        0,
+        -1,
+        1,
+        -7,
+        10
+      ],
+      "rank_recorded": 1,
+      "torsion_order_recorded": 1
+    },
+    "37a1": {
+      "conductor": 37,
+      "a_invariants": [
+        0,
+        0,
+        1,
+        -1,
+        0
+      ],
+      "rank_recorded": 1,
+      "torsion_order_recorded": 1
+    },
+    "389a1": {
+      "conductor": 389,
+      "a_invariants": [
+        0,
+        1,
+        1,
+        -2,
+        0
+      ],
+      "rank_recorded": 2,
+      "torsion_order_recorded": 1
+    },
+    "571a1": {
+      "conductor": 571,
+      "a_invariants": [
+        0,
+        -1,
+        1,
+        -929,
+        -10595
+      ],
+      "rank_recorded": 0,
+      "torsion_order_recorded": 1
+    },
+    "960d1": {
+      "conductor": 960,
+      "a_invariants": [
+        0,
+        -1,
+        0,
+        -900,
+        -10098
+      ],
+      "rank_recorded": 0,
+      "torsion_order_recorded": 2
+    }
+  },
+  "atlas_curves": [
+    "11a1",
+    "37a1",
+    "121b1",
+    "960d1",
+    "571a1"
+  ],
+  "paper_supplied_r4b_primes": {
+    "11a1": [
+      11
+    ],
+    "37a1": [
+      37
+    ],
+    "121b1": [
+      11
+    ],
+    "960d1": [
+      2,
+      3,
+      5
+    ],
+    "571a1": [
+      571
+    ]
+  }
+}

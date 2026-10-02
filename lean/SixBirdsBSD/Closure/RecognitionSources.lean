@@ -80,11 +80,15 @@ structure gammaShaPersistence
   tameInertiaTrivializing : Prop
   tameInertiaTrivializing_proof : tameInertiaTrivializing
   SignedSelmerSource : Type w
+  /-- The cover-side readout of the signed local pairing. -/
   SignedSelmerTarget : Type x
+  /-- The base-field readout after corestriction. Cover and base carriers
+  are kept distinct; determinant-line compatibility remains supplied. -/
+  SignedSelmerBase : Type x
   DeterminantValue : Type y
   signed_local_pairing_p : SignedSelmerSource → SignedSelmerTarget
-  cores_L_Qp : SignedSelmerTarget → SignedSelmerTarget
-  det : (SignedSelmerSource → SignedSelmerTarget) → DeterminantValue
+  cores_L_Qp : SignedSelmerTarget → SignedSelmerBase
+  det : (SignedSelmerSource → SignedSelmerBase) → DeterminantValue
   C_loc_III : DeterminantValue
   C_loc_III_eq_det_corestriction_signed_local_pairing :
     C_loc_III =

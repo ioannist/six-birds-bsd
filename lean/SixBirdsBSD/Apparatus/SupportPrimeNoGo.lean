@@ -99,10 +99,23 @@ structure PrimeCoverageCompletion where
   covered : Nat → Bool
 
 def coverageBase : PrimeCoverageCompletion :=
-  ⟨fun _ => false⟩
+  ⟨fun _ => true⟩
 
 def coverageVariant (q : Nat) : PrimeCoverageCompletion :=
-  ⟨fun p => if p = q then true else false⟩
+  ⟨fun p => if p = q then false else true⟩
+
+/-- The universal coverage target on the declared formal row carrier. -/
+def AllPrimeRowsCovered (c : PrimeCoverageCompletion) : Prop :=
+  ∀ p, IsPrime p → c.covered p = true
+
+theorem coverageBaseComplete : AllPrimeRowsCovered coverageBase :=
+  fun _ _ => rfl
+
+theorem coverageVariantIncomplete (q : Nat) (hq : IsPrime q) :
+    ¬ AllPrimeRowsCovered (coverageVariant q) := by
+  intro h
+  have hqrow := h q hq
+  simp [coverageVariant] at hqrow
 
 def agreeOnPrimeSet (P0 : List Nat) (a b : PrimeCoverageCompletion) : Prop :=
   ∀ p, p ∈ P0 → a.covered p = b.covered p
@@ -187,9 +200,39 @@ theorem finitePrimeCoverNoGo (P0 : List Nat) (hp : ∀ p ∈ P0, IsPrime p) :
     have hpne : p ≠ q := by intro heq; subst p; exact hqnot hp
     simp [restrictedRows, coverageBase, coverageVariant, hpne]
 
+/-- The split pair differs in the all-prime target, not only in a row.
+This is a theorem about formal coverage records, not elliptic-curve
+realization of every Boolean assignment. -/
+theorem finitePrimeCoverSeparatesTarget (P0 : List Nat)
+    (hp : ∀ p ∈ P0, IsPrime p) :
+    ∃ q, IsPrime q ∧ q ∉ P0 ∧
+      AllPrimeRowsCovered coverageBase ∧
+      ¬ AllPrimeRowsCovered (coverageVariant q) ∧
+      (∀ (α : Sort _) (operator : ((p : Nat) → p ∈ P0 → Bool) → α),
+        operator (restrictedRows P0 coverageBase) =
+          operator (restrictedRows P0 (coverageVariant q))) := by
+  obtain ⟨q, hq, hmissing, _, _, hoperators⟩ := finitePrimeCoverNoGo P0 hp
+  exact ⟨q, hq, hmissing, coverageBaseComplete, coverageVariantIncomplete q hq,
+    hoperators⟩
+
+/-- Count only residual rows at actual primes at most B. In particular,
+rows at zero, one, and composites make no contribution. -/
 def countR4bUpTo : Nat → (Nat → Bool) → Nat
-  | 0, r4b => if r4b 0 then 1 else 0
-  | Nat.succ B, r4b => countR4bUpTo B r4b + if r4b (B + 1) then 1 else 0
+  | 0, _ => 0
+  | Nat.succ B, r4b => countR4bUpTo B r4b +
+      if IsPrime (B + 1) then (if r4b (B + 1) then 1 else 0) else 0
+
+/-- Arbitrary changes outside the prime truncation do not affect the count. -/
+theorem countR4bUpToCongr (B : Nat) (a b : Nat → Bool)
+    (h : ∀ p, p ≤ B → IsPrime p → a p = b p) :
+    countR4bUpTo B a = countR4bUpTo B b := by
+  induction B with
+  | zero => rfl
+  | succ B ih =>
+    rw [countR4bUpTo, countR4bUpTo, ih (fun p hle hp => h p (by omega) hp)]
+    by_cases hp : IsPrime (B + 1)
+    · rw [if_pos hp, if_pos hp, h (B + 1) (by omega) hp]
+    · rw [if_neg hp, if_neg hp]
 
 /-- Finite diagnostic residual: one unit for each R4b row in the truncation. -/
 def supportPrimeTruncationResidual (r4b : Nat → Bool) (B : Nat) : Nat :=
@@ -202,11 +245,17 @@ inductive B50Curve where
   | c960d1
   | c571a1
 
-def b50ResidualBelow50 : B50Curve → Nat
-  | B50Curve.c11a1 => 1
-  | B50Curve.c37a1 => 1
-  | B50Curve.c121b1 => 1
-  | B50Curve.c960d1 => 3
-  | B50Curve.c571a1 => 0
+/-- The paper's supplied R4b assignment. Arithmetic applicability of the
+ordinary/signed imports is not established by this finite lookup. -/
+def b50R4bRows : B50Curve → Nat → Bool
+  | B50Curve.c11a1, p => p == 11
+  | B50Curve.c37a1, p => p == 37
+  | B50Curve.c121b1, p => p == 11
+  | B50Curve.c960d1, p => p == 2 || p == 3 || p == 5
+  | B50Curve.c571a1, p => p == 571
+
+/-- Derive the recorded below-50 residual from its prime rows. -/
+def b50ResidualBelow50 (curve : B50Curve) : Nat :=
+  supportPrimeTruncationResidual (b50R4bRows curve) 49
 
 end SixBirdsBSD.Apparatus.SupportPrimeNoGo

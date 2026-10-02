@@ -110,6 +110,8 @@ validate:
 	python3 scripts/audit_foundations_dependencies.py --check --skip-validation
 	python3 scripts/check_foundations_provenance.py --check
 	python3 scripts/check_semantic_alignment.py --check
+	python3 scripts/check_supplementary_statement_audit.py --check
+	python3 scripts/check_support_prime_data.py --check
 
 # verify-lean is the build-dependent gate: it builds the Lean project (incl. the
 # vendored Foundations libraries) and runs the live `lake env lean` axiom-closure
@@ -121,7 +123,7 @@ verify-lean:
 	python3 scripts/check_manifests.py --check
 
 test:
-	python3 -m pytest scripts/test_check_manifests.py scripts/test_check_semantic_alignment.py
+	python3 -m pytest scripts/test_check_manifests.py scripts/test_check_semantic_alignment.py scripts/test_check_supplementary_statement_audit.py
 
 public-audit:
 	scripts/check_public_hygiene.sh

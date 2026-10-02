@@ -1,0 +1,406 @@
+{
+  "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
+  "lean_context_hash": "fa0454f1fee34b8a8013a209f788054edded0d9eec4f65aed135f4b03e666132",
+  "items": [
+    {
+      "latex_label": "def:apparatus:bk-component-map",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_02_decomposition.tex",
+      "line_start": 37,
+      "statement_hash": "6451902ee0c4b9b9d9832505e803e9bfa5aa90191a177d9876117b4a3178dfc7",
+      "lean_decl": "SixBirdsBSD.Apparatus.Decomposition.bkComponentMap",
+      "assessment": "conditional assembly",
+      "notes": "The Lean map consumes all five columns and supplied transports simultaneously. A genuine determinant-line assembly, all-prime support conventions, and arithmetic applicability are additional inputs; the displayed direct-sum notation does not construct them."
+    },
+    {
+      "latex_label": "def:apparatus:bridge-defect-equation",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_02_decomposition.tex",
+      "line_start": 86,
+      "statement_hash": "9771aaba5f6d96ad675d5119fd6131f9a196cd6551f3e9f091a0ffd62144310e",
+      "lean_decl": "SixBirdsBSD.Apparatus.Decomposition.bridgeDefectEquation",
+      "assessment": "conditional normalization",
+      "notes": "The Lean equation is an integer scalar identity with a supplied local sum. An actual infinite sum requires finite support or convergence. Equivalence with multiplicative coordinates requires a defined logarithmic/trivialization convention and treatment of signs and units."
+    },
+    {
+      "latex_label": "nonclaim:apparatus:decomposition-scope",
+      "env_kind": "nonclaim",
+      "source_file": "paper/apparatus/sections/sec_02_decomposition.tex",
+      "line_start": 225,
+      "statement_hash": "589362f45c2bfec6f4e42cfd7a838dca10bcfcf868f5ae0eb4c387044ade0125",
+      "lean_decl": "",
+      "assessment": "consistent scope boundary",
+      "notes": "The exclusion of a BSD, Bloch-Kato, or ETNC proof agrees with the actual conditional assembly and narrowed shadow witnesses. The five arithmetic transports remain external obligations."
+    },
+    {
+      "latex_label": "def:apparatus:height-regulator-map",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_03_height_regulator.tex",
+      "line_start": 12,
+      "statement_hash": "214f3b39a3884550abcff62c0667a61167f91bb3d2ac8be3af6f7db8e1c750d7",
+      "lean_decl": "SixBirdsBSD.Apparatus.HeightRegulator.heightRegulatorMap",
+      "assessment": "supplied determinant operation",
+      "notes": "The determinant transformation under an integral unimodular basis change is mathematically valid, including the empty determinant. Lean accepts an arbitrary determinant function and does not construct the Neron-Tate pairing, lattice, dual space, or basis independence."
+    },
+    {
+      "latex_label": "obl:apparatus:rho-ht-reg-transport",
+      "env_kind": "obligation",
+      "source_file": "paper/apparatus/sections/sec_03_height_regulator.tex",
+      "line_start": 132,
+      "statement_hash": "3a18e40be224a53197465d0c861374dd760412be23043c89bfa7bedb8d638885",
+      "lean_decl": "",
+      "assessment": "open arithmetic transport",
+      "notes": "Neron-Tate to Beilinson-Deligne regulator normalization, integral lattice conventions, and compatibility with the other columns are explicitly open. They are not discharged by identity-matrix Schur collapse."
+    },
+    {
+      "latex_label": "warn:apparatus:571a1-carrier",
+      "env_kind": "warning",
+      "source_file": "paper/apparatus/sections/sec_03_height_regulator.tex",
+      "line_start": 151,
+      "statement_hash": "a0f6ad4eed7a25bd1faeb82fde37655bb8b42958dec18f9bd23f7d2b0d4bfaf8",
+      "lean_decl": "",
+      "assessment": "primary-data rank check; Sha witness open",
+      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. The current primary curve data agrees with the stated rank-zero and rank-two 389a1 choices. A proof-bearing nontrivial Sha[2]/Cassels-Tate computation is still needed beyond a recorded analytic Sha value."
+    },
+    {
+      "latex_label": "def:apparatus:analytic-period-map",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_04_analytic_period.tex",
+      "line_start": 12,
+      "statement_hash": "f7b8658771b27425cee6dafb2a8156a9c6c1980a525b75aa512359057893954f",
+      "lean_decl": "SixBirdsBSD.Apparatus.AnalyticPeriod.analyticPeriodMap",
+      "assessment": "conditional scalar readout",
+      "notes": "The leading Taylor coefficient has the correct factorial convention. The Lean map accepts supplied division and scalar multiplication. The positive period generator and connected-component convention must agree with the eventual BSD period; nonzero period is needed for arithmetic division."
+    },
+    {
+      "latex_label": "obl:apparatus:rho-an-period-transport",
+      "env_kind": "obligation",
+      "source_file": "paper/apparatus/sections/sec_04_analytic_period.tex",
+      "line_start": 111,
+      "statement_hash": "ccfbedd258a2292e579a8126c77afb886c8b406b4528faf25e8431299b8d2bbe",
+      "lean_decl": "",
+      "assessment": "open arithmetic transport",
+      "notes": "The analytic zeta-element comparison requires period, rational/integral, real-orientation, and leading-term conventions. Its claimed rank-zero classical applicability must be matched to a precise cited statement; positive-rank content is explicitly supplied."
+    },
+    {
+      "latex_label": "def:apparatus:finite-source-map",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_05_finite_source.tex",
+      "line_start": 11,
+      "statement_hash": "0c1fd8e46c52952b7f9233d208d2b9e5c72c53e6af1a007f2e84b5de8041af19",
+      "lean_decl": "SixBirdsBSD.Apparatus.FiniteSource.finiteSourceMap",
+      "assessment": "normalization obligation",
+      "notes": "The Lean map tensors three supplied readouts. Raw torsion-valued Cassels-Tate entries do not determine a numerical Pfaffian of a rational lift; NormalizationChecks proves an explicit counterexample. An integral presentation, determinant-line interpretation, and generator normalization are required."
+    },
+    {
+      "latex_label": "obl:apparatus:rho-finite-transport",
+      "env_kind": "obligation",
+      "source_file": "paper/apparatus/sections/sec_05_finite_source.tex",
+      "line_start": 308,
+      "statement_hash": "a36ce00d376b05bf25a951d456dcc0c0f06764106cdb132ae676efb6295fb2b9",
+      "lean_decl": "",
+      "assessment": "open arithmetic transport",
+      "notes": "The integral finite comparison must supply local conditions, squared torsion, and a normalized determinant-line Pfaffian. A raw finite pairing does not by itself select a real scalar lift."
+    },
+    {
+      "latex_label": "def:apparatus:p-adic-map",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_06_p_adic.tex",
+      "line_start": 11,
+      "statement_hash": "9e6cf83973176bed15b3a2cda710f44fa88effe4280d7952b738fc91c1dc23f8",
+      "lean_decl": "SixBirdsBSD.Apparatus.PAdic.pAdicMap",
+      "assessment": "corrected typed interface",
+      "notes": "The manuscript dual exponential has the wrong finite-lane type. Lean now distinguishes the finite exponential/logarithm comparison from the dual exponential and derives finite-lane vanishing of the latter. Signed integral comparisons and small-prime scope remain supplied; see padic_transport_correction.md and support_prime_data_audit.md."
+    },
+    {
+      "latex_label": "obl:apparatus:rho-p-transport",
+      "env_kind": "obligation",
+      "source_file": "paper/apparatus/sections/sec_06_p_adic.tex",
+      "line_start": 215,
+      "statement_hash": "df5cad31f8d6111916addd0ad0eba876bac521a8a498d09e233a9dceb9cc0540",
+      "lean_decl": "",
+      "assessment": "open arithmetic transport",
+      "notes": "Integral Fontaine-Laffaille/Wach, local duality, signed normalization, and local-global compatibility are explicitly open. The finite-coordinate signature and repaired exponential typing do not construct this bridge."
+    },
+    {
+      "latex_label": "def:apparatus:det-assembly-map",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_07_det_assembly.tex",
+      "line_start": 11,
+      "statement_hash": "eb8fa4caf6092b3455804398a22a6250e88371c92cbc16824a54a8334b4e662a",
+      "lean_decl": "SixBirdsBSD.Apparatus.DetAssembly.detAssemblyMap",
+      "assessment": "conditional final assembly",
+      "notes": "Lean consumes four arithmetic inputs and an independent orientation. Arithmetic determinant signs and normalization remain supplied. This final assembled value must not be reused as an independent fifth factor alongside the same four inputs."
+    },
+    {
+      "latex_label": "obl:apparatus:rho-det-assembly",
+      "env_kind": "obligation",
+      "source_file": "paper/apparatus/sections/sec_07_det_assembly.tex",
+      "line_start": 126,
+      "statement_hash": "bfbca394dd355f1d538d6dd6eed2ddc8ab553c07771698e01560754a4957cd07",
+      "lean_decl": "",
+      "assessment": "open arithmetic transport",
+      "notes": "Knudsen-Mumford signs, common determinant lines, zeta-element normalization, and four-column compatibility remain supplied arithmetic content. Keep the independent determinant input distinct from the resulting final assembly."
+    },
+    {
+      "latex_label": "rmk:apparatus:five-column-literature-gap",
+      "env_kind": "remark",
+      "source_file": "paper/apparatus/sections/sec_08_comparison.tex",
+      "line_start": 11,
+      "statement_hash": "3c520116471b87bd7025fad877e2f897951cae61609ce2a238deeab78ca8332a",
+      "lean_decl": "",
+      "assessment": "unverified literature-audit observation",
+      "notes": "This is explicitly an observation about a limited cited corpus, not a mathematical impossibility result. The source-by-source comparison with Bloch-Kato, Fontaine-Perrin-Riou, and Nekovar has not been reproduced here; the novelty observation remains a provenance obligation."
+    },
+    {
+      "latex_label": "def:apparatus:five-column-tensor",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_08_comparison.tex",
+      "line_start": 24,
+      "statement_hash": "7a08280a5258dc4d4946d0bc8a75f8347227a3c75fcb9814f50dd9ecedff4248",
+      "lean_decl": "SixBirdsBSD.Apparatus.Comparison.fiveColumnTensor",
+      "assessment": "double-counting repair obligation",
+      "notes": "The generic Lean tensor accepts five independent arguments. In the displayed arithmetic definition, rho_det already assembles the other four columns; multiplying all five values duplicates those columns. NormalizationChecks gives exact values 210 versus 44100. Use the independent determinant orientation/trivialization as the fifth input."
+    },
+    {
+      "latex_label": "def:apparatus:rank-two-kummer-source",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_09_higher_rank_no_go.tex",
+      "line_start": 12,
+      "statement_hash": "d639ce0bb3bd8b0329832cf68073e64e0ce9542d5f51504bdef1b307bab2721c",
+      "lean_decl": "SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoKummerSource",
+      "assessment": "conditional classical source",
+      "notes": "The Kummer source is a valid classical construction given the curve, Mordell-Weil basis, and finite local conditions. Lean composes supplied functions on two points; it does not verify a basis or realize independent Selmer classes. The current Cremona record for 389a1 has rank two."
+    },
+    {
+      "latex_label": "def:apparatus:support-prime-truncation-residual",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_11_support_prime_no_go.tex",
+      "line_start": 48,
+      "statement_hash": "3d0622ff14887214f7de55016330e127806cadff1f56c859def5e0a6c4df5040",
+      "lean_decl": "SixBirdsBSD.Apparatus.SupportPrimeNoGo.supportPrimeTruncationResidual",
+      "assessment": "repaired prime counter",
+      "notes": "Lean now counts only actual prime indices at most B, and proves invariance under changes outside that prime truncation. The recorded below-50 values are computed from supplied R4b flags. Numeric point counts are reconstructed, but arithmetic R4a applicability is not certified."
+    },
+    {
+      "latex_label": "rmk:apparatus:support-prime-atlas",
+      "env_kind": "remark",
+      "source_file": "paper/apparatus/sections/sec_11_support_prime_no_go.tex",
+      "line_start": 72,
+      "statement_hash": "27608cdd0bd17ff1746b855272a36d54feb24011ce397c1233fd935ac3a60f74",
+      "lean_decl": "",
+      "assessment": "numerical reconstruction; classification open",
+      "notes": "The original atlas is absent. A separate 76-row reconstruction checks actual point counts by two algorithms and confirms the supplied bad-prime lists. Five good supersingular small-prime rows need additional signed applicability bridges; the paper R4a classifications are not established by reduction type alone."
+    },
+    {
+      "latex_label": "def:apparatus:vsrc-algebra",
+      "env_kind": "definition",
+      "source_file": "paper/apparatus/sections/sec_12_vsrc.tex",
+      "line_start": 11,
+      "statement_hash": "5231da6adc931b250513c4e65c9289801c4f213cfafae19a70fef49a2615ed14",
+      "lean_decl": "SixBirdsBSD.Apparatus.Vsrc.vsrcAlgebra",
+      "assessment": "narrowed algebra",
+      "notes": "Lean constructs the associative rank-two exterior multiplication over integer coordinates, including both additive and scalar bilinearity. It is not the full rational or arbitrary-rank exterior algebra, and virtual basis symbols do not establish arithmetic non-descent or motivic realization."
+    },
+    {
+      "latex_label": "rmk:apparatus:vsrc-no-licensed-descent",
+      "env_kind": "remark",
+      "source_file": "paper/apparatus/sections/sec_12_vsrc.tex",
+      "line_start": 117,
+      "statement_hash": "cbf277528881ef35a231c7d246cd96671532983e99cfece24866f4ff62f54a31",
+      "lean_decl": "",
+      "assessment": "ledger observation; arithmetic realization open",
+      "notes": "The declared virtual algebra and Gram metadata do not construct motivic, Selmer, or Mordell-Weil realizations. The cited historical Kato/BDP audit records are not present as executable or proof-bearing source realizations; this remains a limited input-ledger observation."
+    },
+    {
+      "latex_label": "rmk:apparatus:vsrc-rank-r-stronger",
+      "env_kind": "remark",
+      "source_file": "paper/apparatus/sections/sec_12_vsrc.tex",
+      "line_start": 285,
+      "statement_hash": "56c689327b7e63ddad677b85def24b857b7869d554776e134030df2d68a5469a",
+      "lean_decl": "",
+      "assessment": "appropriately limited interpretation",
+      "notes": "A specified independent source tuple carries more recorded data than a determinant scalar. The remark explicitly avoids a global strict-strength theorem. The Stage-III bridge still requires a fixed-pair hypothesis and a separate reverse construction."
+    },
+    {
+      "latex_label": "def:closure:chi-ct-p-import",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_02_imports.tex",
+      "line_start": 29,
+      "statement_hash": "4ed4dfbf3a4899bb29f19b773d753d1fe5b782985026ec4889c6f1bd6600a8bc",
+      "lean_decl": "SixBirdsBSD.Closure.Imports.chiCTpImport",
+      "assessment": "supplied arithmetic certificate",
+      "notes": "The eight proposition fields have no fixed arithmetic meanings. The sign and canonical-map certificates are supplied independently, not derived from those named fields. Exact source theorem statements, hypotheses, determinant-line normalization, and sign comparison require primary-source review."
+    },
+    {
+      "latex_label": "def:closure:a-e-import",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_02_imports.tex",
+      "line_start": 63,
+      "statement_hash": "bf15caa7cca7db4d9fe1056950e1a30e335c834f4678cb3e01afa4defe72c8db",
+      "lean_decl": "SixBirdsBSD.Closure.Imports.aEImport",
+      "assessment": "supplied substrate",
+      "notes": "Lean records an arbitrary category carrier, pairing function, and propositions. Bilinearity is not tied to algebraic operations on that pairing; the actual Selmer-complex and ETNC-adjacent realization must be supplied. The declaration alone does not identify a universal published A_E object."
+    },
+    {
+      "latex_label": "def:closure:beilinson-import",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_02_imports.tex",
+      "line_start": 91,
+      "statement_hash": "0d535bd25786ec99692bee9ddc1968a8689181fedea8894541f971c37f940e3c",
+      "lean_decl": "SixBirdsBSD.Closure.Imports.beilinsonImport",
+      "assessment": "supplied comparison",
+      "notes": "The rank-at-least-two and regulator comparison are explicit hypotheses, not an independently established general elliptic-curve L-value theorem. Landing now gates the input by rank and matches the rank. Actual curve and determinant-line applicability still require a bridge."
+    },
+    {
+      "latex_label": "nonclaim:closure:imports-not-derived",
+      "env_kind": "nonclaim",
+      "source_file": "paper/closure/sections/sec_02_imports.tex",
+      "line_start": 109,
+      "statement_hash": "d85a6792fe092df4d8665edd2ec8dd82e427497af7d06d67cd9bdb24bddbede5",
+      "lean_decl": "",
+      "assessment": "consistent conditional boundary",
+      "notes": "The local import structures introduce no project-local axioms, but their hypothesis fields include the hard arithmetic comparisons. Kernel verification of projections does not verify external source provenance or applicability."
+    },
+    {
+      "latex_label": "def:closure:gamma-padic-descent",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
+      "line_start": 26,
+      "statement_hash": "becd2a6db20278f1eca0160ee05227aca1d6543008e6d279e81ec429a2ebf576",
+      "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent",
+      "assessment": "restricted recognition carrier",
+      "notes": "The local comparison is supplied content, with concrete c_p=1 or 2 but arbitrary proposition fields for the odd additive scope. Neither the comparison proposition nor the unit type defines tamFactor as a global arithmetic factor. Coverage and exact global return remain open."
+    },
+    {
+      "latex_label": "def:closure:gamma-sha-persistence",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
+      "line_start": 63,
+      "statement_hash": "0cc9b764b7d48c16d5e72f87b505939177e5360d617ae0901b54daeae9000ac1",
+      "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaShaPersistence",
+      "assessment": "corrected cover/base typing",
+      "notes": "Corestriction now maps the cover-side readout to a distinct base-side carrier, and the supplied determinant consumes that composition. Linearity, equal-rank determinant-line compatibility, integral unit congruence, and the connection of shaFactor to the comparison remain open."
+    },
+    {
+      "latex_label": "def:closure:gamma-higher-gz-fixity",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
+      "line_start": 95,
+      "statement_hash": "e1813eff633f40f14a4e7982b72a6d604018db50881fe64881519c2b5b13ab80",
+      "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity",
+      "assessment": "supplied normalized identity",
+      "notes": "For non-CM high rank the recognition record supplies the fixity content. Once kappa, regulator, period, and Tamagawa data match the shell, the scalar BSD identity follows without the other two recognition inputs. A genuinely native version is needed for source-indispensability research."
+    },
+    {
+      "latex_label": "nonclaim:closure:recognition-sources-not-derived",
+      "env_kind": "nonclaim",
+      "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
+      "line_start": 138,
+      "statement_hash": "8883e2710e6c16523741ad2a77db74f4ae8996a422a1cb7a06608ef6ceccb4ae",
+      "lean_decl": "",
+      "assessment": "consistent conditional boundary",
+      "notes": "The recognition records are explicitly supplied. This is compatible with the conditional endpoint and does not make them derived framework theorems or prove that each named source is indispensable."
+    },
+    {
+      "latex_label": "def:closure:sel-bsd-shell",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_04_shell_readout.tex",
+      "line_start": 14,
+      "statement_hash": "e25f5858d190c0eaaaad4c4a009294a014153590ff82076d1ff55bd682bdbfa1",
+      "lean_decl": "SixBirdsBSD.Closure.SelShell.selBSDShell",
+      "assessment": "supplied closure architecture",
+      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing."
+    },
+    {
+      "latex_label": "def:closure:pi-bsd",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_04_shell_readout.tex",
+      "line_start": 58,
+      "statement_hash": "359d3f2ab4a11c64c7f3f0458ca478271ca3e9e669a613475511d4de889978b7",
+      "lean_decl": "SixBirdsBSD.Closure.SelShell.piBSD",
+      "assessment": "quantified conditional record",
+      "notes": "Lean retains prime/lift quantifiers, same-curve comparisons, rank matching, and factor matching. It gives a forward scalar conclusion in all ranks. Scalar equality alone does not reconstruct local recognition records, so a reverse recognition equivalence has not been proved."
+    },
+    {
+      "latex_label": "def:closure:eta-published-imports",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_06_eta_formula.tex",
+      "line_start": 11,
+      "statement_hash": "31e9fc6b2b602078426dc7fcb960d1902377bf6724a9290659b582d1c4194c59",
+      "lean_decl": "SixBirdsBSD.Closure.EtaFormula.etaPublishedImports",
+      "assessment": "applicability unresolved",
+      "notes": "Lean now indexes the certificate by curve and numerical prime and checks its intended nonzero factors. The full eta equation is still supplied. Half-slope versus critical-slope and direct Lang-Wake scope conflicts remain; see eta_import_audit.md."
+    },
+    {
+      "latex_label": "def:closure:t-cascade-import",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_07_t_cascade.tex",
+      "line_start": 10,
+      "statement_hash": "222209a263511724c7580494b6cefe96559702548c524a6dcf5265c99eb0a30d",
+      "lean_decl": "SixBirdsBSD.Closure.TCascade.tCascadeImport",
+      "assessment": "supplied implication schema",
+      "notes": "The named stack consists of arbitrary certified propositions. The current theorem needs both branch stacks and a supplied imports-to-valuation identity. This is conditional composition, not a derivation of that identity from source-specific arithmetic statements."
+    },
+    {
+      "latex_label": "thm:closure:t-e12-no-go",
+      "env_kind": "theorem",
+      "source_file": "paper/closure/sections/sec_08_obstructions.tex",
+      "line_start": 16,
+      "statement_hash": "3ab5372f2de019bbbb77bd20b2233bfc6041268b0d9933e7f11503bc3148fc18",
+      "lean_decl": "",
+      "assessment": "unverified literature-audit observation",
+      "notes": "The Lean module is empty. The public tree does not contain the explicit dated corpus/search ledger needed to substantiate this bounded literature-negative claim. It must not be read as a theorem of nonexistence or as a mechanized obstruction to arbitrary future approaches."
+    },
+    {
+      "latex_label": "thm:closure:t-bad-no-go",
+      "env_kind": "theorem",
+      "source_file": "paper/closure/sections/sec_08_obstructions.tex",
+      "line_start": 33,
+      "statement_hash": "fc6486e975c722fca892b3fdf67952f45b8038b51465ad19fa06e536bf602e59",
+      "lean_decl": "",
+      "assessment": "unverified literature-audit observation",
+      "notes": "The Lean module is empty. The particular additive prime-two/three characteristic-ideal equality must be distinguished from good supersingular signed theory and other local constructions. An explicit audited corpus and hypothesis comparison remain missing."
+    },
+    {
+      "latex_label": "rmk:closure:mode-b-residuals",
+      "env_kind": "remark",
+      "source_file": "paper/closure/sections/sec_08_obstructions.tex",
+      "line_start": 43,
+      "statement_hash": "5f2e7522afeddd8dbaa826f402f831cd9f9e66d30e97e7359b5620f3d38df1a9",
+      "lean_decl": "",
+      "assessment": "supplied residual ledger",
+      "notes": "The remark appropriately says these are reorganized source contents, not additional derived theorems. No arithmetic residual elimination follows merely from their renaming or classification."
+    },
+    {
+      "latex_label": "nonclaim:closure:landing-conditional",
+      "env_kind": "nonclaim",
+      "source_file": "paper/closure/sections/sec_09_landing.tex",
+      "line_start": 105,
+      "statement_hash": "53939a9ff2734dfa06f379126d98525f89897cc6495b3e37943f43907aa05ee9",
+      "lean_decl": "",
+      "assessment": "conditional boundary; provenance still open",
+      "notes": "The conditional reading agrees with the current Lean implication. The further assertions about literature-open problems depend on the bounded literature-audit observations and cannot be independently certified by the landing proof."
+    },
+    {
+      "latex_label": "def:closure:aor-sel-instance",
+      "env_kind": "definition",
+      "source_file": "paper/closure/sections/sec_10_aor_instance.tex",
+      "line_start": 18,
+      "statement_hash": "b373b625e8c2bdf38183484ca5d2850ba9aa96e90697a46d72a4640c8b1b4f18",
+      "lean_decl": "SixBirdsBSD.Closure.AORInstance.aorSelInstance",
+      "assessment": "local accounting construction",
+      "notes": "The local carrier, statuses, and specified refinement relation are constructed. Citation approval and arithmetic applicability do not follow from an approved_other status or an unused import field. The object records supplied recognition content and preserves open nonclaims."
+    },
+    {
+      "latex_label": "rmk:closure:aor-partial-status",
+      "env_kind": "remark",
+      "source_file": "paper/closure/sections/sec_10_aor_instance.tex",
+      "line_start": 160,
+      "statement_hash": "e31aca2d9c38d4ff5e5c33b56a7599daee7268f2a0b156bcf78fac176d95d949",
+      "lean_decl": "",
+      "assessment": "local scope accurate; provenance still open",
+      "notes": "The distinction between local syntactic audit closure and elimination of open arithmetic is appropriate. The refined register stability is now proved only for the declared local relation. Claims about the current literature still need the separate provenance audit."
+    }
+  ]
+}
