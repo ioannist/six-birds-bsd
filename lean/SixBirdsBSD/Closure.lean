@@ -2,6 +2,7 @@ import SixBirdsBSD.Closure.Imports
 import SixBirdsBSD.Closure.RecognitionSources
 import SixBirdsBSD.Closure.ChiCTp
 import SixBirdsBSD.Closure.EtaFormula
+import SixBirdsBSD.Closure.EtaApplicability
 import SixBirdsBSD.Closure.TCascade
 import SixBirdsBSD.Closure.Obstructions
 import SixBirdsBSD.Closure.SelShell

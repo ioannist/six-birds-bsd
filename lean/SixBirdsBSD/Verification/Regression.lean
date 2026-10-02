@@ -123,6 +123,20 @@ example : ClosedAORRegister (toyRegister .bridged [.role]) :=
   closedRegisterUnderRefinement
     (by simp [ClosedAORRegister, toyRegister, ClosedStatus]) diagnosticEnrichment
 
+/-- The Lang-Wake numerical predicate is inhabited away from the excluded
+eta anchors. This is only its necessary numerical scope, not a theorem
+about an elliptic-curve eta invariant. -/
+def langWakeNumericExample : SixBirdsBSD.Closure.EtaApplicability.LangWakeNumericScope 19 5 :=
+  ⟨by decide, by decide, by decide +kernel, by decide +kernel, by decide⟩
+
+example : ¬ SixBirdsBSD.Closure.EtaApplicability.LangWakeNumericScope 7 5 :=
+  SixBirdsBSD.Closure.EtaApplicability.levelSevenOutsideLangWake 5
+
+example : ¬ SixBirdsBSD.Closure.EtaApplicability.LangWakeNumericScope 11 5 :=
+  SixBirdsBSD.Closure.EtaApplicability.levelElevenOutsideLangWake 5
+
+example : ¬ SixBirdsBSD.Apparatus.SupportPrimeNoGo.IsPrime 8 := by decide +kernel
+
 #print axioms SixBirdsBSD.Closure.Landing.strongBSDConditional
 #print axioms SixBirdsBSD.Closure.SelShell.piBSDForcesStrongBSD
 #print axioms SixBirdsBSD.Closure.SelShell.compositeSignature
@@ -146,5 +160,13 @@ example : ClosedAORRegister (toyRegister .bridged [.role]) :=
 #print axioms SixBirdsBSD.Apparatus.Vsrc.vsrc2VmulSmul
 #print axioms SixBirdsBSD.Closure.AORPrimitives.registerRefinementTrans
 #print axioms SixBirdsBSD.Closure.AORPrimitives.closedRegisterUnderRefinement
+#print axioms SixBirdsBSD.Closure.EtaApplicability.squareRelationForcesHalfValuation
+#print axioms SixBirdsBSD.Closure.EtaApplicability.weightTwoCriticalSlopeIncompatible
+#print axioms SixBirdsBSD.Closure.EtaApplicability.samePrimeOutsideLangWake
+#print axioms SixBirdsBSD.Closure.EtaApplicability.levelThreeOutsideLangWake
+#print axioms SixBirdsBSD.Closure.EtaApplicability.levelSevenOutsideLangWake
+#print axioms SixBirdsBSD.Closure.EtaApplicability.levelElevenOutsideLangWake
+#print axioms SixBirdsBSD.Apparatus.SupportPrimeNoGo.isPrimeIffFiniteCheck
+#print axioms SixBirdsBSD.Apparatus.SupportPrimeNoGo.decidableIsPrime
 
 end SixBirdsBSD.Verification.Regression

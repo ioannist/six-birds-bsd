@@ -10,6 +10,26 @@ namespace SixBirdsBSD.Apparatus.SupportPrimeNoGo
 def IsPrime (p : Nat) : Prop :=
   2 ≤ p ∧ ∀ d : Nat, d ∣ p → d = 1 ∨ d = p
 
+/-- The unbounded divisor definition has an equivalent finite decision
+procedure. This supports concrete applicability checks without axioms or
+declaring primality merely because an index lies outside a finite list. -/
+theorem isPrimeIffFiniteCheck (p : Nat) :
+    IsPrime p ↔ (2 ≤ p ∧ ∀ d : Fin (p + 1), d.val ∣ p → d.val = 1 ∨ d.val = p) := by
+  constructor
+  · intro hp
+    exact ⟨hp.1, fun d hd => hp.2 d.val hd⟩
+  · rintro ⟨hge, hfinite⟩
+    refine ⟨hge, ?_⟩
+    intro d hd
+    have hle : d ≤ p := Nat.le_of_dvd (by omega) hd
+    exact hfinite ⟨d, by omega⟩ hd
+
+instance decidableIsPrime (p : Nat) : Decidable (IsPrime p) :=
+  if h : 2 ≤ p ∧ ∀ d : Fin (p + 1), d.val ∣ p → d.val = 1 ∨ d.val = p then
+    isTrue ((isPrimeIffFiniteCheck p).mpr h)
+  else
+    isFalse (fun hp => h ((isPrimeIffFiniteCheck p).mp hp))
+
 /-- Every natural number at least two has a prime divisor. -/
 theorem existsPrimeDivisor (n : Nat) (hn : 2 ≤ n) :
     ∃ q, IsPrime q ∧ q ∣ n := by
