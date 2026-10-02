@@ -44,7 +44,7 @@ four-column output.
 | [def:apparatus:rank-two-kummer-source](../../paper/apparatus/sections/sec_09_higher_rank_no_go.tex#L12) | conditional classical source | The Kummer source is a valid classical construction given the curve, Mordell-Weil basis, and finite local conditions. Lean composes supplied functions on two points; it does not verify a basis or realize independent Selmer classes. The current Cremona record for 389a1 has rank two. |
 | [def:apparatus:support-prime-truncation-residual](../../paper/apparatus/sections/sec_11_support_prime_no_go.tex#L48) | repaired prime counter | Lean now counts only actual prime indices at most B, and proves invariance under changes outside that prime truncation. The recorded below-50 values are computed from supplied R4b flags. Numeric point counts are reconstructed, but arithmetic R4a applicability is not certified. |
 | [def:apparatus:vsrc-algebra](../../paper/apparatus/sections/sec_12_vsrc.tex#L11) | narrowed algebra | Lean constructs the associative rank-two exterior multiplication over integer coordinates, including both additive and scalar bilinearity. It is not the full rational or arbitrary-rank exterior algebra, and virtual basis symbols do not establish arithmetic non-descent or motivic realization. |
-| [def:closure:chi-ct-p-import](../../paper/closure/sections/sec_02_imports.tex#L29) | supplied arithmetic certificate | The eight proposition fields have no fixed arithmetic meanings. The sign and canonical-map certificates are supplied independently, not derived from those named fields. Exact source theorem statements, hypotheses, determinant-line normalization, and sign comparison require primary-source review. |
+| [def:closure:chi-ct-p-import](../../paper/closure/sections/sec_02_imports.tex#L29) | supplied arithmetic certificate | The eight proposition fields have no fixed arithmetic meanings; map, generator-image, and positive normalized sign certificates remain independently supplied. Primary checks show raw Nekovar U_{2,2} on torsion H2 is minus Flach, the Stark route is odd-prime, and the derived-height comparison has ordinary scope. Rational sign correction and coprime-torsion vanishing are now proved; arithmetic degree identification, square-root generator transport, and combined orientation/unit normalization remain open. See ct_import_audit.md. |
 | [def:closure:a-e-import](../../paper/closure/sections/sec_02_imports.tex#L63) | supplied substrate | Lean records an arbitrary category carrier, pairing function, and propositions. Bilinearity is not tied to algebraic operations on that pairing; the actual Selmer-complex and ETNC-adjacent realization must be supplied. The declaration alone does not identify a universal published A_E object. |
 | [def:closure:beilinson-import](../../paper/closure/sections/sec_02_imports.tex#L91) | supplied comparison | The rank-at-least-two and regulator comparison are explicit hypotheses, not an independently established general elliptic-curve L-value theorem. Landing now gates the input by rank and matches the rank. Actual curve and determinant-line applicability still require a bridge. |
 | [def:closure:gamma-padic-descent](../../paper/closure/sections/sec_03_recognition_sources.tex#L26) | restricted recognition carrier | The local comparison is supplied content, with concrete c_p=1 or 2 but arbitrary proposition fields for the odd additive scope. Neither the comparison proposition nor the unit type defines tamFactor as a global arithmetic factor. Coverage and exact global return remain open. |
@@ -81,8 +81,10 @@ four-column output.
 
 ## Remaining work
 
-Primary-source comparison of the chi/Pfaffian/sign import stack, the cascade
-import stack, and the bounded literature-negative claims remains open.
+Primary statements for the chi/Pfaffian/sign stack have been checked in
+`../ct_import_audit.md`; their arithmetic bridge remains open. Exact
+Knudsen-Mumford/Flach downstream matching, the cascade import stack,
+and the bounded literature-negative claims also remain open.
 The five-column arithmetic transports, eta applicability bridges, native
 elliptic-curve source construction, and source-indispensability realization
 also remain open. Supporting labels cannot discharge these obligations.

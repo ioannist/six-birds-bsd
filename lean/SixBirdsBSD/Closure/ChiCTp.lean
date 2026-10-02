@@ -5,8 +5,9 @@ The `χ_{CT,p}` Cassels–Tate Pfaffian comparison (supporting) for the
 closure axis.
 
 The theorem here is conditional on the imported `chi_CT,p` stack. The
-import carrier supplies the eight named external certificates and the
-unconditional Nekovar-Cassels-Tate sign closure.
+import carrier supplies the eight named proposition certificates and a
+separate normalized sign certificate. Neither their arithmetic instantiation
+nor the sign correction from raw U_{2,2} is proved by this projection.
 -/
 
 namespace SixBirdsBSD.Closure.ChiCTp
@@ -16,10 +17,13 @@ universe u v w
 /--
 Conditional `chi_CT,p` comparison. From the finite-Sha, nondegenerate
 Cassels-Tate pairing, Sakamoto/Macias-Sano Selmer-complex, and
-`p`-not-Tamagawa hypotheses, the imported `T_E1` through `T_E8` stack
-yields a canonical orientation-respecting Pfaffian map
+`p`-not-Tamagawa hypotheses, a supplied comparison record gives a
+canonical orientation-respecting Pfaffian map
 `sqrtFittCT_H1Cp_div_U22 -> vctp_p` sending the square-root Stark
-generator to `h_p_CT_E`, with sign closure `Sigma_NekCT = +1`.
+generator to `h_p_CT_E`, with normalized sign `Sigma_NekCT = +1`.
+The curve, prime, and hypothesis propositions are abstract and do not
+arithmetically index that record. The raw cited U_{2,2} pairing is on
+torsion H^2, not the H^1/div label used in this generic projection's prose.
 -/
 theorem chiCTpComparison
     {EllipticCurve Prime : Type u}

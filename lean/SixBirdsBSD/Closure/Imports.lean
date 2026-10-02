@@ -14,9 +14,12 @@ universe u v w x
 /--
 The imported `chi_CT,p` theorem stack: eight named external theorem
 statements `T_E1` through `T_E8`, each carried with its certificate,
-plus the unconditional Nekovar-Cassels-Tate sign closure
-`Sigma_NekCT = +1`, and the canonical Pfaffian comparison data
-established by the imported stack.
+plus a supplied normalized sign certificate `Sigma_NekCT = +1`
+and supplied canonical Pfaffian comparison data. The named proposition
+fields do not derive those comparison fields. In particular, Nekovar
+10.8.7 compares raw U_{2,2} on torsion H^2 with *minus* the Flach pairing;
+a cohomology identification and explicit sign correction are required.
+The odd-prime Stark-system results do not supply a prime-two extension.
 -/
 structure chiCTpImport where
   T_E1 : Prop

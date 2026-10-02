@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "fa0454f1fee34b8a8013a209f788054edded0d9eec4f65aed135f4b03e666132",
+  "lean_context_hash": "294b76234db1edcf37ab54faec65f91f347a3d54aefdb97a9b095d6e9201a65a",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -230,7 +230,7 @@
       "statement_hash": "4ed4dfbf3a4899bb29f19b773d753d1fe5b782985026ec4889c6f1bd6600a8bc",
       "lean_decl": "SixBirdsBSD.Closure.Imports.chiCTpImport",
       "assessment": "supplied arithmetic certificate",
-      "notes": "The eight proposition fields have no fixed arithmetic meanings. The sign and canonical-map certificates are supplied independently, not derived from those named fields. Exact source theorem statements, hypotheses, determinant-line normalization, and sign comparison require primary-source review."
+      "notes": "The eight proposition fields have no fixed arithmetic meanings; map, generator-image, and positive normalized sign certificates remain independently supplied. Primary checks show raw Nekovar U_{2,2} on torsion H2 is minus Flach, the Stark route is odd-prime, and the derived-height comparison has ordinary scope. Rational sign correction and coprime-torsion vanishing are now proved; arithmetic degree identification, square-root generator transport, and combined orientation/unit normalization remain open. See ct_import_audit.md."
     },
     {
       "latex_label": "def:closure:a-e-import",

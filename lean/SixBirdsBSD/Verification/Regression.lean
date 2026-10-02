@@ -255,4 +255,21 @@ example : ¬ ForcesScalarOnSupport (fun p => p = 2) (fun p => p % 2 = 1) :=
 #print axioms SixBirdsBSD.Apparatus.NormalizationChecks.noLiftInvariantNumericalPfaffian
 #print axioms SixBirdsBSD.Apparatus.NormalizationChecks.assembledColumnDoubleCounts
 
+example : Closure.CTSignTransport.oddStarkScope 3 := by
+  unfold Closure.CTSignTransport.oddStarkScope
+  decide +kernel
+
+#print axioms SixBirdsBSD.Closure.CTSignTransport.correctedComparison
+#print axioms SixBirdsBSD.Closure.CTSignTransport.twoSignCorrectionsCancel
+#print axioms SixBirdsBSD.Closure.CTSignTransport.rawComparisonCannotBePositive
+#print axioms SixBirdsBSD.Closure.CTSignTransport.halfPairingCannotDetectNegation
+#print axioms SixBirdsBSD.Closure.CTSignTransport.squaredComparisonDoesNotFixSign
+#print axioms SixBirdsBSD.Closure.CTSignTransport.oddAndTwoTorsionClassIsZero
+#print axioms SixBirdsBSD.Closure.CTSignTransport.oddPrimaryPairedWithTwoTorsionIsZero
+#print axioms SixBirdsBSD.Closure.CTSignTransport.halfClassIsNonzeroTwoTorsion
+#print axioms SixBirdsBSD.Closure.CTSignTransport.allPrimeUnitsForcePlusMinusOne
+#print axioms SixBirdsBSD.Closure.CTSignTransport.allPrimeUnitsIffPlusMinusOne
+#print axioms SixBirdsBSD.Closure.CTSignTransport.unsignedUnitAssemblyCanFail
+#print axioms SixBirdsBSD.Closure.CTSignTransport.twoOutsideOddStarkScope
+
 end SixBirdsBSD.Verification.Regression

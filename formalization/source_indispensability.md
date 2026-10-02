@@ -214,6 +214,22 @@ version of its identity.
 
 ## Decision boundary
 
+The sign part of the local-to-global return has now been made exact in
+`Closure/CTSignTransport.lean`: without positivity, all-prime unit checks
+force precisely `q = 1` or `q = -1`. The native negative-defect model
+passes every local check and satisfies native fixity while scalar BSD
+fails. A source-independent positivity theorem or a proved arithmetic
+orientation comparison is therefore still required for this route.
+
+Primary checks of the Cassels–Tate stack exposed a raw negative comparison
+on torsion H2, plus distinct odd-prime and ordinary applicability scopes.
+The rational sign correction and the simultaneous map/generator correction
+are constructed, but their arithmetic identification is open. The
+classical 2-Selmer normalization cannot on its own fix a nonzero odd-primary
+pairing; the new module proves the requisite coprime-torsion vanishing.
+See `ct_import_audit.md`. This preserves the positive rational construction
+while identifying a substantive orientation input for an arithmetic return.
+
 The original normalized scalar target cannot support the asserted
 indispensability by its present entailment structure. The new native
 interface supports precise algebraic independence and support-scoped
