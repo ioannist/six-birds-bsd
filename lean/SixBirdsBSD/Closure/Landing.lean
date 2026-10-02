@@ -27,7 +27,7 @@ the Foundations-I closure assumption, the scalar Strong-BSD identity is
 routed through the SelShell higher-GZ helper, master-applicability, and
 composite signature theorems.
 -/
-theorem strongBSDConditional
+theorem strongBSDConditionalWithAudits
     {EPD : Type uPD} {LPD : Type vPD}
     {ESP : Type uSP} {LSP : Type vSP} {EGZ : Type uGZ}
     (shell : SixBirdsBSD.Closure.SelShell.selBSDShell)
@@ -57,12 +57,7 @@ theorem strongBSDConditional
           gGZ.Tam_E)
     (hSha : gSP.shaFactor = shell.ShaCard)
     (hTamFac : gPD.tamFactor = shell.Tam)
-    (mulRightCancel :
-      ∀ a b c : shell.Scalar, shell.mul a c = shell.mul b c → a = b)
-    (mulLeftCancel :
-      ∀ a b c : shell.Scalar, shell.mul c a = shell.mul c b → a = b)
-    (divLeftCancel :
-      ∀ a b d : shell.Scalar, shell.div a d = shell.div b d → a = b)
+    (cancellation : SixBirdsBSD.Closure.SelShell.FactorCancellation shell)
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
     (aEImports :
       SixBirdsBSD.Closure.Imports.aEImport.{uAE, vAE, wAE, xAE})
@@ -123,7 +118,7 @@ theorem strongBSDConditional
     SixBirdsBSD.Closure.SelShell.masterTheoremApplicability shell gPD gSP gGZ
   have hComposite :=
     SixBirdsBSD.Closure.SelShell.compositeSignature shell gPD gSP gGZ
-      hSha hReg hTamFac mulRightCancel mulLeftCancel divLeftCancel
+      hSha hReg hTamFac cancellation
   rcases chiImports with
     ⟨T_E1, hT_E1, T_E2, hT_E2, T_E3, hT_E3, T_E4, hT_E4,
       T_E5, hT_E5, T_E6, hT_E6, T_E7, hT_E7, T_E8, hT_E8,
@@ -149,5 +144,31 @@ theorem strongBSDConditional
         hBurnsFlachMaciasSanoNekovarAESelFormulation,
         hPairingBilinearOrCategorical⟩,
       ⟨hrank, hDeterminantLValueComparison⟩⟩
+
+/-- Conditional scalar BSD in all analytic ranks, from the quantified,
+curve-matched recognition predicate. The rank-at-least-two comparison import
+is required only in that rank range and is tied to the shell's rank.
+The closure operator and imports remain explicit records, not a proof that an
+arbitrary idempotent endomorphism forces an arithmetic residual to vanish. -/
+theorem strongBSDConditional
+    (shell : SixBirdsBSD.Closure.SelShell.selBSDShell)
+    (closureAssumption : SixBirdsBSD.F1ClosureOp shell.FormedLayer)
+    (hClosureAssumption : closureAssumption = shell.closureAssumption)
+    (recognition : SixBirdsBSD.Closure.SelShell.piBSD shell)
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport.{uAE, vAE, wAE, xAE})
+    (beilinsonImports : 2 ≤ shell.analyticRank →
+      { b : SixBirdsBSD.Closure.Imports.beilinsonImport.{uBI, vBI, wBI} //
+        b.rank = shell.analyticRank }) :
+    shell.L_derivative_over_factorial = shell.strongBSDRightSide ∧
+      closureAssumption = shell.closureAssumption ∧
+      chiImports.Sigma_NekCT = 1 ∧
+      aEImports.pairingBilinearOrCategorical ∧
+      (∀ hr : 2 ≤ shell.analyticRank,
+        (beilinsonImports hr).val.determinantLValueComparison) := by
+  exact ⟨SixBirdsBSD.Closure.SelShell.piBSDForcesStrongBSD shell recognition,
+    hClosureAssumption, chiImports.Sigma_NekCT_eq_plus_one,
+    aEImports.pairingBilinearOrCategorical_proof,
+    fun hr => (beilinsonImports hr).val.determinantLValueComparison_proof⟩
 
 end SixBirdsBSD.Closure.Landing

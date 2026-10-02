@@ -150,23 +150,23 @@ def wedge2 : Vsrc2Symbol → Vsrc2Symbol → Vsrc2Symbol
   | Vsrc2Symbol.J1, Vsrc2Symbol.J2 => Vsrc2Symbol.J12
   | _, _ => Vsrc2Symbol.one
 
-structure StageIIIAnalyticHeightBridge where
-  forward : (XiMot XiSc : Int) → XiMot = 0 → XiSc = 0
+structure StageIIIAnalyticHeightBridge (XiMot XiSc : Int) where
+  forward : XiMot = 0 → XiSc = 0
 
-structure StageIIIExternalReverseContent where
-  reverse : (XiSc XiMot : Int) → XiSc = 0 → XiMot = 0
+structure StageIIIExternalReverseContent (XiMot XiSc : Int) where
+  reverse : XiSc = 0 → XiMot = 0
 
 /-- Stage III is one-way under the bridge; reverse translation is explicit external content. -/
-theorem vsrcStageIIITranslation (bridge : StageIIIAnalyticHeightBridge) :
+theorem vsrcStageIIITranslation (XiMot XiSc : Int)
+    (bridge : StageIIIAnalyticHeightBridge XiMot XiSc) :
     wedge2 Vsrc2Symbol.J1 Vsrc2Symbol.J2 = Vsrc2Symbol.J12 ∧
-      (∀ {XiMot XiSc : Int}, XiMot = 0 → XiSc = 0) ∧
-      (StageIIIExternalReverseContent → ∀ {XiSc XiMot : Int}, XiSc = 0 → XiMot = 0) := by
+      (XiMot = 0 → XiSc = 0) ∧
+      (StageIIIExternalReverseContent XiMot XiSc → XiSc = 0 → XiMot = 0) := by
   constructor
   · rfl
   · constructor
-    · intro XiMot XiSc hmot
-      exact bridge.forward XiMot XiSc hmot
-    · intro ext XiSc XiMot hsc
-      exact ext.reverse XiSc XiMot hsc
+    · exact bridge.forward
+    · intro ext hsc
+      exact ext.reverse hsc
 
 end SixBirdsBSD.Apparatus.Vsrc

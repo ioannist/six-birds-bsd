@@ -42,8 +42,8 @@ structure chiCTpImport where
   sqrtStarkGenerator : SqrtFittCTDomain
   h_p_CT : VctpCodomain
   canonicalPfaffian : SqrtFittCTDomain → VctpCodomain
-  canonicalProperty : Prop
-  canonicalProperty_proof : canonicalProperty
+  canonicalProperty : (SqrtFittCTDomain → VctpCodomain) → Prop
+  canonicalProperty_proof : canonicalProperty canonicalPfaffian
   pfaffianSends : canonicalPfaffian sqrtStarkGenerator = h_p_CT
 
 /--

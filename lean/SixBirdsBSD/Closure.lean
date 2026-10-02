@@ -6,6 +6,7 @@ import SixBirdsBSD.Closure.TCascade
 import SixBirdsBSD.Closure.Obstructions
 import SixBirdsBSD.Closure.SelShell
 import SixBirdsBSD.Closure.Landing
+import SixBirdsBSD.Closure.CoupledFactors
 import SixBirdsBSD.Closure.AORPrimitives
 import SixBirdsBSD.Closure.AORInstance
 

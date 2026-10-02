@@ -312,11 +312,43 @@ theorem masterTheoremApplicability
       shell.smuggleAuditPasses_proof
   exact ⟨hmaster, shell.smuggleAuditPasses_proof, hPD, hSP, hGZ⟩
 
+/-- Cancellation only at the five actual BSD multipliers and denominator.
+These hypotheses hold for nonzero real BSD factors. They do not require
+cancellation at zero, and do not assert independence of recognition records. -/
+structure FactorCancellation (shell : selBSDShell) : Prop where
+  reg : ∀ a b, shell.mul a shell.Reg_NT = shell.mul b shell.Reg_NT → a = b
+  omega : ∀ a b, shell.mul a shell.Omega_E = shell.mul b shell.Omega_E → a = b
+  tam : ∀ a b, shell.mul a shell.Tam = shell.mul b shell.Tam → a = b
+  sha : ∀ a b, shell.mul shell.ShaCard a = shell.mul shell.ShaCard b → a = b
+  shaRegOmega : ∀ a b,
+    shell.mul (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E) a =
+      shell.mul (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E) b →
+      a = b
+  torsion : ∀ a b, shell.div a shell.torsionSquared =
+    shell.div b shell.torsionSquared → a = b
+
+/-- The quantified recognition predicate supplies the scalar identity in every
+rank. The lower-rank lane and the normalized higher-rank fixity are explicit
+supplied arithmetic content; this does not reconstruct sources from a scalar. -/
+theorem piBSDForcesStrongBSD (shell : selBSDShell) (recognition : piBSD shell) :
+    shell.L_derivative_over_factorial = shell.strongBSDRightSide := by
+  by_cases hr : 2 ≤ shell.analyticRank
+  · obtain ⟨g, hRank, hE, hL, hReg, hOmega, hTam, hKappa, hRhs⟩ :=
+      recognition.gammaHigherGZFixityReadout hr
+    exact gzFixityForcesStrongBSD shell g hL hReg hOmega hTam hKappa hRhs
+  · have hlow : shell.analyticRank = 0 ∨ shell.analyticRank = 1 := by omega
+    exact recognition.lowerRankAnalogLane hlow
+
+/-- Forward scalar readout of the quantified recognition predicate. -/
+theorem piBSDForcesResidualZero (shell : selBSDShell) (recognition : piBSD shell) :
+    shell.residual = shell.zero :=
+  (piBSDIffStrongBSD shell).mpr (piBSDForcesStrongBSD shell recognition)
+
 /--
 The BSD composite operational predicate carries the `(ii)/(iii)/(ii)`
 Stage-6 trace signature and the Stage-5 anti-tautology hardening:
 computability, falsifiability, genuine dependence, and cancellation
-proofs showing that changing any one recognition factor changes the
+proofs showing that changing any one scalar factor changes the
 Strong-BSD scalar factor package.
 -/
 theorem compositeSignature
@@ -335,12 +367,7 @@ theorem compositeSignature
     (hSha : gSP.shaFactor = shell.ShaCard)
     (hReg : gGZ.Reg_NT_E = shell.Reg_NT)
     (hTam : gPD.tamFactor = shell.Tam)
-    (mulRightCancel :
-      ∀ a b c : shell.Scalar, shell.mul a c = shell.mul b c → a = b)
-    (mulLeftCancel :
-      ∀ a b c : shell.Scalar, shell.mul c a = shell.mul c b → a = b)
-    (divLeftCancel :
-      ∀ a b d : shell.Scalar, shell.div a d = shell.div b d → a = b) :
+    (cancellation : FactorCancellation shell) :
     shell.compositeOperationalPredicate ∧
       gPD.stage6_FP_trace_ii ∧ gPD.stage6_SAU_trace_iii ∧
       gPD.stage6_VDE_trace_ii ∧
@@ -390,27 +417,27 @@ theorem compositeSignature
           shell.mul
             (shell.mul (shell.mul gSP.shaFactor shell.Reg_NT) shell.Omega_E)
             shell.Tam :=
-      divLeftCancel
+      cancellation.torsion
         (shell.mul (shell.mul (shell.mul Sha' shell.Reg_NT) shell.Omega_E)
           shell.Tam)
         (shell.mul
           (shell.mul (shell.mul gSP.shaFactor shell.Reg_NT) shell.Omega_E)
           shell.Tam)
-        shell.torsionSquared hsame
+        hsame
     have hNoTam :
         shell.mul (shell.mul Sha' shell.Reg_NT) shell.Omega_E =
           shell.mul (shell.mul gSP.shaFactor shell.Reg_NT) shell.Omega_E :=
-      mulRightCancel
+      cancellation.tam
         (shell.mul (shell.mul Sha' shell.Reg_NT) shell.Omega_E)
         (shell.mul (shell.mul gSP.shaFactor shell.Reg_NT) shell.Omega_E)
-        shell.Tam hnumer
+        hnumer
     have hNoOmega :
         shell.mul Sha' shell.Reg_NT =
           shell.mul gSP.shaFactor shell.Reg_NT :=
-      mulRightCancel (shell.mul Sha' shell.Reg_NT)
-        (shell.mul gSP.shaFactor shell.Reg_NT) shell.Omega_E hNoTam
+      cancellation.omega (shell.mul Sha' shell.Reg_NT)
+        (shell.mul gSP.shaFactor shell.Reg_NT) hNoTam
     have hfactor : Sha' = gSP.shaFactor :=
-      mulRightCancel Sha' gSP.shaFactor shell.Reg_NT hNoOmega
+      cancellation.reg Sha' gSP.shaFactor hNoOmega
     exact hchanged hfactor
   refine ⟨?regNonDisposable, ?tamNonDisposable⟩
   · intro Reg' hchanged hsame
@@ -421,27 +448,27 @@ theorem compositeSignature
           shell.mul
             (shell.mul (shell.mul shell.ShaCard gGZ.Reg_NT_E) shell.Omega_E)
             shell.Tam :=
-      divLeftCancel
+      cancellation.torsion
         (shell.mul (shell.mul (shell.mul shell.ShaCard Reg') shell.Omega_E)
           shell.Tam)
         (shell.mul
           (shell.mul (shell.mul shell.ShaCard gGZ.Reg_NT_E) shell.Omega_E)
           shell.Tam)
-        shell.torsionSquared hsame
+        hsame
     have hNoTam :
         shell.mul (shell.mul shell.ShaCard Reg') shell.Omega_E =
           shell.mul (shell.mul shell.ShaCard gGZ.Reg_NT_E) shell.Omega_E :=
-      mulRightCancel
+      cancellation.tam
         (shell.mul (shell.mul shell.ShaCard Reg') shell.Omega_E)
         (shell.mul (shell.mul shell.ShaCard gGZ.Reg_NT_E) shell.Omega_E)
-        shell.Tam hnumer
+        hnumer
     have hNoOmega :
         shell.mul shell.ShaCard Reg' =
           shell.mul shell.ShaCard gGZ.Reg_NT_E :=
-      mulRightCancel (shell.mul shell.ShaCard Reg')
-        (shell.mul shell.ShaCard gGZ.Reg_NT_E) shell.Omega_E hNoTam
+      cancellation.omega (shell.mul shell.ShaCard Reg')
+        (shell.mul shell.ShaCard gGZ.Reg_NT_E) hNoTam
     have hfactor : Reg' = gGZ.Reg_NT_E :=
-      mulLeftCancel Reg' gGZ.Reg_NT_E shell.ShaCard hNoOmega
+      cancellation.sha Reg' gGZ.Reg_NT_E hNoOmega
     exact hchanged hfactor
   · intro Tam' hchanged hsame
     rw [shell.strongBSDRightSide_eq, hSha, hReg, ← hTam] at hsame
@@ -452,18 +479,16 @@ theorem compositeSignature
           shell.mul
             (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E)
             gPD.tamFactor :=
-      divLeftCancel
+      cancellation.torsion
         (shell.mul
           (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E)
           Tam')
         (shell.mul
           (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E)
           gPD.tamFactor)
-        shell.torsionSquared hsame
+        hsame
     have hfactor : Tam' = gPD.tamFactor :=
-      mulLeftCancel Tam' gPD.tamFactor
-        (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E)
-        hnumer
+      cancellation.shaRegOmega Tam' gPD.tamFactor hnumer
     exact hchanged hfactor
 
 end SixBirdsBSD.Closure.SelShell

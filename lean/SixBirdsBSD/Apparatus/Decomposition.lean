@@ -9,7 +9,7 @@ namespace SixBirdsBSD.Apparatus.Decomposition
 universe u
 
 /-- The Bloch--Kato component-assembly map over the five typed BSD columns. -/
-def bkComponentMap
+def bkComponentReadout
     {Prime C_an C_ht C_fin C_BK _C_stat C_BK_E _M_E _Delta_f _z_BK _tau_BK : Type u}
     {C_p : Prime → Type u}
     (rho_an : C_an → C_BK_E)
@@ -23,6 +23,20 @@ def bkComponentMap
   | Sum.inr (Sum.inr (Sum.inl x)) => rho_fin x
   | Sum.inr (Sum.inr (Sum.inr (Sum.inl x))) => rho_p x.1 x.2
   | Sum.inr (Sum.inr (Sum.inr (Sum.inr x))) => rho_det x
+
+/-- Assembly consumes all five source columns simultaneously. The supplied
+assembly operation carries the determinant/tensor transport; a tagged sum
+readout of a single column is provided separately by `bkComponentReadout`. -/
+def bkComponentMap {Prime C_an C_ht C_fin C_det Target : Type u}
+    {C_p : Prime → Type u}
+    (rho_an : C_an → Target) (rho_ht : C_ht → Target)
+    (rho_fin : C_fin → Target) (rho_p : (p : Prime) → C_p p → Target)
+    (rho_det : C_det → Target)
+    (assemble : Target → Target → Target → (Prime → Target) → Target → Target) :
+    C_an × C_ht × C_fin × ((p : Prime) → C_p p) × C_det → Target
+  | (an, ht, fin, padic, det) =>
+    assemble (rho_an an) (rho_ht ht) (rho_fin fin)
+      (fun p => rho_p p (padic p)) (rho_det det)
 
 /-- The additive bridge-defect comparison equation after trivialization. -/
 def bridgeDefectEquation {Prime : Type u}
@@ -95,13 +109,13 @@ theorem finiteScalarPublicShadow :
     let C_fin := Int × Int × Int × Bool
     let q_p : C_fin → Int := fun x => x.1 + x.2.1 - 2 * x.2.2.1
     let casselsTate : C_fin → Bool := fun x => x.2.2.2
-    let shaBlock : C_fin := (1, 0, 0, false)
-    let tamagawaBlock : C_fin := (0, 1, 0, false)
+    let shaBlock : C_fin := (2, 0, 0, false)
+    let tamagawaBlock : C_fin := (0, 2, 0, false)
     let ct0 : C_fin := (0, 0, 0, false)
     let ct1 : C_fin := (0, 0, 0, true)
     ¬ Function.Injective q_p ∧
-      q_p shaBlock = 1 ∧
-      q_p tamagawaBlock = 1 ∧
+      q_p shaBlock = 2 ∧
+      q_p tamagawaBlock = 2 ∧
       shaBlock ≠ tamagawaBlock ∧
       q_p shaBlock = q_p tamagawaBlock ∧
       casselsTate ct0 ≠ casselsTate ct1 ∧
@@ -111,17 +125,17 @@ theorem finiteScalarPublicShadow :
   · intro h_inj
     have hq :
         (fun x : Int × Int × Int × Bool => x.1 + x.2.1 - 2 * x.2.2.1)
-            ((1 : Int), (0 : Int), (0 : Int), false) =
+            ((2 : Int), (0 : Int), (0 : Int), false) =
           (fun x : Int × Int × Int × Bool => x.1 + x.2.1 - 2 * x.2.2.1)
-            ((0 : Int), (1 : Int), (0 : Int), false) := by
+            ((0 : Int), (2 : Int), (0 : Int), false) := by
       decide
     have h_eq :
-        ((1 : Int), (0 : Int), (0 : Int), false) =
-          ((0 : Int), (1 : Int), (0 : Int), false) :=
+        ((2 : Int), (0 : Int), (0 : Int), false) =
+          ((0 : Int), (2 : Int), (0 : Int), false) :=
       h_inj hq
     exact (by decide :
-      ¬ (((1 : Int), (0 : Int), (0 : Int), false) =
-          ((0 : Int), (1 : Int), (0 : Int), false))) h_eq
+      ¬ (((2 : Int), (0 : Int), (0 : Int), false) =
+          ((0 : Int), (2 : Int), (0 : Int), false))) h_eq
   · constructor
     · decide
     · constructor

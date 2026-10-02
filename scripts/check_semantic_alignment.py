@@ -2,10 +2,9 @@
 """Validate the semantic alignment audit between BSD LaTeX claims and Lean declarations.
 
 Adapted for six-birds-bsd from the SAU scaffolding.
-Pre-mechanization runs this trivially because no Lean exists yet —
-`source_items.jsonl` is absent/empty and the validator exits clean.
-Phase G onward builds out the alignment records as Lean coverage
-grows.
+Read current manuscript statements and bind them to exported manifest
+declarations. Missing legacy coverage fields must never turn the audit
+into a successful check of zero theorems.
 """
 
 from __future__ import annotations
@@ -15,7 +14,10 @@ import collections
 import json
 import re
 import sys
+import tomllib
 from pathlib import Path
+
+from extract_latex_inventory import collect_records
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -85,13 +87,23 @@ def parse_scalar(raw: str) -> str:
 
 
 def theorem_items() -> list[dict[str, object]]:
-    items = read_jsonl(SOURCE_ITEMS)
-    return [
-        record
-        for record in items
-        if str(record.get("category", "")) not in {"lean_definition", "prose_only"}
-        and str(record.get("coverage", "")) in THEOREM_COVERAGE
-    ]
+    current, _, _ = collect_records()
+    by_label = {str(record["latex_label"]): record for record in current}
+    items = []
+    for axis in ("apparatus", "closure"):
+        path = ROOT / "lean" / "manifests" / f"{axis}_manifest.toml"
+        with path.open("rb") as handle:
+            manifest = tomllib.load(handle)
+        for claim in manifest.get("claim", []):
+            if claim.get("status") not in {"theorem", "partial"}:
+                continue
+            label = str(claim["paper_label"])
+            if label not in by_label:
+                raise ValueError(f"manifest theorem {label} has no current manuscript statement")
+            items.append({**by_label[label],
+                "lean_decl": claim["lean_decl"], "module": claim["lean_module"],
+                "coverage": "checked_declaration"})
+    return items
 
 
 def default_entry(record: dict[str, object]) -> dict[str, str]:
@@ -246,7 +258,9 @@ def validate(entries: dict[str, dict[str, str]]) -> list[str]:
             errors.append(f"{label} is marked {status} but has unresolved action {action!r}")
         if status in UNRESOLVED_STATUSES and action == "no_action":
             errors.append(f"{label} is unresolved status {status} but has no resolution action")
-        if status == "projection_packaged" and str(record["coverage"]) != "projection_over_record":
+        if status == "projection_packaged" and str(record["coverage"]) not in {
+            "projection_over_record", "checked_declaration"
+        }:
             errors.append(f"{label} is projection_packaged but coverage is {record['coverage']}")
         if str(record["coverage"]) == "projection_over_record" and status != "projection_packaged":
             errors.append(f"{label} has projection_over_record coverage but status {status}")
@@ -361,9 +375,9 @@ def main() -> int:
             print(f"ERROR: {error}", file=sys.stderr)
         return 1
     if args.check:
-        print("semantic alignment check passed")
+        print(f"semantic alignment check passed: {len(theorem_items())} current theorem statements audited")
     else:
-        print("semantic alignment write passed (Phase A: no Lean items yet)")
+        print(f"semantic alignment write passed: {len(theorem_items())} current theorem statements audited")
     return 0
 
 

@@ -24,7 +24,7 @@ def rankTwoEll389Scaled : Fin 3 → Int := fun i =>
   if i = 0 then 312679 else if i = 1 then -76771 else 214483
 
 def rankTwoScalarDetEll : Fin 3 → Rat :=
-  fun i => if i = 0 then 1 else 0
+  fun i => if i = 0 then 312679 else if i = 1 then -76771 else 214483
 
 def rankTwoRatDot {n : Nat} (u v : Fin n → Rat) : Rat :=
   sumFinRat (fun i => u i * v i)
@@ -49,35 +49,24 @@ theorem rankTwoRatThreeSubOne : ((3 : Rat) - 1) = 2 := by
   unfold mkRat
   simp [Rat.normalize_eq_mk']
 
-theorem rankTwoScalarDetNormEqOne : rankTwoScalarDetNorm = 1 := by
-  simp [rankTwoScalarDetNorm, rankTwoRatDot, sumFinRat, rankTwoScalarDetEll]
-  rw [show ((0 : Rat) + 1) = 1 by exact Rat.zero_add 1]
-  rw [show ((1 : Rat) + 0) = 1 by exact Rat.add_zero 1]
-  exact Rat.add_zero 1
+/-- The scalar projector uses the actual differential direction, up to the
+common integer scaling used by the stored 389a1 row. -/
+theorem rankTwoScalarDetNormNonzero : rankTwoScalarDetNorm ≠ 0 := by
+  unfold rankTwoScalarDetNorm rankTwoRatDot sumFinRat rankTwoScalarDetEll
+  decide +kernel
 
 theorem rankTwoScalarDetProjectorTrace :
-    rankTwoScalarDetNorm = 1 ∧ rankTwoScalarDetNorm ≠ 0 ∧
+    rankTwoScalarDetNorm ≠ 0 ∧
       traceRat rankTwoScalarDetProjector =
         rankTwoScalarDetNorm / rankTwoScalarDetNorm ∧
       traceRat rankTwoScalarDetProjector = 1 := by
-  have hnorm : rankTwoScalarDetNorm = 1 := rankTwoScalarDetNormEqOne
-  have htrace : traceRat rankTwoScalarDetProjector = 1 := by
-    simp [traceRat, rankTwoScalarDetProjector, sumFinRat, rankTwoScalarDetEll, hnorm]
-    rw [rankTwoRatOneDivOne, rankTwoRatZeroDivOne]
-    rw [show ((0 : Rat) + 1) = 1 by exact Rat.zero_add 1]
-    rw [show ((1 : Rat) + 0) = 1 by exact Rat.add_zero 1]
-    exact Rat.add_zero 1
-  have hdiv : rankTwoScalarDetNorm / rankTwoScalarDetNorm = 1 := by
-    rw [hnorm]
-    exact rankTwoRatOneDivOne
-  constructor
-  · exact hnorm
-  · constructor
-    · rw [hnorm]
-      decide
-    · constructor
-      · rw [htrace, hdiv]
-      · exact htrace
+  refine ⟨rankTwoScalarDetNormNonzero, ?_, ?_⟩
+  · unfold traceRat rankTwoScalarDetProjector rankTwoScalarDetNorm
+      rankTwoRatDot sumFinRat rankTwoScalarDetEll
+    decide +kernel
+  · unfold traceRat rankTwoScalarDetProjector rankTwoScalarDetNorm
+      rankTwoRatDot sumFinRat rankTwoScalarDetEll
+    decide +kernel
 
 /-- Rank-two full height matrix carrier collapses under the identity source. -/
 theorem rankTwoHeightSchurCollapse :
@@ -91,7 +80,7 @@ theorem rankTwoHeightSchurCollapse :
       scalarDetResidual = 2 ∧ K_DD > 0 := by
   let ell := rankTwoEll389Scaled
   have hproj : mulVec heightKLL ell = ell := heightKLLMulVec ell
-  have htrace : traceRat rankTwoScalarDetProjector = 1 := rankTwoScalarDetProjectorTrace.2.2.2
+  have htrace : traceRat rankTwoScalarDetProjector = 1 := rankTwoScalarDetProjectorTrace.2.2
   dsimp only
   constructor
   · rw [hproj]

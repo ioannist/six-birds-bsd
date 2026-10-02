@@ -19,10 +19,10 @@ def differOutsideW50 (a b : GlobalCompletion) : Prop :=
   ∃ n, 5 ≤ n ∧ a.row n ≠ b.row n
 
 def completionBase : GlobalCompletion :=
-  ⟨fun _ => false⟩
+  ⟨fun _ => true⟩
 
 def completionTailVariant : GlobalCompletion :=
-  ⟨fun n => if n = 5 then true else false⟩
+  ⟨fun n => if n = 5 then false else true⟩
 
 def traceXiB (M : Nat) : Nat :=
   M - 5
@@ -57,5 +57,18 @@ theorem finiteWindowNoGo :
         have hlt : i.val < 5 := i.isLt
         have hne : ¬i.val = 5 := Nat.ne_of_lt hlt
         simp [hne]
+
+/-- Universal coverage is separated by the indistinguishable completions.
+Using an all-false base would not separate this universal target. -/
+def allRowsCovered (c : GlobalCompletion) : Prop := ∀ n, c.row n = true
+
+theorem universalTargetSeparated :
+    agreeOnW50 completionBase completionTailVariant ∧
+      allRowsCovered completionBase ∧ ¬ allRowsCovered completionTailVariant := by
+  refine ⟨finiteWindowNoGo.{0}.2.1, fun _ => rfl, ?_⟩
+  intro h
+  have h5 := h 5
+  change (if (5 : Nat) = 5 then false else true) = true at h5
+  simp at h5
 
 end SixBirdsBSD.Apparatus.GlobalAuditNoGo

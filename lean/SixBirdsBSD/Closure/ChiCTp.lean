@@ -33,7 +33,7 @@ theorem chiCTpComparison
     (chiImport : SixBirdsBSD.Closure.Imports.chiCTpImport) :
     ∃ Pf_Nek_p_or_sqrt :
         chiImport.SqrtFittCTDomain → chiImport.VctpCodomain,
-      chiImport.canonicalProperty ∧
+      chiImport.canonicalProperty Pf_Nek_p_or_sqrt ∧
         Pf_Nek_p_or_sqrt chiImport.sqrtStarkGenerator =
           chiImport.h_p_CT ∧
         chiImport.Sigma_NekCT = 1 ∧

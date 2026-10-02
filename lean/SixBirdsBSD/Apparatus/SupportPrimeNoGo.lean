@@ -6,6 +6,75 @@ Mechanization of `anti_loc/extracted_math/apparatus_master.md` § SupportPrimeNo
 
 namespace SixBirdsBSD.Apparatus.SupportPrimeNoGo
 
+/-- Elementary primality, using only Lean's core natural-number arithmetic. -/
+def IsPrime (p : Nat) : Prop :=
+  2 ≤ p ∧ ∀ d : Nat, d ∣ p → d = 1 ∨ d = p
+
+/-- Every natural number at least two has a prime divisor. -/
+theorem existsPrimeDivisor (n : Nat) (hn : 2 ≤ n) :
+    ∃ q, IsPrime q ∧ q ∣ n := by
+  classical
+  induction n using Nat.strongRecOn with
+  | ind n ih =>
+    by_cases hp : IsPrime n
+    · exact ⟨n, hp, Nat.dvd_refl n⟩
+    · have hf : ¬ ∀ d : Nat, d ∣ n → d = 1 ∨ d = n := by
+        intro h
+        exact hp ⟨hn, h⟩
+      obtain ⟨d, hd⟩ := Classical.not_forall.mp hf
+      have hdiv : d ∣ n := by
+        by_cases h : d ∣ n
+        · exact h
+        · exact False.elim (hd (fun h' => False.elim (h h')))
+      have hd1 : d ≠ 1 := fun h => hd (fun _ => Or.inl h)
+      have hdn : d ≠ n := fun h => hd (fun _ => Or.inr h)
+      have hd0 : d ≠ 0 := by
+        intro h
+        subst d
+        have hz : n = 0 := Nat.zero_dvd.mp hdiv
+        omega
+      have hdge : 2 ≤ d := by omega
+      have hdle : d ≤ n := Nat.le_of_dvd (by omega) hdiv
+      obtain ⟨q, hq, hqd⟩ := ih d (by omega) hdge
+      exact ⟨q, hq, Nat.dvd_trans hqd hdiv⟩
+
+def primeProduct : List Nat → Nat
+  | [] => 1
+  | p :: ps => p * primeProduct ps
+
+private theorem primeProductPositive (ps : List Nat)
+    (hp : ∀ p ∈ ps, IsPrime p) : 0 < primeProduct ps := by
+  induction ps with
+  | nil => decide
+  | cons p ps ih =>
+    have hpos : 0 < p := by have := (hp p (by simp)).1; omega
+    have htail := ih (fun q hq => hp q (by simp [hq]))
+    exact Nat.mul_pos hpos htail
+
+private theorem memberDividesPrimeProduct {q : Nat} {ps : List Nat}
+    (hq : q ∈ ps) : q ∣ primeProduct ps := by
+  induction ps with
+  | nil => cases hq
+  | cons p ps ih =>
+    simp only [List.mem_cons] at hq
+    rcases hq with h | h
+    · subst q
+      exact Nat.dvd_mul_right p (primeProduct ps)
+    · exact Nat.dvd_mul_left_of_dvd (ih h) p
+
+/-- Euclid's argument supplies an actual prime outside each finite prime list. -/
+theorem primeOutsideFiniteList (ps : List Nat) (hp : ∀ p ∈ ps, IsPrime p) :
+    ∃ q, IsPrime q ∧ q ∉ ps := by
+  have hpos := primeProductPositive ps hp
+  obtain ⟨q, hq, hdiv⟩ := existsPrimeDivisor (primeProduct ps + 1) (by omega)
+  refine ⟨q, hq, ?_⟩
+  intro hmem
+  have hprod := memberDividesPrimeProduct hmem
+  have hone : q ∣ 1 := (Nat.dvd_add_iff_right hprod).mpr hdiv
+  have hle : q ≤ 1 := Nat.le_of_dvd (by decide) hone
+  have := hq.1
+  omega
+
 structure PrimeCoverageCompletion where
   covered : Nat → Bool
 
@@ -45,8 +114,8 @@ theorem listMaxSuccNotMem (P0 : List Nat) : listMax P0 + 1 ∉ P0 := by
   have hle : listMax P0 + 1 ≤ listMax P0 := memLeListMax hmem
   exact Nat.not_succ_le_self (listMax P0) hle
 
-/-- No finite prime list can certify all support-prime rows. -/
-theorem finitePrimeCoverNoGo (P0 : List Nat) :
+/-- Generic finite-index forgetfulness, without a primality assertion. -/
+theorem finiteIndexCoverNoGo (P0 : List Nat) :
     ∃ q, q ∉ P0 ∧
       agreeOnPrimeSet P0 coverageBase (coverageVariant q) ∧
       differAtPrime q coverageBase (coverageVariant q) ∧
@@ -76,6 +145,27 @@ theorem finitePrimeCoverNoGo (P0 : List Nat) :
       subst p
       exact hqnot hp
     simp [hpne]
+
+/-- No finite list of primes determines all prime coverage rows. The witness
+is an actual prime, supplied by the elementary Euclid argument above. -/
+theorem finitePrimeCoverNoGo (P0 : List Nat) (hp : ∀ p ∈ P0, IsPrime p) :
+    ∃ q, IsPrime q ∧ q ∉ P0 ∧
+      agreeOnPrimeSet P0 coverageBase (coverageVariant q) ∧
+      differAtPrime q coverageBase (coverageVariant q) ∧
+      (∀ (α : Sort _) (operator : ((p : Nat) → p ∈ P0 → Bool) → α),
+        operator (restrictedRows P0 coverageBase) =
+          operator (restrictedRows P0 (coverageVariant q))) := by
+  obtain ⟨q, hprime, hqnot⟩ := primeOutsideFiniteList P0 hp
+  refine ⟨q, hprime, hqnot, ?_, ?_, ?_⟩
+  · intro p hp
+    have hpne : p ≠ q := by intro heq; subst p; exact hqnot hp
+    simp [coverageBase, coverageVariant, hpne]
+  · simp [differAtPrime, coverageBase, coverageVariant]
+  · intro α operator
+    apply congrArg operator
+    funext p hp
+    have hpne : p ≠ q := by intro heq; subst p; exact hqnot hp
+    simp [restrictedRows, coverageBase, coverageVariant, hpne]
 
 def countR4bUpTo : Nat → (Nat → Bool) → Nat
   | 0, r4b => if r4b 0 then 1 else 0

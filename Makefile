@@ -117,10 +117,11 @@ validate:
 # deps; not reproducible from a source-only checkout, so it is NOT part of validate.
 verify-lean:
 	cd lean && lake build
+	cd lean && lake build SixBirdsBSD.Verification.Regression
 	python3 scripts/check_manifests.py --check
 
 test:
-	python3 -m pytest scripts/test_check_manifests.py
+	python3 -m pytest scripts/test_check_manifests.py scripts/test_check_semantic_alignment.py
 
 public-audit:
 	scripts/check_public_hygiene.sh

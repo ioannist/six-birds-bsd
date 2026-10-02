@@ -116,7 +116,7 @@ theorem tCascadeRankLeOne
       nonCMHeegnerGrossZagierKolyvaginForRankOne : Prop)
     (mul div : Scalar → Scalar → Scalar)
     (vp : Scalar → Valuation)
-    (L_derivative_over_factorial rFactorial Omega Reg ShaCard Tam
+    (L_derivative_over_factorial Omega Reg ShaCard Tam
       torsionSquared : Scalar)
     (imports : tCascadeImport)
     :
@@ -129,14 +129,15 @@ theorem tCascadeRankLeOne
         cmSakamotoMaciasSano ∧ cmPNotTam ∧ cmRamification ∧
         (cmRank = 1 → cmHeegnerForRankOne) ∧
         cmGaloisImageStandard) ∨
-      (nonCMCurve ∧ nonCMRankZeroOrOne ∧ nonCMSurjectiveRho ∧
+      (nonCMCurve ∧ (nonCMRank = 0 ∨ nonCMRank = 1) ∧
+        nonCMRankZeroOrOne ∧ nonCMSurjectiveRho ∧
         nonCMGoodOrdinaryPNotN ∧ nonCMPNotTam ∧
         nonCMSkinnerUrbanOrdinaryLocal ∧ nonCMResidualIrreducibility ∧
         nonCMRamification ∧ nonCMLevelHypotheses ∧ nonCMShaFinite ∧
         nonCMCTNondegenerate ∧ nonCMSakamotoMaciasSano ∧
         (nonCMRank = 1 → nonCMHeegnerGrossZagierKolyvaginForRankOne))
     let analyticSide : Scalar :=
-      div L_derivative_over_factorial (mul (mul rFactorial Omega) Reg)
+      div L_derivative_over_factorial (mul Omega Reg)
     let arithmeticSide : Scalar :=
       div (mul ShaCard Tam) torsionSquared
     ((E : EllipticCurve) → (p : Prime) →
