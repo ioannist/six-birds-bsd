@@ -1,4 +1,5 @@
 import SixBirdsBSD.Apparatus.HeightRegulator
+import SixBirdsBSD.Apparatus.FinitePairings
 
 /-!
 `SixBirdsBSD.Apparatus.FiniteSource` — per-section module (apparatus axis).
@@ -187,12 +188,18 @@ def dimShaU1 : Int × Nat := (2, 2)
 
 def dimShaU2 : Int × Nat := (2, 4)
 
-/-- Dimension-only Sha data leaves the Cassels--Tate coordinate as residual. -/
+/-- Dimension-only Sha data leaves a residual. The additional finite-group
+witness checks actual perfect pairings and unequal orders, independently
+of the coordinate metadata. Arithmetic normalization remains separate. -/
 theorem dimShaShadow :
     dimShaXi 0 0 = 0 ∧ dimShaXi 0 1 = 0 ∧
       dimShaXi 1 0 = 0 ∧ dimShaXi 1 1 = 1 ∧
       trace dimShaXi = 1 ∧ (1 : Int) > 0 ∧
-      dimShaU1.1 = dimShaU2.1 ∧ dimShaU1.2 ≠ dimShaU2.2 := by
+      dimShaU1.1 = dimShaU2.1 ∧ dimShaU1.2 ≠ dimShaU2.2 ∧
+      FinitePairings.Perfect 2 ∧ FinitePairings.Perfect 4 ∧
+      (FinitePairings.twoTorsionElements 2).length =
+        (FinitePairings.twoTorsionElements 4).length ∧
+      (FinitePairings.elements 2).length ≠ (FinitePairings.elements 4).length := by
   constructor
   · decide
   · constructor
@@ -207,6 +214,7 @@ theorem dimShaShadow :
             · decide
             · constructor
               · decide
-              · decide
+              · exact ⟨by decide, FinitePairings.perfectTwo, FinitePairings.perfectFour,
+                  by decide +kernel, by decide +kernel⟩
 
 end SixBirdsBSD.Apparatus.FiniteSource

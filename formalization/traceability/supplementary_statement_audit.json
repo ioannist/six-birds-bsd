@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "294b76234db1edcf37ab54faec65f91f347a3d54aefdb97a9b095d6e9201a65a",
+  "lean_context_hash": "6cf978ad87d6aea8f15e3981b2cd9976e3293d60dade1b0026b9b5a4d1bb3218",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -90,7 +90,7 @@
       "statement_hash": "0c1fd8e46c52952b7f9233d208d2b9e5c72c53e6af1a007f2e84b5de8041af19",
       "lean_decl": "SixBirdsBSD.Apparatus.FiniteSource.finiteSourceMap",
       "assessment": "normalization obligation",
-      "notes": "The Lean map tensors three supplied readouts. Raw torsion-valued Cassels-Tate entries do not determine a numerical Pfaffian of a rational lift; NormalizationChecks proves an explicit counterexample. An integral presentation, determinant-line interpretation, and generator normalization are required."
+      "notes": "The Lean map tensors three supplied readouts. NormalizationChecks proves rational-lift dependence, and FinitePairings now proves basis dependence of a raw numerical Pfaffian on an actual finite perfect pairing. These finite constructions do not supply the integral arithmetic determinant-line transport or generator normalization. See finite_pairing_construction.md."
     },
     {
       "latex_label": "obl:apparatus:rho-finite-transport",

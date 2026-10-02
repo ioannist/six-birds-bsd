@@ -272,4 +272,17 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.CTSignTransport.unsignedUnitAssemblyCanFail
 #print axioms SixBirdsBSD.Closure.CTSignTransport.twoOutsideOddStarkScope
 
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.dimensionOnlyShadow
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.f2BasisTwo
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.f2BasisFourTwoTorsion
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.cyclicTargetTwo
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.cyclicTargetFour
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.cardinalityOnlyShadow
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.zeroPairingFailsPerfectness
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.noOrderReadoutFromTwoTorsionCount
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.noTwoTorsionReadoutFromOrder
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.numericalPfaffianChangesWithBasis
+#print axioms SixBirdsBSD.Apparatus.FinitePairings.hyperbolicCardinalityNormalization
+#print axioms SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow
+
 end SixBirdsBSD.Verification.Regression

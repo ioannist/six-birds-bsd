@@ -247,6 +247,15 @@ ablation witnesses. No manuscript has been changed in this phase.
 
 ## Verification
 
+The separate finite construction in `finite_pairing_construction.md`
+now supplies actual groups with perfect alternating cyclic-target pairings
+and impossibility theorems for every readout through dimension-only or
+cardinality-only observations. These replace free finite metadata in the
+dimension shadow and strengthen its information-loss claim. They do not
+identify the groups with arithmetic Sha data or prove indispensability of
+the named sources for scalar BSD. The resume point is the normalized finite
+determinant return and realization of arithmetic ablation witnesses.
+
 Both construction modules are imported by the closure umbrella. The regression target
 `SixBirdsBSD.Verification.Regression` prints the axiom dependencies of
 the assembly, sharp criteria, countermodels, local-to-global returns,
