@@ -45,6 +45,38 @@ theorem vsrc2VmulOne (x : Vsrc2) : vsrc2Vmul x vsrc2One = x := by
   cases x
   simp [vsrc2Vmul, vsrc2One]
 
+/-- The displayed table is an associative multiplication, not just a set
+of generator relations. -/
+theorem vsrc2VmulAssoc (x y z : Vsrc2) :
+    vsrc2Vmul (vsrc2Vmul x y) z = vsrc2Vmul x (vsrc2Vmul y z) := by
+  cases x; cases y; cases z
+  simp only [vsrc2Vmul, Vsrc2.mk.injEq]
+  grind
+
+theorem vsrc2VmulAdd (x y z : Vsrc2) :
+    vsrc2Vmul x (vsrc2Add y z) = vsrc2Add (vsrc2Vmul x y) (vsrc2Vmul x z) := by
+  cases x; cases y; cases z
+  simp only [vsrc2Vmul, vsrc2Add, Vsrc2.mk.injEq]
+  grind
+
+theorem vsrc2AddVmul (x y z : Vsrc2) :
+    vsrc2Vmul (vsrc2Add x y) z = vsrc2Add (vsrc2Vmul x z) (vsrc2Vmul y z) := by
+  cases x; cases y; cases z
+  simp only [vsrc2Vmul, vsrc2Add, Vsrc2.mk.injEq]
+  grind
+
+theorem vsrc2SmulVmul (a : Int) (x y : Vsrc2) :
+    vsrc2Vmul (vsrc2Smul a x) y = vsrc2Smul a (vsrc2Vmul x y) := by
+  cases x; cases y
+  simp only [vsrc2Vmul, vsrc2Smul, Vsrc2.mk.injEq]
+  grind
+
+theorem vsrc2VmulSmul (a : Int) (x y : Vsrc2) :
+    vsrc2Vmul x (vsrc2Smul a y) = vsrc2Smul a (vsrc2Vmul x y) := by
+  cases x; cases y
+  simp only [vsrc2Vmul, vsrc2Smul, Vsrc2.mk.injEq]
+  grind
+
 theorem vsrc2J1Sq : vsrc2Vmul vsrc2J1 vsrc2J1 = vsrc2Zero := by
   decide
 
@@ -79,6 +111,11 @@ structure VsrcRank2Algebra where
   add : Carrier → Carrier → Carrier
   smul : Int → Carrier → Carrier
   vmul : Carrier → Carrier → Carrier
+  vmul_assoc : ∀ x y z, vmul (vmul x y) z = vmul x (vmul y z)
+  vmul_add : ∀ x y z, vmul x (add y z) = add (vmul x y) (vmul x z)
+  add_vmul : ∀ x y z, vmul (add x y) z = add (vmul x z) (vmul y z)
+  smul_vmul : ∀ a x y, vmul (smul a x) y = smul a (vmul x y)
+  vmul_smul : ∀ a x y, vmul x (smul a y) = smul a (vmul x y)
 
 /-- Virtual source exterior algebra, instantiated by the explicit rank-2 carrier. -/
 def vsrcAlgebra : VsrcRank2Algebra where
@@ -92,6 +129,11 @@ def vsrcAlgebra : VsrcRank2Algebra where
   add := vsrc2Add
   smul := vsrc2Smul
   vmul := vsrc2Vmul
+  vmul_assoc := vsrc2VmulAssoc
+  vmul_add := vsrc2VmulAdd
+  add_vmul := vsrc2AddVmul
+  smul_vmul := vsrc2SmulVmul
+  vmul_smul := vsrc2VmulSmul
 
 def vsrcDimensionSlots (r : Nat) (Scalar : Type u) : Type u :=
   Fin (2 ^ r) → Scalar

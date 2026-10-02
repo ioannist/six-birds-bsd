@@ -13,13 +13,70 @@ open SixBirdsBSD.Apparatus.FiniteSource
 
 universe u
 
-/-- The real p-adic map has ordinary and signed local branches. -/
-def pAdicMap {Tplus Hf Exp Hplus Hminus Target : Type u}
-    (rhoOrd : Tplus → Hf → Exp → Target)
-    (rhoSigned : Hplus → Hminus → Exp → Target) :
-    Sum (Tplus × Hf × Exp) (Hplus × Hminus × Exp) → Target
-  | Sum.inl (tplus, hf, expStar) => rhoOrd tplus hf expStar
-  | Sum.inr (hplus, hminus, expStar) => rhoSigned hplus hminus expStar
+/-- A finite-lane exponential and its inverse logarithm. Applicability of
+this isomorphism is an explicit input: it is not asserted for every de Rham
+representation. In arithmetic the quotient is D_dR(V)/Fil⁰, and the
+exponential must have image H_f and zero kernel to give this interface. -/
+structure FiniteExponentialComparison (Hf DeRhamQuotient : Type u) where
+  exp : DeRhamQuotient → Hf
+  log : Hf → DeRhamQuotient
+  log_exp : ∀ q, log (exp q) = q
+  exp_log : ∀ h, exp (log h) = h
+
+theorem finiteLogInjective {Hf DeRhamQuotient : Type u}
+    (comparison : FiniteExponentialComparison Hf DeRhamQuotient) :
+    Function.Injective comparison.log := by
+  intro a b h
+  have he := congrArg comparison.exp h
+  simpa only [comparison.exp_log] using he
+
+/-- Typed reciprocity and finite-lane orthogonality for the dual exponential.
+Its target is Fil⁰ D_dR(V), not D_dR(V)/Fil⁰. Here DualQuotient and DualH1
+belong to V*(1). These algebraic pairing properties must be instantiated
+from local duality; they are not definitions of the desired vanishing. -/
+structure DualExponentialReciprocity
+    (H1 Hf FilZero DualQuotient DualH1 PairValue : Type u) where
+  includeFinite : Hf → H1
+  dualExp : DualQuotient → DualH1
+  expStar : H1 → FilZero
+  cup : H1 → DualH1 → PairValue
+  deRhamPair : FilZero → DualQuotient → PairValue
+  zeroPair : PairValue
+  zeroFil : FilZero
+  reciprocity : ∀ h q, deRhamPair (expStar h) q = cup h (dualExp q)
+  finiteOrthogonal : ∀ h q, cup (includeFinite h) (dualExp q) = zeroPair
+  deRhamNondegenerate : ∀ f, (∀ q, deRhamPair f q = zeroPair) → f = zeroFil
+
+/-- The dual exponential kills the finite local condition. Therefore it
+cannot be used as the finite-lane logarithm in an invertible comparison. -/
+theorem dualExpKillsFinite {H1 Hf FilZero DualQuotient DualH1 PairValue : Type u}
+    (comparison : DualExponentialReciprocity
+      H1 Hf FilZero DualQuotient DualH1 PairValue) (h : Hf) :
+    comparison.expStar (comparison.includeFinite h) = comparison.zeroFil := by
+  apply comparison.deRhamNondegenerate
+  intro q
+  rw [comparison.reciprocity, comparison.finiteOrthogonal]
+
+theorem dualExpFiniteNotInjective
+    {H1 Hf FilZero DualQuotient DualH1 PairValue : Type u}
+    (comparison : DualExponentialReciprocity
+      H1 Hf FilZero DualQuotient DualH1 PairValue)
+    (a b : Hf) (hab : a ≠ b) :
+    ¬ Function.Injective (fun h => comparison.expStar (comparison.includeFinite h)) := by
+  intro hinj
+  exact hab (hinj ((dualExpKillsFinite comparison a).trans
+    (dualExpKillsFinite comparison b).symm))
+
+/-- Ordinary comparison uses a finite-lane logarithm. The signed branch has
+its own supplied comparison carrier: finite-lane and signed/Iwasawa maps
+are not silently identified. Determinant-line assembly remains supplied. -/
+def pAdicMap {Tplus Hf DeRhamQuotient Hplus Hminus SignedComparison Target : Type u}
+    (rhoOrd : Tplus → Hf → (Hf → DeRhamQuotient) → Target)
+    (rhoSigned : Hplus → Hminus → SignedComparison → Target) :
+    Sum (Tplus × Hf × FiniteExponentialComparison Hf DeRhamQuotient)
+      (Hplus × Hminus × SignedComparison) → Target
+  | Sum.inl (tplus, hf, comparison) => rhoOrd tplus hf comparison.log
+  | Sum.inr (hplus, hminus, comparison) => rhoSigned hplus hminus comparison
 
 def omitOrdProjector : Fin 3 → Fin 3 → Int :=
   fun i j => if i = j then if i = 0 then 0 else 1 else 0

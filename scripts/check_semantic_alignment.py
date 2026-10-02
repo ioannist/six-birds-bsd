@@ -11,6 +11,7 @@ from __future__ import annotations
 
 import argparse
 import collections
+import hashlib
 import json
 import re
 import sys
@@ -22,18 +23,10 @@ from extract_latex_inventory import collect_records
 
 ROOT = Path(__file__).resolve().parents[1]
 TRACEABILITY_DIR = ROOT / "formalization" / "traceability"
-SOURCE_ITEMS = ROOT / "formalization" / "inventory" / "source_items.jsonl"
 ALIGNMENT = TRACEABILITY_DIR / "semantic_alignment.yml"
 SUMMARY = TRACEABILITY_DIR / "semantic_alignment_summary.md"
 LEAN_ROOT = ROOT / "lean"
 
-THEOREM_COVERAGE = {
-    "direct_proof",
-    "computational_proof",
-    "definitional_proof",
-    "projection_over_record",
-    "imported_foundation_statement",
-}
 ALLOWED_STATUSES = {
     "faithful",
     "lean_stronger",
@@ -69,12 +62,6 @@ def rel(path: Path) -> str:
     return path.resolve().relative_to(ROOT).as_posix()
 
 
-def read_jsonl(path: Path) -> list[dict[str, object]]:
-    if not path.exists():
-        return []
-    return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
-
-
 def scalar(value: object) -> str:
     return json.dumps(str(value), ensure_ascii=False)
 
@@ -88,6 +75,7 @@ def parse_scalar(raw: str) -> str:
 
 def theorem_items() -> list[dict[str, object]]:
     current, _, _ = collect_records()
+    context_hash = lean_context_hash()
     by_label = {str(record["latex_label"]): record for record in current}
     items = []
     for axis in ("apparatus", "closure"):
@@ -102,8 +90,27 @@ def theorem_items() -> list[dict[str, object]]:
                 raise ValueError(f"manifest theorem {label} has no current manuscript statement")
             items.append({**by_label[label],
                 "lean_decl": claim["lean_decl"], "module": claim["lean_module"],
+                "lean_context_hash": context_hash,
                 "coverage": "checked_declaration"})
     return items
+
+
+def lean_context_hash() -> str:
+    """Invalidate reviewed alignments after changes to any local Lean support.
+
+    A declaration can change meaning when an imported record changes even if
+    the declaration's own source is untouched. Bind the audit to the entire
+    local source tree, not only the theorem name or its manuscript hash.
+    Vendored foundations have their separate provenance and dependency gate.
+    """
+    paths = [LEAN_ROOT / "SixBirdsBSD.lean", LEAN_ROOT / "lean-toolchain",
+             LEAN_ROOT / "lakefile.toml"]
+    paths.extend((LEAN_ROOT / "SixBirdsBSD").rglob("*.lean"))
+    digest = hashlib.sha256()
+    for path in sorted(paths):
+        digest.update(rel(path).encode("utf-8") + b"\0")
+        digest.update(path.read_bytes() + b"\0")
+    return digest.hexdigest()
 
 
 def default_entry(record: dict[str, object]) -> dict[str, str]:
@@ -122,6 +129,7 @@ def default_entry(record: dict[str, object]) -> dict[str, str]:
     return {
         "latex_label": label,
         "statement_hash": str(record["statement_hash"]),
+        "lean_context_hash": str(record["lean_context_hash"]),
         "source_file": str(record["source_file"]),
         "lean_decl": str(record["lean_decl"]),
         "module": str(record["module"]),
@@ -142,6 +150,7 @@ def alignment_text(records: list[dict[str, str]]) -> str:
         lines.append(f"  - latex_label: {scalar(record['latex_label'])}")
         for key in [
             "statement_hash",
+            "lean_context_hash",
             "source_file",
             "lean_decl",
             "module",
@@ -198,6 +207,7 @@ def parse_alignment() -> tuple[dict[str, dict[str, str]], list[str]]:
     required = {
         "latex_label",
         "statement_hash",
+        "lean_context_hash",
         "source_file",
         "lean_decl",
         "module",
@@ -245,7 +255,7 @@ def validate(entries: dict[str, dict[str, str]]) -> list[str]:
         if entry is None:
             errors.append(f"{label} is missing from {rel(ALIGNMENT)}")
             continue
-        for key in ["statement_hash", "source_file", "lean_decl", "module", "coverage"]:
+        for key in ["statement_hash", "lean_context_hash", "source_file", "lean_decl", "module", "coverage"]:
             if entry.get(key) != str(record[key]):
                 errors.append(f"{label} alignment {key} is stale")
         status = entry.get("alignment_status", "")
@@ -338,10 +348,8 @@ def write_default_alignment() -> None:
 
 def check_or_generate(*, check: bool) -> tuple[list[str], str]:
     expected = theorem_items()
-    # Pre-mechanization: no Lean yet, source_items.jsonl empty, so expected is empty
-    # and alignment is trivially complete. Skip file creation.
     if not expected:
-        return [], "# BSD Semantic Alignment Summary\n\nNo theorem-like Lean items to audit yet (Phase A).\n"
+        return ["no theorem-like Lean declarations selected; refusing an empty semantic audit"], ""
     if not ALIGNMENT.exists():
         if check:
             return [f"missing {rel(ALIGNMENT)}; rerun scripts/check_semantic_alignment.py"], ""

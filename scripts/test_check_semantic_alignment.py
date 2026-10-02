@@ -27,3 +27,18 @@ def test_manuscript_read_is_live(monkeypatch):
     monkeypatch.setattr(alignment, 'collect_records', lambda: (current, [], []))
     item = next(item for item in alignment.theorem_items() if item['latex_label'] == label)
     assert item['statement_hash'] == 'changed'
+
+
+def test_lean_context_change_invalidates_reviewed_alignments(monkeypatch):
+    entries = {item['latex_label']: alignment.default_entry(item)
+               for item in alignment.theorem_items()}
+    monkeypatch.setattr(alignment, 'lean_context_hash', lambda: 'changed')
+    errors = alignment.validate(entries)
+    assert len(errors) == 29
+    assert all('lean_context_hash is stale' in error for error in errors)
+
+
+def test_empty_selection_cannot_pass(monkeypatch):
+    monkeypatch.setattr(alignment, 'theorem_items', lambda: [])
+    errors, _ = alignment.check_or_generate(check=True)
+    assert errors == ['no theorem-like Lean declarations selected; refusing an empty semantic audit']

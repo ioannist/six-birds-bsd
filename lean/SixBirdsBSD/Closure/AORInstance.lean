@@ -301,7 +301,8 @@ theorem aorInstance
       SixBirdsBSD.Closure.AORPrimitives.RefStableAOR
         (aorSelInstance shell gPD gSP gGZ chiImports aEImports
           beilinsonImports).carrier := by
-    unfold SixBirdsBSD.Closure.AORPrimitives.RefStableAOR
+    apply SixBirdsBSD.Closure.AORPrimitives.refStableOfClosed
+    unfold SixBirdsBSD.Closure.AORPrimitives.ClosedAORRegister
     constructor
     · simp [aorSelInstance]
     · intro atom hatom

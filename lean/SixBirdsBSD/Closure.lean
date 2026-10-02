@@ -19,9 +19,9 @@ imported theorem-record structures (`χ_{CT,p}`/T_E1–T_E8, `A_E`,
 Beilinson rank-≥2), the three recognition-source carriers
 (`Γ_BSD^padic-descent`, `Γ_BSD^Sha-persistence`,
 `Γ_BSD^higher-GZ-fixity`), the `Sel!_BSD` closure architecture, the
-`Π_BSD ⟺ Strong BSD` equivalence, the supporting conditional theorems
+scalar readout of `Π_BSD` and residual-zero equivalence, the supporting conditional theorems
 (`χ_{CT,p}` comparison, the OC `η`-formula, rank-≤1 `T_CASCADE`), the
-AOR realisability instance, and the Phase-9 Strong BSD landing.
+local AOR register instance, and the conditional Strong BSD landing.
 
 The two AOR modules provide the local, non-eliminative AOR surface. The
 consolidated mathematical source record is

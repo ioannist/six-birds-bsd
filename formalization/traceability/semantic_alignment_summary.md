@@ -9,7 +9,7 @@ projection-packaged claim, or strengthening obligation.
 ## Counts
 
 - Theorem-like audited items: 29
-- Unresolved / packaged / strengthening items: 19
+- Unresolved / packaged / strengthening items: 21
 
 ## Coverage
 
@@ -17,14 +17,14 @@ projection-packaged claim, or strengthening obligation.
 
 ## Alignment Status
 
-- `faithful`: 10
-- `narrowed_surrogate`: 11
+- `faithful`: 8
+- `narrowed_surrogate`: 13
 - `projection_packaged`: 8
 
 ## Resolution Actions
 
-- `no_action`: 10
-- `open_obligation`: 15
+- `no_action`: 8
+- `open_obligation`: 17
 - `retain_record_packaging`: 4
 
 ## Unresolved Items
@@ -35,7 +35,9 @@ projection-packaged claim, or strengthening obligation.
 - `thm:apparatus:gram-matrix-shadow`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.HigherRankNoGo.gramMatrixShadow`
 - `thm:apparatus:height-schur-collapse`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.HeightRegulator.heightSchurCollapse`
 - `thm:apparatus:kappa-r-normalization-equivalence`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.KappaNormalization.kappaRNormalizationEquivalence`
+- `thm:apparatus:ordinary-schur-collapse`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.PAdic.ordinarySchurCollapse`
 - `thm:apparatus:rank-two-height-schur-collapse`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoHeightSchurCollapse`
+- `thm:apparatus:signed-schur-collapse`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.PAdic.signedSchurCollapse`
 - `thm:apparatus:vsrc-stage-i-consistency`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.Vsrc.vsrcStageIConsistency`
 - `thm:apparatus:vsrc-stage-ii-gz-partial`: `narrowed_surrogate` / `open_obligation` -> `SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIGzPartial`
 - `thm:apparatus:vsrc-stage-iii-translation`: `projection_packaged` / `retain_record_packaging` -> `SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIITranslation`
