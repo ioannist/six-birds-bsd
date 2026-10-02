@@ -1,6 +1,7 @@
 # Source-indispensability construction: result and open arithmetic obligations
 
-Status: the algebraic construction and its countermodels are proved in Lean.
+Status: the algebraic construction, an exact rational local-to-global return,
+and source-scope necessity theorems are proved in Lean.
 Indispensability of the named arithmetic recognition sources is **not proved**.
 This document records a research outcome, not a replacement paper claim.
 
@@ -106,14 +107,118 @@ the unit ambiguities jointly. Another is an all-prime valuation comparison
 for a positive rational quotient, with rationality and full prime coverage
 proved. Restricted prime coverage or positive real data alone do not give
 that rational uniqueness argument. These are proposed routes; neither is
-implemented as an arithmetic theorem here.
+implemented as an elliptic-curve arithmetic theorem here. The rational
+local-to-global route now has the explicit construction below.
+
+## New construction: exact recovery from local unit comparisons
+
+The module `lean/SixBirdsBSD/Closure/RationalLocalGlobal.lean` closes the
+elementary local-to-global step on actual positive rational numbers.
+It also proves a sharp necessity theorem for the resulting scalar assembly
+rule. It does not change the original normalized recognition interface.
+
+On the native-factor carrier above, define the joint comparison quotient
+
+\[
+q=\frac{ab}{(\#\Sha/t^2)T}.
+\]
+
+For a prime \(p\), `UnitAt q p` says that neither the numerator nor the
+denominator of the **reduced rational number** \(q\) is divisible by \(p\).
+This is a concrete divisibility predicate; the module does not construct
+a p-adic field or assume a valuation oracle. For \(q>0\), checking this
+condition at every prime forces \(q=1\): a numerator or denominator
+greater than one would have a prime divisor. Positivity removes the
+surviving sign ambiguity; \(-1\) passes every prime-unit check.
+
+Suppose an independently established support bound says every prime
+dividing the reduced numerator or denominator lies in a specified set
+\(S\). Two local sources supply `UnitAt q p` on scopes \(A\) and \(B\).
+If \(S\subseteq A\cup B\) on prime indices, the quotient is exactly one.
+Together with native fixity \(N\), this gives the scalar BSD equation on
+the stated rational factor carrier. `scalarBSDFromPositiveTwoScopes` proves this return with the
+nonzero and quotient-positivity side conditions derived from positive
+factor data. Neither separate factor normalization is assumed.
+
+The construction also has a complete coverage criterion:
+
+\[
+\begin{gathered}
+\text{For every positive native factor package with quotient supported in }S,\\
+N\text{ and the retained unit checks on }C\text{ imply scalar BSD}
+\quad\Longleftrightarrow\quad
+\text{every prime in }S\text{ belongs to }C.
+\end{gathered}
+\]
+
+`forcesScalarIffCoversSupport` proves both directions. For necessity,
+choose a prime \(\ell\in S\setminus C\), and set \(L^*=b=\ell\),
+with \(a,R,\Omega,\#\Sha,t^2,T\) all equal to one. Native fixity holds,
+every retained unit check passes, and scalar BSD fails because its right
+side is one. The quotient is the actual rational number \(\ell\),
+supported at precisely that prime. These witnesses are realizable rational
+data rather than freely assigned prime labels. They are still not realized
+elliptic curves.
+
+If the union of two source scopes covers the support and each source has
+a supported prime absent from the other, both are indispensable to this
+universal assembly rule. `twoSourcesIndispensableForScalar` proves this.
+The regression checks the inhabited example \(S=\{2,3\}\),
+\(A=\{2\}\), \(B=\{3\}\). The fixity input is also necessary: the
+earlier `missingFixity` package has quotient one and passes every prime
+check, but fails scalar BSD. `fixityNecessaryForUnitAssembly` checks this
+third ablation in the new interface.
+
+Without an independent support bound, a finite prime list cannot recover
+the global value. `finitePrimeUnitNoGo` constructs an actual prime outside
+any given finite prime list; its rational value and one have identical
+retained unit records. Every operator on those records returns the same
+answer on the pair. The regression also checks that even all odd-prime
+unit comparisons leave a possible prime-two obstruction.
+
+## Why the named-source endpoint remains open
+
+The new theorem identifies the missing arithmetic bridge:
+
+1. Construct native \(a,b\) independently, and show their joint comparison
+   quotient is a positive rational number. Defining the factors by the
+   desired comparison equations would bypass this work. The present
+   `FactorData` carrier is rational throughout; actual real analytic,
+   regulator, and period data require an explicit scalar bridge or an
+   appropriate generalization of the assembly carrier.
+2. Prove a support bound independently of successful local checks.
+   A finite set of investigated primes is not such a bound.
+3. Derive the concrete `UnitAt` comparisons for this same quotient from
+   the named p-adic and signed-Selmer sources. The current congruence
+   fields are arbitrary propositions and do not define their scalar
+   `tamFactor` or `shaFactor` through a common quotient.
+4. Establish coverage and the genuinely different information supplied
+   by each source. The private-prime criterion has not been established
+   for the named sources. Different operators at the same prime could
+   require a different observation model.
+5. For arithmetic source necessity, realize the ablation witnesses in the
+   allowed arithmetic carrier, or prove another separation theorem there.
+   The rational witnesses prove universal assembly dependence on the
+   declared factor carrier. They do not establish that every alternative
+   BSD proof needs the same sources.
+
+A concrete next construction is to produce two independently defined
+integral lattices in a common rational determinant line. Their relative
+index would supply rationality, and an independently controlled finite
+cokernel could supply a support bound. Local comparison theorems would
+then have an actual index quotient to test. These lattices have not been
+constructed for the present elliptic-curve recognition sources. The
+existing normalized GZ readout already supplies the scalar target and
+cannot fill this role without first establishing a genuinely native
+version of its identity.
 
 ## Decision boundary
 
 The original normalized scalar target cannot support the asserted
 indispensability by its present entailment structure. The new native
-interface supports a precise algebraic independence theorem, but its
-arithmetic inputs remain research obligations. Calling those obligations
+interface supports precise algebraic independence and support-scoped
+local-to-global necessity theorems, but its elliptic-curve arithmetic
+inputs remain research obligations. Calling those obligations
 imports without proving their source and scope would move the gap into
 hypotheses.
 
@@ -126,9 +231,10 @@ ablation witnesses. No manuscript has been changed in this phase.
 
 ## Verification
 
-The module is imported by the closure umbrella. The regression target
+Both construction modules are imported by the closure umbrella. The regression target
 `SixBirdsBSD.Verification.Regression` prints the axiom dependencies of
-the assembly, sharp criterion, countermodels, and existing landing.
+the assembly, sharp criteria, countermodels, local-to-global returns,
+source-scope necessity statements, and existing landing.
 The concrete rational decisions use kernel reduction. The observed axiom
 closures contain only `propext`, `Classical.choice`, and `Quot.sound`.
 Passing these checks validates the displayed statements, including their

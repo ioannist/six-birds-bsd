@@ -8,6 +8,7 @@ import SixBirdsBSD.Closure.Obstructions
 import SixBirdsBSD.Closure.SelShell
 import SixBirdsBSD.Closure.Landing
 import SixBirdsBSD.Closure.CoupledFactors
+import SixBirdsBSD.Closure.RationalLocalGlobal
 import SixBirdsBSD.Closure.AORPrimitives
 import SixBirdsBSD.Closure.AORInstance
 

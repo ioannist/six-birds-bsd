@@ -137,6 +137,49 @@ example : ¬ SixBirdsBSD.Closure.EtaApplicability.LangWakeNumericScope 11 5 :=
 
 example : ¬ SixBirdsBSD.Apparatus.SupportPrimeNoGo.IsPrime 8 := by decide +kernel
 
+open SixBirdsBSD.Closure.RationalLocalGlobal
+
+/-- Both sources are required for exact recovery on the declared {2,3}
+support: source A sees prime 2 and source B sees prime 3. -/
+example :
+    RecoversOnSupport (fun p => p = 2 ∨ p = 3) (fun p => p = 2 ∨ p = 3) ∧
+      ¬ RecoversOnSupport (fun p => p = 2 ∨ p = 3) (fun p => p = 2) ∧
+      ¬ RecoversOnSupport (fun p => p = 2 ∨ p = 3) (fun p => p = 3) :=
+  twoSourcesIndispensable (fun p => p = 2 ∨ p = 3)
+    (fun p => p = 2) (fun p => p = 3) (fun _ _ h => h)
+    2 3 (by decide +kernel) (by decide +kernel)
+    (Or.inl rfl) (Or.inr rfl) (by decide) (by decide)
+
+/-- Positivity is essential for the exact return: -1 is a unit at every
+prime but is not one. -/
+example : (∀ p, SupportPrimeNoGo.IsPrime p → UnitAt (-1) p) ∧ (-1 : Rat) ≠ 1 := by
+  refine ⟨?_, by decide +kernel⟩
+  intro p hp
+  simpa [UnitAt] using oneUnitAt p hp
+
+/-- The prime 5 is a genuine rational obstruction invisible at primes 2 and 3. -/
+example : localRows [2, 3] (5 : Rat) = localRows [2, 3] 1 := by
+  funext p hp
+  simp at hp
+  rcases hp with rfl | rfl <;> unfold localRows <;> decide +kernel
+
+/-- The source-indispensability theorem also reaches the scalar target on
+the positive native-factor carrier, using the same explicit private primes. -/
+example :
+    ForcesScalarOnSupport (fun p => p = 2 ∨ p = 3) (fun p => p = 2 ∨ p = 3) ∧
+      ¬ ForcesScalarOnSupport (fun p => p = 2 ∨ p = 3) (fun p => p = 2) ∧
+      ¬ ForcesScalarOnSupport (fun p => p = 2 ∨ p = 3) (fun p => p = 3) :=
+  twoSourcesIndispensableForScalar (fun p => p = 2 ∨ p = 3)
+    (fun p => p = 2) (fun p => p = 3) (fun _ _ h => h)
+    2 3 (by decide +kernel) (by decide +kernel)
+    (Or.inl rfl) (Or.inr rfl) (by decide) (by decide)
+
+/-- Even checking every odd prime does not remove a possible prime-2
+obstruction. No elliptic-curve realization is asserted by this example. -/
+example : ¬ ForcesScalarOnSupport (fun p => p = 2) (fun p => p % 2 = 1) :=
+  omittedScopePreventsScalarBSD (fun p => p = 2) (fun p => p % 2 = 1)
+    2 (by decide +kernel) rfl (by decide)
+
 #print axioms SixBirdsBSD.Closure.Landing.strongBSDConditional
 #print axioms SixBirdsBSD.Closure.SelShell.piBSDForcesStrongBSD
 #print axioms SixBirdsBSD.Closure.SelShell.compositeSignature
@@ -168,5 +211,19 @@ example : ¬ SixBirdsBSD.Apparatus.SupportPrimeNoGo.IsPrime 8 := by decide +kern
 #print axioms SixBirdsBSD.Closure.EtaApplicability.levelElevenOutsideLangWake
 #print axioms SixBirdsBSD.Apparatus.SupportPrimeNoGo.isPrimeIffFiniteCheck
 #print axioms SixBirdsBSD.Apparatus.SupportPrimeNoGo.decidableIsPrime
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.allPrimeUnitsForceOne
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.unitsOnSupportForceOne
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.scalarBSDFromPrimeUnits
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.omittedPrimeWitness
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.recoversIffCoversSupport
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.twoSourcesIndispensable
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.scalarBSDFromTwoScopes
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.scalarBSDFromPositiveTwoScopes
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.primeDefectDataProperties
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.omittedScopePreventsScalarBSD
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.forcesScalarIffCoversSupport
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.twoSourcesIndispensableForScalar
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.fixityNecessaryForUnitAssembly
+#print axioms SixBirdsBSD.Closure.RationalLocalGlobal.finitePrimeUnitNoGo
 
 end SixBirdsBSD.Verification.Regression
