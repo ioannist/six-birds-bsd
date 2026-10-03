@@ -367,4 +367,18 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.ShaFourNormalization.perfectFourFormIntegralReturn
 #print axioms SixBirdsBSD.Closure.ShaFourNormalization.formNormalizationControls
 
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.equationAndLocalInputs
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.ordinaryAtTwoIsAnomalous
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.matchedPartnerHasLocalAnomaly
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.anomalousUnitRootControls
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.frobeniusCartanReturn
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.cartanFalseControl
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.threePresentationCohomology
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.threePairingLaws
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.everyPerfectThreeFormHasIntegralReturn
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.squareRootBasisObstruction
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.fixedSquareMapMissesABasis
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.unitErasedBasisLosesSquareClass
+#print axioms SixBirdsBSD.Closure.OddPrimaryBridge.retainedUnitReturnsSquareClass
+
 end SixBirdsBSD.Verification.Regression

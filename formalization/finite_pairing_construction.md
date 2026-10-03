@@ -701,3 +701,11 @@ obligations. The rational
 conditional assembly and support-coverage results remain documented in
 `source_indispensability.md`; this construction supplies concrete finite
 carriers rather than resolving their arithmetic hypotheses.
+
+The subsequent odd-primary construction in `odd_primary_selmer_bridge.md`
+does identify the ordinary compact complex of 1913b1 at three with `3J`
+in degrees one and two, using separately stated arithmetic imports. Its
+inverse determinant ideal is `(9)`. This resolves a derived-object
+identification on that lane; it does not select a compatible arithmetic
+self-duality map or prescribed Stark generator. The same-curve basis
+variation there exhibits the unit information that the ideal loses.

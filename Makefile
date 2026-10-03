@@ -116,6 +116,7 @@ validate:
 	python3 scripts/check_sha_descent.py --check
 	python3 scripts/check_sha_dimension_pair.py --check
 	python3 scripts/check_sha_four_normalization.py --check
+	python3 scripts/check_odd_primary_bridge.py --check
 
 # verify-lean is the build-dependent gate: it builds the Lean project (incl. the
 # vendored Foundations libraries) and runs the live `lake env lean` axiom-closure

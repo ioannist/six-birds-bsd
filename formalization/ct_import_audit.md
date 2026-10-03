@@ -154,7 +154,49 @@ orientation. Those source-comparison maps remain open.
 At two, 1309a1 also fails the nondivisibility-of-Tamagawa condition:
 its product is four. The matched 2045b1 example has product one, but
 prime two still lies outside the cited odd-prime Stark-system scope.
+There is also a non-anomalous local-condition obstruction at two:
+2045b1 has good ordinary reduction and residue-field order two. Its
+ordinary discrete quotient has an invariant subgroup of order two.
+The local classical/ordinary comparison therefore needs a correction;
+removing only the odd-prime restriction would not supply the bridge.
 All three curves are semistable, so they do not provide the Gamma
 sources' additive-prime instances. Populating the existing chi_CT
 certificate with their finite cardinalities would bypass these
 substantive applicability and comparison obligations.
+
+## An actual ordinary complex and a prescribed-basis obstruction
+
+The new 1913b1 instance at three satisfies the ordinary, non-anomalous,
+Tamagawa and torsion conditions. Exact point counts at five give a
+Frobenius polynomial whose reduction has roots of order eight; Lean
+checks every matrix with its trace and determinant, proving the
+nonsplit Cartan condition rather than supplying that condition as a
+certificate. The published three-descent and arithmetic upper bound
+identify its three-primary Sha group with `(Z/3)^2`.
+
+The cohomology theorem and Kummer sequences give `H1(C)=0` and
+`H2(C)=(Z/3)^2` for the ordinary compact complex. Hence it is
+noncanonically quasi-isomorphic to the actual `3J` presentation in
+degrees one and two. Its inverse determinant has image `(9)` under
+the acyclic trivialization, and its square-root ideal is `(3)`.
+Lean proves the presentation's kernel/cokernel return and normalizes
+every perfect alternating form on this group. The arithmetic derived
+identification and determinant-functor argument are written proofs
+with explicit imports, external to Lean.
+
+On this one fixed curve, bases with scalar images nine and eighteen
+generate the same three-adic ideal. Only the former lifts through the
+fixed squaring map on `(3)`. Thus retaining the ideal loses information
+needed to lift a prescribed basis. The finite square-class obstruction
+and its unit-retention repair are proved in Lean. This is arithmetic
+basis variation on an actual determinant line; it is not a source
+indispensability theorem for scalar BSD.
+
+Rank-two admissible sets in the source's Section 4.2 do not themselves
+give the rank-one core vertices required by Theorem 3.4. The latter
+construction, prescribed Stark basis, self-duality comparison, degree
+shift and orientation remain open. In the compact convention here,
+the proposed unshifted `H1(C)/div` is zero. Shifting it to the finite
+degree also inverts the determinant convention, which must be carried
+through the comparison. See `odd_primary_selmer_bridge.md` and its
+fixture for the exact source chain and self-review.

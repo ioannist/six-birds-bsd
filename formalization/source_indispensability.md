@@ -416,3 +416,31 @@ The concrete rational decisions use kernel reduction. The observed axiom
 closures contain only `propext`, `Classical.choice`, and `Quot.sound`.
 Passing these checks validates the displayed statements, including their
 explicit hypotheses; it does not discharge the arithmetic obligations.
+
+## A same-curve unit obstruction for a prescribed square-root comparison
+
+The ordinary three-primary complex of 1913b1 now has a written
+arithmetic derived identification with the hyperbolic `3J` presentation,
+using checked local/Cartan applicability and separately sourced
+three-primary bounds. Its inverse determinant has image `(9)` under
+the acyclic trivialization. Two legitimate bases of that same line,
+with images nine and eighteen, generate the same three-adic ideal.
+The first has a root through the fixed square map from `(3)`; the
+second does not, because two is a nonsquare modulo three.
+
+Thus the Fitting ideal alone cannot return rootability of a prescribed
+basis. Unlike the different-curve finite-factor pair, this variation
+holds the curve, its cohomology, pairing, periods and local factors
+fixed. It realizes genuine arithmetic information loss in the unit
+of a determinant basis. Lean proves the finite square-class return
+and repair by retaining that unit. The necessity is for this specific
+comparison task and observable interface, not the full named-source
+scalar claim. Choosing some liftable normalized basis is possible;
+matching a prescribed native Stark basis is a separate requirement.
+
+The compact complex's H1 is zero and its finite group is in H2.
+Rank-one Stark core vertices and the compatible shift, generator,
+self-duality and orientation comparisons remain unresolved. The
+normalized GZ source still entails scalar BSD by itself. See
+`odd_primary_selmer_bridge.md` for the construction, imports,
+arithmetic-versus-Lean coverage and self-review.

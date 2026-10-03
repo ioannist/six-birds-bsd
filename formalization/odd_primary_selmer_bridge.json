@@ -1,0 +1,124 @@
+{
+  "scope": "Actual ordinary three-primary arithmetic lane for Cremona 1913b1. The exact equation, point counts, Hecke eigensymbol and finite presentation are checked. Miller's intermediate three-descent and upper bound, optimality table, modularity/nonvanishing theorem, and the Selmer-complex cohomology theorem are external imports. The derived-category identification is a written arithmetic argument, not mechanized in Lean. Rank-one Stark core vertices, a compatible square-root generator, and full named-source indispensability remain open.",
+  "checked": "2026-10-03",
+  "pari_version_checked": "2.15.4",
+  "gp_stack_bytes": 128000000,
+  "sources": {
+    "allcurves": "https://raw.githubusercontent.com/JohnCremona/ecdata/master/allcurves/allcurves.00000-09999",
+    "allcurves_sha256": "259f3846329395b371e8079c77a6f1097adaebc98a054974573e241416efa968",
+    "miller_pdf": "https://arxiv.org/pdf/1010.2431v3",
+    "miller_pdf_sha256": "52cbe68361e6eb07f94e13197a88eb5295c3f92e339a65d1488324d5489055ae",
+    "miller_locations": "Theorem 7.2 proof, printed pages 16-17, including the selected Stein-Wuthrich upper-bound list; Table 1 lists 1913b1 as optimal with analytic three-adic valuation two.",
+    "imported_arithmetic_computations": "The published three-descent gives Sha[3] isomorphic to (Z/3)^2. The Stein-Wuthrich algorithm supplies the desired arithmetic upper bound nine for the three-primary group on the explicitly listed 1913b1. The present checker does not rerun either computation. Their combination identifies the entire three-primary group without assuming the final scalar BSD formula.",
+    "manin_pdf": "https://arxiv.org/pdf/1703.02951v3",
+    "manin_pdf_sha256": "61cde659ac3089225539b58bfdf0082cb63ce39d1ca8bd7f8952b424e7132b6c",
+    "selmer_complex": "https://arxiv.org/html/2603.23978v1",
+    "selmer_locations": "Example 2.1, Remark 2.12 and Lemmas 2.14-2.15 directly over Q establish compact/discrete Selmer cohomology, with classical local-condition comparison as in the proof of Proposition 4.7. Hypothesis 4.1 is independently checked, but Proposition 4.7 uses a tower setting and is not silently specialized to a positive layer equal to Q. Theorem 3.4 additionally requires rank-one auxiliary primes/core vertices, which are not supplied by this fixture.",
+    "greenberg_pdf": "https://arxiv.org/pdf/math/9809206v1",
+    "greenberg_pdf_sha256": "d39ff7b21372d60fca0684ea9a74fea4e94b45840b4c79343ad9ec8b31640b8b",
+    "greenberg_location": "Proposition 2.5, printed page 19: the quotient of ordinary local images by classical Kummer images is the residue-field p-primary group.",
+    "exact_hecke_symbols": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#msfromhecke"
+  },
+  "model": {
+    "curve": "1913b1",
+    "allcurves_row": "1913 b 1 [1,1,0,-34,-135] 0 2",
+    "a_invariants": [
+      1,
+      1,
+      0,
+      -34,
+      -135
+    ],
+    "c4": 1657,
+    "c6": 104275,
+    "discriminant": -3659569,
+    "conductor": 1913,
+    "minimal_a_invariants": [
+      1,
+      1,
+      0,
+      -34,
+      -135
+    ],
+    "rational_torsion_order": 2,
+    "finite_tamagawa_product": 2,
+    "bad_primes": [
+      1913
+    ],
+    "local_reduction": [
+      1,
+      6,
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      2
+    ],
+    "isogeny_degree_matrix": [
+      [
+        1,
+        2
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "point_counts": {
+      "3": 2,
+      "5": 4
+    },
+    "a_p": {
+      "2": 1,
+      "3": 2,
+      "5": 2
+    },
+    "modular_symbol": {
+      "sign": 1,
+      "level": 1913,
+      "weight": 2,
+      "hecke_prime_eigenvalues": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ],
+        [
+          5,
+          2
+        ]
+      ],
+      "eigenspace_dimension": 1,
+      "coordinate_column_length": 160,
+      "path_generator_count": 321,
+      "generator_value_content": 1,
+      "primitive_path_value_absolute": 9,
+      "sturm_bound": 319,
+      "absolute_period_ratio": [
+        9,
+        2
+      ],
+      "analytic_candidate": 9
+    }
+  },
+  "matched_partner_at_two": {
+    "curve": "2045b1",
+    "model_fixture": "sha_four_normalization.json",
+    "point_count": 2,
+    "a_p": 1,
+    "ordinary": true,
+    "non_anomalous": false,
+    "unit_root_polynomial_coefficients": [
+      1,
+      -1,
+      2
+    ],
+    "discrete_ordinary_quotient_invariant_order": 2
+  },
+  "deduction_boundary": "1913b1 at three meets good ordinary, non-anomalous, Tamagawa and global torsion conditions. Its Frobenius polynomial at five is irreducible modulo three with roots of order eight, establishing the nonsplit Cartan hypothesis. The cohomology theorem and finite Sha give H1(C)=0 and H2(C)=Sha[3-infinity]^dual=(Z/3)^2. Thus C is noncanonically quasi-isomorphic to the hyperbolic 3J presentation in degrees one and two over Z3. A derived-category object identification does not select a self-duality-compatible chain map or a prescribed Stark basis. The acyclic trivialization and the derived order do give inverse determinant ideal (9) and a normalized basis of image nine. The root ideal is (3), but another legitimate determinant basis of image eighteen has no lift through its fixed square map. Thus ideal data lose prescribed-basis square-class information on the same fixed arithmetic curve. The proposed H1/div object is zero in this unshifted compact convention; the finite lane is in H2. This is a degree-convention counterexample, not a manuscript edit."
+}
