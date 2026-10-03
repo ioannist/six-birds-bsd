@@ -713,3 +713,26 @@ ranks four and one. A usual determinant on that full map is unavailable.
 The independently prescribed OC and signed determinant-line comparisons
 still need their carriers and normalization. No full named-source ablation
 or source necessity with normalized GZ fixed is inferred.
+
+
+## Native signed-tower transition attempt
+
+[`signed_tame_transition.md`](signed_tame_transition.md) constructs the
+actual seven-adic tame/cyclotomic field tower for the supersingular cover.
+An exact Gauss identity realizes its quadratic intersection; a native
+polynomial relation and odd-degree field norm produce compatible
+uniformizer branches. The corrected square-root series has a forced
+coefficient of negative valuation and fails the necessary convergence
+condition at every required higher uniformizer. Thus the new literal
+power-series candidate cannot supply the signed comparison. This sharper
+obstruction and norm repair are independently checked by exact Python
+arithmetic, Lean polynomial/normalization proofs and PARI controls.
+
+The unramified quadratic good fiber has 64 points and Frobenius polynomial
+(T+7)^2; the old trace-zero degree-one operator is a different Frobenius
+normalization. A recently examined CM paper does not instantiate the
+non-CM arithmetic example. The legal repair here is a multiplicative field
+norm, not an additive formal-group trace or a constructed signed pairing.
+Native signed generators, determinant normalization and global Sha return
+remain open, as does source indispensability with normalized GZ retained.
+No manuscript claim or recognition certificate has been changed.

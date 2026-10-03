@@ -1,0 +1,28 @@
+{
+  "checked": "2026-10-03",
+  "scope": "Actual seven-adic tame/cyclotomic field transition and branch repair; not a constructed signed pairing, Coleman map or Sha comparison.",
+  "curve_record": "global_tame_product.json",
+  "prime": 7,
+  "quartic_parameter": -7,
+  "inertia_order": 4,
+  "cyclotomic_overlap_degree": 2,
+  "residual_tame_degree": 2,
+  "unramified_good_fiber": {"field_model":"F7[i], i^2=-1","A":1,"B":0,"cardinality":49,"points":64,"trace":-14,"determinant":49},
+  "phi7_ascending": [1,1,1,1,1,1,1],
+  "gauss7_ascending": [0,1,1,-1,1,-1,-1],
+  "gauss_quotient_ascending": [7,-7,1,1,-3,1,1],
+  "transition_ascending": [0,0,7,0,-21,0,35,0,-35,0,21,0,-7,0,1],
+  "unit_polynomial_in_square_coordinate": ["1","-3","5","-5","3","-1","1/7"],
+  "square_root_in_square_coordinate": ["1","-3/2","11/8","-7/16","-13/128","-13/256","281/7168"],
+  "negative_coefficient_valuation": {"degree":13,"numerator":281,"denominator":7168,"v7_slope":[1,2],"v7_coefficient":[-1,2]},
+  "candidate_source": {
+    "authors": "Ben Forras and Antonio Lei",
+    "title": "Iwasawa theory of CM elliptic curves at potentially supersingular primes",
+    "version": "arXiv:2609.13063v1, 11 September 2026",
+    "url": "https://arxiv.org/pdf/2609.13063v1",
+    "sha256": "0246c81bb30393bf4861812cb421935fa74ed09d39d6c60811b43d649d607086",
+    "inspected_locations": ["Remark 3.2, printed page 7", "Equations (3.3)-(3.5), printed page 8", "Definition 3.17, printed page 13", "Proposition 4.4, printed page 19"],
+    "disposition": "The literal displayed transition is not imported: its binomial substitution and quartic leading coefficient fail the native checks. CM arithmetic identification does not apply to this non-CM curve. No general rejection of other results is claimed."
+  },
+  "deduction_boundary": "Lean proves exact polynomial and rational coefficient algebra, degree controls and a uniform norm-sign repair implication. Actual local fields, infinite compatible root-of-unity and uniformizer towers, valuation/divergence arguments and field norm are written mathematics. Multiplicative field norm is not additive elliptic trace; signed generators, actual local pairing and determinant normalization remain open."
+}

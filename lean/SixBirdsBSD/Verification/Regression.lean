@@ -515,4 +515,19 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.KummerComponentErasure.coefficientTwoImageControl
 #print axioms SixBirdsBSD.Closure.KummerComponentErasure.actualMarkedPointInputs
 
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.gaussSquarePolynomialIdentity
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.quadraticCyclotomicOverlap
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.cyclotomicSquareTransition
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.nativeUniformizerRelation
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.leadingSlopeRepair
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.unramifiedPhaseControl
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.unramifiedFrobeniusSquareControl
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.transitionFactorization
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.binomialConstantControls
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.squareRootCoefficientsForced
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.squareRootCoefficientInputs
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.coefficientValuationInputs
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.cyclotomicDegreeControl
+#print axioms SixBirdsBSD.Closure.SignedTameTransition.normBranchRepair
+
 end SixBirdsBSD.Verification.Regression
