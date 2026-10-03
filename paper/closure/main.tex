@@ -119,7 +119,7 @@
 
 \title{A Conditional Proof of the Strong Birch--Swinnerton-Dyer Conjecture}
 \author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
-\date{31 August 2026}
+\date{v1: 31 August 2026\quad\textperiodcentered\quad v2: 3 October 2026}
 \hypersetup{
   pdftitle={A Conditional Proof of the Strong Birch--Swinnerton-Dyer Conjecture},
   pdfauthor={Ioannis Tsiokos},
@@ -131,48 +131,48 @@
 \thispagestyle{firstpage}
 
 \begin{abstract}
-We make precise what a conditional closure of Strong
-Birch--Swinnerton-Dyer rests on.  The construction is a saturated BSD
-trace shell \(\SelBSD\) whose scalar residual \(\rhoE\), the difference
-between the analytic leading coefficient and the Strong-BSD arithmetic
-product, vanishes exactly when the Strong-BSD scalar identity holds,
-together with a structured readout predicate \(\PiBSD\) whose
-readout-level equivalence with that identity is a theorem rather than a
-definition.
-The deep arithmetic is isolated into three named recognition sources:
-a \(p\)-adic descent/Tamagawa correction, a signed-Selmer
-\(\Sha\)-persistence source, and a higher-rank Gross--Zagier fixity
-source.  These are supplied as typed carriers, not derived.  They are
-combined with headline imported theorem stacks: a Cassels--Tate Pfaffian
-comparison, a Selmer-complex pairing substrate, and a Beilinson
-rank-\(\geq 2\) comparison.  Under the standing shell-closure
-assumption, these sources and headline imports make the framework master
-theorem force \(\rhoE=0\), and the readout equivalence yields Strong BSD.
-Outside the framework this is the conditional theorem that the standing
-shell-closure record, the three recognition sources, and the headline
-imports imply Strong BSD; it is not an unconditional proof.  The closed
-carrier is then read as a
-non-eliminative Audited Operational Realisability instance: the
-recognition records are bridged rather than discharged, while the
-rank-\(\geq 2\) generalized Gross--Zagier identity and additive
-\(p\leq 3\) Iwasawa main conjecture remain open.  The architecture is
-formalized in Lean as a checked conditional schema, not as an
-independent derivation.
+We formulate the Strong Birch--Swinnerton-Dyer formula for an elliptic
+curve $E/\Q$ as a fixed-point statement and prove a conditional theorem
+in that formulation.  Let $L^*$ be the leading Taylor coefficient of
+$L(E,s)$ at $s=1$ and $R_E$ the arithmetic side of the formula.  We show
+that the Strong BSD identity holds exactly when the pair $(L^*,R_E)$ is
+fixed by the averaging closure $c(a,b)=((a+b)/2,(a+b)/2)$, and we
+determine what a closure on a richer layer of arithmetic data would need
+in order to return this statement: a readout intertwining it with $c$,
+and fixedness of the original state.  The main theorem derives the
+identity from a recognition hypothesis, which in rank at most one
+contains the identity and in rank at least two is a leading-term
+identity with the normalization
+$\kappa_r=\#\Sha/\#E(\Q)_{\mathrm{tors}}^2$.  This hypothesis has the
+strength of the conclusion, so the theorem is a conditional translation
+of Strong BSD into the closure framework, not an independent derivation.
+The other inputs, local descent and signed hypotheses and comparison
+statements from the literature, are carried with their precise scope
+but are not used for the scalar identity.  We show by examples what these
+inputs contain beyond coarser data: for $121a1$ and $121b1$ the local
+congruences cannot see the Tamagawa numbers $1$ and $2$, and for $1913b1$
+at $p=3$ two generators of the same Selmer-complex determinant ideal
+differ in whether they have a square root.  We also show that sensitivity
+of the BSD product to its factors does not make any hypothesis necessary,
+and we record a proposed overconvergent $\eta$-formula only as a
+conditional certificate, explaining why the published results it was
+modelled on do not apply as stated.  The paper does not prove BSD.  The
+scalar algebra and the closure statements are proved in Lean~4; the
+remaining statements are labelled by the exact extent of their
+formalization.
 \end{abstract}
 
 \medskip
 \noindent\textbf{Keywords.} Birch--Swinnerton-Dyer conjecture; Strong BSD;
-conditional closure; Cassels--Tate pairing; Selmer complex; Iwasawa main
-conjecture; formal verification (Lean); Six Birds Theory; emergence calculus.
+closure operator; conditional theorem; Cassels--Tate pairing; Selmer
+complex; Iwasawa main conjecture; formal verification (Lean); Six Birds
+Theory.
 
 \medskip
 \noindent
-Conventions: $E/\Q$, $M_E=h^1(E)(1)$, $r=\operatorname{rank}E(\Q)$,
-$r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)$. This paper mechanizes the
-framework-structural closure architecture only; the deep arithmetic enters as
-imported proof-carrying structures and typed recognition-source carriers, never
-as Lean axioms. The landing is a conditional closure, not an unconditional proof
-of BSD. The \(\kapr\) normalization is reused from
+\textbf{Conventions.} $E/\Q$ is an elliptic curve, $M_E=h^1(E)(1)$,
+$r=\operatorname{ord}_{s=1}L(E,s)$ is the analytic rank, and curve labels
+are Cremona labels.  The normalization of $\kapr$ is taken from
 \citet{TsiokosBSDApparatus2026}.
 
 % ===========================================================================
