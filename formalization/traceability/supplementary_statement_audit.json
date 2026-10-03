@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "5cd158bacfc83079313728ba7ddd9e2ead3e322274811f2f82eea8b6db9e2f5e",
+  "lean_context_hash": "292ea2990ef5ea6683d0315c7f6ddd40eb090277a81a6bf3a307385e25a382fb",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",

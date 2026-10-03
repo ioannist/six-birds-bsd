@@ -552,15 +552,19 @@ private def pairingControlContext : SixBirdsBSD.Closure.Imports.aEContext Bool w
   pairingBilinearOrCategorical := fun E => ∀ a b c : Int,
     controlPairing E (a + b) c = controlPairing E a c + controlPairing E b c
 
+private def goodPairingControlImport :
+    SixBirdsBSD.Closure.Imports.aEImport pairingControlContext true where
+  nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof := True.intro
+  burnsFlachMaciasSanoNekovarAESelFormulation_proof := True.intro
+  pairingBilinearOrCategorical_proof := by
+    intro a b c
+    simp [controlPairing, Int.add_mul]
+
 theorem curveMatchedPairingControls :
     Nonempty (SixBirdsBSD.Closure.Imports.aEImport pairingControlContext true) ∧
     ¬ Nonempty (SixBirdsBSD.Closure.Imports.aEImport pairingControlContext false) := by
   constructor
-  · exact ⟨{ nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof := True.intro
-             burnsFlachMaciasSanoNekovarAESelFormulation_proof := True.intro
-             pairingBilinearOrCategorical_proof := by
-               intro a b c
-               simp [controlPairing, Int.add_mul] }⟩
+  · exact ⟨goodPairingControlImport⟩
   · apply SixBirdsBSD.Closure.Imports.aEImport.failedPairingPreventsImport
     intro h
     have hbad := h 0 0 0
@@ -576,12 +580,16 @@ private def beilinsonControlContext : SixBirdsBSD.Closure.Imports.beilinsonConte
 
 /-- Both instances have the same admissible rank. Rank matching alone
 cannot transfer the comparison certificate to the other prescribed instance. -/
+private def goodBeilinsonControlImport :
+    SixBirdsBSD.Closure.Imports.beilinsonImport beilinsonControlContext true where
+  rank_ge_two := by decide
+  determinantLValueComparison_proof := rfl
+
 theorem curveMatchedBeilinsonControls :
     Nonempty (SixBirdsBSD.Closure.Imports.beilinsonImport beilinsonControlContext true) ∧
     ¬ Nonempty (SixBirdsBSD.Closure.Imports.beilinsonImport beilinsonControlContext false) := by
   constructor
-  · exact ⟨{ rank_ge_two := by decide
-             determinantLValueComparison_proof := rfl }⟩
+  · exact ⟨goodBeilinsonControlImport⟩
   · apply SixBirdsBSD.Closure.Imports.beilinsonImport.failedComparisonPreventsImport
     exact (by decide : ¬ (3 : Rat) = 2)
 
@@ -591,5 +599,288 @@ theorem curveMatchedBeilinsonControls :
 #print axioms SixBirdsBSD.Closure.Imports.beilinsonImport.failedComparisonPreventsImport
 #print axioms curveMatchedPairingControls
 #print axioms curveMatchedBeilinsonControls
+
+
+/-- A nontrivial rational scalar model of the full shell. The curve and
+formed-data carriers are symbolic, and the named audit predicates are True.
+This inhabits the encoded hypotheses for controls; it makes no claim that
+the predicates are interpreted arithmetic audits on an elliptic curve. -/
+def symbolicShell (rank : Nat) (leading : Rat) (badScope : Nat → Prop) :
+    SixBirdsBSD.Closure.SelShell.selBSDShell.{0,0,0,0,0,0} where
+  EllipticCurve := Bool
+  Scalar := Rat
+  LocalLift := Unit
+  FormedLayer := Rat
+  InvolutiveDatum := Unit
+  VisibleReadoutDatum := Unit
+  AuditRecordDatum := Unit
+  E := true
+  analyticRank := rank
+  zero := 0
+  sub := fun a b => a - b
+  mul := fun a b => a * b
+  div := fun a b => a / b
+  L_derivative_over_factorial := leading
+  ShaCard := 1
+  Reg_NT := 1
+  Omega_E := 1
+  Tam := 1
+  torsionSquared := 1
+  strongBSDRightSide := 1
+  strongBSDRightSide_eq := by decide +kernel
+  residual := leading - 1
+  residual_eq := rfl
+  sub_eq_zero_iff := by
+    intro a b
+    rw [Rat.sub_eq_add_neg]
+    constructor
+    · intro h
+      exact Rat.add_right_cancel (-b) (h.trans (Rat.add_neg_cancel b).symm)
+    · intro h
+      rw [h]
+      exact Rat.add_neg_cancel b
+  mulDivLeft := by
+    intro a b d
+    simp only [Rat.div_def]
+    rw [Rat.mul_assoc a d⁻¹ b, Rat.mul_comm d⁻¹ b, ← Rat.mul_assoc a b d⁻¹]
+  J_BSD := ()
+  Vis_BSD := ()
+  Audit_BSD := ()
+  closureAssumption := ⟨id, fun _ => rfl⟩
+  admissibility := True
+  admissibility_proof := True.intro
+  antiTautology := True
+  antiTautology_proof := True.intro
+  lawfulness := True
+  lawfulness_proof := True.intro
+  additiveBadPrimeInScope := badScope
+  inertiaTrivializingLiftInScope := fun _ _ => True
+  signedSelmerAdmissiblePrime := fun _ => False
+  smuggleAuditPasses := True
+  smuggleAuditPasses_proof := True.intro
+  masterTheoremApplies := True
+  foundationsIVApplicabilityAudit := True
+  foundationsIVApplicabilityAudit_proof := True.intro
+  masterFromRecognitionAudits :=
+    (SixBirdsBSD.Closure.SelShell.recognitionAuditLawIffImplication True True).mpr
+      (fun _ => True.intro)
+  compositeOperationalPredicate := True
+  compositeOperationalPredicate_proof := True.intro
+  compositeComputable := True
+  compositeComputable_proof := True.intro
+  compositeFalsifiable := True
+  compositeFalsifiable_proof := True.intro
+  genuineDependenceOnFormedBSDLayerData := True
+  genuineDependenceOnFormedBSDLayerData_proof := True.intro
+  AblationWitness := Unit
+  ablatePadicBreaksStrongBSDScalarFactorPackage := fun _ => True
+  ablateShaBreaksStrongBSDScalarFactorPackage := fun _ => True
+  ablateGZBreaksStrongBSDScalarFactorPackage := fun _ => True
+  ablatePadicWitness := ()
+  ablatePadicWitness_proof := True.intro
+  ablateShaWitness := ()
+  ablateShaWitness_proof := True.intro
+  ablateGZWitness := ()
+  ablateGZWitness_proof := True.intro
+
+/-- The low-rank conditional recognition lane is inhabited. Its local
+scopes are empty and its scalar identity is explicit supplied content. -/
+def recognizedSymbolicShell :
+    SixBirdsBSD.Closure.SelShell.piBSD.{0,0,0,0,0,0,0,0,0,0,0,0} (symbolicShell 0 1 (fun _ => False)) where
+  gammaPadicDescentReadout := fun _ _ h _ => False.elim h
+  gammaShaPersistenceReadout := fun _ h => False.elim h
+  gammaHigherGZFixityReadout := fun h => False.elim (by
+    change 2 ≤ 0 at h
+    omega)
+  lowerRankAnalogLane := fun _ => rfl
+
+theorem recognizedShellReadoutControl :
+    (symbolicShell 0 1 (fun _ => False)).residual =
+      (symbolicShell 0 1 (fun _ => False)).zero :=
+  SixBirdsBSD.Closure.SelShell.piBSDForcesResidualZero _ recognizedSymbolicShell
+
+/-- The same idempotent operator and opaque audit receipts permit a false
+scalar target, but the recognition premise then fails. This tests the exact
+conditional implication rather than asking idempotence to prove arithmetic. -/
+theorem falseTargetRecognitionControl :
+    ¬ Nonempty (SixBirdsBSD.Closure.SelShell.piBSD.{0,0,0,0,0,0,0,0,0,0,0,0} (symbolicShell 0 2 (fun _ => False))) ∧
+    (symbolicShell 0 2 (fun _ => False)).residual ≠
+      (symbolicShell 0 2 (fun _ => False)).zero := by
+  constructor
+  · rintro ⟨recognition⟩
+    have h := recognition.lowerRankAnalogLane (Or.inl rfl)
+    exact (by decide : (2 : Rat) ≠ 1) h
+  · exact (by decide +kernel : (2 : Rat) - 1 ≠ 0)
+
+/-- Scalar equality does not validate the declared source scopes. Prime
+two is a genuine prime, but the padic source requires an odd prime. This is
+a control of the unrestricted symbolic shell, not an arithmetic example
+within the correctly restricted odd-prime source domain. -/
+theorem scalarDoesNotRecoverRecognitionControl :
+    (symbolicShell 0 1 (fun p => p = 2)).L_derivative_over_factorial =
+      (symbolicShell 0 1 (fun p => p = 2)).strongBSDRightSide ∧
+    ¬ Nonempty (SixBirdsBSD.Closure.SelShell.piBSD.{0,0,0,0,0,0,0,0,0,0,0,0} (symbolicShell 0 1 (fun p => p = 2))) := by
+  constructor
+  · rfl
+  · rintro ⟨recognition⟩
+    have h := SixBirdsBSD.Closure.SelShell.piBSD.padicPrimeScope
+      _ recognition 2 () rfl True.intro
+    exact (by decide : (2 : Nat) % 2 ≠ 1) h.2
+
+/-- The readout theorem cannot be strengthened to an unrestricted reverse
+construction of all the source records. -/
+theorem noUnrestrictedSourceReconstruction :
+    ¬ (∀ shell : SixBirdsBSD.Closure.SelShell.selBSDShell.{0,0,0,0,0,0},
+      shell.L_derivative_over_factorial = shell.strongBSDRightSide →
+      Nonempty (SixBirdsBSD.Closure.SelShell.piBSD.{0,0,0,0,0,0,0,0,0,0,0,0} shell)) := by
+  intro h
+  exact scalarDoesNotRecoverRecognitionControl.2
+    (h _ scalarDoesNotRecoverRecognitionControl.1)
+
+
+/-- Symbolic imported content for the end-to-end conditional control.
+No arithmetic theorem is asserted about the two Bool-labelled instances. -/
+private def symbolicChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext Bool where
+  finiteSha := fun _ _ => True
+  nondegenerateCTPairing := fun _ _ => True
+  selmerComplexHypotheses := fun _ _ => True
+  primeNotDividingTamagawa := fun _ _ => True
+  T_E1 := fun _ _ => True
+  T_E2 := fun _ _ => True
+  T_E3 := fun _ _ => True
+  T_E4 := fun _ _ => True
+  T_E5 := fun _ _ => True
+  T_E6 := fun _ _ => True
+  T_E7 := fun _ _ => True
+  T_E8 := fun _ _ => True
+  Sigma_NekCT := fun _ _ => 1
+  SqrtFittCTDomain := fun _ _ => Unit
+  VctpCodomain := fun _ _ => Unit
+  sqrtStarkGenerator := fun _ _ => some ()
+  h_p_CT := fun _ _ => some ()
+  canonicalProperty := fun _ _ f => f () = ()
+
+private def symbolicChiImport :
+    SixBirdsBSD.Closure.Imports.chiCTpImport symbolicChiContext true 3 where
+  applicability :=
+    { prime := by decide
+      finiteSha := True.intro
+      nondegenerateCTPairing := True.intro
+      selmerComplexHypotheses := True.intro
+      primeNotDividingTamagawa := True.intro }
+  T_E1_proof := True.intro
+  T_E2_proof := True.intro
+  T_E3_proof := True.intro
+  T_E4_proof := True.intro
+  T_E5_proof := True.intro
+  T_E6_proof := True.intro
+  T_E7_proof := True.intro
+  T_E8_proof := True.intro
+  Sigma_NekCT_eq_plus_one := rfl
+  sqrtStarkGenerator := ()
+  sqrtStarkGenerator_selected := rfl
+  h_p_CT := ()
+  h_p_CT_selected := rfl
+  canonicalPfaffian := id
+  canonicalProperty_proof := rfl
+  pfaffianSends := rfl
+
+private def lowRankBIContext : SixBirdsBSD.Closure.Imports.beilinsonContext Bool :=
+  { beilinsonControlContext with rank := fun _ => 0 }
+
+/-- The complete conditional landing has an inhabited low-rank instance
+while its higher-rank comparison record is uninhabited. This exercises the
+rank gate and all three curve-indexed headline import interfaces. -/
+theorem lowRankConditionalLandingControl :
+    ¬ Nonempty (SixBirdsBSD.Closure.Imports.beilinsonImport lowRankBIContext true) ∧
+    (symbolicShell 0 1 (fun _ => False)).L_derivative_over_factorial =
+      (symbolicShell 0 1 (fun _ => False)).strongBSDRightSide := by
+  constructor
+  · exact SixBirdsBSD.Closure.Imports.beilinsonImport.lowRankPreventsComparison (by decide)
+  · have h := SixBirdsBSD.Closure.Landing.strongBSDConditional
+      (symbolicShell 0 1 (fun _ => False))
+      (symbolicShell 0 1 (fun _ => False)).closureAssumption rfl
+      recognizedSymbolicShell symbolicChiContext 3 symbolicChiImport
+      pairingControlContext goodPairingControlImport lowRankBIContext
+      (fun hr => False.elim (by change 2 ≤ 0 at hr; omega))
+    exact h.1
+
+
+/-- Normalized fixity is explicit supplied content in this higher-rank
+symbolic control. None of its predicates is asserted about an actual curve. -/
+private def goodGZControl :
+    SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity.{0,0}
+      Bool Rat 0 (fun a b => a-b) (fun a b => a*b) where
+  E := true
+  analyticRank := 2
+  analyticRank_ge_two := by decide
+  nonCM := True
+  nonCM_proof := True.intro
+  L_derivative_over_factorial := 1
+  kappa_r_E := 1
+  Reg_NT_E := 1
+  Omega_E := 1
+  Tam_E := 1
+  psi_minus := 0
+  antiInvariantReadout_eq := by decide +kernel
+  higherGZFixity := (0 : Rat) = 0
+  higherGZFixity_iff_psi_minus_eq_zero := Iff.rfl
+  higherGZFixity_proof := rfl
+  equivalentRankIdentity := (0 : Rat) = 0
+  equivalentRankIdentity_iff_fixity := Iff.rfl
+  f14DualityFixity := True
+  f14DualityFixity_proof := True.intro
+  f27ConservationAsOrbitDescent := True
+  f27ConservationAsOrbitDescent_proof := True.intro
+  f40AnomalySymmetryObstruction := True
+  f40AnomalySymmetryObstruction_proof := True.intro
+  stage6_FP_trace_ii := True
+  stage6_FP_trace_ii_proof := True.intro
+  stage6_SAU_trace_iii := True
+  stage6_SAU_trace_iii_proof := True.intro
+  stage6_VDE_trace_ii := True
+  stage6_VDE_trace_ii_proof := True.intro
+
+private def recognizedHighRankShell :
+    SixBirdsBSD.Closure.SelShell.piBSD.{0,0,0,0,0,0,0,0,0,0,0,0}
+      (symbolicShell 2 1 (fun _ => False)) where
+  gammaPadicDescentReadout := fun _ _ h _ => False.elim h
+  gammaShaPersistenceReadout := fun _ h => False.elim h
+  gammaHigherGZFixityReadout := fun _ => ⟨goodGZControl, by
+    dsimp [goodGZControl, symbolicShell]
+    decide +kernel⟩
+  lowerRankAnalogLane := fun h => False.elim (by
+    change 2 = 0 ∨ 2 = 1 at h
+    omega)
+
+/-- The higher-rank branch of the complete conditional landing consumes
+curve-matched normalized fixity and the rank-matched comparison import. -/
+theorem highRankConditionalLandingControl :
+    (symbolicShell 2 1 (fun _ => False)).L_derivative_over_factorial =
+      (symbolicShell 2 1 (fun _ => False)).strongBSDRightSide := by
+  have h := SixBirdsBSD.Closure.Landing.strongBSDConditional
+    (symbolicShell 2 1 (fun _ => False))
+    (symbolicShell 2 1 (fun _ => False)).closureAssumption rfl
+    recognizedHighRankShell symbolicChiContext 3 symbolicChiImport
+    pairingControlContext goodPairingControlImport beilinsonControlContext
+    (fun _ => ⟨goodBeilinsonControlImport, rfl⟩)
+  exact h.1
+
+/-- Changing the leading coefficient defeats the normalized higher-rank
+recognition premise. The other shell data and closure operator are retained. -/
+theorem falseHighRankRecognitionControl :
+    ¬ Nonempty (SixBirdsBSD.Closure.SelShell.piBSD.{0,0,0,0,0,0,0,0,0,0,0,0}
+      (symbolicShell 2 2 (fun _ => False))) := by
+  rintro ⟨recognition⟩
+  have h := SixBirdsBSD.Closure.SelShell.piBSDForcesStrongBSD _ recognition
+  exact (by decide : (2 : Rat) ≠ 1) h
+
+#print axioms recognizedShellReadoutControl
+#print axioms falseTargetRecognitionControl
+#print axioms scalarDoesNotRecoverRecognitionControl
+#print axioms noUnrestrictedSourceReconstruction
+#print axioms lowRankConditionalLandingControl
+#print axioms highRankConditionalLandingControl
+#print axioms falseHighRankRecognitionControl
 
 end SixBirdsBSD.Verification.Regression
