@@ -113,7 +113,7 @@
 \title{Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go
 Results for the BSD Invariants}
 \author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
-\date{31 August 2026}
+\date{v1: 31 August 2026\quad\textperiodcentered\quad v2: 3 October 2026}
 \hypersetup{
   pdftitle={Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go Results for the BSD Invariants},
   pdfauthor={Ioannis Tsiokos},
@@ -125,40 +125,44 @@ Results for the BSD Invariants}
 \thispagestyle{firstpage}
 
 \begin{abstract}
-For an elliptic curve \(E/\Q\), the Bloch--Kato fundamental line is often
-read through a product of public scalar invariants.  This paper asks,
-column by column, which typed source data such a scalar retains.  We
-decompose the BSD/Bloch--Kato carrier into five typed columns:
-height/regulator, analytic/period, finite/Tamagawa, \(p\)-adic, and
-determinant-assembly.  Each column is equipped with a Schur-complement
-adequacy residual \(\XiC\), which vanishes exactly when the admitted native
-source acts as the identity on the readout; this is a finite,
-mathlib-free linear-algebra criterion.  A comparison theorem contracts the
-typed five-column atlas to the standard Bloch--Kato/Tamagawa scalar
-package, with zero residual for that contraction, so the usual scalar is
-recovered as a projection of a richer typed object and the
-determinant-orientation coordinate lies in the kernel.  The accompanying
-no-go audit suite records where public scalar rows underdetermine their
-typed targets: finite scalar shadows, dimension-only \(\Sha\) data, the
-Gram-matrix/regulator shadow, finite-window promotion, and finite-prime
-coverage.  The results are finite typed statements; recognition sources
-and classical arithmetic inputs such as Gross--Zagier, Iwasawa main
-conjecture input, and Cassels--Tate comparison are carried as hypotheses,
-not proved.  The paper does not prove BSD; its finite adequacy and no-go
-claims are mechanized in a mathlib-free Lean development.
+The Birch--Swinnerton-Dyer formula for an elliptic curve $E/\Q$ is a
+product of pieces of different kinds: a period, a regulator, Tamagawa
+numbers, torsion and the order of the Tate--Shafarevich group, which in
+the Bloch--Kato formulation are joined with local $p$-adic data and
+orientation conventions in one determinant line.  Each piece is the image
+of richer data.  We separate these data into five columns
+(height/regulator, analytic/period, finite source, local $p$-adic, and
+determinant assembly) and ask, column by column, which data a given
+number remembers.  The test is a finite Schur complement, which vanishes
+exactly when the desired readout is a linear function of the admitted
+data.  The full data of each of the first four columns are adequate for
+their readouts, and the five columns together are adequate for an
+orientation-normalized Bloch--Kato scalar, which forgets the orientation.
+Along the way we fix three normalization points: the invariant finite
+factor is the order of a paired group, not a numerical Pfaffian of its
+Cassels--Tate pairing; on the finite local condition the relevant map is
+the logarithm, not the dual exponential; and the assembled value must not
+be reused as a factor.  We then identify readouts that lose information.
+The most concrete is arithmetic: the curves $571a1$ and $2045b1$ have the
+same rank, Tamagawa numbers, torsion and $\dim\Sha[2]$, but $2$-primary
+Tate--Shafarevich groups of orders $4$ and $16$.  Other results, proved on
+explicit models, concern the scalar finite factor, Gram matrices in rank
+at least two, and finite lists of curves and of primes.  We also identify
+the normalization $\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}$ under which a
+cascade form of the leading term agrees with the standard one.  The
+comparisons from the columns to the Bloch--Kato line are stated as
+external inputs.  Nothing here proves BSD.  Many statements are checked
+in Lean~4, and each is labelled by the exact extent of that check.
 \end{abstract}
 
 \medskip
-\noindent\textbf{Keywords.} Birch--Swinnerton-Dyer conjecture; Bloch--Kato fundamental line; elliptic curves; Schur complement; regulator; Tate--Shafarevich group; formal verification (Lean); Six Birds Theory; emergence calculus.
+\noindent\textbf{Keywords.} Birch--Swinnerton-Dyer conjecture; Bloch--Kato fundamental line; elliptic curves; Tate--Shafarevich group; Cassels--Tate pairing; Schur complement; regulator; formal verification (Lean); Six Birds Theory.
 
 \medskip
 \noindent
-Standing conventions: $E/\Q$ an elliptic curve, $M_E=h^1(E)(1)$,
-$r=\rank E(\Q)$, $r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)$. The Schur
-adequacy residual is $\XiC=K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}$; a column
-readout is \emph{adequate} when $\XiC=0$. The five per-column source
-transports are recognition obligations, supplied or imported and carried as
-hypotheses rather than derived here.
+\textbf{Conventions.} $E/\Q$ is an elliptic curve, $M_E=h^1(E)(1)$,
+$r=\rank E(\Q)$ and $r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)$.
+Curve labels are Cremona labels.
 
 % ===========================================================================
 \input{sections/sec_01_intro}

@@ -1,242 +1,141 @@
 \section{Introduction}\label{sec:introduction}
 % statements-of-record rows resolved here: none
 
-The Birch--Swinnerton-Dyer formula~\citep{BirchSwinnertonDyer1965,Tate1966bsd} is usually first met as a scalar
-identity.  For an elliptic curve $E/\Q$ of rank $r$, the standard leading
-coefficient form compares
+For an elliptic curve $E/\Q$ of analytic rank $r$, the Strong
+Birch--Swinnerton-Dyer formula~\citep{BirchSwinnertonDyer1965,Tate1966bsd}
+compares two numbers:
 \[
   \frac{L^{(r)}(E,1)}{r!}
-  \quad\text{with}\quad
+  \qquad\text{and}\qquad
   \Omega_E\,\Reg(E/\Q)\,
   \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}} .
 \]
-This product is already visibly composite: an analytic leading term and
-period, a height regulator, a finite Tamagawa--torsion--$\Sha$ factor, local
-$p$-adic data, and the determinant-line conventions that make all of these
-terms live in a common orientation.  The question addressed in this paper is
-not whether the scalar BSD identity is true.  It is the more local diagnostic
-question: when one separates the Bloch--Kato fundamental line~\citep{BlochKato1990,FontainePerrinRiou1994} into these
-typed pieces, which pieces carry enough native data to recover their intended
-readout, and where is information lost by passing to a public scalar shadow?
+The right-hand side is visibly a product of pieces of different kinds: a
+period, a regulator computed from heights of rational points, Tamagawa
+numbers, torsion, and the order of the Tate--Shafarevich group.  In the
+Bloch--Kato formulation~\citep{BlochKato1990,FontainePerrinRiou1994} these
+pieces are assembled into a single determinant line, the fundamental
+line, together with local $p$-adic data and sign and orientation
+conventions.
 
-The word ``typed'' is used here in its elementary sense.  We keep the five
-classes of data in five labelled slots rather than immediately multiplying
-them into one number.  The height/regulator slot contains the Mordell--Weil
-lattice and the Neron--Tate pairing; the analytic/period slot contains the
-leading Taylor coefficient and the real period; the finite slot contains
-Tamagawa factors, torsion, the $p$-primary $\Sha$ data, and Cassels--Tate
-pairings; the $p$-adic slot contains the ordinary or signed local data; and
-the determinant slot contains the orientation, sign, and unit conventions
-needed for a single determinant line.  This decomposition is bookkeeping
-only in the innocuous sense that a direct-sum decomposition is: it is
-precisely the bookkeeping needed to ask whether each column is adequate.
+This paper does not ask whether the formula is true.  It asks a more
+modest question about its ingredients: each factor is the image of richer
+data (a lattice with a pairing, a finite group with a pairing, a local
+Galois representation), and one may ask which of those data a given
+number still remembers.  We separate the ingredients into five
+\emph{columns}:
+\begin{enumerate}
+\item height/regulator: the Mordell--Weil lattice and its N\'eron--Tate
+  pairing;
+\item analytic/period: the leading coefficient of $L(E,s)$ at $s=1$ and the
+  real period;
+\item finite source: Tamagawa numbers, torsion, the $p$-primary parts of
+  $\Sha$ and the Cassels--Tate pairing;
+\item local $p$-adic: data at a prime $p$, of two kinds treated here,
+  ordinary data at a prime of good ordinary reduction and signed data at an
+  odd prime of good supersingular reduction with $a_p=0$;
+\item determinant assembly: the orientation and sign conventions used to
+  multiply the other four in one line.
+\end{enumerate}
+For each column we test whether its native data are enough to recover the
+intended readout, and we identify readouts that are not.
 
-The adequacy test is a Schur-complement calculation~\citep{Zhang2005schur,HornJohnson2013}.  Suppose that $L$ is
-the native family admitted in a column and $D$ is the readout one wants to
-recover from that column.  Form the block Gram quantities
+\paragraph{The adequacy residual.}
+All tests in the paper use one finite-dimensional device.  Let $x\in\R^n$
+be coordinates for the data of a column, let $D:\R^n\to\R^m$ be the
+\emph{readout} (the quantity one wants), and let $L:\R^n\to\R^k$ be the
+\emph{source} (the data one admits).  With the standard inner product on
+$\R^n$ (the matrix $C=I$ that appears in the statements below), form the
+Gram blocks
 \[
-  \KLL,\qquad \KDL,\qquad \KDD,
+  \KLL=LL^{\mathsf T},\qquad \KDL=DL^{\mathsf T},\qquad \KDD=DD^{\mathsf T},
 \]
-where $\KLL$ records the covariance of the admitted source directions,
-$\KDL$ records the pairing between the readout and those source directions,
-and $\KDD$ records the readout's own pre-source energy.  The adequacy
-residual is
+and the Schur complement~\citep{Zhang2005schur,HornJohnson2013}
 \[
   \XiC=\KDD-\KDL\,\Kdagger\,K_{LD},
 \]
-with $\Kdagger$ the Moore--Penrose inverse of $\KLL$ in the finite
-calculation at hand.  The column is called \emph{adequate} when
-$\XiC=0$: after projecting the desired readout onto the admitted source
-directions, no residual direction remains.  If $\XiC>0$ in a scalar trace
-calculation, then the admitted row is not enough; it has forgotten a
-direction that is present in the typed target.
+where $\Kdagger$ is the Moore--Penrose inverse.  If $P_L$ is the orthogonal
+projector onto the row space of $L$, then $\XiC=D(I-P_L)D^{\mathsf T}$,
+a positive semidefinite matrix.  It vanishes exactly when $D(I-P_L)=0$,
+that is, when every row of $D$ lies in the row space of $L$, or
+equivalently when $D=ML$ for some matrix $M$.  We say that the source is
+\emph{adequate} for the readout when $\XiC=0$: the readout is then a
+linear function of the admitted data.  When $D$ is the identity, $\XiC=I-P_L$
+and its trace counts the directions the source does not see.
 
-All adequacy computations in this paper are finite and explicit.  The
-linear algebra is deliberately elementary: finite index sets, row vectors,
-dot products, identity matrices, matrix multiplication, and traces.  The
-collapses are not appeals to a black-box functional-analytic statement.
-They are the finite identity-matrix action
+In this language the results are small, explicit computations.  For
+example, the readout of a scalar finite factor is a single row
+$s=(1,-2,1,0)$ in four finite coordinates, and $\tr(I_4-P_s)=4-1=3$; at
+a supersingular prime, a source that keeps the signed comparison
+coordinate but replaces the two signed coordinates by their sum leaves
+$\tr(I_3-P_{\mathrm{uns}})=3-2=1$.  The calculations are elementary
+by design.  Their purpose is bookkeeping: they record which coordinates
+must be present before a datum can be used as a source for a given
+readout.
+
+\paragraph{An example.}
+For the curve $11a1$~\citep{Cremona1997,LMFDB},
 \[
-  I v=v
-\]
-and its Schur-complement consequence.  For example, if the full native
-height matrix is admitted, the readout row $d_H$ for
-$d(\log\det)_H$ projects through the identity source, so
-$d_Hd_H^{\mathsf T}-d_H I d_H^{\mathsf T}=0$.  If only a scalar determinant
-is admitted, the orthogonal complement has positive trace.  The same
-pattern recurs in the analytic/period, finite-source, ordinary $p$-adic,
-signed $p$-adic, and rank-two height calculations.
-
-This finite Schur-complement language is the specialization, for the BSD
-fundamental line, of the adequacy calculus developed in the surrounding
-Six Birds framework \citep{TsiokosNeedles2026,TsiokosFoundationsII2026}.
-For the reader of the present paper, no framework machinery is needed
-beyond the following translation.  An ``adequacy residual'' is simply the
-Schur complement above.  A ``typed five-column decomposition'' is simply
-the decision to keep the height, period, finite, $p$-adic, and determinant
-data in separate labelled columns.  An ``audit-result no-go'' is a recorded
-boundary statement: it identifies where the theorem-grade literature, in
-the audited form used here, does not supply the missing identity.  The
-interaction vocabulary and audit discipline are inherited from the finite
-calculus of \citet{TsiokosFoundationsIII2026}; the mathematical statements
-below are written directly in the language of the BSD factors.
-
-A low-conductor example makes the separation concrete.  For the curve
-$11a1$~\citep{Cremona1997,LMFDB}, the scalar rank-zero BSD comparison has
-\[
-  \frac{L(E,1)}{\Omega_E^+}=0.2
+  \frac{L(E,1)}{\Omega_E}=0.2
   \qquad\text{and}\qquad
-  \frac{\prod_v c_v\,\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}
-  =\frac{5}{25}=0.2.
+  \frac{c_{11}\,\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}
+  =\frac{5\cdot1}{5^2}=0.2 .
 \]
-As a scalar check this is a single equality.  In the five-column atlas it is
-not a single source.  The analytic/period column contributes the quotient
-$L(E,1)/\Omega_E^+$; the height/regulator column is rank-zero and therefore
-vacuous; the finite column remembers that the number $5/25$ arose from a
-Tamagawa factor and torsion rather than from Cassels--Tate pairing data;
-the local $p$-adic columns ask which ordinary or signed source data are
-present at each prime; and the determinant column records the orientation
-needed to assemble the product.  The scalar equality is therefore compatible
-with, but coarser than, the typed comparison.  The point of the apparatus is
-to measure this coarsening column by column.
+As a scalar check this is one equality.  In the five columns it is several
+facts: the height column is empty (rank $0$); the finite column records
+that the value $5/25$ comes from a Tamagawa number and from torsion, not
+from $\Sha$; and the local columns record, prime by prime, which local
+theory applies.  The scalar equality is compatible with, but coarser
+than, these facts.  A valuation can sit in the Tamagawa factor or in
+$\Sha$ and contribute the same exponent to the scalar; two signed local
+directions can have the same unsigned sum; a Gram matrix computes the
+regulator but says nothing about where the points come from.
 
-This is also the reason for working with readouts rather than only with
-equalities of final products.  A scalar product can be correct for several
-different reasons.  In the finite factor, a valuation can sit in the
-Tamagawa part or in the $\Sha$ part and still contribute the same exponent
-to the public scalar quotient.  In the signed supersingular local theory,
-the two signed directions can have the same unsigned aggregate while
-differing in their $+$ and $-$ components.  In rank at least two, a Gram
-matrix can give the regulator once a Mordell--Weil basis is already known,
-but the matrix itself does not name independent motivic-cycle sources.
-These are not paradoxes.  They are exactly what one should expect when a
-multi-column object is projected to a single row.  The Schur residual is the
-linear-algebraic device that records which directions survive the projection
-and which directions have been lost.
+\paragraph{Results.}
+\Cref{sec:decomposition} sets up the five columns, the assembly into the
+Bloch--Kato line, and an additive splitting of the comparison defect.
+\Cref{sec:height-regulator,sec:analytic-period,sec:finite-source,sec:p-adic,sec:det-assembly}
+treat the columns one at a time.  In the first four, the full native data
+are adequate for the column readout; in the assembly column, the four
+arithmetic columns fall short of the assembled target by exactly the
+orientation direction.  Each column section ends with the comparison to
+the Bloch--Kato line that the column requires as external input.  Along the way
+we fix three normalization points: the order of a paired finite group,
+not a numerical Pfaffian of its pairing, is the invariant finite factor;
+on the finite local condition the relevant map is the logarithm, not the
+dual exponential; and the orientation enters the assembly as an
+independent input, so that the assembled value must not be reused as a
+factor.  \Cref{sec:comparison} contracts the five columns to an
+orientation-normalized scalar readout and shows that the typed data are
+adequate for it, while this readout forgets the orientation coordinate;
+identifying it with the arithmetic Bloch--Kato scalar requires the five
+transports and, in addition, a convention making that scalar independent
+of the orientation.
 
-The paper therefore uses ``native family'' in a modest sense: it means the
-data one is willing to admit as the source for a column before applying the
-readout.  For the analytic/period column, the native family is the pair
-$(A_E,\Omega_E^+)$, where
-$A_E=L^{(r_{\mathrm{an}})}(E,1)/r_{\mathrm{an}}!$ is the analytic leading
-coefficient and $\Omega_E^+$ is the real period, rather than the quotient
-alone.  For the finite column, it is the tower containing Tamagawa, torsion,
-$\Sha$, and Cassels--Tate
-pairing data rather than the scalar finite factor alone.  For the signed
-$p$-adic column, it is the signed pair of local directions rather than their
-unsigned sum.  The adequacy theorem for a column says that this admitted
-native family is large enough for the intended readout.  A no-go theorem
-says that a smaller public row is not large enough, and it identifies an
-explicit pair of inputs or an explicit residual direction witnessing the
-loss.
+\Cref{sec:finite-source,sec:higher-rank-no-go,sec:global-audit-no-go,sec:support-prime-no-go}
+contain the ``does not determine'' results (\Cref{tab:no-go-suite}).  The
+most concrete is arithmetic: the curves $571a1$ and $2045b1$ have the same
+rank, Tamagawa numbers, torsion and $\dim\Sha[2]=2$, but $2$-primary
+Tate--Shafarevich groups of orders $4$ and $16$
+(\Cref{ex:apparatus:sha-pair}).  The others are formal and are proved on
+explicit models: the scalar finite factor forgets which block carries a
+valuation; the Gram matrix forgets the provenance of a basis; and finite
+lists of curves or of primes do not decide statements about all curves or
+all primes.  \Cref{sec:vsrc} introduces the exterior algebra $\vsrc_r$ as
+the formal shape of a rank-$r$ source, and \Cref{sec:kappa-normalization}
+identifies the constant $\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}$ that makes a
+cascade form of the leading term agree with the standard one.
+\Cref{sec:scope} lists what the paper does not claim.
 
-Nothing in this setup requires the reader to adopt the surrounding
-terminology as a black box.  The relevant matrices are small: identity
-matrices of sizes $2$, $3$, $4$, and $5$, rank-one projectors, and diagonal
-traces.  The Moore--Penrose notation is used only where the finite matrix
-has an evident inverse or pseudoinverse in the displayed calculation.  The
-rank-one residuals are ordinary rational computations such as
-\[
-  \tr(I_4-P_s)=4-1=3
-\]
-for the scalar finite row $s=(1,-2,1,0)$, or
-\[
-  \tr(I_3-P_{\mathrm{uns}})=3-2=1
-\]
-for the unsigned signed-local projection.  Thus the reader can check the
-adequacy and inadequacy claims at the same level at which the statements are
-made: finite-dimensional linear algebra over explicit coordinates.
-
-The first part of the paper constructs the five columns.  The
-Bloch--Kato component map sends the integrated BSD carrier to the
-determinant-line target by the direct sum of the height/regulator,
-analytic/period, finite, local $p$-adic, and determinant-assembly
-components.  After choosing a comparison trivialization, the corresponding
-defect decomposes additively into the five component defects.  Consequently,
-if every component defect vanishes in the declared comparison, then the
-total Bloch--Kato defect vanishes; contrapositively, a nonzero total defect
-must be witnessed by at least one nonzero or legally incomparable component.
-
-The order of the paper follows this diagnostic structure.  The
-decomposition section fixes the five columns and the additive defect
-equation.  The next four sections treat the height/regulator,
-analytic/period, finite-source, and $p$-adic columns separately, always
-asking the same question: does the declared native family collapse the
-Schur residual for the declared readout?  The determinant-assembly section
-then records the one remaining orientation coordinate needed to assemble
-the local tensor into a global determinant-line object.  The comparison
-section contracts the typed atlas back to the usual Bloch--Kato scalar
-readout and proves that the typed source is adequate for that contraction.
-
-The middle sections prove the adequacy collapses.  The height/regulator
-column admits the full Neron--Tate pairing and collapses by the identity
-action.  The analytic/period column admits both logarithmic coordinates
-$(\log A_E,\log\Omega_E^+)$ and collapses for the readout
-$\log A_E-\log\Omega_E^+$.  The finite-source column collapses only when
-the Tamagawa, torsion, $\Sha$, and Cassels--Tate coordinates are all present;
-the scalar finite factor and the dimension-only $\Sha$ row leave positive
-residuals.  The ordinary $p$-adic row collapses with ordinary-control data
-included, while omitting that coordinate leaves a one-dimensional residual.
-The signed supersingular row collapses only after separating the $+$ and
-$-$ directions; unsigned aggregation forgets their difference.  The
-determinant-assembly calculation then shows a structural residual exactly
-in the determinant-orientation coordinate when the four constructed
-components are assembled without the final determinant row.
-
-The comparison section contracts the typed five-column tensor to the usual
-Bloch--Kato scalar package.  At the log-tangent level the comparison is the
-row $(1,1,1,1,0)$: it reads the height, analytic, finite, and local
-$p$-adic columns and kills the determinant-orientation coordinate.  Its
-Schur residual is zero against the typed source, so the typed source is
-adequate for the scalar Bloch--Kato readout.  At the same time, the kernel
-contains the determinant coordinate, so the scalar package is a strict
-one-dimensional shadow of the typed atlas.
-
-Two calibrations complete the apparatus.  The first is the exterior algebra
-$\vsrc$, generated in rank two by symbols $\Jone,\Jtwo$ and
-$\Jtwelve=\Jone\Jtwo$ with $\Jone^2=\Jtwo^2=0$ and
-$\Jtwo\Jone=-\Jtwelve$.  It is a determinant-shaped source algebra: the
-wedge $\Jone\wedge\Jtwo$ records independence of two virtual motivic-cycle
-directions without pretending that the corresponding motivic cycles have
-been constructed.  The second is the normalization constant $\kapr$.  Once
-the cascade convention $c_E=\Tam(E)$ is fixed, the cascade leading-term
-form is equivalent to the standard Strong-BSD leading-coefficient form
-exactly when
-\[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
-\]
-This is an equivalence of forms, not a derivation of BSD.
-
-The calibration sections have a different purpose from the column
-sections.  The column sections test whether a given source row is adequate
-for an already specified readout.  The $\vsrc$ section asks what sort of
-formal source algebra would be capable of expressing rank-two independence
-before any descent to actual motivic cycles is supplied.  The
-$\kapr$ section asks how the cascade normalization must be chosen so that
-the cascade leading-term expression is not a new conjecture but the
-standard Strong-BSD expression written in the apparatus coordinates.  These
-two calibrations constrain the apparatus at opposite ends: $\vsrc$ marks
-the source-side independence problem, while $\kapr$ fixes the scalar
-normalization at the target side.
-
-The final mathematical contribution is the bounded no-go suite.  The
-finite scalar factor is noninjective on the typed finite tower; the
-dimension of $\Sha[p]$ is a shadow of Cassels--Tate determinant data; the
-Neron--Tate Gram matrix does not by itself construct rank-$r$ motivic-cycle
-sources; a five-curve window cannot promote to a global theorem depending
-only on those five rows; and no fixed finite prime list certifies all local
-support-prime rows.  These statements are useful because they are local and
-typed: each identifies a precise missing direction rather than replacing
-the missing direction by an undifferentiated failure of BSD.
-
-The scope is deliberately narrow.  The no-go suite (NG-1--NG-5,
-higher-rank, global, support-prime) records where theorem-grade Mode-A
-literature (the established arithmetic results audited as external
-provenance) does \textbf{not} reach; it is \textbf{not} a claim that the
-missing identities cannot exist.  Adequacy collapses are proved at the
-finite, mathlib-free, typed level (identity-matrix action; $\Q$ rank-1
-projector traces); operator/motivic full generality is not claimed.  The
-$\vsrc$ exterior-product relations are represented structurally on the
-$2^r$ coordinate space; the dimension/calibration content is faithful,
-full axiomatization is not claimed.  The five per-column transports are
-recognition sources (carriers), not derived theorems.
+\paragraph{Context.}
+The vocabulary of columns, readouts and residuals is a specialization of
+the adequacy calculus of the Six Birds
+framework~\citep{TsiokosNeedles2026,TsiokosFoundationsII2026,TsiokosFoundationsIII2026}.
+No knowledge of that framework is assumed; the definitions above are all
+that is used.  The companion paper~\citep{TsiokosBSDClosure2026} uses the
+present apparatus, in particular the normalization of $\kapr$, in a
+conditional treatment of the scalar BSD identity.  Many statements are
+checked in Lean~4 without external mathematical libraries; the footnotes
+say, statement by statement, whether Lean proves the statement as written,
+a narrower model version, or only records it as a conditional schema, and
+\Cref{app:formalization} gives the details.
