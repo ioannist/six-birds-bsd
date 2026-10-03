@@ -1,83 +1,76 @@
-\section[Canonical kappa-r normalization]{$\kapr$ normalization}
+\section[The normalization constant kappa-r]{The normalization constant $\kapr$}
 \label{sec:kappa-normalization}
 
-The normalization constant \(\kapr\) is the scalar that makes the cascade
-leading-term form use the same arithmetic factor as the standard Strong BSD
-leading-coefficient formula.  The point of this section is only to identify
-that scalar after the cascade convention \(c_E=\Tam(E)\) is fixed.  It is an
-equivalence of two ways of writing the same conjectural identity, not a
-derivation of BSD.
+Some formulations of the leading term, including the one used in the
+companion paper, write the arithmetic side as
+$\kapr(E)\,\Omega_E\Reg_r(E)\,c_E$ with an unspecified constant
+$\kapr(E)$.  This section identifies the constant for which that form is
+the standard Strong BSD formula, and makes the hypotheses of that
+identification explicit.  It is a comparison of two ways of writing the
+same conjectural identity, not a derivation of either.
 
-\begin{theorem}[Canonical $\kapr$ normalization equivalence]\label{thm:apparatus:kappa-r-normalization-equivalence}
-Fix the cascade convention
+Throughout, $\Sha(E/\Q)$ is assumed finite, $\Omega_E$ is the BSD real
+period, $\Reg_r(E)$ is the regulator ($1$ in rank $0$), $\Tam(E)=\prod_\ell
+c_\ell(E)$, and
 \[
-  c_E:=\Tam(E)=\prod_{\ell} c_{\ell}(E).
+  C=\Omega_E\,\Reg_r(E)\,\Tam(E),
+  \qquad
+  d=\#E(\Q)_{\tors}^{\,2}.
 \]
-Then the cascade leading-term form
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  =
-  \kapr(E)\,\Omega_E\,\Reg_r(E)\,c_E
-\]
-agrees with the standard Strong BSD leading-coefficient form
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  =
-  \Omega_E\,\Reg_r(E)\,
-  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
-\]
-if and only if
-\[
-  \kapr(E)=
-  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
-\]
-Under this canonical normalization, the cascade form is equivalent to the
-standard Strong BSD identity as a restatement in cascade target coordinates.
-It does not prove the identity.\footnote{\raggedright Verified in Lean as
-\texttt{SixBirdsBSD.\allowbreak Apparatus.\allowbreak KappaNormalization.\allowbreak kappaRNormalizationEquivalence};
-see App~\ref{app:formalization}.}
+
+\begin{theorem}[Normalization of $\kapr$]\label{thm:apparatus:kappa-r-normalization-equivalence}
+Fix the convention $c_E=\Tam(E)$ and work in a field containing all the
+quantities above (for curves, $\R$).  Assume $C\neq0$ and $d\neq0$.
+\begin{enumerate}
+\item The right-hand side of the cascade form
+  \[
+    \frac{L^{(r)}(E,1)}{r!}=\kapr(E)\,\Omega_E\,\Reg_r(E)\,c_E
+  \]
+  equals the right-hand side of the standard Strong BSD form
+  \[
+    \frac{L^{(r)}(E,1)}{r!}
+    =\frac{\#\Sha(E/\Q)\,\Reg_r(E)\,\Omega_E\,\Tam(E)}{d}
+  \]
+  if and only if
+  \[
+    \kapr(E)=\frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}
+    \qquad\Bigl(\text{equivalently, } \kapr(E)\,d=\#\Sha(E/\Q)\Bigr).
+  \]
+\item If this normalization holds, the two forms are equivalent for every
+  value of the left-hand side.  Conversely, if the two forms are
+  equivalent for every value of the left-hand side, the normalization
+  holds.
+\end{enumerate}
+For actual curves the hypotheses hold: $\Omega_E>0$, the regulator is
+positive because the N\'eron--Tate pairing is positive definite on
+$E(\Q)\otimes\R$, $\Tam(E)$ is a positive integer, and $d\ge1$.%
+\footnote{The declaration recorded for this theorem is Lean's cancellation
+of a nonzero common factor over the integers.  Additional Lean
+declarations prove (1) and (2) over an arbitrary field, including the
+reordering of the standard product and the cross-multiplied form, which
+requires $d\neq0$.  Positivity of the period and the regulator for actual
+curves is not formalized.}
 \end{theorem}
 
 \begin{proof}
-After the convention \(c_E=\Tam(E)\), the right-hand side of the cascade
-form is
-\[
-  \kapr(E)\,\Omega_E\,\Reg_r(E)\,\Tam(E).
-\]
-The right-hand side of the standard Strong BSD leading-coefficient formula
-is
-\[
-  \Omega_E\,\Reg_r(E)\,
-  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
-  =
-  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}\,
-  \Omega_E\,\Reg_r(E)\,\Tam(E).
-\]
-Thus the two formulas have the same left-hand side and differ only in the
-coefficient multiplying the common factor
-\[
-  \Omega_E\,\Reg_r(E)\,\Tam(E).
-\]
-In the BSD normalization this factor is nonzero: the period is positive,
-the regulator determinant is positive in positive rank and equal to \(1\)
-in rank \(0\), and the Tamagawa product is a positive integer.  Therefore
-the two right-hand sides are equal if and only if their scalar coefficients
-are equal, namely if and only if
-\[
-  \kapr(E)
-  =
-  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
-\]
-
-If this equality of coefficients is imposed, substituting it into the
-cascade form gives exactly the standard Strong BSD leading-coefficient
-formula.  Conversely, if the cascade form and the standard form agree under
-the fixed convention \(c_E=\Tam(E)\), cancellation of the same nonzero common
-factor forces the displayed value of \(\kapr(E)\).  The proof is only this
-algebraic comparison of normalizations; it supplies no proof that either
-leading-coefficient identity is true for \(E\).
+The standard right-hand side equals $(\#\Sha/d)\,C$, by commutativity and
+the definition of division.  The cascade right-hand side is
+$\kapr(E)\,C$.  Since $C\neq0$, $\kapr(E)\,C=(\#\Sha/d)\,C$ if and only if
+$\kapr(E)=\#\Sha/d$; since $d\neq0$, this holds if and only if
+$\kapr(E)\,d=\#\Sha$.  This proves (1).  For (2), equal right-hand sides
+make the two equations equivalent for every left-hand side.  Conversely,
+evaluate both forms at the left-hand side $\kapr(E)\,C$: the cascade form
+holds there, so the standard form does too, and (1) gives the
+normalization.
 \end{proof}
 
-The conditional Strong-BSD closure of \citet{TsiokosBSDClosure2026}
-consumes this normalization.  The role of the present section is only to
-supply the normalization equivalence used there.
+Part (2) needs the quantifier over all values of the left-hand side.
+Equivalence of the two equations at a single, fixed value says nothing:
+for instance the equations $0=1$ and $0=2$ are both false, hence
+logically equivalent, although $1\neq2$.  When we say below that the
+cascade form ``agrees'' with the standard form we mean that their
+right-hand sides are equal, as in (1).
+
+The conditional closure of the companion paper~\citep{TsiokosBSDClosure2026}
+uses this normalization to read its rank-$\ge2$ hypothesis as the
+standard Strong BSD formula.
