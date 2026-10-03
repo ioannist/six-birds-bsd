@@ -44,17 +44,16 @@ Assume the hypotheses of one of the two branches:
 \end{itemize}
 Assume the rank-at-most-one input, and assume further that, under these
 branch hypotheses, the results it lists yield the valuation identity
-below.  Then
+below.\footnote{The formalization records this as a conditional schema.  Lean
+proves that the comparison hypothesis, given the forty asserted
+propositions and a curve and prime, is equivalent to the bare implication
+from the branch hypotheses to the valuation identity; the theorem is
+therefore exactly as strong as that implication.}  Then
 \[
   v_p\!\left(\frac{L^{(r)}(E,1)/r!}{\Omega_E\,\Reg_{\mathrm{NT}}(E)}\right)
   =
   v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}\right).
-\]%
-\footnote{The formalization records this as a conditional schema.  Lean
-proves that the comparison hypothesis, given the forty asserted
-propositions and a curve and prime, is equivalent to the bare implication
-from the branch hypotheses to the valuation identity; the theorem is
-therefore exactly as strong as that implication.}
+\]
 \end{theorem}
 
 \begin{proof}

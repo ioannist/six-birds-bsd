@@ -142,9 +142,9 @@ section = "TCascade"
 intended_status = "mechanize_now"
 required = true
 line_start = 27
-line_end = 58
+line_end = 57
 source_file = "paper/closure/sections/sec_07_t_cascade.tex"
-statement_hash = "09b08d2d4084c0d9c1145cbc0453db9fc287e69679f2e24ccac99a79b6fc7b04"
+statement_hash = "d0fee0a5b1d3688fed149d0d135226f085b2ab4880f5891573c3d6510409ead6"
 duplicate_of = ""
 
 [[entry]]
@@ -156,7 +156,7 @@ required = true
 line_start = 34
 line_end = 46
 source_file = "paper/closure/sections/sec_06_eta_formula.tex"
-statement_hash = "abd1ea4a86e9a65ba2610c96260406fa1fcb3988d55cf68097ff59d3dfa139a1"
+statement_hash = "fc50138af2ddf15d727c35c2bbf4a43e9dd117f703f39fb4117b3ed598071fe7"
 duplicate_of = ""
 
 [[entry]]

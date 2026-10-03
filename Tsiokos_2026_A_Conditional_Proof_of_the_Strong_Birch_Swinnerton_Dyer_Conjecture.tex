@@ -1028,16 +1028,16 @@ statement for a cuspidal evaluation, which is a conjecture.
 \end{definition}
 
 \begin{theorem}[Conditional $\eta$-formula]\label{thm:closure:oc-eta-formula}
-If $(E,p)$ carries an $\eta$-certificate, then
+If $(E,p)$ carries an $\eta$-certificate, then\footnote{The formalization records this as a conditional schema: the
+identity is a field of the certificate and the conclusion is its
+projection.}
 \[
   \etap(E)
   =
   \bigl(p\,\#E(\Q)_{\tors}\bigr)^{\mathrm{ord}_T(E,p)-1}
   \,\beta^{-2}\,
   T_{\mathrm{lead}}(E,p).
-\]\footnote{The formalization records this as a conditional schema: the
-identity is a field of the certificate and the conclusion is its
-projection.}
+\]
 \end{theorem}
 
 \begin{proof}
@@ -1119,16 +1119,16 @@ Assume the hypotheses of one of the two branches:
 \end{itemize}
 Assume the rank-at-most-one input, and assume further that, under these
 branch hypotheses, the results it lists yield the valuation identity
-below.  Then
+below.\footnote{The formalization records this as a conditional schema.  Lean
+proves that the comparison hypothesis, given the forty asserted
+propositions and a curve and prime, is equivalent to the bare implication
+from the branch hypotheses to the valuation identity; the theorem is
+therefore exactly as strong as that implication.}  Then
 \[
   v_p\!\left(\frac{L^{(r)}(E,1)/r!}{\Omega_E\,\Reg_{\mathrm{NT}}(E)}\right)
   =
   v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}\right).
-\]\footnote{The formalization records this as a conditional schema.  Lean
-proves that the comparison hypothesis, given the forty asserted
-propositions and a curve and prime, is equivalent to the bare implication
-from the branch hypotheses to the valuation identity; the theorem is
-therefore exactly as strong as that implication.}
+\]
 \end{theorem}
 
 \begin{proof}
@@ -1204,7 +1204,7 @@ scalar identity, and which are carried along.
   hyp/.style={draw, rounded corners=2pt, align=center, text width=4.6cm,
     minimum height=1.2cm, fill=black!3},
   carried/.style={draw, dashed, rounded corners=2pt, align=center,
-    text width=4.6cm, minimum height=1.2cm},
+    text width=6.2cm, minimum height=1.2cm},
   res/.style={draw, rounded corners=2pt, align=center, text width=3.6cm,
     minimum height=1.0cm, fill=black!8},
   arrow/.style={-{Latex[length=2mm]}, thick}
@@ -1214,8 +1214,8 @@ scalar identity, and which are carried along.
   \(L^*=\kapr\Reg\,\Omega\Tam\), \(\kapr=\#\Sha/d\)};
 \node[res] (bsd) at (2.6,0.3) {\(L^*=R_E\)\\[2pt]
   \(\iff\rhoE=0\)\\ \(\iff c(x_E)=x_E\)\\ {\footnotesize (field, \(2\neq0\))}};
-\node[carried] (side) at (-3.3,-2.6) {carried, not used:\\ \(\GammaPD\), \(\GammaSP\),
-  \(\chiCTp\), \(\AofE\),\\ Beilinson (if \(r\ge2\))};
+\node[carried] (side) at (-3.3,-2.6) {carried, not used:\\ \(\GammaPD\), \(\GammaSP\),\\
+  \(\chiCTp\), \(\AofE\), Beilinson (if \(r\ge2\))};
 \draw[arrow] (low.east) -- (bsd.west);
 \draw[arrow] (high.east) -- node[above, font=\footnotesize, sloped, pos=0.45] {algebra} (bsd.west);
 \end{tikzpicture}

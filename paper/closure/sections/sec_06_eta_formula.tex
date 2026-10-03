@@ -32,17 +32,17 @@ statement for a cuspidal evaluation, which is a conjecture.
 \end{definition}
 
 \begin{theorem}[Conditional $\eta$-formula]\label{thm:closure:oc-eta-formula}
-If $(E,p)$ carries an $\eta$-certificate, then
+If $(E,p)$ carries an $\eta$-certificate, then%
+\footnote{The formalization records this as a conditional schema: the
+identity is a field of the certificate and the conclusion is its
+projection.}
 \[
   \etap(E)
   =
   \bigl(p\,\#E(\Q)_{\tors}\bigr)^{\mathrm{ord}_T(E,p)-1}
   \,\beta^{-2}\,
   T_{\mathrm{lead}}(E,p).
-\]%
-\footnote{The formalization records this as a conditional schema: the
-identity is a field of the certificate and the conclusion is its
-projection.}
+\]
 \end{theorem}
 
 \begin{proof}
