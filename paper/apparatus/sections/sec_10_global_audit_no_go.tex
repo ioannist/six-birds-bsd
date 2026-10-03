@@ -1,85 +1,50 @@
-\section{Global-audit no-go}
+\section{Finite windows of curves}
 \label{sec:global-audit-no-go}
 
-The global-audit no-go records the simplest obstruction to promoting a
-finite table of elliptic curves to a global theorem.  The five-curve window
-used in the audit is valuable evidence about those five rows, but a theorem
-whose conclusion ranges over all curves over \(\Q\) cannot be determined
-from those rows alone.  This is an audit result: it marks what the finite
-window does not certify, and is not a claim that the missing global theorem
-or a separate exhaustivity argument cannot exist.
+Numerical checks of BSD-type statements are made on finite lists of
+curves.  This section records the elementary but easily forgotten fact
+that a statement about all curves cannot be decided from a fixed finite
+list.  The list used for examples in this paper is the five-curve window
+\[
+  W=\{11a1,\ 37a1,\ 121b1,\ 960d1,\ 571a1\}.
+\]
 
-\begin{theorem}[Finite-window promotion no-go (NG-4)]\label{thm:apparatus:finite-window-no-go}
-Let
-\[
-  C_{\mathrm{BSD}}^{\mathrm{typed},+}
-  =
-  \operatorname*{colim}_{N_0\to\infty}
-  \{E/\Q:\operatorname{cond}(E)\leq N_0\}
-\]
-be the conductor-colimit carrier of typed BSD rows, and let
-\[
-  W_{50}=\{11a1,37a1,121b1,960d1,571a1\}
-\]
-be the five-curve audit window.  No theorem-grade promotion from the
-\(W_{50}\) rows to the global typed predicate
-\[
-  \forall E/\Q,\ \mathrm{BSD}(E)
-\]
-can depend only on \(W_{50}\).  In Schur form, at a conductor bound \(B\)
-with \(M(B)=\# C_{\mathrm{BSD}}(B)\), the window source has
-\(\KLL=I_5\), the full target has \(\KDD=I_{M(B)}\), and
-\[
-  \tr(\Xi_B)=M(B)-5\longrightarrow\infty
-  \qquad (B\to\infty).
-\]
-Equivalently, two global completions agreeing on \(W_{50}\) but differing
-at a curve \(E_*\notin W_{50}\) are indistinguishable to every
-\(W_{50}\)-only operator.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.GlobalAuditNoGo.finiteWindowNoGo}; see
-App~\ref{app:formalization}.}
+\begin{theorem}[A finite window does not decide a universal statement]\label{thm:apparatus:finite-window-no-go}
+Let $\mathcal C$ be the set of isomorphism classes of elliptic curves over
+$\Q$, and consider assignments $\tau:\mathcal C\to\{\mathrm{true},
+\mathrm{false}\}$, thought of as truth values of some property of curves.
+Let $U(\tau)$ be the statement ``$\tau(E)=\mathrm{true}$ for every $E$''.
+\begin{enumerate}
+\item No function of the restriction $\tau|_W$ computes $U(\tau)$ for all
+  assignments $\tau$: the assignment $\tau_1\equiv\mathrm{true}$ and the
+  assignment $\tau_2$ that agrees with $\tau_1$ except at one curve
+  $E_*\notin W$, where it is false, have the same restriction to $W$, but
+  $U(\tau_1)$ is true and $U(\tau_2)$ is false.
+\item In Schur form, let $\mathcal C(B)$ be the finite set of curves of
+  conductor at most $B\ge960$, with $M(B)=\#\mathcal C(B)$ coordinates.
+  The window source is the coordinate projection onto the five
+  coordinates in $W$, and the residual against the identity readout on
+  $\mathcal C(B)$ has trace $M(B)-5$, which tends to infinity with $B$.\footnote{Lean proves both parts for a model in which curves are indexed
+by natural numbers and the window is the first five indices: the two
+completions agree on the window, differ outside it, are separated by the
+universal target, and are identified by every function of the window;
+and the residual trace $M-5$ takes every natural-number value.  The model
+says nothing about which truth assignments arise from actual properties
+of curves.}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-Fix a conductor bound \(B\) large enough that the bounded carrier
-\[
-  C_{\mathrm{BSD}}(B)=\{E/\Q:\operatorname{cond}(E)\leq B\}
-\]
-contains the five curves in \(W_{50}\).  Its typed audit space has one
-coordinate for each row, so its target covariance block is the identity
-matrix \(I_{M(B)}\), where \(M(B)=\#C_{\mathrm{BSD}}(B)\).  A source that
-depends only on \(W_{50}\) sees exactly the five coordinate directions
-corresponding to the five window rows.  Thus its source block is \(I_5\),
-and the Schur projection is the coordinate projection from the
-\(M(B)\)-dimensional row space onto those five window coordinates.
-
-The trace of a coordinate projection is the number of retained coordinates.
-Hence the window projection has trace \(5\), while the identity on the full
-bounded carrier has trace \(M(B)\).  The unexplained residual is therefore
-\[
-  \tr(\Xi_B)
-  =
-  \tr(I_{M(B)})-\tr(P_{W_{50}})
-  =
-  M(B)-5.
-\]
-As the conductor bound increases, the carrier contains arbitrarily many
-curves, so \(M(B)\) is unbounded and the residual trace tends to infinity.
-
-The same obstruction can be seen without matrices.  Choose any
-\(E_*\in C_{\mathrm{BSD}}^{\mathrm{typed},+}\setminus W_{50}\).  Consider two
-formal global completions of the typed predicate.  They assign exactly the
-same typed rows to all curves in \(W_{50}\), but assign different values at
-\(E_*\); for instance, one completion marks the \(E_*\)-row as satisfying the
-global predicate and the other marks it as not satisfying that predicate.
-Any operator whose input is only the \(W_{50}\) table receives identical
-data from these two completions, and therefore must return the same output
-on both.  But the two completions differ on the global statement
-\(\forall E/\Q,\mathrm{BSD}(E)\), since they differ at \(E_*\).  Therefore a
-promotion depending only on the five window rows cannot determine the
-global predicate.  A global closure requires some additional tail,
-exhaustivity, or density-to-pointwise bridge; it is not supplied by the
-finite window itself.
+(1) Any function of $\tau|_W$ takes the same value on $\tau_1$ and
+$\tau_2$, while $U$ separates them.  (2) The trace of a coordinate
+projection is the number of retained coordinates, so
+$\tr(I_{M(B)}-P_W)=M(B)-5$.  There are infinitely many isomorphism classes
+of elliptic curves over $\Q$ and finitely many of each conductor, so
+$M(B)\to\infty$.
 \end{proof}
 
-% ===========================================================================
+The point of the statement is methodological.  A conclusion about all
+curves needs an argument that reaches the curves outside the window, for
+instance a theorem covering a family, or an exhaustion argument, or a
+passage from density statements to pointwise ones.  The finite window by
+itself supplies none of these.
