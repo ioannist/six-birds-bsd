@@ -242,9 +242,11 @@ All ten new Lean results depend only on standard Lean axioms
 trust-base axioms, and 69 statement-audit statuses are unchanged;
 successful checks do not upgrade the original comparison theorem.
 
-Open: canonical integral determinant/Stark naturality; the prescribed
-native generator and root object; its image in the classical Pfaffian
-target with the stated degree and final orientation; and arithmetic
+The subsequent `stark_coefficient_naturality.md` establishes canonical
+integral determinant/Stark naturality from the actual finite maps.
+Open: the prescribed native generator and root object; its image in
+the classical Pfaffian target with the stated degree and final
+orientation; and arithmetic
 named-source ablations. The current normalized GZ predicate still
 entails scalar BSD by itself. None of these obligations is weakened
 or silently supplied by this supporting construction.

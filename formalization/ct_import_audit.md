@@ -213,7 +213,11 @@ Stark bases at every coefficient level, with identical component ideals
 and different normalized-square rootability. It proves an exact residue
 square-class repair and independence of the square-image subset from
 the chosen integral lift of the fixed finite comparison. This does
-not construct a canonical integral comparison or the native generator.
+not by itself construct a canonical integral comparison or the native
+generator. The subsequent `stark_coefficient_naturality.md` derives
+coefficient naturality from the actual cochain lifts, determinant maps
+and common-core evaluation. This supplies the canonical integral
+comparison, without identifying the prescribed native manuscript basis.
 The compatible all-level native Stark basis, manuscript degree shift
 and orientation remain open. The subsequent paired derived construction
 below resolves arithmetic self-duality and the raw Flach comparison on

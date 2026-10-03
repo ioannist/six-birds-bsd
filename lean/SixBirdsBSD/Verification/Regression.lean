@@ -410,4 +410,12 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.CTDerivedTransport.splitBadPrimeInputs
 #print axioms SixBirdsBSD.Closure.CTDerivedTransport.splitNodeAndTangents
 
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.compatibleExt
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.inverseNaturality
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.limitLeftInverse
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.limitRightInverse
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.integralComparisonUnique
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.finiteIsomorphismsNeedNaturality
+#print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.noIntegralLiftForMismatchedComparisons
+
 end SixBirdsBSD.Verification.Regression

@@ -10,6 +10,8 @@ particular loss. The manuscript's native generator and orientation
 comparison are still not constructed. Arithmetic self-duality on the
 fixed compact lane is supplied by the subsequent
 `ct_derived_transport_construction.md`, with the raw sign kept explicit.
+The later `stark_coefficient_naturality.md` also supplies the canonical
+integral determinant/Stark comparison by checking the actual finite maps.
 
 The arithmetic freeness and base-change theorems are external imports
 with applicability proved below. Lean constructs the completed
@@ -127,7 +129,10 @@ maps of rank-one modules agreeing on their basis. Its reductions at
 other levels are compatible by construction through the `pi_n`.
 This is a chosen lift, not a proof that it equals the canonical
 Macias Castillo-Sano map at every other level. Such coefficient
-naturality of that particular arithmetic construction remains open.
+naturality does not follow from this chosen lift. The later
+`stark_coefficient_naturality.md` proves it from the actual cochain,
+determinant and core-evaluation maps, yielding a canonical integral
+comparison with the same square-image subset.
 
 Fix this `Phi` once and define
 
@@ -195,8 +200,10 @@ Its rootability predicate can therefore be defined directly: pull a
 basis back at level three through `phi_3` and retain its unit
 coefficient modulo three relative to `delta`. This is a canonical
 square-class readout relative to the fixed finite comparison, although
-we have not constructed a canonical integral comparison map or a
-canonical square-root element. The distinction removes dependence of
+this chosen-lift argument does not construct a canonical integral map
+or square-root element. The subsequent coefficient-naturality proof
+supplies the integral map; a prescribed native square-root comparison
+remains separate. The distinction removes dependence of
 the no-go witness on the unproved higher-level map naturality.
 
 ## Lean coverage and distinct self-review

@@ -1,0 +1,31 @@
+{
+  "scope": "Written arithmetic coefficient-naturality proof for the actual finite determinant/Stark comparison of 1913b1 at three, yielding a canonical integral isomorphism. Lean proves the generic compatible-family inverse-limit return and an incompatible finite-isomorphism false control, not arithmetic cochain lifts or determinant functors. No prescribed native manuscript generator, final scalar orientation or named-source indispensability is claimed.",
+  "checked": "2026-10-03",
+  "arithmetic_inputs": [
+    "odd_primary_selmer_bridge.json",
+    "stark_core_vertex_construction.json"
+  ],
+  "sources": [
+    {
+      "name": "Macias Castillo-Sano",
+      "url": "https://arxiv.org/pdf/2603.23978v1",
+      "sha256": "77f7cb9c5e4a3ed2078ae3782499092e035f6054d4e23ab8e9159d42012731c7",
+      "locations": "Lemma 2.22 and Sections 2.3.2-3, printed pages 17-20; Propositions 2.9 and 2.18; Proposition 3.3 and Theorem 3.4, pages 23-25."
+    },
+    {
+      "name": "Sakamoto",
+      "url": "https://msp.org/ant/2018/12-10/ant-v12-n10-p02-s.pdf",
+      "sha256": "e674f67b2a9f51df164871708b73725fb3445f7d9ff6e4a20213be7e66c15f64",
+      "locations": "Lemma 2.1 and Definition 2.3; Lemmas 3.17 and 3.25, Remark 4.5(2), Lemma 4.6, construction before Proposition 4.12 and Section 5."
+    },
+    {
+      "name": "Burns-Sano",
+      "url": "https://arxiv.org/pdf/1612.06187v1",
+      "sha256": "661deb8cdb0de31b8195b55eac68fe1f59ae96947d40debef03e0711b0f297e3",
+      "locations": "Formula (47) and Proposition A.3, printed pages 47-49. Checked preprint exterior contraction, not the whole later journal version."
+    }
+  ],
+  "construction": "A common core vertex survives adjacent base change. Its free relaxed and local modules reduce through the actual localization maps. The cochain-lift comparison commutes with reduction, including the negative degree-two component. Exterior contraction and permutation signs match the two Stark conventions. Determinant/core evaluation gives compatibility of the finite canonical maps with Sakamoto coefficient transitions. Their inverse limit is an isomorphism by inverse naturality, completeness and separatedness.",
+  "false_control": "On the fixed residue-three tower, use the identity at the first level and multiplication by two afterwards. Every finite map is invertible but compatibility and an integral lift fail. This is an abstract coefficient control, not an arithmetic source ablation.",
+  "deduction_boundary": "Canonical relative to the fixed arithmetic complex, local conditions and determinant/Stark conventions. The canonical determinant basis maps to a canonical Stark basis; this does not identify the manuscript independently prescribed native selection. The paired bases e_can and 2 e_can retain equal component ideals and different prescribed-square rootability. Earlier chosen lifts of the level-three comparison have the same square-image subset."
+}

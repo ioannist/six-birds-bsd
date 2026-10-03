@@ -515,3 +515,30 @@ source has been shown to supply exactly that information. The current
 GZ predicate still entails scalar BSD alone. The construction is a
 genuine arithmetic paired-derived return and a sharper surviving
 obstruction, not a proof of the full source-indispensability endpoint.
+
+## Canonical integral comparison and the precise native obligation
+
+`stark_coefficient_naturality.md` now proves that the actual finite
+determinant/Stark maps commute with the coefficient transitions defining
+the arithmetic Stark module. Its proof uses one common core vertex,
+coefficient-natural continuous cochain lifts, the explicit negative
+degree-two map, and matched exterior contraction/permutation signs.
+The limit is consequently a canonical linear isomorphism `Phi_can`.
+Lean constructs the inverse-limit return and its inverse, proves
+uniqueness, and rejects an explicit incompatible family of finite
+isomorphisms. The arithmetic naturality remains written mathematics
+with identified primary imports.
+
+The witnesses can therefore be the canonical basis
+`e_can=Phi_can(delta)` and its unit multiple `2e_can`, with the fixed
+canonical square map. Every component ideal still agrees and their
+rootability differs. The square-image subset agrees with that of any
+earlier linear lift of the fixed level-three comparison. Canonicity
+has removed a choice from the comparison; it has not recovered the
+unit lost by the ideal observation. The exact remaining generator
+obligation is to identify the manuscript's independently prescribed
+native selection with a square-unit multiple of `e_can`, and then
+match its root and target with the specified Pfaffian orientation.
+Supplying that coefficient as a certificate would assume the missing
+return. Named-source arithmetic ablations and the original scalar
+source endpoint remain unresolved.
