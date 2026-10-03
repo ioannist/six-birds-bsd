@@ -1,24 +1,21 @@
-\section[Comparison: literature gap and five-column/BK map]{Comparison: literature gap and $\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}$}
+\section[Comparison with the Bloch--Kato scalar package]{Comparison with the Bloch--Kato scalar package}
 \label{sec:comparison}
 
-The preceding sections built the five typed columns separately.  This
-section contracts that typed atlas back to the usual Bloch--Kato scalar
-package and asks whether the typed source is adequate for that contraction.
-The answer is yes for the scalar readout: the typed source has zero Schur
-residual for the comparison row, while the determinant-orientation
-coordinate lies in the kernel of the scalar contraction.
+The preceding sections built the five columns separately.  This section
+contracts them back to the usual Bloch--Kato scalar package and asks two
+questions: is the typed source adequate for that contraction, and what
+does the contraction forget?
 
-\begin{remark}[Five-column literature gap (support only; audit observation)]\label{rmk:apparatus:five-column-literature-gap}
-The literature audit used here reads Bloch--Kato~\citep[\S5]{BlochKato1990},
-Fontaine--Perrin-Riou~\citep{FontainePerrinRiou1994}, and Nekov\'a\v{r}~\citep{Nekovar1994}
-as presenting \(\Delta_f(M_E)\) as a single
-global Tamagawa-number package, rather than as a typed decomposition into
-height/regulator, analytic/period, finite-source, local \(p\)-adic, and
-determinant-assembly slots.  Relative to that audited corpus, the
-five-column decomposition is recorded here as a structural contribution of
-this apparatus.  This is an audit observation about what that theorem-grade
-literature supplies; it is not a non-existence claim about possible
-equivalent decompositions elsewhere, and it is not a theorem of this paper.
+\begin{remark}[Relation to the standard presentations]\label{rmk:apparatus:five-column-literature-gap}
+The fundamental line and its Tamagawa-number formulation go back to
+Bloch--Kato~\citep[\S5]{BlochKato1990} and
+Fontaine--Perrin-Riou~\citep{FontainePerrinRiou1994}; the formulation of
+the leading value in terms of periods and height determinants, modulo
+$\Q^\times$, is surveyed by Nekov\'a\v{r}~\citep{Nekovar1994}.  The
+five-slot organization used here is a bookkeeping choice made for the
+adequacy tests.  We have not compared it systematically with the
+literature and make no claim about whether equivalent decompositions
+appear there.
 \end{remark}
 
 \begin{definition}[Five-column tensor]\label{def:apparatus:five-column-tensor}
@@ -34,105 +31,72 @@ The typed five-column tensor is
   \otimes
   \bigotimes_{p\in S(E)}\rho_p^{\R}(E)
   \otimes
-  \rho_{\det}^{\R}(E).
+  \rho_{\det}^{\R}(o_{\det}),
 \]
-Its source family \(L\) consists of the five separated log-tangent
-coordinates
+whose fifth factor is the orientation scalar of the independent
+orientation datum (\Cref{def:apparatus:det-assembly-map}), not the final
+assembly $\mathcal A^{\R}(E)$.  Its source family consists of the five
+separated logarithmic tangent coordinates
+$(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})$, where
+$x_{\det}=\log|\rho_{\det}^{\R}(o_{\det})|$.  The
+\emph{orientation-normalized scalar readout} is
 \[
-  (x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det}),
+  \log\bigl|T_{\mathrm{5col}}(E)\big/\rho_{\det}^{\R}(o_{\det})\bigr|
+  =x_{\mathrm{ht}}+x_{\mathrm{an}}+x_{\mathrm{fin}}+x_p ,
 \]
-and its target readout \(D\) is the single Bloch--Kato
-Tamagawa-package coordinate obtained after scalar contraction.
+the logarithm of the absolute value of the product of the four arithmetic
+factors.  It is distinct from the full contraction
+$\log|T_{\mathrm{5col}}(E)|$, whose row is $(1,1,1,1,1)$.
 \end{definition}
 
-\begin{theorem}[Five-column to BK scalar contraction]\label{thm:apparatus:five-col-bk-comparison}
-At the log-tangent level, write
+The distinction in the definition matters.  Since $\mathcal A^{\R}(E)$
+already contains the four arithmetic factors, using it as the fifth factor
+would count each of them twice.  For instance, with arithmetic factors
+$2,3,5,7$ and orientation scalar $1$, the final assembly is $210$; the
+tensor with the orientation as fifth factor is again $210$, whereas
+reusing the final assembly would give $210^2=44100$.  (Lean checks these
+values.)
+
+\begin{theorem}[Five-column to Bloch--Kato scalar contraction]\label{thm:apparatus:five-col-bk-comparison}
+In the coordinates
+$x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5$,
+the orientation-normalized scalar readout of
+\Cref{def:apparatus:five-column-tensor} is
+$\Phi_{\mathrm{5col}\to\mathrm{BK}}(x)=d\cdot x$ with $d=(1,1,1,1,0)$.
+With the full typed source $L(x)=x$ and $C=I_5$,
 \[
-  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5.
-\]
-Define the five-column to Bloch--Kato scalar contraction by
-\[
-  \Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}(x)=d\cdot x,
-  \qquad
-  d=(1,1,1,1,0).
-\]
-With the full typed five-column source \(L(x)=x\), \(C=I_5\),
-\(\KLL=I_5\), \(\KDL=d\), and \(\KDD=\|d\|^2=4\), one has
-\[
-  \Xi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}
+  \Xi_{\mathrm{5col}\to\mathrm{BK}}
   =
-  4-dI_5d^{\mathsf T}
+  \|d\|^2-d\,I_5\,d^{\mathsf T}
   =
-  0.
+  4-4=0,
 \]
-Thus the typed five-column source is adequate for the Bloch--Kato scalar
-projection.  Moreover the determinant-orientation coordinate lies in the
-kernel: \(x_{\det}\in\ker\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}\).
-Consequently the scalar Bloch--Kato package is a strict shadow of the typed
-atlas, forgetting at least the determinant-orientation coordinate.  The
-integral arithmetic interpretation remains conditional on the five refined
-transports.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.Comparison.fiveColBkComparison}; see App~\ref{app:formalization}.}
+so the typed source is adequate for this readout.  The orientation
+direction $e_{\det}=(0,0,0,0,1)$ lies in the kernel of
+$\Phi_{\mathrm{5col}\to\mathrm{BK}}$: the readout forgets at least that
+coordinate.%
+\footnote{Lean proves the contraction row, the zero residual and the
+kernel vector.  Identifying this coordinate readout with the arithmetic
+Bloch--Kato scalar requires the five transports of the column sections
+and, in addition, a convention under which that scalar is independent of
+the orientation datum.}
 \end{theorem}
 
 \begin{proof}
-The comparison row is \(d=(1,1,1,1,0)\).  Its squared norm is
-\[
-  \KDD
-  =
-  dd^{\mathsf T}
-  =
-  1+1+1+1+0
-  =
-  4.
-\]
-The full typed source is the identity source on \(\R^5\), so
-\[
-  \KLL=I_5,\qquad
-  \Kdagger=I_5,\qquad
-  \KDL=d,\qquad
-  K_{LD}=d^{\mathsf T}.
-\]
-The projection term is again the identity-matrix action.  For any vector
-\(v\in\R^5\), \(I_5v=v\), and hence
-\[
-  dI_5d^{\mathsf T}
-  =
-  dd^{\mathsf T}
-  =
-  4.
-\]
-Therefore
-\[
-  \Xi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}
-  =
-  \KDD-\KDL\Kdagger K_{LD}
-  =
-  4-dI_5d^{\mathsf T}
-  =
-  4-4
-  =
-  0.
-\]
-This proves adequacy of the typed source for the scalar contraction.
-
-It remains to identify the shadow.  Let
-\[
-  e_{\det}=(0,0,0,0,1).
-\]
-Then
-\[
-  d\cdot e_{\det}
-  =
-  1\cdot0+1\cdot0+1\cdot0+1\cdot0+0\cdot1
-  =
-  0.
-\]
-Thus \(e_{\det}\in\ker\Phi_{\mathrm{5col}\leftrightarrow\mathrm{BK}}\).
-Changing only \(x_{\det}\) changes the typed five-column coordinate but
-does not change the Bloch--Kato scalar readout.  The scalar package is
-therefore a strict shadow of the typed atlas: it is adequately computed from
-the typed source, but it does not remember all typed coordinates.
+With the identity source, $\KLL=\Kdagger=I_5$, $\KDL=d$ and
+$K_{LD}=d^{\mathsf T}$, so the projected energy is
+$d\,I_5\,d^{\mathsf T}=dd^{\mathsf T}=4$, which equals $\KDD$; hence the
+residual is $0$.  Finally $d\cdot e_{\det}=0$, so changing only
+$x_{\det}$ changes the typed coordinate without changing the scalar
+readout.
 \end{proof}
 
-% ===========================================================================
+The two halves of the theorem fit together.  The orientation-normalized
+readout is computed correctly from the typed source, so nothing is lost
+in that direction; but the typed source carries an orientation coordinate
+that this readout does not see, while the full tensor does (changing the
+orientation scalar from $1$ to $2$ in the example above changes the
+tensor from $210$ to $420$).  To the extent that the arithmetic
+Bloch--Kato scalar is orientation-normalized in this sense, which is an
+additional convention not supplied by the transports alone, it is a
+projection of the typed atlas.
