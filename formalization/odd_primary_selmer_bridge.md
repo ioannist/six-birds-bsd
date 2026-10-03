@@ -162,8 +162,11 @@ restriction therefore gives a perfect form on `(Z/3)^2`. Lean derives
 the coefficient of **every** such form, proves it is a unit, and
 constructs an additive coordinate change recovering that form from the
 inverse linking pairing of `3J` modulo integers. This identifies the
-paired finite group; compatibility with the arithmetic self-duality map
-and the raw Nekovar sign is still a separate comparison.
+paired finite group. The subsequent
+`ct_derived_transport_construction.md` supplies compatibility with the
+actual arithmetic self-duality in the derived category and proves the
+raw minus-Flach comparison on this fixed compact lane. It does not
+select canonical chain coordinates or the manuscript's native generator.
 
 Under the canonical acyclic trivialization over `Q_3`, the inverse
 determinant line has image `(9)` in `Q_3`. For `P`, this follows directly

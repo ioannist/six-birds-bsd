@@ -399,4 +399,15 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.StarkInverseLimit.sameEntireIdealFamily
 #print axioms SixBirdsBSD.Closure.StarkInverseLimit.noSquareRootReadoutFromIdealFamily
 
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.explicitChainMap
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.sourceForcedByChainLaw
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.sameCohomologyHomotopy
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.normalizationIsChainMap
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.normalizationDeterminantsAgree
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.normalizationPullsBackDuality
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.cupIsChainMap
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.normalizationLinkingReturn
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.splitBadPrimeInputs
+#print axioms SixBirdsBSD.Closure.CTDerivedTransport.splitNodeAndTangents
+
 end SixBirdsBSD.Verification.Regression

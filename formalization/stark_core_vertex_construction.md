@@ -174,7 +174,10 @@ Theorem 2.20 identifies this actual Poitou-Tate complex canonically
 with `C tensor^L R_3`. Its degree-two comparison uses minus the
 Poitou-Tate map, as recorded in their equation (2.3.8); no positive
 Cassels-Tate sign is inferred from it. Choosing Smith bases still does
-not construct a compatible arithmetic self-duality map.
+not construct a compatible arithmetic self-duality map. That separate
+fixed-lane comparison is supplied by the later
+`ct_derived_transport_construction.md`, using the raw Nekovar–Flach sign
+and an explicit chain homotopy; it does not select the native basis.
 
 This explains both degrees: the compact `H1(C)` is zero, while
 `H1(C tensor^L R_3)` is the nine-element kernel of reduced `3J`.
@@ -210,9 +213,11 @@ This necessity concerns retaining basis-unit information for this
 prescribed-root task. It does not force a named source to be necessary
 for scalar BSD, or show that the manuscript's independently specified
 native generator is either of these selected bases. Choosing a liftable
-normalized basis remains possible. The native root object, the raw Nekovar pairing
-comparison, degree convention and normalized map/sign remain separate
-obligations. Only the finite-level determinant-to-Stark comparison is
+normalized basis remains possible. The native root object, manuscript
+degree convention and normalized map/final orientation remain separate
+obligations. The later `ct_derived_transport_construction.md` establishes
+the raw Nekovar pairing comparison on the fixed compact lane, with
+its minus sign retained. Only the finite-level determinant-to-Stark comparison is
 claimed here.
 
 The subsequent `stark_inverse_limit_construction.md` constructs a

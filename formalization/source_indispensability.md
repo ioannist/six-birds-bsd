@@ -452,8 +452,9 @@ the ideal obstruction to actual Stark-system bases. The arithmetic
 existence and comparison are written imported-theorem applications;
 Lean verifies the supporting cocycle and finite calculations.
 
-The compatible all-level shift, native generator, self-duality and
-orientation comparisons remain unresolved. The
+The compatible all-level manuscript shift, native generator and
+orientation comparisons remain unresolved. Fixed-lane arithmetic
+self-duality is supplied by the later paired derived construction. The
 normalized GZ source still entails scalar BSD by itself. See
 `odd_primary_selmer_bridge.md` and `stark_core_vertex_construction.md`
 for the constructions, imports,
@@ -486,5 +487,31 @@ application and general digit-lifting classification are written proofs.
 The theorem remains relative to the prescribed-root task and its ideal
 observable. It neither identifies the manuscript's native generator
 nor establishes named-source necessity for scalar BSD. The native
-generator, arithmetic self-duality, degree and orientation comparisons
-remain unresolved, as does the stronger original source endpoint.
+generator, manuscript degree and orientation comparisons remain
+unresolved, as does the stronger original source endpoint. The
+subsequent construction below supplies the fixed compact lane's
+arithmetic self-duality without resolving these native comparisons.
+
+## Paired derived realization preserves the surviving basis obstruction
+
+The construction in `ct_derived_transport_construction.md` now supplies
+the actual arithmetic Nekovar–Flach comparison for 1913b1 at three.
+It checks the local conditions, constructs the coefficient connecting
+identification with Sha, and retains the raw minus sign. Explicit
+negation gives the positive Flach pullback. Matching finite pairings
+then determines the derived duality map up to the displayed homotopy.
+The normalization chain lift has equal determinants in both degrees,
+so it preserves the same canonical determinant trivialization used
+by the Stark construction. Lean proves the integral matrix and
+rational linking algebra; the arithmetic argument uses stated imports.
+
+This sharper realization leaves the two coherent bases `e` and `2e`
+with the same curve, paired derived object and determinant
+trivialization. All component ideals remain identical and their
+prescribed-square rootability still differs. Thus pairing normalization
+does not recover an independently prescribed Stark-basis unit. A native
+basis comparison must supply further information; no named recognition
+source has been shown to supply exactly that information. The current
+GZ predicate still entails scalar BSD alone. The construction is a
+genuine arithmetic paired-derived return and a sharper surviving
+obstruction, not a proof of the full source-indispensability endpoint.

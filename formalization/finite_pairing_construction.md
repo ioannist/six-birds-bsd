@@ -706,6 +706,8 @@ The subsequent odd-primary construction in `odd_primary_selmer_bridge.md`
 does identify the ordinary compact complex of 1913b1 at three with `3J`
 in degrees one and two, using separately stated arithmetic imports. Its
 inverse determinant ideal is `(9)`. This resolves a derived-object
-identification on that lane; it does not select a compatible arithmetic
-self-duality map or prescribed Stark generator. The same-curve basis
+identification on that lane; the later
+`ct_derived_transport_construction.md` also supplies compatibility with
+the arithmetic self-duality in the derived category. Neither construction
+selects the prescribed native Stark generator. The same-curve basis
 variation there exhibits the unit information that the ideal loses.

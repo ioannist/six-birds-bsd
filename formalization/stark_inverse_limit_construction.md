@@ -6,8 +6,10 @@ arithmetic systems, not independently selected elements at each level.
 Every component-image ideal at every level, and hence the entire
 integral Fitting ladder, is identical on them. Their prescribed-square
 rootability differs. Retaining one residue square-class bit repairs this
-particular loss. The manuscript's native generator, self-duality and
-orientation comparison are still not constructed.
+particular loss. The manuscript's native generator and orientation
+comparison are still not constructed. Arithmetic self-duality on the
+fixed compact lane is supplied by the subsequent
+`ct_derived_transport_construction.md`, with the raw sign kept explicit.
 
 The arithmetic freeness and base-change theorems are external imports
 with applicability proved below. Lean constructs the completed
@@ -227,8 +229,10 @@ own proof rather than being inferred from ideal equality.
 
 Remaining obligations for the original endpoint are unchanged in
 substance: identify the manuscript's independently prescribed native
-Stark generator and root object; match the arithmetic self-duality
-and raw Nekovar pairing sign; resolve the degree shift and normalized
+Stark generator and root object; carry the arithmetic self-duality
+and raw Nekovar comparison established in
+`ct_derived_transport_construction.md` into the manuscript's target;
+resolve the degree shift and normalized
 Pfaffian image; and establish named-source ablations on an allowed
 arithmetic carrier. The normalized GZ predicate still entails scalar
 BSD alone in the current interface. This completed-carrier obstruction

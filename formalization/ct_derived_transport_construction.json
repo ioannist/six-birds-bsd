@@ -1,0 +1,54 @@
+{
+  "scope": "Written arithmetic Nekovar-Flach comparison for the actual ordinary compact complex of 1913b1 at three, and a derived self-duality-compatible hyperbolic presentation. Arithmetic duality, coefficient connecting maps and derived-category transport are external to Lean. No native Stark generator, canonical integral Stark comparison, final Pfaffian orientation or full named-source indispensability is claimed.",
+  "checked": "2026-10-03",
+  "arithmetic_inputs": "odd_primary_selmer_bridge.json",
+  "sources": {
+    "nekovar_pdf": "https://numdam.org/item/AST_2006__310__R1_0.pdf",
+    "nekovar_pdf_sha256": "61c84e5ad3252a2e520747215ac57a282addc2b58c824a3637bcd77bbe02153f",
+    "nekovar_sections": "5.1; 6.2.3, 6.3.4, 6.7.6-8; 9.6.3, 9.6.7.2-3; 2.10.7-14, 10.2.2-5, 10.8.1-7. Printed page 349 was visually checked for the comparison sign. Only the relevant sections, not the whole book or all errata, were audited.",
+    "flach_facsimile_volume": "https://gdz.sub.uni-goettingen.de/id/PPN243919689_0412",
+    "flach_checked_pages": [
+      {
+        "printed_page": 113,
+        "url": "https://gdz.sub.uni-goettingen.de/content/PPN243919689_0412/1000/0/00000117.jpg",
+        "sha256": "ec0d61e5cdc94ac7aa95f3340544bdf5dd63655eedca492e07c273577babd14a"
+      },
+      {
+        "printed_page": 114,
+        "url": "https://gdz.sub.uni-goettingen.de/content/PPN243919689_0412/1000/0/00000118.jpg",
+        "sha256": "1f2931346b797626ac1c821b427ffb1b04ec9168a437d5816178b56bfa5eff39"
+      },
+      {
+        "printed_page": 115,
+        "url": "https://gdz.sub.uni-goettingen.de/content/PPN243919689_0412/1000/0/00000119.jpg",
+        "sha256": "d296dea5805af410d57f7d56229366ffee74ba681af8183d5f3b6e19ada75299"
+      },
+      {
+        "printed_page": 116,
+        "url": "https://gdz.sub.uni-goettingen.de/content/PPN243919689_0412/1000/0/00000120.jpg",
+        "sha256": "57e456367aedc96d119a62b80b98436793a8f45bfb767220878c6077d9daf2a3"
+      },
+      {
+        "printed_page": 117,
+        "url": "https://gdz.sub.uni-goettingen.de/content/PPN243919689_0412/1000/0/00000121.jpg",
+        "sha256": "8d008ccc24e927790daba18df526f9df0d9ca475bcb1e9dbc89cc99b6649c64d"
+      }
+    ]
+  },
+  "finite_controls": {
+    "bad_prime": 1913,
+    "split_node": [
+      485,
+      714
+    ],
+    "tangent_slopes": [
+      346,
+      1566
+    ],
+    "minus_c6_square_root": 295,
+    "tate_invariant_frobenius": 1913,
+    "unramified_differential": 1912,
+    "coefficient_prime": 3
+  },
+  "deduction_boundary": "The coefficient map theta used in Nekovar 10.8.6 equals minus the coefficient boundary on the classical Selmer group. Both argument signs cancel. The actual raw U_2,2 equals minus the Flach pairing after the derived local comparison; its negation gives a positive Flach pullback. Explicit chain maps and homotopies lift finite pairing normalization to the rank-zero derived object while preserving the acyclic determinant trivialization. This does not identify the classical scalar target or the prescribed native Stark-basis unit."
+}

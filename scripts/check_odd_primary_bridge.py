@@ -94,6 +94,25 @@ def check(gp: str | None) -> None:
     assert controls["basis_unit_coefficients"] == [1, 2]
     squares = {x*x % modulus for x in range(modulus)}
     assert 1 in squares and 2 not in squares
+    # Equation-derived controls for the separate arithmetic pairing transport.
+    # These do not prove Tate duality or the Nekovar-Flach comparison.
+    transport = json.loads((ROOT / "formalization/ct_derived_transport_construction.json").read_text())
+    local = transport["finite_controls"]
+    bad = local["bad_prime"]
+    prime = local["coefficient_prime"]
+    assert (bad, prime) == (model["conductor"], 3)
+    x, y = local["split_node"]
+    a1, a2, a3, a4, a6 = a
+    assert (y*y+a1*x*y+a3*y-x**3-a2*x*x-a4*x-a6) % bad == 0
+    assert (a1*y-3*x*x-2*a2*x-a4) % bad == 0
+    assert (2*y+a1*x+a3) % bad == 0
+    r, s = local["tangent_slopes"]
+    assert (r+s+a1) % bad == (r*s+3*x+a2) % bad == 0
+    assert (r-s) % bad != 0
+    assert (local["minus_c6_square_root"]**2+c6(a)) % bad == 0
+    assert local["tate_invariant_frobenius"] == bad
+    assert local["unramified_differential"] == bad-1
+    assert local["unramified_differential"] % prime == 1
     if gp:
         expression = (
             f"e=ellinit({json.dumps(a)});im=ellisomat(e)[2];"
@@ -114,7 +133,7 @@ def check(gp: str | None) -> None:
         )
         assert run_gp(gp, data["gp_stack_bytes"], expression) == [
             symbol["hecke_prime_eigenvalues"], 1, 160, 321, 1, 1, 1, 9, 1]
-    print("Odd-primary bridge: exact equation, local/ordinary, anomaly and finite Stark controls passed; "
+    print("Odd-primary bridge: exact equation, local/ordinary, anomaly, finite Stark and pairing-local controls passed; "
           + ("PARI model and exact Hecke symbol reproduced; " if gp else "")
           + "published three-primary upper bound and arithmetic transports remain external")
 

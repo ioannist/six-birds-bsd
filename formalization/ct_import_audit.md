@@ -22,10 +22,14 @@ checked in extracted text around the cited statements. Their downloaded
 PDF SHA-256 digests are respectively
 `77f7cb9c5e4a3ed2078ae3782499092e035f6054d4e23ab8e9159d42012731c7`
 and `6c6f01166085b952f13a82488233126b9b8b6531848f31d638da44d38790d22e`.
-The Nekovář check uses the
-archival page-349 extraction; a complete book/errata audit has not been
-completed. Knudsen–Mumford determinant theory and the original Flach
-paper still need the exact downstream theorem/hypothesis comparison.
+The Nekovář check now uses the complete 568-page archival PDF, SHA-256
+`61c84e5ad3252a2e520747215ac57a282addc2b58c824a3637bcd77bbe02153f`,
+with the relevant local-duality, torsion-product and comparison sections
+checked and printed page 349 inspected visually. Flach's original
+publisher-volume facsimile, printed pages 113–117, was also checked.
+A whole-book/errata audit, Knudsen–Mumford downstream applicability,
+and the manuscript's classical scalar/Pfaffian normalization remain open.
+See `ct_derived_transport_construction.md` for the fixed arithmetic lane.
 The eight symbolic T_E labels also lack a statement-by-statement assignment
 to these arithmetic results in the Lean interface.
 
@@ -210,9 +214,38 @@ and different normalized-square rootability. It proves an exact residue
 square-class repair and independence of the square-image subset from
 the chosen integral lift of the fixed finite comparison. This does
 not construct a canonical integral comparison or the native generator.
-The compatible all-level native Stark basis, self-duality comparison, degree
-shift and orientation remain open. In the compact convention here,
+The compatible all-level native Stark basis, manuscript degree shift
+and orientation remain open. The subsequent paired derived construction
+below resolves arithmetic self-duality and the raw Flach comparison on
+this fixed compact lane. In the compact convention here,
 the proposed unshifted `H1(C)/div` is zero. Shifting it to the finite
 degree also inverts the determinant convention, which must be carried
 through the comparison. See `odd_primary_selmer_bridge.md` and its
 fixture for the exact source chain and self-review.
+
+## Actual arithmetic pairing and compatible derived transport
+
+`ct_derived_transport_construction.md` now matches the local conditions
+of the actual 1913b1 compact complex to Nekovar's Section 10.8. An
+equation-derived split node at 1913 gives two rational tangent slopes;
+the invariant Tate line has Frobenius 1913, so its unramified local
+differential 1912 is a three-adic unit. The entire local cohomology
+complex is acyclic, which also removes the bad-prime duality error.
+The ordinary Weil line removes the error at three. Global duality
+therefore supplies the actual perfect alternating raw torsion pairing.
+
+The coefficient connecting map identifies Sha with torsion H2. Both
+arguments of Nekovar's cochain construction acquire a minus sign;
+these cancel each other but leave Proposition 10.8.7's raw minus-Flach
+equation. Explicit negation gives the corrected positive comparison.
+An explicit chain map on `3J` represents this arithmetic duality:
+matching finite pairings forces matching derived maps by a displayed
+homotopy. Its coordinate normalization has equal determinants in both
+degrees and preserves the canonical acyclic trivialization.
+
+Lean checks the integral matrix equations, homotopy and rational linking
+return, together with the split-node and unit inputs. Arithmetic duality
+and derived-category applicability are written imported-theorem proofs,
+not new Lean certificate fields. This does not select the prescribed
+native Stark unit or classical scalar orientation. The full named-source
+endpoint and the eight symbolic T_E assignments remain unresolved.
