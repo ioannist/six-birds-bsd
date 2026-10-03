@@ -1,29 +1,32 @@
-\section{Finite-source column and the finite no-gos}
+\section{Finite-source column}
 \label{sec:finite-source}
 
-The finite-source column keeps the arithmetic finite data before it is
-contracted to the public scalar finite factor.  Its typed tower separates
-Tamagawa factors~\citep{Silverman1994}, torsion, the $p$-primary \(\Sha\) data, and the
-Cassels--Tate pairing.  The point of this column is that the determinant
-readout is pairing-aware: the Cassels--Tate form~\citep{PoonenStoll1999,Cassels1962} is source data, not a
-number to be recovered from the scalar finite product after the fact.
+The finite-source column keeps the finite arithmetic data before they are
+contracted to the scalar finite factor
+$\#\Sha\prod_vc_v/\#E(\Q)_{\tors}^{\,2}$.  Its tower separates Tamagawa
+numbers~\citep{Silverman1994}, rational torsion, the $p$-primary parts of
+$\Sha$, and the Cassels--Tate pairing~\citep{Cassels1962,PoonenStoll1999}.
+The pairing is part of the source: it determines the structure of each
+$p$-primary group, while the scalar factor only sees orders.
 
 \begin{definition}[Real finite-source map]\label{def:apparatus:finite-source-map}
 The finite-source tower is
-\[
-  C_{\mathrm{fin}}(E)
-  =
-  C_{\mathrm{Tam}}\oplus C_{\tors}\oplus
-  C_{\Sha[p^\infty]}\oplus C_{\mathrm{CT}}.
-\]
-Its native family is
+$C_{\mathrm{fin}}(E)=C_{\mathrm{Tam}}\oplus C_{\tors}\oplus
+C_{\Sha[p^\infty]}\oplus C_{\mathrm{CT}}$, with native family
 \[
   L_{\mathrm{finite}}(E)
   =
-  \bigl((c_v(E))_{v\mid N},\,E(\Q)_{\tors},\,
-  (\Sha(E/\Q)[p^\infty])_p,\,\langle\cdot,\cdot\rangle_{\mathrm{CT}}\bigr).
+  \Bigl((c_v(E))_{v\mid N},\ E(\Q)_{\tors},\
+  \bigl(S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p}\bigr)_p\Bigr),
+  \qquad
+  S_p=\Sha(E/\Q)[p^\infty]/\Sha(E/\Q)[p^\infty]_{\mathrm{div}},
 \]
-The real finite-source map is the tensor
+where $\langle\cdot,\cdot\rangle_{\mathrm{CT},p}:S_p\times S_p\to\Q/\Z$ is the
+perfect alternating Cassels--Tate pairing.  Throughout this section we
+assume that $\Sha(E/\Q)$ is finite.  Then each divisible part is zero,
+$S_p=\Sha(E/\Q)[p^\infty]$, only finitely many $S_p$ are nontrivial, and
+$\prod_p\#S_p=\#\Sha(E/\Q)$.  The real finite-source map is the product
+of three factors:
 \[
   \rho_{\mathrm{finite}}^{\R}
   =
@@ -31,294 +34,233 @@ The real finite-source map is the tensor
   \otimes
   \rho_{\tors}^{\R}
   \otimes
-  \bigotimes_p \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}.
+  \bigotimes_p \rho_{\Sha\text{-}\mathrm{CT},p}^{\R},
 \]
-The Tamagawa factor is
+with $\rho_{\mathrm{Tam}}^{\R}=\prod_{v\mid N}c_v$, where
+$c_v=\#E(\Q_v)/E^0(\Q_v)$; $\rho_{\tors}^{\R}=\#E(\Q)_{\tors}^{-2}$; and
 \[
-  \rho_{\mathrm{Tam}}^{\R}:
-  (c_v)_{v\mid N}
-  \longmapsto
-  \bigotimes_{v\mid N} c_v e_v^{\mathrm{loc}},
-  \qquad
-  c_v=|\Phi_v(E)|,\quad
-  \Phi_v=E(\Q_v)/E^0(\Q_v).
+  \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}\bigl(S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p}\bigr)=\#S_p .
 \]
-The torsion factor is
-\[
-  \rho_{\tors}^{\R}:
-  T(E)
-  \longmapsto
-  \bigotimes_p |T_p(E)|^{-2}e_p^{\tors}.
-\]
-For the \(\Sha\)--Cassels--Tate factor, put
-\[
-  S_p=\Sha[p^\infty]/\Sha_{\mathrm{div}}[p^\infty],
-\]
-equipped with its perfect alternating Cassels--Tate pairing
-\(\langle\cdot,\cdot\rangle_{\mathrm{CT},p}\).  Then
-\[
-  \rho_{\Sha\text{-}\mathrm{CT},p}^{\R}:
-  (S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p})
-  \longmapsto
-  \Pf(\langle\cdot,\cdot\rangle_{\mathrm{CT},p})
-  e_p^{\Sha\text{-}\mathrm{CT}}.
-\]
-For a trivial \(S_p\), the Pfaffian contribution is the unit.  The source
-datum in this block is the pair
-\((S_p,\langle\cdot,\cdot\rangle_{\mathrm{CT},p})\), not merely
-\(|S_p|\) and not merely \(\dim_{\mathbb F_p}S_p[p]\).
+The last factor has an integral description.  If an alternating integer
+matrix $A$ presents $S_p$ (that is, $S_p\cong\operatorname{coker}A$) with
+linking form $(x,y)\mapsto -x^{\mathsf T}A^{-1}y \bmod \Z$ equal to the
+pairing, then $\#S_p=|\det A|=\Pf(A)^2$.  For example, the hyperbolic
+plane $H_n=(\Z/n\Z)^2$ with
+$\langle(a,b),(c,d)\rangle=(ad-bc)/n \bmod \Z$ is presented by
+$A=\bigl(\begin{smallmatrix}0&n\\-n&0\end{smallmatrix}\bigr)$, with
+$|\Pf(A)|=n$ and $\#H_n=n^2$.
 \end{definition}
 
+Three numbers attached to $H_n$ should be kept apart: the coefficient $1/n$
+of the pairing on a chosen basis, the integral Pfaffian $n$ (up to sign),
+and the order $n^2$.  Only the last enters the BSD formula.  The first is
+not an invariant of the paired group: the rational lifts $1/2$ and $3/2$
+of the same class in $\Q/\Z$ have different ``Pfaffians'', and on $H_4$
+the automorphism $(a,b)\mapsto(3a,b)$ changes the coefficient on the new
+basis from $1/4$ to $3/4$.  The integral presentation removes this
+ambiguity: a unimodular change of basis $B$ replaces $A$ by
+$B^{\mathsf T}AB$, which changes $\Pf(A)$ by the sign $\det B$ and leaves
+$\Pf(A)^2$ unchanged.
+
 \begin{theorem}[Pairing-aware finite Schur collapse]\label{thm:apparatus:finite-source-schur-collapse}
-At a support prime $p$, use finite tangent coordinates
+At a prime $p$, use the finite tangent coordinates
+$x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4$, where
+$x_T=v_p(\prod_vc_v)$, $x_{\tors}=v_p(\#E(\Q)_{\tors})$,
+$x_{\Sha}=v_p(\#S_p)$, and $x_{\mathrm{CT}}$ is a coordinate for the
+Cassels--Tate datum.  With the full readout $D_{\mathrm{full}}(x)=x$, the
+full source $L_{\mathrm{full}}(x)=x$ and $C=I_4$,
 \[
-  x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4,
+  \XiC=I_4-I_4I_4^{\dagger}I_4=0.
 \]
-where \(x_T=v_p(\prod_v c_v)\), \(x_{\tors}=v_p|E(\Q)_{\tors}|\),
-\(x_{\Sha}=v_p|S_p|\), and \(x_{\mathrm{CT}}\) is the
-Cassels--Tate-pairing coordinate.  With the pairing-aware full readout
-\[
-  D_{\mathrm{full}}(x)=x,
-  \qquad
-  L_{\mathrm{full}}(x)=x,
-  \qquad
-  C=I_4,
-\]
-the Schur residual collapses:
-\[
-  \XiC
-  =
-  I_4-I_4I_4^{\dagger}I_4
-  =
-  0.
-\]
-Thus the full typed finite tower is adequate for the pairing-aware finite
-readout.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.FiniteSource.finiteSourceSchurCollapse}; see App~\ref{app:formalization}.}
+Thus the full typed finite tower is adequate for the full finite
+readout.%
+\footnote{Lean proves the identity calculation on the four declared
+coordinates.  It does not model the finite groups themselves; those
+enter in \Cref{thm:apparatus:dim-sha-shadow}.}
 \end{theorem}
 
 \begin{proof}
-Because the full readout and the full source are both the identity on
-\(\R^4\), the readout block is
-\[
-  \KDD=I_4.
-\]
-The source block is also \(\KLL=I_4\).  Since the Moore--Penrose inverse of
-the identity matrix is the identity matrix, \(\Kdagger=I_4\).  The two cross
-blocks are \(\KDL=I_4\) and \(K_{LD}=I_4\).
-
-It remains to compute the projection term rather than name it.  For any
-vector \(v=(v_1,v_2,v_3,v_4)^{\mathsf T}\),
-\[
-  I_4v=v.
-\]
-Equivalently, in coordinates,
-\[
-  (I_4v)_i=\sum_{j=1}^4\delta_{ij}v_j=v_i.
-\]
-Applying the same identity-matrix action column by column to \(I_4\) gives
-\[
-  I_4I_4=I_4.
-\]
-Therefore
-\[
-  \KDL\Kdagger K_{LD}
-  =
-  I_4I_4I_4
-  =
-  I_4.
-\]
-Substitution into the Schur-complement residual gives
-\[
-  \XiC
-  =
-  \KDD-\KDL\Kdagger K_{LD}
-  =
-  I_4-I_4
-  =
-  0.
-\]
-This calculation uses all four finite coordinates.  The scalar and
-dimension-only shadows treated below are different readouts: they forget
-part of the typed finite tower and therefore leave positive residuals.
+All four blocks $\KDD,\KLL,\KDL,K_{LD}$ equal $I_4$, and the
+Moore--Penrose inverse of $I_4$ is $I_4$.  Hence
+$\KDL\Kdagger K_{LD}=I_4$ and $\XiC=I_4-I_4=0$.
 \end{proof}
 
-\begin{theorem}[Scalar finite projection (NG-1, Schur form)]\label{thm:apparatus:scalar-finite-shadow}
-Let \(x=(x_T,x_{\tors},x_{\Sha},x_{\mathrm{CT}})\in\R^4\), and let the
-scalar finite projection be
-\[
-  q=s\cdot x,
-  \qquad
-  s=(1,-2,1,0).
-\]
-The orthogonal rank-one projector onto the scalar row is
-\[
-  P_s=s^{\mathsf T}(ss^{\mathsf T})^{-1}s,
-\]
-and the residual against the full typed finite readout is
+The two results below concern readouts that keep less.  The first is the
+scalar finite factor; the second keeps only the size of the $p$-torsion
+of $\Sha$.
+
+\begin{theorem}[The scalar finite row leaves a three-dimensional residual]\label{thm:apparatus:scalar-finite-shadow}
+In the coordinates of \Cref{thm:apparatus:finite-source-schur-collapse},
+the valuation of the scalar finite factor is $q=s\cdot x$ with
+$s=(1,-2,1,0)$.  The orthogonal projector onto this row is
+$P_s=s^{\mathsf T}(ss^{\mathsf T})^{-1}s$, and the residual against the
+full readout is
 \[
   \Xi_{\mathrm{scalar}}=I_4-P_s,
   \qquad
-  \tr(\Xi_{\mathrm{scalar}})=3>0.
+  \tr(\Xi_{\mathrm{scalar}})=3.
 \]
-Moreover the scalar map is noninjective on the typed finite tower: the typed
-finite inputs \((0,0,2,H)\) and \((2,0,0,0)\) both give \(q=2\), but place
-the valuation in the \(\Sha\)--Cassels--Tate block and the Tamagawa block,
-respectively.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.FiniteSource.scalarFiniteShadow}; see App~\ref{app:formalization}.}
+The readout is not injective: the coordinate vectors $(0,0,2,h)$, for
+any $h$, and $(2,0,0,0)$ are distinct and both give $q=2$.%
+\footnote{Lean proves the projector trace, the residual trace and the
+two evaluations over $\Q$.  The vectors are formal coordinates; as in
+\Cref{thm:apparatus:finite-scalar-public-shadow}, arithmetic realization
+is not asserted.}
 \end{theorem}
 
 \begin{proof}
-First compute the Schur residual.  The squared length of the scalar row is
-\[
-  ss^{\mathsf T}
-  =
-  1^2+(-2)^2+1^2+0^2
-  =
-  6.
-\]
-Thus the rank-one projector has entries
-\[
-  (P_s)_{ij}=\frac{s_i s_j}{6}.
-\]
-Its trace is the sum of its diagonal entries:
-\[
-  \tr(P_s)
-  =
-  \sum_{i=1}^4 \frac{s_i^2}{6}
-  =
-  \frac{1^2+(-2)^2+1^2+0^2}{6}
-  =
-  \frac{6}{6}
-  =
-  1.
-\]
-Since \(\tr(I_4)=4\), the residual trace is
-\[
-  \tr(\Xi_{\mathrm{scalar}})
-  =
-  \tr(I_4-P_s)
-  =
-  \tr(I_4)-\tr(P_s)
-  =
-  4-1
-  =
-  3.
-\]
-This is positive, so the scalar row leaves a three-dimensional residual
-relative to the full four-coordinate finite source.
-
-The same failure is visible without linear algebra.  Evaluate \(q\) on the
-two displayed typed inputs.  For the \(\Sha\)--Cassels--Tate input
-\((0,0,2,H)\),
-\[
-  q=1\cdot0-2\cdot0+1\cdot2+0\cdot H=2.
-\]
-For the Tamagawa input \((2,0,0,0)\),
-\[
-  q=1\cdot2-2\cdot0+1\cdot0+0\cdot0=2.
-\]
-The scalar value is the same, but the typed data are different: one input
-records the contribution in the \(\Sha\)--Cassels--Tate block, while the
-other records it in the Tamagawa block.  The scalar projection also ignores
-the Cassels--Tate coordinate \(H\) itself, since the fourth coefficient of
-\(s\) is zero.  Hence the scalar finite row is a public shadow of the typed
-finite tower.  This is an audit no-go: it says the scalar row alone does not
-recover the typed source; it is not a claim that no richer theorem can
-supply the missing finite data.
+Here $ss^{\mathsf T}=1+4+1+0=6$, so $(P_s)_{ij}=s_is_j/6$ and
+$\tr P_s=6/6=1$.  Hence $\tr(I_4-P_s)=4-1=3$.  The two evaluations are
+$q(0,0,2,h)=2$ and $q(2,0,0,0)=2$; the coordinate $h$ does not enter
+because the last entry of $s$ is $0$.
 \end{proof}
 
-\begin{theorem}[{$\dim\Sha[p]$ projection (NG-2, Schur form)}]\label{thm:apparatus:dim-sha-shadow}
-On the \(\Sha\)--Cassels--Tate subcarrier \(y=(m,\theta)\in\R^2\), where
-\(m\) records the \(p\)-power elementary-divisor length and \(\theta\)
-records the Cassels--Tate coordinate, the dimension-only projection
-\[
-  L_{\dim}(y)=(1,0)y
-\]
-leaves
-\[
-  \Xi_{\dim}
-  =
-  I_2-(1,0)^{\mathsf T}(1,0)
-  =
-  \operatorname{diag}(0,1),
-  \qquad
-  \tr(\Xi_{\dim})=1>0.
-\]
-It is noninjective on Cassels--Tate data: \((\Z/2\Z)^2\) with
-\(\langle e,f\rangle=\tfrac12\) and \((\Z/4\Z)^2\) with
-\(\langle e,f\rangle=\tfrac14\) have the same
-\(\mathbb F_2\)-dimension of their \(2\)-torsion but different
-Cassels--Tate determinant factors.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow}; see App~\ref{app:formalization}.}
+\begin{theorem}[Two-torsion size does not determine the paired group]\label{thm:apparatus:dim-sha-shadow}
+\leavevmode
+\begin{enumerate}
+\item On the two-coordinate model $y=(m,\theta)$, where $m$ records the
+  $\mathbb F_p$-dimension of the $p$-torsion and $\theta$ the remaining
+  structure of the paired group, the dimension-only source
+  $L_{\dim}(y)=(1,0)y$ leaves the residual
+  $\Xi_{\dim}=I_2-(1,0)^{\mathsf T}(1,0)=\operatorname{diag}(0,1)$, of
+  trace $1$.
+\item The groups $H_2=(\Z/2\Z)^2$ and $H_4=(\Z/4\Z)^2$, with the pairings
+  $\langle(a,b),(c,d)\rangle=(ad-bc)/n\bmod\Z$, are finite abelian groups
+  with perfect alternating pairings.  Their $2$-torsion subgroups both
+  have $\mathbb F_2$-dimension $2$, but their orders are $4$ and $16$.
+  Hence no function of the $2$-torsion dimension recovers the order.
+\item Conversely, $H_4$ and $H_2\oplus H_2$ both have order $16$ and
+  carry perfect alternating pairings, but their $2$-torsion subgroups
+  have dimensions $2$ and $4$.  Hence no function of the order recovers
+  the $2$-torsion dimension.
+\end{enumerate}%
+\footnote{Lean proves the coordinate-model calculation in (1) and the
+finite-group statement (2), with perfectness checked against every
+additive character into the cyclic target; (3) is proved in a separate
+Lean module.  The arithmetic example below uses inputs from outside
+Lean.}
 \end{theorem}
 
 \begin{proof}
-Let \(e=(1,0)\).  The dimension-only source keeps the \(m\)-coordinate and
-forgets the \(\theta\)-coordinate.  Its projector is
-\[
-  e^{\mathsf T}e
-  =
-  \begin{pmatrix}1&0\\0&0\end{pmatrix}.
-\]
-Therefore the residual projector is
-\[
-  \Xi_{\dim}
-  =
-  I_2-e^{\mathsf T}e
-  =
-  \begin{pmatrix}1&0\\0&1\end{pmatrix}
-  -
-  \begin{pmatrix}1&0\\0&0\end{pmatrix}
-  =
-  \begin{pmatrix}0&0\\0&1\end{pmatrix}
-  =
-  \operatorname{diag}(0,1).
-\]
-Taking traces gives
-\[
-  \tr(\Xi_{\dim})=0+1=1>0.
-\]
-Thus the dimension-only row leaves exactly the Cassels--Tate direction
-unexplained.
-
-The witness shows that this residual is not a bookkeeping artifact.  The
-group \(U_1=(\Z/2\Z)^2\) has \(U_1[2]=U_1\), so
-\(\dim_{\mathbb F_2}U_1[2]=2\).  The group \(U_2=(\Z/4\Z)^2\) has
-\[
-  U_2[2]\cong(\Z/2\Z)^2,
-\]
-so \(\dim_{\mathbb F_2}U_2[2]=2\) as well.  The dimension readout therefore
-cannot distinguish \(U_1\) from \(U_2\).
-
-Their Cassels--Tate determinant factors differ.  For a two-generator
-alternating pairing with matrix
-\[
-  \begin{pmatrix}0&a\\-a&0\end{pmatrix},
-\]
-the Pfaffian is \(a\).  The pairings in the statement have \(a=\tfrac12\)
-and \(a=\tfrac14\), respectively, so they give different Pfaffian
-contributions to the determinant-line trivialization.  Hence the dimension
-\(\dim_{\mathbb F_2}\Sha[2]\) is a noninjective public shadow of the
-\(\Sha\)--Cassels--Tate source.  As above, this is an audit no-go about a
-specific public readout, not a non-existence claim about all possible
-arithmetic refinements.
+For (1), the dimension source keeps the first coordinate and forgets the
+second, so its projector is $\operatorname{diag}(1,0)$ and the residual is
+$\operatorname{diag}(0,1)$.  For (2), $H_n$ is presented by
+$A=\bigl(\begin{smallmatrix}0&n\\-n&0\end{smallmatrix}\bigr)$, and the
+pairing is perfect because its matrix on the standard basis,
+$\bigl(\begin{smallmatrix}0&1/n\\-1/n&0\end{smallmatrix}\bigr)$, induces
+an isomorphism $H_n\to\operatorname{Hom}(H_n,\frac1n\Z/\Z)$.  The
+$2$-torsion of $H_2$ is $H_2$ itself, and the $2$-torsion of $H_4$ is
+$(2\Z/4\Z)^2\cong(\Z/2\Z)^2$; both have dimension $2$.  The orders are
+$4$ and $16$.  For (3), the orthogonal sum of two perfect alternating
+pairings is perfect and alternating, $\#(H_2\oplus H_2)=16$, and its
+$2$-torsion is the whole group, of dimension $4$.
 \end{proof}
 
-\begin{obligation}[Refined finite-source BK transport]\label{obl:apparatus:rho-finite-transport}
-The full Bloch--Kato finite component requires a comparison transport
+The theorem is about finite paired groups.  The next example shows that
+the loss it describes occurs for actual Tate--Shafarevich groups, even
+when several other finite invariants are held fixed.
+
+\begin{example}[Matched coarse data, different $2$-primary $\Sha$]\label{ex:apparatus:sha-pair}
+Consider the curves
+\[
+\begin{aligned}
+  571a1:&\quad y^2+y=x^3-x^2-929x-10595,\\
+  2045b1:&\quad y^2+xy=x^3-x^2-5470x-862675.
+\end{aligned}
+\]
+Their invariants compare as follows.
+\begin{center}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & $571a1$ & $2045b1$ \\
+\midrule
+rank of $E(\Q)$ & $0$ & $0$ \\
+Tamagawa numbers & all $1$ & all $1$ \\
+$E(\Q)_{\tors}$ & trivial & trivial \\
+$\dim_{\mathbb F_2}\Sha(E/\Q)[2]$ & $2$ & $2$ \\
+$\Sha(E/\Q)[2^\infty]$ & $(\Z/2\Z)^2$ & $(\Z/4\Z)^2$ \\
+$\#\Sha(E/\Q)$ & $4u$, $u$ odd & $16v$, $v$ odd \\
+\bottomrule
+\end{tabular}
+\end{center}
+So every function of the rank, the Tamagawa numbers, the torsion group
+and $\dim\Sha[2]$ takes the same value on the two curves, while their
+$2$-primary $\Sha$ groups, their orders of $\Sha$, and hence their scalar
+finite factors $\#\Sha/\#E(\Q)_{\tors}^{\,2}$ differ.  The two
+curves are not matched on everything: their analytic quotients
+$|L(E,1)|/\Omega_E^+$ are $4$ and $16$.
+\end{example}
+
+The entries of the table are established as follows; we indicate which
+inputs are external to this paper.
+\begin{enumerate}
+\item \emph{Rank $0$ and finiteness of $\Sha$.}  Exact modular-symbol
+  computations with PARI/GP~\citep{PARI2023} give $L(E,1)\neq0$ for both
+  curves.  By modularity~\citep{Wiles1995,BreuilConradDiamondTaylor2001},
+  Gross--Zagier~\citep{GrossZagier1986} and
+  Kolyvagin~\citep{Kolyvagin1990}, both curves have rank $0$ and finite
+  $\Sha$.  The absolute values $|L(E,1)|/\Omega_E^+=4$ and $16$ follow
+  from the primitive integral modular symbol once its scale is fixed;
+  the curves are semistable and optimal, so their Manin constant is $1$
+  by \citet[Theorem~1.2]{Cesnavicius2018}.
+\item \emph{Local data.}  The curve $571a1$ has reduction type $I_1$ at
+  $571$; the curve $2045b1$ has types $I_{17}$ at $5$ (nonsplit) and $I_1$
+  at $409$.  All Tamagawa numbers are $1$, and both torsion groups are
+  trivial.
+\item \emph{$2$-descent.}  A $2$-descent in PARI/GP, with the class
+  groups of the descent fields fully certified (so independent of GRH),
+  gives $\dim\Sha[2]=2$ for both curves.  For $571a1$ the Cassels pairing
+  is nondegenerate on $\Sha[2]$.  If $x\in\Sha[4]$ then
+  $\langle 2x,y\rangle=\langle x,2y\rangle=0$ for all $y\in\Sha[2]$, so
+  $2x=0$; repeating the argument gives $\Sha[2^\infty]=\Sha[2]\cong
+  H_2$.  For $2045b1$ the descent shows $\Sha[2]=2\,\Sha[4]$; choosing a
+  half of each element of $\Sha[2]$ gives a bijection
+  $\Sha[2]\times\Sha[2]\to\Sha[4]$, so $\#\Sha[4]=16$.
+\item \emph{Eight-descent.}  For $2045b1$ we use the published
+  eight-descent computation in the proof of
+  \citet[Theorem~7.1]{Miller2011}, which applies to optimal curves of
+  conductor below $5000$ whose analytic $2$-primary prediction has
+  valuation $4$; it gives $\Sha[8]=\Sha[4]$.  Hence
+  $\Sha[2^\infty]=\Sha[4]$, a group of order $16$ and $2$-rank $2$,
+  that is, $H_4$.  We use this intermediate computation, not the BSD
+  formula.
+\item \emph{Whole orders.}  Since $\Sha$ is finite, $\#\Sha=4u$ for
+  $571a1$ and $16v$ for $2045b1$ with $u,v$ odd.  These differ, because
+  $4u\equiv4$ and $16v\equiv0\pmod 8$; the odd parts are not needed.
+\end{enumerate}
+Lean checks the group-theoretic steps: the collapse
+$\Sha[2^\infty]=\Sha[2]$ from nondegeneracy, the halving bijection and
+the resulting count of $\Sha[4]$, the stabilization from
+$\Sha[8]=\Sha[4]$, the classification of perfect alternating pairings on
+$(\Z/4\Z)^2$ (each is a unit multiple of the standard one), and the
+congruence in step~5.  For $571a1$ it also checks the explicit
+quartic-cover maps and the numerical local-solubility conditions of the
+descent.  The descent and modular-symbol computations, the arithmetic
+theorems in steps~1--4, and the published eight-descent are external
+inputs.
+
+\begin{obligation}[Finite-source transport]\label{obl:apparatus:rho-finite-transport}
+The Bloch--Kato finite component requires a comparison
 \[
   \beta_{\mathrm{BK,finite}}:
   L_{\mathrm{finite}}(E)_{\R}
   \longrightarrow
-  \Delta_f(M_E)_{\mathrm{finite}}.
+  \Delta_f(M_E)_{\mathrm{finite}}
 \]
-This transport fixes the integral local-condition conventions at bad primes,
-the squared-torsion normalization, the Cassels--Tate Pfaffian and orientation
-conventions, and compatibility with the determinant-assembly column.  In
-this paper it is a recognition-source carrier: the finite-source transport
-is named external arithmetic content and carried separately, not derived
-from the finite typed Schur calculation.
+that fixes the integral local conditions at bad primes, the
+squared-torsion normalization, and the determinant-line convention for
+the $\Sha$ factor: an integral presentation of each paired group,
+together with a generator and an orientation of the corresponding
+determinant line.  The paired group determines the order $\#S_p$, but the
+pairing does not canonically select a rational lift of its Pfaffian
+coefficient, nor a prescribed generator or orientation of the determinant
+line; these must come from the presentation.  Even an integral
+presentation does not determine a prescribed generator from the
+determinant ideal.  For the ordinary Selmer complex of the curve $1913b1$
+at $p=3$, whose inverse determinant ideal in $\Z_3$ is $(9)$, the
+elements $9$ and $18$ both generate that ideal, but only $9$ is a square
+in $\Q_3$; the construction is described in the companion
+paper~\citep{TsiokosBSDClosure2026}.  This comparison is external
+arithmetic input and is not derived from the finite calculations above.
 \end{obligation}
-
-% ===========================================================================
