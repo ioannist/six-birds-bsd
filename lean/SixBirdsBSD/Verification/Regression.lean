@@ -1200,4 +1200,79 @@ theorem emptyCurveCascadeRuleControl :
 
 #print axioms emptyCurveCascadeRuleControl
 
+open SixBirdsBSD.Closure.ArithmeticClosureBridge
+open SixBirdsBSD.Closure.ScalarClosure
+
+/-- A larger carrier with a genuinely forgotten coordinate. -/
+def fiberClosure : SixBirdsBSD.F1ClosureOp ((Rat × Rat) × Rat) where
+  toFun := fun x => (average x.1, 0)
+  idempotent := by
+    intro x
+    apply Prod.ext
+    · exact averageIdempotent (by decide : (2 : Rat) ≠ 0) x.1
+    · rfl
+
+theorem fiberReadoutIntertwines : ReadoutIntertwines fiberClosure Prod.fst :=
+  fun _ => rfl
+
+/-- Scalar equality leaves full-layer information undetermined, even
+under an actually constructed uniform intertwining comparison. -/
+theorem scalarClosedDoesNotImplyFormedClosed :
+    ClosureOp.IsClosed (scalarClosure (by decide : (2 : Rat) ≠ 0))
+      ((1 : Rat), 1) ∧
+    ¬ ClosureOp.IsClosed fiberClosure (((1 : Rat), 1), 1) := by
+  constructor
+  · exact (scalarClosedIffEqual (by decide) _).mpr rfl
+  · intro h
+    have hLast := congrArg Prod.snd h
+    exact (by decide : (0 : Rat) ≠ 1) hLast
+
+/-- Intertwining and idempotence do not fix a false original readout. -/
+theorem intertwiningDoesNotProveOriginalBSD :
+    ReadoutIntertwines fiberClosure Prod.fst ∧
+    ¬ ClosureOp.IsClosed fiberClosure (((2 : Rat), 1), 0) ∧
+    ¬ ((2 : Rat) = 1) ∧
+    ClosureOp.IsClosed fiberClosure (fiberClosure (((2 : Rat), 1), 0)) := by
+  refine ⟨fiberReadoutIntertwines, ?_, by decide,
+    ClosureOp.closure_isClosed fiberClosure _⟩
+  intro h
+  have hEq := formedClosedImpliesEqual (by decide : (2 : Rat) ≠ 0)
+    fiberClosure Prod.fst fiberReadoutIntertwines (((2 : Rat), 1), 0) h
+  exact (by decide : (2 : Rat) ≠ 1) hEq
+
+/-- An unrelated identity closure can fix the entire state while its
+observed analytic/arithmetic entries disagree. The comparison is essential. -/
+def unrelatedClosure : SixBirdsBSD.F1ClosureOp (Rat × Rat) := ⟨id, fun _ => rfl⟩
+
+theorem unrelatedClosedStateDoesNotProveBSD :
+    ClosureOp.IsClosed unrelatedClosure ((2 : Rat), 1) ∧
+    ¬ ReadoutIntertwines unrelatedClosure id := by
+  refine ⟨rfl, ?_⟩
+  intro hCompare
+  have hEq := formedClosedImpliesEqual (by decide : (2 : Rat) ≠ 0)
+    unrelatedClosure id hCompare ((2 : Rat), 1) rfl
+  exact (by decide : (2 : Rat) ≠ 1) hEq
+
+/-- The exact-data verifier distinguishes the original pair from the
+repaired output; it is not an arithmetic source-construction algorithm. -/
+theorem exactScalarVerifierControls :
+    verifyScalarReadout ((1 : Rat), 1) = true ∧
+    verifyScalarReadout ((2 : Rat), 1) = false ∧
+    verifyScalarReadout (average ((2 : Rat), 1)) = true := by decide +kernel
+
+#print axioms SixBirdsBSD.Closure.ScalarBSD.normalizedFixityForcesScalarBSD
+#print axioms SixBirdsBSD.Closure.ScalarBSD.rankGatedRecognitionForcesScalarBSD
+#print axioms observedClosedIffEqual
+#print axioms formedClosedImpliesEqual
+#print axioms formedClosedIffEqualOfInjective
+#print axioms formedClosureForcesStrongBSD
+#print axioms recognitionFixesFormedReadout
+#print axioms verifyScalarReadoutIffClosed
+#print axioms fiberClosure
+#print axioms fiberReadoutIntertwines
+#print axioms scalarClosedDoesNotImplyFormedClosed
+#print axioms intertwiningDoesNotProveOriginalBSD
+#print axioms unrelatedClosedStateDoesNotProveBSD
+#print axioms exactScalarVerifierControls
+
 end SixBirdsBSD.Verification.Regression

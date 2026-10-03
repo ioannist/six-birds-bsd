@@ -1,5 +1,7 @@
 # OC eta import audit
 
+Final disposition: retain only the explicitly conditional identity certificate; exclude the proposed published-stack derivation and unreproduced anchor verification from the retained mathematical argument. Native applicability and leading-term comparisons remain unproved research, and are not required to close the main conditional scalar translation. See `conditional_mathematical_closeout.md`. No paper text has been changed.
+
 The displayed eta identity remains an explicit conditional certificate in
 Lean. This audit identifies obstacles to deriving it from the named input
 stack. It does not disprove an independently defined eta identity, and it

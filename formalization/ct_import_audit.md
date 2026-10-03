@@ -1,5 +1,7 @@
 # Cassels–Tate import: source checks and constructive sign repair
 
+Final disposition: retain the comparison only with its supplied native map, selected generator/target, image and normalized-sign hypotheses. The eight citation-labelled fields alone are not reported as deriving those comparisons. The fixed-lane constructions below are preserved. Native manuscript selections, degree conventions and final orientation remain conditional comparison content; they are not a requirement for an unconditional BSD proof. See `conditional_mathematical_closeout.md`.
+
 The conditional Lean comparison is a valid projection from a supplied
 comparison record. The following source checks do not establish that the
 named arithmetic papers populate that record. They identify the bridges

@@ -34,7 +34,7 @@ help:
 	@echo ""
 	@echo "Validator orchestration:"
 	@echo "  validate              Run the static validator chain (NO Lean build; self-sufficient from a fresh checkout)"
-	@echo "  verify-lean           Build Lean (SixBirdsBSD + vendored Foundations) and run the live axiom-closure probe; needs a Lean toolchain"
+	@echo "  verify-lean           Build Lean, check live axiom closures and conditional-core dependencies; needs a Lean toolchain"
 	@echo "  test                  Run pytest on the validator unit tests"
 	@echo "  public-audit          Check the tracked tree for private/operator artifacts"
 	@echo ""
@@ -130,6 +130,7 @@ verify-lean:
 	cd lean && lake build
 	cd lean && lake build SixBirdsBSD.Verification.Regression
 	python3 scripts/check_manifests.py --check
+	python3 scripts/check_conditional_core.py
 
 test:
 	python3 -m pytest scripts/test_check_manifests.py scripts/test_check_semantic_alignment.py scripts/test_check_supplementary_statement_audit.py

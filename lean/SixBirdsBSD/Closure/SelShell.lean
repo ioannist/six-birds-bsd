@@ -1,4 +1,5 @@
 import SixBirdsBSD.Closure.RecognitionSources
+import SixBirdsBSD.Closure.ScalarBSD
 import SixBirdsBSD.FoundationsICompat
 
 /-!
@@ -250,41 +251,18 @@ theorem gzFixityForcesStrongBSD
         shell.zero := by
     rw [← gGZ.antiInvariantReadout_eq]
     exact hFix
-  have hGZId :
-      gGZ.L_derivative_over_factorial = gGZ.rhsRegulatorProduct :=
-    (shell.sub_eq_zero_iff gGZ.L_derivative_over_factorial
-      gGZ.rhsRegulatorProduct).mp hSubZero
-  have hRhsToStrong : gGZ.rhsRegulatorProduct = shell.strongBSDRightSide := by
-    calc
-      gGZ.rhsRegulatorProduct =
-          shell.mul
-            (shell.mul (shell.mul gGZ.kappa_r_E gGZ.Reg_NT_E) gGZ.Omega_E)
-            gGZ.Tam_E := hRhs
-      _ =
-          shell.mul
-            (shell.mul
-              (shell.mul
-                (shell.div shell.ShaCard shell.torsionSquared)
-                shell.Reg_NT)
-              shell.Omega_E)
-            shell.Tam := by
-        rw [hKappa, hReg, hOmega, hTam]
-      _ =
-          shell.div
-            (shell.mul (shell.mul (shell.mul shell.ShaCard shell.Reg_NT)
-              shell.Omega_E) shell.Tam)
-            shell.torsionSquared := by
-        rw [shell.mulDivLeft shell.ShaCard shell.Reg_NT
-          shell.torsionSquared]
-        rw [shell.mulDivLeft (shell.mul shell.ShaCard shell.Reg_NT)
-          shell.Omega_E shell.torsionSquared]
-        rw [shell.mulDivLeft
-          (shell.mul (shell.mul shell.ShaCard shell.Reg_NT) shell.Omega_E)
-          shell.Tam shell.torsionSquared]
-      _ = shell.strongBSDRightSide := by
-        rw [← shell.strongBSDRightSide_eq]
-  rw [← hLderiv]
-  exact hGZId.trans hRhsToStrong
+  have hMatchedFix :
+      shell.sub shell.L_derivative_over_factorial
+        (shell.mul (shell.mul (shell.mul gGZ.kappa_r_E shell.Reg_NT)
+          shell.Omega_E) shell.Tam) = shell.zero := by
+    rw [← hLderiv, ← hReg, ← hOmega, ← hTam, ← hRhs]
+    exact hSubZero
+  have hStrong := ScalarBSD.normalizedFixityForcesScalarBSD
+    shell.zero shell.sub shell.mul shell.div shell.sub_eq_zero_iff
+    shell.mulDivLeft shell.L_derivative_over_factorial shell.ShaCard
+    shell.Reg_NT shell.Omega_E shell.Tam shell.torsionSquared
+    gGZ.kappa_r_E hKappa hMatchedFix
+  exact hStrong.trans shell.strongBSDRightSide_eq.symm
 
 /--
 The explicit higher-GZ fixity carrier, tied to the shell scalar data
@@ -430,12 +408,20 @@ rank. The lower-rank lane and the normalized higher-rank fixity are explicit
 supplied arithmetic content; this does not reconstruct sources from a scalar. -/
 theorem piBSDForcesStrongBSD (shell : selBSDShell) (recognition : piBSD shell) :
     shell.L_derivative_over_factorial = shell.strongBSDRightSide := by
-  by_cases hr : 2 ≤ shell.analyticRank
-  · obtain ⟨g, hRank, hE, hL, hReg, hOmega, hTam, hKappa, hRhs⟩ :=
-      recognition.gammaHigherGZFixityReadout hr
-    exact gzFixityForcesStrongBSD shell g hL hReg hOmega hTam hKappa hRhs
-  · have hlow : shell.analyticRank = 0 ∨ shell.analyticRank = 1 := by omega
-    exact recognition.lowerRankAnalogLane hlow
+  have hScalar := ScalarBSD.rankGatedRecognitionForcesScalarBSD
+    shell.zero shell.sub shell.mul shell.div shell.sub_eq_zero_iff
+    shell.mulDivLeft shell.analyticRank shell.L_derivative_over_factorial
+    shell.ShaCard shell.Reg_NT shell.Omega_E shell.Tam shell.torsionSquared
+    (fun hr => (recognition.lowerRankAnalogLane hr).trans
+      shell.strongBSDRightSide_eq)
+    (fun hr => by
+      obtain ⟨g, _hRank, _hE, hL, hReg, hOmega, hTam, hKappa, hRhs⟩ :=
+        recognition.gammaHigherGZFixityReadout hr
+      refine ⟨g.kappa_r_E, hKappa, ?_⟩
+      rw [← hL, ← hReg, ← hOmega, ← hTam, ← hRhs,
+        ← g.antiInvariantReadout_eq]
+      exact g.higherGZFixity_iff_psi_minus_eq_zero.mp g.higherGZFixity_proof)
+  exact hScalar.trans shell.strongBSDRightSide_eq.symm
 
 /-- Forward scalar readout of the quantified recognition predicate. -/
 theorem piBSDForcesResidualZero (shell : selBSDShell) (recognition : piBSD shell) :
@@ -445,9 +431,10 @@ theorem piBSDForcesResidualZero (shell : selBSDShell) (recognition : piBSD shell
 /--
 The BSD composite operational predicate carries the `(ii)/(iii)/(ii)`
 Stage-6 trace signature and the Stage-5 anti-tautology hardening:
-computability, falsifiability, genuine dependence, and cancellation
-proofs showing that changing any one scalar factor changes the
-Strong-BSD scalar factor package.
+supplied computability, falsifiability and dependence receipts, and derived
+cancellation proofs showing that changing a single scalar factor changes
+the product when the other factors are fixed. The receipts do not construct
+algorithms, and scalar sensitivity does not establish source necessity.
 -/
 theorem compositeSignature
     {EPD : Type uPD} {LPD : Type vPD}

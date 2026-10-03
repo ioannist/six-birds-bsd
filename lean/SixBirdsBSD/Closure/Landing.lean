@@ -24,26 +24,33 @@ Conditional Strong BSD within the Six Birds closure discipline. From the
 `Sel!_BSD` shell, the explicit higher-GZ recognition carrier, the
 remaining BSD recognition carriers, the three import structures, and
 the Foundations-I closure assumption, the scalar Strong-BSD identity follows
-from the normalized higher-GZ helper. The other helpers return separate
+from the normalized higher-GZ helper. Sources now match the shell curve,
+rank and declared prime/lift scopes even in this expanded audit variant.
+The other helpers return separate
 audit conjuncts: master applicability is already supplied by the shell's
 conclusion-equivalent rule, while the recognition records supply their own
 audit certificates and the composite scalar-factor sensitivity statements.
 -/
 theorem strongBSDConditionalWithAudits
-    {EPD : Type uPD} {LPD : Type vPD}
-    {ESP : Type uSP} {LSP : Type vSP} {EGZ : Type uGZ}
     (shell : SixBirdsBSD.Closure.SelShell.selBSDShell)
     (closureAssumption : SixBirdsBSD.F1ClosureOp shell.FormedLayer)
     (hClosureAssumption : closureAssumption = shell.closureAssumption)
     (gPD :
-      SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent EPD LPD
-        shell.Scalar)
+      SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent
+        shell.EllipticCurve shell.LocalLift shell.Scalar)
+    (_hPDE : gPD.E = shell.E)
+    (_hPDPrimeScope : shell.additiveBadPrimeInScope gPD.p)
+    (_hPDLiftScope : shell.inertiaTrivializingLiftInScope gPD.p gPD.L)
     (gSP :
-      SixBirdsBSD.Closure.RecognitionSources.gammaShaPersistence ESP LSP
-        shell.Scalar)
+      SixBirdsBSD.Closure.RecognitionSources.gammaShaPersistence
+        shell.EllipticCurve shell.LocalLift shell.Scalar)
+    (_hSPE : gSP.E = shell.E)
+    (_hSPPrimeScope : shell.signedSelmerAdmissiblePrime gSP.p)
     (gGZ :
-      SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity EGZ
-        shell.Scalar shell.zero shell.sub shell.mul)
+      SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity
+        shell.EllipticCurve shell.Scalar shell.zero shell.sub shell.mul)
+    (_hGZE : gGZ.E = shell.E)
+    (_hGZRank : gGZ.analyticRank = shell.analyticRank)
     (hLderiv :
       gGZ.L_derivative_over_factorial =
         shell.L_derivative_over_factorial)

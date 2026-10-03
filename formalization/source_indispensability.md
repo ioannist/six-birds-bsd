@@ -1,5 +1,7 @@
 # Source-indispensability construction: result and open arithmetic obligations
 
+The scalar-source indispensability campaign is closed as unsupported at the retained normalized-GZ interface. Its assertion is retired from the mathematical argument; the valid finite, prescribed-root, local-information and native-factor constructions below are preserved at their actual scopes. See `conditional_mathematical_closeout.md`. No further source-necessity construction is required for the conditional BSD translation.
+
 Status: the algebraic construction, an exact rational local-to-global return,
 and source-scope necessity theorems are proved in Lean.
 Indispensability of the named arithmetic recognition sources is **not proved**.
