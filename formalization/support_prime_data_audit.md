@@ -72,3 +72,16 @@ generalized signed bridges while retaining the recorded counts, or to
 reclassify the affected rows as unresolved under the stated import scope.
 No R4b classification has been silently changed, and no manuscript has
 been edited.
+
+## Component factors and rational prime support
+
+The local-unit construction now checks 121b1's type-III Tamagawa number
+two at eleven with a direct PARI calculation. The existing good
+supersingular prime-two row is therefore relevant to a possible global
+factor normalization, even though two is not a bad-reduction place for
+this curve. The rational support of a component number and the place
+where that component arises are different indices. This does not prove
+that the actual BSD comparison quotient has a defect at two, or that
+the generalized signed comparison is applicable. The exact arithmetic
+and formal scopes are documented in `source_indispensability.md` and
+the separate `local_unit_support_models.json` fixture.

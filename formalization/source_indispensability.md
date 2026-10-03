@@ -176,6 +176,109 @@ retained unit records. Every operator on those records returns the same
 answer on the pair. The regression also checks that even all odd-prime
 unit comparisons leave a possible prime-two obstruction.
 
+## Arithmetic witnesses for the local unit obstruction
+
+`Closure/LocalUnitSupport.lean` now tests the proposed local-to-global
+bridge on primary elliptic-curve equations. It proves the numerical
+invariant and shallow Tate-branch calculations, then proves information
+loss over every observation invariant under local-unit multiplication.
+The arithmetic interpretation of the branch outputs is supplied by the
+classical Tate algorithm and independently reproduced with PARI/GP;
+Neron models are not mechanized here.
+
+The two witnesses use **Cremona labels**:
+
+| Curve | Integral coefficients | c4 | c6 | Discriminant | Reduction at 11 | c11 |
+| --- | --- | ---: | ---: | ---: | --- | ---: |
+| 121a1 | [1,1,1,-30,-76] | 1441 | 54703 | -121 | II | 1 |
+| 121b1 | [0,-1,1,-7,10] | 352 | -6776 | -1331 | III | 2 |
+
+The equations and finite Tamagawa products agree with the primary
+[Cremona allcurves data](https://raw.githubusercontent.com/JohnCremona/ecdata/master/allcurves/allcurves.00000-09999)
+and [allbsd data](https://raw.githubusercontent.com/JohnCremona/ecdata/master/allbsd/allbsd.00000-09999).
+The exact rows and file digests are in `local_unit_support_models.json`.
+Their other BSD columns are provenance, not proofs of rank, finiteness,
+or Sha cardinality. In particular, 121b1 has recorded rank one.
+
+PARI/GP 2.15.4, run directly on these coefficient lists, returns
+`[2,2,[1,0,0,0],1]` and `[2,3,[1,0,0,0],2]` from `elllocalred(E,11)`.
+The [official output convention](https://pari.math.u-bordeaux.fr/dochtml/html/Elliptic_curves.html#elllocalred)
+identifies these entries as conductor exponent, Kodaira code, minimalizing
+coordinate change, and Tamagawa number. Its
+[Tate-algorithm implementation](https://pari.math.u-bordeaux.fr/lcov-report/basemath/elliptic.c.gcov.html)
+has the potentially-good branches with discriminant valuation two and
+three returning component numbers one and two. The present numerical
+selector checks primality, p>=5, p|c4, and the exact discriminant valuation.
+Those valuations are below twelve and the j-invariant is integral; no
+general Tate algorithm is claimed for other inputs.
+
+Both models have discriminant prime support exactly `{11}`, proved from
+the integer formulas in Lean without trusting the conductor label. Their
+finite Tamagawa products are different, yet both products are units at
+11. More strongly, multiplication by the rational 11-adic unit 2 carries
+one value to the other; multiplication by 1/2 gives the reverse direction.
+`noExactCurveBranchReadoutFromUnitClass` rejects every readout through this
+unit-class interface that would recover both equation-driven component
+numbers. The observation receives the component number modulo units; it
+does not receive the equation or Kodaira code.
+
+This exposes a specific index distinction. A component factor **arising
+at bad place 11** can have **rational prime support at 2**. Lean proves
+that 2 passes every prime-unit check on `{11}` but is not supported on
+that set and is not one. Thus a bad-reduction-place list is not, by itself,
+the independent rational-factor support bound required by
+`unitsOnSupportForceOne`. No assertion is made that the joint BSD quotient
+of either actual curve equals two.
+
+For any odd prime in the shallow scope, the allowed component numbers
+one and two are both local units. Consequently their factors disappear
+in a congruence modulo that prime's units. In the displayed padic-descent
+source, both c_p inverse and epsilon_p are units, so their multiplication
+does not change the class of the descent value. The congruence can still
+constrain that descent value; it cannot by itself normalize the exact
+component factor. The same issue applies to a persistence congruence
+with a prime-to-p component number.
+
+The **full source record** retains the exact component number, and its
+other structure may contain more information than this congruence. These
+results therefore establish loss in a specified arithmetic observation
+interface, not indispensability of the whole named source. The pair has
+different recorded ranks and other analytic data; it is not an ablation
+pair with every retained arithmetic source held fixed. Neither curve is
+asserted to satisfy all Sha, tame-extension, signed-Selmer, and descent
+hypotheses of a complete recognition instance.
+
+A concrete repair is proved on the one-factor range `{1,2}`:
+`recoverShallowFactor` observes whether the factor is a unit at **2** and
+returns its exact value. Lean also rejects extending that Boolean readout
+to products: 2 and 4 have the same prime-two unit flag but different
+values. Exact valuations or an independent integral index are needed
+for such products. For 121b1, the coefficient prime two is also the good
+supersingular row outside the basic odd-prime Kobayashi scope recorded in
+`support_prime_data_audit.md`; a generalized comparison at two requires
+its own theorem and applicability proof.
+
+`scripts/check_local_unit_support.py --check` reproduces the invariant,
+support, branch, and rational-unit checks offline. Passing `--gp` with a
+PARI/GP executable also recomputes local reduction and the finite global
+Tamagawa product. False-target controls reject good-reduction input,
+small or composite primes, zero valuation inputs, and nonminimal scaling.
+
+### Self review of the arithmetic witness
+
+The carrier, observation, and target are explicit: two fixed equations,
+their numerical shallow-branch component outputs, observations invariant
+under rational local units, and the exact component number. The no-go
+quantifies over every readout on that interface. It excludes access to
+the exact factor, equation, or Kodaira code; each would distinguish this
+pair. The arithmetic branch identification is a standard imported
+algorithm corroborated by independent PARI computation and primary data,
+not a conclusion assumed in a Lean certificate. Lean proves the
+numerical hypotheses and the rational information-loss theorem, not the
+Neron component-group classification. This is an arithmetic test of
+normalization and support, while the full named-source endpoint below
+remains open.
+
 ## Why the named-source endpoint remains open
 
 The new theorem identifies the missing arithmetic bridge:

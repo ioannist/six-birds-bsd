@@ -316,4 +316,16 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.CTInstanceChecks.wrongMapFailsNativeReturn
 #print axioms SixBirdsBSD.Closure.CTInstanceChecks.comparisonUsesIndexedInstance
 
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.primaryModelInvariants
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.numericalShallowBranches
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.discriminantPrimeSupport
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.shallowFactorUnitAtOddPlace
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.noExactShallowFactorFromUnitClass
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.noExactCurveBranchReadoutFromUnitClass
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.explicitUnitCongruence
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.badPlaceDoesNotBoundFactorSupport
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.coefficientPrimeRepairsShallowReadout
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.falseBranchControls
+#print axioms SixBirdsBSD.Closure.LocalUnitSupport.coefficientPrimeFlagCannotRecoverProducts
+
 end SixBirdsBSD.Verification.Regression

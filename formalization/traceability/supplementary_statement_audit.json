@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "cfeb502e5893c2e0f039e9f794aad64f6de804a0648da18dc7d567d60d1f9079",
+  "lean_context_hash": "4a58257f9447277c31cb37feeb79d4c978daf80105896d9a3421ebbd35700868",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -270,7 +270,7 @@
       "statement_hash": "becd2a6db20278f1eca0160ee05227aca1d6543008e6d279e81ec429a2ebf576",
       "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent",
       "assessment": "restricted recognition carrier",
-      "notes": "The local comparison is supplied content, with concrete c_p=1 or 2 but arbitrary proposition fields for the odd additive scope. Neither the comparison proposition nor the unit type defines tamFactor as a global arithmetic factor. Coverage and exact global return remain open."
+      "notes": "The local comparison is supplied content, with concrete c_p=1 or 2 but arbitrary proposition fields for the odd additive scope. LocalUnitSupport proves both possible factors are units at any odd place; equation-derived 121a1/121b1 branches and an independent PARI run exhibit unequal component numbers with identical unit classes at 11. The full record retains c_p, but the congruence alone cannot normalize tamFactor. Bad-place indices do not automatically bound rational-factor support; coefficient prime 2 needs a separate comparison. Full recognition applicability and global return remain open."
     },
     {
       "latex_label": "def:closure:gamma-sha-persistence",
@@ -280,7 +280,7 @@
       "statement_hash": "0cc9b764b7d48c16d5e72f87b505939177e5360d617ae0901b54daeae9000ac1",
       "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaShaPersistence",
       "assessment": "corrected cover/base typing",
-      "notes": "Corestriction now maps the cover-side readout to a distinct base-side carrier, and the supplied determinant consumes that composition. Linearity, equal-rank determinant-line compatibility, integral unit congruence, and the connection of shaFactor to the comparison remain open."
+      "notes": "Corestriction now maps the cover-side readout to a distinct base-side carrier, and the supplied determinant consumes that composition. A prime-to-p component number disappears modulo p-adic units, as the LocalUnitSupport shallow examples show; this does not erase the exact factor from the full source record. Linearity, equal-rank determinant-line compatibility, actual integral congruence, and the connection of shaFactor to a positive rational global comparison remain open."
     },
     {
       "latex_label": "def:closure:gamma-higher-gz-fixity",
