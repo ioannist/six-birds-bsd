@@ -362,17 +362,29 @@ constructed on actual integral hyperbolic presentations in
 duplicate-free enumeration prove that the determinant is the cokernel
 order. This supplies a normalized finite-model return and repairs the
 earlier basis-change example. Arithmetic Selmer-complex identification,
-compatibility with the named comparisons, and realization of arithmetic
-ablation witnesses remain open.
+compatibility with the named comparisons, and arithmetic ablation
+witnesses holding the other named sources fixed remain open.
 
 The exponent-two finite lane now has an arithmetic witness: the certified
 two-descent for 571a1, with class-group certification and full pairing
 rank, identifies its two-primary group with H_2 through standard descent
 theory. Lean independently checks the quartic maps and local numerical
-inputs and derives the higher-torsion exclusion. The H_4 arithmetic
-ablation partner, full named-source applicability, and determinant-line
-comparison remain open; see `finite_pairing_construction.md`. No
-whole-Sha order or scalar BSD conclusion follows from this new witness.
+inputs and derives the higher-torsion exclusion. A second certified
+descent for 1309a1, combined with its nonzero modular symbol and the
+established rank-zero finiteness theorem, now supplies a genuine
+arithmetic dimension-only partner. Both curves have two-torsion dimension
+two; their finite two-primary orders are four and at least sixteen.
+The generic Lean halving construction derives the partner's exact
+four-torsion count sixteen rather than assuming it. Thus dimension
+alone cannot recover the two-primary order on these actual curves.
+The observation excludes curve identity and the other arithmetic source
+data; those records are not held fixed between the pair. This proves
+arithmetic loss on that specified interface, while full named-source
+indispensability, perfect paired H_4 identification, and determinant-line
+comparison remain open. See `finite_pairing_construction.md` and
+`sha_dimension_arithmetic_pair.json` for evidence, imported theorems,
+scope and self-review. No whole-Sha order or scalar BSD conclusion
+follows from this comparison.
 
 The construction modules are imported by the closure umbrella. The regression target
 `SixBirdsBSD.Verification.Regression` prints the axiom dependencies of

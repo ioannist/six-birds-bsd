@@ -1,0 +1,75 @@
+{
+  "scope": "Arithmetic dimension-only obstruction for the two-primary Sha order of two fixed Cremona curves. Certified descent and modular-symbol algorithms and the rank-zero finiteness theorem are external to Lean. No exact full Sha order, exact 1309a1 two-primary order, BSD formula, or full named-source indispensability is asserted.",
+  "curve_label_system": "Cremona",
+  "checked": "2026-10-03",
+  "pari_version_checked": "2.15.4",
+  "random_seed": 1,
+  "gp_stack_bytes": 128000000,
+  "sources": {
+    "allcurves": {
+      "url": "https://raw.githubusercontent.com/JohnCremona/ecdata/master/allcurves/allcurves.00000-09999",
+      "sha256": "259f3846329395b371e8079c77a6f1097adaebc98a054974573e241416efa968"
+    },
+    "allbsd": {
+      "url": "https://raw.githubusercontent.com/JohnCremona/ecdata/master/allbsd/allbsd.00000-09999",
+      "sha256": "b078b5226d276fbc64289833abfd8430e3f5969c657bc32f94db546e8f96e8fd"
+    },
+    "ellrank": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Elliptic_curves.html#ellrank",
+    "ell2cover": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Elliptic_curves.html#ell2cover",
+    "bnfcertify": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/General_number_fields.html#bnfcertify",
+    "modular_symbols": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#msfromell",
+    "pairing_kernel": "https://arxiv.org/pdf/2208.14977v1",
+    "rank_zero_finiteness": "https://www.maths.nottingham.ac.uk/plp/pmzcw/download/shark.pdf",
+    "rank_zero_finiteness_location": "Stein and Wuthrich, Computing Tate-Shafarevich Groups of Elliptic Curves Using Iwasawa Theory, 3 May 2011 draft, Section 8, opening paragraph (printed page 28). Only the nonvanishing-implies-finiteness statement is used; its subsequent odd-prime bounds are not used.",
+    "rank_zero_finiteness_pdf_sha256": "ab93f228ca92a230a3bbc62e97d608d7f9124aac097f39441a32fcde932849ab"
+  },
+  "models": {
+    "571a1": {
+      "a_invariants": [0, -1, 1, -929, -10595],
+      "allcurves_row": "571 a 1 [0,-1,1,-929,-10595] 0 1",
+      "allbsd_row": "571 a 1 [0,-1,1,-929,-10595] 0 1 1 0.432341256271861 1.72936502508744 1.00000000000000 4",
+      "c4": 44608,
+      "c6": 9421480,
+      "discriminant": -571,
+      "conductor": 571,
+      "bnf_certification": [1],
+      "rational_torsion_order": 1,
+      "ellrank_output": [0, 0, 2, []],
+      "number_of_selmer_covers": 2,
+      "quartic_fixture": "sha_descent_571a1.json"
+    },
+    "1309a1": {
+      "a_invariants": [0, 0, 1, -406957, -99924251],
+      "allcurves_row": "1309 a 1 [0,0,1,-406957,-99924251] 0 1",
+      "allbsd_row": "1309 a 1 [0,0,1,-406957,-99924251] 0 1 4 0.0945110151712774 6.04870497096175 1.00000000000000 16",
+      "c4": 19533936,
+      "c6": 86334552648,
+      "discriminant": -45254746691,
+      "conductor": 1309,
+      "bnf_certification": [1],
+      "rational_torsion_order": 1,
+      "ellrank_output": [0, 2, 0, []],
+      "number_of_selmer_covers": 2,
+      "quartic_coefficients_descending": [
+        [-52, 252, 1752, -4984, -20347],
+        [-355, -1468, -66, 3000, -1483]
+      ],
+      "modular_symbol": {
+        "sign": 1,
+        "level": 1309,
+        "weight": 2,
+        "msissymbol": 1,
+        "generator_relations_pass": 1,
+        "path": ["oo", 0],
+        "divisor": "[0]-[oo]",
+        "value": 64,
+        "reverse_path_value": -64,
+        "gamma0_index": 1728,
+        "sturm_bound": 288,
+        "q_expansion_matches_curve_through_bound": 1,
+        "first_twenty_coefficients": [1, 2, 3, 2, 1, 6, -1, 0, 6, 2, -1, 6, -2, -2, 3, -4, 1, 12, 8, 2]
+      }
+    }
+  },
+  "deduction_boundary": "For 1309a1 descent alone leaves algebraic rank 0 or 2. The nonzero modular-symbol evaluation and the established modularity/Kolyvagin theorem give rank zero and finite Sha. Then C=T+R+S gives S=2, and s=0 gives G[2]=2G[4]. The Lean group return derives #G[4]=16 and #G[2-infinity]>=16. For 571a1 the previous nondegenerate restriction gives #G[2-infinity]=4. Recorded allbsd Sha values are provenance and scouting data, not upper bounds."
+}

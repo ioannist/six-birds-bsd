@@ -4,8 +4,11 @@ This construction replaces dimension/exponent metadata with actual finite
 groups. The Lean group construction is finite algebra. The separate
 certified two-descent below now identifies its exponent-two lane with
 571a1's two-primary arithmetic group, using external descent theory and
-computation. The exponent-four partner and arithmetic determinant-line
-comparison remain open. The manuscripts are unchanged. The implementation is
+computation. A second certified calculation now realizes an arithmetic
+dimension-only separation using 1309a1: its finite two-primary group has
+order at least sixteen. Its exact two-primary order, perfect paired H_4
+identification, and arithmetic determinant-line comparison remain open.
+The manuscripts are unchanged. The finite implementation is
 `lean/SixBirdsBSD/Apparatus/FinitePairings.lean`.
 
 ## Carrier, observations, and target
@@ -247,15 +250,162 @@ independently implement those algorithms or their cohomology.
 Self-review checked the class-group certification, exact output semantics,
 map and discriminant conventions, local completeness argument, and the
 higher-torsion exclusion. It also checked the H_4 failure control. The
-other arithmetic ablation carrier with the same two-torsion and a
-different finite factor is not realized here, so this is not a proof of
-the whole named-source indispensability claim.
+other arithmetic carrier was not realized by this first calculation.
+The comparison below now supplies one, with the narrower observation
+interface made explicit. Neither calculation proves the whole
+named-source indispensability claim.
 
 The fixture is `sha_descent_571a1.json`. Run
 `scripts/check_sha_descent.py --check` for offline exact checks, or add
 `--gp` with a PARI/GP executable to reproduce the certified arithmetic
 descent. Offline validation expressly does not verify basis completeness
 or pairing rank from the stored metadata.
+
+## Arithmetic dimension-only separation: 571a1 and 1309a1
+
+The second primary Cremona model is
+
+    F: Y^2 + Y = X^3 - 406957 X - 99924251.
+
+The exact allcurves and allbsd rows and their file digests are retained
+in `sha_dimension_arithmetic_pair.json`. The allbsd Sha column, sixteen,
+was useful for selecting a candidate. It is not used as an arithmetic
+order or upper bound. Direct PARI/GP 2.15.4 calculations on the equation,
+with random seed one and full cubic-field `bnfcertify`, give:
+
+| Input/output | 571a1 | 1309a1 |
+| --- | --- | --- |
+| Class-group certification | [1] | [1] |
+| Rational torsion order | 1 | 1 |
+| ellrank | [0,0,2,[]] | [0,2,0,[]] |
+| Two-Selmer basis size | 2 | 2 |
+
+For 1309a1 the descent alone allows rank zero or two. Failure to find
+points does not settle this ambiguity. We resolve it separately, using
+an exact modular symbol and the established nonvanishing theorem.
+
+### Nonvanishing and finiteness, without a BSD order formula
+
+Using a 128 MB GP stack, `[M,sy]=msfromell(F,1)` has level 1309 and
+weight two. Both `msissymbol(M,sy)` and the corresponding check on its
+generator evaluations return one. The evaluation
+
+    mseval(M,sy,[oo,0]) = 64
+
+is nonzero; reversing the path gives -64. The path `[oo,0]` represents
+the divisor `[0]-[oo]`. The
+[official normalization contract](https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#msfromell)
+identifies this evaluation with L(F,1)/Omega^+, where Omega^+ is positive.
+Only nonvanishing is needed, so changing the nonzero rational scaling
+of the eigensymbol would not affect the argument.
+
+All 288 coefficients of `msqexpansion(M,sy,288)` agree with
+`ellan(F,288)`. This is the weight-two Sturm bound at squarefree level
+1309: the Gamma_0 index is (7+1)(11+1)(17+1)=1728, and 2*1728/12=288.
+The [standard Sturm-bound contract](https://doc.sagemath.org/html/en/reference/arithgroup/sage/modular/arithgroup/arithgroup_generic.html#sage.modular.arithgroup.arithgroup_generic.ArithmeticSubgroup.sturm_bound)
+uses this weight and index.
+The comparison supplements the algorithm's attached-newform contract;
+it does not claim to mechanize modularity, modular symbols, or Sturm's
+theorem. The first twenty coefficients are retained in the fixture.
+
+The established modularity and Kolyvagin nonvanishing theorem now gives
+rank F(Q)=0 and finite Sha(F/Q). The precise finiteness implication is
+recalled at the opening of Section 8 of
+[Stein and Wuthrich, Computing Tate-Shafarevich Groups of Elliptic Curves Using Iwasawa Theory](https://www.maths.nottingham.ac.uk/plp/pmzcw/download/shark.pdf)
+(3 May 2011 draft, printed page 28; checked PDF digest in the fixture).
+We do not use that section's subsequent odd-prime Iwasawa bounds at two.
+The computed j-invariant is nonintegral, excluding CM as well; Lean
+checks the nonzero remainder of c4^3 on division by the discriminant.
+These arithmetic theorems and the exact modular-symbol algorithm remain
+external to Lean.
+
+### Return from the zero pairing rank
+
+Write G=Sha(F/Q). The documented descent identities are
+
+    C = T + upper + s = T + R + S,
+    s = dim_F2(G[2]/2G[4]).
+
+Here T=R=s=0 and C=2, so S=dim_F2 G[2]=2. Since s=0,
+G[2]=2G[4]. This is substantive extra information about halving, beyond
+the two-torsion dimension.
+
+Choose a half h(a) of each a in G[2]. Each such half belongs to G[4].
+There is an explicit set bijection
+
+    G[2] x G[2] -> G[4],       (a,b) |-> h(a)+b,
+    G[4] -> G[2] x G[2],       x |-> (2x, x-h(2x)).
+
+Both inverse identities follow from the abelian-group laws and 2h(a)=a.
+Consequently #G[4]=#G[2]^2=16. Finiteness of G, proved above, ensures
+its two-primary subgroup is finite. It contains G[4], so its order is
+at least sixteen. No upper bound on its exponent or order is inferred.
+In particular, this does not prove that its full two-primary paired
+group is the perfect H_4 model; higher two-power layers remain possible
+on this evidence.
+
+`Closure/ShaDimensionPair.lean` derives doubling from actual abelian
+addition, constructs these maps and both inverses, and produces a
+complete duplicate-free sixteen-element enumeration of G[4] from an
+underlying four-element parametrization of G[2]. An existential halving
+premise supplies the chosen section through `chooseHalf`; no order is a
+field of the input. `primaryOrderLowerBound` proves the lower bound for
+any complete primary-group enumeration. The first curve's collapse
+similarly produces a complete four-element primary enumeration.
+`noPrimaryOrderReadoutFromTwoBasis` then rejects every function of the
+common dimension two that would return both orders. The arithmetic
+groups and their parameterizations are identified by the external
+descent interpretation, not by a new Lean arithmetic certificate.
+
+### Exact arithmetic scope and self review
+
+We have two actual rational elliptic curves with
+
+    dim_F2 Sha(571a1)[2] = dim_F2 Sha(1309a1)[2] = 2,
+    #Sha(571a1)[2^infinity] = 4,
+    16 <= #Sha(1309a1)[2^infinity] < infinity.
+
+Thus no dimension-only function recovers the two-primary order on the
+domain of curves for which that subgroup is finite. This is a genuine
+arithmetic information-loss theorem, with certified external arithmetic
+and a separately mechanized group return. It closes the earlier
+arithmetic-realization gap for this observation and target, without
+requiring the exact second order. The four-torsion orders are also
+different, four and sixteen.
+
+The observation is **only the two-torsion dimension**, and the target is
+**the two-primary order**. Curve identity, periods, Tamagawa factors,
+and the other recognition-source records are not part of this retained
+observation. Both curves have algebraic rank zero and rational torsion
+order one, but their other arithmetic data differ. This is not an
+ablation with all other named sources held fixed, and does not establish
+indispensability of any entire Gamma source for scalar BSD.
+
+Self-review checked the unresolved descent rank bound for 1309a1,
+the direction/sign of the modular-symbol path, all coefficients through
+the Sturm bound, the separate finiteness theorem, the group fiber maps,
+and the distinction between a lower bound and an exact order. H_4
+supplies an inhabited halving control; H_2 fails the halving premise,
+even though its two-torsion dimension is the same. No analytic Sha
+table value supplies the arithmetic conclusion. A diagnostic
+`msissymbol` check on 571a1's symbol returned zero in this PARI version;
+that unexpected check is not used as evidence here. The first curve
+uses the certified descent and torsion collapse, and the second curve
+passes both symbol checks. Diagnosing the first symbol check remains a
+separate implementation question.
+
+Run `scripts/check_sha_dimension_pair.py --check` for exact offline model
+and quartic invariant checks, or add `--gp` with a PARI/GP executable to
+reproduce both certified descents and the second curve's symbol checks
+and full coefficient comparison. Offline checks alone do not establish
+Selmer completeness, pairing rank, or nonvanishing.
+
+At this checkpoint the optional PARI reproduction passed, as did
+`make verify-lean` (83 build jobs, the regression axiom prints and all
+51 manifest probes), `make validate`, `make test` (26 tests), and
+`make public-audit`. The new declarations' printed axiom closures contain
+only the previously permitted `propext`, `Classical.choice`, and
+`Quot.sound`. The manuscripts were not edited.
 
 ## Resume point
 
@@ -264,9 +414,9 @@ the hyperbolic integral presentations above. The next arithmetic task is
 to identify the relevant integral Selmer-complex presentation and its
 pairing with the actual Sha/Tamagawa/torsion data, then prove compatibility
 of this normalization with the analytic and local comparison maps.
-The exponent-two lane now has the separate arithmetic realization above.
-Realization of its ablation partner on elliptic-curve data is still
-needed for the original source-indispensability claim. The rational
+The exponent-two lane and an arithmetic dimension-only partner are now
+realized above. An exact perfect H_4 realization and a pair holding the
+other named sources fixed remain separate obligations. The rational
 conditional assembly and support-coverage results remain documented in
 `source_indispensability.md`; this construction supplies concrete finite
 carriers rather than resolving their arithmetic hypotheses.

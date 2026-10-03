@@ -341,4 +341,15 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.ShaDescent.modelTwoPairingHypotheses
 #print axioms SixBirdsBSD.Closure.ShaDescent.modelFourFalseControl
 
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.partnerInvariants
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.halvingEquivalence
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.fourQuadEquivalence
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.enumerateFourFromHalving
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.halvabilityProducesFourEnumeration
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.primaryOrderLowerBound
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.enumerateCollapsedPrimary
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.noPrimaryOrderReadoutFromTwoBasis
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.fourHalvingPositiveControl
+#print axioms SixBirdsBSD.Closure.ShaDimensionPair.twoHalvingFalseControl
+
 end SixBirdsBSD.Verification.Regression
