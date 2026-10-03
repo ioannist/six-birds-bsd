@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "c44fd2d07117cb9ac4bf80b5388daf3a156b34e25007d4cad1386a0ab34eb93a",
+  "lean_context_hash": "a83a7e1bbe7abd64b02ecaec52430a794bbf3495eb270f56c8d8559f6d97fcc6",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -310,7 +310,7 @@
       "statement_hash": "e25f5858d190c0eaaaad4c4a009294a014153590ff82076d1ff55bd682bdbfa1",
       "lean_decl": "SixBirdsBSD.Closure.SelShell.selBSDShell",
       "assessment": "supplied closure architecture",
-      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing. Exact Lean equivalences now expose that the master rule, with the supplied smuggle proof, is equivalent to master applicability itself; its nine arbitrary proved propositions supply no additional content. See formalization/master_applicability_audit.md."
+      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing. Exact Lean equivalences now expose that the master rule, with the supplied smuggle proof, is equivalent to master applicability itself; its nine arbitrary proved propositions supply no additional content. See formalization/master_applicability_audit.md. The separate scalar_closure_translation.md construction derives a sum-conserving idempotent on the analytic/arithmetic coefficient pair, with fixed-original-pair iff scalar BSD. It is not identified with this full shell operator."
     },
     {
       "latex_label": "def:closure:pi-bsd",

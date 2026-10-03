@@ -961,4 +961,56 @@ theorem heightBasisChangeControls :
 #print axioms singularHeightInverseControl
 #print axioms heightBasisChangeControls
 
+/-- Closing a false pair changes BOTH scalar values. Closedness of the
+returned pair cannot establish BSD for the unchanged original pair. -/
+theorem scalarClosureFalseTargetControl :
+    SixBirdsBSD.Closure.ScalarClosure.average ((2 : Rat),1) = (3/2,3/2) ∧
+    SixBirdsBSD.Closure.ScalarClosure.residual
+      (SixBirdsBSD.Closure.ScalarClosure.average ((2 : Rat),1)) = 0 ∧
+    SixBirdsBSD.Closure.ScalarClosure.residual ((2 : Rat),1) ≠ 0 ∧
+    ¬ ClosureOp.IsClosed
+      (SixBirdsBSD.Closure.ScalarClosure.scalarClosure (R := Rat) (by decide))
+      ((2 : Rat),1) := by
+  refine ⟨by decide +kernel, by decide +kernel, by decide +kernel, ?_⟩
+  rw [SixBirdsBSD.Closure.ScalarClosure.scalarClosedIffEqual]
+  decide
+
+/-- Recognition fixes the input pair on both inhabited rank branches. -/
+theorem recognizedPairClosureControl :
+    ClosureOp.IsClosed
+      (SixBirdsBSD.Closure.ScalarClosure.scalarClosure (R := Rat) (by decide))
+      (SixBirdsBSD.Closure.ScalarClosure.shellPair (symbolicShell 0 1 (fun _ => False))) ∧
+    ClosureOp.IsClosed
+      (SixBirdsBSD.Closure.ScalarClosure.scalarClosure (R := Rat) (by decide))
+      (SixBirdsBSD.Closure.ScalarClosure.shellPair (symbolicShell 2 1 (fun _ => False))) := by
+  constructor
+  · letI : Lean.Grind.Field (symbolicShell 0 1 (fun _ => False)).Scalar :=
+      inferInstanceAs (Lean.Grind.Field Rat)
+    exact SixBirdsBSD.Closure.ScalarClosure.recognitionFixesShellPair
+      (symbolicShell 0 1 (fun _ => False)) (by change (2 : Rat) ≠ 0; decide)
+      recognizedSymbolicShell
+  · letI : Lean.Grind.Field (symbolicShell 2 1 (fun _ => False)).Scalar :=
+      inferInstanceAs (Lean.Grind.Field Rat)
+    exact SixBirdsBSD.Closure.ScalarClosure.recognitionFixesShellPair
+      (symbolicShell 2 1 (fun _ => False)) (by change (2 : Rat) ≠ 0; decide)
+      recognizedHighRankShell
+
+#print axioms SixBirdsBSD.Closure.ScalarClosure.swapInvolutive
+#print axioms SixBirdsBSD.Closure.ScalarClosure.residualSwap
+#print axioms SixBirdsBSD.Closure.ScalarClosure.averageIdempotent
+#print axioms SixBirdsBSD.Closure.ScalarClosure.scalarClosure
+#print axioms SixBirdsBSD.Closure.ScalarClosure.averageConservesSum
+#print axioms SixBirdsBSD.Closure.ScalarClosure.averageSwapInvariant
+#print axioms SixBirdsBSD.Closure.ScalarClosure.averageUnique
+#print axioms SixBirdsBSD.Closure.ScalarClosure.averageResidualZero
+#print axioms SixBirdsBSD.Closure.ScalarClosure.scalarClosedIffEqual
+#print axioms SixBirdsBSD.Closure.ScalarClosure.scalarClosedIffResidualZero
+#print axioms SixBirdsBSD.Closure.ScalarClosure.averagePreservesFirstIffClosed
+#print axioms SixBirdsBSD.Closure.ScalarClosure.characteristicTwoControl
+#print axioms SixBirdsBSD.Closure.ScalarClosure.shellClosedIffStrongBSD
+#print axioms SixBirdsBSD.Closure.ScalarClosure.shellClosedIffResidualZero
+#print axioms SixBirdsBSD.Closure.ScalarClosure.recognitionFixesShellPair
+#print axioms scalarClosureFalseTargetControl
+#print axioms recognizedPairClosureControl
+
 end SixBirdsBSD.Verification.Regression

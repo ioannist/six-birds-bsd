@@ -8,6 +8,7 @@ import SixBirdsBSD.Closure.EtaApplicability
 import SixBirdsBSD.Closure.TCascade
 import SixBirdsBSD.Closure.Obstructions
 import SixBirdsBSD.Closure.SelShell
+import SixBirdsBSD.Closure.ScalarClosure
 import SixBirdsBSD.Closure.Landing
 import SixBirdsBSD.Closure.CoupledFactors
 import SixBirdsBSD.Closure.RationalLocalGlobal
