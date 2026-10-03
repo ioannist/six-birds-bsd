@@ -456,4 +456,23 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.TameComponentReturn.isogenyBoundaryInputs
 #print axioms SixBirdsBSD.Closure.TameComponentReturn.pairingRescalingInputs
 
+#print axioms SixBirdsBSD.Closure.RecognitionSources.oddShallowNondivisibility
+#print axioms SixBirdsBSD.Closure.RecognitionSources.numericalScopeControls
+#print axioms SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent.numericApplicability
+#print axioms SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent.p_does_not_divide_c_p_proof
+#print axioms SixBirdsBSD.Closure.SelShell.piBSD.padicPrimeScope
+#print axioms SixBirdsBSD.Closure.SelShell.piBSD.signedPrimeScope
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.equationInvariants
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.factorPrimes
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.primeDivisorOfPrimeList
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.allPrimeDiscriminantSupport
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.actualShallowPlaces
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.tameCoverInputs
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.nativeProductBasisInvariant
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.nativeProductReturn
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.finiteProfileReturn
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.oddPrimeUnitsMissGlobalFactor
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.shallowPlacesDoNotCoverCoefficientSupport
+#print axioms SixBirdsBSD.Closure.GlobalTameProduct.unitFlagsLoseMultiplicity
+
 end SixBirdsBSD.Verification.Regression

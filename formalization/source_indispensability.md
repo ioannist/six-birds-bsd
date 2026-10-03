@@ -643,3 +643,25 @@ BSD data are not frozen. This is an arithmetic information-loss theorem
 for the declared representation interface, not a BSD counterexample or
 an ablation of all the other named sources. The normalized GZ scalar
 redundancy and the native OC/CT/eta comparisons remain unresolved.
+
+## Exact native global component-product construction
+
+[`global_tame_product.md`](global_tame_product.md) realizes two separate native
+order-four geometric-inertia factors on the non-CM curve
+y^2=x^3+385x+1225. The factors at five and seven are each det(1-tau)=2, and
+their product four returns the global Tamagawa number. All other places are
+accounted for by independently reproduced Tate outputs and a universal
+prime-support proof from the equation's discriminant. A single local leaf
+returns two, so matching it directly to global Tam four would be wrong.
+Both leaves are necessary for this native product construction; this does
+not freeze the other named sources or establish scalar BSD indispensability.
+
+The actual product has coefficient support at two, although its local
+component number at two is one. All odd-prime unit tests miss the product.
+Boolean unit flags at all primes additionally lose multiplicities: two and
+four have the same flags. The existing rational quotient comparisons use
+stronger information. PARI's algebraic rank-two bounds do not certify analytic
+rank or the additional Sha hypotheses of the recognition source. The exact
+global return therefore resolves a component-product bridge on this carrier,
+while the paper-native OC normalization remains open. Source-carrier primality,
+oddness and nondivisibility have also been made concrete, as explained there.

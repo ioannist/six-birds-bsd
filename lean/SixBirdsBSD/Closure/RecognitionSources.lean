@@ -1,3 +1,5 @@
+import SixBirdsBSD.Apparatus.SupportPrimeNoGo
+
 /-!
 Recognition-source carriers for the closure axis.
 
@@ -9,7 +11,36 @@ carrier as a hypothesis while this module derives no framework theorem.
 
 namespace SixBirdsBSD.Closure.RecognitionSources
 
+open SixBirdsBSD.Apparatus.SupportPrimeNoGo
+
 universe u v w x y z
+
+/-- Numerical scope only; additive reduction, tameness and Sha hypotheses
+remain separate arithmetic inputs. In particular this does not certify
+the arithmetic applicability of a numerical prime-three control. -/
+def OddShallowNumericScope (p c : Nat) : Prop :=
+  IsPrime p ∧ p % 2 = 1 ∧ (c = 1 ∨ c = 2)
+
+instance (p c : Nat) : Decidable (OddShallowNumericScope p c) :=
+  inferInstanceAs (Decidable (IsPrime p ∧ p % 2 = 1 ∧ (c = 1 ∨ c = 2)))
+
+theorem oddShallowNondivisibility (p c : Nat)
+    (h : OddShallowNumericScope p c) : ¬ p ∣ c := by
+  have hp := h.1.1
+  have hodd := h.2.1
+  have hp3 : 3 ≤ p := by omega
+  have hc : 0 < c ∧ c ≤ 2 := by rcases h.2.2 with hc | hc <;> omega
+  intro hd
+  have := Nat.le_of_dvd hc.1 hd
+  omega
+
+theorem numericalScopeControls :
+    OddShallowNumericScope 11 1 ∧ OddShallowNumericScope 11 2 ∧
+    OddShallowNumericScope 3 2 ∧
+    ¬ OddShallowNumericScope 0 1 ∧ ¬ OddShallowNumericScope 1 1 ∧
+    ¬ OddShallowNumericScope 2 1 ∧ ¬ OddShallowNumericScope 9 1 ∧
+    ¬ OddShallowNumericScope 11 0 ∧ ¬ OddShallowNumericScope 11 3 ∧
+    IsPrime 2 := by decide +kernel
 
 /--
 `Gamma_BSD^padic-descent`: the D3''' additive-prime p-adic descent
@@ -24,6 +55,8 @@ structure gammaPadicDescent
     (Scalar : Type z) where
   E : EllipticCurve
   p : Nat
+  prime : IsPrime p
+  odd : p % 2 = 1
   L : LocalExtension
   oddAdditivePrime : Prop
   oddAdditivePrime_proof : oddAdditivePrime
@@ -31,8 +64,6 @@ structure gammaPadicDescent
   shallowKodairaIIOrIII_proof : shallowKodairaIIOrIII
   c_p : Nat
   c_p_mem_one_or_two : c_p = 1 ∨ c_p = 2
-  p_does_not_divide_c_p : Prop
-  p_does_not_divide_c_p_proof : p_does_not_divide_c_p
   sha_p_infty_zero : Prop
   sha_p_infty_zero_proof : sha_p_infty_zero
   finiteTameInertiaTrivializing : Prop
@@ -61,6 +92,22 @@ structure gammaPadicDescent
   stage6_VDE_trace_ii_proof : stage6_VDE_trace_ii
   tamFactor : Scalar
 
+abbrev gammaPadicDescent.p_does_not_divide_c_p
+    {E : Type u} {L : Type v} {S : Type z}
+    (g : gammaPadicDescent E L S) : Prop := ¬ g.p ∣ g.c_p
+
+theorem gammaPadicDescent.numericApplicability
+    {E : Type u} {L : Type v} {S : Type z}
+    (g : gammaPadicDescent E L S) : OddShallowNumericScope g.p g.c_p :=
+  ⟨g.prime, g.odd, g.c_p_mem_one_or_two⟩
+
+/-- Nondivisibility is derived from the actual indices, rather than supplied
+as an unrelated proposition carrying the name of the desired fact. -/
+theorem gammaPadicDescent.p_does_not_divide_c_p_proof
+    {E : Type u} {L : Type v} {S : Type z}
+    (g : gammaPadicDescent E L S) : g.p_does_not_divide_c_p :=
+  oddShallowNondivisibility g.p g.c_p g.numericApplicability
+
 /--
 `Gamma_BSD^Sha-persistence`: the D2''' signed-Selmer corestriction
 recognition source. For `E/Q`, an HPS2-passing additive prime `p`, and
@@ -74,6 +121,7 @@ structure gammaShaPersistence
     (Scalar : Type z) where
   E : EllipticCurve
   p : Nat
+  prime : IsPrime p
   L : LocalExtension
   hps2PassingAdditivePrime : Prop
   hps2PassingAdditivePrime_proof : hps2PassingAdditivePrime

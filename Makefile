@@ -115,6 +115,7 @@ validate:
 	python3 scripts/check_local_unit_support.py --check
 	python3 scripts/check_additive_frobenius_descent.py --check
 	python3 scripts/check_tame_component_return.py --check
+	python3 scripts/check_global_tame_product.py --check
 	python3 scripts/check_sha_descent.py --check
 	python3 scripts/check_sha_dimension_pair.py --check
 	python3 scripts/check_sha_four_normalization.py --check

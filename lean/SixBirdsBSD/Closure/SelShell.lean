@@ -140,6 +140,26 @@ structure piBSD (shell : selBSDShell) where
     shell.analyticRank = 0 ∨ shell.analyticRank = 1 →
       shell.L_derivative_over_factorial = shell.strongBSDRightSide
 
+/-- A local descent readout inherits actual numerical scope at its matched
+prime. Both the bad-place and specified-lift hypotheses are necessary. -/
+theorem piBSD.padicPrimeScope (shell : selBSDShell) (recognition : piBSD shell)
+    (p : Nat) (L : shell.LocalLift)
+    (hp : shell.additiveBadPrimeInScope p)
+    (hL : shell.inertiaTrivializingLiftInScope p L) :
+    SixBirdsBSD.Apparatus.SupportPrimeNoGo.IsPrime p ∧ p % 2 = 1 := by
+  obtain ⟨g, hg⟩ := recognition.gammaPadicDescentReadout p L hp hL
+  rw [← hg.1]
+  exact ⟨g.prime, g.odd⟩
+
+/-- Signed-Selmer scope requires a prime; no unsupported oddness restriction
+is added to this separate source. -/
+theorem piBSD.signedPrimeScope (shell : selBSDShell) (recognition : piBSD shell)
+    (p : Nat) (hp : shell.signedSelmerAdmissiblePrime p) :
+    SixBirdsBSD.Apparatus.SupportPrimeNoGo.IsPrime p := by
+  obtain ⟨g, hg⟩ := recognition.gammaShaPersistenceReadout p hp
+  rw [← hg.1]
+  exact g.prime
+
 /--
 Readout-level equivalence between residual vanishing and the Strong-BSD
 scalar identity attached to the shell.
