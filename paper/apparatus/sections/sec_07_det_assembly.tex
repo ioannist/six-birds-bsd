@@ -1,12 +1,11 @@
-\section{Determinant-assembly column and cascade completion}
+\section{Determinant-assembly column}
 \label{sec:det-assembly}
 
-The determinant-assembly column records the orientation, sign, and unit
-conventions needed to place the four arithmetic columns in one determinant
-line.  The height/regulator, analytic/period, finite-source, and local
-\(p\)-adic columns produce native determinant factors; the assembly column
-is the final coordinate that makes their tensor a global determinant-line
-object rather than a four-column product with an unspecified orientation.
+The four arithmetic columns produce four factors.  To obtain an element of
+one determinant line one also needs an orientation: the signs, units and
+trivialization conventions under which the factors are multiplied.  The
+determinant-assembly column holds this orientation as an independent
+input.
 
 \begin{definition}[Real determinant-assembly map]\label{def:apparatus:det-assembly-map}
 Let
@@ -21,130 +20,81 @@ Let
   \otimes
   \bigotimes_{p\in S(E)}\rho_p^{\R}
 \]
-be the tensor of the four constructed arithmetic columns over the support
-set \(S(E)\).  Let \(o_{\det}\) denote the determinant orientation and
-trivialization coordinate.  The real determinant-assembly map is
+be the tensor of the four arithmetic columns over a finite support set
+$S(E)$ of primes, with the local factors at primes outside $S(E)$
+trivialized as units.  Let $o_{\det}\in C_{\det}(E)$ be an orientation and
+trivialization datum, supplied independently of the four columns, and let
+$\rho_{\det}^{\R}(o_{\det})\in\R^\times$ be the orientation scalar it
+determines (the map on the orientation slot from
+\Cref{def:apparatus:bk-component-map}).  The real determinant assembly is
 \[
-  \rho_{\det}^{\R}:
-  \lambda_{\mathrm{loc}}(E)\otimes o_{\det}
-  \longmapsto
-  \lambda_{\mathrm{loc}}(E)\cdot o_{\det}
+  \mathcal A^{\R}(E)
+  =
+  \lambda_{\mathrm{loc}}(E)\cdot\rho_{\det}^{\R}(o_{\det})
   \in\Delta_f(M_E)_{\R}.
 \]
+We call $\mathcal A^{\R}(E)$ the \emph{final assembly}.  It already
+contains the four arithmetic factors, and so must not be used again as a
+factor alongside them; see \Cref{def:apparatus:five-column-tensor}.
 \end{definition}
 
+The adequacy question for this column is whether the four arithmetic
+columns, without the orientation, can explain the assembled target.  In
+the coordinate model they cannot, and the shortfall is exactly one
+direction.
+
 \begin{theorem}[Cascade-completion Schur signature]\label{thm:apparatus:cascade-completion-signature}
-Let the cascade tangent coordinate be
+Use the tangent coordinates
 \[
-  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5.
+  x=(x_{\mathrm{ht}},x_{\mathrm{an}},x_{\mathrm{fin}},x_p,x_{\det})\in\R^5 .
 \]
-The four constructed arithmetic columns have source row
-\[
-  \ell=(1,1,1,1,0),
-\]
-while the global determinant target has row
-\[
-  d=(1,1,1,1,1).
-\]
-With \(C=I_5\), one has
+Let the four arithmetic columns supply the source row
+$\ell=(1,1,1,1,0)$ and let the assembled target have row
+$d=(1,1,1,1,1)$.  With $C=I_5$,
 \[
   \KDD=dd^{\mathsf T}=5,\qquad
   \KLL=\ell\ell^{\mathsf T}=4,\qquad
   \KDL=d\ell^{\mathsf T}=4,
-\]
-and therefore
-\[
+  \qquad
   \XiC=5-4\cdot4^{-1}\cdot4=1.
 \]
-The residual is exactly the determinant-orientation coordinate
-\(x_{\det}\): the four constructed arithmetic components explain all
-coordinates except the final determinant row.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.DetAssembly.cascadeCompletionSignature}; see App~\ref{app:formalization}.}
+The residual is the orientation direction $e_{\det}=(0,0,0,0,1)$.%
+\footnote{Lean proves these exact integer values.  The statement concerns
+the orientation direction only; it does not assert adequacy of each of the
+four arithmetic coordinates.}
 \end{theorem}
 
 \begin{proof}
-The readout row is \(d=(1,1,1,1,1)\), so its squared norm is
-\[
-  \KDD
-  =
-  dd^{\mathsf T}
-  =
-  1+1+1+1+1
-  =
-  5.
-\]
-The source row supplied by the four constructed arithmetic columns is
-\(\ell=(1,1,1,1,0)\).  Its squared norm is
-\[
-  \KLL
-  =
-  \ell\ell^{\mathsf T}
-  =
-  1+1+1+1+0
-  =
-  4.
-\]
-Since this is a one-dimensional source block, its Moore--Penrose inverse is
-multiplication by \(4^{-1}\).  The cross term is
-\[
-  \KDL
-  =
-  d\ell^{\mathsf T}
-  =
-  1+1+1+1+0
-  =
-  4,
-\]
-and \(K_{LD}=4\) as well.  The Schur-complement residual is therefore
-\[
-  \XiC
-  =
-  \KDD-\KDL\Kdagger K_{LD}
-  =
-  5-4\cdot4^{-1}\cdot4
-  =
-  5-4
-  =
-  1.
-\]
-
-This scalar residual is precisely the determinant-orientation direction.
-Indeed
-\[
-  d=(1,1,1,1,1)=\ell+e_{\det},
-  \qquad
-  e_{\det}=(0,0,0,0,1).
-\]
-The two summands are orthogonal for the identity calibration:
-\(\ell\cdot e_{\det}=0\).  Projection onto the source row
-\(\ell\) removes the \(\ell\)-component of \(d\) and leaves
-\(e_{\det}\).  The squared norm of \(e_{\det}\) is \(1\), matching the
-computed residual.  Thus the cascade is incomplete until the determinant
-orientation coordinate is supplied.
+The three blocks are the displayed sums of squares and products of
+entries, and the one-dimensional source block $4$ has inverse $4^{-1}$.
+Hence $\XiC=5-4=1$.  Since $d=\ell+e_{\det}$ with $\ell\cdot e_{\det}=0$,
+projecting $d$ onto $\ell$ leaves $e_{\det}$, of squared length $1$.
 \end{proof}
 
 \begin{obligation}[Integral determinant assembly]\label{obl:apparatus:rho-det-assembly}
-The full determinant comparison requires a transport
+The full determinant comparison requires, for each orientation datum
+$o_{\det}$, a transport
 \[
-  \beta_{\det\text{-}\mathrm{assembly}}:
-  \Bigl(
+  \beta_{\det\text{-}\mathrm{assembly}}(\,\cdot\,;o_{\det}):
   \Delta_{\mathrm{ht/reg}}
   \otimes
   \Delta_{\mathrm{an/period}}
   \otimes
   \Delta_{\mathrm{finite}}
   \otimes
-  \bigotimes_p\Delta_p
-  \Bigr)
+  \bigotimes_{p\in S(E)}\Delta_p
   \longrightarrow
-  \Delta_f(M_E).
+  \Delta_f(M_E),
 \]
-This transport fixes the Knudsen--Mumford determinant signs~\citep{KnudsenMumford1976}, the
-Selmer-complex local-global compatibility, the zeta-element versus motivic
-trivialization convention, and compatibility with the four refined
-transports.  In this paper it is a recognition-source carrier: the
-arithmetic determinant assembly is named external content and carried
-separately, not derived from the finite cascade residual computation.
+together with compatible unit trivializations of the local lines at primes
+outside $S(E)$.  It must fix the Knudsen--Mumford determinant
+signs~\citep{KnudsenMumford1976}, the local--global compatibility of
+Selmer complexes, the convention relating the zeta element to the
+motivic trivialization, and compatibility with the four column
+transports.  The orientation datum is a parameter of the transport,
+distinct from the assembled output.  This transport is external
+arithmetic input.  The residual computation above shows only that, in the
+coordinate model, the four arithmetic rows do not account for the
+orientation direction; it does not show that the orientation varies
+independently for actual curves.
 \end{obligation}
-
-% ===========================================================================
