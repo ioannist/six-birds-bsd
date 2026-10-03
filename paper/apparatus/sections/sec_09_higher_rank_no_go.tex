@@ -1,180 +1,111 @@
-\section{Higher-rank no-go and the rank-2 Kummer source}
+\section{Rank two: the height matrix and its sources}
 \label{sec:higher-rank-no-go}
 
-The higher-rank no-go records a boundary of the height/regulator column.
-Once a Mordell--Weil basis is known, the Neron--Tate Gram matrix computes
-the regulator determinant.  It does not, by itself, construct independent
-motivic-cycle sources in rank at least \(2\).  This is an audit result about
-what the height matrix fails to determine; it is not a non-existence claim
-about generalized Gross--Zagier~\citep{GrossZagier1986}, Beilinson--Kato~\citep{Beilinson1985,Kato2004}, \(K_2(E)\), or
-higher-Chow constructions~\citep{Bloch1986} supplied by other means.
+In rank at least $2$ the height/regulator column raises a question that
+does not arise in rank $1$.  Once a Mordell--Weil basis is known, the
+N\'eron--Tate Gram matrix computes the regulator.  But a theory that
+explains the regulator through independent cycle classes (generalized
+Gross--Zagier~\citep{GrossZagier1986}, Beilinson--Kato~\citep{Beilinson1985,Kato2004},
+$K_2(E)$ or higher Chow groups~\citep{Bloch1986}) would need more than the
+Gram matrix records.  This section makes the rank-two height calculation
+explicit and then states, in the simplest form, what the Gram matrix
+forgets.
 
-\begin{definition}[Rank-2 Mordell--Weil/Kummer source]\label{def:apparatus:rank-two-kummer-source}
-Let
+\begin{definition}[Rank-two Mordell--Weil/Kummer source]\label{def:apparatus:rank-two-kummer-source}
+Let $\Lambda_E=E(\Q)/E(\Q)_{\tors}$ and, for a prime $p$, let
 \[
-  \Lambda_E=E(\Q)/E(\Q)_{\tors}.
+  \kappa_p:\Lambda_E\otimes\Qp\longrightarrow \Hf(\Q,V_pE)
 \]
-For a prime \(p\), the Kummer map
-\[
-  \kappa_p:\Lambda_E\otimes\Qp\longrightarrow \Hf(\Q,V_p(E))
-\]
-sends Mordell--Weil classes to finite Selmer classes.  For the curve
-\(389a1\), fix a Mordell--Weil basis \((P_1,P_2)\).  The rank-\(2\)
-Mordell--Weil/Kummer candidate is
-\[
-  c_2^{\mathrm{MW}}(P_i)=\kappa_p(P_i),\qquad i=1,2,
-\]
-viewed after tensoring with \(\Qp\).  This is a classical rank-\(2\)
-Selmer source once the basis is known.  It is not, by this definition
-alone, a generalized Heegner-cycle construction or a motivic-cycle source.
+be the Kummer map into the Bloch--Kato Selmer group.  For a curve of rank
+$2$ with a fixed Mordell--Weil basis $(P_1,P_2)$, the rank-two
+Mordell--Weil/Kummer source is the pair
+$\bigl(\kappa_p(P_1),\kappa_p(P_2)\bigr)$.  It is a classical Selmer source
+once the basis is known; it is not, by this definition, a construction of
+Heegner cycles or other motivic classes.
 \end{definition}
 
-\begin{theorem}[Rank-2 height Schur collapse]\label{thm:apparatus:rank-two-height-schur-collapse}
-For the \(389a1\) rank-\(2\) Gram representative, write the symmetric
-height variation in coordinates
+For the curve $389a1$, $y^2+y=x^3+x^2-2x$, of rank $2$, take
+$P_1=(0,0)$ and $P_2=(1,0)$.  Computing N\'eron--Tate heights with
+PARI/GP~\citep{PARI2023} gives the Gram matrix
 \[
-  (\delta h_{11},\delta h_{12},\delta h_{22})
+  H=\begin{pmatrix}0.3270008\ldots & 0.0585227\ldots\\
+  0.0585227\ldots & 0.4767117\ldots\end{pmatrix},
+  \qquad
+  \det H=0.1524602\ldots .
 \]
-and write
+This determinant equals the regulator recorded in the LMFDB~\citep{LMFDB}.
+Since a subgroup of index $m$ in $\Lambda_E$ has Gram determinant
+$m^2\Reg(E/\Q)$, the points $P_1,P_2$ form a basis of $\Lambda_E$.  By
+\Cref{thm:apparatus:height-schur-collapse}, the row of
+$d(\log\det)_H$ in the coordinates
+$(\delta h_{11},\delta h_{12},\delta h_{22})$ is
 \[
-  d(\log\det)_H
-  =
-  \ell
-  =
-  (3.12679\ldots,-0.76771\ldots,2.14483\ldots).
+  \ell=\Bigl(\frac{h_{22}}{\det H},\,-\frac{2h_{12}}{\det H},\,
+  \frac{h_{11}}{\det H}\Bigr)
+  =(3.12679\ldots,\,-0.76771\ldots,\,2.14483\ldots),
+  \qquad
+  \|\ell\|^2=14.96650\ldots .
 \]
-With the full symmetric height-matrix source, \(\KLL=I_3\) and
+
+\begin{theorem}[Rank-two height Schur collapse]\label{thm:apparatus:rank-two-height-schur-collapse}
+For the row $\ell$ above, with the full symmetric height source and
+$C=I_3$,
 \[
-  \KDD=\|\ell\|^2=14.96650\ldots.
+  \Xi_{\mathrm{NT}\to\Reg}=\|\ell\|^2-\ell\,I_3\,\ell^{\mathsf T}=0 .
 \]
-The Schur residual vanishes:
-\[
-  \Xi_{NT\to\Reg}
-  =
-  \|\ell\|^2-\ell I_3\ell^{\mathsf T}
-  =
-  0.
-\]
-Thus the full rank-\(2\) Neron--Tate Gram carrier is adequate for its
-regulator determinant.  By contrast, the scalar-determinant-only source is
-one-dimensional and leaves trace residual \(3-1=2\).\footnote{Verified in
-Lean as
-\texttt{SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoHeightSchurCollapse};
-see App~\ref{app:formalization}.}
+The source consisting of the single direction $\ell$ (the
+``determinant-only'' source) has projector of trace $1$ and leaves a
+residual of trace $3-1=2$.%
+\footnote{Lean proves the statement for the integer row
+$(312679,-76771,214483)$, which is $10^5\ell$ rounded to integers, and
+proves the trace-one projector onto that scaled direction over $\Q$.  The
+general rank-two row formula is proved separately
+(\Cref{thm:apparatus:height-schur-collapse}); the numerical heights of
+$389a1$ are computed outside Lean.}
 \end{theorem}
 
 \begin{proof}
-The tangent space of symmetric \(2\times2\) height matrices has the three
-coordinates
-\[
-  (\delta h_{11},\delta h_{12},\delta h_{22}).
-\]
-The differential of the regulator determinant in logarithmic form is the
-row vector \(\ell\).  Hence the readout energy before admitting a source is
-\[
-  \KDD
-  =
-  \ell\ell^{\mathsf T}
-  =
-  \|\ell\|^2
-  =
-  14.96650\ldots.
-\]
-When the full symmetric height-matrix carrier is admitted, the source block
-is \(I_3\), its Moore--Penrose inverse is again \(I_3\), and the cross
-blocks are \(\KDL=\ell\) and \(K_{LD}=\ell^{\mathsf T}\).  The projection
-term is the identity-matrix action:
-\[
-  \ell I_3\ell^{\mathsf T}
-  =
-  \ell\ell^{\mathsf T}
-  =
-  \|\ell\|^2.
-\]
-Therefore
-\[
-  \Xi_{NT\to\Reg}
-  =
-  \KDD-\KDL\Kdagger K_{LD}
-  =
-  \|\ell\|^2-\|\ell\|^2
-  =
-  0.
-\]
-
-For the scalar-determinant-only comparison, the admitted source is the line
-spanned by the nonzero vector \(\ell\) inside the three-dimensional
-symmetric tangent space.  The orthogonal projector onto this line is
-\[
-  P_{\ell}=\frac{\ell^{\mathsf T}\ell}{\ell\ell^{\mathsf T}}.
-\]
-Its trace is
-\[
-  \tr(P_{\ell})
-  =
-  \frac{\ell\ell^{\mathsf T}}{\ell\ell^{\mathsf T}}
-  =
-  1.
-\]
-Since \(\tr(I_3)=3\), the scalar-determinant-only residual has trace
-\[
-  \tr(I_3-P_{\ell})=3-1=2.
-\]
-Thus the determinant scalar is adequate as a readout of the determinant
-itself, but it does not retain the full three-coordinate height matrix.
+With the full source, $\KLL=\Kdagger=I_3$ and
+$\ell\,I_3\,\ell^{\mathsf T}=\|\ell\|^2=\KDD$, so the residual is $0$.  The
+orthogonal projector onto the line spanned by $\ell\neq0$ is
+$P_\ell=\ell^{\mathsf T}\ell/\|\ell\|^2$, of trace $1$, so
+$\tr(I_3-P_\ell)=2$.
 \end{proof}
 
-\begin{theorem}[Gram matrix is a noninjective shadow (NG-3)]\label{thm:apparatus:gram-matrix-shadow}
-For \(r\geq2\), the Neron--Tate Gram matrix is a noninjective public shadow
-of the rank-\(r\) motivic-cycle source.  The Gram construction records the
-pairings
-\[
-  H_E=(\langle P_i,P_j\rangle_{\mathrm{NT}})_{1\leq i,j\leq r}
-\]
-for a known Mordell--Weil basis, and therefore supplies
-\(\Reg(E/\Q)=\det H_E\).  It does not construct the independent rank-\(r\)
-cycle source: distinct motivic-cycle data, including orientation, motivic
-labels, and Abel--Jacobi provenance, can have the same Gram matrix.  Thus
-the Mordell--Weil height matrix alone cannot be promoted to a rank-\(r\)
-cycle-source carrier.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.HigherRankNoGo.gramMatrixShadow}; see App~\ref{app:formalization}.}
+The determinant is therefore an adequate readout of itself, but it does
+not retain the three-dimensional height matrix.  The next statement goes
+one step further: even the full height matrix does not retain data that a
+cycle-theoretic explanation of the regulator would have to supply.
+
+\begin{theorem}[The Gram matrix forgets provenance data]\label{thm:apparatus:gram-matrix-shadow}
+Fix $E/\Q$ of Mordell--Weil rank $r\ge2$ and a set $\mathcal P$ of
+provenance data with at least two elements (for example, records of which
+cycle construction is claimed to produce each basis class).  Define a
+\emph{cycle-source record} to be a Mordell--Weil basis
+$(P_1,\ldots,P_r)$ of $\Lambda_E$ together with an element of
+$\mathcal P$.
+The map sending a record to its Gram matrix
+$\bigl(\langle P_i,P_j\rangle_{\mathrm{NT}}\bigr)_{i,j}$ is not injective.
+In particular, the Gram matrix, which determines
+$\Reg(E/\Q)=\det(\langle P_i,P_j\rangle_{\mathrm{NT}})$, does not determine
+the provenance data.%
+\footnote{Lean proves a narrower record-model statement: the projection
+from records consisting of an integer Gram identifier and three Boolean
+metadata fields to the identifier is not injective.  It constructs no
+Mordell--Weil bases, height matrices or cycle classes.}
 \end{theorem}
 
 \begin{proof}
-Fix \(r\geq2\).  The Gram construction is a forgetful map.  Its input, if
-one is seeking a motivic-cycle source, contains more than the numerical
-height pairings: it must also specify which independent source classes are
-being realized, their orientation, and their provenance through the relevant
-cycle or Abel--Jacobi construction.  The Gram matrix keeps only the numbers
-\(\langle P_i,P_j\rangle_{\mathrm{NT}}\).
-
-This forgetfulness gives an explicit noninjectivity witness.  Take the same
-Mordell--Weil basis \((P_1,\ldots,P_r)\) and attach two different motivic
-source labels or two different Abel--Jacobi provenance records to the same
-ordered basis.  These are distinct as motivic-cycle data, because the
-source labels or provenance records differ.  Their Neron--Tate pairings are
-identical, since the underlying Mordell--Weil points have not changed.
-Therefore both data sets map to the same matrix
-\[
-  (\langle P_i,P_j\rangle_{\mathrm{NT}})_{i,j}.
-\]
-Equivalently, any height-orthogonal change of representatives that preserves
-all pairings also leaves the Gram matrix unchanged while not supplying the
-missing motivic labels or provenance.
-
-Once a Mordell--Weil basis is known, the Gram matrix does compute the
-regulator: \(\Reg(E/\Q)=\det H_E\).  That is exactly the content used by the
-height/regulator column.  The additional claim needed for a rank-\(r\)
-cycle source is different: it must construct or recognize independent
-motivic classes whose regulator is being measured.  The Gram matrix contains
-no such construction.  The no-go is therefore an audit result about the
-naive route from height matrix to motivic source; it does not rule out BDP~\citep{BertoliniDarmonPrasanna2013},
-Beilinson--Kato, \(K_2(E)\), or higher-Chow constructions imported under
-their own hypotheses.
+Since $r=\rank E(\Q)$, a basis exists.  Fix one and attach to it two
+distinct elements of $\mathcal P$.  The two records are distinct and have
+the same Gram matrix, because the Gram matrix depends only on the
+points.
 \end{proof}
 
-The rank-\(\geq2\) generalized-Gross--Zagier gap is handled in the
-conditional closure of \citet{TsiokosBSDClosure2026}, as a recognition
-source rather than a closed theorem.
-
-% ===========================================================================
+The theorem is deliberately weak: it says only that the height matrix,
+which is a function of the points, cannot certify anything about where
+those points come from.  It does not rule out cycle constructions such as
+those of Bertolini--Darmon--Prasanna~\citep{BertoliniDarmonPrasanna2013},
+Beilinson--Kato, or higher Chow groups, which bring their own input.  In
+the companion paper~\citep{TsiokosBSDClosure2026} the rank-$\ge2$
+leading-term identity enters as a supplied hypothesis, not as a theorem.
