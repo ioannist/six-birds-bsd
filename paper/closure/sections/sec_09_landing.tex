@@ -1,116 +1,102 @@
-\section{The conditional Strong-BSD landing}
+\section{The conditional theorem}
 \label{sec:landing}
 
-We now assemble the closure.  The preceding sections supplied the
-trace shell \(\SelBSD\), the readout-level equivalence between
-\(\rhoE=0\) and the Strong-BSD scalar identity, the applicability of
-the closure master theorem, the non-disposability of the three
-recognition records, the three recognition sources themselves, and the
-headline imported theorem stacks.  The result below is the promised conditional
-landing.
-\Cref{tab:landing-chain,fig:landing-chain-diagram} give the chain before the
-formal statement.
-\input{tables/landing-chain}
+We can now state the main result.  \Cref{fig:landing-chain-diagram}
+shows its logical structure: which hypotheses enter the proof of the
+scalar identity, and which are carried along.
+
 \input{figures/landing-chain-diagram}
 
 \begin{theorem}[Conditional Strong BSD]\label{thm:closure:strong-bsd-conditional}
-Assume the standing closure assumption for \(\SelBSD\): the formed
-object carries its admissibility, anti-tautology, and lawfulness data.
-Assume the three recognition sources of
-Definitions~\ref{def:closure:gamma-padic-descent},
-\ref{def:closure:gamma-sha-persistence}, and
-\ref{def:closure:gamma-higher-gz-fixity}.  Assume also the three
-headline import structures of Definitions~\ref{def:closure:chi-ct-p-import},
-\ref{def:closure:a-e-import}, and
-\ref{def:closure:beilinson-import}.  Then the Strong-BSD scalar
-identity holds for \(E/\Q\):
+Let $\SelBSD$ be a shell with curve $E$ and analytic rank $r$, and let
+$C$ be its closure operator.  Assume:
+\begin{enumerate}
+\item the recognition predicate $\PiBSD(E)$
+  (\Cref{def:closure:pi-bsd});
+\item the Cassels--Tate input $\chiCTp$ at $E$ and some prime $p$, and the
+  Selmer-complex pairing input $\AofE$ at $E$
+  (\Cref{def:closure:chi-ct-p-import,def:closure:a-e-import});
+\item if $r\ge2$, the archimedean comparison input at $E$, of rank $r$
+  (\Cref{def:closure:beilinson-import}).
+\end{enumerate}
+Then
 \[
   \frac{L^{(r)}(E,1)}{r!}
   =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {\#E(\Q)_{\tors}^{\,2}},
 \]
-Outside the framework, this is exactly the conditional theorem
-\[
-  \begin{aligned}
-  &\SelBSD\text{-closure}
-    \wedge\ \GammaPD \wedge \GammaSP \wedge \GammaGZ\\
-  &\quad{}\wedge\ \chiCTp\text{-imports}
-    \wedge\ \AofE\text{-imports}\\
-  &\quad{}\wedge\ \text{Beilinson-rank-}{\geq}2\text{-imports}\\
-  &\Longrightarrow \mathrm{Strong\ BSD},
-  \end{aligned}
-\]
-not an unconditional proof of BSD.\footnote{\raggedright Tracked in the
-formalization harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Landing.\allowbreak strongBSDConditional}
--- a checked projection over an explicit proof-carrying record whose
-hypotheses are the recognition sources and headline imports (a genuine
-implication chain through the shell-readout theorems), not an
-independent Lean derivation. See App~\ref{app:formalization}.}
+equivalently $\rhoE=0$, and the asserted components of the inputs in
+(2) and (3) hold.%
+\footnote{The formalization records this theorem as a conditional
+schema, because it returns the components of the inputs in (2) and (3)
+by projection.  Its scalar conclusion, however, is derived: Lean proves
+it from items (3) and (4) of $\PiBSD(E)$ by the algebra in the proof
+below.  A compiled dependency check confirms that the two declarations
+isolating this algebra depend on no other declaration of the project,
+and that neither the derivation from $\PiBSD(E)$ nor the full theorem
+depends on \Cref{thm:closure:chi-ct-p-comparison},
+\Cref{thm:closure:oc-eta-formula}, \Cref{thm:closure:composite-signature},
+the statements of \Cref{sec:aor-instance}, or the supplied applicability,
+computability, falsifiability and ablation fields of the shell.}
 \end{theorem}
 
 \begin{proof}
-We follow the shell-readout chain.  By
-\Cref{thm:closure:master-theorem-applicability}, the three recognition
-sources are correctly instantiated on \(\SelBSD\), exhaust the scalar
-factors of the residual \(\rhoE\), and pass the no-smuggling audit.
-Thus the closure master theorem applies to the shell and gives
+If $r\in\{0,1\}$, item (4) of $\PiBSD(E)$ is the identity $L^*=R_E$.
+If $r\ge2$, item (3) supplies a $\GammaGZ$ record whose factors are those
+of the shell and whose constant is $\kapr=\#\Sha/d$, with $d$ the squared
+torsion order.  Its hypothesis $\psi_-(E,r)=0$ says
+$L^*-\kapr\Reg\,\Omega\,\Tam=0$, hence $L^*=\kapr\Reg\,\Omega\,\Tam$ by the
+first law of the shell.  Substituting $\kapr=\#\Sha/d$ and applying the
+second law $(a/d)\cdot b=(a\cdot b)/d$ three times gives
 \[
-  \rhoE=0.
+  L^*
+  =\Bigl(\frac{\#\Sha}{d}\Bigr)\Reg\,\Omega\,\Tam
+  =\frac{\#\Sha\,\Reg\,\Omega\,\Tam}{d}
+  =R_E .
 \]
-Let us spell out the factor accounting.  The higher-rank fixity source
-\(\GammaGZ\) supplies the assertion \(\psi_-(E,r)=0\).  By the
-\(\kapr\) normalization of \citet{TsiokosBSDApparatus2026},
-\[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2},
-\]
-so the product
-\(\kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)\) is the
-rank-\(r\) arithmetic part of \(\rhoE\), with \(\Tam(E)=\prod_v c_v(E)\).
-The \(p\)-adic descent source \(\GammaPD\) supplies the local
-\(p\)-adic/Tamagawa factor; the Cassels--Tate and Selmer-complex
-imports support the comparison of that local factor with the
-Cassels--Tate/Selmer-complex side.  The signed-Selmer persistence
-source \(\GammaSP\) supplies the \(\Sha\)-persistence factor.  The
-Beilinson import supplies the rank-\(\geq 2\) archimedean
-determinant/\(L\)-value identification.  Together these are exactly
-the scalar factors of \(\rhoE\), so the master-theorem conclusion is
-the vanishing of the residual.
-
-Now apply the readout-level equivalence
-\Cref{thm:closure:pi-bsd-iff-strong-bsd}.  Since \(\rhoE\) is defined as
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  -
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2},
-\]
-the equality \(\rhoE=0\) is precisely the displayed Strong-BSD scalar
-identity.  Hence the identity follows.
-
-Finally, \Cref{thm:closure:composite-signature} records the
-anti-tautology check: the composite readout genuinely consumes all
-three recognition sources.  Removing \(\GammaPD\) leaves the local
-\(p\)-adic/Tamagawa factor undetermined; removing \(\GammaSP\) leaves
-the \(\Sha\)-persistence factor undetermined; removing \(\GammaGZ\)
-leaves the regulator/fixity factor undetermined.  Thus the conclusion
-is not a tautological restatement of Strong BSD.  Under the stated
-closure assumption, recognition sources, and imported stacks, the
-Strong-BSD scalar identity holds.
+In both cases $\rhoE=0$ by \Cref{thm:closure:pi-bsd-iff-strong-bsd}.  The
+remaining assertions are components of the inputs.
 \end{proof}
 
-\begin{nonclaim}\label{nonclaim:closure:landing-conditional}
-This is not an unconditional classical proof of BSD, scalar or strong.
-The result is theorem-grade within the Six Birds closure discipline,
-conditional on the standing shell-closure record, the named recognition
-sources, and the headline imported theorem stacks; outside the framework it
-is the conditional implication
-displayed in the theorem above.  The rank-\(\geq 2\) generalized
-Gross--Zagier identity and the additive \(p\leq 3\) Iwasawa main
-conjecture remain genuinely open in the literature.
-\end{nonclaim}
+Three comments make the content of the theorem precise.
 
-% ===========================================================================
+\emph{What the proof uses.}  The scalar conclusion is derived from the
+rank-split part of $\PiBSD(E)$ alone.  The local hypotheses $\GammaPD$
+and $\GammaSP$ and the comparison inputs are hypotheses of the theorem,
+because they belong to the arithmetic setting in which the recognition
+predicate is meant, but the scalar identity does not depend on them.
+
+\emph{How strong the hypothesis is.}  The rank-split scalar premise
+contains the identity in rank $0$ and $1$, and expresses it through
+normalized fixity in rank at least $2$: $\GammaGZ$ with the normalization
+$\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}$ is the identity rewritten.  The
+remaining hypotheses supply additional records, which the identity does
+not reconstruct.  The theorem is therefore not an independent derivation of
+Strong BSD from weaker arithmetic statements, and it is not a statement
+about minimal hypotheses.  Its content is the exact translation: the
+identity is equivalent to the vanishing of $\rhoE$
+(\Cref{thm:closure:pi-bsd-iff-strong-bsd}) and, when the scalars form a
+field with $2\neq0$, to the fixedness of $x_E$ under the averaging closure
+(\Cref{thm:closure:scalar-closure-translation}),
+and it follows from the recognition predicate by explicit algebra, with
+every arithmetic input named and scoped.
+
+\emph{That the hypotheses are consistent and not vacuous.}  The theorem
+has been instantiated on shells with scalars in $\Q$, a label in place of
+a curve, all factors equal to $1$, and rank $0$ or $2$.  With leading
+coefficient $1$, all hypotheses hold and the conclusion follows; in rank
+$0$ no archimedean input is required, and none can be supplied.  With
+leading coefficient $2$ and everything else unchanged, the recognition
+predicate fails, since it would force $2=1$.  These are formal checks of
+the statement, not examples of elliptic curves.
+
+\begin{nonclaim}\label{nonclaim:closure:landing-conditional}
+This is not a proof of the Birch--Swinnerton-Dyer conjecture, in its weak
+or strong form, for any curve.  The theorem derives the Strong BSD
+identity for $E$ from hypotheses whose scalar part contains it in rank at
+most one and expresses it through normalized fixity in rank at least two.
+We know of no theorem supplying the leading-term identity in rank at
+least two, or the main conjectures at additive primes $2$ and $3$
+(\Cref{rmk:closure:t-e12-gap,rmk:closure:t-bad-gap}).
+\end{nonclaim}
