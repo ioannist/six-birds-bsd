@@ -1,299 +1,166 @@
-\section{Vsrc: Non-Descending Translation calibration}
+\section{A formal source algebra in rank two}
 \label{sec:vsrc}
 
-The \(\vsrc\) calibration isolates the determinant-shaped source content
-that is visible before any descent to actual motivic cycles is supplied.
-In rank \(2\) it is the exterior algebra on two formal source symbols:
-the product \(\Jone\Jtwo\) records independence, while the relations
-\(\Jone^2=\Jtwo^2=0\) and \(\Jtwo\Jone=-\Jone\Jtwo\) make the construction
-alternating rather than Clifford-like.
+The rank-two discussion of \Cref{sec:higher-rank-no-go} suggests separating
+two questions: what algebraic shape a rank-$r$ source should have, and
+whether actual cycle classes realize that shape.  This section treats the
+first question with the simplest possible device, the exterior algebra on
+$r$ formal symbols.  The top product $J_1\cdots J_r$ plays the role of a
+determinant: it is nonzero exactly when the symbols are independent.  We
+call this algebra the \emph{virtual source algebra} $\vsrc_r$; the word
+``virtual'' signals that the symbols are not, by themselves, cycle classes.
 
 \begin{definition}[Virtual source algebra]\label{def:apparatus:vsrc-algebra}
-For an elliptic curve \(E/\Q\) whose source problem is considered in rank
-\(2\), let
-\[
-  V_2=\Q\Jone\oplus\Q\Jtwo.
-\]
-The virtual source algebra is
-\[
-  \vsrc_2(E)=\Lambda_{\Q}(V_2),
-\]
-with unit \(1\) and ordered basis
-\[
-  1,\qquad \Jone,\qquad \Jtwo,\qquad \Jtwelve:=\Jone\Jtwo.
-\]
-Its multiplication is the exterior product, so
+Let $V_r=\Q J_1\oplus\cdots\oplus\Q J_r$ and $\vsrc_r=\Lambda_{\Q}(V_r)$,
+the exterior algebra.  In rank $2$ it has ordered basis
+$1,\ \Jone,\ \Jtwo,\ \Jtwelve:=\Jone\Jtwo$ and relations
 \[
   \Jone^2=0,\qquad \Jtwo^2=0,\qquad
   \Jone\Jtwo=\Jtwelve,\qquad
   \Jtwo\Jone=-\Jtwelve.
 \]
-The symbols \(\Jone\) and \(\Jtwo\) are non-descending virtual independent
-source classes; the element \(\Jtwelve\) is their determinant-shaped
-independence witness.\footnote{Realized in Lean as
-\texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcAlgebra} over a narrowed
-representation: the rank-2 exterior-algebra relations are encoded
-structurally on the \(2^r\) coordinate space (dimension/calibration content
-faithful; full axiomatization not claimed). See App~\ref{app:formalization}.}
+The element $\Jtwelve$ is the determinant-shaped witness of independence
+of $\Jone$ and $\Jtwo$.%
+\footnote{Lean constructs the rank-two multiplication table on integer
+coordinates and proves associativity, the unit laws and additive and
+scalar bilinearity.  Rational coefficients, other ranks and the dimension
+count are treated here on paper.}
 \end{definition}
 
-\Cref{fig:vsrc-wedge} displays the rank-\(2\) exterior product used in the
-definition.  The diagram is only the finite structural calibration; it is not a
-descent to motivic cycles.
+\Cref{fig:vsrc-wedge} displays the rank-two algebra.
 \input{figures/vsrc-wedge}
 
-\begin{theorem}[Stage I consistency]\label{thm:apparatus:vsrc-stage-i-consistency}
-The rank-\(2\) virtual source algebra is a consistent finite-dimensional
-associative unital graded-commutative \(\Q\)-algebra.  Every element has a
-unique ordered normal form
-\[
-  a_{\varnothing}\,1+a_1\Jone+a_2\Jtwo+a_{12}\Jtwelve,
-  \qquad a_{\varnothing},a_1,a_2,a_{12}\in\Q,
-\]
-and therefore
-\[
-  \dim_{\Q}\vsrc_2(E)=4=2^2.
-\]
-The low-rank cases are preserved: \(\vsrc_0(E)=\Q\), and
-\(\vsrc_1(E)=\Q\oplus \Q J_1\) with \(J_1^2=0\).  Under the usual
-Gross--Zagier hypotheses, the rank-\(1\) symbol is the one that later
-descends to the Heegner point \(P_K\).\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcStageIConsistency} over the narrowed
-\(2^r\)-coordinate representation (structural encoding; full axiomatization
-not claimed). See App~\ref{app:formalization}.}
+\begin{theorem}[Stage I: consistency]\label{thm:apparatus:vsrc-stage-i-consistency}
+$\vsrc_2$ is an associative, unital, graded-commutative $\Q$-algebra.
+Every element has a unique normal form
+$a_{\varnothing}1+a_1\Jone+a_2\Jtwo+a_{12}\Jtwelve$ with $a_\bullet\in\Q$,
+so $\dim_{\Q}\vsrc_2=4$.  In lower rank, $\vsrc_0=\Q$ and
+$\vsrc_1=\Q\oplus\Q J_1$ with $J_1^2=0$.%
+\footnote{Lean proves the unit laws, the four relations and the
+distinctness of the basis symbols for the integer-coordinate model, and
+records the numbers $2^0,2^1,2^2$; it does not prove the dimension
+statement over $\Q$.}
 \end{theorem}
 
 \begin{proof}
-Construct the algebra on the \(\Q\)-vector space with basis indexed by the
-subsets of \(\{1,2\}\).  The empty subset gives the basis vector \(1\), the
-singletons give \(\Jone\) and \(\Jtwo\), and the full subset gives the
-ordered product \(\Jtwelve=\Jone\Jtwo\).  On basis elements define the
-product as follows.  If two subsets meet, their product is \(0\).  If they
-are disjoint, their product is the basis element of the union, multiplied
-by the sign needed to move the concatenated list into increasing order.
-Extend this rule \(\Q\)-bilinearly.
-
-This rule immediately gives the displayed rank-\(2\) multiplication table:
-\[
-  \Jone^2=0,\qquad \Jtwo^2=0,
-\]
-because each singleton meets itself, and
-\[
-  \Jone\Jtwo=\Jtwelve,\qquad
-  \Jtwo\Jone=-\Jtwelve,
-\]
-because reversing the two singleton factors introduces one transposition.
-The empty subset is a two-sided unit, since adjoining the empty list changes
-neither the union nor the sign.
-
-Associativity may be checked on basis vectors and then extended by
-bilinearity.  If any index is repeated among three basis factors, both
-parenthesizations are zero: at the step where the repeated index is
-multiplied into a factor already containing it, the intersection is
-nonempty.  If all indices appearing in the three factors are distinct, then
-both parenthesizations produce the basis vector of the same union.  The
-sign in each case is the parity of the same permutation that orders the
-three concatenated lists; splitting the multiplication into two stages only
-splits the inversion count into two summands.  Thus the signs agree, and
-the product is associative.
-
-The graded-commutativity is the same sign rule: moving a homogeneous basis
-monomial of degree \(a\) past one of degree \(b\) contributes
-\((-1)^{ab}\), and an overlap gives zero on both sides.  Hence the algebra
-is associative, unital, and graded-commutative.
-
-Finally, the four subset-indexed basis vectors are linearly independent by
-construction, so every element has the unique normal form
-\[
-  a_{\varnothing}\,1+a_1\Jone+a_2\Jtwo+a_{12}\Jtwelve.
-\]
-There are \(2^2=4\) subsets of \(\{1,2\}\), giving dimension \(4\).  The
-same subset construction in rank \(0\) has only the empty subset and gives
-\(\Q\); in rank \(1\) it has the two subsets \(\varnothing\) and
-\(\{1\}\), giving \(\Q\oplus\Q J_1\) with \(J_1^2=0\).  This proves the
-Stage-I consistency assertions.
+Take the $\Q$-vector space with basis indexed by the subsets of
+$\{1,2\}$.  Define the product of two basis vectors to be $0$ if the
+subsets meet, and otherwise to be the basis vector of the union times the
+sign of the permutation that sorts the concatenated index list; extend
+bilinearly.  This gives the displayed relations, and the empty subset is a
+unit.  Associativity holds on basis vectors because both
+parenthesizations vanish when an index repeats, and otherwise both
+produce the same union with the sign of the same sorting permutation.
+Moving a degree-$a$ monomial past a degree-$b$ monomial costs
+$(-1)^{ab}$, which is graded commutativity.  The four subsets give a basis,
+so the dimension is $4$; the same construction with $\{1\}$ or
+$\varnothing$ gives $\vsrc_1$ and $\vsrc_0$.
 \end{proof}
 
-\begin{remark}[No licensed rank-$r$ descent (support only; ledger predicate)]\label{rmk:apparatus:vsrc-no-licensed-descent}
-For \(r\geq2\), the inherited audit records do not license a descent
+\begin{remark}[No rank-$r$ realization is supplied here]\label{rmk:apparatus:vsrc-no-licensed-descent}
+For $r\ge2$, nothing in this paper provides a map
 \[
-  \vsrc_r(E)\longrightarrow \mathrm{CH}^*(\mathcal X)_{\Q}
+  \vsrc_r(E)\longrightarrow \mathrm{CH}^*(\mathcal X)_{\Q},
 \]
-or a descent to a Selmer or Mordell--Weil carrier that realizes all symbols
-\(J_i\) as independent motivic classes.  This is a statement about the
-recorded inputs: the Gram-matrix no-go leaves motivic labels and provenance
-unconstructed; the Kato Euler-system~\citep{Kato2004} audit does not supply \(r\) independent
-source classes; and the BDP~\citep{BertoliniDarmonPrasanna2013} generalized-Heegner audit records motivic
-provenance without a two-class closure for \(389a1\).  The remark is a
-support-only ledger observation, not a mathematical non-existence claim
-about possible future or externally supplied descents.
+or into a Selmer or Mordell--Weil group, that realizes $J_1,\ldots,J_r$ as
+independent cycle classes.  The Gram-matrix statement
+\Cref{thm:apparatus:gram-matrix-shadow} shows that heights alone do not
+supply such provenance.  Constructions of cycle classes with arithmetic
+meaning, such as Kato's Euler system~\citep{Kato2004} and generalized
+Heegner cycles~\citep{BertoliniDarmonPrasanna2013}, come with their own
+hypotheses; we do not use them, and we make no claim about whether they
+realize $\vsrc_r$ for a given curve.
 \end{remark}
 
-\begin{theorem}[Stage II Gross--Zagier partial descent]\label{thm:apparatus:vsrc-stage-ii-gz-partial}
-In rank \(1\), the \(\vsrc_1\) calculus recovers the Gross--Zagier~\citep{GrossZagier1986,Kolyvagin1990}
-source/regulator side under the usual Heegner hypotheses.  If
-\[
-  r_{\mathrm{GZ}}(J_1)=P_K
-\]
-and the virtual height form is sent to the Neron--Tate height pairing, then
-\[
-  h_{\vsrc}(J_1,J_1)
-  \longmapsto
-  \langle P_K,P_K\rangle_{\mathrm{NT}},
-  \qquad
-  \Reg=\langle P_K,P_K\rangle_{\mathrm{NT}}.
-\]
-The same symbolic descent does not recover the full Gross--Zagier identity
-\[
-  \frac{L'(E/K,1)}{\Omega_{E,K}}
-  =
-  c(E,K)\,\langle P_K,P_K\rangle_{\mathrm{NT}}
-\]
-unless the analytic-height theorem is supplied separately.  Thus the strict
-descent residual is the named analytic-height import
-\[
-  \Xi_{\mathrm{GZ}}
-  =
-  E_{\mathrm{analytic\text{-}height\text{-}import}}
-  \neq 0
-\]
-relative to the source/regulator calculus alone.\footnote{Verified in Lean
-as \texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIGzPartial}; see App~\ref{app:formalization}.}
+In rank $1$ the situation is classical.  Under the Gross--Zagier
+hypotheses~\citep{GrossZagier1986,Kolyvagin1990} for an imaginary
+quadratic field $K$, there is a Heegner point $P_K\in E(K)$, and one can
+send $J_1$ to $P_K$.
+
+\begin{theorem}[Stage II: rank one]\label{thm:apparatus:vsrc-stage-ii-gz-partial}
+Send $J_1\mapsto P_K$ and the formal height $h_{\vsrc}(J_1,J_1)$ to the
+N\'eron--Tate height $\langle P_K,P_K\rangle_{\mathrm{NT}}$.
+\begin{enumerate}
+\item The $1\times1$ Gram determinant of the image source is
+  $\langle P_K,P_K\rangle_{\mathrm{NT}}$.  If $P_K$ has infinite order and
+  $E(K)$ has rank $1$, this equals $[\Lambda:\Z P_K]^2\Reg(E/K)$, where
+  $\Lambda=E(K)/E(K)_{\tors}$ and $[\Lambda:\Z P_K]$ is the index of the
+  image of $\Z P_K$.
+\item The Gross--Zagier identity relating $L'(E/K,1)$ to
+  $\langle P_K,P_K\rangle_{\mathrm{NT}}$ is not determined by these
+  symbolic data: two formal data sets can share $P_K$ and
+  $\langle P_K,P_K\rangle_{\mathrm{NT}}$ while having different analytic
+  quotients.  Relative to the symbolic calculus the analytic identity is an
+  additional input, which we record by a nonzero residual
+  $\Xi_{\mathrm{GZ}}$.\footnote{Lean checks the symbolic assignments $J_1\mapsto P_K$ and
+$h_{\vsrc}(J_1,J_1)\mapsto$ (N\'eron--Tate height), and records the
+declared residual value $\Xi_{\mathrm{GZ}}=1$; it constructs neither the
+Heegner point nor any height.}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-The rank-\(1\) algebra is
-\[
-  \vsrc_1(E)=\Q\oplus\Q J_1,\qquad J_1^2=0.
-\]
-Under the Gross--Zagier hypotheses one has a Heegner point \(P_K\).  Define
-the rank-\(1\) descent on the source generator by
-\[
-  r_{\mathrm{GZ}}(J_1)=P_K
-\]
-and send the virtual height form to the Neron--Tate height form.  Then the
-unique nontrivial regulator entry in rank \(1\) is carried to
-\[
-  h_{\vsrc}(J_1,J_1)
-  \mapsto
-  \langle P_K,P_K\rangle_{\mathrm{NT}}.
-\]
-For a rank-\(1\) Mordell--Weil lattice, the regulator is exactly the
-\(1\times1\) determinant of this height matrix, hence
-\[
-  \Reg=\langle P_K,P_K\rangle_{\mathrm{NT}}.
-\]
-This proves the source/regulator part.
-
-The full Gross--Zagier formula contains additional analytic information:
-the leading derivative \(L'(E/K,1)\), the period \(\Omega_{E,K}\), and the
-normalizing factor \(c(E,K)\).  These quantities do not appear in the
-rank-\(1\) exterior algebra or in the descent of \(J_1\) to \(P_K\).  Indeed,
-two formal data sets can have the same \(P_K\) and the same
-\(\langle P_K,P_K\rangle_{\mathrm{NT}}\) while assigning different analytic
-leading quotients \(L'(E/K,1)/\Omega_{E,K}\).  The symbolic descent therefore
-cannot determine the displayed analytic-height identity.  The missing
-assertion is precisely the external analytic-height theorem, recorded here
-as the residual
-\[
-  E_{\mathrm{analytic\text{-}height\text{-}import}}.
-\]
-Thus Stage II recovers the Gross--Zagier source/regulator side, but strict
-descent to the full identity requires that separate theorem.
+(1) The Gram determinant of a single vector is its height.  If $Q$
+generates $\Lambda$ and $P_K\equiv mQ$ modulo torsion, then
+$\langle P_K,P_K\rangle_{\mathrm{NT}}=m^2\langle Q,Q\rangle_{\mathrm{NT}}
+=m^2\Reg(E/K)$ with $m=[\Lambda:\Z P_K]$.  (2) The symbolic data contain
+neither $L'(E/K,1)$ nor the period, so they cannot constrain the analytic
+side; the identity is the content of the Gross--Zagier theorem.
 \end{proof}
 
-\begin{theorem}[Stage III translation (389a1)]\label{thm:apparatus:vsrc-stage-iii-translation}
-For \(389a1\), take the rank-\(2\) algebra
+In rank $2$ the corresponding statement is a one-way translation.  For
+$389a1$ the Tamagawa product and the torsion order are $1$; we write
 \[
-  \vsrc_2(E)=\Q\oplus\Q\Jone\oplus\Q\Jtwo\oplus\Q\Jtwelve,
-  \qquad
-  \Jone\Jtwo=\Jtwelve.
+  \Xi_{\mathrm{Sc}}
+  =A_E-\Omega_E^+\,\Reg(E/\Q)\,\#\Sha(E/\Q)
 \]
-Since the finite factors for this calibration satisfy
-\[
-  \prod c_v=\#\Sha=|E_{\tors}|=1,
-\]
-the scalar residual is
-\[
-  \Xi_{\mathrm{Sc}}=0
-  \quad\Longleftrightarrow\quad
-  A_{\mathrm{lead}}=\Omega_E^+\,\Reg(E/\Q).
-\]
-The motivic residual \(\Xi_{\mathrm{Mot}}\) vanishes exactly when there is a
-rank-\(2\) realization
-\[
-  (r_2,z_{12},\mathcal B_{\mathrm{an\text{-}ht}}^{(2)})
-\]
-with
-\[
-  z_{12}=r_2(\Jtwelve)\neq0
-\]
-and with \(\mathcal B_{\mathrm{an\text{-}ht}}^{(2)}\) identifying the
-rank-\(2\) analytic leading term with the height/regulator determinant of
-that wedge source.  Under this bridge,
-\[
-  \Xi_{\mathrm{Mot}}=0\quad\Longrightarrow\quad \Xi_{\mathrm{Sc}}=0.
-\]
-The reverse implication is not established by the inherited records: the
-scalar equality does not construct \(z_{12}\), does not certify its
-independence, and therefore requires the named external content
-\(\mathcal R_{\mathrm{BSD}\to\mathrm{mot}}^{(2)}\).\footnote{Verified in
-Lean as \texttt{SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIITranslation}; see
-App~\ref{app:formalization}.}
+for the scalar BSD residual, assuming $\Sha(E/\Q)$ finite, which is not
+known for this curve.  A \emph{rank-two realization} consists of a
+$\Q$-vector space $W$ of classes (for instance cycle classes modulo
+homological equivalence), a linear map $f:V_2\to W$, a symmetric
+bilinear height pairing on $W$, and a bridge
+$\mathcal B^{(2)}_{\mathrm{an\text{-}ht}}$ identifying $A_E$ with
+$\Omega_E^+\#\Sha$ times the Gram determinant of $(f(\Jone),f(\Jtwo))$
+for that pairing.  Put $r_2=\Lambda f:\vsrc_2\to\Lambda_{\Q}(W)$; then
+$z_{12}=r_2(\Jtwelve)=f(\Jone)\wedge f(\Jtwo)$, and $z_{12}\neq0$ exactly
+when $f(\Jone),f(\Jtwo)$ are linearly independent.  Let
+$\Xi_{\mathrm{Mot}}$ be a \emph{motivic residual}, which by definition
+vanishes exactly when a rank-two realization with $z_{12}\neq0$ is given.
+All of these data are supplied; none is constructed here.
+
+\begin{theorem}[Stage III: one-way translation for $389a1$]\label{thm:apparatus:vsrc-stage-iii-translation}
+For the fixed pair $(\Xi_{\mathrm{Mot}},\Xi_{\mathrm{Sc}})$ just defined,
+suppose given the analytic--height bridge in the form of the implication
+$\Xi_{\mathrm{Mot}}=0\Rightarrow\Xi_{\mathrm{Sc}}=0$.  Then a rank-two
+realization yields the scalar identity
+$A_E=\Omega_E^+\Reg(E/\Q)\#\Sha(E/\Q)$.  The reverse implication
+$\Xi_{\mathrm{Sc}}=0\Rightarrow\Xi_{\mathrm{Mot}}=0$ is not provided by
+the scalar data; it holds only if supplied as separate content.%
+\footnote{The formalization records this as a conditional schema: for a
+fixed pair of residuals, the forward implication is projected from the
+supplied bridge, and the reverse from supplied external content.  Lean
+does not construct a realization or a bridge.}
 \end{theorem}
 
 \begin{proof}
-Assume first that \(\Xi_{\mathrm{Mot}}=0\).  By the stated meaning of the
-motivic residual, this gives a realization \(r_2\), a nonzero wedge source
-\[
-  z_{12}=r_2(\Jtwelve),
-\]
-and a rank-\(2\) analytic-height bridge
-\(\mathcal B_{\mathrm{an\text{-}ht}}^{(2)}\).  The bridge identifies the
-analytic leading coefficient attached to the rank-\(2\) source with the
-height determinant of that source.  For the fixed \(389a1\) calibration, the
-finite correction factors are all \(1\):
-\[
-  \prod c_v=\#\Sha=|E_{\tors}|=1.
-\]
-Thus the bridge gives exactly
-\[
-  A_{\mathrm{lead}}=\Omega_E^+\,\Reg(E/\Q),
-\]
-which is the condition \(\Xi_{\mathrm{Sc}}=0\).  This proves the forward
-translation.
-
-Now suppose only that \(\Xi_{\mathrm{Sc}}=0\).  This is the scalar equality
-\[
-  A_{\mathrm{lead}}=\Omega_E^+\,\Reg(E/\Q).
-\]
-It is an equality of numerical determinant readouts.  It contains no choice
-of realization map \(r_2\), no element \(z_{12}\), and no certificate that a
-nonzero image of \(\Jtwelve\) is an independent motivic wedge source.  The
-Gram-matrix shadow obstruction from the higher-rank no-go is exactly this
-loss of source data: the regulator can be known without constructing the
-rank-\(2\) motivic source whose regulator it would measure.  Therefore the
-reverse implication is not supplied by the scalar equality.  It would
-require the separate recognition content
-\[
-  \mathcal R_{\mathrm{BSD}\to\mathrm{mot}}^{(2)}
-\]
-together with the corresponding bridge and independence certificate.  The
-statement is consequently a one-way translation, not a converse failure.
+The forward statement is the supplied implication.  No reverse construction of a realization or
+of an independence certificate from the scalar equality is supplied
+here.  (\Cref{thm:apparatus:gram-matrix-shadow} establishes only that
+provenance data cannot be recovered from the Gram matrix in its record
+model; it does not exclude a separately defined construction.)
 \end{proof}
 
-\begin{remark}[Rank-$r$ stronger-than-scalar reading (support only)]\label{rmk:apparatus:vsrc-rank-r-stronger}
-The one-way Stage-III translation exposes a structural asymmetry: the scalar
-leading-coefficient formula records a determinant value, while the rank-\(r\)
-source statement also asks for the existence and independence of the wedge
-class
-\[
-  J_1\wedge\cdots\wedge J_r.
-\]
-In that sense, the rank-\(r\) source reading carries more information than
-the scalar equality.  This is a support-only interpretation of the
-Stage-III asymmetry, not an independently proven meta-theorem that scalar
-BSD is strictly weaker in every external theory.
+The statement must be read for the fixed pair.  A universal version,
+asserting $\Xi_{\mathrm{Mot}}=0\Rightarrow\Xi_{\mathrm{Sc}}=0$ for all
+values of the two residuals, would be false, for instance at
+$(\Xi_{\mathrm{Mot}},\Xi_{\mathrm{Sc}})=(0,1)$.
+
+\begin{remark}[The source reading carries more data]\label{rmk:apparatus:vsrc-rank-r-stronger}
+The scalar leading-coefficient formula records a number.  A rank-$r$
+source statement in the sense above also asks for a nonzero independent
+wedge $J_1\wedge\cdots\wedge J_r$ realized by actual classes.  In this
+sense the source reading carries more data than the scalar equality.  We
+do not claim a general theorem that scalar BSD is strictly weaker than any
+such source statement; the comparison above is for the fixed pair and the
+supplied bridge.
 \end{remark}
-
-% ===========================================================================

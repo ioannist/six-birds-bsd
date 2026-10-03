@@ -2,26 +2,26 @@
 \centering
 \begin{tikzpicture}[
   font=\small,
-  node/.style={draw, rounded corners=2pt, align=center, minimum width=1.6cm,
-    minimum height=0.8cm, fill=black!3},
+  node/.style={draw, rounded corners=2pt, align=center, minimum width=1.5cm,
+    minimum height=0.75cm, fill=black!3},
   arrow/.style={-{Latex[length=2mm]}, thick}
 ]
-\node[node] (one) at (0,2.2) {\(1\)};
-\node[node] (j1) at (-2.2,0.7) {\(\Jone\)};
-\node[node] (j2) at (2.2,0.7) {\(\Jtwo\)};
-\node[node] (j12) at (0,-1.1) {\(\Jtwelve\)};
-
-\draw[arrow] (j1) -- node[above, sloped] {\(\wedge\,\Jtwo\)} (j12);
-\draw[arrow] (j2) -- node[above, sloped] {\(\wedge\,\Jone=-\)} (j12);
-\draw[arrow] (one) -- node[left] {\(\wedge\,\Jone\)} (j1);
-\draw[arrow] (one) -- node[right] {\(\wedge\,\Jtwo\)} (j2);
-\draw[loop left, looseness=6, -{Latex[length=2mm]}] (j1) to node[left]
-  {\(\Jone^2=0\)} (j1);
-\draw[loop right, looseness=6, -{Latex[length=2mm]}] (j2) to node[right]
-  {\(\Jtwo^2=0\)} (j2);
-\node[align=center, font=\footnotesize] at (0,-2.25)
-  {\(\dim_{\Q}\vsrc_2=4\), with \(\Jone\Jtwo=\Jtwelve\) the determinant-shaped witness};
+\node[node] (one) at (0,0) {\(1\)};
+\node[node] (j1) at (-2.4,1.5) {\(\Jone\)};
+\node[node] (j2) at (2.4,1.5) {\(\Jtwo\)};
+\node[node] (j12) at (0,3.0) {\(\Jtwelve\)};
+\draw[arrow] (one) -- node[below left] {\(\Jone\cdot\)} (j1);
+\draw[arrow] (one) -- node[below right] {\(\Jtwo\cdot\)} (j2);
+\draw[arrow] (j1) -- node[above left] {\(\cdot\,\Jtwo\)} (j12);
+\draw[arrow] (j2) -- node[above right] {\(\cdot\,\Jone\ \text{(sign }-1)\)} (j12);
+\node[align=left, font=\footnotesize, anchor=west] at (4.3,1.5)
+  {\(\Jone^2=\Jtwo^2=0\)\\[2pt]
+   \(\Jone\Jtwo=\Jtwelve=-\Jtwo\Jone\)\\[2pt]
+   \(\dim_{\Q}\vsrc_2=4\)};
 \end{tikzpicture}
-\caption{The rank-\(2\) \(\vsrc\) exterior-algebra calibration.}
+\caption{The rank-two virtual source algebra \(\vsrc_2=\Lambda_{\Q}(\Q\Jone\oplus\Q\Jtwo)\).
+Basis elements correspond to subsets of \(\{1,2\}\); multiplication by a
+symbol moves up one level, and the top element \(\Jtwelve\) records the
+independence of the two symbols.}
 \label{fig:vsrc-wedge}
 \end{figure}
