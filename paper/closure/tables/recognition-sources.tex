@@ -1,27 +1,28 @@
 \begin{table}[tbp]
 \centering
 \footnotesize
-\caption{The three recognition sources consumed by the conditional landing.}
+\caption{The three recognition hypotheses.  The last column records
+whether the scalar argument of \Cref{thm:closure:strong-bsd-conditional}
+uses the hypothesis.}
 \label{tab:recognition-sources}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}
->{\raggedright\arraybackslash}p{0.16\textwidth}
->{\raggedright\arraybackslash}p{0.34\textwidth}
->{\raggedright\arraybackslash}p{0.15\textwidth}
->{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
 \toprule
-Source & Mode-B residual & Arithmetic content & Foundations-IV & Stage-6 \\
+Hypothesis & Scope & Content & Used for scalar BSD \\
 \midrule
-\(\GammaPD\) & \(D_3'''\) & Odd-additive-prime \(p\)-adic descent congruence
-with the Tamagawa correction \(c_p(E)^{-1}\) and a route unit
-\(\varepsilon_p(E,L)\). & F2/F3/F4 & FP \(\to\) (ii) \\
+\(\GammaPD\) & odd prime \(p\), additive type II or III, \(c_p\in\{1,2\}\),
+\(\Sha[p^\infty]=0\), tame \(L/\Qp\) giving good reduction & descent congruence
+modulo \(\Zp^\times\) with factor \(c_p^{-1}\) and a unit; a local factor
+matched with \(\Tam(E)\) & no \\
 \addlinespace
-\(\GammaSP\) & \(D_2'''\) & Signed-Selmer cover-change determinant persists
-as the local component factor \(c_p(E)\) modulo \(\Zp^\times\). &
-F19/F21/F29 & SAU \(\to\) (iii) \\
+\(\GammaSP\) & prime \(p\) of additive reduction in the signed scope, tame \(L/\Qp\) giving good reduction & signed corestriction determinant \(\equiv c_p\)
+modulo \(\Zp^\times\); a factor matched with \(\#\Sha(E/\Q)\) & no \\
 \addlinespace
-\(\GammaGZ\) & \(D_2''\) & Higher-rank fixity
-\(\psi_-(E,r)=0\), identifying the analytic leading coefficient with the
-\(\kapr\)-normalized regulator product. & F14/F27/F40 & VDE \(\to\) (ii) \\
+\(\GammaGZ\) & no CM, analytic rank \(r\ge2\) & \(\psi_-(E,r)=0\), with
+\(\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}\) and matched factors; equivalent to
+Strong BSD for \(E\) when \(\Sha\) is finite & yes, in rank \(\ge2\) \\
 \bottomrule
 \end{tabularx}
 \end{table}

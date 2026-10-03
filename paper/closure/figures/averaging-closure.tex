@@ -1,0 +1,25 @@
+\begin{figure}[tbp]
+\centering
+\begin{tikzpicture}[scale=1.5, font=\small,
+  arrow/.style={-{Latex[length=2mm]}, thick}]
+\draw[->] (-0.2,0) -- (3.6,0) node[right] {\(a=L^*\)};
+\draw[->] (0,-0.2) -- (0,3.6) node[above] {\(b=R_E\)};
+\draw[very thick] (0,0) -- (3.2,3.2) node[right, align=left]
+  {fixed points \(a=b\):\\Strong BSD holds};
+\draw[dashed] (3.0,0) -- (0,3.0);
+\node[font=\footnotesize, anchor=south west] at (0.45,2.55) {line \(a+b=3\)};
+\fill (2,1) circle (1.4pt) node[right=3pt] {\(x=(2,1)\)};
+\fill (1.5,1.5) circle (1.4pt);
+\node[anchor=west] (cx) at (1.95,1.85) {\(c(x)=(\tfrac32,\tfrac32)\)};
+\draw[thin] (cx.west) -- (1.55,1.53);
+\draw[arrow] (1.93,1.07) -- (1.57,1.43);
+\foreach \t in {1,2,3} \draw (\t,0.04) -- (\t,-0.04) node[below] {\(\t\)};
+\foreach \t in {1,2,3} \draw (0.04,\t) -- (-0.04,\t) node[left] {\(\t\)};
+\end{tikzpicture}
+\caption{The averaging closure \(c\) on pairs \((a,b)\) of an analytic
+and an arithmetic value.  It moves each point along the line of constant
+\(a+b\) to the diagonal.  The fixed points are exactly the diagonal, where
+the Strong BSD identity holds.  The point \(x=(2,1)\) is not fixed; its
+image \(c(x)\) is, which says nothing about \(x\).}
+\label{fig:averaging-closure}
+\end{figure}

@@ -1,211 +1,306 @@
-\section{The saturated trace shell and its readout}
+\section{The shell, its residual and its closure}
 \label{sec:shell-readout}
 
-The preceding section isolated the three arithmetic recognition sources.
-We now assemble the object on which they act.  The saturated BSD trace
-shell is a typed carrier for the Strong-BSD scalar comparison: it keeps
-the analytic leading coefficient, the arithmetic product, and the audit
-data in one place, so that the closure can record which input governs
-which scalar factor.  Here ``trace shell'' means a formed mathematical
-object together with its visible scalar readout and the bookkeeping
-needed to prevent the readout from being a tautological restatement of
-the desired identity.
+This section contains the mathematical core of the paper.  We first set
+up the object that carries the two sides of the BSD formula and the
+recognition hypothesis placed on it (\Cref{sec:shell-readout-basic}).
+We then show that the Strong BSD identity is exactly a fixed-point
+statement for an explicit closure operator (\Cref{sec:scalar-closure}),
+and explain why sensitivity of the formula to its factors does not make
+any hypothesis necessary (\Cref{sec:sensitivity}).
 
-\begin{definition}[Saturated BSD trace shell]\label{def:closure:sel-bsd-shell}
-\(\SelBSD\) is the five-tuple
-\[
-  \SelBSD
-  =
-  \bigl(E,\ \rhoE,\ J^{!}_{\mathrm{BSD}},\
-    \mathrm{Vis}^{!}_{\mathrm{BSD}},\
-    \mathrm{Audit}^{!}_{\mathrm{BSD}}\bigr).
-\]
-Here \(E/\Q\) is the elliptic curve and \(\rhoE\) is the scalar
-residual
-\[
-  \rhoE
-  =
-  \frac{L^{(r)}(E,1)}{r!}
-  -
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
-       {|E(\Q)_{\tors}|^2}.
-\]
-Thus \(\rhoE=0\) is exactly the Strong-BSD scalar identity, with
-\(\Tam(E)\) read as the Tamagawa product.  The datum
-\(J^{!}_{\mathrm{BSD}}\) records the involutive or duality structure
-that compares the analytic and arithmetic sides.  The datum
-\(\mathrm{Vis}^{!}_{\mathrm{BSD}}\) records the visible scalar readout
-of the shell.  The datum \(\mathrm{Audit}^{!}_{\mathrm{BSD}}\) records
-the admissibility, anti-tautology, and lawfulness information attached
-to the formed object.  The standing closure assumption used here is the
-standard assumption that the formed object carries this fixed content
-itself: admissibility, anti-tautology, and lawfulness data are part of
-the shell rather than consequences inferred after the fact.
+\subsection{The shell and the recognition predicate}
+\label{sec:shell-readout-basic}
+
+\begin{definition}[BSD trace shell]\label{def:closure:sel-bsd-shell}
+A \emph{BSD trace shell} $\SelBSD$ consists of the following data.
+\begin{enumerate}
+\item A curve $E$ and a natural number $r$.  In the intended application
+  $E$ is an elliptic curve over $\Q$ and $r$ its analytic rank; the
+  definition itself treats $E$ as a label.
+\item A set $k$ of scalars with an element $0$ and operations $-$,
+  $\cdot$ and $/$ satisfying the two laws
+  \[
+    a-b=0\iff a=b,
+    \qquad
+    (a/d)\cdot b=(a\cdot b)/d ,
+  \]
+  and elements of $k$ standing for the leading coefficient
+  $L^*=L^{(r)}(E,1)/r!$, the order $\#\Sha(E/\Q)$, the regulator
+  $\Reg_{\mathrm{NT}}(E)$, the period $\Omega_E$, the Tamagawa product
+  $\Tam(E)$ and the squared torsion order $d=\#E(\Q)_{\tors}^{\,2}$.
+\item The arithmetic side and the residual
+  \[
+    R_E=\frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}{d},
+    \qquad
+    \rhoE=L^*-R_E .
+  \]
+\item Declared local scopes: a set $\mathcal L$ of local extensions, a
+  \emph{descent scope} given by two predicates, one on natural numbers $n$
+  (``$n$ is an additive bad prime in scope'') and one on pairs $(n,L)$
+  with $L\in\mathcal L$ (``$L$ is a trivializing lift at $n$ in scope''),
+  and a \emph{signed scope} given by a predicate on natural numbers.
+\item A set $\mathcal F$, the \emph{formed layer}, with an idempotent map
+  $C:\mathcal F\to\mathcal F$, together with data called the duality
+  datum $J^{!}_{\mathrm{BSD}}$, the visible readout
+  $\mathrm{Vis}^{!}_{\mathrm{BSD}}$ and the audit record
+  $\mathrm{Audit}^{!}_{\mathrm{BSD}}$.
+\end{enumerate}
 \end{definition}
 
-\Cref{fig:sel-bsd-shell-schematic,tab:sel-bsd-shell-fields} summarize the
-shell fields and the residual readout used below.
-\input{figures/sel-bsd-shell-schematic}
-\input{tables/sel-bsd-shell-fields}
+For an actual curve one takes $k=\R$ with its usual operations, finite
+$\Sha$, and the BSD normalizations of the period and regulator; then
+$\rhoE=0$ is the Strong BSD identity.  The definition keeps the
+operations abstract so that the formal statements can be checked on
+other scalar sets as well, for instance on $\Q$ in the control examples
+of \Cref{sec:landing}.  The data in item~(5) are carried by the shell but
+play no role in the scalar argument; the map $C$ is used only in
+\Cref{thm:closure:formed-closure-bridge}.  The formalization also attaches
+to the shell several propositions with supplied proofs (admissibility,
+lawfulness, applicability and similar bookkeeping); nothing below depends
+on them.
 
-The predicate placed on the shell is not the Strong-BSD identity by
-definition.  It is a structured readout predicate: it asks for the three
-recognition-source statements, quantified over the local and rank data
-where they apply.  This distinction is essential.  The next theorem can
-then identify the readout with the Strong-BSD scalar identity; it is not
-merely unfolding a definition.
+The recognition predicate collects the hypotheses of
+\Cref{sec:recognition-sources} for the curve of the shell.
 
-\begin{definition}[$\Pi_{\mathrm{BSD}}$ predicate]\label{def:closure:pi-bsd}
-\(\PiBSD(E)\) is the conjunction of the three recognition-source
-readouts on \(\SelBSD\), with the relevant quantifiers retained.  First,
-for every additive bad prime \(p\) in scope and every tame
-inertia-trivializing local lift \(L/\Qp\) in scope, the
-\(\GammaPD\) readout supplies the \(p\)-adic descent/Tamagawa
-correction.  Second, for every signed-Selmer-admissible prime \(p\),
-the \(\GammaSP\) readout supplies the signed-Selmer local determinant
-matching.  Third, for analytic rank \(r\geq 2\), the \(\GammaGZ\)
-readout supplies the higher-rank fixity assertion
-\(\psi_-(E,r)=0\); for \(r\in\{0,1\}\), the predicate uses the
-classical low-rank lane.  In particular, \(\PiBSD\) is a structured
-quantified predicate over recognition readouts, not the definition
-\(\PiBSD:=\mathrm{StrongBSD}\).
+\begin{definition}[Recognition predicate $\PiBSD$]\label{def:closure:pi-bsd}
+For a shell $\SelBSD$ with curve $E$, the predicate $\PiBSD(E)$ consists
+of:
+\begin{enumerate}
+\item for every natural number $n$ and every $L\in\mathcal L$ such that
+  $n$ and $(n,L)$ satisfy the two predicates of the descent scope, a
+  $\GammaPD$ record at $(E,n,L)$ whose factor $\mathrm{tam}_n$ equals
+  $\Tam(E)$;
+\item for every natural number $n$ in the signed scope, a $\GammaSP$
+  record at $(E,n)$ whose factor $\mathrm{sha}_n$ equals
+  $\#\Sha(E/\Q)$;
+\item if $r\ge2$, a $\GammaGZ$ record at $E$, of the same analytic rank,
+  whose leading coefficient, regulator, period and Tamagawa factor are
+  those of the shell, and whose constant is
+  $\kapr(E)=\#\Sha(E/\Q)/d$;
+\item if $r\in\{0,1\}$, the identity $L^*=R_E$.
+\end{enumerate}
 \end{definition}
 
-\begin{theorem}[Readout-level equivalence]\label{thm:closure:pi-bsd-iff-strong-bsd}
-The scalar readout of \(\PiBSD\) on \(\SelBSD\) is equivalent to the
-standard Strong-BSD scalar identity
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
-\]
-This is a readout-level equivalence: it identifies the visible scalar
-readout with the Strong-BSD scalar identity, but it does not define
-\(\PiBSD\) to be Strong BSD and it does not manufacture the recognition
-sources from the scalar identity alone.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak piBSDIffStrongBSD};
-see App~\ref{app:formalization}.}
-\end{theorem}
+Item~(4) deserves a comment.  In rank $0$ and $1$ the predicate simply
+contains the scalar Strong BSD identity as a hypothesis.  For many curves
+and primes the $p$-part of that identity is known, through
+Gross--Zagier, Kolyvagin and Iwasawa main
+conjectures~\citep{GrossZagier1986,Kolyvagin1989,SkinnerUrban2014}
+(\Cref{sec:t-cascade}), but the full identity is not known in general,
+and nothing in this paper establishes it.  The predicate also records the local hypotheses, together with the
+matching of local factors with the global ones.  The descent requirement
+is vacuous when no pair $(n,L)$ satisfies both of its predicates, and the
+signed requirement is vacuous when its predicate is empty.  If a
+requirement is not vacuous, the records it demands exist only at primes
+(odd primes, for descent), since every $\GammaPD$ and $\GammaSP$ record
+is at a prime; in particular, if the descent scope admits a pair $(n,L)$
+with $n$ not an odd prime, or the signed scope contains an $n$ that is not
+prime, then $\PiBSD(E)$ cannot hold.
 
-\begin{proof}
-By definition of the shell, the visible scalar residual is
+\begin{theorem}[Residual and Strong BSD]\label{thm:closure:pi-bsd-iff-strong-bsd}
+For every shell, $\rhoE=0$ if and only if
 \[
-  \rhoE
-  =
   \frac{L^{(r)}(E,1)}{r!}
-  -
+  =
   \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
-       {|E(\Q)_{\tors}|^2}.
+       {\#E(\Q)_{\tors}^{\,2}} .
 \]
-The readout predicate \(\PiBSD\) supplies the three pieces entering this
-residual.  The higher-rank source \(\GammaGZ\) gives
-\(\psi_-(E,r)=0\).  After applying the \(\kapr\) normalization of
-\citet{TsiokosBSDApparatus2026},
+This equivalence concerns the two scalars only.  On the abstract shells
+of \Cref{def:closure:sel-bsd-shell} there is no general construction of
+$\PiBSD(E)$ from the identity.%
+\footnote{Lean proves the equivalence for every shell.  The second
+statement is checked on a symbolic shell, with rational scalars and a
+label in place of a curve, on which the identity holds but whose declared
+descent scope contains the index $2$, which no $\GammaPD$ record admits.
+This is a statement about the abstract shell type, not an example of an
+elliptic curve.}
+\end{theorem}
+
+\begin{proof}
+By definition $\rhoE=L^*-R_E$, and by the first law of the shell
+$L^*-R_E=0$ if and only if $L^*=R_E$.  For the last assertion,
+$\PiBSD$ demands records that the scalar identity does not provide; the
+symbolic shell described in the footnote satisfies the identity but not
+$\PiBSD$.
+\end{proof}
+
+\subsection{Strong BSD as a fixed-point statement}
+\label{sec:scalar-closure}
+
+In the Six Birds framework~\citep{TsiokosFoundationsIII2026} a
+\emph{closure} on a set is an idempotent self-map, and an element is
+\emph{closed} if the map fixes it.  The Strong BSD identity has an exact
+formulation of this kind, with an explicit and elementary closure.
+
+Let $k$ be a field with $2\neq0$, for example $\R$.  On $k\times k$ let
+$J(a,b)=(b,a)$ be the swap and let
 \[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2},
-  \qquad
-  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)
-  =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
+  c=\tfrac12(\mathrm{Id}+J),\qquad c(a,b)=\Bigl(\frac{a+b}{2},\frac{a+b}{2}\Bigr),
 \]
-Thus the equation \(\psi_-(E,r)=0\) is exactly the assertion
-\(\rhoE=0\) in rank at least two.  The source \(\GammaPD\) supplies the
-local \(p\)-adic/Tamagawa correction entering the Tamagawa product, and
-\(\GammaSP\) supplies the signed-Selmer persistence of the \(\Sha\)
-factor; these readouts fix the remaining scalar factors in the same
-residual.  Therefore the forward scalar readout of \(\PiBSD\) is
-\(\rhoE=0\).
+the average of a pair with its swap.  For a shell whose scalar set is
+$k$, put $x_E=(L^*,R_E)$, the pair of the two sides of the BSD formula.
 
-Finally, the equation \(\rhoE=0\) is algebraically the displayed
-Strong-BSD scalar identity: moving the arithmetic product to the other
-side gives the identity, and subtracting the right-hand side from the
-left gives \(\rhoE=0\).  Conversely, if the displayed scalar identity is
-already known as a scalar readout, then the same subtraction gives
-\(\rhoE=0\).  This reverse implication is only an equivalence of
-scalar readouts; it does not construct any of the three
-\(\Gamma_{\mathrm{BSD}}^{*}\) predicates.
-\end{proof}
-
-\begin{theorem}[Master-theorem applicability]\label{thm:closure:master-theorem-applicability}
-The closure master theorem applies to \(\SelBSD\): for the audited
-interaction calculus \cite{TsiokosFoundationsIII2026}, correctly
-instantiated recognition sources that exhaust the residual factors, and
-that pass the no-smuggling audit, force the residual readout
-\(\rhoE=0\).\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak masterTheoremApplicability};
-see App~\ref{app:formalization}.}
+\begin{theorem}[Strong BSD as a fixed point]\label{thm:closure:scalar-closure-translation}
+\leavevmode
+\begin{enumerate}
+\item $c\circ c=c$; $c$ preserves the sum $a+b$; $c\circ J=c$ and
+  $J\circ c=c$.  Moreover $c(x)$ is the only pair with equal coordinates
+  and the same sum as $x$.
+\item For every $x=(a,b)$: $c(x)=x$ if and only if $a=b$, if and only if
+  $a-b=0$.
+\item For every shell whose scalar set is the field $k$,
+  \[
+    c(x_E)=x_E
+    \iff
+    L^*=R_E
+    \iff
+    \rhoE=0 .
+  \]
+\item If $\PiBSD(E)$ holds, then $c(x_E)=x_E$.\footnote{Lean proves (1)--(4) for every field with $2\neq0$.  In (3) the
+field structure need not agree with the operations of the shell: the
+last equivalence uses the shell's own law $a-b=0\iff a=b$.  Statement (4)
+combines (3) with \Cref{thm:closure:strong-bsd-conditional}.}
+\end{enumerate}
 \end{theorem}
 
 \begin{proof}
-We verify the two applicability requirements for the shell.  First, the
-recognition sources are instantiated on exactly the scalar factors of
-\(\rhoE\).  The source \(\GammaPD\) governs the local
-\(p\)-adic/Tamagawa correction: it supplies the descent congruence and
-the Tamagawa factor \(c_p(E)\) up to a \(p\)-adic unit.  The source
-\(\GammaSP\) governs the persistence of the \(\Sha\)-factor under the
-signed-Selmer cover change: its determinant comparison is the local
-component entering the same arithmetic product.  The source
-\(\GammaGZ\) governs the rank-\(r\) regulator/fixity factor: it states
-that the analytic leading coefficient equals the arithmetic regulator
-product after the \(\kapr\) normalization.  These three pieces account
-for the local \(p\)-adic/Tamagawa factor, the \(\Sha\)-persistence
-factor, and the regulator/fixity factor respectively.  No scalar factor
-of \(\rhoE\) remains outside this list, and no factor is assigned to two
-different sources.
-
-Second, the no-smuggling condition holds.  The imported theorem stacks
-enter only as hypotheses, and the recognition sources enter only as
-carried readouts.  The closure does not silently turn an open
-arithmetic obligation into a derivation target; it records the
-obligation as supplied content and then derives consequences from it.
-Thus the recognition-source instantiation is exhaustive for the
-residual and the audit contains no hidden derivation of out-of-scope
-arithmetic.  The closure master theorem is therefore applicable to
-\(\SelBSD\), and its residual conclusion is \(\rhoE=0\).
+(1) Both coordinates of $c(x)$ equal $(a+b)/2$, so applying $c$ again
+changes nothing, the sum is $a+b$, and swapping the input or the output
+changes nothing.  A pair $(y,y)$ with $2y=a+b$ has $y=(a+b)/2$.
+(2) If $c(x)=x$ then $a=(a+b)/2=b$; conversely if $a=b$ then
+$(a+b)/2=a$.  (3) is (2) applied to $x_E$, followed by
+\Cref{thm:closure:pi-bsd-iff-strong-bsd}.  (4) By
+\Cref{thm:closure:strong-bsd-conditional}, $\PiBSD(E)$ implies $L^*=R_E$;
+apply (3).
 \end{proof}
 
-\begin{theorem}[Composite signature with anti-tautology hardening]\label{thm:closure:composite-signature}
-The composite recognition predicate attached to \(\SelBSD\) is
-computable and falsifiable, carries a framework trace signature as a
-fingerprint of the composite operator, and is anti-tautological: it
-genuinely consumes all three recognition records.  In particular, the
-three components are independent but not disposable.  Ablating
-\(\GammaPD\), \(\GammaSP\), or \(\GammaGZ\) breaks the Strong-BSD
-scalar factor package, so the composite does not collapse to a
-tautological restatement of Strong BSD.\footnote{\raggedright Tracked in the
-formalization harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak compositeSignature}
--- a checked projection over an explicit proof-carrying record
-(conditional on the imports and recognition sources), not an independent
-Lean derivation. See App~\ref{app:formalization}.}
+The theorem concerns the \emph{original} pair $x_E$.  It must not be
+confused with the trivial fact that $c(x)$ is always closed: for
+$x=(2,1)$ one has $c(x)=(3/2,3/2)$, which is closed, while $x$ itself is
+not.  Replacing an unequal pair by its average proves nothing about the
+pair.  Equivalently, asking that $c$ preserve the analytic coordinate,
+$c(x)_1=x_1$, is already the same as asking that $x$ be closed.
+\Cref{fig:averaging-closure} shows the geometry, and the
+characteristic assumption is needed: if $2=0$ the average is not
+defined.
+
+\input{figures/averaging-closure}
+
+The closure $c$ acts on two numbers.  The Six Birds formulation of a
+problem asks for a closure on a richer \emph{formed layer} $\mathcal F$
+whose readout is the scalar pair; for BSD this would be a layer of
+Selmer, determinant and height data.  We have not constructed such a
+layer.  What can be proved is what such a layer would have to satisfy in
+order to return the scalar statement.
+
+\begin{theorem}[Closure on a formed layer]\label{thm:closure:formed-closure-bridge}
+Let $\mathcal F$ be a set with an idempotent map $C:\mathcal F\to\mathcal
+F$, and let $q:\mathcal F\to k\times k$ be a readout that intertwines $C$
+with $c$:
+\[
+  q(C(x))=c(q(x))\qquad\text{for all }x\in\mathcal F .
+\]
+Write $q(x)=(q_1(x),q_2(x))$.  Then for every $x\in\mathcal F$:
+\begin{enumerate}
+\item $q(C(x))=q(x)$ if and only if $q_1(x)=q_2(x)$;
+\item if $C(x)=x$, then $q_1(x)=q_2(x)$;
+\item if $q$ is injective, then $C(x)=x$ if and only if $q_1(x)=q_2(x)$.
+\end{enumerate}
+In particular, for a shell with formed layer $\mathcal F$ and closure $C$,
+an intertwining readout $q$ and a state $x$ with $q(x)=x_E$: if
+$C(x)=x$ then the Strong BSD identity holds; and if $\PiBSD(E)$ holds then
+$q(C(x))=q(x)$.%
+\footnote{Lean proves all statements, with the intertwining identity, the
+fixedness of the original state and the match $q(x)=x_E$ as explicit
+hypotheses.}
 \end{theorem}
 
 \begin{proof}
-The composite predicate is a finite conjunction of the three readouts
-introduced above, together with the shell data on which those readouts
-are evaluated.  It is therefore computable in the framework sense: once
-the shell and the recognition records are supplied, the predicate has a
-definite list of components to inspect.  It is also falsifiable: failure
-of any one component is a failure of the composite readout.
-
-The substantive point is non-disposability.  Removing \(\GammaPD\)
-leaves the local \(p\)-adic/Tamagawa factor undetermined; the shell no
-longer knows that the descent comparison repairs the Tamagawa
-coarsening by the required factor.  Removing \(\GammaSP\) leaves the
-\(\Sha\)-persistence factor undetermined; the signed-Selmer determinant
-comparison no longer supplies the component entering the arithmetic
-product.  Removing \(\GammaGZ\) leaves the rank-\(r\)
-regulator/fixity factor undetermined; there is then no assertion that
-the analytic leading coefficient agrees with the normalized regulator
-product.  Each recognition source governs a different scalar factor of
-the residual, and each factor is required for the Strong-BSD scalar
-package.  Hence the composite predicate depends genuinely on the
-formed BSD layer's data and cannot be replaced by the bare sentence
-``Strong BSD holds.''
+By intertwining, $q(C(x))=c(q(x))$, so (1) is
+\Cref{thm:closure:scalar-closure-translation}(2) applied to $q(x)$.  If
+$C(x)=x$ then $q(C(x))=q(x)$, and (1) gives (2).  If $q$ is injective,
+$q(C(x))=q(x)$ implies $C(x)=x$, which with (2) gives (3).  For the shell,
+(2) with $q(x)=x_E$ gives $L^*=R_E$; and $\PiBSD(E)$ gives $L^*=R_E$ by
+\Cref{thm:closure:strong-bsd-conditional}, so (1) gives $q(C(x))=q(x)$.
 \end{proof}
 
-% ===========================================================================
+Three small examples over $\Q$ show what the injectivity, fixedness and
+intertwining hypotheses each contribute.  Let
+$\mathcal F=(\Q\times\Q)\times\Q$, $C((a,b),t)=(c(a,b),0)$ and
+$q((a,b),t)=(a,b)$; then $C$ is idempotent and $q$ intertwines.  The state
+$((1,1),1)$ has equal readout but is not fixed by $C$, so without
+injectivity the converse of (2) fails.  The state $((2,1),0)$ is not
+fixed, its readout is unequal, and its image $C((2,1),0)=((3/2,3/2),0)$
+is fixed: closing a state does not make the original state satisfy the
+identity.  Finally the identity map of $\Q\times\Q$, with $q$ the
+identity, fixes $(2,1)$ but does not intertwine with $c$: fixedness
+without the intertwining identity gives nothing.
+
+So the full closure formulation of Strong BSD rests on two inputs that
+this paper does not supply: a formed layer with a readout intertwining its
+closure with $c$, and the fixedness of the original state.  Idempotence
+of a closure on its own forces neither.
+
+\subsection{Sensitivity is not necessity}
+\label{sec:sensitivity}
+
+The arithmetic side $R_E$ depends on each of its factors: changing one
+factor while keeping the others changes $R_E$.  This is elementary, and
+we record it because it is easy to over-interpret.
+
+\begin{theorem}[Factor sensitivity]\label{thm:closure:composite-signature}
+Suppose the scalar set is a field, the multiplication and division of
+the shell are the field operations, and $\#\Sha(E/\Q)$,
+$\Reg_{\mathrm{NT}}(E)$, $\Omega_E$, $\Tam(E)$ and $d$ are all nonzero.
+If any one of $\#\Sha(E/\Q)$, $\Reg_{\mathrm{NT}}(E)$ or $\Tam(E)$ in the
+formula for $R_E$ is replaced by a different value, the other factors
+being kept, the value of $R_E$ changes.%
+\footnote{The formalization records this statement as a conditional
+schema: the corresponding declaration takes a package of cancellation
+laws as a hypothesis, and also returns several supplied propositions (for
+instance, statements named computability and falsifiability) that carry
+no proof of what their names suggest and that we do not use.  Separately,
+Lean proves that, when the shell's multiplication and division are the
+field operations, the cancellation package holds exactly when the five
+displayed factors are nonzero.}
+\end{theorem}
+
+\begin{proof}
+In a field, multiplication by a nonzero element and division by $d\neq0$
+are injective.  If, say, $\#\Sha$ is replaced by $s'\neq\#\Sha$, then
+$s'\Reg\,\Omega\Tam/d\neq\#\Sha\Reg\,\Omega\Tam/d$ because
+$\Reg\,\Omega\Tam/d\neq0$.  The other two cases are the same.
+\end{proof}
+
+\begin{remark}[Sensitivity does not make a hypothesis necessary]\label{rmk:closure:sensitivity-not-necessity}
+One might hope to argue from \Cref{thm:closure:composite-signature} that
+each recognition hypothesis is needed, since each ``governs'' a factor.
+The argument fails.  In rank at least $2$, the hypothesis $\GammaGZ$ with
+its normalization already implies $L^*=R_E$
+(\Cref{sec:recognition-sources}), so deleting $\GammaPD$ and $\GammaSP$
+does not affect the scalar conclusion.  Sensitivity of the product to its
+factors says nothing about which hypotheses are needed to prove an
+identity between the product and another number.
+
+A genuine independence statement needs an interface in which the factors
+are introduced before they are normalized.  Suppose native factors $a$ and
+$b$ satisfy
+\[
+  N:\ L^*=a\,\Reg\,\Omega\,b,\qquad
+  C_b:\ b=\Tam(E),\qquad
+  C_a:\ a=\#\Sha(E/\Q)/d .
+\]
+Then $N$, $C_a$ and $C_b$ together imply $L^*=R_E$, and none of the three
+can be dropped: with $\Reg=\Omega=\#\Sha=d=\Tam=1$, the triples
+$(L^*,a,b)=(2,1,2)$, $(2,2,1)$ and $(2,1,1)$ satisfy exactly two of the
+three premises and violate the identity, since $R_E=1\neq2=L^*$.  But
+this independence is a property of the premises, not of the identity:
+when $\Reg\,\Omega\neq0$ and $N$ holds, $L^*=R_E$ is equivalent to the
+single equation $ab=(\#\Sha/d)\Tam(E)$, which can hold while both $C_a$
+and $C_b$ fail (take $a=2$, $b=1/2$ and all other values $1$).  With
+all values positive, the solutions are exactly $a=u\,\#\Sha/d$,
+$b=\Tam(E)/u$ for $u>0$.  Lean checks these countermodels and the
+classification over $\Q$.  None of these rational models is an elliptic
+curve, and we draw no arithmetic conclusion from them.
+\end{remark}

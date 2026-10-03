@@ -1,117 +1,103 @@
-\section{The imported theorem stacks}
+\section{Imported comparison inputs}
 \label{sec:imports}
 
-The closure separates its inputs into two classes.  The present section
-records the imported theorem stacks: established arithmetic geometry
-that the closure consumes as proof-carrying hypotheses.  The next section
-records the recognition sources: arithmetic content carried by the
-formed BSD layer.  This distinction matters.  The imported stacks are not
-new theorems here, and the closure never derives them
-from the framework.  It derives consequences from them, after their
-provenance and downstream role have been made explicit.
+The argument of this paper uses two kinds of hypotheses.  This section
+describes the first kind: comparison statements from arithmetic geometry
+that are taken as inputs.  The next section describes the second kind,
+the recognition hypotheses on which the main theorem actually rests.  We
+are explicit about what each input contains, because several of them are
+assembled from published results whose hypotheses or normalizations
+differ from what the input asserts.
 
-There are three headline imports in this section.  The first controls the
-Cassels--Tate side of the finite \(p\)-primary comparison.  The second
-supplies the Selmer-complex pairing substrate \( \AofE \).  The third
-supplies the rank-\(\geq 2\) archimedean determinant comparison.  Together
-they keep the classical arithmetic geometry used by the landing theorem out
-of the framework argument while still making clear exactly which classical
-inputs are being used.  The overconvergent \(\eta\) and
-\(T_{\mathrm{CASCADE}}\) imports are introduced later as supporting
-conditional stacks and are counted separately in App~\ref{app:formalization}.
+Each input is attached to a fixed curve: the data it compares (a map, a
+generator, a target, a pairing) are specified as a family indexed by the
+curve, and possibly a prime, before the input is asserted at the curve
+$E$ of the main theorem.  This prevents an input proved for one curve
+from being used for another.
 
-The symbol \(\chiCTp\) refers here to a Cassels--Tate comparison: a
-comparison between a square-root Fitting object on a Selmer-complex
-cohomology group and the Pfaffian scalar attached to the Cassels--Tate
-pairing.  In ordinary terms, this is the input that lets the \(p\)-primary
-finite piece be read with the correct orientation and sign.
-
-\begin{definition}[Imported $\chi_{CT,p}$ theorem stack]\label{def:closure:chi-ct-p-import}
-A proof-carrying structure bundling the eight named external inputs
-\(T_{E1}\ldots T_{E8}\): Sakamoto's Stark-system theory~\citep{Sakamoto2018};
-the determinant/Stark-system and derived-height comparisons of Macias
-Castillo--Sano~\citep[Thms.~3.4 and~4.2]{MaciasCastilloSano2026};
-Knudsen--Mumford determinant theory~\citep{KnudsenMumford1976};
-Nekov\'a\v{r}'s Selmer-complex pairing~\citep[\S10.8.7]{Nekovar2006};
-Flach's pairing comparison~\citep{Flach1990}; and the classical
-2-Selmer normalization of Fisher--Schaefer--Stoll~\citep[Thm.~6.3]{FisherSchaeferStoll2010}.
-The results are stored as proposition fields,
-plus the unconditional sign closure
-\(\Sigma_{\mathrm{NekCT}}=+1\).  It is taken as a hypothesis by
-\Cref{thm:closure:chi-ct-p-comparison}; it is not derived in this
-paper.\footnote{Encoded in Lean as a typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak chiCTpImport}
-bundling the imported theorems as hypothesis fields; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Cassels--Tate comparison input]\label{def:closure:chi-ct-p-import}
+Fix $E/\Q$ and a prime $p$, together with: a square-root Fitting object
+attached to the $p$-primary Cassels--Tate data of $E$, a target line
+$\mathrm{vctp}_p$, a selected generator $\sqrt{F}_E^p$ of the former and a
+selected element $h_p^{\mathrm{CT}}(E)$ of the latter, and a property of
+maps between them called \emph{canonical}.  The Cassels--Tate comparison
+input $\chiCTp$ at $(E,p)$ consists of:
+\begin{enumerate}
+\item the hypotheses that $\Sha(E/\Q)[p^\infty]$ is finite, that the
+  Cassels--Tate pairing is nondegenerate, that the Selmer-complex
+  hypotheses of Sakamoto~\citep{Sakamoto2018} and Macias
+  Castillo--Sano~\citep{MaciasCastilloSano2026} hold, and that
+  $p\nmid\Tam(E)$, with $p$ prime;
+\item a map with the canonical property, sending the selected generator
+  to the selected target element;
+\item a normalized sign $\Sigma_{\mathrm{NekCT}}=+1$;
+\item eight propositions $T_{E1},\dots,T_{E8}$ recording background
+  results from the theory of Stark systems and Selmer
+  complexes~\citep{Sakamoto2018,MaciasCastilloSano2026}, determinant
+  functors~\citep{KnudsenMumford1976}, and the comparison of pairings on
+  Selmer complexes with the Cassels--Tate
+  pairing~\citep{Nekovar2006,Flach1990,FisherSchaeferStoll2010}.
+\end{enumerate}
 \end{definition}
 
-The downstream role of this stack is narrow.  It is not a general
-replacement for the Cassels--Tate literature.  It is the specific
-orientation-respecting package needed for the \(\chiCTp\) theorem:
-given the usual finite \(\Sha[p^\infty]\), nondegeneracy, and
-Selmer-complex hypotheses, it supplies the Pfaffian comparison and the
-sign closure \(\Sigma_{\mathrm{NekCT}}=+1\).
+The map, the image of the generator and the sign in items (2) and (3) are
+part of the input; they are not derived from the background results in
+item (4), and no statement-by-statement assignment of $T_{E1},\dots,T_{E8}$
+to published theorems is fixed here.  The published results differ from
+the input in several specific ways.  Nekov\'a\v{r}'s comparison
+\citep[Proposition~10.8.7]{Nekovar2006} identifies the cup product on
+torsion classes in $H^2$ of a Selmer complex with \emph{minus} the Flach
+pairing~\citep{Flach1990}, so a sign correction and an identification of
+degrees are needed.  The derived-height comparison of Macias
+Castillo--Sano~\citep[Theorem~4.2]{MaciasCastilloSano2026} assumes an odd
+prime of good ordinary reduction, and its relation between the
+Bertolini--Darmon and Nekov\'a\v{r} pairings also carries a minus sign.
+Sakamoto's theory~\citep{Sakamoto2018} works at odd primes.  The theorem of
+Fisher--Schaefer--Stoll~\citep[Theorem~6.3]{FisherSchaeferStoll2010}
+normalizes the classical Cassels--Tate pairing on $n$-Selmer times
+$2$-Selmer; it is not a Fitting-ideal statement and does not supply an
+odd-primary generator.  \Cref{sec:chi-ct-p} gives an arithmetic example
+showing that the determinant ideal does not determine the selected
+generator.
 
-The second import packages the Selmer-complex pairing substrate denoted
-\(\AofE\).  This notation is local to this article: \(\AofE\) is the
-unified Selmer-complex pairing object, not the analytic leading coefficient
-written \(A_E\) in \citet{TsiokosBSDApparatus2026}.  Mathematically, it is the
-ambient category, Selmer complex, and pairing target in which the
-Cassels--Tate pairing is intrinsic and compatible with the
-determinant-line formulation.
-
-\begin{definition}[Imported $\AofE$ Selmer-complex pairing]\label{def:closure:a-e-import}
-A proof-carrying structure for the \(\AofE\) unified Selmer-complex
-substrate (Nekov\'a\v{r} Selmer complex~\citep{Nekovar2006} with intrinsic Cassels--Tate
-pairing; Burns--Flach and related Macias Castillo--Sano--Nekov\'a\v{r}
-ETNC-adjacent input~\citep{BurnsFlach2001,BlochKato1990,FontainePerrinRiou1994,BurnsMaciasCastilloSeo2024,MaciasCastilloSano2026}
-\(\AofE^{\mathrm{Sel}}\)): a typed target category with a
-bilinear/categorical pairing field.  It is used only as a
-hypothesis.\footnote{Encoded in Lean as a typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak aEImport}
-bundling the imported theorem as a hypothesis field; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Selmer-complex pairing input]\label{def:closure:a-e-import}
+Fix, for each curve, a target category, a Selmer complex, a pairing
+target and a pairing.  The input $\AofE$ at $E$ asserts that, for $E$,
+the Selmer complex of Nekov\'a\v{r}~\citep{Nekovar2006} carries its
+intrinsic Cassels--Tate pairing, that the determinant-line formulation of
+the leading-term conjecture in the sense of
+Burns--Flach~\citep{BurnsFlach2001}, which builds on the work of
+Bloch--Kato~\citep{BlochKato1990} and
+Fontaine--Perrin-Riou~\citep{FontainePerrinRiou1994}, is compatible with
+this Selmer complex and pairing for $E$ (related determinant methods
+appear in \citep{BurnsMaciasCastilloSeo2024,MaciasCastilloSano2026}); this
+compatibility is part of the hypothesis.  It further asserts that the pairing is bilinear (or categorical, in the
+categorical formulation).  The notation $\AofE$ is local to this paper and
+is unrelated to the analytic leading coefficient $A_E$ of
+\citet{TsiokosBSDApparatus2026}.
 \end{definition}
 
-This import is the bridge between two ways of seeing the same finite
-arithmetic information.  On one side is the Selmer-complex description
-with its intrinsic Cassels--Tate pairing.  On the other is the
-determinant-line language used in the closure landing.  The \(\AofE\)
-carrier records that the target category and pairing data have already
-been supplied, so later arguments may use the pairing without
-reconstructing the Selmer-complex theory.
-
-The third import is archimedean.  In rank at least two, the landing
-needs a comparison between the Beilinson determinant side and the
-leading \(L\)-value side.  This is where the regulator-to-determinant
-identification enters.  The closure treats it as a classical imported
-comparison, separate from the higher-rank recognition source that will
-encode the remaining Gross--Zagier-type fixity.
-
-\begin{definition}[Imported Beilinson rank-$\geq 2$ comparison]\label{def:closure:beilinson-import}
-A proof-carrying structure for the Beilinson determinant/\(L\)-value~\citep{Beilinson1985}
-comparison in rank \(r\geq 2\): the archimedean
-regulator-to-determinant-line identification used by the rank-\(\geq 2\)
-landing.  It is used only as a hypothesis.\footnote{Encoded in Lean as a
-typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak beilinsonImport}
-bundling the imported theorem as a hypothesis field; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Archimedean comparison input in rank at least two]\label{def:closure:beilinson-import}
+Fix, for each curve, a rank, an archimedean regulator, a determinant line,
+an $L$-value side and a map from the regulator to the determinant line.
+The input at $E$ asserts that the rank of $E$ is at least $2$ and that the
+determinant--$L$-value comparison of Beilinson~\citep{Beilinson1985} holds
+for $E$.  It is required only when the analytic rank is at least $2$, and
+its rank must equal the analytic rank of $E$.
 \end{definition}
 
-The point of isolating this comparison is to prevent the closure
-argument from hiding an archimedean theorem inside the recognition
-predicate.  The Beilinson import supplies the determinant/\(L\)-value
-identification; the recognition source introduced later supplies the
-formed-layer fixity condition that makes the rank-\(\geq 2\) readout
-land on the Strong-BSD scalar.
+These three inputs appear among the hypotheses of the main theorem
+(\Cref{thm:closure:strong-bsd-conditional}) because they describe the
+arithmetic setting in which its recognition hypothesis is meant to be
+interpreted.  As we will see, the scalar conclusion of that theorem is
+derived from the recognition hypothesis alone; the inputs are carried
+alongside it and returned, not used.
 
 \begin{nonclaim}\label{nonclaim:closure:imports-not-derived}
-The \(\chiCTp\) comparison remains conditional on its imported stack
-\(T_{E1}\ldots T_{E8}\); the import structures are sourced assumptions,
-not results of this paper.  The closure derives consequences
-\emph{from} them and never proves them.  They are carried as typed
-hypothesis structures and introduce no project-local axioms.
+The comparison inputs are hypotheses.  This paper does not prove them,
+does not derive the map, generator image or sign of $\chiCTp$ from the
+cited background results, and does not establish that those results apply
+to any particular curve or prime.  In the formalization they are
+structures whose fields are the asserted statements; they introduce no
+axioms.
 \end{nonclaim}
-
-% ===========================================================================

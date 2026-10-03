@@ -1,145 +1,142 @@
-\section{The three recognition sources}
+\section{The recognition hypotheses}
 \label{sec:recognition-sources}
-% Each carrier is mechanized as a typed structure (mechanize_now); its Prop
-% content is the recognition source (lean_coverage = recognition_source).
+% Each carrier is a typed structure in Lean whose arithmetic content is a
+% hypothesis field (lean_coverage = recognition_source).
 
-This section names the three recognition sources used by the closure.
-A recognition source is named arithmetic content on which the closure
-rests: it is supplied to the construction, not derived from the general
-framework, and it is carried as a typed hypothesis.  The concrete
-example to keep in mind is the \(p\)-adic descent congruence below,
-which says how a local descent comparison repairs the Tamagawa
-coarsening at an additive prime.
-
-The three sources govern the three factors that are not supplied by the
-formal shell alone.  The source \(\GammaPD\) governs the local
-\(p\)-adic/Tamagawa correction in the odd-additive scope of its definition.
-The source \(\GammaSP\) governs the
-persistence of the \(\Sha\)-factor through signed-Selmer cover change.
-The source \(\GammaGZ\) governs the rank-\(\geq 2\)
-regulator/fixity readout.  Together they are the arithmetic content that
-the conditional landing will consume.
-\Cref{tab:recognition-sources} records the same three sources as a compact
-audit table.
+In the Six Birds framework a \emph{recognition source} is arithmetic
+content that a construction rests on but does not derive: it is stated
+precisely, attached to the object, and used as a hypothesis.  In this
+paper there are three, one for each of three factors of the BSD formula
+that the formal construction does not supply by itself.
+\begin{itemize}
+\item $\GammaPD$ concerns the local Tamagawa factor at an odd prime of
+  additive reduction;
+\item $\GammaSP$ concerns the $\Sha$ factor, through a signed local
+  comparison;
+\item $\GammaGZ$ concerns the leading term in analytic rank at least $2$.
+\end{itemize}
+\Cref{tab:recognition-sources} summarizes them.  We say at once what will
+matter for the main theorem: its scalar conclusion uses only $\GammaGZ$ in
+rank at least $2$, and the classical identity in rank at most $1$
+(\Cref{sec:shell-readout}).  The two local hypotheses are part of the
+recognition predicate, with their scopes recorded below, but the scalar
+argument does not use them.
 \input{tables/recognition-sources}
 
-\begin{definition}[$\GammaPD$ p-adic descent carrier]\label{def:closure:gamma-padic-descent}
-For \(E/\Q\), an odd additive prime \(p\)~\citep{Silverman1994} with shallow Kodaira type
-II/III, \(c_p(E)\in\{1,2\}\), \(p\nmid c_p(E)\),
-\(\Sha(E/\Q)[p^\infty]=0\), and a finite tame
-inertia-trivializing extension \(L/\Qp\), the formed local layer carries
-an ordinary/anticyclotomic descent comparison
+\begin{definition}[$\GammaPD$: $p$-adic descent hypothesis]\label{def:closure:gamma-padic-descent}
+Let $E/\Q$ and let $p$ be an odd prime at which $E$ has additive
+reduction of Kodaira type II or III, with $c_p(E)\in\{1,2\}$, with
+$\Sha(E/\Q)[p^\infty]=0$, and let $L/\Qp$ be a finite tamely ramified
+extension over which $E$ acquires good reduction (equivalently, over
+which inertia acts trivially on the $\ell$-adic Tate module for every
+prime $\ell\neq p$; reduction of type II or III is potentially good).  The hypothesis
+$\GammaPD$ at $(E,p,L)$ supplies a descent map
 \[
   \mathrm{descent}_p^{\mathrm{OC}}:
   LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L))
   \longrightarrow
   LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E))
 \]
-and a unit \(\varepsilon_p(E,L)\in\Zp^\times\) with
+between trivialized leading coefficients of ordinary/anticyclotomic local
+data over $L$ and over $\Qp$, a unit $\varepsilon_p(E,L)\in\Zp^\times$, and
+the congruence
 \[
   LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E)) \equiv
   c_p(E)^{-1}\,\varepsilon_p(E,L)\,
   \mathrm{descent}_p^{\mathrm{OC}}
-    (LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L)))
+    \bigl(LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L))\bigr)
   \pmod{\Zp^\times}.
 \]
-This congruence recognizes that the descent comparison repairs the
-Tamagawa coarsening through the factor \(c_p(E)^{-1}\), while the unit
-\(\varepsilon_p(E,L)\) records the residue introduced by changing the
-local cover.  The arithmetic assertion is used as a hypothesis in the
-closure.\footnote{Supplied as a recognition source, encoded in Lean as a
-typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaPadicDescent}
-over a narrowed structural representation; its arithmetic content is a
-hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+It also carries a factor $\mathrm{tam}_p$, which the recognition predicate
+of \Cref{sec:shell-readout} matches with the Tamagawa product of $E$.
 \end{definition}
 
-The second source records persistence of the component measured by
-\(\Sha\).  A signed local pairing~\citep{Kobayashi2003,Pollack2003} changes when one passes to a tame
-inertia-trivializing extension and then corestricts back.  The source
-\(\GammaSP\) says that the determinant of this cover-change operation
-is exactly the local component factor modulo a \(p\)-adic unit.
+Two features of this hypothesis should be noted.  First, since $p$ is odd
+and $c_p(E)\in\{1,2\}$, the number $c_p(E)$ is a $p$-adic unit (in
+particular $p\nmid c_p(E)$).  The congruence modulo $\Zp^\times$ therefore
+holds or fails independently of whether $c_p(E)$ is $1$ or $2$: it carries
+no information about $c_p(E)$.  For example, the curves $121a1$ and
+$121b1$ have additive reduction at $11$ of types II and III, with $c_{11}$
+equal to $1$ and $2$ respectively, and these two values have the same
+class modulo $\Z_{11}^\times$.  The value of $c_p(E)$ is recorded in the
+hypothesis separately.  Second, the matching of a local factor with the
+global Tamagawa product is itself a comparison.  On the curve
+$y^2=x^3+385x+1225$, the two places $5$ and $7$ of type III each have
+$c_p=2$, and the global Tamagawa product is $4$; a single local factor is
+not the global one.
 
-\begin{definition}[$\GammaSP$ signed-Selmer carrier]\label{def:closure:gamma-sha-persistence}
-For \(E/\Q\), a signed-Selmer-admissible additive prime \(p\), and a tame
-inertia-trivializing extension \(L/\Qp\), the signed-Selmer persistence
-layer carries the cover-change determinant, where
-\(\mathrm{sp}_p(E,L)\) denotes the signed local pairing,
+\begin{definition}[$\GammaSP$: signed $\Sha$-persistence hypothesis]\label{def:closure:gamma-sha-persistence}
+Let $E/\Q$, let $p$ be a prime of additive reduction at which the signed
+Selmer theory used here applies, and let $L/\Qp$ be a finite tamely
+ramified extension over which $E$ acquires good reduction.  Let
+$\mathrm{sp}_p(E,L)$ be the signed local pairing on the cover side,
+$\cores_{L/\Qp}$ the corestriction from the cover-side target to a
+base-side target, and
 \[
   C_{\mathrm{loc}}^{\mathrm{III}}(E,p)
-  :=
-  \det\!\bigl(\cores_{L/\Qp}\circ \mathrm{sp}_p(E,L)\bigr)
+  =
+  \det\bigl(\cores_{L/\Qp}\circ \mathrm{sp}_p(E,L)\bigr)
 \]
-and asserts
+the determinant of the composite.  This construction, its
+determinant-line convention and its applicability at $(E,p,L)$ are part
+of the hypothesis; the signed theory of Kobayashi and
+Pollack~\citep{Kobayashi2003,Pollack2003}, developed for good
+supersingular reduction, is background for it, not a source of it.  The
+hypothesis $\GammaSP$ at $(E,p,L)$ asserts
 \[
   C_{\mathrm{loc}}^{\mathrm{III}}(E,p)
-  \equiv c_p(E)\pmod{\Zp^\times}.
+  \equiv c_p(E)\pmod{\Zp^\times},
 \]
-Thus the signed-Selmer local determinant persists as the Tamagawa
-component \(c_p(E)\), up to the unit ambiguity natural in the
-\(p\)-adic comparison.\footnote{Supplied as a recognition source,
-encoded in Lean as a typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaShaPersistence}
-over a narrowed structural representation; its arithmetic content is a
-hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+and carries a factor $\mathrm{sha}_p$, which the recognition predicate
+matches with $\#\Sha(E/\Q)$.
 \end{definition}
 
-The third source is the higher-rank fixity source.  It measures the
-difference between the analytic leading coefficient and the arithmetic
-regulator product.  The anti-invariant readout is simply
-``analytic minus arithmetic''.  In the arithmetic factor, the regulator
-is the N\'eron--Tate Gram determinant
-\(\det\langle P_i,P_j\rangle\), understood over the
-\(\mathrm{GL}_r(\Z)\)-orbit of choices of Mordell--Weil basis.
+The same remark applies: when $p\nmid c_p(E)$, the congruence does not
+see the value of $c_p(E)$.  The determinant of a composite of a map into
+the cover-side target with corestriction to the base side requires a
+determinant-line convention, which is part of the hypothesis, as is the
+matching of $\mathrm{sha}_p$ with the global order of $\Sha$.
 
-\begin{definition}[$\GammaGZ$ higher-rank fixity carrier]\label{def:closure:gamma-higher-gz-fixity}
-For non-CM \(E/\Q\) of analytic rank \(r\geq 2\), the formed
-rank-\(r\) arithmetic/analytic duality layer has anti-invariant readout
+\begin{definition}[$\GammaGZ$: leading-term hypothesis in rank at least two]\label{def:closure:gamma-higher-gz-fixity}
+Let $E/\Q$ be without complex multiplication, of analytic rank $r\ge2$.
+Put
 \[
   \psi_-(E,r)
   =
   \frac{L^{(r)}(E,1)}{r!}
   -
-  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E),
+  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E).
 \]
-and asserts the higher-Gross--Zagier fixity
-\[
-  \psi_-(E,r)=0.
-\]
-Equivalently, the analytic leading coefficient equals the rank-\(r\)
-arithmetic product built from \(\kapr(E)\), the N\'eron--Tate regulator,
-the period, and the Tamagawa product.  This assertion is used as a
-recognition source in the landing.\footnote{Supplied as a recognition source, encoded in Lean as a
-typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaHigherGZFixity}
-over a narrowed structural representation; its arithmetic content is a
-hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+The hypothesis $\GammaGZ$ at $E$ asserts $\psi_-(E,r)=0$.  In the
+recognition predicate it is used together with the normalization
+$\kapr(E)=\#\Sha(E/\Q)/\#E(\Q)_{\tors}^{\,2}$ and with the matching of
+its regulator, period and Tamagawa factors to those of $E$.
 \end{definition}
 
-This is the source that directly meets the shell residual in high rank.
-By the \(\kapr\) normalization of \citet{TsiokosBSDApparatus2026},
-the normalization factor identifies
-\[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2}.
-\]
-Consequently
+The name refers to the kind of theorem that would be expected to supply
+this hypothesis, a generalized Gross--Zagier formula in rank at least
+$2$.  No theorem supplying this normalized higher-rank identity is
+established among the inputs used here, and we retain it as a hypothesis
+(see also \Cref{rmk:closure:t-e12-gap}).  It is
+important to be clear about the strength of $\GammaGZ$.  Assume
+$\Sha(E/\Q)$ finite, and let $\Omega_E$ and $\Tam(E)=\prod_vc_v(E)$ be as
+in the BSD formula.  By the normalization of $\kapr$
+\citep[Section~13]{TsiokosBSDApparatus2026}, the arithmetic term of
+$\psi_-(E,r)$ is then
 \[
   \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)
   =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2},
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {\#E(\Q)_{\tors}^{\,2}},
 \]
-after reading \(\Tam(E)\) as the Tamagawa product.  Thus
-\(\GammaGZ\), through the assertion \(\psi_-(E,r)=0\), is precisely the
-higher-rank fixity that will force the residual \(\rhoE\) to vanish in
-the landing theorem.
+so $\GammaGZ$, read with this normalization, is the Strong BSD identity for
+$E$.  The hypothesis is not weaker than the conclusion it is used for.
 
 \begin{nonclaim}\label{nonclaim:closure:recognition-sources-not-derived}
-No recognition source is derived from framework primitives.  Each
-\(\Gamma_{\mathrm{BSD}}^{*}\) is closure content of the formed BSD
-layer, encoded as a typed structure carrier whose arithmetic content is
-a hypothesis field, not a Lean axiom.
+None of the three recognition hypotheses is derived in this paper, from
+the Six Birds framework or otherwise.  Each is a hypothesis about a given
+curve, recorded in the formalization as a structure whose arithmetic
+content is a field, not as an axiom.  We also do not claim that any of
+them is necessary for the scalar conclusion: in rank at least $2$,
+$\GammaGZ$ with its normalization already implies it.
 \end{nonclaim}
-
-% ===========================================================================
