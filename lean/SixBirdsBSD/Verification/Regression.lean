@@ -883,4 +883,15 @@ theorem falseHighRankRecognitionControl :
 #print axioms highRankConditionalLandingControl
 #print axioms falseHighRankRecognitionControl
 
+#print axioms SixBirdsBSD.Closure.CoupledFactors.comparisonsEquivalentUnderScalar
+#print axioms SixBirdsBSD.Closure.CoupledFactors.fullPackageIffLocalUnderScalar
+#print axioms SixBirdsBSD.Closure.CoupledFactors.fullPackageIffCoefficientUnderScalar
+#print axioms SixBirdsBSD.Closure.CoupledFactors.positiveComparisonFiber
+#print axioms SixBirdsBSD.Closure.CoupledFactors.comparisonFiberParameterUnique
+#print axioms SixBirdsBSD.Closure.CoupledFactors.positiveGaugeReturns
+#print axioms SixBirdsBSD.Closure.CoupledFactors.positiveGaugePackageIffOne
+#print axioms SixBirdsBSD.Closure.CoupledFactors.positiveGaugeLensConstant
+#print axioms SixBirdsBSD.Closure.CoupledFactors.noFullPackageFromScalarLens
+#print axioms SixBirdsBSD.Closure.CoupledFactors.comparisonZeroControls
+
 end SixBirdsBSD.Verification.Regression

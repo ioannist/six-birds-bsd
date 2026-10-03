@@ -80,6 +80,28 @@ interface. It is neither a necessity of each equality for every instance
 of BSD nor an absolute impossibility of proving BSD by another method.
 It is also not yet necessity of the three particular arithmetic sources.
 
+## Complete positive comparison-family construction
+
+[`positive_comparison_fiber.md`](positive_comparison_fiber.md) sharpens the
+compensating-factor example into an exact classification. Under native
+fixity and positivity, scalar BSD holds precisely when the native factors
+have the form a=u(Sha/torsionSquared), b=T/u for a positive rational u.
+The parameter is unique once the individual coefficient is retained.
+
+An explicit all-positive family freezes every scalar field except those
+two native factors, and retains their product. No predicate on that
+declared seven-value lens recovers both exact comparisons. Retaining either
+comparison repairs this loss when native fixity and scalar BSD are already
+known: lawful nonzero cancellation derives the other. This extra scalar
+premise explains why the repair does not contradict the earlier universal
+assembly independence theorem, where BSD still has to be inferred.
+
+These are new conditional rational proofs, with zero-factor failure controls.
+They preserve the paper's conditional translation and do not claim that
+the family is an elliptic-curve ablation of the original named sources.
+In particular, changing the auxiliary returned package would not by itself
+make both comparison sources indispensable.
+
 ## Exact obligations for an arithmetic landing
 
 1. Construct native \(a(E)\) and \(b(E)\) on a declared common domain of
