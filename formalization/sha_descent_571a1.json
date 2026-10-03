@@ -1,0 +1,45 @@
+{
+  "scope": "Certified PARI two-descent and independent exact checks of quartic maps and local-solubility inputs. Arithmetic descent correctness is external to Lean; no full BSD or full Sha-order claim.",
+  "curve_label_system": "Cremona",
+  "curve": "571a1",
+  "model_source": "support_prime_models.json",
+  "checked": "2026-10-03",
+  "pari_version_checked": "2.15.4",
+  "random_seed": 1,
+  "sources": {
+    "ellrank": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Elliptic_curves.html#ellrank",
+    "ell2cover": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Elliptic_curves.html#ell2cover",
+    "bnfcertify": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/General_number_fields.html#bnfcertify",
+    "algorithm": "https://pari.math.u-bordeaux.fr/lcov-report/basemath/ellrank.c.gcov.html",
+    "classical_pairing_comparison": "https://mathe2.uni-bayreuth.de/stoll/papers/yoga.pdf",
+    "fisher_binary_quartics": "https://arxiv.org/html/2208.14977v1"
+  },
+  "bnf_certification": [1],
+  "rational_torsion_order": 1,
+  "ellrank_output": [0, 0, 2, []],
+  "ordinary_quartic_discriminant": -146176,
+  "fisher_binary_discriminant": -2338816,
+  "fisher_pdf_sha256": "48a8502ffef7db9ca68866d56af96e10fec4f187840a2c07353abb833454a948",
+  "quartic_I": 44608,
+  "quartic_J": 18842960,
+  "quartics": [
+    {
+      "coefficients_descending": [-4, -60, -232, -52, -3],
+      "x_numerator_descending": [69, 1036, 4006, 898, 52],
+      "twice_shifted_y_numerator_descending": [-2, -16, -10, -10, -30, -46, -5],
+      "real_x": [-2, 17],
+      "real_value": [293, 83521],
+      "two_adic_x": 1,
+      "odd_bad_point": [0, 219]
+    },
+    {
+      "coefficients_descending": [-11, -68, -52, 164, -64],
+      "x_numerator_descending": [190, 1174, 898, -2832, 1105],
+      "twice_shifted_y_numerator_descending": [3, 2, -20, 50, -10, 12, -14],
+      "real_x": [-15, 4],
+      "real_value": [101, 256],
+      "two_adic_x": 1,
+      "odd_bad_point": [2, 139]
+    }
+  ]
+}

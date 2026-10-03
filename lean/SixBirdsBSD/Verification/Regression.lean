@@ -328,4 +328,17 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.LocalUnitSupport.falseBranchControls
 #print axioms SixBirdsBSD.Closure.LocalUnitSupport.coefficientPrimeFlagCannotRecoverProducts
 
+#print axioms SixBirdsBSD.Closure.ShaDescent.quarticCoverIdentities
+#print axioms SixBirdsBSD.Closure.ShaDescent.curveAndQuarticInvariants
+#print axioms SixBirdsBSD.Closure.ShaDescent.fisherJacobianCoordinates
+#print axioms SixBirdsBSD.Closure.ShaDescent.fisherCoordinateInverse
+#print axioms SixBirdsBSD.Closure.ShaDescent.realSolubilityInputs
+#print axioms SixBirdsBSD.Closure.ShaDescent.twoAdicSolubilityInputs
+#print axioms SixBirdsBSD.Closure.ShaDescent.badPrimeSolubilityInputs
+#print axioms SixBirdsBSD.Closure.ShaDescent.noNonzeroDoubleOfFourTorsion
+#print axioms SixBirdsBSD.Closure.ShaDescent.primaryCollapse
+#print axioms SixBirdsBSD.Closure.ShaDescent.primaryKernelEquivalence
+#print axioms SixBirdsBSD.Closure.ShaDescent.modelTwoPairingHypotheses
+#print axioms SixBirdsBSD.Closure.ShaDescent.modelFourFalseControl
+
 end SixBirdsBSD.Verification.Regression

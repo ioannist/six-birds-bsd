@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "4a58257f9447277c31cb37feeb79d4c978daf80105896d9a3421ebbd35700868",
+  "lean_context_hash": "c894c75796afb4814d244e402c3bcfb7e7b18b6d9e0f3bc97e16e5017f907a76",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -59,8 +59,8 @@
       "line_start": 151,
       "statement_hash": "a0f6ad4eed7a25bd1faeb82fde37655bb8b42958dec18f9bd23f7d2b0d4bfaf8",
       "lean_decl": "",
-      "assessment": "primary-data rank check; Sha witness open",
-      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. The current primary curve data agrees with the stated rank-zero and rank-two 389a1 choices. A proof-bearing nontrivial Sha[2]/Cassels-Tate computation is still needed beyond a recorded analytic Sha value."
+      "assessment": "certified two-primary arithmetic witness; full Sha order open",
+      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. Certified PARI two-descent on the primary 571a1 equation now gives torsion order one, rank bounds [0,0], and Cassels-pairing rank two; full bnf certification removes the class-group GRH dependency. Exact quartic maps/local inputs and the pairing-to-two-primary collapse are checked in Lean. Standard descent interpretation identifies its two-primary group with H_2 of order four. This does not prove the whole Sha order or the arithmetic determinant-line transport; arithmetic descent completeness and pairing computation remain external to Lean. See finite_pairing_construction.md."
     },
     {
       "latex_label": "def:apparatus:analytic-period-map",

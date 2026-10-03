@@ -12,6 +12,7 @@ import SixBirdsBSD.Closure.Landing
 import SixBirdsBSD.Closure.CoupledFactors
 import SixBirdsBSD.Closure.RationalLocalGlobal
 import SixBirdsBSD.Closure.LocalUnitSupport
+import SixBirdsBSD.Closure.ShaDescent
 import SixBirdsBSD.Closure.AORPrimitives
 import SixBirdsBSD.Closure.AORInstance
 

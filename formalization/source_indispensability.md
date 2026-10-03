@@ -354,9 +354,9 @@ The separate finite construction in `finite_pairing_construction.md`
 now supplies actual groups with perfect alternating cyclic-target pairings
 and impossibility theorems for every readout through dimension-only or
 cardinality-only observations. These replace free finite metadata in the
-dimension shadow and strengthen its information-loss claim. They do not
-identify the groups with arithmetic Sha data or prove indispensability of
-the named sources for scalar BSD. The finite determinant return is now
+dimension shadow and strengthen its information-loss claim. Those finite
+proofs alone do not identify arithmetic Sha groups or prove indispensability
+of the named sources for scalar BSD. The finite determinant return is now
 constructed on actual integral hyperbolic presentations in
 `Apparatus/FinitePresentation.lean`: a quotient-group isomorphism and
 duplicate-free enumeration prove that the determinant is the cokernel
@@ -365,7 +365,16 @@ earlier basis-change example. Arithmetic Selmer-complex identification,
 compatibility with the named comparisons, and realization of arithmetic
 ablation witnesses remain open.
 
-Both construction modules are imported by the closure umbrella. The regression target
+The exponent-two finite lane now has an arithmetic witness: the certified
+two-descent for 571a1, with class-group certification and full pairing
+rank, identifies its two-primary group with H_2 through standard descent
+theory. Lean independently checks the quartic maps and local numerical
+inputs and derives the higher-torsion exclusion. The H_4 arithmetic
+ablation partner, full named-source applicability, and determinant-line
+comparison remain open; see `finite_pairing_construction.md`. No
+whole-Sha order or scalar BSD conclusion follows from this new witness.
+
+The construction modules are imported by the closure umbrella. The regression target
 `SixBirdsBSD.Verification.Regression` prints the axiom dependencies of
 the assembly, sharp criteria, countermodels, local-to-global returns,
 source-scope necessity statements, and existing landing.
