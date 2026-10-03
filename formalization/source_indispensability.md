@@ -380,10 +380,32 @@ alone cannot recover the two-primary order on these actual curves.
 The observation excludes curve identity and the other arithmetic source
 data; those records are not held fixed between the pair. This proves
 arithmetic loss on that specified interface, while full named-source
-indispensability, perfect paired H_4 identification, and determinant-line
-comparison remain open. See `finite_pairing_construction.md` and
+indispensability and determinant-line comparison remain open.
+The subsequent published eight-descent refinement fixes the partner's
+exact two-primary order sixteen and realizes the perfect paired H_4
+lane. Lean derives the tail exclusion and normalizes every alternating
+nondegenerate form on H_4 to the integral hyperbolic presentation.
+It also supplies 2045b1 as a stronger partner: all finite Tamagawa
+numbers and the trivial torsion group agree with 571a1, as does the
+two-torsion dimension, while the two-primary orders are four and
+sixteen. No readout through those retained finite inputs recovers the
+two-primary finite factor. Since nonvanishing gives finite whole Sha
+groups, their whole orders are four and sixteen times odd integers,
+respectively, and cannot agree. Trivial rational torsion therefore also
+gives a genuine whole-finite-factor obstruction through the same coarse
+inputs, without computing either odd part. Lean proves that congruence
+return from the derived primary counts. The eight-descent is imported from an identified
+published computational proof, not a new supplied conclusion field or
+a locally rerun PARI algorithm. Its analytic branch is selected using
+an exact primitive Hecke eigensymbol and a proved arithmetic lattice
+normalization, with the semistable Manin theorem explicitly imported;
+the library's numerical real-period calibration is not the proof of
+that scale. The analytic source data are not held
+fixed between the pair, and these semistable curves do not supply the
+Gamma sources' additive-prime hypotheses. See
+`finite_pairing_construction.md`, `sha_four_normalization.json`, and
 `sha_dimension_arithmetic_pair.json` for evidence, imported theorems,
-scope and self-review. No whole-Sha order or scalar BSD conclusion
+scope and self-review. No exact numerical whole-Sha order or scalar BSD conclusion
 follows from this comparison.
 
 The construction modules are imported by the closure umbrella. The regression target

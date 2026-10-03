@@ -129,3 +129,32 @@ landing still follows from its existing recognition predicate. Thus this
 repair prevents accidental substitution within a declared family but
 does not establish arithmetic source indispensability or make the CT
 import necessary to the scalar landing.
+
+## Arithmetic finite normalization now realized, with its scope preserved
+
+Certified two-descent for 571a1 and 1309a1 supplied an arithmetic
+dimension-only separation. A checked intermediate eight-descent result
+in Miller's small-conductor proof now identifies 1309a1's entire
+two-primary group with H_4. The new 2045b1 partner gives the same H_4
+lane while preserving every finite-place Tamagawa number and the trivial
+rational torsion group of 571a1. See `finite_pairing_construction.md`
+for the published computation, applicability calculations and trust
+boundary; this is not a locally rerun eight-descent.
+
+`ShaFourNormalization.lean` derives a unit coefficient for every
+alternating nondegenerate form on H_4, constructs an additive coordinate
+normalization, and returns the actual integer hyperbolic presentation
+and positive cokernel order sixteen. Classical Cassels-Tate alternation
+and nondegeneracy on finite elliptic-curve Sha groups supply the
+arithmetic paired interpretation. This realizes a paired finite-group
+presentation. It does not identify the same presentation with Nekovar's
+arithmetic complex or a chosen Stark-system generator and determinant
+orientation. Those source-comparison maps remain open.
+
+At two, 1309a1 also fails the nondivisibility-of-Tamagawa condition:
+its product is four. The matched 2045b1 example has product one, but
+prime two still lies outside the cited odd-prime Stark-system scope.
+All three curves are semistable, so they do not provide the Gamma
+sources' additive-prime instances. Populating the existing chi_CT
+certificate with their finite cardinalities would bypass these
+substantive applicability and comparison obligations.

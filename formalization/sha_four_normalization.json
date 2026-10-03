@@ -1,0 +1,302 @@
+{
+  "scope": "Literature-backed eight-descent refinement and independent exact applicability computations. The Miller intermediate descent result is an external published computational proof, not rerun by the PARI checker. The paired-group classification and normalization return are mechanized generically. Distinct two-primary orders imply distinct whole finite factors without computing odd parts; exact whole orders, arithmetic Selmer-complex/Stark transports and full named-source indispensability remain open.",
+  "curve_label_system": "Cremona",
+  "checked": "2026-10-03",
+  "pari_version_checked": "2.15.4",
+  "random_seed": 1,
+  "gp_stack_bytes": 128000000,
+  "sources": {
+    "model_provenance": "sha_dimension_arithmetic_pair.json",
+    "miller_pdf": "https://arxiv.org/pdf/1010.2431v3",
+    "miller_version": "arXiv:1010.2431v3, 21 December 2011",
+    "miller_pdf_sha256": "52cbe68361e6eb07f94e13197a88eb5295c3f92e339a65d1488324d5489055ae",
+    "miller_location": "Proof of Theorem 7.1, printed page 16 (PDF page index 15)",
+    "imported_intermediate": "For optimal curves of conductor less than 5000 with T(E)=ord_2(#Sha_an)=4, the reported eight-descent establishes Sha[8]=Sha[4]; the reported four-descent establishes Sha[4] isomorphic to (Z/4)^2. These are intermediate arithmetic computation results in the proof; the BSD order equality is not assumed as an input.",
+    "miller_trust_boundary": "The published small-conductor classification and eight-descent implementation are trusted as an imported computational theorem. The present GP executable only reproduces two-descent and applicability, not eight-descent.",
+    "isogeny_classes": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Elliptic_curves.html#ellisomat",
+    "local_reduction": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Elliptic_curves.html#elllocalred",
+    "modular_symbol_generator_interface": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#mspathgens",
+    "modular_symbol_check_implementation": "https://pari.math.u-bordeaux.fr/lcov-report/basemath/modsym.c.gcov.html",
+    "manin_pdf": "https://arxiv.org/pdf/1703.02951v3",
+    "manin_version": "arXiv:1703.02951v3, 26 April 2018; downloaded PDF internal date 14 July 2021",
+    "manin_pdf_sha256": "61cde659ac3089225539b58bfdf0082cb63ce39d1ca8bd7f8952b424e7132b6c",
+    "manin_location": "Cesnavicius, Theorem 1.2 (Theorem 2.13), printed page 2: the Manin constant of a new optimal semistable elliptic quotient has absolute value one.",
+    "period_lattice": "https://www.maths.nottingham.ac.uk/plp/pmzcw/download/modsym.pdf",
+    "period_lattice_location": "Wuthrich, Numerical modular symbols for elliptic curves, 20 March 2017, Section 2, printed pages 3-4: optimal period-lattice generation and cusp images. The Manin-constant assumption there is discharged by the semistable theorem here.",
+    "exact_hecke_symbols": "https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#msfromhecke",
+    "cassels_tate_perfectness": "https://math.mit.edu/~poonen/papers/sha.pdf",
+    "cassels_tate_pdf_sha256": "3b9a619423358bc877fd2123b73a759157a728ec11e0f7b0aa48bd0333d7149a"
+  },
+  "first_curve": {
+    "curve": "571a1",
+    "model_fixture": "sha_dimension_arithmetic_pair.json",
+    "bad_prime": 571,
+    "local_reduction": [
+      1,
+      5,
+      [
+        1,
+        0,
+        0,
+        0
+      ],
+      1
+    ],
+    "finite_tamagawa_product": 1,
+    "rational_torsion_order": 1,
+    "coordinate_column_length": 95,
+    "path_generator_count": 97,
+    "explicit_generator_values_msissymbol": 1,
+    "normalized_modular_symbol_value": 4,
+    "q_comparison_bound": 96
+  },
+  "models": {
+    "1309a1": {
+      "a_invariants": [
+        0,
+        0,
+        1,
+        -406957,
+        -99924251
+      ],
+      "conductor": 1309,
+      "minimal_a_invariants": [
+        0,
+        0,
+        1,
+        -406957,
+        -99924251
+      ],
+      "rational_isogeny_class_size": 1,
+      "bad_primes": [
+        7,
+        11,
+        17
+      ],
+      "discriminant_exponents": [
+        6,
+        3,
+        2
+      ],
+      "local_reduction": [
+        [
+          1,
+          10,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          2
+        ],
+        [
+          1,
+          7,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          1,
+          6,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          2
+        ]
+      ],
+      "finite_tamagawa_product": 4,
+      "real_components": 1,
+      "normalized_modular_symbol_value": 64
+    },
+    "2045b1": {
+      "a_invariants": [
+        1,
+        -1,
+        0,
+        -5470,
+        -862675
+      ],
+      "allcurves_row": "2045 b 1 [1,-1,0,-5470,-862675] 0 1",
+      "conductor": 2045,
+      "c4": 262569,
+      "c6": 746532747,
+      "discriminant": -312042236328125,
+      "minimal_a_invariants": [
+        1,
+        -1,
+        0,
+        -5470,
+        -862675
+      ],
+      "rational_isogeny_class_size": 1,
+      "bad_primes": [
+        5,
+        409
+      ],
+      "discriminant_exponents": [
+        17,
+        1
+      ],
+      "local_reduction": [
+        [
+          1,
+          21,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        [
+          1,
+          5,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          1
+        ]
+      ],
+      "finite_tamagawa_product": 1,
+      "real_components": 1,
+      "bnf_certification": [
+        1
+      ],
+      "rational_torsion_order": 1,
+      "ellrank_output": [
+        0,
+        2,
+        0,
+        []
+      ],
+      "quartic_coefficients_descending": [
+        [
+          -75,
+          70,
+          -693,
+          38,
+          233
+        ],
+        [
+          -27,
+          -134,
+          471,
+          -562,
+          -823
+        ]
+      ],
+      "modular_symbol": {
+        "sign": 1,
+        "level": 2045,
+        "weight": 2,
+        "coordinate_column_length": 409,
+        "path_generator_count": 413,
+        "raw_column_msissymbol": 0,
+        "explicit_generator_values_msissymbol": 1,
+        "path": [
+          "oo",
+          0
+        ],
+        "value": 16,
+        "sturm_bound": 410,
+        "q_expansion_matches_curve_through_bound": 1
+      }
+    }
+  },
+  "deduction_boundary": "Negative discriminants give one real component; identity minimal models fix the differential convention. Exact Hecke eigensymbol computations and the independently justified optimal integral-lattice normalization give |L(1309a1,1)|/Omega^+=64 and |L(2045b1,1)|/Omega^+=16. Thus the analytic two-adic candidates are 64/4=16 and 16/1=16, with valuation four. Singleton rational isogeny classes establish optimality, matching the intermediate eight-descent statement in Miller's proof. That external statement excludes higher two-power tails and supplies exact H_4 two-primary groups. Their perfect alternating Cassels-Tate forms can be normalized to the standard integral presentation by the generic proved classification. Neither the analytic candidate alone nor a stored table Sha value is used as an arithmetic upper bound. The integral-lattice arithmetic imports and published eight-descent remain external to Lean. Finiteness and primary decomposition then write the matched whole Sha orders as four and sixteen times odd integers, respectively. The proved congruence excludes equality without knowing either odd part. Trivial rational torsion transfers this inequality to the whole finite BSD factors; it does not prove a scalar BSD formula.",
+  "exact_period_normalization": {
+    "method": "msinit(N,2,1), msfromhecke at 2,3,5, then divide by the content of all explicit mspathgens evaluations; no msfromell, numerical integration, or rational reconstruction in this computation.",
+    "arithmetic_return": "Squarefree conductor and singleton isogeny class give a semistable optimal quotient; the Manin theorem fixes its differential up to sign. All cusps are rational and map to rational torsion, which is trivial. Their path integrals generate exactly the full period lattice: containment follows from trivial cusp images, and optimality gives surjectivity on integral homology. Negative discriminant makes its real projection (Omega^+/2) Z. Hence the primitive integral plus eigensymbol is twice the normalized plus symbol, up to sign. Only absolute values are used for Miller branch valuation; no sign comparison is claimed.",
+    "primitive_to_absolute_period_ratio_divisor": 2,
+    "curves": {
+      "571a1": {
+        "level": 571,
+        "rational_isogeny_class_size": 1,
+        "hecke_prime_eigenvalues": [
+          [
+            2,
+            0
+          ],
+          [
+            3,
+            2
+          ],
+          [
+            5,
+            -2
+          ]
+        ],
+        "eigenspace_dimension": 1,
+        "coordinate_column_length": 48,
+        "path_generator_count": 97,
+        "generator_value_content": 1,
+        "primitive_path_value_absolute": 8,
+        "absolute_period_ratio": 4,
+        "sturm_bound": 95
+      },
+      "1309a1": {
+        "level": 1309,
+        "rational_isogeny_class_size": 1,
+        "hecke_prime_eigenvalues": [
+          [
+            2,
+            2
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            1
+          ]
+        ],
+        "eigenspace_dimension": 1,
+        "coordinate_column_length": 148,
+        "path_generator_count": 289,
+        "generator_value_content": 1,
+        "primitive_path_value_absolute": 128,
+        "absolute_period_ratio": 64,
+        "sturm_bound": 288
+      },
+      "2045b1": {
+        "level": 2045,
+        "rational_isogeny_class_size": 1,
+        "hecke_prime_eigenvalues": [
+          [
+            2,
+            1
+          ],
+          [
+            3,
+            3
+          ],
+          [
+            5,
+            -1
+          ]
+        ],
+        "eigenspace_dimension": 1,
+        "coordinate_column_length": 206,
+        "path_generator_count": 413,
+        "generator_value_content": 1,
+        "primitive_path_value_absolute": 32,
+        "absolute_period_ratio": 16,
+        "sturm_bound": 410
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "5a55dc9eb315abf17449a25f3b9ca56cd3d5c42b9da203c1f8aa4b7fe4fa642c",
+  "lean_context_hash": "c13ce6087803782ab8dced8608a0d2051a8295253bad9f548f3a01b483a30af4",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -60,7 +60,7 @@
       "statement_hash": "a0f6ad4eed7a25bd1faeb82fde37655bb8b42958dec18f9bd23f7d2b0d4bfaf8",
       "lean_decl": "",
       "assessment": "certified two-primary arithmetic witness; full Sha order open",
-      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. Certified PARI two-descent on the primary 571a1 equation now gives torsion order one, rank bounds [0,0], and Cassels-pairing rank two; full bnf certification removes the class-group GRH dependency. Exact quartic maps/local inputs and the pairing-to-two-primary collapse are checked in Lean. Standard descent interpretation identifies its two-primary group with H_2 of order four. The 1309a1 comparison now realizes arithmetic dimension-only loss through unequal finite two-primary orders, four versus at least sixteen, using a nonzero modular symbol and an established finiteness theorem for the partner. Its exact order and perfect paired H_4 identification remain open. This does not prove the whole Sha order or the arithmetic determinant-line transport; arithmetic descent completeness and pairing computation remain external to Lean. See finite_pairing_construction.md."
+      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. Certified PARI two-descent on the primary 571a1 equation now gives torsion order one, rank bounds [0,0], and Cassels-pairing rank two; full bnf certification removes the class-group GRH dependency. Exact quartic maps/local inputs and the pairing-to-two-primary collapse are checked in Lean. Standard descent interpretation identifies its two-primary group with H_2 of order four. The 1309a1 comparison now realizes arithmetic dimension-only loss through unequal finite two-primary orders, four versus at least sixteen, using a nonzero modular symbol and an established finiteness theorem for the partner. A separately checked intermediate eight-descent in Miller's published small-conductor proof now fixes the partner's exact two-primary order sixteen and realizes perfect H_4. The 2045b1 partner preserves every finite Tamagawa number and trivial torsion as well. This eight-descent is imported and not independently rerun locally; Lean derives its primary stabilization return and the finite paired integral normalization. Exact primitive Hecke symbols and optimal integral-lattice normalization justify the analytic branch without numerical calibration. Finiteness and primary decomposition give unequal whole finite factors, with the congruence return checked in Lean, without computing their odd parts. This does not compute exact whole Sha orders or prove the arithmetic determinant-line transport; arithmetic descent completeness and pairing computation remain external to Lean. See finite_pairing_construction.md."
     },
     {
       "latex_label": "def:apparatus:analytic-period-map",

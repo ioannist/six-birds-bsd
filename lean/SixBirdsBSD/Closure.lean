@@ -14,6 +14,7 @@ import SixBirdsBSD.Closure.RationalLocalGlobal
 import SixBirdsBSD.Closure.LocalUnitSupport
 import SixBirdsBSD.Closure.ShaDescent
 import SixBirdsBSD.Closure.ShaDimensionPair
+import SixBirdsBSD.Closure.ShaFourNormalization
 import SixBirdsBSD.Closure.AORPrimitives
 import SixBirdsBSD.Closure.AORInstance
 

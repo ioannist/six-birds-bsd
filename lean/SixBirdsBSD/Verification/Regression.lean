@@ -352,4 +352,19 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.ShaDimensionPair.fourHalvingPositiveControl
 #print axioms SixBirdsBSD.Closure.ShaDimensionPair.twoHalvingFalseControl
 
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.millerNumericalInputs
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.matchedPartnerNumericalInputs
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.primaryCollapseToFour
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.primaryFourEquivalence
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.enumeratePrimaryFromEightStabilization
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.noFiniteFactorReadoutFromCoarseInputs
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.unequalWholeOrdersFromPrimaryLayers
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.noWholeFiniteFactorReadoutFromCoarseInputs
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.eightStabilizationControls
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.formCoefficient
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.nondegenerateCoefficientIsUnit
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.everyPerfectFourFormHasNormalization
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.perfectFourFormIntegralReturn
+#print axioms SixBirdsBSD.Closure.ShaFourNormalization.formNormalizationControls
+
 end SixBirdsBSD.Verification.Regression

@@ -6,8 +6,12 @@ certified two-descent below now identifies its exponent-two lane with
 571a1's two-primary arithmetic group, using external descent theory and
 computation. A second certified calculation now realizes an arithmetic
 dimension-only separation using 1309a1: its finite two-primary group has
-order at least sixteen. Its exact two-primary order, perfect paired H_4
-identification, and arithmetic determinant-line comparison remain open.
+order at least sixteen. The later literature-backed eight-descent
+refinement below proves its exact order sixteen and realizes the paired
+H_4 lane. The additional partner 2045b1 preserves the other coarse finite
+inputs as well. Unequal two-primary orders force unequal whole finite
+factors without computing their odd parts. Arithmetic determinant-line
+comparison remains open.
 The manuscripts are unchanged. The finite implementation is
 `lean/SixBirdsBSD/Apparatus/FinitePairings.lean`.
 
@@ -298,6 +302,14 @@ the divisor `[0]-[oo]`. The
 identifies this evaluation with L(F,1)/Omega^+, where Omega^+ is positive.
 Only nonvanishing is needed, so changing the nonzero rational scaling
 of the eigensymbol would not affect the argument.
+The library's real-period calibration uses numerical computation and
+rational reconstruction (see the
+[PARI scaling implementation](https://pari.math.u-bordeaux.fr/lcov-report/basemath/modsym.c.gcov.html),
+`msfromell_scale`); a rational output by itself is not an exact
+normalization proof. The independent Hecke/lattice calculation below
+establishes the absolute ratio without that calibration. The earlier
+nonvanishing deduction only needs the exact eigensymbol line and its
+nonzero path evaluation.
 
 All 288 coefficients of `msqexpansion(M,sy,288)` agree with
 `ellan(F,288)`. This is the weight-two Sturm bound at squarefree level
@@ -340,9 +352,9 @@ Both inverse identities follow from the abelian-group laws and 2h(a)=a.
 Consequently #G[4]=#G[2]^2=16. Finiteness of G, proved above, ensures
 its two-primary subgroup is finite. It contains G[4], so its order is
 at least sixteen. No upper bound on its exponent or order is inferred.
-In particular, this does not prove that its full two-primary paired
-group is the perfect H_4 model; higher two-power layers remain possible
-on this evidence.
+In particular, this two-descent evidence alone does not prove that its
+full two-primary paired group is the perfect H_4 model; excluding higher
+layers requires the separate eight-descent input below.
 
 `Closure/ShaDimensionPair.lean` derives doubling from actual abelian
 addition, constructs these maps and both inverses, and produces a
@@ -388,11 +400,11 @@ and the distinction between a lower bound and an exact order. H_4
 supplies an inhabited halving control; H_2 fails the halving premise,
 even though its two-torsion dimension is the same. No analytic Sha
 table value supplies the arithmetic conclusion. A diagnostic
-`msissymbol` check on 571a1's symbol returned zero in this PARI version;
-that unexpected check is not used as evidence here. The first curve
-uses the certified descent and torsion collapse, and the second curve
-passes both symbol checks. Diagnosing the first symbol check remains a
-separate implementation question.
+`msissymbol` check on 571a1's short coordinate column returned zero in
+this PARI version. Evaluating on **all path generators**, as below,
+resolves that representation mismatch and passes the actual relations.
+The first curve's earlier order argument uses only its certified descent
+and torsion collapse; it did not depend on this diagnostic.
 
 Run `scripts/check_sha_dimension_pair.py --check` for exact offline model
 and quartic invariant checks, or add `--gp` with a PARI/GP executable to
@@ -407,6 +419,272 @@ At this checkpoint the optional PARI reproduction passed, as did
 only the previously permitted `propext`, `Classical.choice`, and
 `Quot.sound`. The manuscripts were not edited.
 
+## Eight-descent refinement and a matched finite-source pair
+
+### Exact period normalization from the integral lattice
+
+The eight-descent branch below requires a two-adic valuation of the
+analytic candidate, so nonvanishing alone no longer suffices. We first
+fix the scale independently of `msfromell`. For each of 571a1, 1309a1,
+and 2045b1, set `M=msinit(N,2,1)` and use
+`msfromhecke(M,[[2,a2],[3,a3],[5,a5]])`, with the eigenvalues computed
+from the integral curve equation. The resulting space has dimension
+one. Divide a nonzero basis vector by the positive content of its
+evaluations on **all** `mspathgens(M)[1]` paths. This yields an integral
+primitive plus symbol `v`, whose generator values have gcd one.
+`msissymbol` verifies these full evaluations; `msstar(M)*v=v` verifies
+the plus sign. Its normalized q-expansion agrees with the curve through
+the full weight-two Sturm bound. This computation uses rational and
+integer arithmetic, with no period integration or rational reconstruction.
+The relevant exact interfaces are
+[msfromhecke](https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#msfromhecke)
+and
+[mspathgens](https://pari.math.u-bordeaux.fr/dochtml/html-stable/Modular_symbols.html#mspathgens).
+The latter supplies integral group-ring generators; at weight two the
+coefficient action is trivial, so their values generate the entire
+value lattice.
+
+Here is the arithmetic return fixing the scale. These curves have
+squarefree conductor, negative minimal discriminant, trivial rational
+torsion, and singleton rational isogeny classes. Thus they are
+semistable and optimal. Theorem 1.2 of
+[Cesnavicius, The Manin constant in the semistable case](https://arxiv.org/pdf/1703.02951v3)
+gives absolute Manin constant one, so integration of the normalized
+newform agrees, up to sign, with integration of the minimal Neron
+differential. The checked PDF SHA-256 is
+`61cde659ac3089225539b58bfdf0082cb63ce39d1ca8bd7f8952b424e7132b6c`.
+This is arXiv v3, submitted 26 April 2018; its downloaded PDF has
+internal date 14 July 2021. Section 2 of
+[Wuthrich, Numerical modular symbols for elliptic curves](https://www.maths.nottingham.ac.uk/plp/pmzcw/download/modsym.pdf)
+(20 March 2017, printed pages 3-4) explains the optimal period-lattice
+generation and torsion images of cusps. Its Manin-constant assumption
+is discharged here by the cited semistable theorem.
+
+At squarefree level every cusp is rational. Manin-Drinfeld makes its
+image, relative to the infinity cusp, a rational torsion point, hence
+zero on these curves. Therefore every cusp-to-cusp path integral is an
+elliptic period. Conversely, optimality means that the Jacobian quotient
+has connected kernel; the homotopy sequence of complex tori makes its
+map on integral first homology surjective. Abel-Jacobi identifies the
+homology of the modular curve with that of its Jacobian. Closed cycles
+are generated by cusp paths, so these integrals generate the **whole**
+elliptic period lattice, not merely a sublattice. This proves equality
+in both directions rather than just a denominator bound.
+
+Negative discriminant gives connected real locus and the lattice
+`Z*Omega^+ + Z*(Omega^+/2 + i*b)`, with `b>0`. Its real projection is
+exactly `(Omega^+/2)*Z`. Thus the normalized plus symbol has value
+lattice `(1/2)*Z`. Since it lies in the same one-dimensional Hecke
+eigenline as `v`, whose value lattice is `Z`, its scale is `v/2` up to
+sign. Consequently:
+
+| Curve | Primitive absolute value on [oo,0] | Absolute L-value / Omega^+ |
+| --- | --- | --- |
+| 571a1 | 8 | 4 |
+| 1309a1 | 128 | 64 |
+| 2045b1 | 32 | 16 |
+
+This proves the absolute ratios from an exact eigensymbol and an
+independently justified lattice normalization. It does not choose an
+orientation or prove the signed comparison required by the paper.
+Absolute values suffice for the two-adic branch valuations below.
+The modularity, Manin-Drinfeld, optimality, and integral period-lattice
+arguments remain arithmetic imports and a written proof, external to
+the mathlib-free Lean development.
+
+### Independently established arithmetic upper bound
+
+[Miller, arXiv:1010.2431v3](https://arxiv.org/pdf/1010.2431v3)
+(21 December 2011), proof of Theorem 7.1, printed page 16, reports
+the following intermediate computational results for optimal curves
+of conductor less than 5000. When the analytic two-primary candidate
+has valuation four, a four-descent gives Sha[4] isomorphic to (Z/4)^2
+and an eight-descent gives Sha[8]=Sha[4]. The latter is the new input
+used here. It is an established arithmetic computation in the proof,
+rather than a deduction from a conjectural BSD equality. The checked
+PDF SHA-256 is
+`52cbe68361e6eb07f94e13197a88eb5295c3f92e339a65d1488324d5489055ae`.
+The published computation is not independently rerun by our GP script.
+This refinement has an additional literature trust boundary; the
+two-descent-only lower-bound theorem above remains available separately.
+
+For 1309a1, independent applicability computations give:
+
+- The integral equation is already globally minimal, and its rational
+  isogeny class has one isomorphism class, from `ellisomat`. Hence this
+  curve is optimal. Its nonintegral j-invariant verifies the non-CM
+  scope of that isogeny-class algorithm.
+- Its discriminant is -7^6*11^3*17^2, with primitive c4 at each bad
+  prime. The local outputs are I6/c7=2, I3/c11=1, I2/c17=2. The finite
+  Tamagawa product is four. GP recomputes these from the equation.
+- The discriminant is negative, so there is one real component and the
+  connected real period Omega^+ is the full real period. The torsion
+  order is one and the rank-zero regulator is one.
+- The independently established absolute ratio |L(E,1)|/Omega^+=64 gives
+  analytic candidate 64/4=16, of two-adic valuation four. This is a
+  branch-applicability calculation, not an assumed arithmetic order.
+
+Thus the **eight-descent result in the proof**, rather than its final
+BSD formula, applies to the same primary equation. If every element
+killed by eight is already killed by four, induction on any two-power
+annihilator proves the entire two-primary group is killed by four.
+`ShaFourNormalization.primaryCollapseToFour` proves this without
+ambient finiteness, and `primaryFourEquivalence` constructs inverse
+maps between the actual primary and four-torsion subtypes. Combined
+with the previous halving return, the module now constructs a complete
+duplicate-free primary enumeration of length sixteen. H_8 supplies a
+false control with a surviving higher layer. Neither the analytic
+candidate nor an allbsd Sha entry supplies this upper bound.
+
+### A partner preserving the other finite inputs
+
+The new primary Cremona model is
+
+    J: y^2 + xy = x^3 - x^2 - 5470x - 862675  (2045b1).
+
+Its invariants are c4=262569, c6=746532747, Delta=-5^17*409, checked
+from the integer equation in Lean. The equation is globally minimal;
+its rational isogeny class is also a singleton. Certified PARI
+two-descent gives torsion order one, `ellrank=[0,2,0,[]]`, and two
+Selmer basis covers, with full class-group certification. Its exact
+primitive plus symbol has absolute value 32 on `[oo,0]`, giving
+absolute period-normalized value sixteen as proved above; all 410 Fourier
+coefficients through the weight-two bound at level 2045 match the
+curve. Nonvanishing gives rank zero and finite Sha as before. Its
+local reductions are I17/c5=1 and I1/c409=1, giving Tamagawa product
+one. Negative discriminant gives one real component, so the analytic
+candidate is 16/1=16. The same independently established eight-descent
+result applies. Hence its two-primary group is H_4, of order sixteen.
+
+The original first curve has I1/c571=1 and good reduction elsewhere,
+so its Tamagawa product is one as well. In fact every finite-place
+Tamagawa number of both 571a1 and 2045b1 is one: this is the good-place
+component theorem together with the displayed bad-place calculations.
+Their rational torsion groups are both trivial. Consequently:
+
+| Retained arithmetic information | 571a1 | 2045b1 |
+| --- | --- | --- |
+| Algebraic rank | 0 | 0 |
+| Every finite-place Tamagawa number | 1 | 1 |
+| Rational torsion group | trivial | trivial |
+| Two-torsion Sha dimension | 2 | 2 |
+| Two-primary Sha order | 4 | 16 |
+
+Every function of the Tamagawa product, torsion order and two-torsion
+dimension returns the same value on this pair, so cannot recover their
+unequal two-primary finite factors. `noFiniteFactorReadoutFromCoarseInputs`
+proves the generic return from the collapse, halving, and eight-torsion
+stabilization premises. The two enumeration lengths are derived, not
+fields of a certificate. The arithmetic binding uses the exact
+algorithms and the separately identified published computation above.
+This is stronger than freezing only the dimension. It still excludes
+the analytic coefficient and period, curve identity, and other named
+recognition-source records. Those are not held fixed; no full-Gamma
+indispensability for scalar BSD follows.
+
+### Return to the whole finite factor without computing odd parts
+
+The nonzero exact plus symbols and the established nonvanishing theorem
+give finiteness of the whole Sha group for both 571a1 and 2045b1. Finite
+abelian-group primary decomposition therefore writes their whole orders
+as `4*u` and `16*v`, where `u` and `v` are positive odd integers. These
+orders cannot agree: the first is congruent to four modulo eight, and
+the second to zero. Thus the whole Sha orders differ even though
+neither odd factor has been computed. Because both rational torsion
+groups are trivial, their whole finite BSD factors `#Sha/#tors^2`
+differ as well. No BSD equality is used in this deduction.
+
+`unequalWholeOrdersFromPrimaryLayers` proves the arithmetic congruence;
+`noWholeFiniteFactorReadoutFromCoarseInputs` combines it with the derived
+primary enumeration lengths. This quantifies over every readout of the
+same coarse finite inputs and arbitrary odd complements, rather than
+assuming exact full Sha orders. The finite primary decomposition and
+arithmetic binding remain external to Lean. Hence the pair obstructs
+recovery of the **whole** finite factor through those retained inputs,
+in addition to obstructing its two-primary part. Exact numerical whole
+orders and the other named-source ablations are separate obligations.
+
+### Paired arithmetic realization and integral normalization
+
+The full Sha groups of these rank-zero curves are finite by the
+nonvanishing theorem. The elliptic-curve Cassels–Tate pairing is
+alternating and nondegenerate after quotienting by the maximal divisible
+subgroup; for finite groups that subgroup is zero. See
+[Poonen and Stoll, Introduction](https://math.mit.edu/~poonen/papers/sha.pdf)
+(1999, author PDF with minor correction dated 23 August 2014; SHA-256
+`3b9a619423358bc877fd2123b73a759157a728ec11e0f7b0aa48bd0333d7149a`).
+Distinct primary components are orthogonal by biadditivity and coprime
+annihilators. Thus the two-primary restrictions are perfect alternating
+forms. The first is the earlier H_2 form; the two order-sixteen partners
+are perfect forms on H_4. This realizes the arithmetic finite paired
+lane that was previously open, with the published descent dependency
+made explicit.
+
+Lean now classifies **every** alternating nondegenerate form B on
+`Plane 4`, not just an assigned standard matrix. The existing additive
+character theorem derives
+
+    B(x,y) = u*(x1*y2-x2*y1),  u=B(e1,e2) in Z/4.
+
+Alternation eliminates the diagonal terms and fixes the reversed
+coefficient. Nondegeneracy forces u=1 or u=3: either even coefficient
+has the nonzero radical vector (2,0). The additive involution
+`(x1,x2) -> (u*x1,x2)` then carries B to the standard pairing.
+`perfectFourFormIntegralReturn` composes this derived normalization
+with the actual integer presentation A4=[[0,4],[-4,0]]. Its linking form
+recovers B modulo integers and its positive determinant is the actual
+cokernel order sixteen. Degenerate alternating forms and a nonalternating
+nondegenerate dot product are checked false controls.
+
+This gives an integral presentation **of the finite paired group**.
+It does not identify A4 with the particular arithmetic Selmer complex,
+choose the Stark generator in the manuscript's odd-prime comparison,
+or compare its determinant-line orientation with analytic/local maps.
+A positive cardinality factor and a raw rational Pfaffian coefficient
+remain distinct; selecting a torsion-value lift is still not canonical.
+All three curves here are semistable. Their finite-group examples do
+not supply the additive-prime hypotheses of the Gamma sources. Moreover
+1309a1 has two dividing its Tamagawa product, outside the corresponding
+chi_CT applicability condition at two. The matched 2045b1 pair avoids
+that Tamagawa obstruction, but prime two is still outside the cited
+odd-prime Stark-system scope.
+
+### Representation check, reproducibility, and self review
+
+For the `msfromell` computations on 571a1, the symbol coordinate column has length 95 but
+`mspathgens(M)[1]` has 97 paths; for 2045b1 these lengths are 409 and
+413. In the checked PARI version, the weight-two `msissymbol` routine
+expects values on **all** generators. Its short-column checks return
+zero. Computing `ev[i]=mseval(M,sy,path[i])` for every listed path
+returns a complete generator vector and `msissymbol(M,ev)=1` in both
+cases. This resolves the earlier diagnostic without assuming a failed
+check was harmless. The nonzero path values are four and sixteen.
+
+`sha_four_normalization.json` records the source versions/digests,
+equations, exact local outputs, and applicability calculations.
+`scripts/check_sha_four_normalization.py --check` checks their numerical
+consistency offline; `--gp` additionally reproduces minimality,
+singleton isogeny classes, local reductions and the new descent/symbol
+evidence. Separately, it reconstructs all three plus eigensymbols from
+exact Hecke matrices and checks primitive generator values and the full
+Sturm comparisons. Their sign-restricted coordinate columns have lengths
+48, 148 and 206; the path counts remain 97, 289 and 413. The arithmetic
+lattice argument fixes their absolute normalization. The checker
+expressly does not reproduce the published eight-descent or mechanize
+that lattice argument.
+
+Self-review checked the optimality and T=4 applicability conditions,
+period-component convention, integral-lattice surjectivity and equality,
+the semistable Manin theorem's hypotheses, scale-free eigensymbol
+construction, separation of analytic candidate from
+arithmetic upper bound, the published proof's actual intermediate
+statement, exclusion of every higher two-power tail, the derived unit
+coefficient and inverse coordinate change, and the finite-presentation
+versus arithmetic-complex distinction. The trust boundary includes
+published computation and standard arithmetic theorems beyond Lean.
+The full named-source endpoint remains open; no main paper claim has
+been changed.
+
 ## Resume point
 
 The finite determinant readout and its return are now constructed for
@@ -415,8 +693,11 @@ to identify the relevant integral Selmer-complex presentation and its
 pairing with the actual Sha/Tamagawa/torsion data, then prove compatibility
 of this normalization with the analytic and local comparison maps.
 The exponent-two lane and an arithmetic dimension-only partner are now
-realized above. An exact perfect H_4 realization and a pair holding the
-other named sources fixed remain separate obligations. The rational
+realized above. The published eight-descent refinement also realizes
+perfect H_4 and a pair freezing the other finite inputs. A pair holding
+the analytic and other named recognition sources fixed, and the
+arithmetic complex's determinant-line comparison, remain separate
+obligations. The rational
 conditional assembly and support-coverage results remain documented in
 `source_indispensability.md`; this construction supplies concrete finite
 carriers rather than resolving their arithmetic hypotheses.
