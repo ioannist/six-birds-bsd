@@ -665,3 +665,26 @@ rank or the additional Sha hypotheses of the recognition source. The exact
 global return therefore resolves a component-product bridge on this carrier,
 while the paper-native OC normalization remains open. Source-carrier primality,
 oddness and nondivisibility have also been made concrete, as explained there.
+
+## Complete good-cover refinement witness
+
+[`cover_beta_refinement.md`](cover_beta_refinement.md) realizes a new loss
+witness on the same arithmetic curve: the five-adic good-cover Frobenius
+polynomial T^2-4T+5 has two refinements 2+i and 2-i, constructed by a
+compatible all-level square-root lift. The lower lens retains the inertia
+determinant and unrefined Frobenius polynomial but erases the eigenline.
+Their inverse-square factors are unequal. Lean proves the no-readout
+statement over characteristic-zero fields; retaining the selected root's
+unit/nonunit status repairs the factor on both branches. If the target
+prescribes the unit root from the outset, its uniqueness already gives
+that selection and the two-refinement no-go does not imply an extra
+source is necessary. This is a completed arithmetic
+refinement witness, rather than a collection of finite root samples.
+
+The same construction excludes the proposed square relation for cover
+Frobenius at five, uniformly under unramified residue extensions. At seven
+the cover trace is zero and the inverse-square factor is -1/7. This separates
+ordinary and supersingular local regimes even when both component factors
+are two. It does not supply the native additive U_p/descent comparison,
+freeze the refinement-dependent leading moment, or prove source necessity
+for scalar BSD with normalized GZ retained.

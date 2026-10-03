@@ -25,10 +25,25 @@
   "rank_points": [[[0,1],[35,1]],[[22800,49],[3445805,343]]],
   "pari_version_checked": "2.15.4",
   "pari_seed": 20261003,
+  "cover_frobenius": [
+    [5,[0,0,0,2,0],2,4,0],
+    [7,[0,0,0,6,0],8,0,1]
+  ],
+  "five_adic_refinement": {
+    "polynomial": [1,-4,5],
+    "square_root_residue": 2,
+    "initial_square_roots": [2,7,57,182,2057,14557],
+    "root_formula": "beta_unit=2+i, beta_other=2-i, i^2=-1 and i=2 mod 5",
+    "inverse_square_factors": ["(3-4i)/25","(3+4i)/25"],
+    "positive_degree_trace_controls": [4,6,4,-14,-76,-234,-556,-1054],
+    "scope": "Actual good-cover Frobenius refinements, not a constructed additive U_p stabilization or eta value. The written digit lift proves complete five-adic existence; finite controls alone do not."
+  },
   "sources": {
     "pari": "https://pari.math.u-bordeaux.fr/dochtml/html/Elliptic_curves.html",
     "nicaise": "https://arxiv.org/pdf/0901.1809v2",
-    "component_import_record": "tame_component_return.json"
+    "component_import_record": "tame_component_return.json",
+    "frobenius_trace": "https://www.jmilne.org/math/Books/EC2.pdf, Proposition V.7.5, printed page 217",
+    "hasse_criterion": "https://doc.sagemath.org/html/en/reference/arithmetic_curves/sage/schemes/elliptic_curves/ell_field.html#sage.schemes.elliptic_curves.ell_field.EllipticCurve_field.hasse_invariant"
   },
   "deduction_boundary": "The two tame local factors are determinant(1-tau)=2, defined independently of component groups. The checked Nicaise return identifies their component numbers. Other bad places have component number one by the independently reproduced Tate outputs; all other primes have good reduction by discriminant support. Native product four equals global Tamagawa four on this curve. Removing a local leaf fails this product assembly, not scalar BSD with other named sources frozen. Algebraic rank two does not imply analytic rank two here. No p-primary Sha hypothesis or full recognition record is instantiated."
 }

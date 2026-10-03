@@ -14,7 +14,7 @@ from pathlib import Path
 import subprocess
 
 from check_local_unit_support import exact_valuation, shallow_branch, unit_at
-from check_support_prime_data import invariants, prime, prime_divisors
+from check_support_prime_data import count_points, count_points_quadratic, invariants, prime, prime_divisors
 from check_tame_component_return import determinant
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -71,6 +71,61 @@ def check(gp: str | None) -> None:
         x,y = (Fraction(*coord) for coord in point)
         assert y*y == x**3+a[3]*x+a[4]
     assert data["mordell_weil_rank_bounds"] == [2,2]
+    # Cover Frobenius is independent of the native inertia determinant.
+    fiber_outputs = data["cover_frobenius"]
+    assert len(fiber_outputs) == 2
+    for p,fiber,points,trace,supersingular in fiber_outputs:
+        assert fiber == [0,0,0,(a[3]//p) % p,0]
+        assert invariants(fiber)[1] % p != 0
+        assert count_points(fiber,p) == count_points_quadratic(fiber,p) == points
+        assert trace == p+1-points
+        # Compute the Hasse coefficient independently, not via a point count.
+        coefficients = [1]
+        cubic = [0,fiber[3],0,1]
+        for _ in range((p-1)//2):
+            product = [0]*(len(coefficients)+3)
+            for left_index,left in enumerate(coefficients):
+                for right_index,right in enumerate(cubic):
+                    product[left_index+right_index] += left*right
+            coefficients = product
+        hasse = coefficients[p-1] % p
+        assert supersingular == int(hasse == 0) == int(trace % p == 0)
+    assert [(p,trace) for p,fiber,points,trace,ss in fiber_outputs] == [(5,4),(7,0)]
+    refinement = data["five_adic_refinement"]
+    roots = []
+    modulus,root = 5,refinement["square_root_residue"]
+    for n in range(1,11):
+        assert root*root % modulus == modulus-1 and root % 5 == 2
+        assert 0 <= root < modulus
+        roots.append(root)
+        unit_beta,other_beta = (2+root) % modulus,(2-root) % modulus
+        assert unit_beta % 5 == 4 and other_beta % 5 == 0
+        assert (unit_beta**2-4*unit_beta+5) % modulus == 0
+        assert (other_beta**2-4*other_beta+5) % modulus == 0
+        if n >= 2:
+            assert exact_valuation(other_beta,5,1)
+            assert (unit_beta**2+5) % modulus != 0
+            assert (other_beta**2+5) % modulus != 0
+        defect = (root*root+1)//modulus
+        digit = (-4*defect) % 5
+        next_root = root+modulus*digit
+        assert next_root % modulus == root
+        root,modulus = next_root,5*modulus
+    assert roots[:6] == refinement["initial_square_roots"]
+    for n in range(1,9):
+        modulus,root = 5**n,roots[n-1]
+        # Division by 25 costs two coefficient levels. Retaining this shift
+        # prevents an incorrect inversion based on a truncated root alone.
+        lifted = roots[n+1]
+        assert (3-4*lifted) % 25 == 0
+        assert ((3-4*lifted)//25) % modulus == pow((2+root) % modulus,-2,modulus)
+    prev,trace = 2,4
+    trace_controls = []
+    for _ in range(20):
+        assert trace % 5 in {1,4}
+        trace_controls.append(trace)
+        prev,trace = trace,4*trace-5*prev
+    assert trace_controls[:8] == refinement["positive_degree_trace_controls"]
     if gp:
         expression = (
             f"setrand({data['pari_seed']});e=ellinit({json.dumps(a)});"
@@ -88,7 +143,17 @@ def check(gp: str | None) -> None:
                     data["minimal_model_change"],total,
                     *data["mordell_weil_rank_bounds"],data["ellrank_third_output"]]
         assert actual == [expected,*rows], actual
-    print("global tame product: equation support, two native factors, cover and omission controls passed"
+        expression = ""
+        for p,fiber,points,trace,ss in fiber_outputs:
+            expression += (f"e=ellinit({json.dumps(fiber)},{p});"
+                           f"print([{p},ellcard(e),ellap(e),ellissupersingular(e)]);")
+        result = subprocess.run([gp,"-q","-f"], input=expression+"quit\n", text=True,
+                                capture_output=True, check=True)
+        assert not result.stderr.strip(), result.stderr
+        assert [json.loads(line) for line in result.stdout.splitlines()] == [
+            [p,points,trace,ss] for p,fiber,points,trace,ss in fiber_outputs]
+    print("global tame product: equation support, native factors, ordinary/supersingular fibers, "
+          "compatible root and refinement controls passed"
           + ("; PARI Tate/rank outputs reproduced" if gp else "; arithmetic imports not rerun"))
 
 

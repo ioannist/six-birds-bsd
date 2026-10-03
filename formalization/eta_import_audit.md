@@ -70,6 +70,28 @@ repair might use a noncritical finite-slope route, but would still have
 to construct the additive object and verify the level and comparison
 hypotheses; that applicability is not supplied by the square relation.
 
+## Ordinary good-cover beta and the selected refinement
+
+[`cover_beta_refinement.md`](cover_beta_refinement.md) constructs another
+actual scope test on y^2=x^3+385x+1225. Its type-III places at five and seven
+both have native inertia factor two. The good-cover polynomials are
+T^2-4T+5 and T^2+7. An exact Bezout identity excludes beta^2=-5 for every
+eigenvalue of the first polynomial; the second has the square relation.
+Lean proves this over characteristic-zero fields and proves the first
+obstruction for every positive unramified residue degree. Thus shallow
+type III does not by itself supply a trace-zero cover Frobenius beta.
+
+A written all-level digit lift constructs the two actual five-adic roots
+2+i and 2-i, with i^2=-1 and i=2 modulo five. They have different beta^-2
+factors despite the same unrefined Frobenius and inertia data. Lean proves
+this loss witness, and retaining the selected root's unit/nonunit status
+repairs the factor on both branches. A target prescribing the unit root
+already has a unique selection; the no-go does not establish an extra
+source requirement for that restricted target. The leading moment may change with refinement, so no
+eta-value dependence is inferred from this factor dependence. A separate
+modular/descent comparison remains necessary; the manuscript's additive
+U_p beta has not been identified with these cover roots.
+
 ## What Bellaiche's moment lemma actually supplies
 
 Lemma numbering differs among versions. The moment statement is

@@ -475,4 +475,19 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.GlobalTameProduct.shallowPlacesDoNotCoverCoefficientSupport
 #print axioms SixBirdsBSD.Closure.GlobalTameProduct.unitFlagsLoseMultiplicity
 
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.actualCoverFibers
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.hasseNumericalControls
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.frobeniusSquareBezout
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.squareRelationRequiresZeroTrace
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.ordinaryCoverSquareIncompatible
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.ordinaryInverseSquareIncompatible
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.constructedRefinements
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.noRefinementFactorFromUnorderedFrobenius
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.completeRefinementRepair
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.zeroTraceInverseSquare
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.finiteRefinementControls
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.refinementBranchUnique
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.unramifiedTraceResidues
+#print axioms SixBirdsBSD.Closure.CoverBetaRefinement.unramifiedSquareIncompatible
+
 end SixBirdsBSD.Verification.Regression
