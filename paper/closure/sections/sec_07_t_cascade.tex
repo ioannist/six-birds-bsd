@@ -1,103 +1,74 @@
-\section{The rank-one cascade import}
+\section{The \texorpdfstring{$p$}{p}-part in rank at most one}
 \label{sec:t-cascade}
 
-This section records the conditional rank-\(\leq 1\) input used by the
-closure: a \(p\)-part Strong-BSD valuation identity in ranks zero and
-one.  The result is conditional on a large named external stack of
-Iwasawa-theoretic, Heegner-point, and Selmer-complex results.  The
-stack has two branches, one for CM curves and one for non-CM curves.
+In analytic rank $0$ and $1$, the recognition predicate contains the
+scalar Strong BSD identity itself as a hypothesis
+(\Cref{def:closure:pi-bsd}).  This section records, for context, the
+form in which known results are expected to bear on that hypothesis: they
+give the $p$-part of the identity for suitable primes $p$.  As with the
+other inputs, we state precisely what is assumed; the main theorem does not
+use this section.
 
-\begin{definition}[$T_{\mathrm{CASCADE}}$ import stack]\label{def:closure:t-cascade-import}
-The cascade import is a proof-carrying structure bundling a stack of
-named external results.  In the CM branch it packages the standard CM
-Iwasawa-theoretic inputs~\citep{Rubin1991}, including the ordinary-split and
-supersingular-inert main-conjecture inputs, together with the
-archimedean, Heegner, and uniformization ingredients needed to compare
-the \(p\)-adic and classical sides.  In the non-CM branch it packages
-the ordinary and Euler-system inputs of Skinner--Urban~\citep{SkinnerUrban2014}, Wei Zhang~\citep{WeiZhang2014},
-Burungale--Castella--Skinner--Tian~\citep{BurungaleCastellaSkinnerTian2022},
-CHKLL~\citep{CHKLL2025}, and Yan--Zhu~\citep{YanZhu2026}.  The
-closure takes this stack as a hypothesis.\footnote{Encoded in Lean as a typed
-structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak TCascade.\allowbreak tCascadeImport}
-bundling the imported results as hypothesis fields; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Rank-at-most-one input]\label{def:closure:t-cascade-import}
+The rank-at-most-one input is a list of forty propositions, each with an
+asserted proof, standing for published results in two branches: for curves
+with complex multiplication, Rubin's Iwasawa theory over imaginary
+quadratic fields~\citep{Rubin1991}, the main conjecture at supersingular
+primes of Pollack--Rubin~\citep[Theorem~7.3]{PollackRubin2004}, and work of
+Burungale--Castella--Skinner--Tian~\citep{BurungaleCastellaSkinnerTian2022}
+at good ordinary primes, together with the archimedean, Heegner-point and
+uniformization ingredients needed to compare $p$-adic and classical
+quantities; for curves without complex multiplication, the work of
+Skinner--Urban~\citep{SkinnerUrban2014}, Wei Zhang~\citep{WeiZhang2014},
+Castella et al.~\citep{CHKLL2025} and Yan--Zhu~\citep{YanZhu2026}.  Both
+branches are part of the input simultaneously.
 \end{definition}
 
-\begin{theorem}[Conditional $p$-part SBSD, rank $\leq 1$]\label{thm:closure:t-cascade-rank-le-1}
-Let \(E/\Q\) have analytic rank \(r\in\{0,1\}\).  In the CM branch,
-assume that \(E\) has complex multiplication by \(K\), and that either
-\(p\) is a good ordinary prime split in \(K\), or \(p\) is a good
-supersingular prime inert in \(K\) with \(p\geq 5\).  Assume also that
-\(\Sha(E)[p^\infty]\) is finite, the Cassels--Tate pairing is
-nondegenerate, the Sakamoto and Macias Castillo--Sano Selmer-complex hypotheses
-hold, \(p\nmid\Tam(E/\Q)\), the standard ramification and CM
-Galois-image hypotheses hold, and a Heegner point is supplied when
-\(r=1\).
-
-In the non-CM branch, assume that \(E\) is non-CM, \(r\in\{0,1\}\),
-the representation \(\rho_{E,p}\) is surjective~\citep{Serre1972}, \(p\) is good
-ordinary with \(p\nmid N\), and \(p\nmid\Tam(E/\Q)\).  Assume the
-standard Skinner--Urban ordinary-local, residual-irreducibility,
-ramification, and level hypotheses; assume \(\Sha(E)[p^\infty]\) is
-finite, the Cassels--Tate pairing is nondegenerate, and the
-Sakamoto and Macias Castillo--Sano hypotheses hold.  When \(r=1\), also assume a
-Heegner field satisfying the Gross--Zagier--Kolyvagin hypotheses.
-
-Then, conditional on Definition~\ref{def:closure:t-cascade-import}, the
-\(p\)-part valuation identity
+\begin{theorem}[Conditional $p$-part identity in rank at most one]\label{thm:closure:t-cascade-rank-le-1}
+Let $E/\Q$ have analytic rank $r\in\{0,1\}$ and let $p$ be a prime.
+Assume the hypotheses of one of the two branches:
+\begin{itemize}
+\item[(CM)] $E$ has complex multiplication by $K$; either $p$ is good
+  ordinary and split in $K$, or $p\ge5$ is good supersingular and inert in
+  $K$; $\Sha(E/\Q)[p^\infty]$ is finite, the Cassels--Tate pairing is
+  nondegenerate, the Selmer-complex hypotheses of Sakamoto and Macias
+  Castillo--Sano hold, $p\nmid\Tam(E)$, the standard ramification and
+  Galois-image hypotheses hold, and a Heegner point is given when $r=1$;
+\item[(non-CM)] $E$ has no complex multiplication, the residual
+  representation $\bar\rho_{E,p}$ is surjective~\citep{Serre1972}, $p$ is
+  good ordinary with $p\nmid N$ and $p\nmid\Tam(E)$; the local,
+  residual-irreducibility, ramification and level hypotheses of
+  Skinner--Urban hold; $\Sha(E/\Q)[p^\infty]$ is finite, the Cassels--Tate
+  pairing is nondegenerate, the Selmer-complex hypotheses hold, and, when
+  $r=1$, the Gross--Zagier--Kolyvagin hypotheses hold for a Heegner field.
+\end{itemize}
+Assume the rank-at-most-one input, and assume further that, under these
+branch hypotheses, the results it lists yield the valuation identity
+below.  Then
 \[
-  v_p\!\left(\frac{L^{(r)}(E,1)}{r!\,\Omega\,R}\right)
+  v_p\!\left(\frac{L^{(r)}(E,1)/r!}{\Omega_E\,\Reg_{\mathrm{NT}}(E)}\right)
   =
-  v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}
-    {|E(\Q)_{\tors}|^2}\right)
-\]
-holds, where \(R\) is the N\'eron--Tate regulator.  Thus the cascade
-supplies the \(p\)-part of the Strong-BSD identity in ranks zero and
-one.\footnote{\raggedright Tracked in the formalization harness as a
-conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak TCascade.\allowbreak tCascadeRankLeOne}
--- a checked projection over an explicit proof-carrying record
-(conditional on the imported cascade stack), not an independent Lean
-derivation. See App~\ref{app:formalization}.}
+  v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}\right).
+\]%
+\footnote{The formalization records this as a conditional schema.  Lean
+proves that the comparison hypothesis, given the forty asserted
+propositions and a curve and prime, is equivalent to the bare implication
+from the branch hypotheses to the valuation identity; the theorem is
+therefore exactly as strong as that implication.}
 \end{theorem}
 
 \begin{proof}
-Assume the cascade import stack.  In the CM branch, the CM
-Iwasawa-theoretic main-conjecture inputs identify the \(p\)-adic
-\(L\)-function side with the corresponding Selmer-theoretic side in
-the ordinary-split and supersingular-inert cases.  The Selmer-complex
-and Cassels--Tate hypotheses place the \(p\)-primary part of
-\(\Sha\) in the required nondegenerate comparison setting.  When
-\(r=1\), the Heegner-point input supplies the regulator term; in rank
-zero no Heegner regulator input is needed.  The standard ramification
-and CM Galois-image hypotheses are exactly the local hypotheses under
-which the imported CM comparison applies.
-
-In the non-CM branch, the Skinner--Urban input gives one divisibility
-between the \(p\)-adic \(L\)-value side and the Selmer side.  The
-opposite divisibility is supplied by the Euler-system and
-Gross--Zagier--Kolyvagin inputs, with the Gross--Zagier--Kolyvagin
-Heegner field used only in rank one.  In rank zero, the argument uses
-the rank-zero part of the same imported ordinary and Euler-system
-comparison and does not assume a rank-one Heegner field.
-
-In both branches, the hypotheses \(p\nmid\Tam(E/\Q)\), finiteness of
-\(\Sha(E)[p^\infty]\), and nondegeneracy of the Cassels--Tate pairing
-make the local and \(\Sha\)-terms comparable by \(p\)-adic units in the
-imported comparison.  After these unit ambiguities are removed, the two
-divisibilities in each branch pin down exactly the displayed valuation
-identity
-\[
-  v_p\!\left(\frac{L^{(r)}(E,1)}{r!\,\Omega\,R}\right)
-  =
-  v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}
-    {|E(\Q)_{\tors}|^2}\right).
-\]
-The proof is therefore an assembly of the imported cascade stack under
-the stated branch hypotheses.  It is precisely as strong as that stack:
-it does not rederive Skinner--Urban, Wei Zhang, the CM main conjecture,
-or Gross--Zagier--Kolyvagin.
+Apply the assumed implication to the branch hypotheses.
 \end{proof}
 
-% ===========================================================================
+The comparison hypothesis in the theorem is where the arithmetic is: in
+the non-CM branch, for instance, one divisibility comes from the
+Skinner--Urban main conjecture and the other from Euler systems and the
+Gross--Zagier--Kolyvagin method, and making the two match up to $p$-adic
+units requires the finiteness, nondegeneracy and nondivisibility
+hypotheses.  We have not verified that the listed results yield the
+identity under exactly the stated hypotheses, and the input is not
+organized curve by curve.  The theorem should be read as a statement of
+the expected form of the known $p$-part results, not as a new proof of
+them, and it does not supply the full identity required by the
+recognition predicate in rank at most one.

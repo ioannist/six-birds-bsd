@@ -1,86 +1,81 @@
-\section{The OC eta-formula}
+\section{The overconvergent \texorpdfstring{$\eta$}{eta}-formula}
 \label{sec:eta-formula}
 
-This section records the second supporting conditional theorem: an
-overconvergent \(\eta\)-formula at additive odd primes.  It is a
-\(p\)-adic \(L\)-value identity used by the closure in the shallow
-additive odd-prime regime.  Its inputs are separate from the
-Cassels--Tate comparison of the previous section; they are collected in
-their own published-import structure.
+This section records a proposed $p$-adic identity at additive odd primes,
+the overconvergent $\eta$-formula.  It plays no role in the main theorem.
+We state it only as a conditional input, and we explain why the published
+results one might hope to derive it from do not apply in the form needed.
 
-\begin{definition}[OC $\eta$ published imports]\label{def:closure:eta-published-imports}
-The published-import structure for the overconvergent \(\eta\)-formula
-keeps the following inputs separate: Bella\"iche's critical-slope
-construction and moment formula~\citep{Bellaiche2012}; the Pollack--Stevens overconvergent modular-symbol theory~\citep{PollackStevens2011,ColemanMazur1998}; the
-critical \(p\)-adic \(L\)-function input~\citep{BenoisBuyukboduk2024}; Lang--Wake~\citep{LangWake2025}, as a
-distinct import from the critical-\(p\)-adic-\(L\)-function work;
-Lorenzini's component-group input~\citep{Lorenzini1993}; Ling's refinement~\citep{Ling1997} of the local
-component calculation; and one cascade-internal nonvanishing and
-primitivity conjecture for the cuspidal-layer evaluation.\footnote{Encoded in Lean as a typed
-structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak EtaFormula.\allowbreak etaPublishedImports}
-bundling the imported results as hypothesis fields; not a Lean axiom.
-See App~\ref{app:formalization}.}
-\end{definition}
-
-\begin{theorem}[Conditional OC $\eta$-formula]\label{thm:closure:oc-eta-formula}
-Let \(E/\Q\) lie in the shallow additive odd-prime regime, including
-the prime-square anchors and the verified multi-prime extension, such
-as \(36a1\) at \(p=3\).  Let \(p\) be an odd additive prime.  Let
-\(\beta\) be the nonzero \(U_p\)-eigenvalue of the chosen additive
-\(p^2\)-stabilization, and assume the local relation \(\beta^2=-p\).  Let
-\(T_{\mathrm{leading\text{-}Bellaiche}}(E,p)\) be the Bella\"iche
-leading term of the overconvergent expansion, and let
-\(\mathrm{ord}_T(E,p)\) be its order in the expansion parameter.
-Conditional on Definition~\ref{def:closure:eta-published-imports},
+\begin{definition}[$\eta$-certificate]\label{def:closure:eta-published-imports}
+Let $E/\Q$ and let $p$ be an odd prime at which $E$ has additive reduction.
+An \emph{$\eta$-certificate} at $(E,p)$ consists of: a nonzero $\beta$
+(the proposed $U_p$-eigenvalue of an additive $p^2$-stabilization) with
+$\beta^2=-p$; a leading term $T_{\mathrm{lead}}(E,p)$ of an overconvergent
+expansion, with its order $\mathrm{ord}_T(E,p)\in\Z$; a value
+$\etap(E)$; nonzero scalars standing for $p$ and $\#E(\Q)_{\tors}$; and
+the identity
 \[
   \etap(E)
   =
-  \bigl(p\,|E(\Q)_{\tors}|\bigr)^{\mathrm{ord}_T(E,p)-1}
+  \bigl(p\,\#E(\Q)_{\tors}\bigr)^{\mathrm{ord}_T(E,p)-1}
   \,\beta^{-2}\,
-  T_{\mathrm{leading\text{-}Bellaiche}}(E,p).
+  T_{\mathrm{lead}}(E,p).
 \]
-The anchor evidence is anchor-level evidence only: the OC
-\(\eta\)-formula sub-residual is verified at \(49a1\) at \(p=7\)
-with \(\eta=-2\), at \(36a1\) at \(p=3\) with \(\eta=+2\), and at
-\(121b1\) at \(p=11\) with \(\eta=-1\), not as a uniform
-family-level statement.\footnote{\raggedright Tracked in the formalization
-harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak EtaFormula.\allowbreak ocEtaFormula}
--- a checked projection over an explicit proof-carrying record
-(conditional on the published imports), not an independent Lean
-derivation. See App~\ref{app:formalization}.}
+The certificate also lists, as propositions, the background results it
+is modelled on: Bella\"iche's critical-slope theory and moment
+lemma~\citep{Bellaiche2012}, overconvergent modular
+symbols~\citep{PollackStevens2011,ColemanMazur1998}, critical $p$-adic
+$L$-functions~\citep{BenoisBuyukboduk2024}, the Eisenstein ideal at
+prime-square level~\citep{LangWake2025}, component groups of N\'eron
+models~\citep{Lorenzini1993,Ling1997}, and a nonvanishing and primitivity
+statement for a cuspidal evaluation, which is a conjecture.
+\end{definition}
+
+\begin{theorem}[Conditional $\eta$-formula]\label{thm:closure:oc-eta-formula}
+If $(E,p)$ carries an $\eta$-certificate, then
+\[
+  \etap(E)
+  =
+  \bigl(p\,\#E(\Q)_{\tors}\bigr)^{\mathrm{ord}_T(E,p)-1}
+  \,\beta^{-2}\,
+  T_{\mathrm{lead}}(E,p).
+\]%
+\footnote{The formalization records this as a conditional schema: the
+identity is a field of the certificate and the conclusion is its
+projection.}
 \end{theorem}
 
 \begin{proof}
-Assume the published-import structure of
-Definition~\ref{def:closure:eta-published-imports}.  The chosen additive
-stabilization fixes \(\beta\) with \(\beta^2=-p\); Bella\"iche's moment
-construction contributes the \(\beta^{-2}\) factor at level \(p^2\).
-The overconvergent modular-symbol input of Pollack--Stevens supplies the overconvergent expansion in which the
-Bella\"iche leading term \(T_{\mathrm{leading\text{-}Bellaiche}}(E,p)\)
-and the order \(\mathrm{ord}_T(E,p)\) are defined.  The critical
-\(p\)-adic \(L\)-function input identifies this leading term with the
-corresponding \(p\)-adic \(L\)-value contribution.
-
-The remaining published inputs, namely Lang--Wake (2025), Lorenzini,
-and Ling, together with the single cascade-internal nonvanishing and
-primitivity conjecture, supply the normalization of the local
-component and torsion factors.  Combining those normalizations with the
-critical-slope relation gives exactly
-\[
-  \etap(E)
-  =
-  \bigl(p\,|E(\Q)_{\tors}|\bigr)^{\mathrm{ord}_T(E,p)-1}
-  \,\beta^{-2}\,
-  T_{\mathrm{leading\text{-}Bellaiche}}(E,p).
-\]
-The three numerical anchors are finite checks of this displayed
-identity at the stated curves and primes.  They are not used as a
-uniform proof over the shallow additive odd-prime regime.  Thus the
-formula is exactly as strong as the published-import stack together
-with the named nonvanishing/primitivity conjecture; it does not
-rederive any of the imported results.
+The identity is part of the certificate.
 \end{proof}
 
-% ===========================================================================
+We do not claim that the listed background results, together with the
+conjecture, imply the identity.  Two elementary obstructions show that at
+least some of them do not apply as stated.
+
+First, the relation $\beta^2=-p$ fixes the slope of $\beta$.  With the
+valuation normalized by $v_p(p)=1$, it gives $2v_p(\beta)=1$, so
+$v_p(\beta)=1/2$.  In weight $2$ the critical slope is $1$; this is the
+normalization of Benois--B\"uy\"ukboduk~\citep{BenoisBuyukboduk2024}, for
+whom the critical slope in weight $k$ is $k-1$.  So $\beta$ is not of
+critical slope, and results about critical-slope eigenvalues do not apply
+to it without a further comparison.
+
+Second, the theorem of Lang--Wake~\citep[Theorem~1.1]{LangWake2025}
+concerns a level prime $N$ and a residual prime $\ell$, both at least $5$,
+with $\ell\mid N+1$; these numerical conditions are necessary, though not
+sufficient, for an application.  They exclude the three curves at which
+the formula has been proposed, whichever residual prime is chosen.  For
+$36a1$ at $p=3$, the level prime would be $3<5$ (and the full level $36$
+is not prime).  For $49a1$ at $p=7$, $N+1=8$ has no prime divisor at least
+$5$.  For $121b1$ at $p=11$, $N+1=12$ has no prime divisor at least $5$.
+
+Numerical values of $\etap$ at these three curves have been recorded,
+but without complete input data or a reproducible computation of the
+right-hand side.  We do not regard them as evidence for the formula, at
+those curves or in general.%
+\footnote{Lean proves the slope computation (from the relation
+$\beta^2=-p$, the multiplicativity of the valuation at $\beta^2$ and
+$v_p(-p)=1$, it derives $v_p(\beta)=1/2\neq1$) and the exclusion of the
+level primes $3$, $7$ and $11$ from the numerical conditions of
+Lang--Wake for every residual prime.}

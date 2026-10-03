@@ -1,56 +1,44 @@
-\section{Typed obstructions}
+\section{Inputs not supplied by known theorems}
 \label{sec:obstructions}
 
-The closure isolates three recognition sources because the
-theorem-grade literature does not presently supply every identity that
-would be needed for an unconditional Strong-BSD proof.  We call that
-literature ``Mode A'': the peer-reviewed arithmetic-geometry literature
-audited as external provenance, in the same sense as
-\citet{TsiokosBSDApparatus2026}.  The two statements
-below are audit results about the current reach of that literature.
-They are not non-existence claims.  The missing content may well exist;
-the point is that the audited literature does not currently provide it
-in theorem-grade form.  The closure therefore carries the missing
-arithmetic content as recognition sources rather than deriving it.
+Two of the inputs above correspond to well-known open problems.  We record
+them as remarks rather than theorems: they describe what, to our
+knowledge, is not currently available, and we have not carried out a
+systematic search of the literature to support anything stronger.
 
-\begin{theorem}[Higher-rank Gross--Zagier audit no-go]\label{thm:closure:t-e12-no-go}
-No theorem-grade peer-reviewed identity of the form
+\begin{remark}[Leading terms in rank at least two]\label{rmk:closure:t-e12-gap}
+For $E/\Q$ without complex multiplication and of analytic rank $r\ge2$,
+we know of no theorem giving an identity of the form
 \[
   \frac{L^{(r)}(E,1)}{r!}
   =
-  \kapr(E)\,\det\langle Z_i,Z_j\rangle_{\mathrm{NT}}\,
-  \Omega_E\,c_E
+  \kapr(E)\,\det\bigl(\langle Z_i,Z_j\rangle_{\mathrm{NT}}\bigr)\,
+  \Omega_E\,\Tam(E)
 \]
-is available in the audited Mode A literature for non-CM \(E/\Q\) of
-rank \(r\geq 2\), with explicit algebraic cycles \(Z_i\) and closed
-forms for \(\kapr(E)\) and \(c_E\).  This is the missing rank-\(r\)
-generalized Gross--Zagier identity.  The audited Mode A approaches
-converge on this gap.  This is explicitly not a non-existence claim:
-such an identity may exist, but it is not presently supplied by the
-audited theorem-grade literature.
-\end{theorem}
-
-\begin{theorem}[Additive small-prime main-conjecture audit no-go]\label{thm:closure:t-bad-no-go}
-No theorem-grade direct additive-prime Iwasawa main conjecture is
-available in the audited Mode A literature for \(E/\Q\) additive at
-\(p\in\{2,3\}\), with explicit local correction factors and
-characteristic-ideal equality.  In the audit this gap separates into a
-small list of local residual checks together with a Kodaira-type
-admissibility screen.  Again, this is an audit-result no-go, not a
-claim that such a theorem cannot exist.
-\end{theorem}
-
-\begin{remark}[Binding residuals carried by the recognition sources]\label{rmk:closure:mode-b-residuals}
-The cascade also produces three internal residuals: the rank-\(r\)
-regulator/fixity residual, the signed-Selmer corestriction residual,
-and the \(p\)-adic \(L\)-norm identity residual.  These are not
-independent theorems of the paper.  They are the reorganized arithmetic
-content carried by the three recognition sources of
-\Cref{sec:recognition-sources}: the higher-rank fixity source carries
-the regulator/fixity residual, the signed-Selmer persistence source
-carries the corestriction residual, and the \(p\)-adic descent source
-carries the \(p\)-adic norm identity residual.  Thus they are recorded
-as support-only typed-open content, not as additional derived claims.
+with explicit classes $Z_1,\dots,Z_r$ forming a $\Z$-basis of
+$E(\Q)/E(\Q)_{\tors}$, so that the determinant is $\Reg_{\mathrm{NT}}(E)$
+(for points spanning a subgroup of index $m$ it would be
+$m^2\Reg_{\mathrm{NT}}(E)$), and explicit normalizing factors, that is, a generalized Gross--Zagier formula in rank at least $2$.  The
+hypothesis $\GammaGZ$ is exactly what such a theorem, combined with the
+normalization of $\kapr$, would supply.
 \end{remark}
 
-% ===========================================================================
+\begin{remark}[Main conjectures at additive primes $2$ and $3$]\label{rmk:closure:t-bad-gap}
+For $E/\Q$ with additive reduction at $p\in\{2,3\}$, we know of no
+Iwasawa main conjecture giving an equality of characteristic ideals with
+explicit local correction factors.  This is to be distinguished from the
+signed theories at primes of good supersingular reduction and from other
+local constructions.  The hypothesis $\GammaPD$ excludes the prime $2$.  The
+hypothesis $\GammaSP$ requires separately supplied signed applicability
+and comparison data, and no such comparison at an additive prime $2$ is
+established here.
+\end{remark}
+
+\begin{remark}[Where the local residuals are carried]\label{rmk:closure:mode-b-residuals}
+In the bookkeeping of the Six Birds framework, the difficulties of the
+previous two remarks and of the signed local comparison appear as three
+residuals: a rank-$r$ leading-term residual, a signed corestriction
+residual, and a local descent residual.  They are not additional results.
+They are carried, respectively, by the hypotheses $\GammaGZ$, $\GammaSP$
+and $\GammaPD$, and naming them does not reduce what has to be supplied.
+\end{remark}

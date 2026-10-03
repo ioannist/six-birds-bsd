@@ -1,26 +1,17 @@
-\section{The Cassels--Tate comparison}
+\section{The Cassels--Tate comparison input}
 \label{sec:chi-ct-p}
 
-The first supporting comparison used by the closure is the
-Cassels--Tate Pfaffian comparison~\citep{Cassels1962,PoonenStoll1999}.  The import stack introduced in
-Definition~\ref{def:closure:chi-ct-p-import} packages the relevant external
-results as hypotheses: the Selmer-complex inputs of Sakamoto~\citep{Sakamoto2018}
-and Macias Castillo--Sano~\citep{MaciasCastilloSano2026}, the determinant
-and orientation inputs of Knudsen--Mumford and Nekov\'a\v{r}, and Flach's
-pairing comparison.  Fisher--Schaefer--Stoll~\citep{FisherSchaeferStoll2010}
-fix the classical 2-Selmer pairing normalization; they are not used as a
-Fitting-ideal theorem.  This section states the
-comparison in the form consumed by the closure.  It is conditional on
-that stack; no part of the argument below reproves the imported
-arithmetic geometry.
+The input $\chiCTp$ of \Cref{def:closure:chi-ct-p-import} is meant to
+read the $p$-primary part of $\Sha$ through a Pfaffian, the square root of
+a determinant, of the Cassels--Tate
+pairing~\citep{Cassels1962,PoonenStoll1999}.  We state what the input
+gives, and then show on an actual curve why its selected generator is
+genuinely additional data.
 
-\begin{theorem}[$\chi_{CT,p}$ comparison (v5)]\label{thm:closure:chi-ct-p-comparison}
-Let \(E/\Q\) be an elliptic curve such that \(\Sha(E)[p^\infty]\) is
-finite, the Cassels--Tate pairing is nondegenerate, the standard
-Sakamoto and Macias Castillo--Sano Selmer-complex hypotheses hold, and
-\(p\nmid \Tam(E/\Q)\).  Conditional on the imported \(\chiCTp\)
-structure, there is a canonical orientation-respecting Pfaffian
-comparison map
+\begin{theorem}[Conditional Cassels--Tate comparison]\label{thm:closure:chi-ct-p-comparison}
+Suppose the input $\chiCTp$ holds at $(E,p)$.  Then $p$ is prime, the
+hypotheses of item~(1) of \Cref{def:closure:chi-ct-p-import} hold, and
+there is a map
 \[
   \Pf_{\mathrm{Nek},p}^{\mathrm{or},\sqrt{\ }}:
   \sqrt{\Fitt}_{\mathrm{CT}}
@@ -28,52 +19,99 @@ comparison map
   \longrightarrow
   \mathrm{vctp}_p
 \]
-from the square-root Cassels--Tate Fitting ideal on the quotient by the
-divisible subgroup, paired by the Nekov\'a\v{r} cup-product
-\(U_{2,2}\) identified with the Flach pairing, to the
-Cassels--Tate Pfaffian scalar line \(\mathrm{vctp}_p\).  This map sends
-the square-root Stark generator~\citep{MazurRubin2004} \(\sqrt{F}_E^p\) to the
-Cassels--Tate height \(h_p^{\mathrm{CT}}(E)\), and the Nekov\'a\v{r}
-sign convention satisfies \(\Sigma_{\mathrm{NekCT}}=+1\).\footnote{Tracked in the formalization harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak ChiCTp.\allowbreak chiCTpComparison}
--- a checked projection over an explicit proof-carrying record
-(conditional on the imported \(\chiCTp\) stack), not an independent Lean
-derivation. See App~\ref{app:formalization}.}
+with the canonical property, sending the selected generator
+$\sqrt{F}_E^p$ to the selected element
+$h_p^{\mathrm{CT}}(E)$, with normalized sign
+$\Sigma_{\mathrm{NekCT}}=+1$.  Here the source is the square-root Fitting
+object of the quotient by the divisible part of $H^1$ of the Selmer
+complex $C_p(E)$, for the pairing induced by Nekov\'a\v{r}'s cup product
+$U_{2,2}$.%
+\footnote{The formalization records this as a conditional schema: the
+map, the image of the generator and the sign are fields of the input, and
+the conclusion is their projection.  The data compared are fixed for the
+curve and prime before the input is asserted, and an input selecting a
+different generator or target at the same $(E,p)$ is rejected.}
 \end{theorem}
 
 \begin{proof}
-Assume the imported \(\chiCTp\) structure.  Its named components supply
-the ingredients in the statement.  The Selmer-complex hypotheses and
-the Cassels--Tate nondegeneracy input place the quotient
-\(H^1(C_p(E))/\mathrm{div}\) in the self-dual setting in which a
-Pfaffian comparison is defined.  The determinant-line and orientation
-inputs identify the square-root Fitting ideal
-\(\sqrt{\Fitt}_{\mathrm{CT}}(H^1(C_p(E))/\mathrm{div},U_{2,2})\) as the
-source of the comparison map.  Here the square-root Fitting ideal is
-the square-root determinant object attached to the Cassels--Tate
-pairing; the notation \(U_{2,2}\) records the Nekov\'a\v{r}
-cup-product, and the imported Flach comparison identifies it with the
-classical Cassels--Tate pairing used on the target side.
-
-The Pfaffian input in the stack then gives the canonical
-orientation-respecting map
-\[
-  \Pf_{\mathrm{Nek},p}^{\mathrm{or},\sqrt{\ }}:
-  \sqrt{\Fitt}_{\mathrm{CT}}
-    \bigl(H^1(C_p(E))/\mathrm{div},U_{2,2}\bigr)
-  \longrightarrow
-  \mathrm{vctp}_p .
-\]
-The square-root Stark-generator identification supplies the image
-formula: the distinguished generator \(\sqrt{F}_E^p\) maps to the
-Cassels--Tate height \(h_p^{\mathrm{CT}}(E)\).  Finally, the sign
-closure component of the same imported record fixes the orientation
-sign as \(\Sigma_{\mathrm{NekCT}}=+1\).  Combining these imported
-components proves exactly the displayed comparison.  The proof is
-therefore an assembly under the stated hypotheses; it is precisely as
-strong as the imported theorem stack and does not rederive the
-Sakamoto, Macias Castillo--Sano, Nekov\'a\v{r}, Flach, or classical
-Cassels--Tate comparison inputs.
+Each assertion is a component of the input.
 \end{proof}
 
-% ===========================================================================
+The theorem is as strong as its input and no stronger.  In particular, it
+does not derive the map, the image or the sign from the background results
+listed in \Cref{def:closure:chi-ct-p-import}, and the main theorem
+(\Cref{thm:closure:strong-bsd-conditional}) does not use it.  Two further
+points, visible in the example below, concern the formulation itself.
+First, the published comparison of Nekov\'a\v{r} concerns torsion classes
+in $H^2$ of a Selmer complex, with a minus sign; a source written in terms
+of $H^1/\mathrm{div}$ requires a shift of degree, which also inverts the
+determinant line.  Second, the determinant (Fitting) ideal does not
+determine a selected generator, and in particular does not determine
+whether a prescribed generator has a square root.
+
+\begin{example}[An ordinary Selmer complex at $p=3$]\label{ex:closure:1913b1}
+Let $E$ be the curve $1913b1$, $y^2+xy=x^3+x^2-34x-135$, and $p=3$.
+\begin{enumerate}
+\item \emph{Arithmetic data.}  $E$ has discriminant $-1913^2$, reduction
+  of type $I_2$ at $1913$ with $c_{1913}=2$, rational torsion of order
+  $2$, and good ordinary reduction at $3$ with $a_3=2$ and
+  $\#\widetilde E(\mathbb F_3)=2$, so $3$ is not anomalous and divides none of the torsion order, the
+  Tamagawa number and the order of the reduced group
+  $\widetilde E(\mathbb F_3)$.  An exact modular-symbol computation gives
+  $|L(E,1)|/\Omega_E=9/2\neq0$; the scale of the modular symbol is fixed
+  by the optimality of $E$~\citep[Table~1]{Miller2011}, the semistable
+  Manin-constant theorem~\citep{Cesnavicius2018} and the structure of the
+  real period lattice.  By Gross--Zagier and
+  Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989}, $E(\Q)$ has rank $0$
+  and $\Sha(E/\Q)$ is finite.  The
+  three-descent and the upper bound reported in the proof of
+  \citet[Theorem~7.2]{Miller2011} give $\Sha(E/\Q)[3^\infty]\cong(\Z/3\Z)^2$.
+\item \emph{The Selmer complex.}  Let $C$ be the ordinary compact Selmer
+  complex of $T_3(E)$ over $\Z_3$, with unramified conditions away from
+  $3$.  The hypotheses of Macias Castillo--Sano~\citep{MaciasCastilloSano2026}
+  needed to describe its cohomology hold; in particular the image of
+  Frobenius at $5$, with characteristic polynomial $X^2-2X+5\equiv
+  X^2-2X+2\pmod 3$, generates a nonsplit Cartan subgroup of
+  $\mathrm{GL}_2(\mathbb F_3)$.  One finds $H^1(C)=0$ and
+  $H^2(C)\cong\Sha(E/\Q)[3^\infty]^{\vee}\cong(\Z/3\Z)^2$, and $C$ is
+  quasi-isomorphic to the complex $\Z_3^2\xrightarrow{\,3J\,}\Z_3^2$ in
+  degrees $1$ and $2$, with
+  $J=\bigl(\begin{smallmatrix}0&1\\-1&0\end{smallmatrix}\bigr)$.
+\item \emph{The determinant ideal and two generators.}  Under the
+  canonical trivialization of the acyclic complex over $\Q_3$, the inverse
+  determinant line of $C$ has image the ideal $(9)\subset\Z_3$, the
+  Fitting ideal of $H^2(C)$; the square-root ideal is $(3)$.  The elements
+  $9$ and $18$ both generate $(9)$, since $2\in\Z_3^\times$.  But $9=3^2$
+  is a square in $\Q_3$, while $18$ is not: a square root would have
+  valuation $1$, and dividing it by $3$ would give a unit whose square is
+  $2$ modulo $3$, which is impossible.  So every invariant that factors
+  through the ideal, including its valuation, takes the same value on the
+  two generators, while only one of them lies in the image of the fixed
+  squaring map.
+\item \emph{Stark bases.}  Using the theorems of
+  Sakamoto~\citep{Sakamoto2018} and Macias Castillo--Sano on core
+  vertices, one obtains Stark bases over $\Z/27\Z$, and compatible bases
+  at all levels, with identical Fitting ideals at every level and
+  different square-root behaviour of the prescribed basis.
+\item \emph{Degree.}  Since $H^1(C)=0$ here, the quotient
+  $H^1(C)/\mathrm{div}$ appearing in the source of
+  \Cref{thm:closure:chi-ct-p-comparison} is zero; the finite group sits in
+  $H^2$.
+\end{enumerate}
+\end{example}
+
+The arithmetic steps in items (1), (2) and (4) are written arguments that
+rely on the external results cited there; the descent and the upper bound
+are published computations that we did not rerun.  Lean checks the
+finite algebra: the presentation by $3J$ and its cokernel of order $9$,
+the normalization of every perfect alternating form on $(\Z/3\Z)^2$, the
+Cartan computation for every matrix over $\mathbb F_3$ with the given
+trace and determinant, and the square-class argument in item~(3).  The
+example does not construct the generator, target or orientation that the
+input $\chiCTp$ prescribes.  Nor does it show that no square root can be
+normalized from the ideal: the generator $3$ of the root ideal $(3)$ is
+determined by the ideal and the trivialization.  What it shows is that
+the square-root behaviour of a basis prescribed independently of the ideal
+is not determined by the ideal; the comparison of the prescribed
+generator, target and orientation with arithmetic objects remains part of
+the input.
