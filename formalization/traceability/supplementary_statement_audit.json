@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "0ddc4020bfabca323ebb133275fb35eee1102c63efef6de435319fb642e1003a",
+  "lean_context_hash": "d21a9692b2f808a24cfd66bdff5c682fa87d8327d95a9d0be89e70613cf30707",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -340,7 +340,7 @@
       "statement_hash": "222209a263511724c7580494b6cefe96559702548c524a6dcf5265c99eb0a30d",
       "lean_decl": "SixBirdsBSD.Closure.TCascade.tCascadeImport",
       "assessment": "supplied implication schema",
-      "notes": "The named stack consists of arbitrary certified propositions. The current theorem needs both branch stacks and a supplied imports-to-valuation identity. This is conditional composition, not a derivation of that identity from source-specific arithmetic statements."
+      "notes": "The named stack consists of arbitrary certified propositions. The current theorem needs both branch stacks and a supplied imports-to-valuation identity. This is conditional composition, not a derivation of that identity from source-specific arithmetic statements. The 40 statements are all proved in the legacy record, including both branch stacks. Its extra comparison adapter is exactly the branch-to-valuation implication at inhabited indices, as proved in cascade_dependency_audit.md; uniform index binders alone do not type an arithmetic family."
     },
     {
       "latex_label": "thm:closure:t-e12-no-go",

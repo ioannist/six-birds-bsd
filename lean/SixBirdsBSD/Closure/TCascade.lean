@@ -2,9 +2,10 @@
 The conditional p-part Strong-BSD cascade, rank <= 1 (supporting) for
 the closure axis.
 
-The import stack is proof-carrying and branch-aware: the CM branch and
-non-CM branch imports remain separate, and the rank-one Heegner inputs
-in the theorem are gated by `rank = 1`.
+The import stack is proof-carrying, with distinct CM/non-CM field names.
+The legacy record requires both stacks simultaneously; only its branch
+hypotheses are alternatives. Rank-one Heegner inputs are gated by `rank = 1`.
+The comparison adapter remains explicit supplied branch-to-result content.
 -/
 
 namespace SixBirdsBSD.Closure.TCascade
@@ -94,6 +95,48 @@ structure tCascadeImport where
   T_nC6 : Prop
   T_nC6_proof : T_nC6
 
+/-- Exact supplied logical content of the legacy cascade comparison adapter.
+The curve/prime binders do not index its fixed branch or result propositions. -/
+def CascadeAuditRule (EllipticCurve Prime : Type u) (imports : tCascadeImport)
+    (branch result : Prop) : Prop :=
+  ∀ (_E : EllipticCurve) (_p : Prime),
+    imports.T_E1 → imports.T_E2 → imports.T_E3 → imports.T_E4 →
+    imports.T_E5 → imports.T_E6 → imports.T_E7 → imports.T_E8 →
+    imports.T_CM1 → imports.T_CM2 → imports.T_CM3 → imports.T_CM4 →
+    imports.T_CM5 → imports.T_CM6 → imports.T_SS1 → imports.T_SS2 →
+    imports.T_SS3 → imports.T_SS4 → imports.T_SS5 → imports.T_SS6 →
+    imports.T_SS7 → imports.T_ARC1 → imports.T_ARC2 → imports.T_ARC3 →
+    imports.T_ARC4 → imports.T_ARC5 → imports.T_ARC6 → imports.T_UNI1 →
+    imports.T_UNI2 → imports.T_UNI3 → imports.T_UNI4 → imports.T_UNI5 →
+    imports.T_UNI6 → imports.T_UNI7 → imports.T_nC1 → imports.T_nC2 →
+    imports.T_nC3 → imports.T_nC4 → imports.T_nC5 → imports.T_nC6 →
+    branch → result
+
+/-- All theorem propositions are already proved in the supplied stack.
+At any available curve and prime the adapter is therefore equivalent to
+its branch-to-result implication, not an independently derived comparison. -/
+theorem cascadeAuditRuleIffImplication {EllipticCurve Prime : Type u}
+    (E : EllipticCurve) (p : Prime) (imports : tCascadeImport)
+    (branch result : Prop) :
+    CascadeAuditRule EllipticCurve Prime imports branch result ↔
+      (branch → result) := by
+  constructor
+  · intro h hb
+    exact h E p
+      imports.T_E1_proof imports.T_E2_proof imports.T_E3_proof imports.T_E4_proof
+      imports.T_E5_proof imports.T_E6_proof imports.T_E7_proof imports.T_E8_proof
+      imports.T_CM1_proof imports.T_CM2_proof imports.T_CM3_proof imports.T_CM4_proof
+      imports.T_CM5_proof imports.T_CM6_proof imports.T_SS1_proof imports.T_SS2_proof
+      imports.T_SS3_proof imports.T_SS4_proof imports.T_SS5_proof imports.T_SS6_proof
+      imports.T_SS7_proof imports.T_ARC1_proof imports.T_ARC2_proof imports.T_ARC3_proof
+      imports.T_ARC4_proof imports.T_ARC5_proof imports.T_ARC6_proof imports.T_UNI1_proof
+      imports.T_UNI2_proof imports.T_UNI3_proof imports.T_UNI4_proof imports.T_UNI5_proof
+      imports.T_UNI6_proof imports.T_UNI7_proof imports.T_nC1_proof imports.T_nC2_proof
+      imports.T_nC3_proof imports.T_nC4_proof imports.T_nC5_proof imports.T_nC6_proof
+      hb
+  · intro h _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hb
+    exact h hb
+
 /--
 Conditional p-part Strong BSD in rank at most one. The branch
 hypotheses are explicit: the CM branch has its ordinary/supersingular
@@ -140,44 +183,13 @@ theorem tCascadeRankLeOne
       div L_derivative_over_factorial (mul Omega Reg)
     let arithmeticSide : Scalar :=
       div (mul ShaCard Tam) torsionSquared
-    ((E : EllipticCurve) → (p : Prime) →
-      imports.T_E1 → imports.T_E2 → imports.T_E3 → imports.T_E4 →
-      imports.T_E5 → imports.T_E6 → imports.T_E7 → imports.T_E8 →
-      imports.T_CM1 → imports.T_CM2 → imports.T_CM3 → imports.T_CM4 →
-      imports.T_CM5 → imports.T_CM6 →
-      imports.T_SS1 → imports.T_SS2 → imports.T_SS3 → imports.T_SS4 →
-      imports.T_SS5 → imports.T_SS6 → imports.T_SS7 →
-      imports.T_ARC1 → imports.T_ARC2 → imports.T_ARC3 → imports.T_ARC4 →
-      imports.T_ARC5 → imports.T_ARC6 →
-      imports.T_UNI1 → imports.T_UNI2 → imports.T_UNI3 → imports.T_UNI4 →
-      imports.T_UNI5 → imports.T_UNI6 → imports.T_UNI7 →
-      imports.T_nC1 → imports.T_nC2 → imports.T_nC3 → imports.T_nC4 →
-      imports.T_nC5 → imports.T_nC6 →
-      branchHypotheses → vp analyticSide = vp arithmeticSide) →
+    CascadeAuditRule EllipticCurve Prime imports branchHypotheses
+      (vp analyticSide = vp arithmeticSide) →
     branchHypotheses →
     vp analyticSide = vp arithmeticSide := by
-  dsimp
+  dsimp only
   intro cascadeImportsYieldValuationIdentity hBranch
-  rcases imports with
-    ⟨T_E1, hT_E1, T_E2, hT_E2, T_E3, hT_E3, T_E4, hT_E4,
-      T_E5, hT_E5, T_E6, hT_E6, T_E7, hT_E7, T_E8, hT_E8,
-      T_CM1, hT_CM1, T_CM2, hT_CM2, T_CM3, hT_CM3,
-      T_CM4, hT_CM4, T_CM5, hT_CM5, T_CM6, hT_CM6,
-      T_SS1, hT_SS1, T_SS2, hT_SS2, T_SS3, hT_SS3, T_SS4, hT_SS4,
-      T_SS5, hT_SS5, T_SS6, hT_SS6, T_SS7, hT_SS7,
-      T_ARC1, hT_ARC1, T_ARC2, hT_ARC2, T_ARC3, hT_ARC3,
-      T_ARC4, hT_ARC4, T_ARC5, hT_ARC5, T_ARC6, hT_ARC6,
-      T_UNI1, hT_UNI1, T_UNI2, hT_UNI2, T_UNI3, hT_UNI3,
-      T_UNI4, hT_UNI4, T_UNI5, hT_UNI5, T_UNI6, hT_UNI6,
-      T_UNI7, hT_UNI7,
-      T_nC1, hT_nC1, T_nC2, hT_nC2, T_nC3, hT_nC3,
-      T_nC4, hT_nC4, T_nC5, hT_nC5, T_nC6, hT_nC6⟩
-  exact
-    cascadeImportsYieldValuationIdentity E p hT_E1 hT_E2 hT_E3 hT_E4
-      hT_E5 hT_E6 hT_E7 hT_E8 hT_CM1 hT_CM2 hT_CM3 hT_CM4 hT_CM5
-      hT_CM6 hT_SS1 hT_SS2 hT_SS3 hT_SS4 hT_SS5 hT_SS6 hT_SS7
-      hT_ARC1 hT_ARC2 hT_ARC3 hT_ARC4 hT_ARC5 hT_ARC6 hT_UNI1
-      hT_UNI2 hT_UNI3 hT_UNI4 hT_UNI5 hT_UNI6 hT_UNI7 hT_nC1
-      hT_nC2 hT_nC3 hT_nC4 hT_nC5 hT_nC6 hBranch
+  exact (cascadeAuditRuleIffImplication E p imports _ _).mp
+    cascadeImportsYieldValuationIdentity hBranch
 
 end SixBirdsBSD.Closure.TCascade

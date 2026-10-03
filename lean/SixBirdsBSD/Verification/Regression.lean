@@ -1090,4 +1090,114 @@ theorem fixedLeadingEquivalenceControl :
 #print axioms SixBirdsBSD.Apparatus.KappaNormalization.allLeadingFormsIffNormalization
 #print axioms fixedLeadingEquivalenceControl
 
+/-- A symbolic stack for testing the exact legacy cascade dependency.
+The True fields are formal receipts, not arithmetic theorem instances. -/
+private def trueCascadeImport : SixBirdsBSD.Closure.TCascade.tCascadeImport where
+  T_E1 := True
+  T_E1_proof := True.intro
+  T_E2 := True
+  T_E2_proof := True.intro
+  T_E3 := True
+  T_E3_proof := True.intro
+  T_E4 := True
+  T_E4_proof := True.intro
+  T_E5 := True
+  T_E5_proof := True.intro
+  T_E6 := True
+  T_E6_proof := True.intro
+  T_E7 := True
+  T_E7_proof := True.intro
+  T_E8 := True
+  T_E8_proof := True.intro
+  T_CM1 := True
+  T_CM1_proof := True.intro
+  T_CM2 := True
+  T_CM2_proof := True.intro
+  T_CM3 := True
+  T_CM3_proof := True.intro
+  T_CM4 := True
+  T_CM4_proof := True.intro
+  T_CM5 := True
+  T_CM5_proof := True.intro
+  T_CM6 := True
+  T_CM6_proof := True.intro
+  T_SS1 := True
+  T_SS1_proof := True.intro
+  T_SS2 := True
+  T_SS2_proof := True.intro
+  T_SS3 := True
+  T_SS3_proof := True.intro
+  T_SS4 := True
+  T_SS4_proof := True.intro
+  T_SS5 := True
+  T_SS5_proof := True.intro
+  T_SS6 := True
+  T_SS6_proof := True.intro
+  T_SS7 := True
+  T_SS7_proof := True.intro
+  T_ARC1 := True
+  T_ARC1_proof := True.intro
+  T_ARC2 := True
+  T_ARC2_proof := True.intro
+  T_ARC3 := True
+  T_ARC3_proof := True.intro
+  T_ARC4 := True
+  T_ARC4_proof := True.intro
+  T_ARC5 := True
+  T_ARC5_proof := True.intro
+  T_ARC6 := True
+  T_ARC6_proof := True.intro
+  T_UNI1 := True
+  T_UNI1_proof := True.intro
+  T_UNI2 := True
+  T_UNI2_proof := True.intro
+  T_UNI3 := True
+  T_UNI3_proof := True.intro
+  T_UNI4 := True
+  T_UNI4_proof := True.intro
+  T_UNI5 := True
+  T_UNI5_proof := True.intro
+  T_UNI6 := True
+  T_UNI6_proof := True.intro
+  T_UNI7 := True
+  T_UNI7_proof := True.intro
+  T_nC1 := True
+  T_nC1_proof := True.intro
+  T_nC2 := True
+  T_nC2_proof := True.intro
+  T_nC3 := True
+  T_nC3_proof := True.intro
+  T_nC4 := True
+  T_nC4_proof := True.intro
+  T_nC5 := True
+  T_nC5_proof := True.intro
+  T_nC6 := True
+  T_nC6_proof := True.intro
+
+/-- False branches allow a vacuous comparison rule, while a true branch
+cannot produce a false valuation comparison from the supplied stack. -/
+theorem cascadeComparisonRuleControls :
+    SixBirdsBSD.Closure.TCascade.CascadeAuditRule Unit Unit trueCascadeImport False False ∧
+    ¬ SixBirdsBSD.Closure.TCascade.CascadeAuditRule Unit Unit trueCascadeImport True False := by
+  constructor
+  · exact (SixBirdsBSD.Closure.TCascade.cascadeAuditRuleIffImplication
+      () () trueCascadeImport False False).mpr id
+  · intro h
+    exact (SixBirdsBSD.Closure.TCascade.cascadeAuditRuleIffImplication
+      () () trueCascadeImport True False).mp h True.intro
+
+#print axioms SixBirdsBSD.Closure.TCascade.cascadeAuditRuleIffImplication
+#print axioms SixBirdsBSD.Closure.TCascade.tCascadeRankLeOne
+#print axioms cascadeComparisonRuleControls
+
+/-- Inhabitation of the bound index matters for eliminating the adapter.
+With an empty curve carrier it holds vacuously even for True -> False. -/
+theorem emptyCurveCascadeRuleControl :
+    SixBirdsBSD.Closure.TCascade.CascadeAuditRule Empty Unit
+      trueCascadeImport True False := by
+  intro E
+  cases E
+
+#print axioms emptyCurveCascadeRuleControl
+
 end SixBirdsBSD.Verification.Regression
