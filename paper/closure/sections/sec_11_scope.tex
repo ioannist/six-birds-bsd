@@ -1,112 +1,56 @@
 \section{Scope and non-claims}\label{sec:scope}
 % statements-of-record rows resolved here: none
 
-The closure developed in this paper is deliberately conditional.  The
-point of the construction is to isolate exactly which recognition
-sources and imported theorem stacks would close the Strong-BSD scalar
-identity inside the Six Birds closure discipline, and to record what
-is not being claimed.  The following seven non-claims are part of the
-statement of the paper.  They fix the intended reading of the theorem,
-the role of the recognition sources, the status of the imports, and
-the meaning of the final AOR membership assertion.
+The following statements delimit what the paper establishes.  They are
+summarized in \Cref{tab:nonclaims}.
 
-\begin{itemize}[leftmargin=*]
-\item[\textbf{NC-1.}]
-\textbf{Not unconditional BSD.}  This is not an unconditional
-classical proof of BSD, scalar or strong.  The result is theorem-grade
-within the Six Birds closure discipline, conditional on the standing
-shell-closure record, the named recognition sources, and the headline
-imported theorem stacks.  Outside the framework it reads as the
-conditional theorem
-\[
-  \begin{aligned}
-  &\SelBSD\text{-closure}
-    \wedge\ \GammaPD \wedge \GammaSP \wedge \GammaGZ\\
-  &\quad{}\wedge\ \chiCTp\text{-imports}
-    \wedge\ \AofE\text{-imports}
-    \wedge\ \text{Beilinson-imports}\\
-  &\Longrightarrow \mathrm{Strong\ BSD}.
-  \end{aligned}
-\]
-This is the headline reading of the paper.  The closure is a precise
-conditional implication, not a replacement for the missing
-unconditional arithmetic theorems.
+\begin{enumerate}
+\item \emph{Not a proof of BSD.}  The main theorem derives the Strong BSD
+  identity for a curve from a recognition hypothesis whose scalar part
+  contains the identity in rank at most one and expresses it through a
+  normalized leading-term identity in rank at least two.  It is a
+  conditional theorem and an exact translation, not an independent
+  derivation, and it makes no claim about minimal hypotheses.
+\item \emph{The hypotheses are not derived.}  The recognition hypotheses
+  and the comparison inputs are assumed.  The paper does not prove them,
+  and does not derive the map, generator image or sign of the
+  Cassels--Tate input from the background results it lists.  The example
+  of \Cref{sec:chi-ct-p} checks the hypotheses of some of those results
+  for one curve and prime, but the identification of the prescribed
+  generator, target and orientation remains part of the input.
+\item \emph{No necessity.}  We do not claim that any recognition
+  hypothesis is necessary for the scalar conclusion.  In rank at least
+  $2$, the normalized hypothesis $\GammaGZ$ already implies it, and
+  sensitivity of the BSD product to its factors
+  (\Cref{thm:closure:composite-signature}) is not necessity
+  (\Cref{rmk:closure:sensitivity-not-necessity}).
+\item \emph{No arithmetic formed layer is constructed.}  The closure formulation
+  (\Cref{sec:scalar-closure}) returns the identity from a closure on a
+  richer layer only under an intertwining readout and fixedness of the
+  original state.  Apart from small rational models, no such layer is
+  constructed; for arithmetic data these are assumptions.  No application of
+  a general master theorem of the framework is claimed.
+\item \emph{No computability claims.}  The formal shell carries
+  propositions named computability and falsifiability with supplied
+  proofs; they are not results.  The scalar identity can be checked when
+  both sides are supplied in an effective representation with decidable
+  equality, for example over $\Q$, but the paper provides no procedure for
+  computing them or for deciding the recognition predicate.
+\item \emph{Open inputs.}  We know of no theorem supplying the
+  leading-term identity in rank at least $2$ or main conjectures with
+  explicit local factors at additive primes $2$ and $3$
+  (\Cref{rmk:closure:t-e12-gap,rmk:closure:t-bad-gap}).  The local
+  hypotheses are stated in restricted scopes: the descent hypothesis
+  excludes $p=2$, and no signed comparison at an additive prime $2$ is
+  established.
+\item \emph{The $\eta$-formula is not established.}  It is recorded only
+  as a conditional certificate; its derivation from the cited results is
+  not claimed, two of those results do not apply as stated, and no
+  numerical value is offered as evidence (\Cref{sec:eta-formula}).
+\item \emph{The register is bookkeeping.}  The refinement-stable closure
+  of the audit register (\Cref{sec:aor-instance}) concerns the
+  register's statuses under a declared refinement relation; it proves no
+  arithmetic statement and does not formalize the general AOR theory.
+\end{enumerate}
 
-\item[\textbf{NC-2.}]
-\textbf{Recognition sources not derived.}  No recognition source is
-derived from framework primitives.  Each \(\Gamma_{\mathrm{BSD}}^{*}\)
-is closure content of the formed BSD layer: a typed carrier whose
-mathematical payload is supplied as a hypothesis and then consumed by
-the shell.  The formalization records these carriers as explicit
-structure data, not as axioms and not as hidden constants.  Thus the
-three sources are neither proved by the framework nor smuggled into
-the conclusion; they are named, typed, and kept visible throughout the
-argument.
-
-\item[\textbf{NC-3.}]
-\textbf{Rank-\(\geq 2\) Gross--Zagier remains open.}  We do not prove
-the rank-\(\geq 2\) generalized Gross--Zagier identity.  The relevant
-missing identity is the higher-rank comparison between the leading
-\(L\)-value and a Neron--Tate regulator determinant of algebraic
-cycles, with the necessary normalizing factors made explicit.  The
-no-go result used in this paper is an audit result: in the audited
-theorem-grade literature, the needed number-field identity is not
-available in the required form.  This is not a non-existence claim.
-It says only that the present literature does not supply the theorem
-needed to remove the corresponding recognition source.
-
-\item[\textbf{NC-4.}]
-\textbf{Additive \(p\leq 3\) Iwasawa main conjecture remains open.}
-We do not prove the additive \(p\leq 3\) Iwasawa main conjecture with
-the explicit local correction factors and characteristic-ideal
-identity required by the closure.  This is again an audit-result
-no-go, not a claim that such a theorem cannot exist.  The paper treats
-the missing small-additive-prime input as open arithmetic content and
-does not derive it from the closure framework.  In particular, the
-odd-additive recognition carriers do not by themselves discharge the
-\(p=2\) part of this obstruction; any such discharge would have to be a
-separate supplied record or a future imported theorem.
-
-\item[\textbf{NC-5.}]
-\textbf{Imports not eliminated.}  The \(\chiCTp\) comparison remains
-conditional on its imported Cassels--Tate stack.  Likewise, the
-\(\AofE\) Selmer-complex pairing substrate and the Beilinson
-rank-\(\geq 2\) comparison enter as imported theorem stacks.  These
-structures are sourced assumptions for this paper, not results proved
-here.  The closure derives consequences from them; it does not
-eliminate them, reconstruct them, or claim independent proofs of the
-classical arithmetic geometry they package.
-
-\item[\textbf{NC-6.}]
-\textbf{Anchor-level evidence is not family-level.}  The
-overconvergent \(\eta\)-formula sub-residual is verified at the
-anchors \(49\mathrm{a}1@7\), \(36\mathrm{a}1@3\), and
-\(121\mathrm{b}1@11\).  Those checks are anchor-level numerical
-evidence.  They are not a uniform family-level statement over all
-elliptic curves or all additive odd primes in the relevant regime.
-The conditional formula in \Cref{sec:eta-formula} remains conditional
-on its published-import stack and its named nonvanishing/primitivity
-input.
-
-\item[\textbf{NC-7.}]
-\textbf{AOR is non-eliminative.}  The AOR-instance reading does not
-close the open obligations.  It reclassifies the closure records: the
-recognition discharges are bridged records, meaning the corresponding
-open arithmetic content is carried as supplied recognition content
-rather than eliminated.  The rank-\(\geq 2\) generalized
-Gross--Zagier identity and the additive \(p\leq 3\) Iwasawa main
-conjecture therefore remain open after the AOR reading.  Moreover,
-only the local syntactic refinement-stable predicate is mechanized in
-this paper, not the full Audited Operational Realisability
-meta-theory.
-\end{itemize}
-
-These non-claims also govern the wording of the paper.  We do not say
-that the paper proves BSD, proves the additive-prime Iwasawa main
-conjecture, or proves the higher-rank Gross--Zagier identity.  The
-paper lands Strong BSD as a conditional closure.  The standing shell-closure
-record is assumed; recognition sources are supplied and carried as
-hypotheses; headline imported theorem stacks are imported and cited; the
-AOR reading records a non-eliminative
-audit-closed membership statement under those declared records.
 \input{tables/nonclaims}

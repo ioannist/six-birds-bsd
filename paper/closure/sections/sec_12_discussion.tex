@@ -1,90 +1,56 @@
 \section{Discussion}\label{sec:discussion}
 % statements-of-record rows resolved here: none
 
-The point of this paper is not to add another unconditional theorem to
-the classical BSD literature.  It is to make explicit what a
-conditional closure of Strong BSD rests on, and to organize the
-remaining arithmetic content into named records.  The existing
-conditional landscape is already rich.  Gross--Zagier--Kolyvagin
-methods control the rank \(0\) and \(1\) bridge between derivatives,
-Heegner points, Selmer groups, and regulators.  Skinner--Urban and
-Iwasawa-main-conjecture methods control ordinary-prime Selmer and
-\(p\)-adic \(L\)-function data under their hypotheses.  Cassels--Tate
-and Selmer-complex formalisms supply the pairing language needed to
-compare arithmetic determinants, Fitting ideals, and local correction
-terms.  Each of these classical mechanisms controls part of the
-Strong-BSD product.  None, by itself, gives the entire scalar package
-in the generality targeted here.
+The classical results bearing on the Strong BSD formula each control part
+of it.  Gross--Zagier and Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989}
+relate derivatives, Heegner points, Selmer groups and regulators in rank
+at most one; Iwasawa main conjectures~\citep{SkinnerUrban2014} give
+$p$-parts of the formula at many primes; Cassels--Tate pairings and
+Selmer complexes~\citep{Flach1990,Nekovar2006} organize the finite
+arithmetic.  None of them gives the whole formula in general.  This paper
+does not change that.  What it does is make one precise statement about
+how the formula fits a closure framework, and record exactly which inputs
+such a formulation needs.
 
-The contribution of the closure is therefore architectural.  Once the
-classical theorem stacks are imported, the remaining scalar factors
-are named as three recognition sources: the \(p\)-adic descent and
-Tamagawa correction, the signed-Selmer persistence of the
-\(\Sha\)-factor, and the higher-rank regulator/fixity readout.  The
-shell \(\SelBSD\) then records the analytic leading coefficient, the
-arithmetic product, and the residual between them in one typed object.
-The readout theorem identifies vanishing of that residual with the
-standard Strong-BSD scalar identity.  Thus the paper gives a precise
-conditional implication: under the standing shell-closure record,
-supplying the three recognition sources together with the headline imported
-theorem stacks forces Strong BSD.  Its value lies in the bookkeeping: what is imported, what is carried
-as recognition content, which factors each source governs, and which
-obligations remain open.  This is not a new unconditional proof of
-BSD.  It is a conditional closure whose hypotheses have been separated
-and named.
+The precise statement is the fixed-point formulation of
+\Cref{thm:closure:scalar-closure-translation}: the identity holds exactly
+when the pair of its two sides is fixed by the averaging closure.  It is
+elementary, and it is exact; in particular it separates fixedness of the
+original pair from the trivial closedness of its image.
+\Cref{thm:closure:formed-closure-bridge} says what a closure on a richer
+layer of arithmetic data would have to satisfy to return the identity: a
+readout intertwining it with the averaging closure, and fixedness of the
+original state.  Neither is constructed here, and idempotence alone does
+not supply them.
 
-This bookkeeping also explains why \citet{TsiokosBSDApparatus2026} is
-structurally relevant.  Its typed adequacy and five-column diagnostic
-language separates the BSD scalar
-package into factors that can be audited independently: height and
-regulator data, period data, finite arithmetic data, \(p\)-adic local
-data, and determinant-line data.  The \(\kapr\) normalization from
-that work is especially important here.  It identifies the cascade
-coefficient with the standard factor
-\(\#\Sha(E/\Q)/|E(\Q)_{\tors}|^2\), so the higher-rank fixity source
-\(\GammaGZ\) can be read as exactly the rank-\(r\) contribution to
-the shell residual.  Without this factor-by-factor language, the
-conditional implication would be a single opaque scalar assertion.
-With it, the closure can attach each remaining obligation to the
-factor it governs.
+The main theorem should be read with its hypotheses in view.  Its scalar
+conclusion follows from a recognition hypothesis that contains the
+identity in rank at most one and expresses it through a normalized
+leading-term identity in rank at least two.  The other hypotheses, the
+local recognition hypotheses and the comparison inputs, are carried with
+their scopes but do not enter the derivation.  The value of the
+formulation therefore lies in its accounting: what is assumed, where each
+assumption would come from, what its scope is, and what is not known.
+Several points of that accounting are not obvious and are worth
+recording.  The local congruences modulo $\Zp^\times$ cannot see a
+Tamagawa number prime to $p$ (\Cref{sec:recognition-sources}).  The
+determinant ideal of a Selmer complex does not determine whether a
+prescribed generator has a square root (\Cref{ex:closure:1913b1}).  The
+proposed $\eta$-formula involves an eigenvalue of slope $1/2$, not the
+critical slope (\Cref{sec:eta-formula}).  And sensitivity of the BSD
+product to its factors does not make any hypothesis necessary
+(\Cref{rmk:closure:sensitivity-not-necessity}).
 
-The same structural pattern is shared by the broader Six Birds
-Clay-track program.  In each track, the target conjecture is first
-encoded as the vanishing or fixed readout of a saturated trace shell.
-Deep content that is not derived internally is isolated as named
-recognition sources.  The shell readout is then linked to the target
-statement by an explicit scalar or structural equivalence, and the
-final connect-to-reality step is an Audited Operational Realisability
-reading: a refinement-stable, audit-closed membership assertion in the
-sense of \cite{TsiokosAOR2026}.  This is the same non-eliminative
-``holds in reality'' pattern used in the Riemann-hypothesis,
-Navier--Stokes, and P-vs-NP tracks, stated here for Strong BSD.
-\Cref{tab:clay-track-parallel} records the parallel in the compact form used
-by the series.
-\input{tables/clay-track-parallel}
+The companion paper~\citep{TsiokosBSDApparatus2026} studies the same
+factors from the other side: which data each factor of the BSD formula
+retains, with finite adequacy tests and examples of information loss.
+Its normalization of $\kapr$ is what identifies the rank-$\ge2$
+recognition hypothesis with the Strong BSD identity here.
 
-The BSD composite recognition predicate also fits the common
-recognition-mode discipline of \cite{TsiokosFoundationsIII2026}.  In
-plain terms, the composite carries the same framework trace signature
-as the earlier P-vs-NP and Riemann-hypothesis closures: a common
-channel-state pattern recording how the composite operator depends on
-formed content, source audit, and visible defect elimination.  The
-point of noting this here is not to import proofs from the sibling
-tracks.  It is to identify a shared structural fingerprint.  BSD is
-the third such cross-track instance: its recognition predicate is
-computable and falsifiable at the level of the named records, each of
-the three recognition sources is load-bearing, and ablation of any one
-source leaves a scalar factor of the Strong-BSD package undetermined.
-
-The final AOR reading should therefore be understood carefully.  It
-does not eliminate the open arithmetic obligations.  It records that,
-under the declared presentation, every residual piece has been either
-constructed, imported, or bridged as supplied recognition content.  In
-particular, the rank-\(\geq 2\) generalized Gross--Zagier identity and
-the additive \(p\leq 3\) Iwasawa main conjecture remain open in the
-audited literature.  The closure makes those gaps visible rather than
-hiding them.  Its conclusion is an exact conditional landing together
-with a non-eliminative audited-realizability reading: if the standing
-shell-closure record, the three recognition sources, and the headline
-imported theorem stacks are supplied, then the shell residual vanishes,
-and the Strong-BSD scalar identity follows.
+The same pattern, a target statement written as the fixed point of a
+closure with the deep inputs named as recognition hypotheses and an
+audit register recording their status, is the general method of the Six
+Birds framework~\citep{TsiokosFoundationsIII2026,TsiokosAOR2026}.  For BSD
+it yields a conditional theorem of exactly the strength of its
+hypotheses, together with a precise description of the inputs that an
+unconditional proof along these lines would require.
