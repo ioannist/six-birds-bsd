@@ -376,6 +376,55 @@ structure FactorCancellation (shell : selBSDShell) : Prop where
   torsion : ∀ a b, shell.div a shell.torsionSquared =
     shell.div b shell.torsionSquared → a = b
 
+/-- For native field operations, the previously separate cancellation
+record is constructed from the actual nonzero BSD factors. These operation
+matches are essential; an arbitrary shell multiplication is not identified
+with field multiplication merely by supplying a field on its carrier. -/
+def factorCancellationFromField (shell : selBSDShell)
+    [Lean.Grind.Field shell.Scalar]
+    (hMul : shell.mul = fun a b => a*b)
+    (hDiv : shell.div = fun a b => a/b)
+    (hReg : shell.Reg_NT ≠ 0) (hOmega : shell.Omega_E ≠ 0)
+    (hTam : shell.Tam ≠ 0) (hSha : shell.ShaCard ≠ 0)
+    (hTorsion : shell.torsionSquared ≠ 0) : FactorCancellation shell where
+  reg := by intro a b h; rw [hMul] at h; grind
+  omega := by intro a b h; rw [hMul] at h; grind
+  tam := by intro a b h; rw [hMul] at h; grind
+  sha := by intro a b h; rw [hMul] at h; grind
+  shaRegOmega := by intro a b h; simp only [hMul] at h; grind
+  torsion := by intro a b h; rw [hDiv] at h; grind
+
+/-- Exact strength of the cancellation record on native field operations.
+The mixed multiplier law adds no further nonzero condition. -/
+theorem factorCancellationIffNonzero (shell : selBSDShell)
+    [Lean.Grind.Field shell.Scalar]
+    (hMul : shell.mul = fun a b => a*b)
+    (hDiv : shell.div = fun a b => a/b) :
+    FactorCancellation shell ↔
+      shell.Reg_NT ≠ 0 ∧ shell.Omega_E ≠ 0 ∧ shell.Tam ≠ 0 ∧
+        shell.ShaCard ≠ 0 ∧ shell.torsionSquared ≠ 0 := by
+  constructor
+  · intro c
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · intro hZero
+      apply Lean.Grind.Field.zero_ne_one (α := shell.Scalar)
+      exact c.reg 0 1 (by rw [hMul, hZero]; grind)
+    · intro hZero
+      apply Lean.Grind.Field.zero_ne_one (α := shell.Scalar)
+      exact c.omega 0 1 (by rw [hMul, hZero]; grind)
+    · intro hZero
+      apply Lean.Grind.Field.zero_ne_one (α := shell.Scalar)
+      exact c.tam 0 1 (by rw [hMul, hZero]; grind)
+    · intro hZero
+      apply Lean.Grind.Field.zero_ne_one (α := shell.Scalar)
+      exact c.sha 0 1 (by rw [hMul, hZero]; grind)
+    · intro hZero
+      apply Lean.Grind.Field.zero_ne_one (α := shell.Scalar)
+      exact c.torsion 0 1 (by rw [hDiv, hZero]; grind)
+  · rintro ⟨hReg, hOmega, hTam, hSha, hTorsion⟩
+    exact factorCancellationFromField shell hMul hDiv
+      hReg hOmega hTam hSha hTorsion
+
 /-- The quantified recognition predicate supplies the scalar identity in every
 rank. The lower-rank lane and the normalized higher-rank fixity are explicit
 supplied arithmetic content; this does not reconstruct sources from a scalar. -/

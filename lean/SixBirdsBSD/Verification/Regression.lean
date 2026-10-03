@@ -1013,4 +1013,81 @@ theorem recognizedPairClosureControl :
 #print axioms scalarClosureFalseTargetControl
 #print axioms recognizedPairClosureControl
 
+/-- The field normalization uses a fractional Sha/torsion-square ratio
+and returns the same nonintegral leading term in both product conventions. -/
+theorem fractionalKappaControl :
+    (3/2 : Rat)*(4/3)*6=12 ∧
+    (4/9 : Rat)*((3/2)*(4/3)*6)=16/3 ∧
+    ((((4 : Rat)*(4/3))*(3/2))*6)/9=16/3 ∧
+    ((((4 : Rat)*(4/3))*(3/2))*6)/3 ≠ 16/3 := by
+  decide +kernel
+
+/-- A zero common factor cannot determine kappa. -/
+theorem zeroCommonKappaControl :
+    (1 : Rat)*((0 : Rat)*1*1) = (2 : Rat)*((0 : Rat)*1*1) ∧
+    (1 : Rat) ≠ 2 := by
+  decide +kernel
+
+/-- Totalized quotient comparison at zero does not license clearing its
+denominator. The two products agree but the cross-product equation fails. -/
+theorem zeroDenominatorKappaControl :
+    (0 : Rat)*(1*1*1) = ((4*1)*1)*1/0 ∧
+    (0 : Rat)=4/0 ∧ (0 : Rat)*0 ≠ 4 := by
+  decide +kernel
+
+/-- Ordinary nonzero field factors construct the cancellation package
+used by the existing composite-signature theorem. -/
+def fieldFactorCancellationControl :
+    SixBirdsBSD.Closure.SelShell.FactorCancellation
+      (symbolicShell 0 1 (fun _ => False)) := by
+  letI : Lean.Grind.Field (symbolicShell 0 1 (fun _ => False)).Scalar :=
+    inferInstanceAs (Lean.Grind.Field Rat)
+  exact SixBirdsBSD.Closure.SelShell.factorCancellationFromField
+    _ rfl rfl (by change (1 : Rat) ≠ 0; decide)
+    (by change (1 : Rat) ≠ 0; decide)
+    (by change (1 : Rat) ≠ 0; decide)
+    (by change (1 : Rat) ≠ 0; decide)
+    (by change (1 : Rat) ≠ 0; decide)
+
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.kappaNormalizationOverField
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.commonFactorNonzero
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.cascadeProductIffNormalization
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.normalizationIffCrossProduct
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.cascadeProductIffCrossProduct
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.normalizedLeadingFormsEquivalent
+#print axioms SixBirdsBSD.Closure.SelShell.factorCancellationFromField
+#print axioms fractionalKappaControl
+#print axioms zeroCommonKappaControl
+#print axioms zeroDenominatorKappaControl
+#print axioms fieldFactorCancellationControl
+
+/-- Nonzero factors and their derived cancellation laws alone do not
+prove the BSD scalar target; recognition still carries substantive content. -/
+theorem fieldCancellationFalseTargetControl :
+    SixBirdsBSD.Closure.SelShell.FactorCancellation
+      (symbolicShell 0 2 (fun _ => False)) ∧
+    (symbolicShell 0 2 (fun _ => False)).L_derivative_over_factorial ≠
+      (symbolicShell 0 2 (fun _ => False)).strongBSDRightSide := by
+  constructor
+  · letI : Lean.Grind.Field (symbolicShell 0 2 (fun _ => False)).Scalar :=
+      inferInstanceAs (Lean.Grind.Field Rat)
+    apply (SixBirdsBSD.Closure.SelShell.factorCancellationIffNonzero _ rfl rfl).mpr
+    change (1 : Rat) ≠ 0 ∧ (1 : Rat) ≠ 0 ∧ (1 : Rat) ≠ 0 ∧
+      (1 : Rat) ≠ 0 ∧ (1 : Rat) ≠ 0
+    decide
+  · change (2 : Rat) ≠ 1
+    decide
+
+#print axioms SixBirdsBSD.Closure.SelShell.factorCancellationIffNonzero
+#print axioms fieldCancellationFalseTargetControl
+
+/-- Two false leading-term equations can be logically equivalent at a
+fixed input without their normalization coefficients agreeing. -/
+theorem fixedLeadingEquivalenceControl :
+    (((0 : Rat)=1) ↔ ((0 : Rat)=2)) ∧ (1 : Rat) ≠ 2 := by
+  decide +kernel
+
+#print axioms SixBirdsBSD.Apparatus.KappaNormalization.allLeadingFormsIffNormalization
+#print axioms fixedLeadingEquivalenceControl
+
 end SixBirdsBSD.Verification.Regression
