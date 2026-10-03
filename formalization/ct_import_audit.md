@@ -203,7 +203,13 @@ primes at each coefficient level. The determinant/Stark isomorphism
 therefore applies over `Z/27`, and the complete Fitting ladder loses
 the rootability of a prescribed Stark basis under unit scaling.
 Its arithmetic theorem applications are external to Lean; the finite
-calculations and uniform cocycle proof are mechanized.
+calculations and uniform cocycle proof are mechanized. The subsequent
+`stark_inverse_limit_construction.md` supplies coherent arithmetic
+Stark bases at every coefficient level, with identical component ideals
+and different normalized-square rootability. It proves an exact residue
+square-class repair and independence of the square-image subset from
+the chosen integral lift of the fixed finite comparison. This does
+not construct a canonical integral comparison or the native generator.
 The compatible all-level native Stark basis, self-duality comparison, degree
 shift and orientation remain open. In the compact convention here,
 the proposed unshifted `H1(C)/div` is zero. Shifting it to the finite

@@ -458,3 +458,33 @@ normalized GZ source still entails scalar BSD by itself. See
 `odd_primary_selmer_bridge.md` and `stark_core_vertex_construction.md`
 for the constructions, imports,
 arithmetic-versus-Lean coverage and self-review.
+
+## Promotion to compatible arithmetic systems and an exact square-class repair
+
+`stark_inverse_limit_construction.md` now applies Sakamoto's integral
+coefficient and Fitting theorems, after checking integral cohomology
+vanishing, propagated Kummer conditions, nested full auxiliary sets
+and the actual dual Selmer transition maps. A basis of the full
+three-adic Stark-system module lifting the established `Z/27` basis
+exists by rank-one base change. It and twice it have identical
+component-image ideals at every coefficient level, including their
+reduction maps and limits, yet different rootability through a fixed
+normalized square map. This is a completed arithmetic carrier, not
+a sequence of unrelated finite witnesses.
+
+A digit-lifting proof establishes that a three-adic unit is a square
+exactly when its residue modulo three is one. This gives an exact
+repair by retaining the erased square-class bit. It also proves that
+the square-image subset does not depend on which integral linear lift
+of the fixed finite determinant/Stark comparison is chosen. The
+comparison is canonical modulo this square-class ambiguity, without
+claiming a canonical integral map. Lean constructs all compatible
+coefficient levels, one compatible inverse of two, and the no-go for
+an arbitrary entire family of generated ideals. The arithmetic theorem
+application and general digit-lifting classification are written proofs.
+
+The theorem remains relative to the prescribed-root task and its ideal
+observable. It neither identifies the manuscript's native generator
+nor establishes named-source necessity for scalar BSD. The native
+generator, arithmetic self-duality, degree and orientation comparisons
+remain unresolved, as does the stronger original source endpoint.

@@ -193,8 +193,10 @@ curve, period and local factor is unchanged.
 The first basis has roots three and minus three. The second has no root
 in `Q_3`: a root would have valuation one, and division by three would
 give a unit whose square is two modulo three. The latter is impossible.
-Equivalently, on the free residue line `(9)/(27)` the two bases have
-coefficients one and two, and only the first coefficient is a square.
+Equivalently, on the free `Z/27` residue line `L/27L`, whose scalar
+image is `(9)/(243)`, the two bases have coefficients one and two, and
+only the first coefficient is a square. Here `(9)/(27)` would instead
+have order three and is not this free residue line.
 
 Consequently no readout through the common Fitting ideal, or its
 valuation two, decides whether a **prescribed** determinant basis lifts

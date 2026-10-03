@@ -210,11 +210,16 @@ This necessity concerns retaining basis-unit information for this
 prescribed-root task. It does not force a named source to be necessary
 for scalar BSD, or show that the manuscript's independently specified
 native generator is either of these selected bases. Choosing a liftable
-normalized basis remains possible. Integral compatibility across all
-coefficient levels, the native root object, the raw Nekovar pairing
+normalized basis remains possible. The native root object, the raw Nekovar pairing
 comparison, degree convention and normalized map/sign remain separate
 obligations. Only the finite-level determinant-to-Stark comparison is
 claimed here.
+
+The subsequent `stark_inverse_limit_construction.md` constructs a
+compatible integral Stark module and promotes the ideal-loss witness to
+all coefficient levels. It also proves that the square-image subset is
+independent of the chosen integral lift of this finite comparison.
+It does not claim a canonical integral determinant-to-Stark map.
 
 ## Coverage, provenance and self-review
 

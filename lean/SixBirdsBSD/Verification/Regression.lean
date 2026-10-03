@@ -390,4 +390,13 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.StarkCoreVertices.fittingLadderLosesBasisSquareClass27
 #print axioms SixBirdsBSD.Closure.StarkCoreVertices.localisationModelCounts27
 
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.inverseTwoIdentity
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.twoIsUnit
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.unitScalingPreservesPrincipalImages
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.oneHasSquareRoot
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.twoHasNoSquareRoot
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.noSquareRootReadoutFromIdeal
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.sameEntireIdealFamily
+#print axioms SixBirdsBSD.Closure.StarkInverseLimit.noSquareRootReadoutFromIdealFamily
+
 end SixBirdsBSD.Verification.Regression
