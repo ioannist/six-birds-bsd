@@ -303,4 +303,17 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Apparatus.FinitePresentation.nonunitChangeFailsNormalization
 #print axioms SixBirdsBSD.Apparatus.FinitePresentation.noNormalizedFactorFromTwoTorsionCount
 
+#print axioms SixBirdsBSD.Closure.ChiCTp.chiCTpComparison
+#print axioms SixBirdsBSD.Closure.Imports.chiCTpImport.nativeSelectionsAgree
+#print axioms SixBirdsBSD.Closure.Imports.chiCTpImport.missingGeneratorPreventsComparison
+#print axioms SixBirdsBSD.Closure.Imports.chiCTpImport.missingCTTargetPreventsComparison
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.matchedInstancesReturnDifferentFactors
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.wrongCurveCannotSupplyComparison
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.wrongPrimeCannotSupplyComparison
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.compositeCannotSupplyComparison
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.missingSelectionCannotSupplyComparison
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.applicabilityDoesNotSupplySelections
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.wrongMapFailsNativeReturn
+#print axioms SixBirdsBSD.Closure.CTInstanceChecks.comparisonUsesIndexedInstance
+
 end SixBirdsBSD.Verification.Regression

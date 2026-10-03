@@ -58,7 +58,9 @@ theorem strongBSDConditionalWithAudits
     (hSha : gSP.shaFactor = shell.ShaCard)
     (hTamFac : gPD.tamFactor = shell.Tam)
     (cancellation : SixBirdsBSD.Closure.SelShell.FactorCancellation shell)
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    (chiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve)
+    (chiPrime : Nat)
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext shell.E chiPrime)
     (aEImports :
       SixBirdsBSD.Closure.Imports.aEImport.{uAE, vAE, wAE, xAE})
     (beilinsonImports :
@@ -102,7 +104,8 @@ theorem strongBSDConditionalWithAudits
       (chiImports.Sigma_NekCT = 1 ∧
         chiImports.T_E1 ∧ chiImports.T_E2 ∧ chiImports.T_E3 ∧
         chiImports.T_E4 ∧ chiImports.T_E5 ∧ chiImports.T_E6 ∧
-        chiImports.T_E7 ∧ chiImports.T_E8) ∧
+        chiImports.T_E7 ∧ chiImports.T_E8 ∧
+        SixBirdsBSD.Closure.Imports.chiCTpApplicability chiContext shell.E chiPrime) ∧
       (aEImports.nekovarSelmerComplexWithIntrinsicCasselsTatePairing ∧
         aEImports.burnsFlachMaciasSanoNekovarAESelFormulation ∧
         aEImports.pairingBilinearOrCategorical) ∧
@@ -119,12 +122,6 @@ theorem strongBSDConditionalWithAudits
   have hComposite :=
     SixBirdsBSD.Closure.SelShell.compositeSignature shell gPD gSP gGZ
       hSha hReg hTamFac cancellation
-  rcases chiImports with
-    ⟨T_E1, hT_E1, T_E2, hT_E2, T_E3, hT_E3, T_E4, hT_E4,
-      T_E5, hT_E5, T_E6, hT_E6, T_E7, hT_E7, T_E8, hT_E8,
-      Sigma_NekCT, hSigma_NekCT, SqrtFittCTDomain, VctpCodomain,
-      sqrtStarkGenerator, h_p_CT, canonicalPfaffian, canonicalProperty,
-      hCanonicalProperty, hPfaffianSends⟩
   rcases aEImports with
     ⟨TargetCategory, Hom, SelmerComplex, PairingTarget, pairing,
       nekovarSelmerComplexWithIntrinsicCasselsTatePairing,
@@ -138,8 +135,10 @@ theorem strongBSDConditionalWithAudits
       hDeterminantLValueComparison⟩
   exact
     ⟨hStrongBSD, hClosureAssumption, hMaster, hComposite,
-      ⟨hSigma_NekCT, hT_E1, hT_E2, hT_E3, hT_E4, hT_E5, hT_E6,
-        hT_E7, hT_E8⟩,
+      ⟨chiImports.Sigma_NekCT_eq_plus_one, chiImports.T_E1_proof,
+        chiImports.T_E2_proof, chiImports.T_E3_proof, chiImports.T_E4_proof,
+        chiImports.T_E5_proof, chiImports.T_E6_proof, chiImports.T_E7_proof,
+        chiImports.T_E8_proof, chiImports.applicability⟩,
       ⟨hNekovarSelmerComplexWithIntrinsicCasselsTatePairing,
         hBurnsFlachMaciasSanoNekovarAESelFormulation,
         hPairingBilinearOrCategorical⟩,
@@ -155,7 +154,9 @@ theorem strongBSDConditional
     (closureAssumption : SixBirdsBSD.F1ClosureOp shell.FormedLayer)
     (hClosureAssumption : closureAssumption = shell.closureAssumption)
     (recognition : SixBirdsBSD.Closure.SelShell.piBSD shell)
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    (chiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve)
+    (chiPrime : Nat)
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext shell.E chiPrime)
     (aEImports : SixBirdsBSD.Closure.Imports.aEImport.{uAE, vAE, wAE, xAE})
     (beilinsonImports : 2 ≤ shell.analyticRank →
       { b : SixBirdsBSD.Closure.Imports.beilinsonImport.{uBI, vBI, wBI} //
@@ -165,10 +166,12 @@ theorem strongBSDConditional
       chiImports.Sigma_NekCT = 1 ∧
       aEImports.pairingBilinearOrCategorical ∧
       (∀ hr : 2 ≤ shell.analyticRank,
-        (beilinsonImports hr).val.determinantLValueComparison) := by
+        (beilinsonImports hr).val.determinantLValueComparison) ∧
+      SixBirdsBSD.Closure.Imports.chiCTpApplicability chiContext shell.E chiPrime := by
   exact ⟨SixBirdsBSD.Closure.SelShell.piBSDForcesStrongBSD shell recognition,
     hClosureAssumption, chiImports.Sigma_NekCT_eq_plus_one,
     aEImports.pairingBilinearOrCategorical_proof,
-    fun hr => (beilinsonImports hr).val.determinantLValueComparison_proof⟩
+    (fun hr => (beilinsonImports hr).val.determinantLValueComparison_proof),
+    chiImports.applicability⟩
 
 end SixBirdsBSD.Closure.Landing

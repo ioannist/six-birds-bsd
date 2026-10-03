@@ -77,6 +77,55 @@ the positive certificate before this calculation would assume the bridge.
 The odd-prime scope and the ordinary scope of the derived-height theorem
 must be kept separate from a prime-two or signed supersingular extension.
 The current Lean comparison remains conditional on all its supplied
-comparison and sign fields. Its curve/prime parameters do not instantiate
-or arithmetically index those fields. Completing that realization, the
-unit normalization, and the source assignment remains open.
+comparison and sign fields. Completing their arithmetic realization,
+unit normalization, and source assignment remains open.
+
+## Repair of curve and prime matching
+
+The previous `chiCTpComparison` accepted a curve, an arbitrary prime-type
+element, and four unindexed propositions, but did not use them to select
+the comparison record. A single record could provide the same map,
+generator, target, and sign at every nominal curve/prime. This was a
+mechanization mismatch with the instance-specific mathematical statement.
+
+The repaired interface fixes a `chiCTpContext` before taking a comparison
+certificate. That context declares the hypothesis and theorem families,
+source and target carrier families, canonical-map property, sign, and
+partial native generator/target selections. `chiCTpImport context E p`
+now contains applicability at exactly E and the numerical prime p,
+including the project's concrete primality predicate. The same indices
+select every hypothesis, carrier, theorem statement, and sign.
+
+Native selections can be unavailable. The certificate must exhibit the
+generator and target and prove that they equal the context's preselected
+values at this instance. This avoids assuming the existence of Stark
+bases at all curves and primes. Two certificates for one fixed context
+and instance have the same selected generator and target. An unavailable
+selection prevents a certificate even when the hypothesis packet holds.
+No uniqueness of the entire comparison map follows from this consistency
+lemma; that needs an appropriate canonical-map theorem.
+
+Both scalar landing variants and the shell AOR instance now require the
+CT record at the shell's curve. The comparison and landing return the
+matched applicability packet explicitly. This does not establish that
+the record covers every support prime, that its target is the shell's
+Sha factor, or that the other import structures describe the same
+arithmetic complex. Those remain separate mathematical identifications.
+
+`CTInstanceChecks.lean` provides positive and false-target controls using
+the proved hyperbolic normalization. Its Bool-indexed presentations have
+moduli two and four, with assigned local scopes three and five. The
+comparison squares integral half-orders to the determinant factors four
+and sixteen. Wrong-instance, composite-prime, absent-selection, and
+wrong-map controls reject the corresponding certificates or returns.
+The eight citation labels are True in this diagnostic. It verifies the
+interface on actual finite computations, not the named arithmetic
+theorem stack or the existence of an arithmetic Stark basis.
+
+Self-review checked that the positive diagnostic is inhabited, that
+selection ablations retain applicability, that the sign remains an
+independently supplied normalization certificate, and that the scalar
+landing still follows from its existing recognition predicate. Thus this
+repair prevents accidental substitution within a declared family but
+does not establish arithmetic source indispensability or make the CT
+import necessary to the scalar landing.

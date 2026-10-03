@@ -16,6 +16,10 @@ namespace SixBirdsBSD.Closure.AORInstance
 
 universe u uPD vPD sPD uSP vSP sSP uGZ vGZ
 
+variable {ChiCurve : Type u}
+  {chiContext : SixBirdsBSD.Closure.Imports.chiCTpContext ChiCurve}
+  {chiE : ChiCurve} {chiPrime : Nat}
+
 /-- Wrapper for the BSD AOR-instance carrier attached to `Sel!_BSD`. -/
 structure SelAORInstance
     {EPD : Type uPD} {LPD : Type vPD}
@@ -29,7 +33,9 @@ structure SelAORInstance
     (gGZ :
       SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity EGZ SGZ zGZ
         subGZ mulGZ)
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    {shellChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve}
+    {shellChiPrime : Nat}
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport shellChiContext shell.E shellChiPrime)
     (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
     (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport) where
   carrier : SixBirdsBSD.Closure.AORPrimitives.AORInstanceCarrier
@@ -47,7 +53,9 @@ def aorSelInstance
     (gGZ :
       SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity EGZ SGZ zGZ
         subGZ mulGZ)
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    {shellChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve}
+    {shellChiPrime : Nat}
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport shellChiContext shell.E shellChiPrime)
     (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
     (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport) :
     SelAORInstance shell gPD gSP gGZ chiImports aEImports beilinsonImports :=
@@ -128,7 +136,7 @@ def aorSelInstance
 
 /-- Mechanical AOR membership components for the BSD instance. -/
 def mechanicalRecordDischarge
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext chiE chiPrime)
     (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
     (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport)
     (Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq : Int) : Prop :=
@@ -211,17 +219,13 @@ The mechanical membership components discharge by construction or as an
 approved-other external citation chain.
 -/
 theorem aorMechanicalRecords
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext chiE chiPrime)
     (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
     (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport)
     (Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq : Int)
     (h_common : Omega_E * Reg_r * Tam_E ≠ 0) :
     mechanicalRecordDischarge chiImports aEImports beilinsonImports Omega_E
       Reg_r Tam_E kappa_r sha_over_tors_sq := by
-  rcases chiImports with
-    ⟨T_E1, hT_E1, T_E2, hT_E2, T_E3, hT_E3, T_E4, hT_E4,
-      T_E5, hT_E5, T_E6, hT_E6, T_E7, hT_E7, T_E8, hT_E8,
-      Sigma_NekCT, hSigma_NekCT⟩
   rcases aEImports with
     ⟨TargetCategory, Hom, SelmerComplex, PairingTarget, pairing,
       nekovarSelmerComplexWithIntrinsicCasselsTatePairing,
@@ -238,7 +242,7 @@ theorem aorMechanicalRecords
       Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq h_common
   dsimp [mechanicalRecordDischarge]
   exact
-    ⟨rfl, rfl, rfl, hkappa, hSigma_NekCT,
+    ⟨rfl, rfl, rfl, hkappa, chiImports.Sigma_NekCT_eq_plus_one,
       hNekovarSelmerComplexWithIntrinsicCasselsTatePairing,
       hBurnsFlachMaciasSanoNekovarAESelFormulation,
       hPairingBilinearOrCategorical, hrank, hDeterminantLValueComparison⟩
@@ -282,7 +286,9 @@ theorem aorInstance
     (gGZ :
       SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity EGZ SGZ zGZ
         subGZ mulGZ)
-    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport)
+    {shellChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve}
+    {shellChiPrime : Nat}
+    (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport shellChiContext shell.E shellChiPrime)
     (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
     (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport)
     (Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq : Int)

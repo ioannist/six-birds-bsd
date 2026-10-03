@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "047b7fe4036c209a3941345354a3217a19d7cbc47ca1202bd5a8ec5592531316",
+  "lean_context_hash": "cfeb502e5893c2e0f039e9f794aad64f6de804a0648da18dc7d567d60d1f9079",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -230,7 +230,7 @@
       "statement_hash": "4ed4dfbf3a4899bb29f19b773d753d1fe5b782985026ec4889c6f1bd6600a8bc",
       "lean_decl": "SixBirdsBSD.Closure.Imports.chiCTpImport",
       "assessment": "supplied arithmetic certificate",
-      "notes": "The eight proposition fields have no fixed arithmetic meanings; map, generator-image, and positive normalized sign certificates remain independently supplied. Primary checks show raw Nekovar U_{2,2} on torsion H2 is minus Flach, the Stark route is odd-prime, and the derived-height comparison has ordinary scope. Rational sign correction and coprime-torsion vanishing are now proved; arithmetic degree identification, square-root generator transport, and combined orientation/unit normalization remain open. See ct_import_audit.md."
+      "notes": "The CT record is now indexed by a fixed curve/prime family, with numerical primality, matched applicability, and proofs that generator and target equal partial native selections. Native selection consistency and finite positive/false controls are proved. The map, image identity, normalized sign, and eight statement certificates remain supplied; their arithmetic meanings and source assignments are open. Primary torsion-H2/minus-sign, odd-prime Stark, and ordinary derived-height scope do not establish the square-root generator or arithmetic orientation bridge. See ct_import_audit.md."
     },
     {
       "latex_label": "def:closure:a-e-import",
