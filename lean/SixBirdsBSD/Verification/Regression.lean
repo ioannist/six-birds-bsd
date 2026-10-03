@@ -285,4 +285,22 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Apparatus.FinitePairings.hyperbolicCardinalityNormalization
 #print axioms SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow
 
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.sameResidueIffDifferenceInImage
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.cokernelEquivalence
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.cokernelEquivalenceAdditive
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.cokernelGroupLaws
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.determinantReturnsCokernelOrder
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.pfaffianCongruenceLaw
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.unimodularNormalizedFactor
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.rationalInverse
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.linkingInvariantModuloIntegers
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.recoversPairingTwo
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.recoversPairingFour
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.rawInverseSignMatters
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.finiteBasisChangeHasIntegralRepair
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.singularPresentationFailsInverse
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.modulusOneIsTrivial
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.nonunitChangeFailsNormalization
+#print axioms SixBirdsBSD.Apparatus.FinitePresentation.noNormalizedFactorFromTwoTorsionCount
+
 end SixBirdsBSD.Verification.Regression

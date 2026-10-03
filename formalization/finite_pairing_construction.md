@@ -76,10 +76,66 @@ for the proposed arithmetic return. This checkpoint preserves the valid
 finite-shadow construction without treating that remaining comparison as
 proved.
 
+## Integral presentation repair
+
+`FinitePresentation.lean` now constructs the integer matrix
+
+    A_n = [[0,n],[-n,0]],    A_n(a,b) = (nb,-na).
+
+For every positive n, the proof identifies equality of residues with
+differing by the image of this map. The actual quotient by that relation
+is in additive bijection with H_n. Its addition agrees with addition of
+integer representatives, and associativity, commutativity, zero, and
+inverses are proved on the quotient.
+
+A complete duplicate-free enumeration of this cokernel proves that its
+order equals |det A_n| = n^2. This is a return theorem for a determinant
+computed from the integer map, rather than a certificate assigning its
+value to the desired order. The absolute integral Pfaffian is n and its
+square is the finite cardinality factor.
+
+The matrix inverse is constructed over the rationals and both inverse
+identities are proved. The linking form is
+
+    -x^t A_n^{-1} y = (x_1 y_2 - x_2 y_1)/n modulo Z.
+
+Adding an image element to either representative changes this rational
+lift by an explicitly computed integer. This proves well-definedness
+modulo integers from the presentation. On H_2 and H_4, exhaustive kernel
+checks recover the previous cyclic-target pairings. Omitting the displayed
+minus sign gives a different class at n = 4, so the sign is substantive.
+
+For any integer two-by-two basis matrix B, the upper-right coefficient
+of B^t A_n B is proved to be n det B. If det B is +1 or -1, its squared
+absolute value remains n^2. In particular,
+
+    B = [[3,4],[4,5]],    det B = -1,
+
+is an actual unimodular lift of the earlier finite basis change on H_4.
+It changes the integral Pfaffian from 4 to -4 while preserving the
+normalized cardinality factor 16. This repairs the finite example's
+normalization without reading 3/4 as an intrinsic scalar Pfaffian.
+
+The proof covers the trivial group at n = 1 with factor one. False-target
+controls reject the singular modulus-zero map and a nonunimodular change
+that kills a nonzero residue and changes the squared coefficient to 64.
+The theorem `noNormalizedFactorFromTwoTorsionCount` now separates the
+computed integral factors 4 and 16 using the earlier dimension shadow.
+
+This construction distinguishes three quantities: the chosen rational
+pairing coefficient 1/n, the absolute integral Pfaffian n, and the group
+order n^2. A scalar BSD Sha factor uses the last quantity when Sha is
+finite. Identifying a manuscript determinant-line Pfaffian with that
+factor requires its precise duality, square, generator, and transport
+conventions. No equality with the arithmetic readout is asserted here.
+
 ## Resume point
 
-The next arithmetic task is to construct the normalized finite determinant
-readout and prove its return to the actual Sha/Tamagawa/torsion factor.
+The finite determinant readout and its return are now constructed for
+the hyperbolic integral presentations above. The next arithmetic task is
+to identify the relevant integral Selmer-complex presentation and its
+pairing with the actual Sha/Tamagawa/torsion data, then prove compatibility
+of this normalization with the analytic and local comparison maps.
 Separate realization of ablation witnesses on elliptic-curve data is still
 needed for the original source-indispensability claim. The rational
 conditional assembly and support-coverage results remain documented in

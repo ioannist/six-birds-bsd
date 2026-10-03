@@ -253,8 +253,14 @@ and impossibility theorems for every readout through dimension-only or
 cardinality-only observations. These replace free finite metadata in the
 dimension shadow and strengthen its information-loss claim. They do not
 identify the groups with arithmetic Sha data or prove indispensability of
-the named sources for scalar BSD. The resume point is the normalized finite
-determinant return and realization of arithmetic ablation witnesses.
+the named sources for scalar BSD. The finite determinant return is now
+constructed on actual integral hyperbolic presentations in
+`Apparatus/FinitePresentation.lean`: a quotient-group isomorphism and
+duplicate-free enumeration prove that the determinant is the cokernel
+order. This supplies a normalized finite-model return and repairs the
+earlier basis-change example. Arithmetic Selmer-complex identification,
+compatibility with the named comparisons, and realization of arithmetic
+ablation witnesses remain open.
 
 Both construction modules are imported by the closure umbrella. The regression target
 `SixBirdsBSD.Verification.Regression` prints the axiom dependencies of

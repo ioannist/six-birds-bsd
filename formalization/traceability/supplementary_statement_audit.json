@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "6cf978ad87d6aea8f15e3981b2cd9976e3293d60dade1b0026b9b5a4d1bb3218",
+  "lean_context_hash": "047b7fe4036c209a3941345354a3217a19d7cbc47ca1202bd5a8ec5592531316",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -90,7 +90,7 @@
       "statement_hash": "0c1fd8e46c52952b7f9233d208d2b9e5c72c53e6af1a007f2e84b5de8041af19",
       "lean_decl": "SixBirdsBSD.Apparatus.FiniteSource.finiteSourceMap",
       "assessment": "normalization obligation",
-      "notes": "The Lean map tensors three supplied readouts. NormalizationChecks proves rational-lift dependence, and FinitePairings now proves basis dependence of a raw numerical Pfaffian on an actual finite perfect pairing. These finite constructions do not supply the integral arithmetic determinant-line transport or generator normalization. See finite_pairing_construction.md."
+      "notes": "The Lean map tensors three supplied readouts. Raw rational Pfaffians depend on lifts and bases. FinitePresentation now constructs integral hyperbolic quotient groups, recovers their pairings with an explicit sign, and proves a determinant-to-cardinality return invariant under unimodular changes. This repairs that finite model, not the arithmetic Selmer-complex identification or determinant-line generator comparison. Rational coefficient 1/n, integral half-order n, and cardinality n^2 must be distinguished. See finite_pairing_construction.md."
     },
     {
       "latex_label": "obl:apparatus:rho-finite-transport",
