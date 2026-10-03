@@ -36,8 +36,10 @@ structure SelAORInstance
     {shellChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve}
     {shellChiPrime : Nat}
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport shellChiContext shell.E shellChiPrime)
-    (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
-    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport) where
+    {aEContext : SixBirdsBSD.Closure.Imports.aEContext shell.EllipticCurve}
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext shell.E)
+    {biContext : SixBirdsBSD.Closure.Imports.beilinsonContext shell.EllipticCurve}
+    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport biContext shell.E) where
   carrier : SixBirdsBSD.Closure.AORPrimitives.AORInstanceCarrier
 
 /-- The BSD AOR-instance object attached to `Sel!_BSD`. -/
@@ -56,8 +58,10 @@ def aorSelInstance
     {shellChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve}
     {shellChiPrime : Nat}
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport shellChiContext shell.E shellChiPrime)
-    (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
-    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport) :
+    {aEContext : SixBirdsBSD.Closure.Imports.aEContext shell.EllipticCurve}
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext shell.E)
+    {biContext : SixBirdsBSD.Closure.Imports.beilinsonContext shell.EllipticCurve}
+    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport biContext shell.E) :
     SelAORInstance shell gPD gSP gGZ chiImports aEImports beilinsonImports :=
   let forcedRecognitionSecondaries :=
     [ SixBirdsBSD.Closure.AORPrimitives.ResidualType.role,
@@ -137,8 +141,10 @@ def aorSelInstance
 /-- Mechanical AOR membership components for the BSD instance. -/
 def mechanicalRecordDischarge
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext chiE chiPrime)
-    (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
-    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport)
+    {aEContext : SixBirdsBSD.Closure.Imports.aEContext ChiCurve}
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext chiE)
+    {biContext : SixBirdsBSD.Closure.Imports.beilinsonContext ChiCurve}
+    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport biContext chiE)
     (Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq : Int) : Prop :=
   let common := Omega_E * Reg_r * Tam_E
   let cascadeForm := kappa_r * common
@@ -220,32 +226,24 @@ approved-other external citation chain.
 -/
 theorem aorMechanicalRecords
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext chiE chiPrime)
-    (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
-    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport)
+    {aEContext : SixBirdsBSD.Closure.Imports.aEContext ChiCurve}
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext chiE)
+    {biContext : SixBirdsBSD.Closure.Imports.beilinsonContext ChiCurve}
+    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport biContext chiE)
     (Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq : Int)
     (h_common : Omega_E * Reg_r * Tam_E ≠ 0) :
     mechanicalRecordDischarge chiImports aEImports beilinsonImports Omega_E
       Reg_r Tam_E kappa_r sha_over_tors_sq := by
-  rcases aEImports with
-    ⟨TargetCategory, Hom, SelmerComplex, PairingTarget, pairing,
-      nekovarSelmerComplexWithIntrinsicCasselsTatePairing,
-      hNekovarSelmerComplexWithIntrinsicCasselsTatePairing,
-      burnsFlachMaciasSanoNekovarAESelFormulation,
-      hBurnsFlachMaciasSanoNekovarAESelFormulation,
-      pairingBilinearOrCategorical, hPairingBilinearOrCategorical⟩
-  rcases beilinsonImports with
-    ⟨rank, hrank, ArchimedeanRegulator, DeterminantLine, LValueSide,
-      regulatorToDeterminantLine, determinantLValueComparison,
-      hDeterminantLValueComparison⟩
   have hkappa :=
     SixBirdsBSD.Apparatus.KappaNormalization.kappaRNormalizationEquivalence
       Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq h_common
   dsimp [mechanicalRecordDischarge]
   exact
     ⟨rfl, rfl, rfl, hkappa, chiImports.Sigma_NekCT_eq_plus_one,
-      hNekovarSelmerComplexWithIntrinsicCasselsTatePairing,
-      hBurnsFlachMaciasSanoNekovarAESelFormulation,
-      hPairingBilinearOrCategorical, hrank, hDeterminantLValueComparison⟩
+      aEImports.nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof,
+      aEImports.burnsFlachMaciasSanoNekovarAESelFormulation_proof,
+      aEImports.pairingBilinearOrCategorical_proof,
+      beilinsonImports.rank_ge_two, beilinsonImports.determinantLValueComparison_proof⟩
 
 /--
 The three BSD recognition sources discharge as bridged source records,
@@ -289,8 +287,10 @@ theorem aorInstance
     {shellChiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve}
     {shellChiPrime : Nat}
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport shellChiContext shell.E shellChiPrime)
-    (aEImports : SixBirdsBSD.Closure.Imports.aEImport)
-    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport)
+    {aEContext : SixBirdsBSD.Closure.Imports.aEContext shell.EllipticCurve}
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext shell.E)
+    {biContext : SixBirdsBSD.Closure.Imports.beilinsonContext shell.EllipticCurve}
+    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport biContext shell.E)
     (Omega_E Reg_r Tam_E kappa_r sha_over_tors_sq : Int)
     (h_common : Omega_E * Reg_r * Tam_E ≠ 0) :
     SixBirdsBSD.Closure.AORPrimitives.RefStableAOR

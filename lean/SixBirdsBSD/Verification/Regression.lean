@@ -535,4 +535,61 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.SelShell.recognitionAuditLawControls
 #print axioms SixBirdsBSD.Closure.SelShell.selBSDShell.masterApplicabilityFromRule
 
+private def controlPairing (E : Bool) (a b : Int) : Int :=
+  if E then a * b else 1
+
+/-- Two fixed instances with an actual additive pairing law. One has the
+bilinear multiplication pairing; the other has a constant, nonadditive map.
+This is a typing control, not an elliptic-curve arithmetic realization. -/
+private def pairingControlContext : SixBirdsBSD.Closure.Imports.aEContext Bool where
+  TargetCategory := fun _ => Unit
+  Hom := fun _ _ _ => Unit
+  SelmerComplex := fun _ => Int
+  PairingTarget := fun _ => Int
+  pairing := controlPairing
+  nekovarSelmerComplexWithIntrinsicCasselsTatePairing := fun _ => True
+  burnsFlachMaciasSanoNekovarAESelFormulation := fun _ => True
+  pairingBilinearOrCategorical := fun E => ∀ a b c : Int,
+    controlPairing E (a + b) c = controlPairing E a c + controlPairing E b c
+
+theorem curveMatchedPairingControls :
+    Nonempty (SixBirdsBSD.Closure.Imports.aEImport pairingControlContext true) ∧
+    ¬ Nonempty (SixBirdsBSD.Closure.Imports.aEImport pairingControlContext false) := by
+  constructor
+  · exact ⟨{ nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof := True.intro
+             burnsFlachMaciasSanoNekovarAESelFormulation_proof := True.intro
+             pairingBilinearOrCategorical_proof := by
+               intro a b c
+               simp [controlPairing, Int.add_mul] }⟩
+  · apply SixBirdsBSD.Closure.Imports.aEImport.failedPairingPreventsImport
+    intro h
+    have hbad := h 0 0 0
+    simp [controlPairing] at hbad
+
+private def beilinsonControlContext : SixBirdsBSD.Closure.Imports.beilinsonContext Bool where
+  rank := fun _ => 2
+  ArchimedeanRegulator := fun _ => Rat
+  DeterminantLine := fun _ => Rat
+  LValueSide := fun _ => Rat
+  regulatorToDeterminantLine := fun _ => id
+  determinantLValueComparison := fun E => (if E then (2 : Rat) else 3) = 2
+
+/-- Both instances have the same admissible rank. Rank matching alone
+cannot transfer the comparison certificate to the other prescribed instance. -/
+theorem curveMatchedBeilinsonControls :
+    Nonempty (SixBirdsBSD.Closure.Imports.beilinsonImport beilinsonControlContext true) ∧
+    ¬ Nonempty (SixBirdsBSD.Closure.Imports.beilinsonImport beilinsonControlContext false) := by
+  constructor
+  · exact ⟨{ rank_ge_two := by decide
+             determinantLValueComparison_proof := rfl }⟩
+  · apply SixBirdsBSD.Closure.Imports.beilinsonImport.failedComparisonPreventsImport
+    exact (by decide : ¬ (3 : Rat) = 2)
+
+#print axioms SixBirdsBSD.Closure.Imports.aEImport.pairingFixed
+#print axioms SixBirdsBSD.Closure.Imports.aEImport.failedPairingPreventsImport
+#print axioms SixBirdsBSD.Closure.Imports.beilinsonImport.lowRankPreventsComparison
+#print axioms SixBirdsBSD.Closure.Imports.beilinsonImport.failedComparisonPreventsImport
+#print axioms curveMatchedPairingControls
+#print axioms curveMatchedBeilinsonControls
+
 end SixBirdsBSD.Verification.Regression

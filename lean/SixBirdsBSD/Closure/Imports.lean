@@ -11,7 +11,7 @@ local consistency lemmas below do not derive the arithmetic comparisons.
 
 namespace SixBirdsBSD.Closure.Imports
 
-universe u v w x
+universe u v w x uE
 
 /--
 The native family for the imported `chi_CT,p` stack, with hypotheses,
@@ -121,41 +121,104 @@ theorem chiCTpImport.missingCTTargetPreventsComparison (h : context.h_p_CT E p =
   rw [h] at hd
   cases hd
 
-/--
-The imported `A_E` unified Selmer-complex pairing substrate. It supplies
-a typed target category, a Selmer-complex carrier, a pairing, and
-certificates for the Nekovar Cassels-Tate and
-Burns-Flach-Macias-Sano-Nekovar `A_E^Sel` inputs, together with the
-bilinear/categorical pairing property.
--/
-structure aEImport where
-  TargetCategory : Type u
-  Hom : TargetCategory → TargetCategory → Type v
-  SelmerComplex : Type w
-  PairingTarget : Type x
-  pairing : SelmerComplex → SelmerComplex → PairingTarget
-  nekovarSelmerComplexWithIntrinsicCasselsTatePairing : Prop
-  nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof :
-    nekovarSelmerComplexWithIntrinsicCasselsTatePairing
-  burnsFlachMaciasSanoNekovarAESelFormulation : Prop
-  burnsFlachMaciasSanoNekovarAESelFormulation_proof :
-    burnsFlachMaciasSanoNekovarAESelFormulation
-  pairingBilinearOrCategorical : Prop
-  pairingBilinearOrCategorical_proof : pairingBilinearOrCategorical
+/-- Native Selmer-complex data fixed by curve before the import certificates
+are supplied. The family is an explicit premise of the conditional translation;
+no arithmetic Selmer complex or pairing is derived here. -/
+structure aEContext (EllipticCurve : Type uE) where
+  TargetCategory : EllipticCurve → Type u
+  Hom : ∀ E, TargetCategory E → TargetCategory E → Type v
+  SelmerComplex : EllipticCurve → Type w
+  PairingTarget : EllipticCurve → Type x
+  pairing : ∀ E, SelmerComplex E → SelmerComplex E → PairingTarget E
+  nekovarSelmerComplexWithIntrinsicCasselsTatePairing : EllipticCurve → Prop
+  burnsFlachMaciasSanoNekovarAESelFormulation : EllipticCurve → Prop
+  pairingBilinearOrCategorical : EllipticCurve → Prop
 
-/--
-The imported Beilinson rank-`>= 2` determinant/L-value comparison:
-rank data, the archimedean regulator-to-determinant-line map, and a
-certificate for the determinant/L-value comparison used by the landing.
--/
-structure beilinsonImport where
-  rank : Nat
-  rank_ge_two : 2 ≤ rank
-  ArchimedeanRegulator : Type u
-  DeterminantLine : Type v
-  LValueSide : Type w
-  regulatorToDeterminantLine : ArchimedeanRegulator → DeterminantLine
-  determinantLValueComparison : Prop
-  determinantLValueComparison_proof : determinantLValueComparison
+/-- The imported `A_E` unified Selmer-complex pairing substrate at one
+specified curve of the declared family. Arithmetic content remains supplied,
+with the same three certificate premises as before. -/
+structure aEImport {EllipticCurve : Type uE}
+    (context : aEContext EllipticCurve) (E : EllipticCurve) where
+  nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof :
+    context.nekovarSelmerComplexWithIntrinsicCasselsTatePairing E
+  burnsFlachMaciasSanoNekovarAESelFormulation_proof :
+    context.burnsFlachMaciasSanoNekovarAESelFormulation E
+  pairingBilinearOrCategorical_proof : context.pairingBilinearOrCategorical E
+
+variable {AECurve : Type uE} {aEContext : aEContext AECurve} {aE : AECurve}
+
+abbrev aEImport.TargetCategory (_d : aEImport aEContext aE) := aEContext.TargetCategory aE
+abbrev aEImport.Hom (_d : aEImport aEContext aE) := aEContext.Hom aE
+abbrev aEImport.SelmerComplex (_d : aEImport aEContext aE) := aEContext.SelmerComplex aE
+abbrev aEImport.PairingTarget (_d : aEImport aEContext aE) := aEContext.PairingTarget aE
+abbrev aEImport.pairing (_d : aEImport aEContext aE) := aEContext.pairing aE
+abbrev aEImport.nekovarSelmerComplexWithIntrinsicCasselsTatePairing
+    (_d : aEImport aEContext aE) : Prop :=
+  aEContext.nekovarSelmerComplexWithIntrinsicCasselsTatePairing aE
+abbrev aEImport.burnsFlachMaciasSanoNekovarAESelFormulation
+    (_d : aEImport aEContext aE) : Prop :=
+  aEContext.burnsFlachMaciasSanoNekovarAESelFormulation aE
+abbrev aEImport.pairingBilinearOrCategorical (_d : aEImport aEContext aE) : Prop :=
+  aEContext.pairingBilinearOrCategorical aE
+
+/-- Native archimedean data and the determinant/L-value comparison statement
+fixed by curve before certificates. This is conditional comparison content,
+not a construction or proof of a general elliptic-curve L-value theorem. -/
+structure beilinsonContext (EllipticCurve : Type uE) where
+  rank : EllipticCurve → Nat
+  ArchimedeanRegulator : EllipticCurve → Type u
+  DeterminantLine : EllipticCurve → Type v
+  LValueSide : EllipticCurve → Type w
+  regulatorToDeterminantLine : ∀ E, ArchimedeanRegulator E → DeterminantLine E
+  determinantLValueComparison : EllipticCurve → Prop
+
+/-- The Beilinson rank-at-least-two comparison at one curve of a fixed
+family. The rank bound and comparison are explicit hypotheses. -/
+structure beilinsonImport {EllipticCurve : Type uE}
+    (context : beilinsonContext EllipticCurve) (E : EllipticCurve) where
+  rank_ge_two : 2 ≤ context.rank E
+  determinantLValueComparison_proof : context.determinantLValueComparison E
+
+variable {BICurve : Type uE} {biContext : beilinsonContext BICurve} {biE : BICurve}
+
+abbrev beilinsonImport.rank (_d : beilinsonImport biContext biE) := biContext.rank biE
+abbrev beilinsonImport.ArchimedeanRegulator (_d : beilinsonImport biContext biE) :=
+  biContext.ArchimedeanRegulator biE
+abbrev beilinsonImport.DeterminantLine (_d : beilinsonImport biContext biE) :=
+  biContext.DeterminantLine biE
+abbrev beilinsonImport.LValueSide (_d : beilinsonImport biContext biE) :=
+  biContext.LValueSide biE
+abbrev beilinsonImport.regulatorToDeterminantLine (_d : beilinsonImport biContext biE) :=
+  biContext.regulatorToDeterminantLine biE
+abbrev beilinsonImport.determinantLValueComparison
+    (_d : beilinsonImport biContext biE) : Prop :=
+  biContext.determinantLValueComparison biE
+
+/-- Certificates cannot replace the prescribed curve's pairing with a
+pairing from another instance in the declared native family. -/
+theorem aEImport.pairingFixed (d : aEImport aEContext aE) :
+    d.pairing = aEContext.pairing aE := rfl
+
+/-- A low-rank instance cannot populate the higher-rank comparison record. -/
+theorem beilinsonImport.lowRankPreventsComparison
+    (h : biContext.rank biE < 2) : ¬ Nonempty (beilinsonImport biContext biE) := by
+  rintro ⟨d⟩
+  have hd := d.rank_ge_two
+  omega
+
+/-- A false comparison at the prescribed curve cannot be replaced with
+an import certificate for a different curve in the same family. -/
+theorem beilinsonImport.failedComparisonPreventsImport
+    (h : ¬ biContext.determinantLValueComparison biE) :
+    ¬ Nonempty (beilinsonImport biContext biE) := by
+  rintro ⟨d⟩
+  exact h d.determinantLValueComparison_proof
+
+/-- The pairing premise is also checked at the specified curve. -/
+theorem aEImport.failedPairingPreventsImport
+    (h : ¬ aEContext.pairingBilinearOrCategorical aE) :
+    ¬ Nonempty (aEImport aEContext aE) := by
+  rintro ⟨d⟩
+  exact h d.pairingBilinearOrCategorical_proof
 
 end SixBirdsBSD.Closure.Imports

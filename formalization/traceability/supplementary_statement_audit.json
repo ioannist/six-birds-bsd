@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "1335fc815f595cf37894842026bda52a199abcf3962c0994351450cf76c63921",
+  "lean_context_hash": "5cd158bacfc83079313728ba7ddd9e2ead3e322274811f2f82eea8b6db9e2f5e",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -240,7 +240,7 @@
       "statement_hash": "bf15caa7cca7db4d9fe1056950e1a30e335c834f4678cb3e01afa4defe72c8db",
       "lean_decl": "SixBirdsBSD.Closure.Imports.aEImport",
       "assessment": "supplied substrate",
-      "notes": "Lean records an arbitrary category carrier, pairing function, and propositions. Bilinearity is not tied to algebraic operations on that pairing; the actual Selmer-complex and ETNC-adjacent realization must be supplied. The declaration alone does not identify a universal published A_E object."
+      "notes": "The declared native family now fixes category, pairing and imported statements by curve before certificates. The landing takes A_E at shell.E; a nonadditive-pairing instance control rejects substitution. Bilinearity remains a supplied predicate requiring its stated arithmetic interpretation, not a newly derived Selmer-complex or ETNC theorem. This explicit supplied substrate is permitted in the conditional translation. See conditional_translation_audit.md."
     },
     {
       "latex_label": "def:closure:beilinson-import",
@@ -250,7 +250,7 @@
       "statement_hash": "0d535bd25786ec99692bee9ddc1968a8689181fedea8894541f971c37f940e3c",
       "lean_decl": "SixBirdsBSD.Closure.Imports.beilinsonImport",
       "assessment": "supplied comparison",
-      "notes": "The rank-at-least-two and regulator comparison are explicit hypotheses, not an independently established general elliptic-curve L-value theorem. Landing now gates the input by rank and matches the rank. Actual curve and determinant-line applicability still require a bridge."
+      "notes": "The declared native family now fixes rank, archimedean carriers, map and comparison statement by curve before certificates. The landing takes the import at shell.E, gates it by rank and matches the rank. A same-rank wrong-instance control rejects certificate substitution. Arithmetic determinant comparison remains an explicit hypothesis, which is permitted in the conditional translation; no general elliptic-curve L-value theorem is independently derived. See conditional_translation_audit.md."
     },
     {
       "latex_label": "nonclaim:closure:imports-not-derived",

@@ -63,10 +63,11 @@ theorem strongBSDConditionalWithAudits
     (chiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve)
     (chiPrime : Nat)
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext shell.E chiPrime)
-    (aEImports :
-      SixBirdsBSD.Closure.Imports.aEImport.{uAE, vAE, wAE, xAE})
-    (beilinsonImports :
-      SixBirdsBSD.Closure.Imports.beilinsonImport.{uBI, vBI, wBI}) :
+    (aEContext : SixBirdsBSD.Closure.Imports.aEContext shell.EllipticCurve)
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext shell.E)
+    (biContext : SixBirdsBSD.Closure.Imports.beilinsonContext shell.EllipticCurve)
+    (beilinsonImports : SixBirdsBSD.Closure.Imports.beilinsonImport biContext shell.E)
+    (hBIRank : biContext.rank shell.E = shell.analyticRank) :
     shell.L_derivative_over_factorial = shell.strongBSDRightSide ∧
       closureAssumption = shell.closureAssumption ∧
       (shell.masterTheoremApplies ∧ shell.smuggleAuditPasses ∧
@@ -112,7 +113,8 @@ theorem strongBSDConditionalWithAudits
         aEImports.burnsFlachMaciasSanoNekovarAESelFormulation ∧
         aEImports.pairingBilinearOrCategorical) ∧
       (2 ≤ beilinsonImports.rank ∧
-        beilinsonImports.determinantLValueComparison) := by
+        beilinsonImports.determinantLValueComparison ∧
+        biContext.rank shell.E = shell.analyticRank) := by
   have hResidualZero :=
     SixBirdsBSD.Closure.SelShell.gzFixityForcesResidualZero shell gGZ
       hLderiv hReg hOmega hTam hKappa hRhs
@@ -124,30 +126,21 @@ theorem strongBSDConditionalWithAudits
   have hComposite :=
     SixBirdsBSD.Closure.SelShell.compositeSignature shell gPD gSP gGZ
       hSha hReg hTamFac cancellation
-  rcases aEImports with
-    ⟨TargetCategory, Hom, SelmerComplex, PairingTarget, pairing,
-      nekovarSelmerComplexWithIntrinsicCasselsTatePairing,
-      hNekovarSelmerComplexWithIntrinsicCasselsTatePairing,
-      burnsFlachMaciasSanoNekovarAESelFormulation,
-      hBurnsFlachMaciasSanoNekovarAESelFormulation,
-      pairingBilinearOrCategorical, hPairingBilinearOrCategorical⟩
-  rcases beilinsonImports with
-    ⟨rank, hrank, ArchimedeanRegulator, DeterminantLine, LValueSide,
-      regulatorToDeterminantLine, determinantLValueComparison,
-      hDeterminantLValueComparison⟩
   exact
     ⟨hStrongBSD, hClosureAssumption, hMaster, hComposite,
       ⟨chiImports.Sigma_NekCT_eq_plus_one, chiImports.T_E1_proof,
         chiImports.T_E2_proof, chiImports.T_E3_proof, chiImports.T_E4_proof,
         chiImports.T_E5_proof, chiImports.T_E6_proof, chiImports.T_E7_proof,
         chiImports.T_E8_proof, chiImports.applicability⟩,
-      ⟨hNekovarSelmerComplexWithIntrinsicCasselsTatePairing,
-        hBurnsFlachMaciasSanoNekovarAESelFormulation,
-        hPairingBilinearOrCategorical⟩,
-      ⟨hrank, hDeterminantLValueComparison⟩⟩
+      ⟨aEImports.nekovarSelmerComplexWithIntrinsicCasselsTatePairing_proof,
+        aEImports.burnsFlachMaciasSanoNekovarAESelFormulation_proof,
+        aEImports.pairingBilinearOrCategorical_proof⟩,
+      ⟨beilinsonImports.rank_ge_two,
+        beilinsonImports.determinantLValueComparison_proof, hBIRank⟩⟩
 
 /-- Conditional scalar BSD in all analytic ranks, from the quantified,
-curve-matched recognition predicate. The rank-at-least-two comparison import
+curve-matched recognition predicate. All three headline imports belong to
+the shell's curve in declared native families. The rank-at-least-two comparison
 is required only in that rank range and is tied to the shell's rank.
 The closure operator and imports remain explicit records, not a proof that an
 arbitrary idempotent endomorphism forces an arithmetic residual to vanish. -/
@@ -159,9 +152,11 @@ theorem strongBSDConditional
     (chiContext : SixBirdsBSD.Closure.Imports.chiCTpContext shell.EllipticCurve)
     (chiPrime : Nat)
     (chiImports : SixBirdsBSD.Closure.Imports.chiCTpImport chiContext shell.E chiPrime)
-    (aEImports : SixBirdsBSD.Closure.Imports.aEImport.{uAE, vAE, wAE, xAE})
+    (aEContext : SixBirdsBSD.Closure.Imports.aEContext shell.EllipticCurve)
+    (aEImports : SixBirdsBSD.Closure.Imports.aEImport aEContext shell.E)
+    (biContext : SixBirdsBSD.Closure.Imports.beilinsonContext shell.EllipticCurve)
     (beilinsonImports : 2 ≤ shell.analyticRank →
-      { b : SixBirdsBSD.Closure.Imports.beilinsonImport.{uBI, vBI, wBI} //
+      { b : SixBirdsBSD.Closure.Imports.beilinsonImport biContext shell.E //
         b.rank = shell.analyticRank }) :
     shell.L_derivative_over_factorial = shell.strongBSDRightSide ∧
       closureAssumption = shell.closureAssumption ∧
