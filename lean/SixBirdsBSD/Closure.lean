@@ -16,6 +16,7 @@ import SixBirdsBSD.Closure.ShaDescent
 import SixBirdsBSD.Closure.ShaDimensionPair
 import SixBirdsBSD.Closure.ShaFourNormalization
 import SixBirdsBSD.Closure.OddPrimaryBridge
+import SixBirdsBSD.Closure.AdditiveFrobeniusDescent
 import SixBirdsBSD.Closure.CTDerivedTransport
 import SixBirdsBSD.Closure.CTPfaffianRoot
 import SixBirdsBSD.Closure.StarkCoreVertices

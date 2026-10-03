@@ -1,0 +1,48 @@
+{
+  "scope": "Equation-derived good reduction on one tame cover at eleven, and information loss after forgetting descent and filtration. No full named-source ablation or eta equation is asserted.",
+  "checked": "2026-10-03",
+  "arithmetic_input": "local_unit_support_models.json",
+  "common_cover": {
+    "prime": 11,
+    "degree": 12,
+    "relation": "pi^12=11",
+    "residue_degree": 1
+  },
+  "models": {
+    "121a1": {
+      "scale_power": 2,
+      "tame_coordinate_weights_mod_12": [8, 6],
+      "tame_action_order": 6,
+      "cover_A_terms": [[4, -131, 48]],
+      "cover_B_terms": [[0, -4973, 864]],
+      "good_fiber": [0, 0, 0, 0, 9],
+      "point_count": 12,
+      "frobenius_trace_determinant": [0, 11],
+      "original_U11": 0,
+      "original_plus_eigenline_dimension": 1,
+      "qexpansion_bound_checked": 22
+    },
+    "121b1": {
+      "scale_power": 3,
+      "tame_coordinate_weights_mod_12": [6, 3],
+      "tame_action_order": 4,
+      "cover_A_terms": [[0, -2, 3]],
+      "cover_B_terms": [[6, 7, 108]],
+      "good_fiber": [0, 0, 0, 3, 0],
+      "point_count": 12,
+      "frobenius_trace_determinant": [0, 11],
+      "original_U11": 0,
+      "original_plus_eigenline_dimension": 1,
+      "qexpansion_bound_checked": 22
+    }
+  },
+  "sources": {
+    "curve_models_and_Tate_outputs": "local_unit_support_models.json",
+    "finite_field_frobenius": "https://kskedlaya.org/slides/agct2025.pdf",
+    "rational_padic_cohomology": "https://arxiv.org/pdf/math/0105031v2",
+    "pari_modular_symbols": "https://pari.math.u-bordeaux.fr/dochtml/html/Modular_symbols.html",
+    "pari_elliptic_curves": "https://pari.math.u-bordeaux.fr/dochtml/html/Elliptic_curves.html"
+  },
+  "pari_version_checked": "2.15.4",
+  "deduction_boundary": "The unfiltered rational Frobenius modules are isomorphic by a written cyclic-basis proof; p-adic cohomology is not mechanized. Inertia descent, Hodge filtration, integral structures, global rank and normalized GZ data are not frozen by this lens. A nonzero beta from the cover cannot specialize equivariantly to the original classical U11=0 line, even as a generalized eigenvector. An independent additive modular comparison and all eta normalization inputs remain open."
+}

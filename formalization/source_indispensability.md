@@ -573,3 +573,36 @@ including the H1/div degree convention and scalar-line orientation.
 The conditional imported comparison remains valid as a projection.
 The canonical root construction does not fill those native fields
 or repair the normalized GZ predicate's scalar redundancy.
+
+
+## Common-cover arithmetic Frobenius split pair
+
+The construction in [`additive_frobenius_descent.md`](additive_frobenius_descent.md)
+uses the actual 121a1/121b1 equations on one fixed tame cover at eleven,
+`pi^12=11`. The transformed integral models have unit discriminant minus
+one, and both good fibers have twelve points and Frobenius polynomial
+`T^2+11`. The unfiltered rational Frobenius modules are isomorphic by a
+written cyclic-basis argument. Nevertheless the original base component
+numbers are one and two. Consequently no function on that common-cover
+unfiltered module class can return both component numbers. Lean proves
+the polynomial-only no-go and checks the exact quotient equations and
+finite point counts. Good reduction and p-adic cohomology are written
+arithmetic inputs, not mechanized certificates.
+
+This strengthens the local information-loss evidence with a common-cover
+arithmetic construction. Its lens erases inertia/descent, filtration,
+integral lattices and the original equations; it does not erase those from
+the full named source. The curves do not have matching global ranks or
+normalized GZ inputs. Their original modular-symbol U11 lines are both
+zero-eigenvalue lines, whereas the cover beta is nonzero; an equivariant
+generalized-beta specialization to either original line must vanish.
+A new modular/descent bridge is needed for the proposed eta route.
+An explicit repair on this pair retains the native tame-inertia action:
+its orders are six and four, as derived from the two coordinate scalings.
+Marked coordinate characters recover the scale exponent modulo twelve;
+the unit transformed discriminant and small-valuation scope make that
+an exact base discriminant-valuation return to the shallow Tate branch.
+The construction records the unramified extension and character marking,
+and does not present this as a uniform rule for all additive curves.
+Neither this local no-go nor this sharper obstruction resolves the full
+named-source ablations or the scalar redundancy of normalized GZ.

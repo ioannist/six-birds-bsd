@@ -425,4 +425,16 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.CTPfaffianRoot.rawCorrectedRootSigns
 #print axioms SixBirdsBSD.Closure.CTPfaffianRoot.actualCoefficientFrameControls
 
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.commonCoverEquations
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.residueCoefficientChecks
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.goodFiberCounts
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.noComponentReadoutFromCoverFrobenius
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.jointArithmeticNumericalWitness
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.differentFiberControl
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.tameCharacterOrders
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.markedCharacterRepairsScale
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.specializationIterates
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.generalizedSpecializationVanishes
+#print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.zeroEigenvalueControl
+
 end SixBirdsBSD.Verification.Regression

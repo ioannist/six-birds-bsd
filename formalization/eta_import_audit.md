@@ -51,7 +51,19 @@ valuation normalization, representation, or cover may support a
 different construction, but needs an explicit comparison before these
 critical-slope results can be applied.
 
-This obstruction excludes a specifically critical-slope argument under
+The subsequent construction in
+[`additive_frobenius_descent.md`](additive_frobenius_descent.md) gives actual
+provenance for the beta square relation at eleven. Both 121a1 and 121b1
+acquire good reduction on the same tame cover `pi^12=11`; their good fibers
+have Frobenius polynomial `T^2+11`. However, an exact modular-symbol
+calculation gives U11=0 on each original level-121 classical eigenline.
+Equivariant specialization of any generalized nonzero-beta eigensymbol
+to that line must vanish. Thus the cover Frobenius does not supply a
+nonzero U11 stabilization of the original curve's line. A changed modular
+object or a separate descent comparison remains necessary. Symbols with
+zero specialization are not excluded by this argument.
+
+The half-slope calculation excludes a specifically critical-slope argument under
 the stated normalization, not every result in that paper. Its
 Proposition 2.20 also compares non-theta-critical constructions. A
 repair might use a noncritical finite-slope route, but would still have
