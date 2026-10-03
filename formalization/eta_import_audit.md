@@ -115,6 +115,29 @@ A route through another Hecke algebra, a different level, or a separate
 comparison theorem would require an additional arithmetic bridge.
 The word “prime-square” alone does not establish that bridge.
 
+## Intrinsic component normalization on a checked tame scope
+
+[`tame_component_return.md`](tame_component_return.md) constructs an
+independent candidate local factor `b_native=det(1-tau)` from finite
+geometric inertia. Under tame purely additive reduction with inertia
+order four or six at p at least five, Nicaise's checked geometric
+component theorem and the Frobenius-fixed component argument give
+`b_native=c_p=2` or `1`. The rational count equals the geometric count
+because groups of order one or two have trivial automorphism groups.
+This is an exact arithmetic normalization, not a unit-class comparison
+or a two-curve coordinate lookup. Lean checks its matrix invariance,
+integral cokernel and finite-group return; the component theorem remains
+an explicit external import.
+
+This does not identify the independently prescribed OC determinant or
+derive the leading term, torsion correction or eta identity. A type-IV
+three-isogeny control has equal geometric component order but rational
+numbers three and one, so omitting the Frobenius or scope checks is
+invalid. That pair even has isomorphic full integral eleven-adic Tate
+modules; it lies outside the shallow II/III scope. The new return
+therefore resolves a candidate native local factor on its stated domain,
+while preserving the missing named-map and eta comparisons.
+
 ## Anchor verification and repair choices
 
 The current public artifacts record eta values at the three anchors,

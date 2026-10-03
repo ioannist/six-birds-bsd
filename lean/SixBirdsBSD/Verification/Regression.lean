@@ -437,4 +437,23 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.generalizedSpecializationVanishes
 #print axioms SixBirdsBSD.Closure.AdditiveFrobeniusDescent.zeroEigenvalueControl
 
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.determinantProduct
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.composeAssociative
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.traceCyclic
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.traceDeterminantReturn
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.descentDeterminantBasisInvariant
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.shallowInertiaReturn
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.companionReturns
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.sixCoinvariantsTrivial
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.fourImageIffEvenSum
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.parityKernelIffImage
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.sameParityIffDifferenceInImage
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.fourCoinvariantEquivalence
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.parityAdds
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.twoElementFrobeniusFixed
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.threeElementFrobeniusControl
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.veluIsogenyPolynomialIdentity
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.isogenyBoundaryInputs
+#print axioms SixBirdsBSD.Closure.TameComponentReturn.pairingRescalingInputs
+
 end SixBirdsBSD.Verification.Regression

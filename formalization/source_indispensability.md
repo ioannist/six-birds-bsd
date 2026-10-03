@@ -606,3 +606,40 @@ The construction records the unramified extension and character marking,
 and does not present this as a uniform rule for all additive curves.
 Neither this local no-go nor this sharper obstruction resolves the full
 named-source ablations or the scalar redundancy of normalized GZ.
+
+
+## Intrinsic tame component return and a full-representation boundary
+
+[`tame_component_return.md`](tame_component_return.md) constructs the
+native local factor det(1-tau) before considering the component group.
+For tame purely additive elliptic reduction with geometric inertia
+order six or four, its exact integer values are one or two. The checked
+Nicaise Jacobian theorem identifies this with geometric component order;
+Frobenius fixes a group of order one or two and gives the exact rational
+Tamagawa number. This upgrades the coordinate-marked two-curve repair
+into an invariant arithmetic return on the declared domain. Lean proves
+matrix covariance, the actual integral image and quotient, and the
+Frobenius step. The arithmetic component/cohomology identifications are
+written imported-theorem proofs. A comparison with the independent
+OC local map and its globally used tamFactor remains open.
+
+The explicit three-isogeny from y^2+11xy+11y=x^3 to
+y^2+11xy+11y=x^3-605x-15488 gives a stronger non-CM boundary control. Both have type IV at eleven, but their local
+component numbers are three and one. The isogeny, its dual and the
+inverse of three construct an isomorphism of the entire integral
+T11 Galois modules, compatible with every coefficient level. Therefore
+even this full representation class cannot return c11 on a domain
+containing this pair. All rational Tate-module classes are also preserved
+by this one isogeny; the integral three-adic lattice need not be.
+A compatible digit lift constructs a square root of three in Z_11;
+rescaling the isogeny map by its inverse also preserves the Weil pairing.
+Thus the full integral T11 observation can retain that pairing as well.
+The geometric component orders agree, and Frobenius-fixed orders differ.
+This shows why the rational component bridge and domain must be retained.
+
+The pair lies outside the manuscript's II/III source scope. Isogeny
+also preserves L-functions and ranks, but other integral and normalized
+BSD data are not frozen. This is an arithmetic information-loss theorem
+for the declared representation interface, not a BSD counterexample or
+an ablation of all the other named sources. The normalized GZ scalar
+redundancy and the native OC/CT/eta comparisons remain unresolved.

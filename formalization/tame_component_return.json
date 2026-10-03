@@ -1,0 +1,127 @@
+{
+  "scope": "Intrinsic component-number return from tame geometric inertia of orders four and six, with a type-IV isogeny boundary control. Written arithmetic imports are separate from Lean integral algebra. No eta, normalized tamFactor or named-source ablation is supplied.",
+  "checked": "2026-10-03",
+  "sources": {
+    "nicaise": {
+      "url": "https://arxiv.org/pdf/0901.1809v2",
+      "sha256": "996c84a6e16a2b611aa685e61feecfacda1de6555f92cfa0ae85b94302db4a54",
+      "checked_result": "Corollary 3.3(2), printed page 7: elliptic Jacobian, delta=1, purely additive and tame gives geometric component order P_tau(1). Theorem 2.8 and its dependency correction remark were also read."
+    },
+    "edixhoven": {
+      "url": "https://www.numdam.org/item/CM_1995__97_1-2_29_0.pdf",
+      "sha256": "ec9a1a7c088034534791ba37b807f584844b62a634469b0e7bcc0baa2ae8959e",
+      "checked_result": "Equations (2.2)-(2.4), printed page 31: prime-to-residue-characteristic component group is torsion in inertia cohomology, equivalently torsion coinvariants with Tate twist (-1)."
+    },
+    "pari_elliptic_curves": "https://pari.math.u-bordeaux.fr/dochtml/html/Elliptic_curves.html"
+  },
+  "shallow_inputs": [
+    "local_unit_support_models.json",
+    "additive_frobenius_descent.json"
+  ],
+  "companion_matrices": {
+    "6": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "4": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "3": [
+      [
+        0,
+        -1
+      ],
+      [
+        1,
+        -1
+      ]
+    ]
+  },
+  "isogeny_control": {
+    "prime": 11,
+    "degree": 3,
+    "kernel_polynomial": "x",
+    "cover": "pi^3=11, u=pi",
+    "models": {
+      "source": {
+        "a_invariants": [
+          11,
+          0,
+          11,
+          0,
+          0
+        ],
+        "c4": 11737,
+        "c6": -1270621,
+        "discriminant": 1376254,
+        "pari_localred": [
+          2,
+          4,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          3
+        ],
+        "good_fiber": [
+          0,
+          0,
+          0,
+          0,
+          3
+        ]
+      },
+      "target": {
+        "a_invariants": [
+          11,
+          0,
+          11,
+          -605,
+          -15488
+        ],
+        "c4": 40777,
+        "c6": 6840251,
+        "discriminant": 12160580344,
+        "pari_localred": [
+          2,
+          4,
+          [
+            1,
+            0,
+            0,
+            0
+          ],
+          1
+        ],
+        "good_fiber": [
+          0,
+          0,
+          0,
+          0,
+          7
+        ]
+      }
+    },
+    "map": "X=(x^3+121x+121)/x^2, Y=(yx^3-1331x^2-121xy-2662x-242y-1331)/x^3",
+    "integral_T11_inverse": "(1/3) times the dual isogeny; three is an eleven-adic unit",
+    "boundary": "Both non-CM models have type IV and discriminant valuation four at eleven, so neither is in the shallow II/III source scope. They have different rational component numbers but isomorphic full integral eleven-adic Galois Tate modules even with the Weil pairing retained. Isogeny preserves rational cohomology and L-functions; other integral/global BSD inputs are not frozen.",
+    "polarized_T11_normalization": "The Weil-pairing similitude multiplier is three. Compatible digit lifting from the simple residue root five constructs alpha in Z_11 with alpha^2=3. Rescaling the isogeny Tate map by alpha^-1 preserves the Weil pairing and full Galois action."
+  },
+  "pari_version_checked": "2.15.4",
+  "deduction_boundary": "Geometric component order equals determinant(1-tau) under the checked tame purely additive hypotheses. Rational component number is Frobenius fixed-point order; for orders one and two this equals geometric order automatically. Order-three and type-IV controls show this equality cannot be extrapolated. Finite geometric inertia on ell-adic cohomology for ell unequal to the residue characteristic must not be confused with the generally infinite p-adic Galois inertia action. OC map normalization, sha_p hypotheses and complete named-source comparisons remain open."
+}
