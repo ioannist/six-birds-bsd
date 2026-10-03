@@ -381,4 +381,13 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.OddPrimaryBridge.unitErasedBasisLosesSquareClass
 #print axioms SixBirdsBSD.Closure.OddPrimaryBridge.retainedUnitReturnsSquareClass
 
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.inertiaInputs
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.frobeniusFourthPowerIsNegative
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.centralNegativeCocycleIsCoboundary
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.transvectionRankOneThree
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.transvectionReturn27
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.unitScalingPreservesPrincipalImages27
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.fittingLadderLosesBasisSquareClass27
+#print axioms SixBirdsBSD.Closure.StarkCoreVertices.localisationModelCounts27
+
 end SixBirdsBSD.Verification.Regression

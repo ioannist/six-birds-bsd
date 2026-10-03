@@ -1,5 +1,5 @@
 {
-  "scope": "Actual ordinary three-primary arithmetic lane for Cremona 1913b1. The exact equation, point counts, Hecke eigensymbol and finite presentation are checked. Miller's intermediate three-descent and upper bound, optimality table, modularity/nonvanishing theorem, and the Selmer-complex cohomology theorem are external imports. The derived-category identification is a written arithmetic argument, not mechanized in Lean. Rank-one Stark core vertices, a compatible square-root generator, and full named-source indispensability remain open.",
+  "scope": "Actual ordinary three-primary arithmetic lane for Cremona 1913b1. The exact equation, point counts, Hecke eigensymbol and finite presentation are checked. Miller's intermediate three-descent and upper bound, optimality table, modularity/nonvanishing theorem, and the Selmer-complex cohomology theorem are external imports. The derived-category identification is a written arithmetic argument, not mechanized in Lean. The subsequent stark_core_vertex_construction.md supplies rank-one core vertices and a finite-level determinant/Stark return using external existence/freeness theorems with constructed hypotheses. The native square-root generator, compatible all-level comparison, and full named-source indispensability remain open.",
   "checked": "2026-10-03",
   "pari_version_checked": "2.15.4",
   "gp_stack_bytes": 128000000,
@@ -13,7 +13,7 @@
     "manin_pdf": "https://arxiv.org/pdf/1703.02951v3",
     "manin_pdf_sha256": "61cde659ac3089225539b58bfdf0082cb63ce39d1ca8bd7f8952b424e7132b6c",
     "selmer_complex": "https://arxiv.org/html/2603.23978v1",
-    "selmer_locations": "Example 2.1, Remark 2.12 and Lemmas 2.14-2.15 directly over Q establish compact/discrete Selmer cohomology, with classical local-condition comparison as in the proof of Proposition 4.7. Hypothesis 4.1 is independently checked, but Proposition 4.7 uses a tower setting and is not silently specialized to a positive layer equal to Q. Theorem 3.4 additionally requires rank-one auxiliary primes/core vertices, which are not supplied by this fixture.",
+    "selmer_locations": "Example 2.1, Remark 2.12 and Lemmas 2.14-2.15 directly over Q establish compact/discrete Selmer cohomology, with classical local-condition comparison as in the proof of Proposition 4.7. Hypothesis 4.1 is independently checked, but Proposition 4.7 uses a tower setting and is not silently specialized to a positive layer equal to Q. Theorem 3.4 additionally requires rank-one auxiliary primes/core vertices; the subsequent stark_core_vertex_construction.md supplies them through a separately checked Sakamoto application.",
     "greenberg_pdf": "https://arxiv.org/pdf/math/9809206v1",
     "greenberg_pdf_sha256": "d39ff7b21372d60fca0684ea9a74fea4e94b45840b4c79343ad9ec8b31640b8b",
     "greenberg_location": "Proposition 2.5, printed page 19: the quotient of ordinary local images by classical Kummer images is the residue-field p-primary group.",

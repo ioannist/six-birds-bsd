@@ -1,0 +1,28 @@
+{
+  "scope": "Written arithmetic construction of rank-one core vertices for 1913b1 at three, by checking Sakamoto Hypothesis 3.12 and cartesian Kummer conditions. Published core-vertex existence/freeness and Macias Castillo-Sano finite-level determinant/Stark isomorphism are external. No numerical auxiliary primes, compatible all-level comparison, native root generator or final chi_CT map is claimed.",
+  "checked": "2026-10-03",
+  "arithmetic_inputs": "odd_primary_selmer_bridge.json",
+  "sources": {
+    "sakamoto_pdf": "https://msp.org/ant/2018/12-10/ant-v12-n10-p02-s.pdf",
+    "sakamoto_pdf_sha256": "e674f67b2a9f51df164871708b73725fb3445f7d9ff6e4a20213be7e66c15f64",
+    "sakamoto_locations": "Definition 3.8 and Hypothesis 3.12, printed pages 2302-2303; Lemma 3.17, page 2304; Proposition 3.22, pages 2305-2306; Proposition 4.4 and Lemma 4.6, pages 2307-2308. These establish rank-one local groups, core vertices and relaxed freeness after the written applicability checks.",
+    "tate_uniformization": "https://virtualmath1.stanford.edu/~conrad/248BPage/handouts/modularcurves.pdf",
+    "tate_uniformization_sha256": "457c963242d43ce238a7f4a7dadc8e495ae9332a2327d1af9ac58f8f9d63fde8",
+    "tate_locations": "Section 19, printed pages 43-44: Tate discriminant and Galois-equivariant multiplicative uniformization. The compatible inertia action is derived in the construction from q of valuation two, not quoted as a core-vertex conclusion.",
+    "determinant_stark": "https://arxiv.org/html/2603.23978v1",
+    "determinant_stark_locations": "Definitions 2.5 and 2.16; Proposition 2.4; Theorem 2.20 and equation (2.3.8); Theorem 3.4 and Corollary 3.5. Rank-one core vertices are supplied by the separate Sakamoto application, not by rank-two admissible sets."
+  },
+  "finite_controls": {
+    "bad_prime": 1913,
+    "minimal_discriminant_valuation": 2,
+    "inertia_upper_right": 2,
+    "coefficient_modulus": 27,
+    "inverse_of_two": 14,
+    "localisation_kernel_size": 9,
+    "localisation_image_size": 81,
+    "fitting_generators": [9, 3, 1],
+    "unit_scaled_generators": [18, 6, 2],
+    "basis_unit_coefficients": [1, 2]
+  },
+  "deduction_boundary": "Actual finite-level Stark bases epsilon and 2 epsilon share every component-image/Fitting ideal but have different rootability through the fixed normalized square map. Core vertices are proved to exist using external arithmetic theorems with constructed hypotheses; their primes are not independently computed. The coefficient-level return does not assert compatible inverse-limit arithmetic transport or identify the prescribed native Cassels-Tate root generator. Full named-source scalar indispensability remains open."
+}

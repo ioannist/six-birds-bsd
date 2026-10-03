@@ -66,6 +66,34 @@ def check(gp: str | None) -> None:
         assert len(roots) == 1
         fixed = [x for x in range(modulus) if (roots[0]-1)*x % modulus == 0]
         assert fixed == [0, 2**(k-1)]
+    # Finite controls for the separate written arithmetic core-vertex return.
+    # These do not prove Galois-image closedness or the existence of auxiliary primes.
+    core = json.loads((ROOT / "formalization/stark_core_vertex_construction.json").read_text())
+    controls = core["finite_controls"]
+    assert controls["bad_prime"] == model["conductor"] == 1913
+    assert controls["minimal_discriminant_valuation"] == 2
+    assert delta % 1913**2 == 0 and delta % 1913**3 != 0
+    assert c4 % 1913 != 0
+    modulus = controls["coefficient_modulus"]
+    unit = controls["inertia_upper_right"]
+    inverse = controls["inverse_of_two"]
+    assert (modulus, unit, inverse) == (27, 2, 14)
+    assert unit * inverse % modulus == 1
+    images = {(3*y % modulus, -3*x % modulus)
+              for x in range(modulus) for y in range(modulus)}
+    kernel = [(x, y) for x in range(modulus) for y in range(modulus)
+              if 3*x % modulus == 3*y % modulus == 0]
+    assert len(kernel) == controls["localisation_kernel_size"] == 9
+    assert len(images) == controls["localisation_image_size"] == 81
+    assert controls["fitting_generators"] == [9, 3, 1]
+    assert controls["unit_scaled_generators"] == [18, 6, 2]
+    for generator, scaled in zip(controls["fitting_generators"], controls["unit_scaled_generators"]):
+        assert scaled == unit*generator
+        assert {generator*x % modulus for x in range(modulus)} == {
+            scaled*x % modulus for x in range(modulus)}
+    assert controls["basis_unit_coefficients"] == [1, 2]
+    squares = {x*x % modulus for x in range(modulus)}
+    assert 1 in squares and 2 not in squares
     if gp:
         expression = (
             f"e=ellinit({json.dumps(a)});im=ellisomat(e)[2];"
@@ -86,7 +114,7 @@ def check(gp: str | None) -> None:
         )
         assert run_gp(gp, data["gp_stack_bytes"], expression) == [
             symbol["hecke_prime_eigenvalues"], 1, 160, 321, 1, 1, 1, 9, 1]
-    print("Odd-primary bridge: exact equation, local/ordinary inputs and anomaly controls passed; "
+    print("Odd-primary bridge: exact equation, local/ordinary, anomaly and finite Stark controls passed; "
           + ("PARI model and exact Hecke symbol reproduced; " if gp else "")
           + "published three-primary upper bound and arithmetic transports remain external")
 

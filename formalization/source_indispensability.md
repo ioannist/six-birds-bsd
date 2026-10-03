@@ -439,8 +439,22 @@ scalar claim. Choosing some liftable normalized basis is possible;
 matching a prescribed native Stark basis is a separate requirement.
 
 The compact complex's H1 is zero and its finite group is in H2.
-Rank-one Stark core vertices and the compatible shift, generator,
-self-duality and orientation comparisons remain unresolved. The
+The subsequent core-vertex construction supplies an actual finite-level
+Stark-system return for this curve. Multiplicative inertia supplies the
+rank-one element; a constructed central minus identity and a uniform
+cocycle proof establish the cohomology hypothesis; local Kummer sequences
+establish cartesian compatibility. Published core-vertex existence and
+freeness theorems then supply exactly two auxiliary primes at each
+coefficient level. At level `Z/27`, bases `epsilon` and `2 epsilon`
+have the same complete Fitting ladder `(9),(3),(1)` but different
+rootability through the fixed normalized square map. This strengthens
+the ideal obstruction to actual Stark-system bases. The arithmetic
+existence and comparison are written imported-theorem applications;
+Lean verifies the supporting cocycle and finite calculations.
+
+The compatible all-level shift, native generator, self-duality and
+orientation comparisons remain unresolved. The
 normalized GZ source still entails scalar BSD by itself. See
-`odd_primary_selmer_bridge.md` for the construction, imports,
+`odd_primary_selmer_bridge.md` and `stark_core_vertex_construction.md`
+for the constructions, imports,
 arithmetic-versus-Lean coverage and self-review.

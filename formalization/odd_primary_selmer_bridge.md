@@ -217,8 +217,13 @@ necessary for the scalar BSD identity already supplied by normalized GZ.
 Theorem 3.4 in Macias Castillo-Sano additionally requires core vertices
 among its rank-one auxiliary primes. The admissible sets in Section 4.2
 have rank-two local quotients; Remark 4.6 is not by itself the required
-rank-one construction. We do not fill that missing input with a field.
-Even after that construction, a prescribed full Stark basis need not
+rank-one construction. The subsequent argument in
+`stark_core_vertex_construction.md` now supplies those core vertices
+using a multiplicative inertia element, residual cohomology vanishing
+and cartesian Kummer conditions, with published arithmetic existence
+and freeness theorems. At level `Z/27` it returns actual Stark bases
+with the same complete Fitting ladder and different square-root
+behavior. A prescribed full Stark basis need not
 have a root through a fixed square map, as the same-curve example proves.
 The compatible root object, native basis selection, normalized map,
 degree shift and combined orientation/sign still require construction.

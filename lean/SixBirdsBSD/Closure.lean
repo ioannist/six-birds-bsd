@@ -16,6 +16,7 @@ import SixBirdsBSD.Closure.ShaDescent
 import SixBirdsBSD.Closure.ShaDimensionPair
 import SixBirdsBSD.Closure.ShaFourNormalization
 import SixBirdsBSD.Closure.OddPrimaryBridge
+import SixBirdsBSD.Closure.StarkCoreVertices
 import SixBirdsBSD.Closure.AORPrimitives
 import SixBirdsBSD.Closure.AORInstance
 

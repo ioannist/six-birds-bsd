@@ -193,8 +193,18 @@ basis variation on an actual determinant line; it is not a source
 indispensability theorem for scalar BSD.
 
 Rank-two admissible sets in the source's Section 4.2 do not themselves
-give the rank-one core vertices required by Theorem 3.4. The latter
-construction, prescribed Stark basis, self-duality comparison, degree
+give the rank-one core vertices required by Theorem 3.4. The separate
+construction in `stark_core_vertex_construction.md` now supplies that
+input by checking Sakamoto's hypotheses on the actual curve: a
+multiplicative inertia transvection, residual irreducibility, exact
+central minus identity and cocycle vanishing, and cartesian Kummer
+conditions. Published existence/freeness theorems give two auxiliary
+primes at each coefficient level. The determinant/Stark isomorphism
+therefore applies over `Z/27`, and the complete Fitting ladder loses
+the rootability of a prescribed Stark basis under unit scaling.
+Its arithmetic theorem applications are external to Lean; the finite
+calculations and uniform cocycle proof are mechanized.
+The compatible all-level native Stark basis, self-duality comparison, degree
 shift and orientation remain open. In the compact convention here,
 the proposed unshifted `H1(C)/div` is zero. Shifting it to the finite
 degree also inverts the determinant convention, which must be carried
