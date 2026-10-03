@@ -23,9 +23,11 @@ universe uBI vBI wBI
 Conditional Strong BSD within the Six Birds closure discipline. From the
 `Sel!_BSD` shell, the explicit higher-GZ recognition carrier, the
 remaining BSD recognition carriers, the three import structures, and
-the Foundations-I closure assumption, the scalar Strong-BSD identity is
-routed through the SelShell higher-GZ helper, master-applicability, and
-composite signature theorems.
+the Foundations-I closure assumption, the scalar Strong-BSD identity follows
+from the normalized higher-GZ helper. The other helpers return separate
+audit conjuncts: master applicability is already supplied by the shell's
+conclusion-equivalent rule, while the recognition records supply their own
+audit certificates and the composite scalar-factor sensitivity statements.
 -/
 theorem strongBSDConditionalWithAudits
     {EPD : Type uPD} {LPD : Type vPD}

@@ -14,6 +14,41 @@ namespace SixBirdsBSD.Closure.SelShell
 
 universe u v w x y z uPD vPD sPD uSP vSP sSP uGZ vGZ
 
+/-- The legacy audit rule quantifies over arbitrary propositions. These
+propositions have no interpreted source/instance constraints. Its exact
+logical strength is proved below rather than inferred from its name. -/
+def RecognitionAuditLaw (smuggle master : Prop) : Prop :=
+  ∀ (pd2 pd3 pd4 : Prop), pd2 → pd3 → pd4 →
+  ∀ (sp19 sp21 sp29 : Prop), sp19 → sp21 → sp29 →
+  ∀ (gz14 gz27 gz40 : Prop), gz14 → gz27 → gz40 →
+  smuggle → master
+
+/-- Nine universally quantified proved propositions do not supply extra
+logical content: instantiate every one with True. -/
+theorem recognitionAuditLawIffImplication (smuggle master : Prop) :
+    RecognitionAuditLaw smuggle master ↔ (smuggle → master) := by
+  constructor
+  · intro h hs
+    exact h True True True True.intro True.intro True.intro
+      True True True True.intro True.intro True.intro
+      True True True True.intro True.intro True.intro hs
+  · intro h _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hs
+    exact h hs
+
+theorem recognitionAuditLawIffConclusion (smuggle master : Prop)
+    (hs : smuggle) : RecognitionAuditLaw smuggle master ↔ master := by
+  rw [recognitionAuditLawIffImplication]
+  exact ⟨fun h => h hs,fun h _ => h⟩
+
+/-- Both premise controls matter when interpreting the law. A false
+smuggle premise makes it vacuous; a true premise rejects a false return. -/
+theorem recognitionAuditLawControls :
+    RecognitionAuditLaw False False ∧ ¬ RecognitionAuditLaw True False := by
+  constructor
+  · exact (recognitionAuditLawIffImplication False False).mpr id
+  · intro h
+    exact (recognitionAuditLawIffConclusion True False True.intro).mp h
+
 /--
 The saturated BSD trace shell
 `Sel!_BSD = (E, rho_E, J!_BSD, Vis!_BSD, Audit!_BSD)`.
@@ -70,11 +105,10 @@ structure selBSDShell where
   masterTheoremApplies : Prop
   foundationsIVApplicabilityAudit : Prop
   foundationsIVApplicabilityAudit_proof : foundationsIVApplicabilityAudit
-  masterFromRecognitionAudits :
-    ∀ (pd2 pd3 pd4 : Prop), pd2 → pd3 → pd4 →
-    ∀ (sp19 sp21 sp29 : Prop), sp19 → sp21 → sp29 →
-    ∀ (gz14 gz27 gz40 : Prop), gz14 → gz27 → gz40 →
-    smuggleAuditPasses → masterTheoremApplies
+  /-- With the preceding smuggle proof this field is equivalent to the
+  applicability conclusion itself. It is supplied content, not a derived
+  Foundations-IV applicability theorem or a source-dependence proof. -/
+  masterFromRecognitionAudits : RecognitionAuditLaw smuggleAuditPasses masterTheoremApplies
   compositeOperationalPredicate : Prop
   compositeOperationalPredicate_proof : compositeOperationalPredicate
   compositeComputable : Prop
@@ -100,6 +134,13 @@ structure selBSDShell where
   ablateGZWitness : AblationWitness
   ablateGZWitness_proof :
     ablateGZBreaksStrongBSDScalarFactorPackage ablateGZWitness
+
+/-- Exact dependency of the legacy master conclusion. No recognition
+carrier or closure operator is used by this projection of supplied content. -/
+theorem selBSDShell.masterApplicabilityFromRule (shell : selBSDShell) :
+    shell.masterTheoremApplies :=
+  (recognitionAuditLawIffConclusion _ _ shell.smuggleAuditPasses_proof).mp
+    shell.masterFromRecognitionAudits
 
 /--
 `Pi_BSD(E)` is the structured quantified predicate over the BSD
@@ -277,9 +318,10 @@ theorem gzFixityForcesResidualZero
       shell.strongBSDRightSide).mpr hStrong
 
 /--
-The closure master theorem applies to `Sel!_BSD`: the
-Foundations-IV applicability audit for the three recognition-source
-instantiations is combined with the smuggle audit.
+Conditional applicability and the three supplied source-audit packages.
+The master component follows from the shell's conclusion-equivalent rule;
+the source records supply the separately returned audit conjuncts. This
+does not derive an interpreted Foundations-IV application from those records.
 -/
 theorem masterTheoremApplicability
     {EPD : Type uPD} {LPD : Type vPD}
@@ -316,20 +358,7 @@ theorem masterTheoremApplicability
     ⟨gGZ.f14DualityFixity_proof,
       gGZ.f27ConservationAsOrbitDescent_proof,
       gGZ.f40AnomalySymmetryObstruction_proof⟩
-  have hmaster : shell.masterTheoremApplies :=
-    shell.masterFromRecognitionAudits
-      gPD.f2DescentRepairMinimalCoarsening
-      gPD.f3HolonomyMemoryRouteResidue gPD.f4LocalGlobal
-      gPD.f2DescentRepairMinimalCoarsening_proof
-      gPD.f3HolonomyMemoryRouteResidue_proof gPD.f4LocalGlobal_proof
-      gSP.f19ObjectPersistence gSP.f21ReflexiveNonclosure
-      gSP.f29PresentationInvariance gSP.f19ObjectPersistence_proof
-      gSP.f21ReflexiveNonclosure_proof gSP.f29PresentationInvariance_proof
-      gGZ.f14DualityFixity gGZ.f27ConservationAsOrbitDescent
-      gGZ.f40AnomalySymmetryObstruction gGZ.f14DualityFixity_proof
-      gGZ.f27ConservationAsOrbitDescent_proof
-      gGZ.f40AnomalySymmetryObstruction_proof
-      shell.smuggleAuditPasses_proof
+  have hmaster : shell.masterTheoremApplies := shell.masterApplicabilityFromRule
   exact ⟨hmaster, shell.smuggleAuditPasses_proof, hPD, hSP, hGZ⟩
 
 /-- Cancellation only at the five actual BSD multipliers and denominator.

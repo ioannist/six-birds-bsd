@@ -530,4 +530,9 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.SignedTameTransition.cyclotomicDegreeControl
 #print axioms SixBirdsBSD.Closure.SignedTameTransition.normBranchRepair
 
+#print axioms SixBirdsBSD.Closure.SelShell.recognitionAuditLawIffImplication
+#print axioms SixBirdsBSD.Closure.SelShell.recognitionAuditLawIffConclusion
+#print axioms SixBirdsBSD.Closure.SelShell.recognitionAuditLawControls
+#print axioms SixBirdsBSD.Closure.SelShell.selBSDShell.masterApplicabilityFromRule
+
 end SixBirdsBSD.Verification.Regression

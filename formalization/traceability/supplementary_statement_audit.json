@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "6ed19401131520fde6303cf06fb1ed3a54ffaa96116f2d494393e0554538f386",
+  "lean_context_hash": "1335fc815f595cf37894842026bda52a199abcf3962c0994351450cf76c63921",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -310,7 +310,7 @@
       "statement_hash": "e25f5858d190c0eaaaad4c4a009294a014153590ff82076d1ff55bd682bdbfa1",
       "lean_decl": "SixBirdsBSD.Closure.SelShell.selBSDShell",
       "assessment": "supplied closure architecture",
-      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing."
+      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing. Exact Lean equivalences now expose that the master rule, with the supplied smuggle proof, is equivalent to master applicability itself; its nine arbitrary proved propositions supply no additional content. See formalization/master_applicability_audit.md."
     },
     {
       "latex_label": "def:closure:pi-bsd",

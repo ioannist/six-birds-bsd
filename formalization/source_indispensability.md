@@ -736,3 +736,16 @@ norm, not an additive formal-group trace or a constructed signed pairing.
 Native signed generators, determinant normalization and global Sha return
 remain open, as does source indispensability with normalized GZ retained.
 No manuscript claim or recognition certificate has been changed.
+
+## Master applicability does not supply source indispensability
+
+[`master_applicability_audit.md`](master_applicability_audit.md) proves the
+exact meaning of the existing universally quantified recognition-audit
+rule. Instantiating its nine arbitrary propositions with True derives
+master applicability without any recognition records. With the supplied
+smuggle proof the rule is equivalent to that conclusion itself. The
+source records still supply the separately returned audit conjuncts;
+neither those conjuncts nor this shell rule prove source necessity for
+scalar BSD. Lean now exposes this dependency directly, with both directions
+of the equivalence and true/false premise controls. No theorem conclusion,
+assumption strength, or manuscript has been changed.
