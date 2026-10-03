@@ -9,7 +9,7 @@ def snapshot():
 
 
 def test_current_supplement_covers_remaining_statements():
-    assert len(supplementary.expected_items()) == 40
+    assert len(supplementary.expected_items()) == 41
     assert supplementary.validate(snapshot()) == []
 
 

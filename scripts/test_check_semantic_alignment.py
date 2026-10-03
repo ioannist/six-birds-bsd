@@ -4,7 +4,7 @@ import check_semantic_alignment as alignment
 
 def test_real_corpus_cannot_silently_skip_theorem_audit():
     items = alignment.theorem_items()
-    assert len(items) == 29
+    assert len(items) == 30
     assert {item['latex_label'] for item in items} >= {
         'thm:closure:strong-bsd-conditional',
         'thm:closure:composite-signature',
@@ -34,7 +34,7 @@ def test_lean_context_change_invalidates_reviewed_alignments(monkeypatch):
                for item in alignment.theorem_items()}
     monkeypatch.setattr(alignment, 'lean_context_hash', lambda: 'changed')
     errors = alignment.validate(entries)
-    assert len(errors) == 29
+    assert len(errors) == 30
     assert all('lean_context_hash is stale' in error for error in errors)
 
 
