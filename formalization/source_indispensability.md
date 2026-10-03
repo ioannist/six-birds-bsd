@@ -688,3 +688,28 @@ ordinary and supersingular local regimes even when both component factors
 are two. It does not supply the native additive U_p/descent comparison,
 freeze the refinement-dependent leading moment, or prove source necessity
 for scalar BSD with normalized GZ retained.
+
+
+## Entire Kummer-family erasure and the ordinary norm boundary
+
+[`kummer_component_erasure.md`](kummer_component_erasure.md) proves a new
+comparison on the actual type-III places of y^2=x^3+385x+1225. Inclusion
+E_0(Q_p) into E(Q_p) gives an isomorphism at every odd p-power quotient,
+with explicit compatible inverses on their actual completions. The Kummer
+images coincide as embedded subsets at every coefficient level, so their
+entire family cannot recover the index of a marked subgroup: E_0 and the
+full point group have marked indices two and one. Lean constructs the
+quotients, transition maps, completed inverse laws, full-family no-readout
+theorem and a coefficient-two failure control. Arithmetic Kummer exactness
+and the component-index instantiation are written imports.
+
+This erases the marked subgroup from the declared Kummer lens, not canonical
+E_0 from the curve equation or component data from the full source. Keeping
+coefficient-two comparison cokernels or native integral inertia repairs the
+component direction. The same construction checks ordinary good-cover
+restriction/corestriction at five: division by the tame degree four is an
+inverse on Galois invariants, while the norm on full point completions has
+ranks four and one. A usual determinant on that full map is unavailable.
+The independently prescribed OC and signed determinant-line comparisons
+still need their carriers and normalization. No full named-source ablation
+or source necessity with normalized GZ fixed is inferred.

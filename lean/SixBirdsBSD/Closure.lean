@@ -20,6 +20,7 @@ import SixBirdsBSD.Closure.AdditiveFrobeniusDescent
 import SixBirdsBSD.Closure.TameComponentReturn
 import SixBirdsBSD.Closure.GlobalTameProduct
 import SixBirdsBSD.Closure.CoverBetaRefinement
+import SixBirdsBSD.Closure.KummerComponentErasure
 import SixBirdsBSD.Closure.CTDerivedTransport
 import SixBirdsBSD.Closure.CTPfaffianRoot
 import SixBirdsBSD.Closure.StarkCoreVertices

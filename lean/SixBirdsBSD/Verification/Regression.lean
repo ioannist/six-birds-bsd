@@ -490,4 +490,29 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.CoverBetaRefinement.unramifiedTraceResidues
 #print axioms SixBirdsBSD.Closure.CoverBetaRefinement.unramifiedSquareIncompatible
 
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.quotientRepresentative
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.multipleMembershipReflects
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.inclusionReflectsModRelation
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.quotientInclusionInjective
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.quotientRightInverse
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.quotientLeftInverse
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.kummerImagesEqual
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.oddLevelBezout
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.fourLevelBezout
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.scalarDegreeInverse
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.normalizedCorestrictionLeftInverse
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.oddPrimePowerLevel
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.quotientInclusionReduction
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.twoLevelRightInverse
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.twoLevelLeftInverse
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.twoLevelInverseReduction
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.completedComparison
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.twoComponentKummerImagesEqual
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.entireKummerImageFamilyEqual
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.noMarkedSubgroupReadout
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.coefficientTwoControl
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.evenIntegersKilledQuotient
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.coefficientTwoImageControl
+#print axioms SixBirdsBSD.Closure.KummerComponentErasure.actualMarkedPointInputs
+
 end SixBirdsBSD.Verification.Regression
