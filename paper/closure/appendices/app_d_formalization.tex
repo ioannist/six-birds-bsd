@@ -1,249 +1,109 @@
-\section{Lean formalization}\label{app:formalization}
-\subsection*{Trust base and methodology}
+\section{Lean formalization and supporting data}\label{app:formalization}
 
-The Lean development for this paper is deliberately mathlib-free.  It
-does not import an external mathematics library, and therefore no
-mathlib axioms occur in the dependency closure of the BSD declarations.
-Every declaration entered in the manifest with theorem status was
-audited with \texttt{\#print axioms}.  The accepted trust base is
-Lean's standard foundational base: \texttt{propext},
-\texttt{Quot.sound}, and \texttt{Classical.choice}, with
-\texttt{funext} and the \texttt{choice} recursor appearing as standard
-consequences in the audit output.  No project-local axiom lies behind
-any theorem-marked result.  The source tree also contains no active
-\texttt{axiom}, \texttt{opaque}, \texttt{constant}, \texttt{sorry}, or
-\texttt{admit} declarations in the BSD namespace.  This point matters
-for the interpretation of the recognition sources and imports: they
-are represented as typed structure carriers, never as Lean axioms.
+\subsection*{What is formalized}
 
-The formalization mechanizes the framework-structural closure
-architecture, not the imported arithmetic geometry.  There are three
-main disclosure modes.  First, typed structure carriers are used for
-the imported theorem stacks and the recognition sources.  The
-Cassels--Tate, Selmer-complex pairing, Beilinson, overconvergent
-\(\eta\), and cascade imports are records whose mathematical content is
-carried as hypothesis fields.  The three recognition sources are
-likewise records: their arithmetic content is carried explicitly and
-then consumed by later statements.  In all of these cases the content
-is carried, not derived, and it is not an axiom of the formalization.
+The Lean~4 development accompanying this paper imports no external
+mathematics library.  Its theorems depend only on Lean's standard axioms
+(propositional extensionality, quotient soundness and classical choice,
+together with their standard consequences); there are no project-specific
+axioms, and no declaration is left unproved.  The comparison inputs and
+the recognition hypotheses are Lean structures whose fields are the
+asserted statements; they are hypotheses, not axioms.  None of the
+arithmetic geometry of the paper is formalized.
 
-Second, several results are projection-packaged conditional schemas.
-The \(\chiCTp\) comparison, the overconvergent \(\eta\)-formula, the
-rank-\(\leq 1\) cascade theorem, the composite signature, and the
-headline conditional landing are checked projections over explicit
-proof-carrying records, conditional on the relevant imports and
-recognition sources.  The formalization checks that the projections and
-implication chains use the supplied records in the stated way; it does
-not independently derive the underlying arithmetic theorems.  For this
-reason the body footnotes say that these claims are tracked as
-conditional schemas, not that the formalization derives the arithmetic
-comparison unconditionally.
+Each of the $30$ labelled definitions, theorems, remarks and nonclaims
+falls into one of five classes, used in the footnotes and in
+\Cref{tab:formalization-coverage}.  (The example of \Cref{sec:chi-ct-p}
+is not one of these statements.)
+\begin{itemize}
+\item \emph{Lean proves} (3 theorems):
+  \Cref{thm:closure:pi-bsd-iff-strong-bsd,thm:closure:scalar-closure-translation,thm:closure:formed-closure-bridge}.
+  The Lean statement has the content of the theorem in the body.
+\item \emph{Model version} (2 theorems):
+  \Cref{thm:closure:aor-mechanical-records,thm:closure:aor-instance},
+  proved for integer quantities and for the declared refinement relation
+  respectively.
+\item \emph{Conditional schema} (6 theorems):
+  \Cref{thm:closure:composite-signature,thm:closure:chi-ct-p-comparison,thm:closure:oc-eta-formula,thm:closure:t-cascade-rank-le-1,thm:closure:strong-bsd-conditional,thm:closure:aor-recognition-discharge}.
+  Part or all of the conclusion is obtained by projecting a supplied
+  hypothesis.  For \Cref{thm:closure:strong-bsd-conditional} only the
+  returned input components are projected: its scalar conclusion is
+  derived, and the two declarations isolating that derivation depend on
+  no project declaration outside their own module.  A compiled dependency check
+  confirms this, and that the derivation does not depend on the auxiliary
+  theorems of \Cref{sec:chi-ct-p,sec:eta-formula,sec:aor-instance}, on
+  \Cref{thm:closure:composite-signature}, or on the supplied applicability,
+  computability, falsifiability and ablation fields of the shell.
+\item \emph{Lean definition} (11 definitions): the shell, the
+  recognition predicate, the three recognition hypotheses, the five input
+  records and the audit register.
+\item \emph{Not formalized} (8 statements): five remarks and three
+  nonclaims.
+\end{itemize}
+These classes follow the coverage records in the repository, which compare
+each Lean statement with the corresponding statement of the paper.  The
+main theorem and the fixed-point formulation have controls on rational
+shells, including false targets that the recognition predicate rejects;
+rational-carrier examples test the hypotheses of the formed-layer
+statement (\Cref{sec:landing,sec:scalar-closure}).
 
-Third, some statements are substantive finite Lean proofs of the
-structural layer.  The readout-level equivalence, the
-master-theorem-applicability statement, and the AOR mechanical and
-recognition discharge theorems are proofs about the finite record
-architecture and its bookkeeping.  The AOR-instance membership is
-checked over a narrowed representation: the local syntactic
-refinement-stable predicate used by this paper, not the full Audited
-Operational Realisability meta-theory.  Thus Lean checks the closure
-architecture---the residual readout algebra, the implication chains,
-and the discharge bookkeeping---while certifying none of the imported
-arithmetic geometry or the recognition-source content itself.
+\subsection*{Supporting computations}
 
-In coverage terms, the paper has 28 statements of record.  Of these,
-21 are mechanized: 4 substantive structural theorems, 5
-projection-packaged conditional schemas, 8 typed definition carriers
-(including the shell and predicate mirrors, the typed import carriers,
-and the AOR-instance object), 3 recognition-source carriers, and 1
-narrowed AOR-instance membership.  The remaining 7 are not mechanized:
-the two audit-result no-gos, two remarks, and three non-claims.  The
-tables below give the per-label coverage and the corresponding Lean
-declaration map.
-\subsection*{Wording-discipline table}
+The example of \Cref{sec:chi-ct-p} uses exact modular-symbol, local and
+Frobenius computations made with PARI/GP~\citep{PARI2023}, the published
+three-descent and upper bound reported in the proof of
+\citet[Theorem~7.2]{Miller2011}, which we did not rerun, and published
+theorems on Selmer complexes and Stark systems
+\citep{Sakamoto2018,MaciasCastilloSano2026}.  The local data of $121a1$,
+$121b1$ and of $y^2=x^3+385x+1225$ in \Cref{sec:recognition-sources} were
+computed with Tate's algorithm in PARI/GP.
 
-Every mechanized statement in the body carries a footnote whose wording
-is canonical, not editorial.  The wording encodes whether the result is
-a substantive finite Lean proof, a projection-packaged conditional
-schema, a narrowed-representation check, a typed structure carrier, or
-a recognition-source carrier.  Projection-packaging and narrowing are
-therefore visible at the point of disclosure; unmechanized statements
-carry no footnote.
+\subsection*{Data and code availability}
 
-\begin{center}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.36\textwidth}X@{}}
-\toprule
-Statement class & Footnote convention \\
-\midrule
-Theorem, substantive finite proof &
-Verified in Lean as \texttt{[decl]}; see App~\ref{app:formalization}. \\
-\addlinespace
-Theorem, projection-packaged conditional schema &
-Tracked in the formalization harness as a conditional schema
-\texttt{[decl]} --- a checked projection over an explicit
-proof-carrying record (conditional on the imports and recognition
-sources), not an independent Lean derivation. \\
-\addlinespace
-Theorem, narrowed representation &
-Verified in Lean as \texttt{[decl]} over a narrowed representation
-(the local syntactic refinement-stable predicate); the narrowing is
-recorded below. \\
-\addlinespace
-Definition, typed structure carrier (import) &
-Encoded in Lean as a typed structure carrier \texttt{[decl]} bundling
-the imported theorem(s) as hypothesis fields; not a Lean axiom. \\
-\addlinespace
-Definition, recognition-source carrier &
-Supplied as a recognition source, encoded in Lean as a typed structure
-carrier \texttt{[decl]} over a narrowed representation; its arithmetic
-content is a hypothesis field, not a Lean axiom. \\
-\addlinespace
-Definition, faithful (typed mirror) &
-No footnote; the declaration appears only in the per-label coverage
-table below. \\
-\addlinespace
-No-go / remark / non-claim (not mechanized) &
-No footnote and no Lean identifier in the body; recorded as a
-paper-level statement only. \\
-\bottomrule
-\end{tabularx}
-\end{center}
-\subsection*{Standing narrowings}
+The Lean sources, the statement-by-statement coverage records, the
+recorded computations and the scripts that check them are distributed
+with the archived release of this paper cited on the first page.
 
-\paragraph{Projection-packaged conditional schemas.}
-Five results in this paper are mechanized as checked projections over
-explicit proof-carrying records rather than as independent Lean
-derivations: the \(\chiCTp\) Cassels--Tate comparison, the
-overconvergent \(\eta\)-formula, the rank-\(\leq 1\) cascade theorem,
-the composite signature, and the headline conditional landing.  This
-means that the formalization checks the projection or implication
-chain from the supplied records to the stated conclusion.  For example,
-in the landing it checks that the recognition sources and headline imports
-are threaded through the shell-readout theorems so that the residual
-vanishes and the Strong-BSD scalar identity follows.
-
-The corresponding bound is equally important.  These projections do
-not independently derive the underlying arithmetic-geometry inputs:
-the Cassels--Tate comparison inputs, the overconvergent \(L\)-value
-inputs, and the rank-\(\leq 1\) Iwasawa/Heegner inputs remain carried
-hypotheses.  This is why the body footnotes for these five results say
-that they are tracked as conditional schemas and are not independent
-Lean derivations.  In particular, the conditional landing is a theorem
-with the recognition sources and headline imports as explicit hypothesis
-parameters; it is not an unconditional Lean proof of BSD.
-
-\paragraph{Typed structure carriers.}
-The five imported theorem stacks and the three recognition sources are
-encoded as typed structures whose arithmetic payload is a hypothesis
-field.  Three of the imported stacks, \(\chiCTp\), \(\AofE\), and the
-Beilinson comparison, are the headline imports used directly in the landing
-theorem; the overconvergent \(\eta\) and \(T_{\mathrm{CASCADE}}\) stacks are
-supporting conditional imports recorded by their own sections.  For the
-imports, this means that the external theorem stacks are carried as
-structured records rather than re-derived.  For the recognition sources, it
-means that the named arithmetic content is available as a field of the
-carrier and is then consumed by the closure architecture.  In both cases
-the content is carried, not derived, and it never appears as a Lean axiom.
-
-The recognition-source carriers also use a narrowed structural
-representation.  The carrier records the relevant arithmetic assertion
-in typed form---for example the \(p\)-adic descent congruence, the
-signed-Selmer persistence comparison, or the higher-rank fixity
-readout---without formalizing the full underlying \(p\)-adic, Selmer,
-or regulator theory inside Lean.  The dimension and role of each
-carrier are faithful to the intended arithmetic content, but the
-background arithmetic theory is not redeveloped in the formalization.
-
-Neither of these narrowings enlarges the Lean trust base.  They delimit
-what the finite mechanization claims: the imported arithmetic and
-recognition content are explicit carried hypotheses, while the checked
-Lean layer verifies the structural use of those hypotheses.
-\input{tables/representation-notes}
-\subsection*{Non-eliminative AOR instance}
-
-The AOR-instance membership theorem is mechanized over a narrowed
-representation.  The development defines, for this paper, a local
-syntactic refinement-stable predicate for the BSD trace shell; it does
-not mechanize the full Audited Operational Realisability meta-theory of
-\cite{TsiokosAOR2026}.  The checked statement is therefore the following
-bounded claim: with respect to this local predicate, the declared audit
-records of the BSD trace shell account for the structural defects that
-persist under refinement.  It is not a claim that Lean has formalized the
-general AOR meta-theory, and it is not a claim of membership in that
-full meta-theoretic sense.  This is why the body footnote for the
-AOR-instance theorem carries the narrowed-representation qualifier
-rather than a bare ``verified in Lean'' formulation.
-
-The non-eliminative content is also explicit in the formal record.  The
-three recognition sources are discharged as bridged records: each is
-recorded in the audit as a primary source-type structural defect, with
-its forced secondary role, target, transport, and limit defects, and is
-then reclassified as carried recognition content.  None of the three is
-marked as eliminated.  By contrast, the mechanical components---the
-trace-shell construction, the \(\kapr\)-normalization, and the imported
-theorem stacks---are discharged either by construction or by an approved
-external-record citation chain.
-
-Thus the AOR-instance membership is non-eliminative.  It records that
-the open arithmetic content has been named, carried, and bridged inside
-the audit presentation, not that the content has been closed.  In
-particular, the rank-\(\geq 2\) generalized Gross--Zagier identity and
-the additive \(p \leq 3\) Iwasawa main conjecture remain open after the
-AOR reading; the membership records their place in the declared
-presentation rather than proving them.  This subsection fixes the exact
-scope of the formal AOR result: a local, refinement-stable,
-non-eliminative audit-closed membership, so that neither the headline
-conditional landing nor the AOR reading is mistaken for an unconditional
-or eliminative theorem.
-\subsection*{Per-label coverage}
-
-The table lists every closure statement of record in document order,
-together with its environment kind, mechanization fidelity, and body
-location.  Rows marked faithful, projection, or narrowed have a Lean
-declaration, mapped in the next subsection; rows marked not mechanized
-are paper-level statements and carry no Lean declaration.
+\subsection*{Coverage and declarations}
 
 \input{tables/formalization-coverage}
-\subsection*{Lean declaration map}
 
-The 21 mechanized closure statements each correspond to a Lean
-declaration, listed here for citation and audit.  Labels elide the
-\texttt{closure:} prefix, and declarations elide the
-\texttt{SixBirdsBSD.Closure.} namespace; the seven not-mechanized
-statements have no declaration and are omitted from this map, with full
-coverage recorded in \Cref{tab:formalization-coverage}.  The
-\(\kapr\)-normalization reused in the AOR mechanical-records theorem is
-imported from \citet{TsiokosBSDApparatus2026};
-its own declaration belongs to that paper rather than to the closure
-declaration map.
+\input{tables/declaration-map}
 
-\begin{small}
-\begin{longtable}{@{}>{\ttfamily}p{0.44\textwidth} >{\ttfamily}p{0.50\textwidth}@{}}
-\caption{Lean declaration map for the 21 mechanized closure statements. Labels elide the \texttt{closure:} prefix; declarations elide the \texttt{SixBirdsBSD.Closure.} namespace.}\label{tab:appd-declmap-closure}\\
-\toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule \endfirsthead
-\multicolumn{2}{@{}l}{\footnotesize\itshape continued from previous page}\\ \toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule \endhead
-\midrule \multicolumn{2}{r@{}}{\footnotesize\itshape continued on next page}\\ \endfoot
-\bottomrule \endlastfoot
-def:\allowbreak chi-\allowbreak ct-\allowbreak p-\allowbreak import & Imports.\allowbreak chi\allowbreak CTp\allowbreak Import \\
-def:\allowbreak a-\allowbreak e-\allowbreak import & Imports.\allowbreak a\allowbreak EImport \\
-def:\allowbreak beilinson-\allowbreak import & Imports.\allowbreak beilinson\allowbreak Import \\
-def:\allowbreak gamma-\allowbreak padic-\allowbreak descent & Recognition\allowbreak Sources.\allowbreak gamma\allowbreak Padic\allowbreak Descent \\
-def:\allowbreak gamma-\allowbreak sha-\allowbreak persistence & Recognition\allowbreak Sources.\allowbreak gamma\allowbreak Sha\allowbreak Persistence \\
-def:\allowbreak gamma-\allowbreak higher-\allowbreak gz-\allowbreak fixity & Recognition\allowbreak Sources.\allowbreak gamma\allowbreak Higher\allowbreak GZFixity \\
-def:\allowbreak sel-\allowbreak bsd-\allowbreak shell & Sel\allowbreak Shell.\allowbreak sel\allowbreak BSDShell \\
-def:\allowbreak pi-\allowbreak bsd & Sel\allowbreak Shell.\allowbreak pi\allowbreak BSD \\
-thm:\allowbreak pi-\allowbreak bsd-\allowbreak iff-\allowbreak strong-\allowbreak bsd & Sel\allowbreak Shell.\allowbreak pi\allowbreak BSDIff\allowbreak Strong\allowbreak BSD \\
-thm:\allowbreak master-\allowbreak theorem-\allowbreak applicability & Sel\allowbreak Shell.\allowbreak master\allowbreak Theorem\allowbreak Applicability \\
-thm:\allowbreak composite-\allowbreak signature & Sel\allowbreak Shell.\allowbreak composite\allowbreak Signature \\
-thm:\allowbreak chi-\allowbreak ct-\allowbreak p-\allowbreak comparison & Chi\allowbreak CTp.\allowbreak chi\allowbreak CTp\allowbreak Comparison \\
-def:\allowbreak eta-\allowbreak published-\allowbreak imports & Eta\allowbreak Formula.\allowbreak eta\allowbreak Published\allowbreak Imports \\
-thm:\allowbreak oc-\allowbreak eta-\allowbreak formula & Eta\allowbreak Formula.\allowbreak oc\allowbreak Eta\allowbreak Formula \\
-def:\allowbreak t-\allowbreak cascade-\allowbreak import & TCascade.\allowbreak t\allowbreak Cascade\allowbreak Import \\
-thm:\allowbreak t-\allowbreak cascade-\allowbreak rank-\allowbreak le-\allowbreak 1 & TCascade.\allowbreak t\allowbreak Cascade\allowbreak Rank\allowbreak Le\allowbreak One \\
-thm:\allowbreak strong-\allowbreak bsd-\allowbreak conditional & Landing.\allowbreak strong\allowbreak BSDConditional \\
-def:\allowbreak aor-\allowbreak sel-\allowbreak instance & AORInstance.\allowbreak aor\allowbreak Sel\allowbreak Instance \\
-thm:\allowbreak aor-\allowbreak mechanical-\allowbreak records & AORInstance.\allowbreak aor\allowbreak Mechanical\allowbreak Records \\
-thm:\allowbreak aor-\allowbreak recognition-\allowbreak discharge & AORInstance.\allowbreak aor\allowbreak Recognition\allowbreak Discharge \\
-thm:\allowbreak aor-\allowbreak instance & AORInstance.\allowbreak aor\allowbreak Instance \\
-\end{longtable}
-\end{small}
+\section{Version history}\label{app:version-history}
+
+\begin{description}[leftmargin=2.4em, style=nextline]
+\item[v1, 31 August 2026] First public version.
+\item[v2, 3 October 2026] Revised after a statement-by-statement audit
+  of the mathematics and of its Lean formalization.  Changes:
+  \begin{itemize}
+  \item The main theorem is stated with the strength of its hypothesis
+    made explicit: its scalar conclusion is derived from the rank-split
+    part of the recognition predicate, and the other hypotheses are
+    carried but not used.  The claims that a closure master theorem
+    applies, that each recognition hypothesis is indispensable, and that
+    the recognition predicate is computable and falsifiable are
+    withdrawn; the factor-sensitivity statement is retained with a remark
+    explaining why it does not imply necessity.
+  \item New results: the fixed-point formulation of Strong BSD under the
+    averaging closure, and the conditions under which a closure on a
+    richer layer returns it.
+  \item The comparison inputs are attached to the curve of the theorem,
+    with the archimedean input required only in rank at least two; the
+    Cassels--Tate input states its map, generator, target and sign as
+    hypotheses, with the discrepancies from the cited literature
+    described and an example on $1913b1$ at $p=3$ added.
+  \item The local recognition hypotheses state their scopes; it is noted
+    that their congruences modulo units do not see Tamagawa numbers prime
+    to $p$, and that matching local and global factors is a further
+    comparison.
+  \item The $\eta$-formula is recorded only as a conditional certificate;
+    its claimed derivation from published results and its numerical
+    anchors are withdrawn, and two scope obstructions are given.
+  \item The rank-at-most-one statement makes its comparison hypothesis
+    explicit; the two literature no-go theorems become remarks; the audit
+    register is described as a local model of refinement-stable AOR.
+  \item Lean coverage is described statement by statement; the text is
+    rewritten throughout for readability.
+  \end{itemize}
+\end{description}

@@ -30,16 +30,19 @@
 \usepackage{orcidlink}
 \usepackage{titling}
 
+\usepackage{aliascnt}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\sharedtheorem}[2]{\newaliascnt{#1}{theorem}\newtheorem{#1}[#1]{#2}\aliascntresetthe{#1}}
+\sharedtheorem{lemma}{Lemma}
+\sharedtheorem{proposition}{Proposition}
+\sharedtheorem{corollary}{Corollary}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{warning}[theorem]{Warning}
-\newtheorem{obligation}[theorem]{Obligation}
-\newtheorem{nonclaim}[theorem]{Nonclaim}
+\sharedtheorem{definition}{Definition}
+\sharedtheorem{example}{Example}
+\sharedtheorem{remark}{Remark}
+\sharedtheorem{warning}{Warning}
+\sharedtheorem{obligation}{Obligation}
+\sharedtheorem{nonclaim}{Nonclaim}
 
 \urlstyle{same}
 \captionsetup{font=small, labelfont=bf, labelsep=period}
@@ -63,6 +66,16 @@
 \Crefname{obligation}{Obligation}{Obligations}
 \crefname{nonclaim}{nonclaim}{nonclaims}
 \Crefname{nonclaim}{Nonclaim}{Nonclaims}
+\crefname{figure}{Figure}{Figures}
+\Crefname{figure}{Figure}{Figures}
+\crefname{table}{Table}{Tables}
+\Crefname{table}{Table}{Tables}
+\crefname{section}{Section}{Sections}
+\Crefname{section}{Section}{Sections}
+\crefname{example}{example}{examples}
+\Crefname{example}{Example}{Examples}
+\crefname{appendix}{appendix}{appendices}
+\Crefname{appendix}{Appendix}{Appendices}
 \setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=4pt}
 \setlength{\droptitle}{-3.2em}
 \pretitle{\begin{center}\LARGE\bfseries}
@@ -105,14 +118,14 @@
 \newcommand{\SelBSD}{\mathrm{Sel}^{!}_{\mathrm{BSD}}}   \newcommand{\rhoE}{\rho_E}                              \newcommand{\PiBSD}{\Pi_{\mathrm{BSD}}}                 \newcommand{\GammaPD}{\Gamma_{\mathrm{BSD}}^{\mathrm{padic\text{-}descent}}}
 \newcommand{\GammaSP}{\Gamma_{\mathrm{BSD}}^{\mathrm{Sha\text{-}persistence}}}
 \newcommand{\GammaGZ}{\Gamma_{\mathrm{BSD}}^{\mathrm{higher\text{-}GZ\text{-}fixity}}}
-\newcommand{\chiCTp}{\chi_{CT,p}}                       \newcommand{\AofE}{\mathcal{A}_E}                        \newcommand{\etap}{\eta_p}                              \newcommand{\RefStable}{\mathbf{RefStable\,AOR}}
+\newcommand{\chiCTp}{\chi_{CT,p}}                       \newcommand{\AofE}{\mathcal{A}_E}                        \newcommand{\etap}{\eta_p}                              \newcommand{\RefStable}{\mathbf{RefStable\,AOR}}        
 
 \setlength{\emergencystretch}{3.5em}
 \sloppy
-
+ 
 \title{A Conditional Proof of the Strong Birch--Swinnerton-Dyer Conjecture}
 \author{Ioannis Tsiokos\,\orcidlink{0009-0009-7659-5964}}
-\date{31 August 2026}
+\date{v1: 31 August 2026\quad\textperiodcentered\quad v2: 3 October 2026}
 \hypersetup{
   pdftitle={A Conditional Proof of the Strong Birch--Swinnerton-Dyer Conjecture},
   pdfauthor={Ioannis Tsiokos},
@@ -124,781 +137,761 @@
 \thispagestyle{firstpage}
 
 \begin{abstract}
-We make precise what a conditional closure of Strong
-Birch--Swinnerton-Dyer rests on.  The construction is a saturated BSD
-trace shell \(\SelBSD\) whose scalar residual \(\rhoE\), the difference
-between the analytic leading coefficient and the Strong-BSD arithmetic
-product, vanishes exactly when the Strong-BSD scalar identity holds,
-together with a structured readout predicate \(\PiBSD\) whose
-readout-level equivalence with that identity is a theorem rather than a
-definition.
-The deep arithmetic is isolated into three named recognition sources:
-a \(p\)-adic descent/Tamagawa correction, a signed-Selmer
-\(\Sha\)-persistence source, and a higher-rank Gross--Zagier fixity
-source.  These are supplied as typed carriers, not derived.  They are
-combined with headline imported theorem stacks: a Cassels--Tate Pfaffian
-comparison, a Selmer-complex pairing substrate, and a Beilinson
-rank-\(\geq 2\) comparison.  Under the standing shell-closure
-assumption, these sources and headline imports make the framework master
-theorem force \(\rhoE=0\), and the readout equivalence yields Strong BSD.
-Outside the framework this is the conditional theorem that the standing
-shell-closure record, the three recognition sources, and the headline
-imports imply Strong BSD; it is not an unconditional proof.  The closed
-carrier is then read as a
-non-eliminative Audited Operational Realisability instance: the
-recognition records are bridged rather than discharged, while the
-rank-\(\geq 2\) generalized Gross--Zagier identity and additive
-\(p\leq 3\) Iwasawa main conjecture remain open.  The architecture is
-formalized in Lean as a checked conditional schema, not as an
-independent derivation.
+We formulate the Strong Birch--Swinnerton-Dyer formula for an elliptic
+curve $E/\Q$ as a fixed-point statement and prove a conditional theorem
+in that formulation.  Let $L^*$ be the leading Taylor coefficient of
+$L(E,s)$ at $s=1$ and $R_E$ the arithmetic side of the formula.  We show
+that the Strong BSD identity holds exactly when the pair $(L^*,R_E)$ is
+fixed by the averaging closure $c(a,b)=((a+b)/2,(a+b)/2)$, and we
+determine what a closure on a richer layer of arithmetic data would need
+in order to return this statement: a readout intertwining it with $c$,
+and fixedness of the original state.  The main theorem derives the
+identity from a recognition hypothesis, which in rank at most one
+contains the identity and in rank at least two is a leading-term
+identity with the normalization
+$\kappa_r=\#\Sha/\#E(\Q)_{\mathrm{tors}}^2$.  This hypothesis has the
+strength of the conclusion, so the theorem is a conditional translation
+of Strong BSD into the closure framework, not an independent derivation.
+The other inputs, local descent and signed hypotheses and comparison
+statements from the literature, are carried with their precise scope
+but are not used for the scalar identity.  We show by examples what these
+inputs contain beyond coarser data: for $121a1$ and $121b1$ the local
+congruences cannot see the Tamagawa numbers $1$ and $2$, and for $1913b1$
+at $p=3$ two generators of the same Selmer-complex determinant ideal
+differ in whether they have a square root.  We also show that sensitivity
+of the BSD product to its factors does not make any hypothesis necessary,
+and we record a proposed overconvergent $\eta$-formula only as a
+conditional certificate, explaining why the published results it was
+modelled on do not apply as stated.  The paper does not prove BSD.  The
+scalar algebra and the closure statements are proved in Lean~4; the
+remaining statements are labelled by the exact extent of their
+formalization.
 \end{abstract}
 
 \medskip
 \noindent\textbf{Keywords.} Birch--Swinnerton-Dyer conjecture; Strong BSD;
-conditional closure; Cassels--Tate pairing; Selmer complex; Iwasawa main
-conjecture; formal verification (Lean); Six Birds Theory; emergence calculus.
+closure operator; conditional theorem; Cassels--Tate pairing; Selmer
+complex; Iwasawa main conjecture; formal verification (Lean); Six Birds
+Theory.
 
 \medskip
 \noindent
-Conventions: $E/\Q$, $M_E=h^1(E)(1)$, $r=\operatorname{rank}E(\Q)$,
-$r_{\mathrm{an}}=\operatorname{ord}_{s=1}L(E,s)$. This paper mechanizes the
-framework-structural closure architecture only; the deep arithmetic enters as
-imported proof-carrying structures and typed recognition-source carriers, never
-as Lean axioms. The landing is a conditional closure, not an unconditional proof
-of BSD. The \(\kapr\) normalization is reused from
+\textbf{Conventions.} $E/\Q$ is an elliptic curve, $M_E=h^1(E)(1)$,
+$r=\operatorname{ord}_{s=1}L(E,s)$ is the analytic rank, and curve labels
+are Cremona labels.  The normalization of $\kapr$ is taken from
 \citet{TsiokosBSDApparatus2026}.
 
 \section{Introduction}\label{sec:introduction}
 
 
-What would a conditional closure of Strong Birch--Swinnerton-Dyer~\citep{BirchSwinnertonDyer1965,Tate1966bsd} look
-like, and what exactly would it rest on?  The classical landscape already
-contains powerful conditional and partial routes: Gross--Zagier and
-Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989} control the rank-one Heegner setting; Skinner--Urban and
-Iwasawa-main-conjecture methods~\citep{SkinnerUrban2014} control large ordinary regions;
-Cassels--Tate and Selmer-complex formalisms~\citep{Flach1990,Nekovar2006} control part of the
-quadratic and determinant bookkeeping.  These results do not, by
-themselves, give a single uniform proof of the strong formula in every
-rank and at every bad prime.  The question addressed here is narrower
-and more structural: if the remaining arithmetic inputs are isolated
-with precise names, can one assemble them into a single audited closure
-whose scalar readout is exactly the Strong-BSD identity?
-
-The answer is deliberately conditional.  This is \emph{not} an
-unconditional classical proof of BSD, scalar or strong.  The result is
-theorem-grade within the Six Birds closure discipline, conditional on
-the standing shell-closure record, the named recognition sources, and the
-headline imported theorem stacks.  Outside the framework it reads as the
-conditional theorem
-\[
-  \begin{aligned}
-  &\SelBSD\text{-closure}
-    \wedge \GammaPD \wedge \GammaSP \wedge \GammaGZ
-    \wedge \chiCTp\text{-imports}
-    \wedge \AofE\text{-imports} \\
-  &\qquad {}\wedge\ \text{Beilinson-imports}
-    \Longrightarrow \text{Strong BSD}.
-  \end{aligned}
-\]
-This implication is the paper's result in its plainest form.  The work
-below does not erase the hypotheses; it makes their roles explicit and
-shows that, once they are supplied, the Strong-BSD scalar identity is
-forced by a single closure architecture.
-
-The first component of the architecture is a separation of the deep
-arithmetic into two kinds of inputs.  The first kind consists of three
-recognition sources.  A recognition source is named arithmetic content
-carried by the formed BSD layer: it is supplied as part of the closure
-object and used as a hypothesis, not derived from the general framework.
-The three sources are \(\GammaPD\), the additive-prime \(p\)-adic
-descent/Tamagawa correction; \(\GammaSP\), the signed-Selmer
-persistence of the \(\Sha\)-factor through local cover change; and
-\(\GammaGZ\), the higher-rank Gross--Zagier-type fixity of the
-archimedean regulator readout.  They correspond, respectively, to the
-local \(p\)-adic factor, the \(\Sha\)-persistence factor, and the
-rank-\(\geq 2\) regulator/fixity factor in the Strong-BSD product.  In
-the formal development they are typed carriers of hypotheses, not
-free-standing assumptions of the framework; in the paper they are treated
-as named recognition content and are introduced before they are used.
-
-The second kind of input consists of imported theorem stacks.  The three
-headline imports are the ones used directly in the landing theorem.  The
-\(\chiCTp\) stack packages the Cassels--Tate Pfaffian comparison and its
-sign convention.  The \(\AofE\) stack packages the Selmer-complex pairing
-substrate needed to compare the determinant formulation with the
-Cassels--Tate side.  The Beilinson stack packages the rank-\(\geq 2\)
-archimedean determinant--\(L\)-value comparison.  Later sections also
-record the overconvergent \(\eta\) and \(T_{\mathrm{CASCADE}}\) stacks as
-supporting conditional imports, but those are not hidden inside the three
-headline imports.  These imports name classical arithmetic geometry as
-provenance: Sakamoto, Macias Castillo--Sano, Nekov\'a\v{r}, Flach, the
-Cassels--Tate literature, Burns--Flach, Beilinson, and the surrounding
-Selmer-complex and determinant technology.  They are not reproved here.
-They enter as proof-carrying assumptions, and later sections keep their
-individual roles separate.
-
-The second component is the saturated BSD trace shell.  It is the
-five-part object
-\[
-  \SelBSD=(E,\rhoE,J^{!}_{\mathrm{BSD}},
-  \mathrm{Vis}^{!}_{\mathrm{BSD}},\mathrm{Audit}^{!}_{\mathrm{BSD}}),
-\]
-where \(E/\Q\) is the elliptic curve, \(J^{!}_{\mathrm{BSD}}\) records
-the duality or involutive datum, \(\mathrm{Vis}^{!}_{\mathrm{BSD}}\)
-records the visible scalar readout, and
-\(\mathrm{Audit}^{!}_{\mathrm{BSD}}\) records the closure audit.  The
-central scalar is the residual
-\[
-  \rhoE
-  =
-  \frac{L^{(r)}(E,1)}{r!}
-  -
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
-\]
-Thus \(\rhoE=0\) is not a new BSD-like statement: it is exactly the
-standard Strong-BSD scalar identity written as a residual equation.
-The point of the shell is to keep the analytic side, the arithmetic
-product, the duality datum, the visible readout, and the audit data in
-one typed object, so that later arguments can say precisely which input
-changes which part of the scalar package.
-
-The recognition predicate \(\PiBSD\) is the shell's structured readout.
-It is not defined to be Strong BSD.  It is a quantified predicate that
-asks for the three recognition-source readouts in their proper ranges:
-the \(p\)-adic descent readout for every additive bad prime and
-trivializing local lift in scope, the signed-Selmer persistence readout
-for every admissible signed-Selmer prime, and the higher-Gross--Zagier
-fixity readout in rank at least two, with the classical low-rank lane
-for ranks \(0\) and \(1\).  The readout-level equivalence says that
-vanishing of the shell residual is equivalent to the usual Strong-BSD
-scalar identity.  This equivalence is a genuine algebraic step: it
-rewrites the residual, rather than making \(\PiBSD\) a synonym for the
-conjecture.
-
-The headline landing then has a short conceptual chain.  The recognition
-sources and imports are supplied.  The higher-rank fixity source forces
-the shell residual to vanish, after the \(\kapr\)-normalization identifies
-the cascade regulator product with the standard
-\(\#\Sha/|E(\Q)_{\tors}|^2\) factor.  The readout equivalence converts
-\(\rhoE=0\) into
+For an elliptic curve $E/\Q$ of analytic rank $r$, the Strong
+Birch--Swinnerton-Dyer formula~\citep{BirchSwinnertonDyer1965,Tate1966bsd}
+asserts
 \[
   \frac{L^{(r)}(E,1)}{r!}
   =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {\#E(\Q)_{\tors}^{\,2}} .
 \]
-The master-theorem applicability audit checks that the three recognition
-sources have the correct framework profile, and the composite signature
-checks that the three source-governed factors are not disposable: changing
-the \(\Sha\)-factor, the regulator factor, or the Tamagawa factor changes
-the scalar package.  This is the sense in which the conclusion is a
-closure result rather than a restatement of its target.
+Known results control parts of this formula: Gross--Zagier and
+Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989} in rank at most one,
+Iwasawa main conjectures~\citep{SkinnerUrban2014} for the $p$-parts at
+many primes, and Cassels--Tate and Selmer-complex
+methods~\citep{Flach1990,Nekovar2006} for the finite arithmetic.  They do
+not give the whole formula in general.
 
-Two ingredients are imported from \citet{TsiokosBSDApparatus2026}.
-First, the \(\kapr\) normalization in that work is the bridge from the cascade leading-term
-form to the standard Strong-BSD factor \(\#\Sha/|E(\Q)_{\tors}|^2\).
-Second, its adequacy and five-column framing provide the
-diagnostic language for separating height, period, finite, \(p\)-adic,
-and determinant contributions.  This article uses those results as cited
-inputs; it does not refer to internal labels of the cited work.  The AOR
-terminology used at the end of the paper is the Audited Operational
-Realisability language of \cite{TsiokosAOR2026}, and the recognition-mode
-discipline is part of the audited interaction calculus of
-\cite{TsiokosFoundationsIII2026}.
+This paper studies the formula from the point of view of the Six Birds
+framework~\citep{TsiokosFoundationsIII2026,TsiokosAOR2026}, in which a
+statement is formulated as the fixed point of a \emph{closure} (an
+idempotent self-map), the deep inputs are named as \emph{recognition
+hypotheses}, and an audit register records how each input is accounted
+for.  No knowledge of the framework is needed: all definitions are given
+here.  We prove three things.
 
-The final move is a reading of the completed carrier as a refinement-stable
-audited object.  Audited Operational Realisability is a refinement-stable,
-audit-closed membership criterion: informally, an object qualifies when
-the residuals left by refinement have been accounted for by approved
-mechanical records, imported records, or bridged recognition records.  In
-this paper the object is \(\SelBSD\).  The resulting statement is the
-framework's ``Strong BSD holds in reality'' reading, but it is
-non-eliminative: the recognition records are reclassified as bridged
-records, not made to disappear.
+\paragraph{A fixed-point formulation.}
+Write $L^*$ for the left side and $R_E$ for the right side of the formula,
+and let $c(a,b)=\bigl(\frac{a+b}2,\frac{a+b}2\bigr)$ be the average of a
+pair and its swap.  Then $c$ is idempotent, and the Strong BSD identity
+holds exactly when the pair $(L^*,R_E)$ is fixed by $c$
+(\Cref{thm:closure:scalar-closure-translation}).  The statement concerns
+the original pair: $c$ always produces a fixed pair, and replacing an
+unequal pair by its average proves nothing.  We also determine what a
+closure on a richer layer of arithmetic data would need in order to
+return the identity: a readout intertwining it with $c$, and fixedness of
+the original state (\Cref{thm:closure:formed-closure-bridge}).  We do not
+construct such a layer.
 
-We close the introduction by fixing the scope.  This is not an
-unconditional classical proof of BSD.  It is a conditional closure under
-the standing shell-closure record, the three recognition sources, and the
-headline imported theorem stacks displayed above.  The rank-\(\geq 2\)
-generalized Gross--Zagier identity
-\(T_{E12}\) and the additive \(p\leq 3\) Iwasawa main conjecture
-\(T_{\mathrm{BAD}}\) remain open audit-result no-gos: the paper records
-where they are needed and how the recognition sources carry them, but
-does not prove them.  Likewise, the AOR-instance reading is
-non-eliminative; it records an audit-closed presentation of the conditional
-closure, not the discharge of every open arithmetic obligation.
- \section{The imported theorem stacks}
+\paragraph{A conditional theorem.}
+The recognition predicate $\PiBSD(E)$ (\Cref{def:closure:pi-bsd})
+collects three recognition hypotheses: a local $p$-adic descent
+hypothesis $\GammaPD$, a signed local hypothesis $\GammaSP$ for the
+$\Sha$ factor, and a leading-term hypothesis $\GammaGZ$ in rank at least
+two; in rank zero and one it contains the scalar identity itself.  The
+main theorem (\Cref{thm:closure:strong-bsd-conditional}) states that
+$\PiBSD(E)$, together with comparison inputs from the literature, implies
+the Strong BSD identity for $E$.
+
+We stress the strength of this hypothesis.  In rank at least two,
+$\GammaGZ$ asserts $L^*=\kapr\Reg_{\mathrm{NT}}\Omega_E\Tam(E)$, and with
+the normalization $\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}$ of the companion
+paper~\citep{TsiokosBSDApparatus2026} this is the identity rewritten.  The
+scalar conclusion follows from this rank-split part of the hypothesis by
+explicit algebra; the local hypotheses and the comparison inputs are
+carried but not used.  The theorem is thus a conditional translation of
+Strong BSD into the closure framework, with every input named, and not
+an independent derivation from weaker statements.
+
+\paragraph{An accounting of the inputs.}
+For each input we state exactly what is assumed and what its scope is,
+and we give examples showing what the inputs contain beyond coarser data.
+The local hypotheses are congruences modulo $p$-adic units, which cannot
+see a Tamagawa number prime to $p$; for $121a1$ and $121b1$ at $11$ the
+Tamagawa numbers are $1$ and $2$ (\Cref{sec:recognition-sources}).  The
+Cassels--Tate input prescribes a generator of a square-root determinant
+object; for the curve $1913b1$ at $3$, two generators of the same
+determinant ideal differ in whether they have a square root
+(\Cref{ex:closure:1913b1}).  A proposed overconvergent $\eta$-formula is
+recorded only as a conditional certificate: its eigenvalue has slope
+$1/2$ rather than the critical slope, and a cited theorem does not apply
+at the curves where the formula was proposed (\Cref{sec:eta-formula}).
+Finally, sensitivity of the BSD product to each factor does not make any
+hypothesis necessary (\Cref{rmk:closure:sensitivity-not-necessity}).
+
+\paragraph{Organization.}
+\Cref{sec:imports} describes the comparison inputs and
+\Cref{sec:recognition-sources} the recognition hypotheses.
+\Cref{sec:shell-readout} contains the core: the shell carrying the two
+sides of the formula, the recognition predicate, the fixed-point
+formulation and the discussion of sensitivity.
+\Cref{sec:chi-ct-p,sec:eta-formula,sec:t-cascade} discuss three further
+inputs (the Cassels--Tate comparison, the $\eta$-formula, and the $p$-part
+of the identity in rank at most one).  None of the theorems of these
+sections is used to derive the scalar conclusion of the main theorem; the
+Cassels--Tate input itself remains a carried hypothesis of that theorem.  \Cref{sec:obstructions} records the inputs that, to our
+knowledge, no current theorem supplies.  \Cref{sec:landing} proves the
+main theorem, \Cref{sec:aor-instance} sets up the audit register, and
+\Cref{sec:scope} lists what the paper does not claim.  Many statements
+are checked in Lean~4 without external mathematical libraries; each
+footnote says whether Lean proves the statement, a narrower version, or
+only records it as a conditional schema, and \Cref{app:formalization}
+gives the details.
+ \section{Imported comparison inputs}
 \label{sec:imports}
 
-The closure separates its inputs into two classes.  The present section
-records the imported theorem stacks: established arithmetic geometry
-that the closure consumes as proof-carrying hypotheses.  The next section
-records the recognition sources: arithmetic content carried by the
-formed BSD layer.  This distinction matters.  The imported stacks are not
-new theorems here, and the closure never derives them
-from the framework.  It derives consequences from them, after their
-provenance and downstream role have been made explicit.
+The argument of this paper uses two kinds of hypotheses.  This section
+describes the first kind: comparison statements from arithmetic geometry
+that are taken as inputs.  The next section describes the second kind,
+the recognition hypotheses on which the main theorem actually rests.  We
+are explicit about what each input contains, because several of them are
+assembled from published results whose hypotheses or normalizations
+differ from what the input asserts.
 
-There are three headline imports in this section.  The first controls the
-Cassels--Tate side of the finite \(p\)-primary comparison.  The second
-supplies the Selmer-complex pairing substrate \( \AofE \).  The third
-supplies the rank-\(\geq 2\) archimedean determinant comparison.  Together
-they keep the classical arithmetic geometry used by the landing theorem out
-of the framework argument while still making clear exactly which classical
-inputs are being used.  The overconvergent \(\eta\) and
-\(T_{\mathrm{CASCADE}}\) imports are introduced later as supporting
-conditional stacks and are counted separately in App~\ref{app:formalization}.
+Each input is attached to a fixed curve: the data it compares (a map, a
+generator, a target, a pairing) are specified as a family indexed by the
+curve, and possibly a prime, before the input is asserted at the curve
+$E$ of the main theorem.  This prevents an input proved for one curve
+from being used for another.
 
-The symbol \(\chiCTp\) refers here to a Cassels--Tate comparison: a
-comparison between a square-root Fitting object on a Selmer-complex
-cohomology group and the Pfaffian scalar attached to the Cassels--Tate
-pairing.  In ordinary terms, this is the input that lets the \(p\)-primary
-finite piece be read with the correct orientation and sign.
-
-\begin{definition}[Imported $\chi_{CT,p}$ theorem stack]\label{def:closure:chi-ct-p-import}
-A proof-carrying structure bundling the eight named external inputs
-\(T_{E1}\ldots T_{E8}\): Sakamoto's Stark-system theory~\citep{Sakamoto2018};
-the determinant/Stark-system and derived-height comparisons of Macias
-Castillo--Sano~\citep[Thms.~3.4 and~4.2]{MaciasCastilloSano2026};
-Knudsen--Mumford determinant theory~\citep{KnudsenMumford1976};
-Nekov\'a\v{r}'s Selmer-complex pairing~\citep[\S10.8.7]{Nekovar2006};
-Flach's pairing comparison~\citep{Flach1990}; and the classical
-2-Selmer normalization of Fisher--Schaefer--Stoll~\citep[Thm.~6.3]{FisherSchaeferStoll2010}.
-The results are stored as proposition fields,
-plus the unconditional sign closure
-\(\Sigma_{\mathrm{NekCT}}=+1\).  It is taken as a hypothesis by
-\Cref{thm:closure:chi-ct-p-comparison}; it is not derived in this
-paper.\footnote{Encoded in Lean as a typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak chiCTpImport}
-bundling the imported theorems as hypothesis fields; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Cassels--Tate comparison input]\label{def:closure:chi-ct-p-import}
+Fix $E/\Q$ and a prime $p$, together with: a square-root Fitting object
+attached to the $p$-primary Cassels--Tate data of $E$, a target line
+$\mathrm{vctp}_p$, a selected generator $\sqrt{F}_E^p$ of the former and a
+selected element $h_p^{\mathrm{CT}}(E)$ of the latter, and a property of
+maps between them called \emph{canonical}.  The Cassels--Tate comparison
+input $\chiCTp$ at $(E,p)$ consists of:
+\begin{enumerate}
+\item the hypotheses that $\Sha(E/\Q)[p^\infty]$ is finite, that the
+  Cassels--Tate pairing is nondegenerate, that the Selmer-complex
+  hypotheses of Sakamoto~\citep{Sakamoto2018} and Macias
+  Castillo--Sano~\citep{MaciasCastilloSano2026} hold, and that
+  $p\nmid\Tam(E)$, with $p$ prime;
+\item a map with the canonical property, sending the selected generator
+  to the selected target element;
+\item a normalized sign $\Sigma_{\mathrm{NekCT}}=+1$;
+\item eight propositions $T_{E1},\dots,T_{E8}$ recording background
+  results from the theory of Stark systems and Selmer
+  complexes~\citep{Sakamoto2018,MaciasCastilloSano2026}, determinant
+  functors~\citep{KnudsenMumford1976}, and the comparison of pairings on
+  Selmer complexes with the Cassels--Tate
+  pairing~\citep{Nekovar2006,Flach1990,FisherSchaeferStoll2010}.
+\end{enumerate}
 \end{definition}
 
-The downstream role of this stack is narrow.  It is not a general
-replacement for the Cassels--Tate literature.  It is the specific
-orientation-respecting package needed for the \(\chiCTp\) theorem:
-given the usual finite \(\Sha[p^\infty]\), nondegeneracy, and
-Selmer-complex hypotheses, it supplies the Pfaffian comparison and the
-sign closure \(\Sigma_{\mathrm{NekCT}}=+1\).
+The map, the image of the generator and the sign in items (2) and (3) are
+part of the input; they are not derived from the background results in
+item (4), and no statement-by-statement assignment of $T_{E1},\dots,T_{E8}$
+to published theorems is fixed here.  The published results differ from
+the input in several specific ways.  Nekov\'a\v{r}'s comparison
+\citep[Proposition~10.8.7]{Nekovar2006} identifies the cup product on
+torsion classes in $H^2$ of a Selmer complex with \emph{minus} the Flach
+pairing~\citep{Flach1990}, so a sign correction and an identification of
+degrees are needed.  The derived-height comparison of Macias
+Castillo--Sano~\citep[Theorem~4.2]{MaciasCastilloSano2026} assumes an odd
+prime of good ordinary reduction, and its relation between the
+Bertolini--Darmon and Nekov\'a\v{r} pairings also carries a minus sign.
+Sakamoto's theory~\citep{Sakamoto2018} works at odd primes.  The theorem of
+Fisher--Schaefer--Stoll~\citep[Theorem~6.3]{FisherSchaeferStoll2010}
+normalizes the classical Cassels--Tate pairing on $n$-Selmer times
+$2$-Selmer; it is not a Fitting-ideal statement and does not supply an
+odd-primary generator.  \Cref{sec:chi-ct-p} gives an arithmetic example
+showing that the determinant ideal does not determine the selected
+generator.
 
-The second import packages the Selmer-complex pairing substrate denoted
-\(\AofE\).  This notation is local to this article: \(\AofE\) is the
-unified Selmer-complex pairing object, not the analytic leading coefficient
-written \(A_E\) in \citet{TsiokosBSDApparatus2026}.  Mathematically, it is the
-ambient category, Selmer complex, and pairing target in which the
-Cassels--Tate pairing is intrinsic and compatible with the
-determinant-line formulation.
-
-\begin{definition}[Imported $\AofE$ Selmer-complex pairing]\label{def:closure:a-e-import}
-A proof-carrying structure for the \(\AofE\) unified Selmer-complex
-substrate (Nekov\'a\v{r} Selmer complex~\citep{Nekovar2006} with intrinsic Cassels--Tate
-pairing; Burns--Flach and related Macias Castillo--Sano--Nekov\'a\v{r}
-ETNC-adjacent input~\citep{BurnsFlach2001,BlochKato1990,FontainePerrinRiou1994,BurnsMaciasCastilloSeo2024,MaciasCastilloSano2026}
-\(\AofE^{\mathrm{Sel}}\)): a typed target category with a
-bilinear/categorical pairing field.  It is used only as a
-hypothesis.\footnote{Encoded in Lean as a typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak aEImport}
-bundling the imported theorem as a hypothesis field; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Selmer-complex pairing input]\label{def:closure:a-e-import}
+Fix, for each curve, a target category, a Selmer complex, a pairing
+target and a pairing.  The input $\AofE$ at $E$ asserts that, for $E$,
+the Selmer complex of Nekov\'a\v{r}~\citep{Nekovar2006} carries its
+intrinsic Cassels--Tate pairing, that the determinant-line formulation of
+the leading-term conjecture in the sense of
+Burns--Flach~\citep{BurnsFlach2001}, which builds on the work of
+Bloch--Kato~\citep{BlochKato1990} and
+Fontaine--Perrin-Riou~\citep{FontainePerrinRiou1994}, is compatible with
+this Selmer complex and pairing for $E$ (related determinant methods
+appear in \citep{BurnsMaciasCastilloSeo2024,MaciasCastilloSano2026}); this
+compatibility is part of the hypothesis.  It further asserts that the pairing is bilinear (or categorical, in the
+categorical formulation).  The notation $\AofE$ is local to this paper and
+is unrelated to the analytic leading coefficient $A_E$ of
+\citet{TsiokosBSDApparatus2026}.
 \end{definition}
 
-This import is the bridge between two ways of seeing the same finite
-arithmetic information.  On one side is the Selmer-complex description
-with its intrinsic Cassels--Tate pairing.  On the other is the
-determinant-line language used in the closure landing.  The \(\AofE\)
-carrier records that the target category and pairing data have already
-been supplied, so later arguments may use the pairing without
-reconstructing the Selmer-complex theory.
-
-The third import is archimedean.  In rank at least two, the landing
-needs a comparison between the Beilinson determinant side and the
-leading \(L\)-value side.  This is where the regulator-to-determinant
-identification enters.  The closure treats it as a classical imported
-comparison, separate from the higher-rank recognition source that will
-encode the remaining Gross--Zagier-type fixity.
-
-\begin{definition}[Imported Beilinson rank-$\geq 2$ comparison]\label{def:closure:beilinson-import}
-A proof-carrying structure for the Beilinson determinant/\(L\)-value~\citep{Beilinson1985}
-comparison in rank \(r\geq 2\): the archimedean
-regulator-to-determinant-line identification used by the rank-\(\geq 2\)
-landing.  It is used only as a hypothesis.\footnote{Encoded in Lean as a
-typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Imports.\allowbreak beilinsonImport}
-bundling the imported theorem as a hypothesis field; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Archimedean comparison input in rank at least two]\label{def:closure:beilinson-import}
+Fix, for each curve, a rank, an archimedean regulator, a determinant line,
+an $L$-value side and a map from the regulator to the determinant line.
+The input at $E$ asserts that the rank of $E$ is at least $2$ and that the
+determinant--$L$-value comparison of Beilinson~\citep{Beilinson1985} holds
+for $E$.  It is required only when the analytic rank is at least $2$, and
+its rank must equal the analytic rank of $E$.
 \end{definition}
 
-The point of isolating this comparison is to prevent the closure
-argument from hiding an archimedean theorem inside the recognition
-predicate.  The Beilinson import supplies the determinant/\(L\)-value
-identification; the recognition source introduced later supplies the
-formed-layer fixity condition that makes the rank-\(\geq 2\) readout
-land on the Strong-BSD scalar.
+These three inputs appear among the hypotheses of the main theorem
+(\Cref{thm:closure:strong-bsd-conditional}) because they describe the
+arithmetic setting in which its recognition hypothesis is meant to be
+interpreted.  As we will see, the scalar conclusion of that theorem is
+derived from the recognition hypothesis alone; the inputs are carried
+alongside it and returned, not used.
 
 \begin{nonclaim}\label{nonclaim:closure:imports-not-derived}
-The \(\chiCTp\) comparison remains conditional on its imported stack
-\(T_{E1}\ldots T_{E8}\); the import structures are sourced assumptions,
-not results of this paper.  The closure derives consequences
-\emph{from} them and never proves them.  They are carried as typed
-hypothesis structures and introduce no project-local axioms.
+The comparison inputs are hypotheses.  This paper does not prove them,
+and does not derive the map, generator image or sign of $\chiCTp$ from
+the cited background results.  The example of \Cref{sec:chi-ct-p} checks
+the hypotheses of some of those results for one curve and prime, but the
+prescribed generator, target, comparison map and orientation remain
+supplied inputs.  In the formalization they are
+structures whose fields are the asserted statements; they introduce no
+axioms.
 \end{nonclaim}
-
- \section{The three recognition sources}
+ \section{The recognition hypotheses}
 \label{sec:recognition-sources}
 
 
-This section names the three recognition sources used by the closure.
-A recognition source is named arithmetic content on which the closure
-rests: it is supplied to the construction, not derived from the general
-framework, and it is carried as a typed hypothesis.  The concrete
-example to keep in mind is the \(p\)-adic descent congruence below,
-which says how a local descent comparison repairs the Tamagawa
-coarsening at an additive prime.
-
-The three sources govern the three factors that are not supplied by the
-formal shell alone.  The source \(\GammaPD\) governs the local
-\(p\)-adic/Tamagawa correction in the odd-additive scope of its definition.
-The source \(\GammaSP\) governs the
-persistence of the \(\Sha\)-factor through signed-Selmer cover change.
-The source \(\GammaGZ\) governs the rank-\(\geq 2\)
-regulator/fixity readout.  Together they are the arithmetic content that
-the conditional landing will consume.
-\Cref{tab:recognition-sources} records the same three sources as a compact
-audit table.
+In the Six Birds framework a \emph{recognition source} is arithmetic
+content that a construction rests on but does not derive: it is stated
+precisely, attached to the object, and used as a hypothesis.  In this
+paper there are three, one for each of three factors of the BSD formula
+that the formal construction does not supply by itself.
+\begin{itemize}
+\item $\GammaPD$ concerns the local Tamagawa factor at an odd prime of
+  additive reduction;
+\item $\GammaSP$ concerns the $\Sha$ factor, through a signed local
+  comparison;
+\item $\GammaGZ$ concerns the leading term in analytic rank at least $2$.
+\end{itemize}
+\Cref{tab:recognition-sources} summarizes them.  We say at once what will
+matter for the main theorem: its scalar conclusion uses only $\GammaGZ$ in
+rank at least $2$, and in rank at most $1$ the identity itself,
+which the predicate contains as a hypothesis
+(\Cref{sec:shell-readout}).  The two local hypotheses are part of the
+recognition predicate, with their scopes recorded below, but the scalar
+argument does not use them.
 \begin{table}[tbp]
 \centering
 \footnotesize
-\caption{The three recognition sources consumed by the conditional landing.}
+\caption{The three recognition hypotheses.  The last column records
+whether the scalar argument of \Cref{thm:closure:strong-bsd-conditional}
+uses the hypothesis.}
 \label{tab:recognition-sources}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}
->{\raggedright\arraybackslash}p{0.16\textwidth}
->{\raggedright\arraybackslash}p{0.34\textwidth}
->{\raggedright\arraybackslash}p{0.15\textwidth}
->{\raggedright\arraybackslash}X@{}}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.17\textwidth}
+>{\raggedright\arraybackslash}p{0.25\textwidth}
+>{\raggedright\arraybackslash}X
+>{\raggedright\arraybackslash}p{0.12\textwidth}@{}}
 \toprule
-Source & Mode-B residual & Arithmetic content & Foundations-IV & Stage-6 \\
+Hypothesis & Scope & Content & Used for scalar BSD \\
 \midrule
-\(\GammaPD\) & \(D_3'''\) & Odd-additive-prime \(p\)-adic descent congruence
-with the Tamagawa correction \(c_p(E)^{-1}\) and a route unit
-\(\varepsilon_p(E,L)\). & F2/F3/F4 & FP \(\to\) (ii) \\
+\(\GammaPD\) & odd prime \(p\), additive type II or III, \(c_p\in\{1,2\}\),
+\(\Sha[p^\infty]=0\), tame \(L/\Qp\) giving good reduction & descent congruence
+modulo \(\Zp^\times\) with factor \(c_p^{-1}\) and a unit; a local factor
+matched with \(\Tam(E)\) & no \\
 \addlinespace
-\(\GammaSP\) & \(D_2'''\) & Signed-Selmer cover-change determinant persists
-as the local component factor \(c_p(E)\) modulo \(\Zp^\times\). &
-F19/F21/F29 & SAU \(\to\) (iii) \\
+\(\GammaSP\) & prime \(p\) of additive reduction in the signed scope, tame \(L/\Qp\) giving good reduction & signed corestriction determinant \(\equiv c_p\)
+modulo \(\Zp^\times\); a factor matched with \(\#\Sha(E/\Q)\) & no \\
 \addlinespace
-\(\GammaGZ\) & \(D_2''\) & Higher-rank fixity
-\(\psi_-(E,r)=0\), identifying the analytic leading coefficient with the
-\(\kapr\)-normalized regulator product. & F14/F27/F40 & VDE \(\to\) (ii) \\
+\(\GammaGZ\) & no CM, analytic rank \(r\ge2\) & \(\psi_-(E,r)=0\), with
+\(\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}\) and matched factors; equivalent to
+Strong BSD for \(E\) when \(\Sha\) is finite & yes, in rank \(\ge2\) \\
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\begin{definition}[$\GammaPD$ p-adic descent carrier]\label{def:closure:gamma-padic-descent}
-For \(E/\Q\), an odd additive prime \(p\)~\citep{Silverman1994} with shallow Kodaira type
-II/III, \(c_p(E)\in\{1,2\}\), \(p\nmid c_p(E)\),
-\(\Sha(E/\Q)[p^\infty]=0\), and a finite tame
-inertia-trivializing extension \(L/\Qp\), the formed local layer carries
-an ordinary/anticyclotomic descent comparison
+ 
+\begin{definition}[$\GammaPD$: $p$-adic descent hypothesis]\label{def:closure:gamma-padic-descent}
+Let $E/\Q$ and let $p$ be an odd prime at which $E$ has additive
+reduction of Kodaira type II or III, with $c_p(E)\in\{1,2\}$, with
+$\Sha(E/\Q)[p^\infty]=0$, and let $L/\Qp$ be a finite tamely ramified
+extension over which $E$ acquires good reduction (equivalently, over
+which inertia acts trivially on the $\ell$-adic Tate module for every
+prime $\ell\neq p$; reduction of type II or III is potentially good).  The hypothesis
+$\GammaPD$ at $(E,p,L)$ supplies a descent map
 \[
   \mathrm{descent}_p^{\mathrm{OC}}:
   LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L))
   \longrightarrow
   LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E))
 \]
-and a unit \(\varepsilon_p(E,L)\in\Zp^\times\) with
+between trivialized leading coefficients of ordinary/anticyclotomic local
+data over $L$ and over $\Qp$, a unit $\varepsilon_p(E,L)\in\Zp^\times$, and
+the congruence
 \[
   LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E)) \equiv
   c_p(E)^{-1}\,\varepsilon_p(E,L)\,
   \mathrm{descent}_p^{\mathrm{OC}}
-    (LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L)))
+    \bigl(LC_{\mathrm{triv}}(L_p^{\mathrm{OC}}(E_L))\bigr)
   \pmod{\Zp^\times}.
 \]
-This congruence recognizes that the descent comparison repairs the
-Tamagawa coarsening through the factor \(c_p(E)^{-1}\), while the unit
-\(\varepsilon_p(E,L)\) records the residue introduced by changing the
-local cover.  The arithmetic assertion is used as a hypothesis in the
-closure.\footnote{Supplied as a recognition source, encoded in Lean as a
-typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaPadicDescent}
-over a narrowed structural representation; its arithmetic content is a
-hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+It also carries a factor $\mathrm{tam}_p$, which the recognition predicate
+of \Cref{sec:shell-readout} matches with the Tamagawa product of $E$.
 \end{definition}
 
-The second source records persistence of the component measured by
-\(\Sha\).  A signed local pairing~\citep{Kobayashi2003,Pollack2003} changes when one passes to a tame
-inertia-trivializing extension and then corestricts back.  The source
-\(\GammaSP\) says that the determinant of this cover-change operation
-is exactly the local component factor modulo a \(p\)-adic unit.
+Two features of this hypothesis should be noted.  First, since $p$ is odd
+and $c_p(E)\in\{1,2\}$, the number $c_p(E)$ is a $p$-adic unit (in
+particular $p\nmid c_p(E)$).  The congruence modulo $\Zp^\times$ therefore
+holds or fails independently of whether $c_p(E)$ is $1$ or $2$: it carries
+no information about $c_p(E)$.  For example, the curves $121a1$ and
+$121b1$ have additive reduction at $11$ of types II and III, with $c_{11}$
+equal to $1$ and $2$ respectively, and these two values have the same
+class modulo $\Z_{11}^\times$.  The value of $c_p(E)$ is recorded in the
+hypothesis separately.  Second, the matching of a local factor with the
+global Tamagawa product is itself a comparison.  On the curve
+$y^2=x^3+385x+1225$, the two places $5$ and $7$ of type III each have
+$c_p=2$, and the global Tamagawa product is $4$; a single local factor is
+not the global one.
 
-\begin{definition}[$\GammaSP$ signed-Selmer carrier]\label{def:closure:gamma-sha-persistence}
-For \(E/\Q\), a signed-Selmer-admissible additive prime \(p\), and a tame
-inertia-trivializing extension \(L/\Qp\), the signed-Selmer persistence
-layer carries the cover-change determinant, where
-\(\mathrm{sp}_p(E,L)\) denotes the signed local pairing,
+\begin{definition}[$\GammaSP$: signed $\Sha$-persistence hypothesis]\label{def:closure:gamma-sha-persistence}
+Let $E/\Q$, let $p$ be a prime of additive reduction at which the signed
+Selmer theory used here applies, and let $L/\Qp$ be a finite tamely
+ramified extension over which $E$ acquires good reduction.  Let
+$\mathrm{sp}_p(E,L)$ be the signed local pairing on the cover side,
+$\cores_{L/\Qp}$ the corestriction from the cover-side target to a
+base-side target, and
 \[
   C_{\mathrm{loc}}^{\mathrm{III}}(E,p)
-  :=
-  \det\!\bigl(\cores_{L/\Qp}\circ \mathrm{sp}_p(E,L)\bigr)
+  =
+  \det\bigl(\cores_{L/\Qp}\circ \mathrm{sp}_p(E,L)\bigr)
 \]
-and asserts
+the determinant of the composite.  This construction, its
+determinant-line convention and its applicability at $(E,p,L)$ are part
+of the hypothesis; the signed theory of Kobayashi and
+Pollack~\citep{Kobayashi2003,Pollack2003}, developed for good
+supersingular reduction, is background for it, not a source of it.  The
+hypothesis $\GammaSP$ at $(E,p,L)$ asserts
 \[
   C_{\mathrm{loc}}^{\mathrm{III}}(E,p)
-  \equiv c_p(E)\pmod{\Zp^\times}.
+  \equiv c_p(E)\pmod{\Zp^\times},
 \]
-Thus the signed-Selmer local determinant persists as the Tamagawa
-component \(c_p(E)\), up to the unit ambiguity natural in the
-\(p\)-adic comparison.\footnote{Supplied as a recognition source,
-encoded in Lean as a typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaShaPersistence}
-over a narrowed structural representation; its arithmetic content is a
-hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+and carries a factor $\mathrm{sha}_p$, which the recognition predicate
+matches with $\#\Sha(E/\Q)$.
 \end{definition}
 
-The third source is the higher-rank fixity source.  It measures the
-difference between the analytic leading coefficient and the arithmetic
-regulator product.  The anti-invariant readout is simply
-``analytic minus arithmetic''.  In the arithmetic factor, the regulator
-is the N\'eron--Tate Gram determinant
-\(\det\langle P_i,P_j\rangle\), understood over the
-\(\mathrm{GL}_r(\Z)\)-orbit of choices of Mordell--Weil basis.
+The same remark applies: when $p\nmid c_p(E)$, the congruence does not
+see the value of $c_p(E)$.  The determinant of a composite of a map into
+the cover-side target with corestriction to the base side requires a
+determinant-line convention, which is part of the hypothesis, as is the
+matching of $\mathrm{sha}_p$ with the global order of $\Sha$.
 
-\begin{definition}[$\GammaGZ$ higher-rank fixity carrier]\label{def:closure:gamma-higher-gz-fixity}
-For non-CM \(E/\Q\) of analytic rank \(r\geq 2\), the formed
-rank-\(r\) arithmetic/analytic duality layer has anti-invariant readout
+\begin{definition}[$\GammaGZ$: leading-term hypothesis in rank at least two]\label{def:closure:gamma-higher-gz-fixity}
+Let $E/\Q$ be without complex multiplication, of analytic rank $r\ge2$.
+Put
 \[
   \psi_-(E,r)
   =
   \frac{L^{(r)}(E,1)}{r!}
   -
-  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E),
+  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E).
 \]
-and asserts the higher-Gross--Zagier fixity
-\[
-  \psi_-(E,r)=0.
-\]
-Equivalently, the analytic leading coefficient equals the rank-\(r\)
-arithmetic product built from \(\kapr(E)\), the N\'eron--Tate regulator,
-the period, and the Tamagawa product.  This assertion is used as a
-recognition source in the landing.\footnote{Supplied as a recognition source, encoded in Lean as a
-typed structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak RecognitionSources.\allowbreak gammaHigherGZFixity}
-over a narrowed structural representation; its arithmetic content is a
-hypothesis field, not a Lean axiom. See App~\ref{app:formalization}.}
+The hypothesis $\GammaGZ$ at $E$ asserts $\psi_-(E,r)=0$.  In the
+recognition predicate it is used together with the normalization
+$\kapr(E)=\#\Sha(E/\Q)/\#E(\Q)_{\tors}^{\,2}$ and with the matching of
+its regulator, period and Tamagawa factors to those of $E$.
 \end{definition}
 
-This is the source that directly meets the shell residual in high rank.
-By the \(\kapr\) normalization of \citet{TsiokosBSDApparatus2026},
-the normalization factor identifies
-\[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2}.
-\]
-Consequently
+The name refers to the kind of theorem that would be expected to supply
+this hypothesis, a generalized Gross--Zagier formula in rank at least
+$2$.  No theorem supplying this normalized higher-rank identity is
+established among the inputs used here, and we retain it as a hypothesis
+(see also \Cref{rmk:closure:t-e12-gap}).  It is
+important to be clear about the strength of $\GammaGZ$.  Assume
+$\Sha(E/\Q)$ finite, and let $\Omega_E$ and $\Tam(E)=\prod_vc_v(E)$ be as
+in the BSD formula.  By the normalization of $\kapr$
+\citep[Section~13]{TsiokosBSDApparatus2026}, the arithmetic term of
+$\psi_-(E,r)$ is then
 \[
   \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)
   =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2},
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {\#E(\Q)_{\tors}^{\,2}},
 \]
-after reading \(\Tam(E)\) as the Tamagawa product.  Thus
-\(\GammaGZ\), through the assertion \(\psi_-(E,r)=0\), is precisely the
-higher-rank fixity that will force the residual \(\rhoE\) to vanish in
-the landing theorem.
+so $\GammaGZ$, read with this normalization, is the Strong BSD identity for
+$E$.  The hypothesis is not weaker than the conclusion it is used for.
 
 \begin{nonclaim}\label{nonclaim:closure:recognition-sources-not-derived}
-No recognition source is derived from framework primitives.  Each
-\(\Gamma_{\mathrm{BSD}}^{*}\) is closure content of the formed BSD
-layer, encoded as a typed structure carrier whose arithmetic content is
-a hypothesis field, not a Lean axiom.
+None of the three recognition hypotheses is derived in this paper, from
+the Six Birds framework or otherwise.  Each is a hypothesis about a given
+curve, recorded in the formalization as a structure whose arithmetic
+content is a field, not as an axiom.  We also do not claim that any of
+them is necessary for the scalar conclusion: in rank at least $2$,
+$\GammaGZ$ with its normalization already implies it.
 \end{nonclaim}
-
- \section{The saturated trace shell and its readout}
+ \section{The shell, its residual and its closure}
 \label{sec:shell-readout}
 
-The preceding section isolated the three arithmetic recognition sources.
-We now assemble the object on which they act.  The saturated BSD trace
-shell is a typed carrier for the Strong-BSD scalar comparison: it keeps
-the analytic leading coefficient, the arithmetic product, and the audit
-data in one place, so that the closure can record which input governs
-which scalar factor.  Here ``trace shell'' means a formed mathematical
-object together with its visible scalar readout and the bookkeeping
-needed to prevent the readout from being a tautological restatement of
-the desired identity.
+This section contains the mathematical core of the paper.  We first set
+up the object that carries the two sides of the BSD formula and the
+recognition hypothesis placed on it (\Cref{sec:shell-readout-basic}).
+We then show that the Strong BSD identity is exactly a fixed-point
+statement for an explicit closure operator (\Cref{sec:scalar-closure}),
+and explain why sensitivity of the formula to its factors does not make
+any hypothesis necessary (\Cref{sec:sensitivity}).
 
-\begin{definition}[Saturated BSD trace shell]\label{def:closure:sel-bsd-shell}
-\(\SelBSD\) is the five-tuple
-\[
-  \SelBSD
-  =
-  \bigl(E,\ \rhoE,\ J^{!}_{\mathrm{BSD}},\
-    \mathrm{Vis}^{!}_{\mathrm{BSD}},\
-    \mathrm{Audit}^{!}_{\mathrm{BSD}}\bigr).
-\]
-Here \(E/\Q\) is the elliptic curve and \(\rhoE\) is the scalar
-residual
-\[
-  \rhoE
-  =
-  \frac{L^{(r)}(E,1)}{r!}
-  -
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
-       {|E(\Q)_{\tors}|^2}.
-\]
-Thus \(\rhoE=0\) is exactly the Strong-BSD scalar identity, with
-\(\Tam(E)\) read as the Tamagawa product.  The datum
-\(J^{!}_{\mathrm{BSD}}\) records the involutive or duality structure
-that compares the analytic and arithmetic sides.  The datum
-\(\mathrm{Vis}^{!}_{\mathrm{BSD}}\) records the visible scalar readout
-of the shell.  The datum \(\mathrm{Audit}^{!}_{\mathrm{BSD}}\) records
-the admissibility, anti-tautology, and lawfulness information attached
-to the formed object.  The standing closure assumption used here is the
-standard assumption that the formed object carries this fixed content
-itself: admissibility, anti-tautology, and lawfulness data are part of
-the shell rather than consequences inferred after the fact.
+\subsection{The shell and the recognition predicate}
+\label{sec:shell-readout-basic}
+
+\begin{definition}[BSD trace shell]\label{def:closure:sel-bsd-shell}
+A \emph{BSD trace shell} $\SelBSD$ consists of the following data.
+\begin{enumerate}
+\item A curve $E$ and a natural number $r$.  In the intended application
+  $E$ is an elliptic curve over $\Q$ and $r$ its analytic rank; the
+  definition itself treats $E$ as a label.
+\item A set $k$ of scalars with an element $0$ and operations $-$,
+  $\cdot$ and $/$ satisfying the two laws
+  \[
+    a-b=0\iff a=b,
+    \qquad
+    (a/d)\cdot b=(a\cdot b)/d ,
+  \]
+  and elements of $k$ standing for the leading coefficient
+  $L^*=L^{(r)}(E,1)/r!$, the order $\#\Sha(E/\Q)$, the regulator
+  $\Reg_{\mathrm{NT}}(E)$, the period $\Omega_E$, the Tamagawa product
+  $\Tam(E)$ and the squared torsion order $d=\#E(\Q)_{\tors}^{\,2}$.
+\item The arithmetic side and the residual
+  \[
+    R_E=\frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}{d},
+    \qquad
+    \rhoE=L^*-R_E .
+  \]
+\item Declared local scopes: a set $\mathcal L$ of local extensions, a
+  \emph{descent scope} given by two predicates, one on natural numbers $n$
+  (``$n$ is an additive bad prime in scope'') and one on pairs $(n,L)$
+  with $L\in\mathcal L$ (``$L$ is a trivializing lift at $n$ in scope''),
+  and a \emph{signed scope} given by a predicate on natural numbers.
+\item A set $\mathcal F$, the \emph{formed layer}, with an idempotent map
+  $C:\mathcal F\to\mathcal F$, together with data called the duality
+  datum $J^{!}_{\mathrm{BSD}}$, the visible readout
+  $\mathrm{Vis}^{!}_{\mathrm{BSD}}$ and the audit record
+  $\mathrm{Audit}^{!}_{\mathrm{BSD}}$.
+\end{enumerate}
 \end{definition}
 
-\Cref{fig:sel-bsd-shell-schematic,tab:sel-bsd-shell-fields} summarize the
-shell fields and the residual readout used below.
+For an actual curve one takes $k=\R$ with its usual operations, finite
+$\Sha$, and the BSD normalizations of the period and regulator; then
+$\rhoE=0$ is the Strong BSD identity.  The definition keeps the
+operations abstract so that the formal statements can be checked on
+other scalar sets as well, for instance on $\Q$ in the control examples
+of \Cref{sec:landing}.  The data in item~(5) are carried by the shell but
+play no role in the scalar argument; the map $C$ is used only in
+\Cref{thm:closure:formed-closure-bridge}.  The formalization also attaches
+to the shell several propositions with supplied proofs (admissibility,
+lawfulness, applicability and similar bookkeeping); nothing below depends
+on them.
+
+The recognition predicate collects the hypotheses of
+\Cref{sec:recognition-sources} for the curve of the shell.
+
+\begin{definition}[Recognition predicate $\PiBSD$]\label{def:closure:pi-bsd}
+For a shell $\SelBSD$ with curve $E$, the predicate $\PiBSD(E)$ consists
+of:
+\begin{enumerate}
+\item for every natural number $n$ and every $L\in\mathcal L$ such that
+  $n$ and $(n,L)$ satisfy the two predicates of the descent scope, a
+  $\GammaPD$ record at $(E,n,L)$ whose factor $\mathrm{tam}_n$ equals
+  $\Tam(E)$;
+\item for every natural number $n$ in the signed scope, a $\GammaSP$
+  record at $(E,n)$ whose factor $\mathrm{sha}_n$ equals
+  $\#\Sha(E/\Q)$;
+\item if $r\ge2$, a $\GammaGZ$ record at $E$, of the same analytic rank,
+  whose leading coefficient, regulator, period and Tamagawa factor are
+  those of the shell, and whose constant is
+  $\kapr(E)=\#\Sha(E/\Q)/d$;
+\item if $r\in\{0,1\}$, the identity $L^*=R_E$.
+\end{enumerate}
+\end{definition}
+
+Item~(4) deserves a comment.  In rank $0$ and $1$ the predicate simply
+contains the scalar Strong BSD identity as a hypothesis.  For many curves
+and primes the $p$-part of that identity is known, through
+Gross--Zagier, Kolyvagin and Iwasawa main
+conjectures~\citep{GrossZagier1986,Kolyvagin1989,SkinnerUrban2014}
+(\Cref{sec:t-cascade}), but the full identity is not known in general,
+and nothing in this paper establishes it.  The predicate also records the local hypotheses, together with the
+matching of local factors with the global ones.  The descent requirement
+is vacuous when no pair $(n,L)$ satisfies both of its predicates, and the
+signed requirement is vacuous when its predicate is empty.  If a
+requirement is not vacuous, the records it demands exist only at primes
+(odd primes, for descent), since every $\GammaPD$ and $\GammaSP$ record
+is at a prime; in particular, if the descent scope admits a pair $(n,L)$
+with $n$ not an odd prime, or the signed scope contains an $n$ that is not
+prime, then $\PiBSD(E)$ cannot hold.
+
+\begin{theorem}[Residual and Strong BSD]\label{thm:closure:pi-bsd-iff-strong-bsd}
+For every shell, $\rhoE=0$ if and only if
+\[
+  \frac{L^{(r)}(E,1)}{r!}
+  =
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {\#E(\Q)_{\tors}^{\,2}} .
+\]
+This equivalence concerns the two scalars only.  On the abstract shells
+of \Cref{def:closure:sel-bsd-shell} there is no general construction of
+$\PiBSD(E)$ from the identity.\footnote{Lean proves the equivalence for every shell.  The second
+statement is checked on a symbolic shell, with rational scalars and a
+label in place of a curve, on which the identity holds but whose declared
+descent scope contains the index $2$, which no $\GammaPD$ record admits.
+This is a statement about the abstract shell type, not an example of an
+elliptic curve.}
+\end{theorem}
+
+\begin{proof}
+By definition $\rhoE=L^*-R_E$, and by the first law of the shell
+$L^*-R_E=0$ if and only if $L^*=R_E$.  For the last assertion,
+$\PiBSD$ demands records that the scalar identity does not provide; the
+symbolic shell described in the footnote satisfies the identity but not
+$\PiBSD$.
+\end{proof}
+
+\subsection{Strong BSD as a fixed-point statement}
+\label{sec:scalar-closure}
+
+In the Six Birds framework~\citep{TsiokosFoundationsIII2026} a
+\emph{closure} on a set is an idempotent self-map, and an element is
+\emph{closed} if the map fixes it.  The Strong BSD identity has an exact
+formulation of this kind, with an explicit and elementary closure.
+
+Let $k$ be a field with $2\neq0$, for example $\R$.  On $k\times k$ let
+$J(a,b)=(b,a)$ be the swap and let
+\[
+  c=\tfrac12(\mathrm{Id}+J),\qquad c(a,b)=\Bigl(\frac{a+b}{2},\frac{a+b}{2}\Bigr),
+\]
+the average of a pair with its swap.  For a shell whose scalar set is
+$k$, put $x_E=(L^*,R_E)$, the pair of the two sides of the BSD formula.
+
+\begin{theorem}[Strong BSD as a fixed point]\label{thm:closure:scalar-closure-translation}
+\leavevmode
+\begin{enumerate}
+\item $c\circ c=c$; $c$ preserves the sum $a+b$; $c\circ J=c$ and
+  $J\circ c=c$.  Moreover $c(x)$ is the only pair with equal coordinates
+  and the same sum as $x$.
+\item For every $x=(a,b)$: $c(x)=x$ if and only if $a=b$, if and only if
+  $a-b=0$.
+\item For every shell whose scalar set is the field $k$,
+  \[
+    c(x_E)=x_E
+    \iff
+    L^*=R_E
+    \iff
+    \rhoE=0 .
+  \]
+\item If $\PiBSD(E)$ holds, then $c(x_E)=x_E$.\footnote{Lean proves (1)--(4) for every field with $2\neq0$.  In (3) the
+field structure need not agree with the operations of the shell: the
+last equivalence uses the shell's own law $a-b=0\iff a=b$.  Statement (4)
+combines (3) with the scalar argument in the proof of
+\Cref{thm:closure:strong-bsd-conditional}, which uses only $\PiBSD(E)$.}
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+(1) Both coordinates of $c(x)$ equal $(a+b)/2$, so applying $c$ again
+changes nothing, the sum is $a+b$, and swapping the input or the output
+changes nothing.  A pair $(y,y)$ with $2y=a+b$ has $y=(a+b)/2$.
+(2) If $c(x)=x$ then $a=(a+b)/2=b$; conversely if $a=b$ then
+$(a+b)/2=a$.  (3) is (2) applied to $x_E$, followed by
+\Cref{thm:closure:pi-bsd-iff-strong-bsd}.  (4) By the scalar argument in the proof of
+\Cref{thm:closure:strong-bsd-conditional}, which uses only $\PiBSD(E)$,
+$\PiBSD(E)$ implies $L^*=R_E$; apply (3).
+\end{proof}
+
+The theorem concerns the \emph{original} pair $x_E$.  It must not be
+confused with the trivial fact that $c(x)$ is always closed: for
+$x=(2,1)$ one has $c(x)=(3/2,3/2)$, which is closed, while $x$ itself is
+not.  Replacing an unequal pair by its average proves nothing about the
+pair.  Equivalently, asking that $c$ preserve the analytic coordinate,
+$c(x)_1=x_1$, is already the same as asking that $x$ be closed.
+\Cref{fig:averaging-closure} shows the geometry, and the
+characteristic assumption is needed: if $2=0$ the average is not
+defined.
+
 \begin{figure}[tbp]
 \centering
-\begin{tikzpicture}[
-  font=\small,
-  box/.style={draw, rounded corners=2pt, align=center, minimum width=2.5cm,
-    minimum height=0.85cm, fill=black!3},
-  shell/.style={draw, rounded corners=3pt, align=center, minimum width=4.2cm,
-    minimum height=1.1cm, fill=black!8},
-  arrow/.style={-{Latex[length=2mm]}, thick}
-]
-\node[shell] (shell) at (0,0) {\(\SelBSD=(E,\rhoE,J^{!},\mathrm{Vis}^{!},\mathrm{Audit}^{!})\)};
-\node[box] (analytic) at (-4.6,1.7) {analytic\\leading term};
-\node[box] (arith) at (0,1.7) {arithmetic\\product};
-\node[box] (audit) at (4.6,1.7) {audit\\records};
-\node[box] (readout) at (0,-1.8) {\(\rhoE=0\)\\readout};
-
-\draw[arrow] (analytic) -- (shell);
-\draw[arrow] (arith) -- (shell);
-\draw[arrow] (audit) -- (shell);
-\draw[arrow] (shell) -- (readout);
-\node[align=center, font=\footnotesize] at (0,-2.75)
-  {the readout is equivalent to the Strong-BSD scalar identity};
+\begin{tikzpicture}[scale=1.5, font=\small,
+  arrow/.style={-{Latex[length=2mm]}, thick}]
+\draw[->] (-0.2,0) -- (3.6,0) node[right] {\(a=L^*\)};
+\draw[->] (0,-0.2) -- (0,3.6) node[above] {\(b=R_E\)};
+\draw[very thick] (0,0) -- (3.2,3.2) node[right, align=left]
+  {fixed points \(a=b\):\\Strong BSD holds};
+\draw[dashed] (3.0,0) -- (0,3.0);
+\node[font=\footnotesize, anchor=south west] at (0.45,2.55) {line \(a+b=3\)};
+\fill (2,1) circle (1.4pt) node[right=3pt] {\(x=(2,1)\)};
+\fill (1.5,1.5) circle (1.4pt);
+\node[anchor=west] (cx) at (1.95,1.85) {\(c(x)=(\tfrac32,\tfrac32)\)};
+\draw[thin] (cx.west) -- (1.55,1.53);
+\draw[arrow] (1.93,1.07) -- (1.57,1.43);
+\foreach \t in {1,2,3} \draw (\t,0.04) -- (\t,-0.04) node[below] {\(\t\)};
+\foreach \t in {1,2,3} \draw (0.04,\t) -- (-0.04,\t) node[left] {\(\t\)};
 \end{tikzpicture}
-\caption{The saturated BSD trace shell packages the residual, readout data, and
-audit records used by the conditional closure.}
-\label{fig:sel-bsd-shell-schematic}
+\caption{The averaging closure \(c\) on pairs \((a,b)\) of an analytic
+and an arithmetic value.  It moves each point along the line of constant
+\(a+b\) to the diagonal.  The fixed points are exactly the diagonal, where
+the Strong BSD identity holds.  The point \(x=(2,1)\) is not fixed; its
+image \(c(x)\) is, which says nothing about \(x\).}
+\label{fig:averaging-closure}
 \end{figure}
- \begin{table}[tbp]
-\centering
-\small
-\caption{Fields of the saturated BSD trace shell.}
-\label{tab:sel-bsd-shell-fields}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.18\textwidth}
->{\raggedright\arraybackslash}p{0.34\textwidth}
->{\raggedright\arraybackslash}X@{}}
-\toprule
-Field & Role & Paper-prose name \\
-\midrule
-\(E\) & The elliptic curve over \(\Q\). & base curve \\
-\(\rhoE\) & Difference between the analytic leading coefficient and the
-Strong-BSD arithmetic product. & scalar residual \\
-\(J^{!}_{\mathrm{BSD}}\) & Involutive or duality datum comparing analytic and
-arithmetic sides. & duality datum \\
-\(\mathrm{Vis}^{!}_{\mathrm{BSD}}\) & Visible scalar readout data attached
-to the shell. & visible readout \\
-\(\mathrm{Audit}^{!}_{\mathrm{BSD}}\) & Admissibility, anti-tautology, and
-lawfulness records. & audit record \\
-\addlinespace
-\(\rhoE=0\) & The residual vanishing equation, equivalent to the Strong-BSD
-scalar identity at readout level. & landing readout \\
-\bottomrule
-\end{tabularx}
-\end{table}
+ 
+The closure $c$ acts on two numbers.  The Six Birds formulation of a
+problem asks for a closure on a richer \emph{formed layer} $\mathcal F$
+whose readout is the scalar pair; for BSD this would be a layer of
+Selmer, determinant and height data.  We have not constructed such a
+layer.  What can be proved is what such a layer would have to satisfy in
+order to return the scalar statement.
 
-The predicate placed on the shell is not the Strong-BSD identity by
-definition.  It is a structured readout predicate: it asks for the three
-recognition-source statements, quantified over the local and rank data
-where they apply.  This distinction is essential.  The next theorem can
-then identify the readout with the Strong-BSD scalar identity; it is not
-merely unfolding a definition.
-
-\begin{definition}[$\Pi_{\mathrm{BSD}}$ predicate]\label{def:closure:pi-bsd}
-\(\PiBSD(E)\) is the conjunction of the three recognition-source
-readouts on \(\SelBSD\), with the relevant quantifiers retained.  First,
-for every additive bad prime \(p\) in scope and every tame
-inertia-trivializing local lift \(L/\Qp\) in scope, the
-\(\GammaPD\) readout supplies the \(p\)-adic descent/Tamagawa
-correction.  Second, for every signed-Selmer-admissible prime \(p\),
-the \(\GammaSP\) readout supplies the signed-Selmer local determinant
-matching.  Third, for analytic rank \(r\geq 2\), the \(\GammaGZ\)
-readout supplies the higher-rank fixity assertion
-\(\psi_-(E,r)=0\); for \(r\in\{0,1\}\), the predicate uses the
-classical low-rank lane.  In particular, \(\PiBSD\) is a structured
-quantified predicate over recognition readouts, not the definition
-\(\PiBSD:=\mathrm{StrongBSD}\).
-\end{definition}
-
-\begin{theorem}[Readout-level equivalence]\label{thm:closure:pi-bsd-iff-strong-bsd}
-The scalar readout of \(\PiBSD\) on \(\SelBSD\) is equivalent to the
-standard Strong-BSD scalar identity
+\begin{theorem}[Closure on a formed layer]\label{thm:closure:formed-closure-bridge}
+Let $\mathcal F$ be a set with an idempotent map $C:\mathcal F\to\mathcal
+F$, and let $q:\mathcal F\to k\times k$ be a readout that intertwines $C$
+with $c$:
 \[
-  \frac{L^{(r)}(E,1)}{r!}
-  =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
+  q(C(x))=c(q(x))\qquad\text{for all }x\in\mathcal F .
 \]
-This is a readout-level equivalence: it identifies the visible scalar
-readout with the Strong-BSD scalar identity, but it does not define
-\(\PiBSD\) to be Strong BSD and it does not manufacture the recognition
-sources from the scalar identity alone.\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak piBSDIffStrongBSD};
-see App~\ref{app:formalization}.}
+Write $q(x)=(q_1(x),q_2(x))$.  Then for every $x\in\mathcal F$:
+\begin{enumerate}
+\item $q(C(x))=q(x)$ if and only if $q_1(x)=q_2(x)$;
+\item if $C(x)=x$, then $q_1(x)=q_2(x)$;
+\item if $q$ is injective, then $C(x)=x$ if and only if $q_1(x)=q_2(x)$.
+\end{enumerate}
+In particular, for a shell with formed layer $\mathcal F$ and closure $C$,
+an intertwining readout $q$ and a state $x$ with $q(x)=x_E$: if
+$C(x)=x$ then the Strong BSD identity holds; and if $\PiBSD(E)$ holds then
+$q(C(x))=q(x)$.\footnote{Lean proves all statements, with the intertwining identity, the
+fixedness of the original state and the match $q(x)=x_E$ as explicit
+hypotheses.}
 \end{theorem}
 
 \begin{proof}
-By definition of the shell, the visible scalar residual is
-\[
-  \rhoE
-  =
-  \frac{L^{(r)}(E,1)}{r!}
-  -
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
-       {|E(\Q)_{\tors}|^2}.
-\]
-The readout predicate \(\PiBSD\) supplies the three pieces entering this
-residual.  The higher-rank source \(\GammaGZ\) gives
-\(\psi_-(E,r)=0\).  After applying the \(\kapr\) normalization of
-\citet{TsiokosBSDApparatus2026},
-\[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2},
-  \qquad
-  \kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)
-  =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
-\]
-Thus the equation \(\psi_-(E,r)=0\) is exactly the assertion
-\(\rhoE=0\) in rank at least two.  The source \(\GammaPD\) supplies the
-local \(p\)-adic/Tamagawa correction entering the Tamagawa product, and
-\(\GammaSP\) supplies the signed-Selmer persistence of the \(\Sha\)
-factor; these readouts fix the remaining scalar factors in the same
-residual.  Therefore the forward scalar readout of \(\PiBSD\) is
-\(\rhoE=0\).
-
-Finally, the equation \(\rhoE=0\) is algebraically the displayed
-Strong-BSD scalar identity: moving the arithmetic product to the other
-side gives the identity, and subtracting the right-hand side from the
-left gives \(\rhoE=0\).  Conversely, if the displayed scalar identity is
-already known as a scalar readout, then the same subtraction gives
-\(\rhoE=0\).  This reverse implication is only an equivalence of
-scalar readouts; it does not construct any of the three
-\(\Gamma_{\mathrm{BSD}}^{*}\) predicates.
+By intertwining, $q(C(x))=c(q(x))$, so (1) is
+\Cref{thm:closure:scalar-closure-translation}(2) applied to $q(x)$.  If
+$C(x)=x$ then $q(C(x))=q(x)$, and (1) gives (2).  If $q$ is injective,
+$q(C(x))=q(x)$ implies $C(x)=x$, which with (2) gives (3).  For the shell,
+(2) with $q(x)=x_E$ gives $L^*=R_E$; and $\PiBSD(E)$ gives $L^*=R_E$ by
+the scalar argument in the proof of
+\Cref{thm:closure:strong-bsd-conditional}, so (1) gives $q(C(x))=q(x)$.
 \end{proof}
 
-\begin{theorem}[Master-theorem applicability]\label{thm:closure:master-theorem-applicability}
-The closure master theorem applies to \(\SelBSD\): for the audited
-interaction calculus \cite{TsiokosFoundationsIII2026}, correctly
-instantiated recognition sources that exhaust the residual factors, and
-that pass the no-smuggling audit, force the residual readout
-\(\rhoE=0\).\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak masterTheoremApplicability};
-see App~\ref{app:formalization}.}
+Three small examples over $\Q$ show what the injectivity, fixedness and
+intertwining hypotheses each contribute.  Let
+$\mathcal F=(\Q\times\Q)\times\Q$, $C((a,b),t)=(c(a,b),0)$ and
+$q((a,b),t)=(a,b)$; then $C$ is idempotent and $q$ intertwines.  The state
+$((1,1),1)$ has equal readout but is not fixed by $C$, so without
+injectivity the converse of (2) fails.  The state $((2,1),0)$ is not
+fixed, its readout is unequal, and its image $C((2,1),0)=((3/2,3/2),0)$
+is fixed: closing a state does not make the original state satisfy the
+identity.  Finally the identity map of $\Q\times\Q$, with $q$ the
+identity, fixes $(2,1)$ but does not intertwine with $c$: fixedness
+without the intertwining identity gives nothing.
+
+So the full closure formulation of Strong BSD rests on two inputs that
+this paper does not supply: a formed layer with a readout intertwining its
+closure with $c$, and the fixedness of the original state.  Idempotence
+of a closure on its own forces neither.
+
+\subsection{Sensitivity is not necessity}
+\label{sec:sensitivity}
+
+The arithmetic side $R_E$ depends on each of its factors: changing one
+factor while keeping the others changes $R_E$.  This is elementary, and
+we record it because it is easy to over-interpret.
+
+\begin{theorem}[Factor sensitivity]\label{thm:closure:composite-signature}
+Suppose the scalar set is a field, the multiplication and division of
+the shell are the field operations, and $\#\Sha(E/\Q)$,
+$\Reg_{\mathrm{NT}}(E)$, $\Omega_E$, $\Tam(E)$ and $d$ are all nonzero.
+If any one of $\#\Sha(E/\Q)$, $\Reg_{\mathrm{NT}}(E)$ or $\Tam(E)$ in the
+formula for $R_E$ is replaced by a different value, the other factors
+being kept, the value of $R_E$ changes.\footnote{The formalization records this statement as a conditional
+schema: the corresponding declaration takes a package of cancellation
+laws as a hypothesis, and also returns several supplied propositions (for
+instance, statements named computability and falsifiability) that carry
+no proof of what their names suggest and that we do not use.  Separately,
+Lean proves that, when the shell's multiplication and division are the
+field operations, the cancellation package holds exactly when the five
+displayed factors are nonzero.}
 \end{theorem}
 
 \begin{proof}
-We verify the two applicability requirements for the shell.  First, the
-recognition sources are instantiated on exactly the scalar factors of
-\(\rhoE\).  The source \(\GammaPD\) governs the local
-\(p\)-adic/Tamagawa correction: it supplies the descent congruence and
-the Tamagawa factor \(c_p(E)\) up to a \(p\)-adic unit.  The source
-\(\GammaSP\) governs the persistence of the \(\Sha\)-factor under the
-signed-Selmer cover change: its determinant comparison is the local
-component entering the same arithmetic product.  The source
-\(\GammaGZ\) governs the rank-\(r\) regulator/fixity factor: it states
-that the analytic leading coefficient equals the arithmetic regulator
-product after the \(\kapr\) normalization.  These three pieces account
-for the local \(p\)-adic/Tamagawa factor, the \(\Sha\)-persistence
-factor, and the regulator/fixity factor respectively.  No scalar factor
-of \(\rhoE\) remains outside this list, and no factor is assigned to two
-different sources.
-
-Second, the no-smuggling condition holds.  The imported theorem stacks
-enter only as hypotheses, and the recognition sources enter only as
-carried readouts.  The closure does not silently turn an open
-arithmetic obligation into a derivation target; it records the
-obligation as supplied content and then derives consequences from it.
-Thus the recognition-source instantiation is exhaustive for the
-residual and the audit contains no hidden derivation of out-of-scope
-arithmetic.  The closure master theorem is therefore applicable to
-\(\SelBSD\), and its residual conclusion is \(\rhoE=0\).
+In a field, multiplication by a nonzero element and division by $d\neq0$
+are injective.  If, say, $\#\Sha$ is replaced by $s'\neq\#\Sha$, then
+$s'\Reg\,\Omega\Tam/d\neq\#\Sha\Reg\,\Omega\Tam/d$ because
+$\Reg\,\Omega\Tam/d\neq0$.  The other two cases are the same.
 \end{proof}
 
-\begin{theorem}[Composite signature with anti-tautology hardening]\label{thm:closure:composite-signature}
-The composite recognition predicate attached to \(\SelBSD\) is
-computable and falsifiable, carries a framework trace signature as a
-fingerprint of the composite operator, and is anti-tautological: it
-genuinely consumes all three recognition records.  In particular, the
-three components are independent but not disposable.  Ablating
-\(\GammaPD\), \(\GammaSP\), or \(\GammaGZ\) breaks the Strong-BSD
-scalar factor package, so the composite does not collapse to a
-tautological restatement of Strong BSD.\footnote{\raggedright Tracked in the
-formalization harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak SelShell.\allowbreak compositeSignature}
--- a checked projection over an explicit proof-carrying record
-(conditional on the imports and recognition sources), not an independent
-Lean derivation. See App~\ref{app:formalization}.}
-\end{theorem}
+\begin{remark}[Sensitivity does not make a hypothesis necessary]\label{rmk:closure:sensitivity-not-necessity}
+One might hope to argue from \Cref{thm:closure:composite-signature} that
+each recognition hypothesis is needed, since each ``governs'' a factor.
+The argument fails.  In rank at least $2$, the hypothesis $\GammaGZ$ with
+its normalization already implies $L^*=R_E$
+(\Cref{sec:recognition-sources}), so deleting $\GammaPD$ and $\GammaSP$
+does not affect the scalar conclusion.  Sensitivity of the product to its
+factors says nothing about which hypotheses are needed to prove an
+identity between the product and another number.
 
-\begin{proof}
-The composite predicate is a finite conjunction of the three readouts
-introduced above, together with the shell data on which those readouts
-are evaluated.  It is therefore computable in the framework sense: once
-the shell and the recognition records are supplied, the predicate has a
-definite list of components to inspect.  It is also falsifiable: failure
-of any one component is a failure of the composite readout.
-
-The substantive point is non-disposability.  Removing \(\GammaPD\)
-leaves the local \(p\)-adic/Tamagawa factor undetermined; the shell no
-longer knows that the descent comparison repairs the Tamagawa
-coarsening by the required factor.  Removing \(\GammaSP\) leaves the
-\(\Sha\)-persistence factor undetermined; the signed-Selmer determinant
-comparison no longer supplies the component entering the arithmetic
-product.  Removing \(\GammaGZ\) leaves the rank-\(r\)
-regulator/fixity factor undetermined; there is then no assertion that
-the analytic leading coefficient agrees with the normalized regulator
-product.  Each recognition source governs a different scalar factor of
-the residual, and each factor is required for the Strong-BSD scalar
-package.  Hence the composite predicate depends genuinely on the
-formed BSD layer's data and cannot be replaced by the bare sentence
-``Strong BSD holds.''
-\end{proof}
-
- \section{The Cassels--Tate comparison}
+A genuine independence statement needs an interface in which the factors
+are introduced before they are normalized.  Suppose native factors $a$ and
+$b$ satisfy
+\[
+  N:\ L^*=a\,\Reg\,\Omega\,b,\qquad
+  C_b:\ b=\Tam(E),\qquad
+  C_a:\ a=\#\Sha(E/\Q)/d .
+\]
+Then $N$, $C_a$ and $C_b$ together imply $L^*=R_E$, and none of the three
+can be dropped: with $\Reg=\Omega=\#\Sha=d=\Tam=1$, the triples
+$(L^*,a,b)=(2,1,2)$, $(2,2,1)$ and $(2,1,1)$ satisfy exactly two of the
+three premises and violate the identity, since $R_E=1\neq2=L^*$.  But
+this independence is a property of the premises, not of the identity:
+when $\Reg\,\Omega\neq0$ and $N$ holds, $L^*=R_E$ is equivalent to the
+single equation $ab=(\#\Sha/d)\Tam(E)$, which can hold while both $C_a$
+and $C_b$ fail (take $a=2$, $b=1/2$ and all other values $1$).  With
+all values positive, the solutions are exactly $a=u\,\#\Sha/d$,
+$b=\Tam(E)/u$ for $u>0$.  Lean checks these countermodels and the
+classification over $\Q$.  None of these rational models is an elliptic
+curve, and we draw no arithmetic conclusion from them.
+\end{remark}
+ \section{The Cassels--Tate comparison input}
 \label{sec:chi-ct-p}
 
-The first supporting comparison used by the closure is the
-Cassels--Tate Pfaffian comparison~\citep{Cassels1962,PoonenStoll1999}.  The import stack introduced in
-Definition~\ref{def:closure:chi-ct-p-import} packages the relevant external
-results as hypotheses: the Selmer-complex inputs of Sakamoto~\citep{Sakamoto2018}
-and Macias Castillo--Sano~\citep{MaciasCastilloSano2026}, the determinant
-and orientation inputs of Knudsen--Mumford and Nekov\'a\v{r}, and Flach's
-pairing comparison.  Fisher--Schaefer--Stoll~\citep{FisherSchaeferStoll2010}
-fix the classical 2-Selmer pairing normalization; they are not used as a
-Fitting-ideal theorem.  This section states the
-comparison in the form consumed by the closure.  It is conditional on
-that stack; no part of the argument below reproves the imported
-arithmetic geometry.
+The input $\chiCTp$ of \Cref{def:closure:chi-ct-p-import} is meant to
+read the $p$-primary part of $\Sha$ through a Pfaffian, the square root of
+a determinant, of the Cassels--Tate
+pairing~\citep{Cassels1962,PoonenStoll1999}.  We state what the input
+gives, and then show on an actual curve why its selected generator is
+genuinely additional data.
 
-\begin{theorem}[$\chi_{CT,p}$ comparison (v5)]\label{thm:closure:chi-ct-p-comparison}
-Let \(E/\Q\) be an elliptic curve such that \(\Sha(E)[p^\infty]\) is
-finite, the Cassels--Tate pairing is nondegenerate, the standard
-Sakamoto and Macias Castillo--Sano Selmer-complex hypotheses hold, and
-\(p\nmid \Tam(E/\Q)\).  Conditional on the imported \(\chiCTp\)
-structure, there is a canonical orientation-respecting Pfaffian
-comparison map
+\begin{theorem}[Conditional Cassels--Tate comparison]\label{thm:closure:chi-ct-p-comparison}
+Suppose the input $\chiCTp$ holds at $(E,p)$.  Then $p$ is prime, the
+hypotheses of item~(1) of \Cref{def:closure:chi-ct-p-import} hold, and
+there is a map
 \[
   \Pf_{\mathrm{Nek},p}^{\mathrm{or},\sqrt{\ }}:
   \sqrt{\Fitt}_{\mathrm{CT}}
@@ -906,1247 +899,830 @@ comparison map
   \longrightarrow
   \mathrm{vctp}_p
 \]
-from the square-root Cassels--Tate Fitting ideal on the quotient by the
-divisible subgroup, paired by the Nekov\'a\v{r} cup-product
-\(U_{2,2}\) identified with the Flach pairing, to the
-Cassels--Tate Pfaffian scalar line \(\mathrm{vctp}_p\).  This map sends
-the square-root Stark generator~\citep{MazurRubin2004} \(\sqrt{F}_E^p\) to the
-Cassels--Tate height \(h_p^{\mathrm{CT}}(E)\), and the Nekov\'a\v{r}
-sign convention satisfies \(\Sigma_{\mathrm{NekCT}}=+1\).\footnote{Tracked in the formalization harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak ChiCTp.\allowbreak chiCTpComparison}
--- a checked projection over an explicit proof-carrying record
-(conditional on the imported \(\chiCTp\) stack), not an independent Lean
-derivation. See App~\ref{app:formalization}.}
+with the canonical property, sending the selected generator
+$\sqrt{F}_E^p$ to the selected element
+$h_p^{\mathrm{CT}}(E)$, with normalized sign
+$\Sigma_{\mathrm{NekCT}}=+1$.  Here the source is the square-root Fitting
+object of the quotient by the divisible part of $H^1$ of the Selmer
+complex $C_p(E)$, for the pairing induced by Nekov\'a\v{r}'s cup product
+$U_{2,2}$.\footnote{The formalization records this as a conditional schema: the
+map, the image of the generator and the sign are fields of the input, and
+the conclusion is their projection.  The data compared are fixed for the
+curve and prime before the input is asserted, and an input selecting a
+different generator or target at the same $(E,p)$ is rejected.}
 \end{theorem}
 
 \begin{proof}
-Assume the imported \(\chiCTp\) structure.  Its named components supply
-the ingredients in the statement.  The Selmer-complex hypotheses and
-the Cassels--Tate nondegeneracy input place the quotient
-\(H^1(C_p(E))/\mathrm{div}\) in the self-dual setting in which a
-Pfaffian comparison is defined.  The determinant-line and orientation
-inputs identify the square-root Fitting ideal
-\(\sqrt{\Fitt}_{\mathrm{CT}}(H^1(C_p(E))/\mathrm{div},U_{2,2})\) as the
-source of the comparison map.  Here the square-root Fitting ideal is
-the square-root determinant object attached to the Cassels--Tate
-pairing; the notation \(U_{2,2}\) records the Nekov\'a\v{r}
-cup-product, and the imported Flach comparison identifies it with the
-classical Cassels--Tate pairing used on the target side.
-
-The Pfaffian input in the stack then gives the canonical
-orientation-respecting map
-\[
-  \Pf_{\mathrm{Nek},p}^{\mathrm{or},\sqrt{\ }}:
-  \sqrt{\Fitt}_{\mathrm{CT}}
-    \bigl(H^1(C_p(E))/\mathrm{div},U_{2,2}\bigr)
-  \longrightarrow
-  \mathrm{vctp}_p .
-\]
-The square-root Stark-generator identification supplies the image
-formula: the distinguished generator \(\sqrt{F}_E^p\) maps to the
-Cassels--Tate height \(h_p^{\mathrm{CT}}(E)\).  Finally, the sign
-closure component of the same imported record fixes the orientation
-sign as \(\Sigma_{\mathrm{NekCT}}=+1\).  Combining these imported
-components proves exactly the displayed comparison.  The proof is
-therefore an assembly under the stated hypotheses; it is precisely as
-strong as the imported theorem stack and does not rederive the
-Sakamoto, Macias Castillo--Sano, Nekov\'a\v{r}, Flach, or classical
-Cassels--Tate comparison inputs.
+Each assertion is a component of the input.
 \end{proof}
 
- \section{The OC eta-formula}
+The theorem is as strong as its input and no stronger.  In particular, it
+does not derive the map, the image or the sign from the background results
+listed in \Cref{def:closure:chi-ct-p-import}, and the main theorem
+(\Cref{thm:closure:strong-bsd-conditional}) does not use it.  Two further
+points, visible in the example below, concern the formulation itself.
+First, the published comparison of Nekov\'a\v{r} concerns torsion classes
+in $H^2$ of a Selmer complex, with a minus sign; a source written in terms
+of $H^1/\mathrm{div}$ requires a shift of degree, which also inverts the
+determinant line.  Second, the determinant (Fitting) ideal does not
+determine a selected generator, and in particular does not determine
+whether a prescribed generator has a square root.
+
+\begin{example}[An ordinary Selmer complex at $p=3$]\label{ex:closure:1913b1}
+Let $E$ be the curve $1913b1$, $y^2+xy=x^3+x^2-34x-135$, and $p=3$.
+\begin{enumerate}
+\item \emph{Arithmetic data.}  $E$ has discriminant $-1913^2$, reduction
+  of type $I_2$ at $1913$ with $c_{1913}=2$, rational torsion of order
+  $2$, and good ordinary reduction at $3$ with $a_3=2$ and
+  $\#\widetilde E(\mathbb F_3)=2$, so $3$ is not anomalous and divides none of the torsion order, the
+  Tamagawa number and the order of the reduced group
+  $\widetilde E(\mathbb F_3)$.  An exact modular-symbol computation gives
+  $|L(E,1)|/\Omega_E=9/2\neq0$; the scale of the modular symbol is fixed
+  by the optimality of $E$~\citep[Table~1]{Miller2011}, the semistable
+  Manin-constant theorem~\citep{Cesnavicius2018} and the structure of the
+  real period lattice.  By Gross--Zagier and
+  Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989}, $E(\Q)$ has rank $0$
+  and $\Sha(E/\Q)$ is finite.  The
+  three-descent and the upper bound reported in the proof of
+  \citet[Theorem~7.2]{Miller2011} give $\Sha(E/\Q)[3^\infty]\cong(\Z/3\Z)^2$.
+\item \emph{The Selmer complex.}  Let $C$ be the ordinary compact Selmer
+  complex of $T_3(E)$ over $\Z_3$, with unramified conditions away from
+  $3$.  The hypotheses of Macias Castillo--Sano~\citep{MaciasCastilloSano2026}
+  needed to describe its cohomology hold; in particular the image of
+  Frobenius at $5$, with characteristic polynomial $X^2-2X+5\equiv
+  X^2-2X+2\pmod 3$, generates a nonsplit Cartan subgroup of
+  $\mathrm{GL}_2(\mathbb F_3)$.  One finds $H^1(C)=0$ and
+  $H^2(C)\cong\Sha(E/\Q)[3^\infty]^{\vee}\cong(\Z/3\Z)^2$, and $C$ is
+  quasi-isomorphic to the complex $\Z_3^2\xrightarrow{\,3J\,}\Z_3^2$ in
+  degrees $1$ and $2$, with
+  $J=\bigl(\begin{smallmatrix}0&1\\-1&0\end{smallmatrix}\bigr)$.
+\item \emph{The determinant ideal and two generators.}  Under the
+  canonical trivialization of the acyclic complex over $\Q_3$, the inverse
+  determinant line of $C$ has image the ideal $(9)\subset\Z_3$, the
+  Fitting ideal of $H^2(C)$; the square-root ideal is $(3)$.  The elements
+  $9$ and $18$ both generate $(9)$, since $2\in\Z_3^\times$.  But $9=3^2$
+  is a square in $\Q_3$, while $18$ is not: a square root would have
+  valuation $1$, and dividing it by $3$ would give a unit whose square is
+  $2$ modulo $3$, which is impossible.  So every invariant that factors
+  through the ideal, including its valuation, takes the same value on the
+  two generators, while only one of them lies in the image of the fixed
+  squaring map.
+\item \emph{Stark bases.}  Using the theorems of
+  Sakamoto~\citep{Sakamoto2018} and Macias Castillo--Sano on core
+  vertices, one obtains Stark bases over $\Z/27\Z$, and compatible bases
+  at all levels, with identical Fitting ideals at every level and
+  different square-root behaviour of the prescribed basis.
+\item \emph{Degree.}  Since $H^1(C)=0$ here, the quotient
+  $H^1(C)/\mathrm{div}$ appearing in the source of
+  \Cref{thm:closure:chi-ct-p-comparison} is zero; the finite group sits in
+  $H^2$.
+\end{enumerate}
+\end{example}
+
+The arithmetic steps in items (1), (2) and (4) are written arguments that
+rely on the external results cited there; the descent and the upper bound
+are published computations that we did not rerun.  Lean checks the
+finite algebra: the presentation by $3J$ and its cokernel of order $9$,
+the normalization of every perfect alternating form on $(\Z/3\Z)^2$, the
+Cartan computation for every matrix over $\mathbb F_3$ with the given
+trace and determinant, and the square-class argument in item~(3).  The
+example does not construct the generator, target or orientation that the
+input $\chiCTp$ prescribes.  Nor does it show that no square root can be
+normalized from the ideal: the generator $3$ of the root ideal $(3)$ is
+determined by the ideal and the trivialization.  What it shows is that
+the square-root behaviour of a basis prescribed independently of the ideal
+is not determined by the ideal; the comparison of the prescribed
+generator, target and orientation with arithmetic objects remains part of
+the input.
+ \section{The overconvergent \texorpdfstring{$\eta$}{eta}-formula}
 \label{sec:eta-formula}
 
-This section records the second supporting conditional theorem: an
-overconvergent \(\eta\)-formula at additive odd primes.  It is a
-\(p\)-adic \(L\)-value identity used by the closure in the shallow
-additive odd-prime regime.  Its inputs are separate from the
-Cassels--Tate comparison of the previous section; they are collected in
-their own published-import structure.
+This section records a proposed $p$-adic identity at additive odd primes,
+the overconvergent $\eta$-formula.  It plays no role in the main theorem.
+We state it only as a conditional input, and we explain why the published
+results one might hope to derive it from do not apply in the form needed.
 
-\begin{definition}[OC $\eta$ published imports]\label{def:closure:eta-published-imports}
-The published-import structure for the overconvergent \(\eta\)-formula
-keeps the following inputs separate: Bella\"iche's critical-slope
-construction and moment formula~\citep{Bellaiche2012}; the Pollack--Stevens overconvergent modular-symbol theory~\citep{PollackStevens2011,ColemanMazur1998}; the
-critical \(p\)-adic \(L\)-function input~\citep{BenoisBuyukboduk2024}; Lang--Wake~\citep{LangWake2025}, as a
-distinct import from the critical-\(p\)-adic-\(L\)-function work;
-Lorenzini's component-group input~\citep{Lorenzini1993}; Ling's refinement~\citep{Ling1997} of the local
-component calculation; and one cascade-internal nonvanishing and
-primitivity conjecture for the cuspidal-layer evaluation.\footnote{Encoded in Lean as a typed
-structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak EtaFormula.\allowbreak etaPublishedImports}
-bundling the imported results as hypothesis fields; not a Lean axiom.
-See App~\ref{app:formalization}.}
-\end{definition}
-
-\begin{theorem}[Conditional OC $\eta$-formula]\label{thm:closure:oc-eta-formula}
-Let \(E/\Q\) lie in the shallow additive odd-prime regime, including
-the prime-square anchors and the verified multi-prime extension, such
-as \(36a1\) at \(p=3\).  Let \(p\) be an odd additive prime.  Let
-\(\beta\) be the nonzero \(U_p\)-eigenvalue of the chosen additive
-\(p^2\)-stabilization, and assume the local relation \(\beta^2=-p\).  Let
-\(T_{\mathrm{leading\text{-}Bellaiche}}(E,p)\) be the Bella\"iche
-leading term of the overconvergent expansion, and let
-\(\mathrm{ord}_T(E,p)\) be its order in the expansion parameter.
-Conditional on Definition~\ref{def:closure:eta-published-imports},
+\begin{definition}[$\eta$-certificate]\label{def:closure:eta-published-imports}
+Let $E/\Q$ and let $p$ be an odd prime at which $E$ has additive reduction.
+An \emph{$\eta$-certificate} at $(E,p)$ consists of: a nonzero $\beta$
+(the proposed $U_p$-eigenvalue of an additive $p^2$-stabilization) with
+$\beta^2=-p$; a leading term $T_{\mathrm{lead}}(E,p)$ of an overconvergent
+expansion, with its order $\mathrm{ord}_T(E,p)\in\Z$; a value
+$\etap(E)$; nonzero scalars standing for $p$ and $\#E(\Q)_{\tors}$; and
+the identity
 \[
   \etap(E)
   =
-  \bigl(p\,|E(\Q)_{\tors}|\bigr)^{\mathrm{ord}_T(E,p)-1}
+  \bigl(p\,\#E(\Q)_{\tors}\bigr)^{\mathrm{ord}_T(E,p)-1}
   \,\beta^{-2}\,
-  T_{\mathrm{leading\text{-}Bellaiche}}(E,p).
+  T_{\mathrm{lead}}(E,p).
 \]
-The anchor evidence is anchor-level evidence only: the OC
-\(\eta\)-formula sub-residual is verified at \(49a1\) at \(p=7\)
-with \(\eta=-2\), at \(36a1\) at \(p=3\) with \(\eta=+2\), and at
-\(121b1\) at \(p=11\) with \(\eta=-1\), not as a uniform
-family-level statement.\footnote{\raggedright Tracked in the formalization
-harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak EtaFormula.\allowbreak ocEtaFormula}
--- a checked projection over an explicit proof-carrying record
-(conditional on the published imports), not an independent Lean
-derivation. See App~\ref{app:formalization}.}
+The certificate also lists, as propositions, the background results it
+is modelled on: Bella\"iche's critical-slope theory and moment
+lemma~\citep{Bellaiche2012}, overconvergent modular
+symbols~\citep{PollackStevens2011,ColemanMazur1998}, critical $p$-adic
+$L$-functions~\citep{BenoisBuyukboduk2024}, the Eisenstein ideal at
+prime-square level~\citep{LangWake2025}, component groups of N\'eron
+models~\citep{Lorenzini1993,Ling1997}, and a nonvanishing and primitivity
+statement for a cuspidal evaluation, which is a conjecture.
+\end{definition}
+
+\begin{theorem}[Conditional $\eta$-formula]\label{thm:closure:oc-eta-formula}
+If $(E,p)$ carries an $\eta$-certificate, then
+\[
+  \etap(E)
+  =
+  \bigl(p\,\#E(\Q)_{\tors}\bigr)^{\mathrm{ord}_T(E,p)-1}
+  \,\beta^{-2}\,
+  T_{\mathrm{lead}}(E,p).
+\]\footnote{The formalization records this as a conditional schema: the
+identity is a field of the certificate and the conclusion is its
+projection.}
 \end{theorem}
 
 \begin{proof}
-Assume the published-import structure of
-Definition~\ref{def:closure:eta-published-imports}.  The chosen additive
-stabilization fixes \(\beta\) with \(\beta^2=-p\); Bella\"iche's moment
-construction contributes the \(\beta^{-2}\) factor at level \(p^2\).
-The overconvergent modular-symbol input of Pollack--Stevens supplies the overconvergent expansion in which the
-Bella\"iche leading term \(T_{\mathrm{leading\text{-}Bellaiche}}(E,p)\)
-and the order \(\mathrm{ord}_T(E,p)\) are defined.  The critical
-\(p\)-adic \(L\)-function input identifies this leading term with the
-corresponding \(p\)-adic \(L\)-value contribution.
-
-The remaining published inputs, namely Lang--Wake (2025), Lorenzini,
-and Ling, together with the single cascade-internal nonvanishing and
-primitivity conjecture, supply the normalization of the local
-component and torsion factors.  Combining those normalizations with the
-critical-slope relation gives exactly
-\[
-  \etap(E)
-  =
-  \bigl(p\,|E(\Q)_{\tors}|\bigr)^{\mathrm{ord}_T(E,p)-1}
-  \,\beta^{-2}\,
-  T_{\mathrm{leading\text{-}Bellaiche}}(E,p).
-\]
-The three numerical anchors are finite checks of this displayed
-identity at the stated curves and primes.  They are not used as a
-uniform proof over the shallow additive odd-prime regime.  Thus the
-formula is exactly as strong as the published-import stack together
-with the named nonvanishing/primitivity conjecture; it does not
-rederive any of the imported results.
+The identity is part of the certificate.
 \end{proof}
 
- \section{The rank-one cascade import}
+We do not claim that the listed background results, together with the
+conjecture, imply the identity.  Two elementary obstructions show that at
+least some of them do not apply as stated.
+
+First, the relation $\beta^2=-p$ fixes the slope of $\beta$.  With the
+valuation normalized by $v_p(p)=1$, it gives $2v_p(\beta)=1$, so
+$v_p(\beta)=1/2$.  In weight $2$ the critical slope is $1$; this is the
+normalization of Benois--B\"uy\"ukboduk~\citep{BenoisBuyukboduk2024}, for
+whom the critical slope in weight $k$ is $k-1$.  So $\beta$ is not of
+critical slope, and results about critical-slope eigenvalues do not apply
+to it without a further comparison.
+
+Second, the theorem of Lang--Wake~\citep[Theorem~1.1]{LangWake2025}
+concerns a level prime $N$ and a residual prime $\ell$, both at least $5$,
+with $\ell\mid N+1$; these numerical conditions are necessary, though not
+sufficient, for an application.  They exclude the three curves at which
+the formula has been proposed, whichever residual prime is chosen.  For
+$36a1$ at $p=3$, the level prime would be $3<5$ (and the full level $36$
+is not prime).  For $49a1$ at $p=7$, $N+1=8$ has no prime divisor at least
+$5$.  For $121b1$ at $p=11$, $N+1=12$ has no prime divisor at least $5$.
+
+Numerical values of $\etap$ at these three curves have been recorded,
+but without complete input data or a reproducible computation of the
+right-hand side.  We do not regard them as evidence for the formula, at
+those curves or in general.\footnote{Lean proves the slope computation (from the relation
+$\beta^2=-p$, the multiplicativity of the valuation at $\beta^2$ and
+$v_p(-p)=1$, it derives $v_p(\beta)=1/2\neq1$) and the exclusion of the
+level primes $3$, $7$ and $11$ from the numerical conditions of
+Lang--Wake for every residual prime.}
+ \section{The \texorpdfstring{$p$}{p}-part in rank at most one}
 \label{sec:t-cascade}
 
-This section records the conditional rank-\(\leq 1\) input used by the
-closure: a \(p\)-part Strong-BSD valuation identity in ranks zero and
-one.  The result is conditional on a large named external stack of
-Iwasawa-theoretic, Heegner-point, and Selmer-complex results.  The
-stack has two branches, one for CM curves and one for non-CM curves.
+In analytic rank $0$ and $1$, the recognition predicate contains the
+scalar Strong BSD identity itself as a hypothesis
+(\Cref{def:closure:pi-bsd}).  This section records, for context, the
+form in which known results are expected to bear on that hypothesis: they
+give the $p$-part of the identity for suitable primes $p$.  As with the
+other inputs, we state precisely what is assumed; the main theorem does not
+use this section.
 
-\begin{definition}[$T_{\mathrm{CASCADE}}$ import stack]\label{def:closure:t-cascade-import}
-The cascade import is a proof-carrying structure bundling a stack of
-named external results.  In the CM branch it packages the standard CM
-Iwasawa-theoretic inputs~\citep{Rubin1991}, including the ordinary-split and
-supersingular-inert main-conjecture inputs, together with the
-archimedean, Heegner, and uniformization ingredients needed to compare
-the \(p\)-adic and classical sides.  In the non-CM branch it packages
-the ordinary and Euler-system inputs of Skinner--Urban~\citep{SkinnerUrban2014}, Wei Zhang~\citep{WeiZhang2014},
-Burungale--Castella--Skinner--Tian~\citep{BurungaleCastellaSkinnerTian2022},
-CHKLL~\citep{CHKLL2025}, and Yan--Zhu~\citep{YanZhu2026}.  The
-closure takes this stack as a hypothesis.\footnote{Encoded in Lean as a typed
-structure carrier
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak TCascade.\allowbreak tCascadeImport}
-bundling the imported results as hypothesis fields; not a Lean axiom.
-See App~\ref{app:formalization}.}
+\begin{definition}[Rank-at-most-one input]\label{def:closure:t-cascade-import}
+The rank-at-most-one input is a list of forty propositions, each with an
+asserted proof, standing for published results in two branches: for curves
+with complex multiplication, Rubin's Iwasawa theory over imaginary
+quadratic fields~\citep{Rubin1991}, the main conjecture at supersingular
+primes of Pollack--Rubin~\citep[Theorem~7.3]{PollackRubin2004}, and work of
+Burungale--Castella--Skinner--Tian~\citep{BurungaleCastellaSkinnerTian2022}
+at good ordinary primes, together with the archimedean, Heegner-point and
+uniformization ingredients needed to compare $p$-adic and classical
+quantities; for curves without complex multiplication, the work of
+Skinner--Urban~\citep{SkinnerUrban2014}, Wei Zhang~\citep{WeiZhang2014},
+Castella et al.~\citep{CHKLL2025} and Yan--Zhu~\citep{YanZhu2026}.  Both
+branches are part of the input simultaneously.
 \end{definition}
 
-\begin{theorem}[Conditional $p$-part SBSD, rank $\leq 1$]\label{thm:closure:t-cascade-rank-le-1}
-Let \(E/\Q\) have analytic rank \(r\in\{0,1\}\).  In the CM branch,
-assume that \(E\) has complex multiplication by \(K\), and that either
-\(p\) is a good ordinary prime split in \(K\), or \(p\) is a good
-supersingular prime inert in \(K\) with \(p\geq 5\).  Assume also that
-\(\Sha(E)[p^\infty]\) is finite, the Cassels--Tate pairing is
-nondegenerate, the Sakamoto and Macias Castillo--Sano Selmer-complex hypotheses
-hold, \(p\nmid\Tam(E/\Q)\), the standard ramification and CM
-Galois-image hypotheses hold, and a Heegner point is supplied when
-\(r=1\).
-
-In the non-CM branch, assume that \(E\) is non-CM, \(r\in\{0,1\}\),
-the representation \(\rho_{E,p}\) is surjective~\citep{Serre1972}, \(p\) is good
-ordinary with \(p\nmid N\), and \(p\nmid\Tam(E/\Q)\).  Assume the
-standard Skinner--Urban ordinary-local, residual-irreducibility,
-ramification, and level hypotheses; assume \(\Sha(E)[p^\infty]\) is
-finite, the Cassels--Tate pairing is nondegenerate, and the
-Sakamoto and Macias Castillo--Sano hypotheses hold.  When \(r=1\), also assume a
-Heegner field satisfying the Gross--Zagier--Kolyvagin hypotheses.
-
-Then, conditional on Definition~\ref{def:closure:t-cascade-import}, the
-\(p\)-part valuation identity
+\begin{theorem}[Conditional $p$-part identity in rank at most one]\label{thm:closure:t-cascade-rank-le-1}
+Let $E/\Q$ have analytic rank $r\in\{0,1\}$ and let $p$ be a prime.
+Assume the hypotheses of one of the two branches:
+\begin{itemize}
+\item[(CM)] $E$ has complex multiplication by $K$; either $p$ is good
+  ordinary and split in $K$, or $p\ge5$ is good supersingular and inert in
+  $K$; $\Sha(E/\Q)[p^\infty]$ is finite, the Cassels--Tate pairing is
+  nondegenerate, the Selmer-complex hypotheses of Sakamoto and Macias
+  Castillo--Sano hold, $p\nmid\Tam(E)$, the standard ramification and
+  Galois-image hypotheses hold, and a Heegner point is given when $r=1$;
+\item[(non-CM)] $E$ has no complex multiplication, the residual
+  representation $\bar\rho_{E,p}$ is surjective~\citep{Serre1972}, $p$ is
+  good ordinary with $p\nmid N$ and $p\nmid\Tam(E)$; the local,
+  residual-irreducibility, ramification and level hypotheses of
+  Skinner--Urban hold; $\Sha(E/\Q)[p^\infty]$ is finite, the Cassels--Tate
+  pairing is nondegenerate, the Selmer-complex hypotheses hold, and, when
+  $r=1$, the Gross--Zagier--Kolyvagin hypotheses hold for a Heegner field.
+\end{itemize}
+Assume the rank-at-most-one input, and assume further that, under these
+branch hypotheses, the results it lists yield the valuation identity
+below.  Then
 \[
-  v_p\!\left(\frac{L^{(r)}(E,1)}{r!\,\Omega\,R}\right)
+  v_p\!\left(\frac{L^{(r)}(E,1)/r!}{\Omega_E\,\Reg_{\mathrm{NT}}(E)}\right)
   =
-  v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}
-    {|E(\Q)_{\tors}|^2}\right)
-\]
-holds, where \(R\) is the N\'eron--Tate regulator.  Thus the cascade
-supplies the \(p\)-part of the Strong-BSD identity in ranks zero and
-one.\footnote{\raggedright Tracked in the formalization harness as a
-conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak TCascade.\allowbreak tCascadeRankLeOne}
--- a checked projection over an explicit proof-carrying record
-(conditional on the imported cascade stack), not an independent Lean
-derivation. See App~\ref{app:formalization}.}
+  v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}\right).
+\]\footnote{The formalization records this as a conditional schema.  Lean
+proves that the comparison hypothesis, given the forty asserted
+propositions and a curve and prime, is equivalent to the bare implication
+from the branch hypotheses to the valuation identity; the theorem is
+therefore exactly as strong as that implication.}
 \end{theorem}
 
 \begin{proof}
-Assume the cascade import stack.  In the CM branch, the CM
-Iwasawa-theoretic main-conjecture inputs identify the \(p\)-adic
-\(L\)-function side with the corresponding Selmer-theoretic side in
-the ordinary-split and supersingular-inert cases.  The Selmer-complex
-and Cassels--Tate hypotheses place the \(p\)-primary part of
-\(\Sha\) in the required nondegenerate comparison setting.  When
-\(r=1\), the Heegner-point input supplies the regulator term; in rank
-zero no Heegner regulator input is needed.  The standard ramification
-and CM Galois-image hypotheses are exactly the local hypotheses under
-which the imported CM comparison applies.
-
-In the non-CM branch, the Skinner--Urban input gives one divisibility
-between the \(p\)-adic \(L\)-value side and the Selmer side.  The
-opposite divisibility is supplied by the Euler-system and
-Gross--Zagier--Kolyvagin inputs, with the Gross--Zagier--Kolyvagin
-Heegner field used only in rank one.  In rank zero, the argument uses
-the rank-zero part of the same imported ordinary and Euler-system
-comparison and does not assume a rank-one Heegner field.
-
-In both branches, the hypotheses \(p\nmid\Tam(E/\Q)\), finiteness of
-\(\Sha(E)[p^\infty]\), and nondegeneracy of the Cassels--Tate pairing
-make the local and \(\Sha\)-terms comparable by \(p\)-adic units in the
-imported comparison.  After these unit ambiguities are removed, the two
-divisibilities in each branch pin down exactly the displayed valuation
-identity
-\[
-  v_p\!\left(\frac{L^{(r)}(E,1)}{r!\,\Omega\,R}\right)
-  =
-  v_p\!\left(\frac{\#\Sha(E/\Q)\,\Tam(E)}
-    {|E(\Q)_{\tors}|^2}\right).
-\]
-The proof is therefore an assembly of the imported cascade stack under
-the stated branch hypotheses.  It is precisely as strong as that stack:
-it does not rederive Skinner--Urban, Wei Zhang, the CM main conjecture,
-or Gross--Zagier--Kolyvagin.
+Apply the assumed implication to the branch hypotheses.
 \end{proof}
 
- \section{Typed obstructions}
+The comparison hypothesis in the theorem is where the arithmetic is: in
+the non-CM branch, for instance, one divisibility comes from the
+Skinner--Urban main conjecture and the other from Euler systems and the
+Gross--Zagier--Kolyvagin method, and making the two match up to $p$-adic
+units requires the finiteness, nondegeneracy and nondivisibility
+hypotheses.  We have not verified that the listed results yield the
+identity under exactly the stated hypotheses, and the input is not
+organized curve by curve.  The theorem should be read as a statement of
+the expected form of the known $p$-part results, not as a new proof of
+them, and it does not supply the full identity required by the
+recognition predicate in rank at most one.
+ \section{Inputs not supplied by known theorems}
 \label{sec:obstructions}
 
-The closure isolates three recognition sources because the
-theorem-grade literature does not presently supply every identity that
-would be needed for an unconditional Strong-BSD proof.  We call that
-literature ``Mode A'': the peer-reviewed arithmetic-geometry literature
-audited as external provenance, in the same sense as
-\citet{TsiokosBSDApparatus2026}.  The two statements
-below are audit results about the current reach of that literature.
-They are not non-existence claims.  The missing content may well exist;
-the point is that the audited literature does not currently provide it
-in theorem-grade form.  The closure therefore carries the missing
-arithmetic content as recognition sources rather than deriving it.
+Two of the inputs above correspond to well-known open problems.  We record
+them as remarks rather than theorems: they describe what, to our
+knowledge, is not currently available, and we have not carried out a
+systematic search of the literature to support anything stronger.
 
-\begin{theorem}[Higher-rank Gross--Zagier audit no-go]\label{thm:closure:t-e12-no-go}
-No theorem-grade peer-reviewed identity of the form
+\begin{remark}[Leading terms in rank at least two]\label{rmk:closure:t-e12-gap}
+For $E/\Q$ without complex multiplication and of analytic rank $r\ge2$,
+we know of no theorem giving an identity of the form
 \[
   \frac{L^{(r)}(E,1)}{r!}
   =
-  \kapr(E)\,\det\langle Z_i,Z_j\rangle_{\mathrm{NT}}\,
-  \Omega_E\,c_E
+  \kapr(E)\,\det\bigl(\langle Z_i,Z_j\rangle_{\mathrm{NT}}\bigr)\,
+  \Omega_E\,\Tam(E)
 \]
-is available in the audited Mode A literature for non-CM \(E/\Q\) of
-rank \(r\geq 2\), with explicit algebraic cycles \(Z_i\) and closed
-forms for \(\kapr(E)\) and \(c_E\).  This is the missing rank-\(r\)
-generalized Gross--Zagier identity.  The audited Mode A approaches
-converge on this gap.  This is explicitly not a non-existence claim:
-such an identity may exist, but it is not presently supplied by the
-audited theorem-grade literature.
-\end{theorem}
-
-\begin{theorem}[Additive small-prime main-conjecture audit no-go]\label{thm:closure:t-bad-no-go}
-No theorem-grade direct additive-prime Iwasawa main conjecture is
-available in the audited Mode A literature for \(E/\Q\) additive at
-\(p\in\{2,3\}\), with explicit local correction factors and
-characteristic-ideal equality.  In the audit this gap separates into a
-small list of local residual checks together with a Kodaira-type
-admissibility screen.  Again, this is an audit-result no-go, not a
-claim that such a theorem cannot exist.
-\end{theorem}
-
-\begin{remark}[Binding residuals carried by the recognition sources]\label{rmk:closure:mode-b-residuals}
-The cascade also produces three internal residuals: the rank-\(r\)
-regulator/fixity residual, the signed-Selmer corestriction residual,
-and the \(p\)-adic \(L\)-norm identity residual.  These are not
-independent theorems of the paper.  They are the reorganized arithmetic
-content carried by the three recognition sources of
-\Cref{sec:recognition-sources}: the higher-rank fixity source carries
-the regulator/fixity residual, the signed-Selmer persistence source
-carries the corestriction residual, and the \(p\)-adic descent source
-carries the \(p\)-adic norm identity residual.  Thus they are recorded
-as support-only typed-open content, not as additional derived claims.
+with explicit classes $Z_1,\dots,Z_r$ forming a $\Z$-basis of
+$E(\Q)/E(\Q)_{\tors}$, so that the determinant is $\Reg_{\mathrm{NT}}(E)$
+(for points spanning a subgroup of index $m$ it would be
+$m^2\Reg_{\mathrm{NT}}(E)$), and explicit normalizing factors, that is, a generalized Gross--Zagier formula in rank at least $2$.  The
+hypothesis $\GammaGZ$ is exactly what such a theorem, combined with the
+normalization of $\kapr$, would supply.
 \end{remark}
 
- \section{The conditional Strong-BSD landing}
+\begin{remark}[Main conjectures at additive primes $2$ and $3$]\label{rmk:closure:t-bad-gap}
+For $E/\Q$ with additive reduction at $p\in\{2,3\}$, we know of no
+Iwasawa main conjecture giving an equality of characteristic ideals with
+explicit local correction factors.  This is to be distinguished from the
+signed theories at primes of good supersingular reduction and from other
+local constructions.  The hypothesis $\GammaPD$ excludes the prime $2$.  The
+hypothesis $\GammaSP$ requires separately supplied signed applicability
+and comparison data, and no such comparison at an additive prime $2$ is
+established here.
+\end{remark}
+
+\begin{remark}[Where the local residuals are carried]\label{rmk:closure:mode-b-residuals}
+In the bookkeeping of the Six Birds framework, the difficulties of the
+previous two remarks and of the signed local comparison appear as three
+residuals: a rank-$r$ leading-term residual, a signed corestriction
+residual, and a local descent residual.  They are not additional results.
+They are carried, respectively, by the hypotheses $\GammaGZ$, $\GammaSP$
+and $\GammaPD$, and naming them does not reduce what has to be supplied.
+\end{remark}
+ \section{The conditional theorem}
 \label{sec:landing}
 
-We now assemble the closure.  The preceding sections supplied the
-trace shell \(\SelBSD\), the readout-level equivalence between
-\(\rhoE=0\) and the Strong-BSD scalar identity, the applicability of
-the closure master theorem, the non-disposability of the three
-recognition records, the three recognition sources themselves, and the
-headline imported theorem stacks.  The result below is the promised conditional
-landing.
-\Cref{tab:landing-chain,fig:landing-chain-diagram} give the chain before the
-formal statement.
-\begin{table}[tbp]
-\centering
-\small
-\caption{The conditional landing chain in companion-form prose.}
-\label{tab:landing-chain}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.11\textwidth}
->{\raggedright\arraybackslash}p{0.35\textwidth}
->{\raggedright\arraybackslash}X@{}}
-\toprule
-Step & Premise & Conclusion \\
-\midrule
-1 & The standing shell-closure record, the three recognition sources, and
-the headline imported theorem stacks are supplied to \(\SelBSD\). & The
-shell has named records for every scalar factor of \(\rhoE\). \\
-\addlinespace
-2 & The applicability and no-smuggling audits pass. & The closure master
-theorem applies to the shell. \\
-\addlinespace
-3 & The master theorem applies to \(\SelBSD\). & The residual readout
-vanishes: \(\rhoE=0\). \\
-\addlinespace
-4 & The readout-level equivalence identifies \(\rhoE=0\) with the displayed
-scalar identity. & Strong BSD follows under the stated hypotheses. \\
-\bottomrule
-\end{tabularx}
-\end{table}
- \begin{figure}[tbp]
+We can now state the main result.  \Cref{fig:landing-chain-diagram}
+shows its logical structure: which hypotheses enter the proof of the
+scalar identity, and which are carried along.
+
+\begin{figure}[tbp]
 \centering
 \begin{tikzpicture}[
   font=\small,
-  input/.style={draw, rounded corners=2pt, align=center, minimum width=4.7cm,
-    minimum height=1.35cm, fill=black!3},
-  box/.style={draw, rounded corners=2pt, align=center, minimum width=3.0cm,
-    minimum height=1.0cm, fill=black!3},
-  result/.style={draw, rounded corners=2pt, align=center, minimum width=4.0cm,
-    minimum height=1.35cm, fill=black!8},
+  hyp/.style={draw, rounded corners=2pt, align=center, text width=4.6cm,
+    minimum height=1.2cm, fill=black!3},
+  carried/.style={draw, dashed, rounded corners=2pt, align=center,
+    text width=4.6cm, minimum height=1.2cm},
+  res/.style={draw, rounded corners=2pt, align=center, text width=3.6cm,
+    minimum height=1.0cm, fill=black!8},
   arrow/.style={-{Latex[length=2mm]}, thick}
 ]
-\node[input] (inputs) at (-4.9,0.25) {shell-closure record\\
-  three recognition records\\headline imports};
-\node[box] (master) at (0,0.25) {closure master\\theorem applies};
-\node[result] (landing) at (4.9,0.25) {\(\rhoE=0\)\\
-  {\scriptsize readout equivalence}\\Strong-BSD identity};
-
-\draw[arrow] (inputs) -- (master);
-\draw[arrow] (master) -- (landing);
-\node[align=center, font=\footnotesize] at (0,-1.15)
-  {conditional on the supplied records, the shell residual vanishes and the scalar identity follows};
+\node[hyp] (low) at (-3.3,1.2) {rank \(0\) or \(1\):\\ \(L^*=R_E\) (supplied)};
+\node[hyp] (high) at (-3.3,-0.6) {rank \(\ge2\): \(\GammaGZ\)\\
+  \(L^*=\kapr\Reg\,\Omega\Tam\), \(\kapr=\#\Sha/d\)};
+\node[res] (bsd) at (2.6,0.3) {\(L^*=R_E\)\\[2pt]
+  \(\iff\rhoE=0\)\\ \(\iff c(x_E)=x_E\)\\ {\footnotesize (field, \(2\neq0\))}};
+\node[carried] (side) at (-3.3,-2.6) {carried, not used:\\ \(\GammaPD\), \(\GammaSP\),
+  \(\chiCTp\), \(\AofE\),\\ Beilinson (if \(r\ge2\))};
+\draw[arrow] (low.east) -- (bsd.west);
+\draw[arrow] (high.east) -- node[above, font=\footnotesize, sloped, pos=0.45] {algebra} (bsd.west);
 \end{tikzpicture}
-\caption{The conditional landing chain from the shell-closure record,
-recognition records, and headline imports to the Strong-BSD scalar identity.}
+\caption{The logical structure of \Cref{thm:closure:strong-bsd-conditional}.
+The scalar identity is derived from the rank-split part of the
+recognition predicate; the equivalences on the right are
+\Cref{thm:closure:pi-bsd-iff-strong-bsd,thm:closure:scalar-closure-translation}.
+The dashed hypotheses are part of the theorem's assumptions but do not
+enter the derivation of the identity.}
 \label{fig:landing-chain-diagram}
 \end{figure}
-
+ 
 \begin{theorem}[Conditional Strong BSD]\label{thm:closure:strong-bsd-conditional}
-Assume the standing closure assumption for \(\SelBSD\): the formed
-object carries its admissibility, anti-tautology, and lawfulness data.
-Assume the three recognition sources of
-Definitions~\ref{def:closure:gamma-padic-descent},
-\ref{def:closure:gamma-sha-persistence}, and
-\ref{def:closure:gamma-higher-gz-fixity}.  Assume also the three
-headline import structures of Definitions~\ref{def:closure:chi-ct-p-import},
-\ref{def:closure:a-e-import}, and
-\ref{def:closure:beilinson-import}.  Then the Strong-BSD scalar
-identity holds for \(E/\Q\):
+Let $\SelBSD$ be a shell with curve $E$ and analytic rank $r$, and let
+$C$ be its closure operator.  Assume:
+\begin{enumerate}
+\item the recognition predicate $\PiBSD(E)$
+  (\Cref{def:closure:pi-bsd});
+\item the Cassels--Tate input $\chiCTp$ at $E$ and some prime $p$, and the
+  Selmer-complex pairing input $\AofE$ at $E$
+  (\Cref{def:closure:chi-ct-p-import,def:closure:a-e-import});
+\item if $r\ge2$, the archimedean comparison input at $E$, of rank $r$
+  (\Cref{def:closure:beilinson-import}).
+\end{enumerate}
+Then
 \[
   \frac{L^{(r)}(E,1)}{r!}
   =
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2}.
+  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)}
+       {\#E(\Q)_{\tors}^{\,2}},
 \]
-Outside the framework, this is exactly the conditional theorem
-\[
-  \begin{aligned}
-  &\SelBSD\text{-closure}
-    \wedge\ \GammaPD \wedge \GammaSP \wedge \GammaGZ\\
-  &\quad{}\wedge\ \chiCTp\text{-imports}
-    \wedge\ \AofE\text{-imports}\\
-  &\quad{}\wedge\ \text{Beilinson-rank-}{\geq}2\text{-imports}\\
-  &\Longrightarrow \mathrm{Strong\ BSD},
-  \end{aligned}
-\]
-not an unconditional proof of BSD.\footnote{\raggedright Tracked in the
-formalization harness as a conditional schema
-\texttt{SixBirdsBSD.\allowbreak Closure.\allowbreak Landing.\allowbreak strongBSDConditional}
--- a checked projection over an explicit proof-carrying record whose
-hypotheses are the recognition sources and headline imports (a genuine
-implication chain through the shell-readout theorems), not an
-independent Lean derivation. See App~\ref{app:formalization}.}
+equivalently $\rhoE=0$, and the asserted components of the inputs in
+(2) and (3) hold.\footnote{The formalization records this theorem as a conditional
+schema, because it returns the components of the inputs in (2) and (3)
+by projection.  Its scalar conclusion, however, is derived: Lean proves
+it from items (3) and (4) of $\PiBSD(E)$ by the algebra in the proof
+below.  A compiled dependency check confirms that the two declarations
+isolating this algebra depend on no project declaration outside their
+own module,
+and that neither the derivation from $\PiBSD(E)$ nor the full theorem
+depends on \Cref{thm:closure:chi-ct-p-comparison},
+\Cref{thm:closure:oc-eta-formula}, \Cref{thm:closure:composite-signature},
+the statements of \Cref{sec:aor-instance}, or the supplied applicability,
+computability, falsifiability and ablation fields of the shell.}
 \end{theorem}
 
 \begin{proof}
-We follow the shell-readout chain.  By
-\Cref{thm:closure:master-theorem-applicability}, the three recognition
-sources are correctly instantiated on \(\SelBSD\), exhaust the scalar
-factors of the residual \(\rhoE\), and pass the no-smuggling audit.
-Thus the closure master theorem applies to the shell and gives
+If $r\in\{0,1\}$, item (4) of $\PiBSD(E)$ is the identity $L^*=R_E$.
+If $r\ge2$, item (3) supplies a $\GammaGZ$ record whose factors are those
+of the shell and whose constant is $\kapr=\#\Sha/d$, with $d$ the squared
+torsion order.  Its hypothesis $\psi_-(E,r)=0$ says
+$L^*-\kapr\Reg\,\Omega\,\Tam=0$, hence $L^*=\kapr\Reg\,\Omega\,\Tam$ by the
+first law of the shell.  Substituting $\kapr=\#\Sha/d$ and applying the
+second law $(a/d)\cdot b=(a\cdot b)/d$ three times gives
 \[
-  \rhoE=0.
+  L^*
+  =\Bigl(\frac{\#\Sha}{d}\Bigr)\Reg\,\Omega\,\Tam
+  =\frac{\#\Sha\,\Reg\,\Omega\,\Tam}{d}
+  =R_E .
 \]
-Let us spell out the factor accounting.  The higher-rank fixity source
-\(\GammaGZ\) supplies the assertion \(\psi_-(E,r)=0\).  By the
-\(\kapr\) normalization of \citet{TsiokosBSDApparatus2026},
-\[
-  \kapr(E)=\frac{\#\Sha(E/\Q)}{|E(\Q)_{\tors}|^2},
-\]
-so the product
-\(\kapr(E)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E\,\Tam(E)\) is the
-rank-\(r\) arithmetic part of \(\rhoE\), with \(\Tam(E)=\prod_v c_v(E)\).
-The \(p\)-adic descent source \(\GammaPD\) supplies the local
-\(p\)-adic/Tamagawa factor; the Cassels--Tate and Selmer-complex
-imports support the comparison of that local factor with the
-Cassels--Tate/Selmer-complex side.  The signed-Selmer persistence
-source \(\GammaSP\) supplies the \(\Sha\)-persistence factor.  The
-Beilinson import supplies the rank-\(\geq 2\) archimedean
-determinant/\(L\)-value identification.  Together these are exactly
-the scalar factors of \(\rhoE\), so the master-theorem conclusion is
-the vanishing of the residual.
-
-Now apply the readout-level equivalence
-\Cref{thm:closure:pi-bsd-iff-strong-bsd}.  Since \(\rhoE\) is defined as
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  -
-  \frac{\#\Sha(E/\Q)\,\Reg_{\mathrm{NT}}(E)\,\Omega_E
-    \prod_v c_v(E)}
-       {|E(\Q)_{\tors}|^2},
-\]
-the equality \(\rhoE=0\) is precisely the displayed Strong-BSD scalar
-identity.  Hence the identity follows.
-
-Finally, \Cref{thm:closure:composite-signature} records the
-anti-tautology check: the composite readout genuinely consumes all
-three recognition sources.  Removing \(\GammaPD\) leaves the local
-\(p\)-adic/Tamagawa factor undetermined; removing \(\GammaSP\) leaves
-the \(\Sha\)-persistence factor undetermined; removing \(\GammaGZ\)
-leaves the regulator/fixity factor undetermined.  Thus the conclusion
-is not a tautological restatement of Strong BSD.  Under the stated
-closure assumption, recognition sources, and imported stacks, the
-Strong-BSD scalar identity holds.
+In both cases $\rhoE=0$ by \Cref{thm:closure:pi-bsd-iff-strong-bsd}.  The
+remaining assertions are components of the inputs.
 \end{proof}
+
+Three comments make the content of the theorem precise.
+
+\emph{What the proof uses.}  The scalar conclusion is derived from the
+rank-split part of $\PiBSD(E)$ alone.  The local hypotheses $\GammaPD$
+and $\GammaSP$ and the comparison inputs are hypotheses of the theorem,
+because they belong to the arithmetic setting in which the recognition
+predicate is meant, but the scalar identity does not depend on them.
+
+\emph{How strong the hypothesis is.}  The rank-split scalar premise
+contains the identity in rank $0$ and $1$, and expresses it through
+normalized fixity in rank at least $2$: $\GammaGZ$ with the normalization
+$\kapr=\#\Sha/\#E(\Q)_{\tors}^{\,2}$ is the identity rewritten.  The
+remaining hypotheses supply additional records, which the identity does
+not reconstruct.  The theorem is therefore not an independent derivation of
+Strong BSD from weaker arithmetic statements, and it is not a statement
+about minimal hypotheses.  Its content is the exact translation: the
+identity is equivalent to the vanishing of $\rhoE$
+(\Cref{thm:closure:pi-bsd-iff-strong-bsd}) and, when the scalars form a
+field with $2\neq0$, to the fixedness of $x_E$ under the averaging closure
+(\Cref{thm:closure:scalar-closure-translation}),
+and it follows from the recognition predicate by explicit algebra, with
+every arithmetic input named and scoped.
+
+\emph{That the hypotheses are consistent and not vacuous.}  The theorem
+has been instantiated on shells with scalars in $\Q$, a label in place of
+a curve, all factors equal to $1$, and rank $0$ or $2$.  With leading
+coefficient $1$, all hypotheses hold and the conclusion follows; in rank
+$0$ no archimedean input is required, and none can be supplied.  With
+leading coefficient $2$ and everything else unchanged, the recognition
+predicate fails, since it would force $2=1$.  These are formal checks of
+the statement, not examples of elliptic curves.
 
 \begin{nonclaim}\label{nonclaim:closure:landing-conditional}
-This is not an unconditional classical proof of BSD, scalar or strong.
-The result is theorem-grade within the Six Birds closure discipline,
-conditional on the standing shell-closure record, the named recognition
-sources, and the headline imported theorem stacks; outside the framework it
-is the conditional implication
-displayed in the theorem above.  The rank-\(\geq 2\) generalized
-Gross--Zagier identity and the additive \(p\leq 3\) Iwasawa main
-conjecture remain genuinely open in the literature.
+This is not a proof of the Birch--Swinnerton-Dyer conjecture, in its weak
+or strong form, for any curve.  The theorem derives the Strong BSD
+identity for $E$ from hypotheses whose scalar part contains it in rank at
+most one and expresses it through normalized fixity in rank at least two.
+We know of no theorem supplying the leading-term identity in rank at
+least two, or the main conjectures at additive primes $2$ and $3$
+(\Cref{rmk:closure:t-e12-gap,rmk:closure:t-bad-gap}).
 \end{nonclaim}
-
- \section{BSD as a non-eliminative AOR instance}
+ \section{The audit register}
 \label{sec:aor-instance}
 
-The conditional landing of \Cref{sec:landing} gives the scalar
-Strong-BSD identity under the standing shell-closure record, the named
-recognition sources, and the headline imports.
-This final technical section records the corresponding
-Audited Operational Realisability reading.  In the sense of
-\cite{TsiokosAOR2026}, an AOR instance is a refinement-stable,
-audit-closed membership predicate: informally, the framework's
-``holds in reality'' assertion for an object, meaning that the
-residual defects left by refinement have all been accounted for by
-approved records.  The reading here is non-eliminative.  The open
-arithmetic content is not erased; it is recorded as recognition-source
-content, while the mechanical pieces and imported theorem stacks are
-accounted for by construction or by approved external citation.
+The Six Birds framework accompanies a closure argument with a register
+that records, for each residual difficulty, how it has been accounted for:
+constructed, imported from the literature, or supplied as a recognition
+hypothesis.  Audited Operational Realisability (AOR)~\citep{TsiokosAOR2026} is the
+framework's notion of such an accounting; its strongest form,
+refinement-stable AOR, asks that the accounting survive refinement.  This
+section sets up the register for the shell and proves a local model of
+refinement-stable AOR for it, in a precise and limited sense.  The register is bookkeeping: it does not prove any
+arithmetic statement, and an entry marked as supplied remains a
+hypothesis.
 
-\begin{definition}[BSD AOR-instance object]\label{def:closure:aor-sel-instance}
-The AOR-instance object attached to \(\SelBSD\) is the carrier whose
-membership witness is the bundle of closure records for the BSD trace
-shell.  The bundle has two kinds of entries.  The mechanical entries
-are the construction of \(\SelBSD\), the \(\kapr\) normalization, and
-the imported theorem stacks recorded through an approved
-external-record citation chain.  The substantive entries are the three
-recognition-source records of \Cref{sec:recognition-sources}.  The
-object is built using the AOR primitives of \cite{TsiokosAOR2026}:
-refinement-stable membership, structural-defect accounting, and
-discharge records.
+\begin{definition}[Audit register of the shell]\label{def:closure:aor-sel-instance}
+A \emph{discharge atom} consists of a residual type, a list of secondary
+residual types, and a status: \emph{by construction}, \emph{approved
+external input}, \emph{bridged} (supplied as a recognition hypothesis),
+or one of a few other statuses, among them \emph{zero} (eliminated).  A
+\emph{register} consists of an identifier, lists of observations, routes,
+sources, interfaces, constraints and nonclaims (the last nonempty), and a
+list of atoms.  The register of the shell $\SelBSD$, given recognition
+records $\GammaPD$, $\GammaSP$, $\GammaGZ$ and inputs $\chiCTp$, $\AofE$
+and the archimedean input, has eight atoms (\Cref{tab:aor-discharge-register}):
+the construction of the shell and the normalization of $\kapr$, both by
+construction; the three comparison inputs, as approved external inputs;
+and the three recognition hypotheses, each bridged, with the secondary
+types role, target, transport and limit.  Since the archimedean input
+requires rank at least $2$, the register as set up applies to shells of
+analytic rank at least $2$.
 \end{definition}
 
-\begin{theorem}[Mechanical-record discharges]\label{thm:closure:aor-mechanical-records}
-The mechanical membership components discharge cleanly.  The
-\(\SelBSD\) construction and the \(\kapr\) normalization are
-discharged by construction.  The \(\chiCTp\), \(\AofE\), and
-Beilinson import structures are discharged by an approved
-external-record citation chain: they are cited as imported theorem
-stacks, not reproved.
-
-For the normalization record, we use \citet{TsiokosBSDApparatus2026}.
-Fix the cascade convention
-\[
-  c_E := \Tam(E)=\prod_{\ell} c_{\ell}(E).
-\]
-Then the cascade leading-term form
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  =
-  \kapr(E)\,\Omega_E\,\Reg_r(E)\,c_E
-\]
-agrees with the standard Strong-BSD leading-coefficient form
-\[
-  \frac{L^{(r)}(E,1)}{r!}
-  =
-  \Omega_E\,\Reg_r(E)\,
-  \frac{\#\Sha(E/\Q)\,\Tam(E)}{\#E(\Q)_{\tors}^{\,2}}
-\]
-if and only if
-\[
-  \kapr(E)=
-  \frac{\#\Sha(E/\Q)}{\#E(\Q)_{\tors}^{\,2}}.
-\]
-This is a restatement in cascade coordinates, not a proof of the
-Strong-BSD identity.
-\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Closure.AORInstance.aorMechanicalRecords};
-see App~\ref{app:formalization}.}
-\end{theorem}
-
-\begin{proof}
-The shell itself is one of the constructed objects of the closure
-architecture, so its mechanical entry is accounted for by construction.
-The displayed \(\kapr\) equivalence is likewise a constructed
-normalization record: once the cascade convention \(c_E=\Tam(E)\) is
-fixed, it identifies the scalar that makes the cascade leading-term
-form and the standard Strong-BSD leading-coefficient form the same
-formula.  It does not assert that the formula is true independently of
-the conditional landing.
-
-It remains only to account for the imported theorem stacks.  The
-\(\chiCTp\) Cassels--Tate stack, the \(\AofE\) Selmer-complex pairing
-stack, and the Beilinson comparison stack enter as named external
-records.  They are therefore discharged by an approved citation chain,
-not by a derivation inside the closure.  These three citation records,
-together with the constructed shell and the \(\kapr\) normalization,
-exhaust the mechanical part of the AOR membership witness.
-\end{proof}
-
-\begin{theorem}[Recognition-source discharges]\label{thm:closure:aor-recognition-discharge}
-The three recognition sources discharge as bridged records.  Here a
-bridged record means a recognition residual that is reclassified as
-supplied closure content rather than eliminated by a derivation.  Each
-\(\Gamma_{\mathrm{BSD}}^{*}\) is a primary structural defect of
-source type, carrying its forced secondary defects of role, target,
-transport, and limit, and is discharged by such a bridged record.  In
-particular, none of the three recognition sources is eliminated.
-\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Closure.AORInstance.aorRecognitionDischarge};
-see App~\ref{app:formalization}.}
-\end{theorem}
-
-\begin{proof}
-Each of the three recognition sources is an open arithmetic obligation
-that the closure names and consumes but does not derive.  In the audit
-presentation, such an obligation is therefore recorded as a
-source-type structural defect, together with the secondary information
-that specifies its role in the argument, its target factor in the BSD
-residual, its transport through the shell, and the limit of what the
-closure claims about it.
-
-The discharge is by bridging.  That is, the record says that the
-obligation is supplied as recognition content and is available to the
-conditional landing; it does not say that the obligation has been
-proved away.  This applies to the \(p\)-adic descent source, the
-signed-Selmer persistence source, and the higher-rank fixity source.
-Thus all three recognition records are accounted for, and all three
-remain non-eliminated.
-\end{proof}
-
-\Cref{tab:aor-discharge-register} lists the mechanical, imported, and
-recognition-source atoms that enter the local AOR membership witness.
 \begin{table}[tbp]
 \centering
 \small
-\caption{The eight AOR discharge atoms for the BSD trace shell.  The
-recognition-source rows are bridged, not zeroed.}
+\caption{The eight atoms of the audit register.  ``Bridged'' means
+supplied as a recognition hypothesis; it does not mean proved.}
 \label{tab:aor-discharge-register}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.31\textwidth}
->{\raggedright\arraybackslash}p{0.24\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.36\textwidth}
+>{\raggedright\arraybackslash}p{0.22\textwidth}
 >{\raggedright\arraybackslash}X@{}}
 \toprule
-Residual atom & Primary type & Status \\
+Entry & Residual type & Status \\
 \midrule
-\(\SelBSD\) construction & mechanical & by construction \\
-\(\kapr\) normalization & mechanical & by construction, citing the
-apparatus paper \\
-\(\chiCTp\) import stack & imported theorem stack & approved external
-record \\
-\(\AofE\) Selmer-complex substrate & imported theorem stack & approved
-external record \\
-Beilinson rank-\(\geq2\) comparison & imported theorem stack & approved
-external record \\
-\(\GammaPD\) & recognition source & bridged, not eliminated \\
-\(\GammaSP\) & recognition source & bridged, not eliminated \\
-\(\GammaGZ\) & recognition source & bridged, not eliminated \\
+Construction of \(\SelBSD\) & presentation & by construction \\
+Normalization of \(\kapr\) & transport & by construction \\
+Cassels--Tate input \(\chiCTp\) & source & approved external input \\
+Selmer-complex input \(\AofE\) & source & approved external input \\
+Archimedean input (rank \(\ge2\)) & source & approved external input \\
+\(\GammaPD\) & source & bridged \\
+\(\GammaSP\) & source & bridged \\
+\(\GammaGZ\) & source & bridged \\
 \bottomrule
 \end{tabularx}
 \end{table}
-
-\begin{theorem}[AOR-instance membership]\label{thm:closure:aor-instance}
-\(\SelBSD\) is refinement-stable audit-closed, hence an AOR instance,
-under the declared presentation: its declared audit records discharge
-the structural defects that remain under refinement.  This is the
-framework's ``Strong BSD holds in reality'' statement, and it is
-non-eliminative.  The recognition records are reclassified as bridged
-records, not discharged of their open arithmetic.
-\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Closure.AORInstance.aorInstance} over a narrowed
-representation -- the local syntactic refinement-stable predicate, not
-the full Audited Operational Realisability meta-theory; the narrowing
-is recorded in App~\ref{app:formalization}.}
+ 
+\begin{theorem}[The constructed and imported entries]\label{thm:closure:aor-mechanical-records}
+In the register of the shell, the construction of the shell and the
+normalization of $\kapr$ have status by construction, and the three
+comparison inputs have status approved external input.  Moreover, if the
+quantities are integers or lie in a field (with the shell's multiplication
+being the field multiplication) and $C=\Omega_E\Reg\,\Tam(E)\neq0$, then
+one has $\kapr C=sC$ if and only if
+$\kapr=s$, for every $s$ (for $s=\#\Sha/\#E(\Q)_{\tors}^{\,2}$ this is
+the normalization of $\kapr$); and the asserted components of the three
+inputs hold.\footnote{Lean proves the status assignments and the cancellation, the
+latter for integer-valued quantities; the components of the inputs are
+returned from the input records.  Lean does not show that the inputs are
+approved in any sense beyond this label.}
 \end{theorem}
 
 \begin{proof}
-By \Cref{thm:closure:aor-mechanical-records}, the mechanical
-components of the BSD trace shell are accounted for: the shell
-construction and the \(\kapr\) normalization are discharged by
-construction, while the imported theorem stacks are discharged by
-approved external citation.  By
-\Cref{thm:closure:aor-recognition-discharge}, the three recognition
-sources are accounted for as bridged records.
-
-These two groups exhaust the declared structural defects that persist
-under refinement of the BSD trace shell.  The mechanical records are
-closed by construction or citation; the recognition records are
-carried forward as supplied recognition content.  Therefore every
-remaining defect is matched by a declared audit record, so the shell is
-refinement-stable audit-closed under the declared presentation.
-
-The last clause is essential.  The membership statement does not
-convert the recognition sources into classical proofs of the open
-arithmetic obligations.  It records that those obligations are present,
-named, and bridged in the audit, which is exactly the non-eliminative
-AOR reading.
+The statuses are read off the register.  The cancellation is
+\citet[Section~13]{TsiokosBSDApparatus2026} in the integral case: if a
+common factor is nonzero, two multiples of it agree exactly when the
+multipliers agree.  The last assertion restates the inputs.
 \end{proof}
 
-\begin{remark}[AOR partial status]\label{rmk:closure:aor-partial-status}
-The AOR-instance reading does not close the open obligations.  The
-rank-\(\geq 2\) generalized Gross--Zagier identity and the additive
-\(p\leq 3\) Iwasawa main conjecture remain open in the literature.
-What the AOR reading records is that the BSD carrier is audit-closed
-under the declared refinement-stable presentation, with the
-recognition records reclassified as bridged content rather than
-discarded.  Only the local syntactic refinement-stable predicate is
-mechanized here, not the full AOR meta-theory.
+\begin{theorem}[The recognition entries]\label{thm:closure:aor-recognition-discharge}
+In the register of the shell, each of the three recognition hypotheses is
+an atom of residual type \emph{source}, with secondary types role,
+target, transport and limit, and with status bridged; none has status
+zero.  The asserted content of the three recognition records holds.\footnote{The formalization records this as a conditional schema: the
+statuses are read off the register, and the asserted content is returned
+from the records.}
+\end{theorem}
+
+\begin{proof}
+By the definition of the register, and because the recognition records
+are hypotheses.
+\end{proof}
+
+The register is \emph{closed} if its list of nonclaims is nonempty and no
+atom has status zero.  A \emph{refinement} of a register keeps its
+identifier and all entries of its lists, and replaces each atom by atoms
+with the same residual type and the same status and with at least the
+same secondary types, every new atom refining an old one.  Refinement in
+this sense adds detail but cannot change a status; in particular it cannot
+turn a bridged hypothesis into an eliminated one.
+
+\begin{theorem}[Refinement-stable closure of the register]\label{thm:closure:aor-instance}
+The register of the shell is closed, and every refinement of it is
+closed.  The recognition entries satisfy
+\Cref{thm:closure:aor-recognition-discharge}, and, when
+$\Omega_E\Reg\,\Tam(E)\neq0$ in the setting of
+\Cref{thm:closure:aor-mechanical-records}, so do the constructed and
+imported entries.\footnote{Lean proves this for the refinement relation just described,
+which it shows to be reflexive and transitive and to preserve statuses.
+It does not formalize the general refinement relation of the AOR
+framework.}
+\end{theorem}
+
+\begin{proof}
+The nonclaims list is nonempty and the eight statuses are by
+construction, approved external input, or bridged, none of them zero.  A
+refinement preserves the nonclaims and the status of every atom it
+accounts for, so it is again closed.
+\end{proof}
+
+\begin{remark}[What the register does and does not say]\label{rmk:closure:aor-partial-status}
+Closedness of the register means that every residual difficulty has been
+given a status other than ``eliminated''.  Three of them are bridged:
+they are carried as recognition hypotheses, which this paper does not
+prove.  The register therefore records an accounting of the conditional
+theorem, not a proof of Strong BSD.  Its stability is proved only for the
+declared refinement relation, and the label ``approved'' on an input is
+not a verification of that input.
 \end{remark}
  \section{Scope and non-claims}\label{sec:scope}
 
 
-The closure developed in this paper is deliberately conditional.  The
-point of the construction is to isolate exactly which recognition
-sources and imported theorem stacks would close the Strong-BSD scalar
-identity inside the Six Birds closure discipline, and to record what
-is not being claimed.  The following seven non-claims are part of the
-statement of the paper.  They fix the intended reading of the theorem,
-the role of the recognition sources, the status of the imports, and
-the meaning of the final AOR membership assertion.
+The following statements delimit what the paper establishes.  They are
+summarized in \Cref{tab:nonclaims}.
 
-\begin{itemize}[leftmargin=*]
-\item[\textbf{NC-1.}]
-\textbf{Not unconditional BSD.}  This is not an unconditional
-classical proof of BSD, scalar or strong.  The result is theorem-grade
-within the Six Birds closure discipline, conditional on the standing
-shell-closure record, the named recognition sources, and the headline
-imported theorem stacks.  Outside the framework it reads as the
-conditional theorem
-\[
-  \begin{aligned}
-  &\SelBSD\text{-closure}
-    \wedge\ \GammaPD \wedge \GammaSP \wedge \GammaGZ\\
-  &\quad{}\wedge\ \chiCTp\text{-imports}
-    \wedge\ \AofE\text{-imports}
-    \wedge\ \text{Beilinson-imports}\\
-  &\Longrightarrow \mathrm{Strong\ BSD}.
-  \end{aligned}
-\]
-This is the headline reading of the paper.  The closure is a precise
-conditional implication, not a replacement for the missing
-unconditional arithmetic theorems.
+\begin{enumerate}
+\item \emph{Not a proof of BSD.}  The main theorem derives the Strong BSD
+  identity for a curve from a recognition hypothesis whose scalar part
+  contains the identity in rank at most one and expresses it through a
+  normalized leading-term identity in rank at least two.  It is a
+  conditional theorem and an exact translation, not an independent
+  derivation, and it makes no claim about minimal hypotheses.
+\item \emph{The hypotheses are not derived.}  The recognition hypotheses
+  and the comparison inputs are assumed.  The paper does not prove them,
+  and does not derive the map, generator image or sign of the
+  Cassels--Tate input from the background results it lists.  The example
+  of \Cref{sec:chi-ct-p} checks the hypotheses of some of those results
+  for one curve and prime, but the identification of the prescribed
+  generator, target and orientation remains part of the input.
+\item \emph{No necessity.}  We do not claim that any recognition
+  hypothesis is necessary for the scalar conclusion.  In rank at least
+  $2$, the normalized hypothesis $\GammaGZ$ already implies it, and
+  sensitivity of the BSD product to its factors
+  (\Cref{thm:closure:composite-signature}) is not necessity
+  (\Cref{rmk:closure:sensitivity-not-necessity}).
+\item \emph{No arithmetic formed layer is constructed.}  The closure formulation
+  (\Cref{sec:scalar-closure}) returns the identity from a closure on a
+  richer layer only under an intertwining readout and fixedness of the
+  original state.  Apart from small rational models, no such layer is
+  constructed; for arithmetic data these are assumptions.  No application of
+  a general master theorem of the framework is claimed.
+\item \emph{No computability claims.}  The formal shell carries
+  propositions named computability and falsifiability with supplied
+  proofs; they are not results.  The scalar identity can be checked when
+  both sides are supplied in an effective representation with decidable
+  equality, for example over $\Q$, but the paper provides no procedure for
+  computing them or for deciding the recognition predicate.
+\item \emph{Open inputs.}  We know of no theorem supplying the
+  leading-term identity in rank at least $2$ or main conjectures with
+  explicit local factors at additive primes $2$ and $3$
+  (\Cref{rmk:closure:t-e12-gap,rmk:closure:t-bad-gap}).  The local
+  hypotheses are stated in restricted scopes: the descent hypothesis
+  excludes $p=2$, and no signed comparison at an additive prime $2$ is
+  established.
+\item \emph{The $\eta$-formula is not established.}  It is recorded only
+  as a conditional certificate; its derivation from the cited results is
+  not claimed, two of those results do not apply as stated, and no
+  numerical value is offered as evidence (\Cref{sec:eta-formula}).
+\item \emph{The register is bookkeeping.}  The refinement-stable closure
+  of the audit register (\Cref{sec:aor-instance}) concerns the
+  register's statuses under a declared refinement relation; it proves no
+  arithmetic statement and does not formalize the general AOR theory.
+\end{enumerate}
 
-\item[\textbf{NC-2.}]
-\textbf{Recognition sources not derived.}  No recognition source is
-derived from framework primitives.  Each \(\Gamma_{\mathrm{BSD}}^{*}\)
-is closure content of the formed BSD layer: a typed carrier whose
-mathematical payload is supplied as a hypothesis and then consumed by
-the shell.  The formalization records these carriers as explicit
-structure data, not as axioms and not as hidden constants.  Thus the
-three sources are neither proved by the framework nor smuggled into
-the conclusion; they are named, typed, and kept visible throughout the
-argument.
-
-\item[\textbf{NC-3.}]
-\textbf{Rank-\(\geq 2\) Gross--Zagier remains open.}  We do not prove
-the rank-\(\geq 2\) generalized Gross--Zagier identity.  The relevant
-missing identity is the higher-rank comparison between the leading
-\(L\)-value and a Neron--Tate regulator determinant of algebraic
-cycles, with the necessary normalizing factors made explicit.  The
-no-go result used in this paper is an audit result: in the audited
-theorem-grade literature, the needed number-field identity is not
-available in the required form.  This is not a non-existence claim.
-It says only that the present literature does not supply the theorem
-needed to remove the corresponding recognition source.
-
-\item[\textbf{NC-4.}]
-\textbf{Additive \(p\leq 3\) Iwasawa main conjecture remains open.}
-We do not prove the additive \(p\leq 3\) Iwasawa main conjecture with
-the explicit local correction factors and characteristic-ideal
-identity required by the closure.  This is again an audit-result
-no-go, not a claim that such a theorem cannot exist.  The paper treats
-the missing small-additive-prime input as open arithmetic content and
-does not derive it from the closure framework.  In particular, the
-odd-additive recognition carriers do not by themselves discharge the
-\(p=2\) part of this obstruction; any such discharge would have to be a
-separate supplied record or a future imported theorem.
-
-\item[\textbf{NC-5.}]
-\textbf{Imports not eliminated.}  The \(\chiCTp\) comparison remains
-conditional on its imported Cassels--Tate stack.  Likewise, the
-\(\AofE\) Selmer-complex pairing substrate and the Beilinson
-rank-\(\geq 2\) comparison enter as imported theorem stacks.  These
-structures are sourced assumptions for this paper, not results proved
-here.  The closure derives consequences from them; it does not
-eliminate them, reconstruct them, or claim independent proofs of the
-classical arithmetic geometry they package.
-
-\item[\textbf{NC-6.}]
-\textbf{Anchor-level evidence is not family-level.}  The
-overconvergent \(\eta\)-formula sub-residual is verified at the
-anchors \(49\mathrm{a}1@7\), \(36\mathrm{a}1@3\), and
-\(121\mathrm{b}1@11\).  Those checks are anchor-level numerical
-evidence.  They are not a uniform family-level statement over all
-elliptic curves or all additive odd primes in the relevant regime.
-The conditional formula in \Cref{sec:eta-formula} remains conditional
-on its published-import stack and its named nonvanishing/primitivity
-input.
-
-\item[\textbf{NC-7.}]
-\textbf{AOR is non-eliminative.}  The AOR-instance reading does not
-close the open obligations.  It reclassifies the closure records: the
-recognition discharges are bridged records, meaning the corresponding
-open arithmetic content is carried as supplied recognition content
-rather than eliminated.  The rank-\(\geq 2\) generalized
-Gross--Zagier identity and the additive \(p\leq 3\) Iwasawa main
-conjecture therefore remain open after the AOR reading.  Moreover,
-only the local syntactic refinement-stable predicate is mechanized in
-this paper, not the full Audited Operational Realisability
-meta-theory.
-\end{itemize}
-
-These non-claims also govern the wording of the paper.  We do not say
-that the paper proves BSD, proves the additive-prime Iwasawa main
-conjecture, or proves the higher-rank Gross--Zagier identity.  The
-paper lands Strong BSD as a conditional closure.  The standing shell-closure
-record is assumed; recognition sources are supplied and carried as
-hypotheses; headline imported theorem stacks are imported and cited; the
-AOR reading records a non-eliminative
-audit-closed membership statement under those declared records.
 \begin{table}[tbp]
 \centering
 \footnotesize
-\caption{Closure-paper nonclaims.  These are wording boundaries for the
-headline theorem, recognition sources, imports, and AOR reading.}
+\caption{Summary of the non-claims of \Cref{sec:scope}.}
 \label{tab:nonclaims}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.12\textwidth}
->{\raggedright\arraybackslash}p{0.25\textwidth}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.05\textwidth}
+>{\raggedright\arraybackslash}p{0.27\textwidth}
 >{\raggedright\arraybackslash}X@{}}
 \toprule
-Code & Boundary & Short reading \\
+ & Boundary & Reading \\
 \midrule
-NC-1 & Not unconditional BSD & The theorem is conditional on the standing
-shell-closure record, named recognition sources, and headline imports. \\
-NC-2 & Recognition sources not derived & The \(\Gamma_{\mathrm{BSD}}^*\)
-carriers are supplied hypotheses, not framework consequences. \\
-NC-3 & Rank-\(\geq2\) Gross--Zagier open & The needed theorem-grade
-higher-rank identity remains an audit-result gap. \\
-NC-4 & Additive \(p\leq3\) IMC open & The small-additive-prime input,
-including the \(p=2\) part outside the odd-prime carriers, is not proved
-here. \\
-NC-5 & Imports not eliminated & The imported theorem stacks remain sourced
-assumptions. \\
-NC-6 & Anchors are not families & The \(\eta\)-formula checks are
-anchor-level, not uniform family theorems. \\
-NC-7 & AOR non-eliminative & Bridged recognition records are carried, not
-zeroed. \\
+1 & Not a proof of BSD & Conditional translation; the scalar hypothesis has
+the strength of the conclusion. \\
+2 & Hypotheses not derived & Recognition hypotheses and comparison inputs
+are assumed. \\
+3 & No necessity & Normalized \(\GammaGZ\) alone gives the scalar identity
+in rank \(\ge2\). \\
+4 & No arithmetic formed layer & Intertwining readout and original
+fixedness are assumed. \\
+5 & No computability & Named computability fields are supplied, not
+proved. \\
+6 & Open inputs & Rank-\(\ge2\) leading terms; additive \(p\in\{2,3\}\)
+main conjectures. \\
+7 & \(\eta\)-formula & Conditional certificate only; no evidence
+claimed. \\
+8 & Register & Statuses under a declared refinement; no arithmetic
+proved. \\
 \bottomrule
 \end{tabularx}
 \end{table}
   \section{Discussion}\label{sec:discussion}
 
 
-The point of this paper is not to add another unconditional theorem to
-the classical BSD literature.  It is to make explicit what a
-conditional closure of Strong BSD rests on, and to organize the
-remaining arithmetic content into named records.  The existing
-conditional landscape is already rich.  Gross--Zagier--Kolyvagin
-methods control the rank \(0\) and \(1\) bridge between derivatives,
-Heegner points, Selmer groups, and regulators.  Skinner--Urban and
-Iwasawa-main-conjecture methods control ordinary-prime Selmer and
-\(p\)-adic \(L\)-function data under their hypotheses.  Cassels--Tate
-and Selmer-complex formalisms supply the pairing language needed to
-compare arithmetic determinants, Fitting ideals, and local correction
-terms.  Each of these classical mechanisms controls part of the
-Strong-BSD product.  None, by itself, gives the entire scalar package
-in the generality targeted here.
+The classical results bearing on the Strong BSD formula each control part
+of it.  Gross--Zagier and Kolyvagin~\citep{GrossZagier1986,Kolyvagin1989}
+relate derivatives, Heegner points, Selmer groups and regulators in rank
+at most one; Iwasawa main conjectures~\citep{SkinnerUrban2014} give
+$p$-parts of the formula at many primes; Cassels--Tate pairings and
+Selmer complexes~\citep{Flach1990,Nekovar2006} organize the finite
+arithmetic.  None of them gives the whole formula in general.  This paper
+does not change that.  What it does is make one precise statement about
+how the formula fits a closure framework, and record exactly which inputs
+such a formulation needs.
 
-The contribution of the closure is therefore architectural.  Once the
-classical theorem stacks are imported, the remaining scalar factors
-are named as three recognition sources: the \(p\)-adic descent and
-Tamagawa correction, the signed-Selmer persistence of the
-\(\Sha\)-factor, and the higher-rank regulator/fixity readout.  The
-shell \(\SelBSD\) then records the analytic leading coefficient, the
-arithmetic product, and the residual between them in one typed object.
-The readout theorem identifies vanishing of that residual with the
-standard Strong-BSD scalar identity.  Thus the paper gives a precise
-conditional implication: under the standing shell-closure record,
-supplying the three recognition sources together with the headline imported
-theorem stacks forces Strong BSD.  Its value lies in the bookkeeping: what is imported, what is carried
-as recognition content, which factors each source governs, and which
-obligations remain open.  This is not a new unconditional proof of
-BSD.  It is a conditional closure whose hypotheses have been separated
-and named.
+The precise statement is the fixed-point formulation of
+\Cref{thm:closure:scalar-closure-translation}: the identity holds exactly
+when the pair of its two sides is fixed by the averaging closure.  It is
+elementary, and it is exact; in particular it separates fixedness of the
+original pair from the trivial closedness of its image.
+\Cref{thm:closure:formed-closure-bridge} says what a closure on a richer
+layer of arithmetic data would have to satisfy to return the identity: a
+readout intertwining it with the averaging closure, and fixedness of the
+original state.  Neither is constructed here, and idempotence alone does
+not supply them.
 
-This bookkeeping also explains why \citet{TsiokosBSDApparatus2026} is
-structurally relevant.  Its typed adequacy and five-column diagnostic
-language separates the BSD scalar
-package into factors that can be audited independently: height and
-regulator data, period data, finite arithmetic data, \(p\)-adic local
-data, and determinant-line data.  The \(\kapr\) normalization from
-that work is especially important here.  It identifies the cascade
-coefficient with the standard factor
-\(\#\Sha(E/\Q)/|E(\Q)_{\tors}|^2\), so the higher-rank fixity source
-\(\GammaGZ\) can be read as exactly the rank-\(r\) contribution to
-the shell residual.  Without this factor-by-factor language, the
-conditional implication would be a single opaque scalar assertion.
-With it, the closure can attach each remaining obligation to the
-factor it governs.
+The main theorem should be read with its hypotheses in view.  Its scalar
+conclusion follows from a recognition hypothesis that contains the
+identity in rank at most one and expresses it through a normalized
+leading-term identity in rank at least two.  The other hypotheses, the
+local recognition hypotheses and the comparison inputs, are carried with
+their scopes but do not enter the derivation.  The value of the
+formulation therefore lies in its accounting: what is assumed, where each
+assumption would come from, what its scope is, and what is not known.
+Several points of that accounting are not obvious and are worth
+recording.  The local congruences modulo $\Zp^\times$ cannot see a
+Tamagawa number prime to $p$ (\Cref{sec:recognition-sources}).  The
+determinant ideal of a Selmer complex does not determine whether a
+prescribed generator has a square root (\Cref{ex:closure:1913b1}).  The
+proposed $\eta$-formula involves an eigenvalue of slope $1/2$, not the
+critical slope (\Cref{sec:eta-formula}).  And sensitivity of the BSD
+product to its factors does not make any hypothesis necessary
+(\Cref{rmk:closure:sensitivity-not-necessity}).
 
-The same structural pattern is shared by the broader Six Birds
-Clay-track program.  In each track, the target conjecture is first
-encoded as the vanishing or fixed readout of a saturated trace shell.
-Deep content that is not derived internally is isolated as named
-recognition sources.  The shell readout is then linked to the target
-statement by an explicit scalar or structural equivalence, and the
-final connect-to-reality step is an Audited Operational Realisability
-reading: a refinement-stable, audit-closed membership assertion in the
-sense of \cite{TsiokosAOR2026}.  This is the same non-eliminative
-``holds in reality'' pattern used in the Riemann-hypothesis,
-Navier--Stokes, and P-vs-NP tracks, stated here for Strong BSD.
-\Cref{tab:clay-track-parallel} records the parallel in the compact form used
-by the series.
-\begin{table}[tbp]
-\centering
-\small
-\caption{Structural parallel with the other Six Birds Clay-track papers.}
-\label{tab:clay-track-parallel}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.16\textwidth}
->{\raggedright\arraybackslash}p{0.26\textwidth}
->{\raggedright\arraybackslash}p{0.28\textwidth}
->{\raggedright\arraybackslash}X@{}}
-\toprule
-Track & Shell/readout & Recognition content & AOR reading \\
-\midrule
-Navier--Stokes & Saturated flow shell and regularity readout & analytic
-regularity sources & non-eliminative audit closure \\
-Riemann hypothesis & Spectral trace shell and zero-location readout &
-Selberg-type recognition source & non-eliminative audit closure \\
-P-vs-NP & Complexity trace shell and separation readout & formed-computation
-recognition sources & non-eliminative audit closure \\
-BSD & \(\SelBSD\) and \(\rhoE=0\) readout & \(\GammaPD\), \(\GammaSP\),
-\(\GammaGZ\), plus imports & non-eliminative BSD AOR instance \\
-\bottomrule
-\end{tabularx}
-\end{table}
+The companion paper~\citep{TsiokosBSDApparatus2026} studies the same
+factors from the other side: which data each factor of the BSD formula
+retains, with finite adequacy tests and examples of information loss.
+Its normalization of $\kapr$ is what identifies the rank-$\ge2$
+recognition hypothesis with the Strong BSD identity here.
 
-The BSD composite recognition predicate also fits the common
-recognition-mode discipline of \cite{TsiokosFoundationsIII2026}.  In
-plain terms, the composite carries the same framework trace signature
-as the earlier P-vs-NP and Riemann-hypothesis closures: a common
-channel-state pattern recording how the composite operator depends on
-formed content, source audit, and visible defect elimination.  The
-point of noting this here is not to import proofs from the sibling
-tracks.  It is to identify a shared structural fingerprint.  BSD is
-the third such cross-track instance: its recognition predicate is
-computable and falsifiable at the level of the named records, each of
-the three recognition sources is load-bearing, and ablation of any one
-source leaves a scalar factor of the Strong-BSD package undetermined.
-
-The final AOR reading should therefore be understood carefully.  It
-does not eliminate the open arithmetic obligations.  It records that,
-under the declared presentation, every residual piece has been either
-constructed, imported, or bridged as supplied recognition content.  In
-particular, the rank-\(\geq 2\) generalized Gross--Zagier identity and
-the additive \(p\leq 3\) Iwasawa main conjecture remain open in the
-audited literature.  The closure makes those gaps visible rather than
-hiding them.  Its conclusion is an exact conditional landing together
-with a non-eliminative audited-realizability reading: if the standing
-shell-closure record, the three recognition sources, and the headline
-imported theorem stacks are supplied, then the shell residual vanishes,
-and the Strong-BSD scalar identity follows.
+The same pattern, a target statement written as the fixed point of a
+closure with the deep inputs named as recognition hypotheses and an
+audit register recording their status, is the general method of the Six
+Birds framework~\citep{TsiokosFoundationsIII2026,TsiokosAOR2026}.  For BSD
+it yields a conditional theorem of exactly the strength of its
+hypotheses, together with a precise description of the inputs that an
+unconditional proof along these lines would require.
  \section{Conclusion}\label{sec:conclusion}
 
 
-This paper constructs the saturated BSD trace shell \(\SelBSD\), whose
-residual \(\rhoE\) is the difference between the analytic leading
-coefficient and the Strong-BSD arithmetic product.  The readout
-equivalence identifies \(\rhoE=0\) with the usual Strong-BSD scalar
-identity.  Under the standing shell-closure assumption, and assuming the
-three recognition sources---\(p\)-adic descent, signed-Selmer
-\(\Sha\)-persistence, and higher-rank fixity---together with the headline
-imported theorem stacks---the Cassels--Tate \(\chiCTp\) stack, the
-\(\AofE\) Selmer-complex pairing substrate, and the Beilinson
-rank-\(\geq 2\) comparison---the conditional landing gives the Strong-BSD
-scalar identity.  Outside the framework, the result reads as
-\[
-  \begin{aligned}
-  &\SelBSD\text{-closure}
-    \wedge\ \GammaPD \wedge \GammaSP \wedge \GammaGZ\\
-  &\quad{}\wedge\ \chiCTp\text{-imports}
-    \wedge\ \AofE\text{-imports}
-    \wedge\ \text{Beilinson-imports}\\
-  &\Longrightarrow \mathrm{Strong\ BSD},
-  \end{aligned}
-\]
-not as an unconditional proof of BSD.
-
-The final AOR reading records the closed carrier as a
-refinement-stable, audit-closed instance: informally, the framework's
-``Strong BSD holds in reality'' statement under the declared records.
-This reading is non-eliminative.  The recognition records are bridged
-and carried as supplied arithmetic content; they are not discharged of
-their open arithmetic.
-
-The pending obligations remain explicit.  The rank-\(\geq 2\)
-generalized Gross--Zagier identity (\(T_{E12}\)) and the additive
-\(p\leq 3\) Iwasawa main conjecture (\(T_{\mathrm{BAD}}\)) remain
-open audit-result no-gos.  The overconvergent \(\eta\)-formula is
-verified only at the stated anchors, not as a uniform family-level
-theorem.  Unconditional Strong BSD is therefore deferred.
-
-The contribution is a precise conditional architecture: it names the
-arithmetic inputs that close Strong BSD and records the remaining
-obligations as explicit, still-open content rather than hiding them in
-the scalar conjecture.
+We placed the two sides of the Strong BSD formula in a shell and showed
+that the identity is equivalent to the vanishing of their difference and
+to the fixedness of the pair under an explicit averaging closure.  We
+proved that the identity follows from a rank-split recognition
+hypothesis, which contains the identity in rank at most one and
+expresses it through a normalized leading-term identity in rank at least
+two; the theorem is therefore a conditional translation rather than an
+independent derivation.  We stated each further input, the local
+recognition hypotheses and the comparisons from the literature, with its
+verified scope, and showed by examples where these inputs carry
+information that coarser data do not: the square-root behaviour of a
+prescribed Selmer-complex generator, and Tamagawa numbers invisible to
+congruences modulo units.  The leading-term identity in rank at least two,
+and main conjectures at additive primes $2$ and $3$, are inputs that, as
+far as we know, no current theorem supplies.
  \appendix
-\section{Lean formalization}\label{app:formalization}
-\subsection*{Trust base and methodology}
+\crefalias{section}{appendix}
+\section{Lean formalization and supporting data}\label{app:formalization}
 
-The Lean development for this paper is deliberately mathlib-free.  It
-does not import an external mathematics library, and therefore no
-mathlib axioms occur in the dependency closure of the BSD declarations.
-Every declaration entered in the manifest with theorem status was
-audited with \texttt{\#print axioms}.  The accepted trust base is
-Lean's standard foundational base: \texttt{propext},
-\texttt{Quot.sound}, and \texttt{Classical.choice}, with
-\texttt{funext} and the \texttt{choice} recursor appearing as standard
-consequences in the audit output.  No project-local axiom lies behind
-any theorem-marked result.  The source tree also contains no active
-\texttt{axiom}, \texttt{opaque}, \texttt{constant}, \texttt{sorry}, or
-\texttt{admit} declarations in the BSD namespace.  This point matters
-for the interpretation of the recognition sources and imports: they
-are represented as typed structure carriers, never as Lean axioms.
+\subsection*{What is formalized}
 
-The formalization mechanizes the framework-structural closure
-architecture, not the imported arithmetic geometry.  There are three
-main disclosure modes.  First, typed structure carriers are used for
-the imported theorem stacks and the recognition sources.  The
-Cassels--Tate, Selmer-complex pairing, Beilinson, overconvergent
-\(\eta\), and cascade imports are records whose mathematical content is
-carried as hypothesis fields.  The three recognition sources are
-likewise records: their arithmetic content is carried explicitly and
-then consumed by later statements.  In all of these cases the content
-is carried, not derived, and it is not an axiom of the formalization.
+The Lean~4 development accompanying this paper imports no external
+mathematics library.  Its theorems depend only on Lean's standard axioms
+(propositional extensionality, quotient soundness and classical choice,
+together with their standard consequences); there are no project-specific
+axioms, and no declaration is left unproved.  The comparison inputs and
+the recognition hypotheses are Lean structures whose fields are the
+asserted statements; they are hypotheses, not axioms.  None of the
+arithmetic geometry of the paper is formalized.
 
-Second, several results are projection-packaged conditional schemas.
-The \(\chiCTp\) comparison, the overconvergent \(\eta\)-formula, the
-rank-\(\leq 1\) cascade theorem, the composite signature, and the
-headline conditional landing are checked projections over explicit
-proof-carrying records, conditional on the relevant imports and
-recognition sources.  The formalization checks that the projections and
-implication chains use the supplied records in the stated way; it does
-not independently derive the underlying arithmetic theorems.  For this
-reason the body footnotes say that these claims are tracked as
-conditional schemas, not that the formalization derives the arithmetic
-comparison unconditionally.
+Each of the $30$ labelled definitions, theorems, remarks and nonclaims
+falls into one of five classes, used in the footnotes and in
+\Cref{tab:formalization-coverage}.  (The example of \Cref{sec:chi-ct-p}
+is not one of these statements.)
+\begin{itemize}
+\item \emph{Lean proves} (3 theorems):
+  \Cref{thm:closure:pi-bsd-iff-strong-bsd,thm:closure:scalar-closure-translation,thm:closure:formed-closure-bridge}.
+  The Lean statement has the content of the theorem in the body.
+\item \emph{Model version} (2 theorems):
+  \Cref{thm:closure:aor-mechanical-records,thm:closure:aor-instance},
+  proved for integer quantities and for the declared refinement relation
+  respectively.
+\item \emph{Conditional schema} (6 theorems):
+  \Cref{thm:closure:composite-signature,thm:closure:chi-ct-p-comparison,thm:closure:oc-eta-formula,thm:closure:t-cascade-rank-le-1,thm:closure:strong-bsd-conditional,thm:closure:aor-recognition-discharge}.
+  Part or all of the conclusion is obtained by projecting a supplied
+  hypothesis.  For \Cref{thm:closure:strong-bsd-conditional} only the
+  returned input components are projected: its scalar conclusion is
+  derived, and the two declarations isolating that derivation depend on
+  no project declaration outside their own module.  A compiled dependency check
+  confirms this, and that the derivation does not depend on the auxiliary
+  theorems of \Cref{sec:chi-ct-p,sec:eta-formula,sec:aor-instance}, on
+  \Cref{thm:closure:composite-signature}, or on the supplied applicability,
+  computability, falsifiability and ablation fields of the shell.
+\item \emph{Lean definition} (11 definitions): the shell, the
+  recognition predicate, the three recognition hypotheses, the five input
+  records and the audit register.
+\item \emph{Not formalized} (8 statements): five remarks and three
+  nonclaims.
+\end{itemize}
+These classes follow the coverage records in the repository, which compare
+each Lean statement with the corresponding statement of the paper.  The
+main theorem and the fixed-point formulation have controls on rational
+shells, including false targets that the recognition predicate rejects;
+rational-carrier examples test the hypotheses of the formed-layer
+statement (\Cref{sec:landing,sec:scalar-closure}).
 
-Third, some statements are substantive finite Lean proofs of the
-structural layer.  The readout-level equivalence, the
-master-theorem-applicability statement, and the AOR mechanical and
-recognition discharge theorems are proofs about the finite record
-architecture and its bookkeeping.  The AOR-instance membership is
-checked over a narrowed representation: the local syntactic
-refinement-stable predicate used by this paper, not the full Audited
-Operational Realisability meta-theory.  Thus Lean checks the closure
-architecture---the residual readout algebra, the implication chains,
-and the discharge bookkeeping---while certifying none of the imported
-arithmetic geometry or the recognition-source content itself.
+\subsection*{Supporting computations}
 
-In coverage terms, the paper has 28 statements of record.  Of these,
-21 are mechanized: 4 substantive structural theorems, 5
-projection-packaged conditional schemas, 8 typed definition carriers
-(including the shell and predicate mirrors, the typed import carriers,
-and the AOR-instance object), 3 recognition-source carriers, and 1
-narrowed AOR-instance membership.  The remaining 7 are not mechanized:
-the two audit-result no-gos, two remarks, and three non-claims.  The
-tables below give the per-label coverage and the corresponding Lean
-declaration map.
-\subsection*{Wording-discipline table}
+The example of \Cref{sec:chi-ct-p} uses exact modular-symbol, local and
+Frobenius computations made with PARI/GP~\citep{PARI2023}, the published
+three-descent and upper bound reported in the proof of
+\citet[Theorem~7.2]{Miller2011}, which we did not rerun, and published
+theorems on Selmer complexes and Stark systems
+\citep{Sakamoto2018,MaciasCastilloSano2026}.  The local data of $121a1$,
+$121b1$ and of $y^2=x^3+385x+1225$ in \Cref{sec:recognition-sources} were
+computed with Tate's algorithm in PARI/GP.
 
-Every mechanized statement in the body carries a footnote whose wording
-is canonical, not editorial.  The wording encodes whether the result is
-a substantive finite Lean proof, a projection-packaged conditional
-schema, a narrowed-representation check, a typed structure carrier, or
-a recognition-source carrier.  Projection-packaging and narrowing are
-therefore visible at the point of disclosure; unmechanized statements
-carry no footnote.
+\subsection*{Data and code availability}
 
-\begin{center}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.36\textwidth}X@{}}
-\toprule
-Statement class & Footnote convention \\
-\midrule
-Theorem, substantive finite proof &
-Verified in Lean as \texttt{[decl]}; see App~\ref{app:formalization}. \\
-\addlinespace
-Theorem, projection-packaged conditional schema &
-Tracked in the formalization harness as a conditional schema
-\texttt{[decl]} --- a checked projection over an explicit
-proof-carrying record (conditional on the imports and recognition
-sources), not an independent Lean derivation. \\
-\addlinespace
-Theorem, narrowed representation &
-Verified in Lean as \texttt{[decl]} over a narrowed representation
-(the local syntactic refinement-stable predicate); the narrowing is
-recorded below. \\
-\addlinespace
-Definition, typed structure carrier (import) &
-Encoded in Lean as a typed structure carrier \texttt{[decl]} bundling
-the imported theorem(s) as hypothesis fields; not a Lean axiom. \\
-\addlinespace
-Definition, recognition-source carrier &
-Supplied as a recognition source, encoded in Lean as a typed structure
-carrier \texttt{[decl]} over a narrowed representation; its arithmetic
-content is a hypothesis field, not a Lean axiom. \\
-\addlinespace
-Definition, faithful (typed mirror) &
-No footnote; the declaration appears only in the per-label coverage
-table below. \\
-\addlinespace
-No-go / remark / non-claim (not mechanized) &
-No footnote and no Lean identifier in the body; recorded as a
-paper-level statement only. \\
-\bottomrule
-\end{tabularx}
-\end{center}
-\subsection*{Standing narrowings}
+The Lean sources, the statement-by-statement coverage records, the
+recorded computations and the scripts that check them are distributed
+with the archived release of this paper cited on the first page.
 
-\paragraph{Projection-packaged conditional schemas.}
-Five results in this paper are mechanized as checked projections over
-explicit proof-carrying records rather than as independent Lean
-derivations: the \(\chiCTp\) Cassels--Tate comparison, the
-overconvergent \(\eta\)-formula, the rank-\(\leq 1\) cascade theorem,
-the composite signature, and the headline conditional landing.  This
-means that the formalization checks the projection or implication
-chain from the supplied records to the stated conclusion.  For example,
-in the landing it checks that the recognition sources and headline imports
-are threaded through the shell-readout theorems so that the residual
-vanishes and the Strong-BSD scalar identity follows.
-
-The corresponding bound is equally important.  These projections do
-not independently derive the underlying arithmetic-geometry inputs:
-the Cassels--Tate comparison inputs, the overconvergent \(L\)-value
-inputs, and the rank-\(\leq 1\) Iwasawa/Heegner inputs remain carried
-hypotheses.  This is why the body footnotes for these five results say
-that they are tracked as conditional schemas and are not independent
-Lean derivations.  In particular, the conditional landing is a theorem
-with the recognition sources and headline imports as explicit hypothesis
-parameters; it is not an unconditional Lean proof of BSD.
-
-\paragraph{Typed structure carriers.}
-The five imported theorem stacks and the three recognition sources are
-encoded as typed structures whose arithmetic payload is a hypothesis
-field.  Three of the imported stacks, \(\chiCTp\), \(\AofE\), and the
-Beilinson comparison, are the headline imports used directly in the landing
-theorem; the overconvergent \(\eta\) and \(T_{\mathrm{CASCADE}}\) stacks are
-supporting conditional imports recorded by their own sections.  For the
-imports, this means that the external theorem stacks are carried as
-structured records rather than re-derived.  For the recognition sources, it
-means that the named arithmetic content is available as a field of the
-carrier and is then consumed by the closure architecture.  In both cases
-the content is carried, not derived, and it never appears as a Lean axiom.
-
-The recognition-source carriers also use a narrowed structural
-representation.  The carrier records the relevant arithmetic assertion
-in typed form---for example the \(p\)-adic descent congruence, the
-signed-Selmer persistence comparison, or the higher-rank fixity
-readout---without formalizing the full underlying \(p\)-adic, Selmer,
-or regulator theory inside Lean.  The dimension and role of each
-carrier are faithful to the intended arithmetic content, but the
-background arithmetic theory is not redeveloped in the formalization.
-
-Neither of these narrowings enlarges the Lean trust base.  They delimit
-what the finite mechanization claims: the imported arithmetic and
-recognition content are explicit carried hypotheses, while the checked
-Lean layer verifies the structural use of those hypotheses.
-\begin{table}[tbp]
-\centering
-\small
-\caption{Standing representation notes for the closure formalization.}
-\label{tab:representation-notes}
-\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.25\textwidth}
->{\raggedright\arraybackslash}p{0.30\textwidth}
->{\raggedright\arraybackslash}X@{}}
-\toprule
-Representation issue & Where it appears & Disclosure effect \\
-\midrule
-Import structures & \(\chiCTp\), \(\AofE\), Beilinson, \(\eta\), and
-cascade imports & Arithmetic theorem stacks are hypothesis fields in typed
-records, not Lean axioms or internal derivations. \\
-\addlinespace
-Recognition carriers & \(\GammaPD\), \(\GammaSP\), \(\GammaGZ\) & The
-arithmetic payload is supplied closure content and is consumed by the shell
-as a hypothesis. \\
-\addlinespace
-Projection-packaged landing & Supporting conditionals and
-\Cref{thm:closure:strong-bsd-conditional} & The formalization checks the
-conditional projection/implication chain over supplied records, not an
-independent arithmetic proof. \\
-\addlinespace
-Local \(\RefStable\) predicate & AOR-instance theorem & The Lean theorem
-checks the paper-local syntactic predicate, not the full AOR meta-theory. \\
-\addlinespace
-Cross-paper \(\kapr\) import & \(\Cref{sec:aor-instance}\) & The
-normalization is reused from the apparatus paper and cited there, not
-re-mechanized in the closure axis. \\
-\bottomrule
-\end{tabularx}
-\end{table}
- \subsection*{Non-eliminative AOR instance}
-
-The AOR-instance membership theorem is mechanized over a narrowed
-representation.  The development defines, for this paper, a local
-syntactic refinement-stable predicate for the BSD trace shell; it does
-not mechanize the full Audited Operational Realisability meta-theory of
-\cite{TsiokosAOR2026}.  The checked statement is therefore the following
-bounded claim: with respect to this local predicate, the declared audit
-records of the BSD trace shell account for the structural defects that
-persist under refinement.  It is not a claim that Lean has formalized the
-general AOR meta-theory, and it is not a claim of membership in that
-full meta-theoretic sense.  This is why the body footnote for the
-AOR-instance theorem carries the narrowed-representation qualifier
-rather than a bare ``verified in Lean'' formulation.
-
-The non-eliminative content is also explicit in the formal record.  The
-three recognition sources are discharged as bridged records: each is
-recorded in the audit as a primary source-type structural defect, with
-its forced secondary role, target, transport, and limit defects, and is
-then reclassified as carried recognition content.  None of the three is
-marked as eliminated.  By contrast, the mechanical components---the
-trace-shell construction, the \(\kapr\)-normalization, and the imported
-theorem stacks---are discharged either by construction or by an approved
-external-record citation chain.
-
-Thus the AOR-instance membership is non-eliminative.  It records that
-the open arithmetic content has been named, carried, and bridged inside
-the audit presentation, not that the content has been closed.  In
-particular, the rank-\(\geq 2\) generalized Gross--Zagier identity and
-the additive \(p \leq 3\) Iwasawa main conjecture remain open after the
-AOR reading; the membership records their place in the declared
-presentation rather than proving them.  This subsection fixes the exact
-scope of the formal AOR result: a local, refinement-stable,
-non-eliminative audit-closed membership, so that neither the headline
-conditional landing nor the AOR reading is mistaken for an unconditional
-or eliminative theorem.
-\subsection*{Per-label coverage}
-
-The table lists every closure statement of record in document order,
-together with its environment kind, mechanization fidelity, and body
-location.  Rows marked faithful, projection, or narrowed have a Lean
-declaration, mapped in the next subsection; rows marked not mechanized
-are paper-level statements and carry no Lean declaration.
+\subsection*{Coverage and declarations}
 
 \begin{small}
-\begin{longtable}{@{}>{\ttfamily}p{0.46\textwidth} l l l@{}}
-\caption{Per-label coverage for the closure statements of record (28 rows, document order). Labels elide the \texttt{closure:} prefix; ``projection'' marks a projection-packaged conditional schema and ``narrowed'' a narrowed-representation row.}\label{tab:formalization-coverage}\\
-\toprule \normalfont Paper label & Kind & Fidelity & Body \\ \midrule \endfirsthead
-\multicolumn{4}{@{}l}{\footnotesize\itshape continued from previous page}\\ \toprule \normalfont Paper label & Kind & Fidelity & Body \\ \midrule \endhead
+\begin{longtable}{@{}>{\ttfamily}p{0.45\textwidth} l l l@{}}
+\caption{Lean coverage of the labelled statements in the inventory, in document order (30 rows).  Labels omit the \texttt{closure:} infix.}\label{tab:formalization-coverage}\\
+\toprule \normalfont Label & Kind & Lean coverage & Section \\ \midrule \endfirsthead
+\multicolumn{4}{@{}l}{\footnotesize\itshape continued from previous page}\\ \toprule \normalfont Label & Kind & Lean coverage & Section \\ \midrule \endhead
 \midrule \multicolumn{4}{r@{}}{\footnotesize\itshape continued on next page}\\ \endfoot
 \bottomrule \endlastfoot
-def:chi-ct-p-import & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:imports} \\
-def:a-e-import & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:imports} \\
-def:beilinson-import & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:imports} \\
-nonclaim:imports-not-derived & \normalfont nonclaim & \normalfont not mechanized & \normalfont \Cref{sec:imports} \\
-def:gamma-padic-descent & \normalfont definition & \normalfont narrowed & \normalfont \Cref{sec:recognition-sources} \\
-def:gamma-sha-persistence & \normalfont definition & \normalfont narrowed & \normalfont \Cref{sec:recognition-sources} \\
-def:gamma-higher-gz-fixity & \normalfont definition & \normalfont narrowed & \normalfont \Cref{sec:recognition-sources} \\
-nonclaim:recognition-sources-not-derived & \normalfont nonclaim & \normalfont not mechanized & \normalfont \Cref{sec:recognition-sources} \\
-def:sel-bsd-shell & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:shell-readout} \\
-def:pi-bsd & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:shell-readout} \\
-thm:pi-bsd-iff-strong-bsd & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:shell-readout} \\
-thm:master-theorem-applicability & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:shell-readout} \\
-thm:composite-signature & \normalfont theorem & \normalfont projection & \normalfont \Cref{sec:shell-readout} \\
-thm:chi-ct-p-comparison & \normalfont theorem & \normalfont projection & \normalfont \Cref{sec:chi-ct-p} \\
-def:eta-published-imports & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:eta-formula} \\
-thm:oc-eta-formula & \normalfont theorem & \normalfont projection & \normalfont \Cref{sec:eta-formula} \\
-def:t-cascade-import & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:t-cascade} \\
-thm:t-cascade-rank-le-1 & \normalfont theorem & \normalfont projection & \normalfont \Cref{sec:t-cascade} \\
-thm:t-e12-no-go & \normalfont theorem & \normalfont not mechanized & \normalfont \Cref{sec:obstructions} \\
-thm:t-bad-no-go & \normalfont theorem & \normalfont not mechanized & \normalfont \Cref{sec:obstructions} \\
-rmk:mode-b-residuals & \normalfont remark & \normalfont not mechanized & \normalfont \Cref{sec:obstructions} \\
-thm:strong-bsd-conditional & \normalfont theorem & \normalfont projection & \normalfont \Cref{sec:landing} \\
-nonclaim:landing-conditional & \normalfont nonclaim & \normalfont not mechanized & \normalfont \Cref{sec:landing} \\
-def:aor-sel-instance & \normalfont definition & \normalfont faithful & \normalfont \Cref{sec:aor-instance} \\
-thm:aor-mechanical-records & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:aor-instance} \\
-thm:aor-recognition-discharge & \normalfont theorem & \normalfont faithful & \normalfont \Cref{sec:aor-instance} \\
-thm:aor-instance & \normalfont theorem & \normalfont narrowed & \normalfont \Cref{sec:aor-instance} \\
-rmk:aor-partial-status & \normalfont remark & \normalfont not mechanized & \normalfont \Cref{sec:aor-instance} \\
+def:chi-ct-p-import & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:imports} \\
+def:a-e-import & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:imports} \\
+def:beilinson-import & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:imports} \\
+nonclaim:imports-not-derived & \normalfont nonclaim & \normalfont not formalized & \normalfont \Cref{sec:imports} \\
+def:gamma-padic-descent & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:recognition-sources} \\
+def:gamma-sha-persistence & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:recognition-sources} \\
+def:gamma-higher-gz-fixity & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:recognition-sources} \\
+nonclaim:recognition-sources-not-derived & \normalfont nonclaim & \normalfont not formalized & \normalfont \Cref{sec:recognition-sources} \\
+def:sel-bsd-shell & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:shell-readout} \\
+def:pi-bsd & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:shell-readout} \\
+thm:pi-bsd-iff-strong-bsd & \normalfont theorem & \normalfont Lean proves & \normalfont \Cref{sec:shell-readout} \\
+thm:scalar-closure-translation & \normalfont theorem & \normalfont Lean proves & \normalfont \Cref{sec:shell-readout} \\
+thm:formed-closure-bridge & \normalfont theorem & \normalfont Lean proves & \normalfont \Cref{sec:shell-readout} \\
+thm:composite-signature & \normalfont theorem & \normalfont conditional schema & \normalfont \Cref{sec:shell-readout} \\
+rmk:sensitivity-not-necessity & \normalfont remark & \normalfont not formalized & \normalfont \Cref{sec:shell-readout} \\
+thm:chi-ct-p-comparison & \normalfont theorem & \normalfont conditional schema & \normalfont \Cref{sec:chi-ct-p} \\
+def:eta-published-imports & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:eta-formula} \\
+thm:oc-eta-formula & \normalfont theorem & \normalfont conditional schema & \normalfont \Cref{sec:eta-formula} \\
+def:t-cascade-import & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:t-cascade} \\
+thm:t-cascade-rank-le-1 & \normalfont theorem & \normalfont conditional schema & \normalfont \Cref{sec:t-cascade} \\
+rmk:t-e12-gap & \normalfont remark & \normalfont not formalized & \normalfont \Cref{sec:obstructions} \\
+rmk:t-bad-gap & \normalfont remark & \normalfont not formalized & \normalfont \Cref{sec:obstructions} \\
+rmk:mode-b-residuals & \normalfont remark & \normalfont not formalized & \normalfont \Cref{sec:obstructions} \\
+thm:strong-bsd-conditional & \normalfont theorem & \normalfont conditional schema & \normalfont \Cref{sec:landing} \\
+nonclaim:landing-conditional & \normalfont nonclaim & \normalfont not formalized & \normalfont \Cref{sec:landing} \\
+def:aor-sel-instance & \normalfont definition & \normalfont Lean definition & \normalfont \Cref{sec:aor-instance} \\
+thm:aor-mechanical-records & \normalfont theorem & \normalfont model version & \normalfont \Cref{sec:aor-instance} \\
+thm:aor-recognition-discharge & \normalfont theorem & \normalfont conditional schema & \normalfont \Cref{sec:aor-instance} \\
+thm:aor-instance & \normalfont theorem & \normalfont model version & \normalfont \Cref{sec:aor-instance} \\
+rmk:aor-partial-status & \normalfont remark & \normalfont not formalized & \normalfont \Cref{sec:aor-instance} \\
 \end{longtable}
 \end{small}
- \subsection*{Lean declaration map}
-
-The 21 mechanized closure statements each correspond to a Lean
-declaration, listed here for citation and audit.  Labels elide the
-\texttt{closure:} prefix, and declarations elide the
-\texttt{SixBirdsBSD.Closure.} namespace; the seven not-mechanized
-statements have no declaration and are omitted from this map, with full
-coverage recorded in \Cref{tab:formalization-coverage}.  The
-\(\kapr\)-normalization reused in the AOR mechanical-records theorem is
-imported from \citet{TsiokosBSDApparatus2026};
-its own declaration belongs to that paper rather than to the closure
-declaration map.
-
+ 
 \begin{small}
-\begin{longtable}{@{}>{\ttfamily}p{0.44\textwidth} >{\ttfamily}p{0.50\textwidth}@{}}
-\caption{Lean declaration map for the 21 mechanized closure statements. Labels elide the \texttt{closure:} prefix; declarations elide the \texttt{SixBirdsBSD.Closure.} namespace.}\label{tab:appd-declmap-closure}\\
-\toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule \endfirsthead
-\multicolumn{2}{@{}l}{\footnotesize\itshape continued from previous page}\\ \toprule \normalfont Paper label & \normalfont Lean declaration \\ \midrule \endhead
+\begin{longtable}{@{}>{\ttfamily\raggedright\arraybackslash}p{0.44\textwidth} >{\ttfamily\raggedright\arraybackslash}p{0.50\textwidth}@{}}
+\caption{Lean declarations for the 22 formalized statements.  Labels omit the \texttt{closure:} infix; declarations omit the \texttt{SixBirdsBSD.Closure.} namespace.}\label{tab:appd-declmap}\\
+\toprule \normalfont Label & \normalfont Lean declaration \\ \midrule \endfirsthead
+\multicolumn{2}{@{}l}{\footnotesize\itshape continued from previous page}\\ \toprule \normalfont Label & \normalfont Lean declaration \\ \midrule \endhead
 \midrule \multicolumn{2}{r@{}}{\footnotesize\itshape continued on next page}\\ \endfoot
 \bottomrule \endlastfoot
 def:\allowbreak chi-\allowbreak ct-\allowbreak p-\allowbreak import & Imports.\allowbreak chi\allowbreak CTp\allowbreak Import \\
@@ -2158,7 +1734,8 @@ def:\allowbreak gamma-\allowbreak higher-\allowbreak gz-\allowbreak fixity & Rec
 def:\allowbreak sel-\allowbreak bsd-\allowbreak shell & Sel\allowbreak Shell.\allowbreak sel\allowbreak BSDShell \\
 def:\allowbreak pi-\allowbreak bsd & Sel\allowbreak Shell.\allowbreak pi\allowbreak BSD \\
 thm:\allowbreak pi-\allowbreak bsd-\allowbreak iff-\allowbreak strong-\allowbreak bsd & Sel\allowbreak Shell.\allowbreak pi\allowbreak BSDIff\allowbreak Strong\allowbreak BSD \\
-thm:\allowbreak master-\allowbreak theorem-\allowbreak applicability & Sel\allowbreak Shell.\allowbreak master\allowbreak Theorem\allowbreak Applicability \\
+thm:\allowbreak scalar-\allowbreak closure-\allowbreak translation & Scalar\allowbreak Closure.\allowbreak shell\allowbreak Closed\allowbreak Iff\allowbreak Residual\allowbreak Zero \\
+thm:\allowbreak formed-\allowbreak closure-\allowbreak bridge & Arithmetic\allowbreak Closure\allowbreak Bridge.\allowbreak formed\allowbreak Closure\allowbreak Forces\allowbreak Strong\allowbreak BSD \\
 thm:\allowbreak composite-\allowbreak signature & Sel\allowbreak Shell.\allowbreak composite\allowbreak Signature \\
 thm:\allowbreak chi-\allowbreak ct-\allowbreak p-\allowbreak comparison & Chi\allowbreak CTp.\allowbreak chi\allowbreak CTp\allowbreak Comparison \\
 def:\allowbreak eta-\allowbreak published-\allowbreak imports & Eta\allowbreak Formula.\allowbreak eta\allowbreak Published\allowbreak Imports \\
@@ -2172,13 +1749,51 @@ thm:\allowbreak aor-\allowbreak recognition-\allowbreak discharge & AORInstance.
 thm:\allowbreak aor-\allowbreak instance & AORInstance.\allowbreak aor\allowbreak Instance \\
 \end{longtable}
 \end{small}
+ 
+\section{Version history}\label{app:version-history}
 
+\begin{description}[leftmargin=2.4em, style=nextline]
+\item[v1, 31 August 2026] First public version.
+\item[v2, 3 October 2026] Revised after a statement-by-statement audit
+  of the mathematics and of its Lean formalization.  Changes:
+  \begin{itemize}
+  \item The main theorem is stated with the strength of its hypothesis
+    made explicit: its scalar conclusion is derived from the rank-split
+    part of the recognition predicate, and the other hypotheses are
+    carried but not used.  The claims that a closure master theorem
+    applies, that each recognition hypothesis is indispensable, and that
+    the recognition predicate is computable and falsifiable are
+    withdrawn; the factor-sensitivity statement is retained with a remark
+    explaining why it does not imply necessity.
+  \item New results: the fixed-point formulation of Strong BSD under the
+    averaging closure, and the conditions under which a closure on a
+    richer layer returns it.
+  \item The comparison inputs are attached to the curve of the theorem,
+    with the archimedean input required only in rank at least two; the
+    Cassels--Tate input states its map, generator, target and sign as
+    hypotheses, with the discrepancies from the cited literature
+    described and an example on $1913b1$ at $p=3$ added.
+  \item The local recognition hypotheses state their scopes; it is noted
+    that their congruences modulo units do not see Tamagawa numbers prime
+    to $p$, and that matching local and global factors is a further
+    comparison.
+  \item The $\eta$-formula is recorded only as a conditional certificate;
+    its claimed derivation from published results and its numerical
+    anchors are withdrawn, and two scope obstructions are given.
+  \item The rank-at-most-one statement makes its comparison hypothesis
+    explicit; the two literature no-go theorems become remarks; the audit
+    register is described as a local model of refinement-stable AOR.
+  \item Lean coverage is described statement by statement; the text is
+    rewritten throughout for readability.
+  \end{itemize}
+\end{description}
+ 
 \clearpage
 \begingroup
 \raggedright
 \small
 \bibliographystyle{plainnat}
-\begin{thebibliography}{38}
+\begin{thebibliography}{40}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -2242,6 +1857,12 @@ Francesc Castella, Chi-Yun Hsu, Debanjana Kundu, Yu-Sheng Lee, and Zheng Liu.
 \newblock Derived p-adic heights and the leading coefficient of the {Bertolini--Darmon--Prasanna} p-adic {L}-function.
 \newblock \emph{Trans. Amer. Math. Soc. Ser. B}, 12:\penalty0 748--788, 2025.
 \newblock \doi{10.1090/btran/227}.
+
+\bibitem[{\v{C}}esnavi{\v{c}}ius(2018)]{Cesnavicius2018}
+K{\k{e}}stutis {\v{C}}esnavi{\v{c}}ius.
+\newblock The {Manin} constant in the semistable case.
+\newblock \emph{Compos. Math.}, 154\penalty0 (9):\penalty0 1889--1920, 2018.
+\newblock \doi{10.1112/S0010437X18007273}.
 
 \bibitem[Coleman and Mazur(1998)]{ColemanMazur1998}
 Robert Coleman and Barry Mazur.
@@ -2312,11 +1933,11 @@ Daniel Macias~Castillo and Takamichi Sano.
 \newblock On {Selmer} complexes, {Stark} systems and derived p-adic heights, 2026.
 \newblock Preprint, arXiv:2603.23978.
 
-\bibitem[Mazur and Rubin(2004)]{MazurRubin2004}
-Barry Mazur and Karl Rubin.
-\newblock Kolyvagin systems.
-\newblock \emph{Mem. Amer. Math. Soc.}, 168\penalty0 (799), 2004.
-\newblock \doi{10.1090/memo/0799}.
+\bibitem[Miller(2011)]{Miller2011}
+Robert~L. Miller.
+\newblock Proving the {Birch} and {Swinnerton-Dyer} conjecture for specific elliptic curves of analytic rank zero and one.
+\newblock arXiv:1010.2431v3, 2011.
+\newblock Published in LMS J. Comput. Math. 14 (2011), 327--350; theorem numbers refer to arXiv version~3.
 
 \bibitem[Nekov\'a\v{r}(2006)]{Nekovar2006}
 Jan Nekov\'a\v{r}.
@@ -2328,6 +1949,12 @@ Robert Pollack.
 \newblock On the p-adic {L}-function of a modular form at a supersingular prime.
 \newblock \emph{Duke Math. J.}, 118\penalty0 (3):\penalty0 523--558, 2003.
 \newblock \doi{10.1215/S0012-7094-03-11835-9}.
+
+\bibitem[Pollack and Rubin(2004)]{PollackRubin2004}
+Robert Pollack and Karl Rubin.
+\newblock The main conjecture for {CM} elliptic curves at supersingular primes.
+\newblock \emph{Ann. of Math. (2)}, 159\penalty0 (1):\penalty0 447--464, 2004.
+\newblock \doi{10.4007/annals.2004.159.447}.
 
 \bibitem[Pollack and Stevens(2011)]{PollackStevens2011}
 Robert Pollack and Glenn Stevens.
@@ -2359,12 +1986,6 @@ Jean-Pierre Serre.
 \newblock \emph{Invent. Math.}, 15\penalty0 (4):\penalty0 259--331, 1972.
 \newblock \doi{10.1007/BF01405086}.
 
-\bibitem[Silverman(1994)]{Silverman1994}
-Joseph~H. Silverman.
-\newblock \emph{Advanced Topics in the Arithmetic of Elliptic Curves}, volume 151 of \emph{Graduate Texts in Mathematics}.
-\newblock Springer, 1994.
-\newblock \doi{10.1007/978-1-4612-0851-8}.
-
 \bibitem[Skinner and Urban(2014)]{SkinnerUrban2014}
 Christopher Skinner and Eric Urban.
 \newblock The {Iwasawa} main conjectures for {$\mathrm{GL}_2$}.
@@ -2375,6 +1996,11 @@ Christopher Skinner and Eric Urban.
 John~T. Tate.
 \newblock On the conjectures of {Birch} and {Swinnerton-Dyer} and a geometric analog.
 \newblock In \emph{S\'eminaire Bourbaki, Vol.~9}, pages Exp.~No.~306, 415--440. Soc. Math. France, 1966.
+
+\bibitem[{The PARI Group}(2023)]{PARI2023}
+{The PARI Group}.
+\newblock {PARI/GP} version 2.15.4.
+\newblock Univ. Bordeaux, \url{https://pari.math.u-bordeaux.fr/}, 2023.
 
 \bibitem[Tsiokos(2026{\natexlab{a}})]{TsiokosAOR2026}
 Ioannis Tsiokos.
@@ -2402,6 +2028,6 @@ Wei Zhang.
 \newblock \doi{10.4310/CJM.2014.v2.n2.a2}.
 
 \end{thebibliography}
-
+ 
 \endgroup
 \end{document}

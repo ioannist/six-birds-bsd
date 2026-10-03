@@ -97,7 +97,7 @@ items:
   "nonclaim:closure:imports-not-derived":
     category: prose_only
     source_file: paper/closure/main.tex
-    statement_hash: 78849f3b6fd456d949a8902ec0367eff9df907b3a55a6ccfc922b74621fd6a6a
+    statement_hash: c3b88d71aaecb789847ae5354cf4cb0820797137d5723dd59b0d68a8e31ce68c
   "nonclaim:closure:landing-conditional":
     category: prose_only
     source_file: paper/closure/main.tex
@@ -273,11 +273,11 @@ items:
   "thm:closure:scalar-closure-translation":
     category: fully_formal_math
     source_file: paper/closure/sections/sec_04_shell_readout.tex
-    statement_hash: 33d4ebdf57d9883edb1c1521abbeb07a13a6ab0a0c2f3b8559d58ca320e886f5
+    statement_hash: 09d8e16d172a41bc13714c5035c9a3200635522bdc7ae81be8aa005c4fc8114a
   "thm:closure:strong-bsd-conditional":
     category: schema_theorem
     source_file: paper/closure/main.tex
-    statement_hash: 365e992e9b81689d8701511d4a9d4c31fdedee46623064860697e3d5bb8ec1da
+    statement_hash: 65b2a1ee184ea4bb44e86fe4ad535db4b97de5695b9e7873eb488f84413499cb
   "thm:closure:t-cascade-rank-le-1":
     category: schema_theorem
     source_file: paper/closure/main.tex

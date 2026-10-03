@@ -179,3 +179,19 @@ passing gates is not a promotion of any native arithmetic claim.
   `734a74cfbdde0871ca2a25d29b29a8716303441e4518381749d6933fc362a59b`.
 * The paper tree has no changes. The preserved Stark and finite-pairing
   constructions are not replaced by this scoped closeout.
+
+## Manuscript v2 (3 October 2026)
+
+Both papers have since been revised to v2, implementing the decisions
+above: indispensability, the derived master application, general
+computability/falsifiability claims, the cited-stack eta derivation and the
+eta anchor evidence are removed from the manuscripts; the scalar closure
+translation and the conditional formed-carrier bridge are stated as
+`thm:closure:scalar-closure-translation` and
+`thm:closure:formed-closure-bridge`; the two literature no-go theorems are
+remarks; and every Lean-coverage statement follows the alignment records.
+The label set is now 71 (30 theorem alignments, 41 supplementary
+assessments, 52 manifest entries). The historical counts above (69 labels,
+29 theorem entries) refer to v1. Each revised section was reviewed for
+mathematical and factual correctness by an independent model reviewer
+before acceptance.

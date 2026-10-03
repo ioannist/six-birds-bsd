@@ -16,10 +16,13 @@ Foundations dependencies.
 
 The first paper develops a typed five-column decomposition of the
 Bloch--Kato fundamental line, adequacy diagnostics, and a suite of
-information-loss no-go results. The second builds a conditional Strong-BSD
-closure from explicit recognition sources and imported arithmetic theorem
-stacks. It is a conditional result and does not claim an unconditional proof
-of BSD.
+information-loss no-go results. The second formulates the Strong-BSD identity as a
+fixed point of an explicit closure and proves a conditional theorem from a
+rank-split recognition hypothesis that has the strength of the identity; it
+is a conditional translation, not an unconditional proof of BSD. Version 2 of
+both papers (3 October 2026) implements the mathematical and Lean audit
+recorded in `formalization/mathematical_audit.md` and
+`formalization/conditional_mathematical_closeout.md`.
 
 ## What This Repository Provides
 
@@ -32,8 +35,8 @@ of BSD.
 - Vendored Six Birds Foundations dependencies under `vendor/foundations/`.
 - Consolidated mathematical source records under `anti_loc/extracted_math/`.
 
-The formal corpus covers 51 of the papers' 69 labeled statements: 30 on the
-apparatus axis and 21 on the closure axis. Deep arithmetic inputs are carried
+The formal corpus covers 52 of the papers' 71 labeled statements: 30 on the
+apparatus axis and 22 on the closure axis. Deep arithmetic inputs are carried
 as explicit proof-bearing hypotheses or recognition-source records, not as
 project-local axioms.
 

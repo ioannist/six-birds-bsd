@@ -623,7 +623,7 @@ rows:
     theorem_title: "sel-bsd-shell"
     target_paper: "closure"
     target_destination: "body"
-    target_section_hint: "sec:shell-readout"
+    target_section_hint: "sec:shell-readout-basic"
     proof_presentation: "definition_entry"
     lean_coverage: "definition"
     lean_decl: "SixBirdsBSD.Closure.SelShell.selBSDShell"
@@ -716,7 +716,7 @@ rows:
   - paper_label: "def:closure:gamma-padic-descent"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 26
+    source_line: 27
     source_section: "RecognitionSources"
     theorem_title: "gamma-padic-descent"
     target_paper: "closure"
@@ -805,7 +805,7 @@ rows:
     theorem_title: "pi-bsd"
     target_paper: "closure"
     target_destination: "body"
-    target_section_hint: "sec:shell-readout"
+    target_section_hint: "sec:shell-readout-basic"
     proof_presentation: "definition_entry"
     lean_coverage: "definition"
     lean_decl: "SixBirdsBSD.Closure.SelShell.piBSD"
@@ -842,7 +842,7 @@ rows:
   - paper_label: "nonclaim:closure:landing-conditional"
     env_kind: "nonclaim"
     source_file: "paper/closure/sections/sec_09_landing.tex"
-    source_line: 94
+    source_line: 95
     source_section: "Landing"
     theorem_title: "landing-conditional"
     target_paper: "closure"
@@ -870,7 +870,7 @@ rows:
   - paper_label: "def:closure:gamma-sha-persistence"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 68
+    source_line: 69
     source_section: "RecognitionSources"
     theorem_title: "gamma-sha-persistence"
     target_paper: "closure"
@@ -926,7 +926,7 @@ rows:
   - paper_label: "def:closure:gamma-higher-gz-fixity"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 100
+    source_line: 101
     source_section: "RecognitionSources"
     theorem_title: "gamma-higher-gz-fixity"
     target_paper: "closure"
@@ -954,7 +954,7 @@ rows:
   - paper_label: "thm:closure:composite-signature"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 252
+    source_line: 254
     source_section: "SelShell"
     theorem_title: "composite-signature"
     target_paper: "closure"
@@ -968,7 +968,7 @@ rows:
   - paper_label: "nonclaim:closure:recognition-sources-not-derived"
     env_kind: "nonclaim"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 135
+    source_line: 136
     source_section: "RecognitionSources"
     theorem_title: "recognition-sources-not-derived"
     target_paper: "closure"
@@ -996,7 +996,7 @@ rows:
   - paper_label: "thm:closure:formed-closure-bridge"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 197
+    source_line: 198
     source_section: "SelShell"
     theorem_title: "formed-closure-bridge"
     target_paper: "closure"
@@ -1010,7 +1010,7 @@ rows:
   - paper_label: "rmk:closure:sensitivity-not-necessity"
     env_kind: "remark"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 276
+    source_line: 278
     source_section: "SelShell"
     theorem_title: "sensitivity-not-necessity"
     target_paper: "closure"
