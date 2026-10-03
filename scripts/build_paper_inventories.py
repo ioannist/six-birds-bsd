@@ -89,10 +89,11 @@ STATUS_OVERRIDES: dict[str, str] = {
     "rmk:apparatus:support-prime-atlas": "support_only",
     "rmk:apparatus:vsrc-no-licensed-descent": "support_only",
     "rmk:apparatus:vsrc-rank-r-stronger": "support_only",
-    # Closure axis — typed no-gos (audit results) and audit/interpretation
+    # Closure axis — literature-gap remarks and audit/interpretation
     # remarks are recorded, not mechanized as derivations.
-    "thm:closure:t-e12-no-go": "support_only",
-    "thm:closure:t-bad-no-go": "support_only",
+    "rmk:closure:t-e12-gap": "support_only",
+    "rmk:closure:t-bad-gap": "support_only",
+    "rmk:closure:sensitivity-not-necessity": "support_only",
     "rmk:closure:mode-b-residuals": "support_only",
     "rmk:closure:aor-partial-status": "support_only",
 }

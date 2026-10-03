@@ -16,75 +16,27 @@
 #   duplicate_of   = ""              # empty unless this row dedupes another
 
 [[entry]]
-paper_label = "def:closure:chi-ct-p-import"
-kind = "definition"
-section = "Imports"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 11
-source_file = "paper/closure/sections/sec_02_imports.tex"
-statement_hash = "1ea88eb8c60765e2aeac6a923c9ddf1c08e1f7d90914f7230dd2843285ffba61"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:closure:sel-bsd-shell"
-kind = "definition"
-section = "SelShell"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 15
-source_file = "paper/closure/sections/sec_04_shell_readout.tex"
-statement_hash = "fff189b8415a6922dc49fd73b4e9ba56c4c2876ba48576730dd51966b3503379"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:closure:chi-ct-p-comparison"
-kind = "theorem"
-section = "ChiCTp"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 14
-source_file = "paper/closure/sections/sec_05_chi_ct_p.tex"
-statement_hash = "f02801f87a96f8ac0a4dbfbff51f4ceec3c2ddd7aa4fc1798fa3071e50e79a25"
-duplicate_of = ""
-
-[[entry]]
 paper_label = "def:closure:eta-published-imports"
 kind = "definition"
 section = "EtaFormula"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 11
+line_start = 9
+line_end = 32
 source_file = "paper/closure/sections/sec_06_eta_formula.tex"
-statement_hash = "dad8277583f402b1466d98ec94ede624ec0fea951002b5c542c6f6dbdda6788f"
+statement_hash = "0b4d6ccf485086b14a57b781e7d390f20206ee71f384e55da4c5e44817820f7e"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "def:closure:t-cascade-import"
-kind = "definition"
-section = "TCascade"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 11
-source_file = "paper/closure/sections/sec_07_t_cascade.tex"
-statement_hash = "0be476b4ddfac1c076436acffe452ea3b3d676b651eb4cabcdb6496b1bc64edc"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:closure:t-e12-no-go"
-kind = "theorem"
+paper_label = "rmk:closure:t-e12-gap"
+kind = "remark"
 section = "Obstructions"
 intended_status = "support_only"
 required = true
-line_start = 5
-line_end = 13
+line_start = 9
+line_end = 24
 source_file = "paper/closure/sections/sec_08_obstructions.tex"
-statement_hash = "fed00c082e8fb02c22720cfa8e9af35a662f249500f6d5f769eaa4fa85857529"
+statement_hash = "03c1c19d13e3478fd32dd398272353c11ca2831cb106a9db7d8562449b0a3516"
 duplicate_of = ""
 
 [[entry]]
@@ -93,10 +45,46 @@ kind = "theorem"
 section = "Landing"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 20
+line_start = 10
+line_end = 42
 source_file = "paper/closure/sections/sec_09_landing.tex"
-statement_hash = "e1fd5aeaa74baec19ebbd35f3d1342ec2d21982b8029e68defdde8782e9684ed"
+statement_hash = "365e992e9b81689d8701511d4a9d4c31fdedee46623064860697e3d5bb8ec1da"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:closure:chi-ct-p-comparison"
+kind = "theorem"
+section = "ChiCTp"
+intended_status = "mechanize_now"
+required = true
+line_start = 11
+line_end = 34
+source_file = "paper/closure/sections/sec_05_chi_ct_p.tex"
+statement_hash = "0f6e1d4e1f2704b1fafd7dd6a6789a3d517ddcb8dfb472c5a19b6c47d567cc1c"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:closure:t-cascade-import"
+kind = "definition"
+section = "TCascade"
+intended_status = "mechanize_now"
+required = true
+line_start = 12
+line_end = 25
+source_file = "paper/closure/sections/sec_07_t_cascade.tex"
+statement_hash = "33b0d617a1e43f9ac0ae0eceb2f02095b068bf9f3bc15e17c8a0b171daff4883"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:closure:sel-bsd-shell"
+kind = "definition"
+section = "SelShell"
+intended_status = "mechanize_now"
+required = true
+line_start = 15
+line_end = 49
+source_file = "paper/closure/sections/sec_04_shell_readout.tex"
+statement_hash = "a22347571f9a966e4ea465313453bc09d93abdd5743b8b504d3c637c627738b8"
 duplicate_of = ""
 
 [[entry]]
@@ -105,10 +93,22 @@ kind = "definition"
 section = "AORInstance"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 12
+line_start = 15
+line_end = 31
 source_file = "paper/closure/sections/sec_10_aor_instance.tex"
-statement_hash = "29ef15075a9d222faf7ac100963e2e7c59b8fa548eda4851e03df413e2844a98"
+statement_hash = "2dd52717e9a5ffaf0e50bdc6c9e1127123bef635084ac7276731eefe9058d028"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:closure:chi-ct-p-import"
+kind = "definition"
+section = "Imports"
+intended_status = "mechanize_now"
+required = true
+line_start = 18
+line_end = 41
+source_file = "paper/closure/sections/sec_02_imports.tex"
+statement_hash = "8da99c6a32ad678cce7125c42228f4eac135e2e8f3b86f84ac3110e386f05c83"
 duplicate_of = ""
 
 [[entry]]
@@ -117,34 +117,22 @@ kind = "definition"
 section = "RecognitionSources"
 intended_status = "mechanize_now"
 required = true
-line_start = 7
-line_end = 22
+line_start = 26
+line_end = 52
 source_file = "paper/closure/sections/sec_03_recognition_sources.tex"
-statement_hash = "6d7be7a0fbee229a80f123348d187d713699baa39dea76a14d4068b41fd787e1"
+statement_hash = "3fc3e21058f93385613a0687c72d5bed607a3ea802b3aad9e07c11e313799405"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "def:closure:a-e-import"
-kind = "definition"
-section = "Imports"
-intended_status = "mechanize_now"
+paper_label = "rmk:closure:t-bad-gap"
+kind = "remark"
+section = "Obstructions"
+intended_status = "support_only"
 required = true
-line_start = 13
-line_end = 18
-source_file = "paper/closure/sections/sec_02_imports.tex"
-statement_hash = "e72999e1cc81d281b649fdeb146e180689c905574589bd00d85e90c2febd6912"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:closure:oc-eta-formula"
-kind = "theorem"
-section = "EtaFormula"
-intended_status = "mechanize_now"
-required = true
-line_start = 13
-line_end = 21
-source_file = "paper/closure/sections/sec_06_eta_formula.tex"
-statement_hash = "735bfaeb408e4216b2de3210d4c93d46e60fdbf5305f670ed6b5731220ea28b5"
+line_start = 26
+line_end = 35
+source_file = "paper/closure/sections/sec_08_obstructions.tex"
+statement_hash = "d1398976adf316ced7ba754dace7737f4d40f046cf5f50c0f9719f1dcf67f603"
 duplicate_of = ""
 
 [[entry]]
@@ -153,10 +141,22 @@ kind = "theorem"
 section = "TCascade"
 intended_status = "mechanize_now"
 required = true
-line_start = 13
-line_end = 25
+line_start = 27
+line_end = 58
 source_file = "paper/closure/sections/sec_07_t_cascade.tex"
-statement_hash = "4b949463c1810daba6785c5fe396f1e174191f09759ab38d730a19ef6b8158f0"
+statement_hash = "09b08d2d4084c0d9c1145cbc0453db9fc287e69679f2e24ccac99a79b6fc7b04"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:closure:oc-eta-formula"
+kind = "theorem"
+section = "EtaFormula"
+intended_status = "mechanize_now"
+required = true
+line_start = 34
+line_end = 46
+source_file = "paper/closure/sections/sec_06_eta_formula.tex"
+statement_hash = "abd1ea4a86e9a65ba2610c96260406fa1fcb3988d55cf68097ff59d3dfa139a1"
 duplicate_of = ""
 
 [[entry]]
@@ -165,46 +165,10 @@ kind = "theorem"
 section = "AORInstance"
 intended_status = "mechanize_now"
 required = true
-line_start = 14
-line_end = 20
+line_start = 35
+line_end = 49
 source_file = "paper/closure/sections/sec_10_aor_instance.tex"
-statement_hash = "470184d0ab170188e6db7013c8d14d5639528398d9d78e655e4251752ce068c8"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:closure:t-bad-no-go"
-kind = "theorem"
-section = "Obstructions"
-intended_status = "support_only"
-required = true
-line_start = 15
-line_end = 20
-source_file = "paper/closure/sections/sec_08_obstructions.tex"
-statement_hash = "6a2ea660982c3fbc6bf6ca19226ad18f3585223ce86c49d90c1ddf02f59b456d"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:closure:pi-bsd"
-kind = "definition"
-section = "SelShell"
-intended_status = "mechanize_now"
-required = true
-line_start = 17
-line_end = 26
-source_file = "paper/closure/sections/sec_04_shell_readout.tex"
-statement_hash = "3c324d8ffb1755af17b69f274d05821ed9f6bbe39a4fc3cf039073be2f2555ab"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:closure:beilinson-import"
-kind = "definition"
-section = "Imports"
-intended_status = "mechanize_now"
-required = true
-line_start = 20
-line_end = 24
-source_file = "paper/closure/sections/sec_02_imports.tex"
-statement_hash = "936d92ec3c873c6176fadc899f6f78a997f6c9dcc39ac17b66655486fa0e7355"
+statement_hash = "fb31b6abbd38ae505fce237b1d3fb8d08bc300b507c2416d30e5009baee8116e"
 duplicate_of = ""
 
 [[entry]]
@@ -213,22 +177,10 @@ kind = "remark"
 section = "Obstructions"
 intended_status = "support_only"
 required = true
-line_start = 22
-line_end = 27
+line_start = 37
+line_end = 44
 source_file = "paper/closure/sections/sec_08_obstructions.tex"
-statement_hash = "0e21a3b5376e2220b79f515d1fb2c85b2147ca1283ab7d8b0670664707e5ca5b"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "nonclaim:closure:landing-conditional"
-kind = "nonclaim"
-section = "Landing"
-intended_status = "nonclaim"
-required = true
-line_start = 22
-line_end = 27
-source_file = "paper/closure/sections/sec_09_landing.tex"
-statement_hash = "35553f33cf6c3436c9785d323068d7e83ad54e5055d1b82ecbaa277995a998bb"
+statement_hash = "5764e6b1a38c54f988bef62519778aef46633a4b9d2bbd786a3cad52de0e1ade"
 duplicate_of = ""
 
 [[entry]]
@@ -237,10 +189,34 @@ kind = "theorem"
 section = "AORInstance"
 intended_status = "mechanize_now"
 required = true
-line_start = 22
-line_end = 28
+line_start = 58
+line_end = 66
 source_file = "paper/closure/sections/sec_10_aor_instance.tex"
-statement_hash = "bc9c404299b17136346a9b6911b80fce11057b65d1bb4601891db9cb7903398a"
+statement_hash = "e8ce2c9716cd965e9576c09da5fe9afc511092f0d9b1e9603f4e9611e7a87a2f"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:closure:a-e-import"
+kind = "definition"
+section = "Imports"
+intended_status = "mechanize_now"
+required = true
+line_start = 63
+line_end = 78
+source_file = "paper/closure/sections/sec_02_imports.tex"
+statement_hash = "609b19041b8a5fa20fec2311ab98a2764865b0cb8435e835caa5156a28f23f7e"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:closure:pi-bsd"
+kind = "definition"
+section = "SelShell"
+intended_status = "mechanize_now"
+required = true
+line_start = 66
+line_end = 83
+source_file = "paper/closure/sections/sec_04_shell_readout.tex"
+statement_hash = "a1ec900798cc20339e1a47b961d078d83ee06692e12987a9baa6adfacf78b30a"
 duplicate_of = ""
 
 [[entry]]
@@ -249,34 +225,22 @@ kind = "definition"
 section = "RecognitionSources"
 intended_status = "mechanize_now"
 required = true
-line_start = 24
-line_end = 32
+line_start = 68
+line_end = 92
 source_file = "paper/closure/sections/sec_03_recognition_sources.tex"
-statement_hash = "126438c803d863a9a0f7aa831f25732ef6c52d6c7debcc0d2d28409a2cf16475"
+statement_hash = "3e8972f76998de6dd6746cf9c9ecaae6fe4ec2991e6814b20b6bd38d19d2c518"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "nonclaim:closure:imports-not-derived"
-kind = "nonclaim"
+paper_label = "def:closure:beilinson-import"
+kind = "definition"
 section = "Imports"
-intended_status = "nonclaim"
-required = true
-line_start = 26
-line_end = 30
-source_file = "paper/closure/sections/sec_02_imports.tex"
-statement_hash = "f1f349c050416b2ce02aa180e0fecba3519f5ba9ff071cfe37968e54c320f19f"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:closure:pi-bsd-iff-strong-bsd"
-kind = "theorem"
-section = "SelShell"
 intended_status = "mechanize_now"
 required = true
-line_start = 28
-line_end = 35
-source_file = "paper/closure/sections/sec_04_shell_readout.tex"
-statement_hash = "ba20bbadb4c8c4fe94367f40bd28fc9824aca16e13ef8b230d5f69e5d90f3fd8"
+line_start = 80
+line_end = 87
+source_file = "paper/closure/sections/sec_02_imports.tex"
+statement_hash = "a69d4a34e15a6f0e18aa11c6a97e21a8bb0d3a2afdea5ab4513952ab5d9fb2b8"
 duplicate_of = ""
 
 [[entry]]
@@ -285,10 +249,34 @@ kind = "theorem"
 section = "AORInstance"
 intended_status = "mechanize_now"
 required = true
-line_start = 30
-line_end = 38
+line_start = 81
+line_end = 92
 source_file = "paper/closure/sections/sec_10_aor_instance.tex"
-statement_hash = "16ef8abd38584b6395d357831b2e156b63884b8d7fa9ffaecf9c26977b0af47c"
+statement_hash = "e0067c98a28ddd113c858c737432dce1dbdd3fccec8262c19daa5c55dda35b76"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "nonclaim:closure:landing-conditional"
+kind = "nonclaim"
+section = "Landing"
+intended_status = "nonclaim"
+required = true
+line_start = 94
+line_end = 102
+source_file = "paper/closure/sections/sec_09_landing.tex"
+statement_hash = "1ad0b366830d54218a3cae300ff6a7c9244675c10757236abd67bd400d844b64"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "nonclaim:closure:imports-not-derived"
+kind = "nonclaim"
+section = "Imports"
+intended_status = "nonclaim"
+required = true
+line_start = 96
+line_end = 103
+source_file = "paper/closure/sections/sec_02_imports.tex"
+statement_hash = "78849f3b6fd456d949a8902ec0367eff9df907b3a55a6ccfc922b74621fd6a6a"
 duplicate_of = ""
 
 [[entry]]
@@ -297,22 +285,22 @@ kind = "definition"
 section = "RecognitionSources"
 intended_status = "mechanize_now"
 required = true
-line_start = 34
-line_end = 44
+line_start = 100
+line_end = 114
 source_file = "paper/closure/sections/sec_03_recognition_sources.tex"
-statement_hash = "2180189b4fc03a2f735d1c736829a9ef209ed3d8d53b41212fb0e53f9278a4ea"
+statement_hash = "d6adf80f667e49f2711efea4d657fa838de7f8dd1d37dc8750ce58a36a818801"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:closure:master-theorem-applicability"
+paper_label = "thm:closure:pi-bsd-iff-strong-bsd"
 kind = "theorem"
 section = "SelShell"
 intended_status = "mechanize_now"
 required = true
-line_start = 37
-line_end = 42
+line_start = 101
+line_end = 118
 source_file = "paper/closure/sections/sec_04_shell_readout.tex"
-statement_hash = "b7399fdd2cac4a55be0dfaf30090c5c5051ac0cd7242ccb6a3b97fc8b7b3b1a8"
+statement_hash = "21e7367194558e4cf6e287e86d77d9b5c4c55c075dc55cf1c2f1f5762ca6c364"
 duplicate_of = ""
 
 [[entry]]
@@ -321,22 +309,10 @@ kind = "remark"
 section = "AORInstance"
 intended_status = "support_only"
 required = true
-line_start = 40
-line_end = 44
+line_start = 101
+line_end = 109
 source_file = "paper/closure/sections/sec_10_aor_instance.tex"
-statement_hash = "8ac9eb45396fd19dee64c2d5b3f4bbe5a2dac30b5c74a4cf4dfc6ee70958ba7a"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:closure:composite-signature"
-kind = "theorem"
-section = "SelShell"
-intended_status = "mechanize_now"
-required = true
-line_start = 44
-line_end = 53
-source_file = "paper/closure/sections/sec_04_shell_readout.tex"
-statement_hash = "0f8a3fe0b66d61b38206e780fd655bd22062589ba7d230c494c509d9991ca3c7"
+statement_hash = "048eedcb2739b865fe8540855dc511babc4800cd96c7e6edb5910c6f05370855"
 duplicate_of = ""
 
 [[entry]]
@@ -345,8 +321,56 @@ kind = "nonclaim"
 section = "RecognitionSources"
 intended_status = "nonclaim"
 required = true
-line_start = 46
-line_end = 51
+line_start = 135
+line_end = 142
 source_file = "paper/closure/sections/sec_03_recognition_sources.tex"
-statement_hash = "f30274f5dbf6693f08505b23e7a788bb64239d0018d5c21d361c60752c0c3fa6"
+statement_hash = "693f08c2458da33eed0a216d5c2476102772b2853cc3d5b667f92242703f3b9d"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:closure:scalar-closure-translation"
+kind = "theorem"
+section = "SelShell"
+intended_status = "mechanize_now"
+required = true
+line_start = 144
+line_end = 165
+source_file = "paper/closure/sections/sec_04_shell_readout.tex"
+statement_hash = "33d4ebdf57d9883edb1c1521abbeb07a13a6ab0a0c2f3b8559d58ca320e886f5"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:closure:formed-closure-bridge"
+kind = "theorem"
+section = "SelShell"
+intended_status = "mechanize_now"
+required = true
+line_start = 197
+line_end = 217
+source_file = "paper/closure/sections/sec_04_shell_readout.tex"
+statement_hash = "db4b862cf8e21c05ee459059792b3c2858bc5516ae0a647762968ff96d2c1371"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:closure:composite-signature"
+kind = "theorem"
+section = "SelShell"
+intended_status = "mechanize_now"
+required = true
+line_start = 252
+line_end = 267
+source_file = "paper/closure/sections/sec_04_shell_readout.tex"
+statement_hash = "6c307e1c98b519d88aaa2108b99aaa2531078cc7a502f2b418eb650a4291e386"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "rmk:closure:sensitivity-not-necessity"
+kind = "remark"
+section = "SelShell"
+intended_status = "support_only"
+required = true
+line_start = 276
+line_end = 306
+source_file = "paper/closure/sections/sec_04_shell_readout.tex"
+statement_hash = "fe3ca579567e2f1d3bc1616b1a0f79f2e74e48502af76235ce71aa42c42362e3"
 duplicate_of = ""

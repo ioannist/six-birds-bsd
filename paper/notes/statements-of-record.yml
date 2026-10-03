@@ -4,32 +4,33 @@
 # (current = every mechanize_now label is mechanized).
 schema_version: 1
 status: "current"
-total_rows: 69
+total_rows: 71
 target_paper_counts:
   apparatus: 41
-  closure: 28
+  closure: 30
 target_destination_counts:
   appendix: 18
-  body: 51
+  body: 53
 proof_presentation_counts:
   appendix_only: 18
+  body_full: 1
   definition_entry: 22
-  lean_substantive: 29
+  lean_substantive: 30
 lean_coverage_counts:
   definition: 19
-  not_mechanized: 18
+  not_mechanized: 19
   recognition_source: 3
-  theorem: 29
+  theorem: 30
 semantic_alignment_counts:
-  faithful: 40
-  narrowed_surrogate: 6
-  not_applicable: 18
-  projection_packaged: 5
+  faithful: 28
+  narrowed_surrogate: 17
+  not_applicable: 19
+  projection_packaged: 7
 rows:
   - paper_label: "def:apparatus:bk-component-map"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_02_decomposition.tex"
-    source_line: 5
+    source_line: 36
     source_section: "Decomposition"
     theorem_title: "bk-component-map"
     target_paper: "apparatus"
@@ -43,7 +44,7 @@ rows:
   - paper_label: "def:apparatus:height-regulator-map"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_03_height_regulator.tex"
-    source_line: 5
+    source_line: 9
     source_section: "HeightRegulator"
     theorem_title: "height-regulator-map"
     target_paper: "apparatus"
@@ -57,7 +58,7 @@ rows:
   - paper_label: "def:apparatus:analytic-period-map"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_04_analytic_period.tex"
-    source_line: 5
+    source_line: 8
     source_section: "AnalyticPeriod"
     theorem_title: "analytic-period-map"
     target_paper: "apparatus"
@@ -71,7 +72,7 @@ rows:
   - paper_label: "def:apparatus:finite-source-map"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_05_finite_source.tex"
-    source_line: 5
+    source_line: 12
     source_section: "FiniteSource"
     theorem_title: "finite-source-map"
     target_paper: "apparatus"
@@ -85,7 +86,7 @@ rows:
   - paper_label: "def:apparatus:p-adic-map"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_06_p_adic.tex"
-    source_line: 5
+    source_line: 11
     source_section: "PAdic"
     theorem_title: "p-adic-map"
     target_paper: "apparatus"
@@ -99,7 +100,7 @@ rows:
   - paper_label: "def:apparatus:det-assembly-map"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_07_det_assembly.tex"
-    source_line: 5
+    source_line: 10
     source_section: "DetAssembly"
     theorem_title: "det-assembly-map"
     target_paper: "apparatus"
@@ -113,7 +114,7 @@ rows:
   - paper_label: "rmk:apparatus:five-column-literature-gap"
     env_kind: "remark"
     source_file: "paper/apparatus/sections/sec_08_comparison.tex"
-    source_line: 5
+    source_line: 9
     source_section: "Comparison"
     theorem_title: "five-column-literature-gap"
     target_paper: "apparatus"
@@ -127,7 +128,7 @@ rows:
   - paper_label: "def:apparatus:rank-two-kummer-source"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
-    source_line: 5
+    source_line: 14
     source_section: "HigherRankNoGo"
     theorem_title: "rank-two-kummer-source"
     target_paper: "apparatus"
@@ -141,7 +142,7 @@ rows:
   - paper_label: "thm:apparatus:finite-window-no-go"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_10_global_audit_no_go.tex"
-    source_line: 5
+    source_line: 12
     source_section: "GlobalAuditNoGo"
     theorem_title: "finite-window-no-go"
     target_paper: "apparatus"
@@ -150,12 +151,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.GlobalAuditNoGo.finiteWindowNoGo"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "thm:apparatus:finite-prime-cover-no-go"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
-    source_line: 5
+    source_line: 10
     source_section: "SupportPrimeNoGo"
     theorem_title: "finite-prime-cover-no-go"
     target_paper: "apparatus"
@@ -169,7 +170,7 @@ rows:
   - paper_label: "def:apparatus:vsrc-algebra"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_12_vsrc.tex"
-    source_line: 5
+    source_line: 13
     source_section: "Vsrc"
     theorem_title: "vsrc-algebra"
     target_paper: "apparatus"
@@ -183,7 +184,7 @@ rows:
   - paper_label: "thm:apparatus:kappa-r-normalization-equivalence"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_13_kappa_normalization.tex"
-    source_line: 5
+    source_line: 21
     source_section: "KappaNormalization"
     theorem_title: "kappa-r-normalization-equivalence"
     target_paper: "apparatus"
@@ -192,12 +193,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.KappaNormalization.kappaRNormalizationEquivalence"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "thm:apparatus:rank-two-height-schur-collapse"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
-    source_line: 12
+    source_line: 50
     source_section: "HigherRankNoGo"
     theorem_title: "rank-two-height-schur-collapse"
     target_paper: "apparatus"
@@ -206,12 +207,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoHeightSchurCollapse"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "def:apparatus:support-prime-truncation-residual"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
-    source_line: 12
+    source_line: 34
     source_section: "SupportPrimeNoGo"
     theorem_title: "support-prime-truncation-residual"
     target_paper: "apparatus"
@@ -225,7 +226,7 @@ rows:
   - paper_label: "thm:apparatus:vsrc-stage-i-consistency"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_12_vsrc.tex"
-    source_line: 12
+    source_line: 34
     source_section: "Vsrc"
     theorem_title: "vsrc-stage-i-consistency"
     target_paper: "apparatus"
@@ -239,7 +240,7 @@ rows:
   - paper_label: "def:apparatus:five-column-tensor"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_08_comparison.tex"
-    source_line: 14
+    source_line: 21
     source_section: "Comparison"
     theorem_title: "five-column-tensor"
     target_paper: "apparatus"
@@ -253,7 +254,7 @@ rows:
   - paper_label: "thm:apparatus:ordinary-schur-collapse"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_06_p_adic.tex"
-    source_line: 15
+    source_line: 74
     source_section: "PAdic"
     theorem_title: "ordinary-schur-collapse"
     target_paper: "apparatus"
@@ -262,12 +263,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.PAdic.ordinarySchurCollapse"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "thm:apparatus:cascade-completion-signature"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_07_det_assembly.tex"
-    source_line: 15
+    source_line: 46
     source_section: "DetAssembly"
     theorem_title: "cascade-completion-signature"
     target_paper: "apparatus"
@@ -281,7 +282,7 @@ rows:
   - paper_label: "thm:apparatus:height-schur-collapse"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_03_height_regulator.tex"
-    source_line: 17
+    source_line: 45
     source_section: "HeightRegulator"
     theorem_title: "height-schur-collapse"
     target_paper: "apparatus"
@@ -290,12 +291,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.HeightRegulator.heightSchurCollapse"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "thm:apparatus:analytic-period-schur-collapse"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_04_analytic_period.tex"
-    source_line: 17
+    source_line: 38
     source_section: "AnalyticPeriod"
     theorem_title: "analytic-period-schur-collapse"
     target_paper: "apparatus"
@@ -309,7 +310,7 @@ rows:
   - paper_label: "thm:apparatus:gram-matrix-shadow"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
-    source_line: 19
+    source_line: 80
     source_section: "HigherRankNoGo"
     theorem_title: "gram-matrix-shadow"
     target_paper: "apparatus"
@@ -318,12 +319,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.HigherRankNoGo.gramMatrixShadow"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "rmk:apparatus:support-prime-atlas"
     env_kind: "remark"
     source_file: "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
-    source_line: 19
+    source_line: 60
     source_section: "SupportPrimeNoGo"
     theorem_title: "support-prime-atlas"
     target_paper: "apparatus"
@@ -337,7 +338,7 @@ rows:
   - paper_label: "thm:apparatus:finite-source-schur-collapse"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_05_finite_source.tex"
-    source_line: 20
+    source_line: 65
     source_section: "FiniteSource"
     theorem_title: "finite-source-schur-collapse"
     target_paper: "apparatus"
@@ -351,7 +352,7 @@ rows:
   - paper_label: "def:apparatus:bridge-defect-equation"
     env_kind: "definition"
     source_file: "paper/apparatus/sections/sec_02_decomposition.tex"
-    source_line: 21
+    source_line: 83
     source_section: "Decomposition"
     theorem_title: "bridge-defect-equation"
     target_paper: "apparatus"
@@ -365,7 +366,7 @@ rows:
   - paper_label: "rmk:apparatus:vsrc-no-licensed-descent"
     env_kind: "remark"
     source_file: "paper/apparatus/sections/sec_12_vsrc.tex"
-    source_line: 21
+    source_line: 61
     source_section: "Vsrc"
     theorem_title: "vsrc-no-licensed-descent"
     target_paper: "apparatus"
@@ -379,7 +380,7 @@ rows:
   - paper_label: "thm:apparatus:five-col-bk-comparison"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_08_comparison.tex"
-    source_line: 22
+    source_line: 60
     source_section: "Comparison"
     theorem_title: "five-col-bk-comparison"
     target_paper: "apparatus"
@@ -393,7 +394,7 @@ rows:
   - paper_label: "thm:apparatus:signed-schur-collapse"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_06_p_adic.tex"
-    source_line: 23
+    source_line: 97
     source_section: "PAdic"
     theorem_title: "signed-schur-collapse"
     target_paper: "apparatus"
@@ -402,12 +403,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.PAdic.signedSchurCollapse"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "obl:apparatus:rho-an-period-transport"
     env_kind: "obligation"
     source_file: "paper/apparatus/sections/sec_04_analytic_period.tex"
-    source_line: 24
+    source_line: 69
     source_section: "AnalyticPeriod"
     theorem_title: "rho-an-period-transport"
     target_paper: "apparatus"
@@ -421,7 +422,7 @@ rows:
   - paper_label: "obl:apparatus:rho-ht-reg-transport"
     env_kind: "obligation"
     source_file: "paper/apparatus/sections/sec_03_height_regulator.tex"
-    source_line: 27
+    source_line: 116
     source_section: "HeightRegulator"
     theorem_title: "rho-ht-reg-transport"
     target_paper: "apparatus"
@@ -435,7 +436,7 @@ rows:
   - paper_label: "obl:apparatus:rho-det-assembly"
     env_kind: "obligation"
     source_file: "paper/apparatus/sections/sec_07_det_assembly.tex"
-    source_line: 28
+    source_line: 74
     source_section: "DetAssembly"
     theorem_title: "rho-det-assembly"
     target_paper: "apparatus"
@@ -449,7 +450,7 @@ rows:
   - paper_label: "thm:apparatus:scalar-finite-shadow"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_05_finite_source.tex"
-    source_line: 29
+    source_line: 92
     source_section: "FiniteSource"
     theorem_title: "scalar-finite-shadow"
     target_paper: "apparatus"
@@ -463,7 +464,7 @@ rows:
   - paper_label: "thm:apparatus:vsrc-stage-ii-gz-partial"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_12_vsrc.tex"
-    source_line: 29
+    source_line: 81
     source_section: "Vsrc"
     theorem_title: "vsrc-stage-ii-gz-partial"
     target_paper: "apparatus"
@@ -472,12 +473,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIGzPartial"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "obl:apparatus:rho-p-transport"
     env_kind: "obligation"
     source_file: "paper/apparatus/sections/sec_06_p_adic.tex"
-    source_line: 31
+    source_line: 120
     source_section: "PAdic"
     theorem_title: "rho-p-transport"
     target_paper: "apparatus"
@@ -491,7 +492,7 @@ rows:
   - paper_label: "thm:apparatus:component-killing"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_02_decomposition.tex"
-    source_line: 32
+    source_line: 107
     source_section: "Decomposition"
     theorem_title: "component-killing"
     target_paper: "apparatus"
@@ -505,7 +506,7 @@ rows:
   - paper_label: "warn:apparatus:571a1-carrier"
     env_kind: "warning"
     source_file: "paper/apparatus/sections/sec_03_height_regulator.tex"
-    source_line: 36
+    source_line: 135
     source_section: "HeightRegulator"
     theorem_title: "571a1-carrier"
     target_paper: "apparatus"
@@ -519,7 +520,7 @@ rows:
   - paper_label: "thm:apparatus:dim-sha-shadow"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_05_finite_source.tex"
-    source_line: 36
+    source_line: 118
     source_section: "FiniteSource"
     theorem_title: "dim-sha-shadow"
     target_paper: "apparatus"
@@ -528,12 +529,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.FiniteSource.dimShaShadow"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "thm:apparatus:vsrc-stage-iii-translation"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_12_vsrc.tex"
-    source_line: 38
+    source_line: 132
     source_section: "Vsrc"
     theorem_title: "vsrc-stage-iii-translation"
     target_paper: "apparatus"
@@ -542,12 +543,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.Vsrc.vsrcStageIIITranslation"
-    semantic_alignment: "faithful"
+    semantic_alignment: "projection_packaged"
     notes: ""
   - paper_label: "thm:apparatus:finite-scalar-public-shadow"
     env_kind: "theorem"
     source_file: "paper/apparatus/sections/sec_02_decomposition.tex"
-    source_line: 40
+    source_line: 139
     source_section: "Decomposition"
     theorem_title: "finite-scalar-public-shadow"
     target_paper: "apparatus"
@@ -556,12 +557,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Apparatus.Decomposition.finiteScalarPublicShadow"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
   - paper_label: "obl:apparatus:rho-finite-transport"
     env_kind: "obligation"
     source_file: "paper/apparatus/sections/sec_05_finite_source.tex"
-    source_line: 45
+    source_line: 242
     source_section: "FiniteSource"
     theorem_title: "rho-finite-transport"
     target_paper: "apparatus"
@@ -575,7 +576,7 @@ rows:
   - paper_label: "rmk:apparatus:vsrc-rank-r-stronger"
     env_kind: "remark"
     source_file: "paper/apparatus/sections/sec_12_vsrc.tex"
-    source_line: 49
+    source_line: 159
     source_section: "Vsrc"
     theorem_title: "vsrc-rank-r-stronger"
     target_paper: "apparatus"
@@ -589,7 +590,7 @@ rows:
   - paper_label: "nonclaim:apparatus:decomposition-scope"
     env_kind: "nonclaim"
     source_file: "paper/apparatus/sections/sec_02_decomposition.tex"
-    source_line: 51
+    source_line: 180
     source_section: "Decomposition"
     theorem_title: "decomposition-scope"
     target_paper: "apparatus"
@@ -603,7 +604,7 @@ rows:
   - paper_label: "def:closure:chi-ct-p-import"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_02_imports.tex"
-    source_line: 5
+    source_line: 18
     source_section: "Imports"
     theorem_title: "chi-ct-p-import"
     target_paper: "closure"
@@ -617,7 +618,7 @@ rows:
   - paper_label: "def:closure:sel-bsd-shell"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 5
+    source_line: 15
     source_section: "SelShell"
     theorem_title: "sel-bsd-shell"
     target_paper: "closure"
@@ -631,7 +632,7 @@ rows:
   - paper_label: "thm:closure:chi-ct-p-comparison"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_05_chi_ct_p.tex"
-    source_line: 5
+    source_line: 11
     source_section: "ChiCTp"
     theorem_title: "chi-ct-p-comparison"
     target_paper: "closure"
@@ -645,7 +646,7 @@ rows:
   - paper_label: "def:closure:eta-published-imports"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_06_eta_formula.tex"
-    source_line: 5
+    source_line: 9
     source_section: "EtaFormula"
     theorem_title: "eta-published-imports"
     target_paper: "closure"
@@ -659,7 +660,7 @@ rows:
   - paper_label: "def:closure:t-cascade-import"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_07_t_cascade.tex"
-    source_line: 5
+    source_line: 12
     source_section: "TCascade"
     theorem_title: "t-cascade-import"
     target_paper: "closure"
@@ -670,12 +671,12 @@ rows:
     lean_decl: "SixBirdsBSD.Closure.TCascade.tCascadeImport"
     semantic_alignment: "faithful"
     notes: ""
-  - paper_label: "thm:closure:t-e12-no-go"
-    env_kind: "theorem"
+  - paper_label: "rmk:closure:t-e12-gap"
+    env_kind: "remark"
     source_file: "paper/closure/sections/sec_08_obstructions.tex"
-    source_line: 5
+    source_line: 9
     source_section: "Obstructions"
-    theorem_title: "t-e12-no-go"
+    theorem_title: "t-e12-gap"
     target_paper: "closure"
     target_destination: "appendix"
     target_section_hint: "sec:obstructions"
@@ -687,7 +688,7 @@ rows:
   - paper_label: "thm:closure:strong-bsd-conditional"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_09_landing.tex"
-    source_line: 5
+    source_line: 10
     source_section: "Landing"
     theorem_title: "strong-bsd-conditional"
     target_paper: "closure"
@@ -701,7 +702,7 @@ rows:
   - paper_label: "def:closure:aor-sel-instance"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_10_aor_instance.tex"
-    source_line: 5
+    source_line: 15
     source_section: "AORInstance"
     theorem_title: "aor-sel-instance"
     target_paper: "closure"
@@ -715,7 +716,7 @@ rows:
   - paper_label: "def:closure:gamma-padic-descent"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 7
+    source_line: 26
     source_section: "RecognitionSources"
     theorem_title: "gamma-padic-descent"
     target_paper: "closure"
@@ -729,7 +730,7 @@ rows:
   - paper_label: "def:closure:a-e-import"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_02_imports.tex"
-    source_line: 13
+    source_line: 63
     source_section: "Imports"
     theorem_title: "a-e-import"
     target_paper: "closure"
@@ -743,7 +744,7 @@ rows:
   - paper_label: "thm:closure:oc-eta-formula"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_06_eta_formula.tex"
-    source_line: 13
+    source_line: 34
     source_section: "EtaFormula"
     theorem_title: "oc-eta-formula"
     target_paper: "closure"
@@ -757,7 +758,7 @@ rows:
   - paper_label: "thm:closure:t-cascade-rank-le-1"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_07_t_cascade.tex"
-    source_line: 13
+    source_line: 27
     source_section: "TCascade"
     theorem_title: "t-cascade-rank-le-1"
     target_paper: "closure"
@@ -771,7 +772,7 @@ rows:
   - paper_label: "thm:closure:aor-mechanical-records"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_10_aor_instance.tex"
-    source_line: 14
+    source_line: 35
     source_section: "AORInstance"
     theorem_title: "aor-mechanical-records"
     target_paper: "closure"
@@ -780,14 +781,14 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Closure.AORInstance.aorMechanicalRecords"
-    semantic_alignment: "faithful"
+    semantic_alignment: "narrowed_surrogate"
     notes: ""
-  - paper_label: "thm:closure:t-bad-no-go"
-    env_kind: "theorem"
+  - paper_label: "rmk:closure:t-bad-gap"
+    env_kind: "remark"
     source_file: "paper/closure/sections/sec_08_obstructions.tex"
-    source_line: 15
+    source_line: 26
     source_section: "Obstructions"
-    theorem_title: "t-bad-no-go"
+    theorem_title: "t-bad-gap"
     target_paper: "closure"
     target_destination: "appendix"
     target_section_hint: "sec:obstructions"
@@ -799,7 +800,7 @@ rows:
   - paper_label: "def:closure:pi-bsd"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 17
+    source_line: 66
     source_section: "SelShell"
     theorem_title: "pi-bsd"
     target_paper: "closure"
@@ -813,7 +814,7 @@ rows:
   - paper_label: "def:closure:beilinson-import"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_02_imports.tex"
-    source_line: 20
+    source_line: 80
     source_section: "Imports"
     theorem_title: "beilinson-import"
     target_paper: "closure"
@@ -827,7 +828,7 @@ rows:
   - paper_label: "rmk:closure:mode-b-residuals"
     env_kind: "remark"
     source_file: "paper/closure/sections/sec_08_obstructions.tex"
-    source_line: 22
+    source_line: 37
     source_section: "Obstructions"
     theorem_title: "mode-b-residuals"
     target_paper: "closure"
@@ -841,7 +842,7 @@ rows:
   - paper_label: "nonclaim:closure:landing-conditional"
     env_kind: "nonclaim"
     source_file: "paper/closure/sections/sec_09_landing.tex"
-    source_line: 22
+    source_line: 94
     source_section: "Landing"
     theorem_title: "landing-conditional"
     target_paper: "closure"
@@ -855,7 +856,7 @@ rows:
   - paper_label: "thm:closure:aor-recognition-discharge"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_10_aor_instance.tex"
-    source_line: 22
+    source_line: 58
     source_section: "AORInstance"
     theorem_title: "aor-recognition-discharge"
     target_paper: "closure"
@@ -864,12 +865,12 @@ rows:
     proof_presentation: "lean_substantive"
     lean_coverage: "theorem"
     lean_decl: "SixBirdsBSD.Closure.AORInstance.aorRecognitionDischarge"
-    semantic_alignment: "faithful"
+    semantic_alignment: "projection_packaged"
     notes: ""
   - paper_label: "def:closure:gamma-sha-persistence"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 24
+    source_line: 68
     source_section: "RecognitionSources"
     theorem_title: "gamma-sha-persistence"
     target_paper: "closure"
@@ -883,7 +884,7 @@ rows:
   - paper_label: "nonclaim:closure:imports-not-derived"
     env_kind: "nonclaim"
     source_file: "paper/closure/sections/sec_02_imports.tex"
-    source_line: 26
+    source_line: 96
     source_section: "Imports"
     theorem_title: "imports-not-derived"
     target_paper: "closure"
@@ -897,7 +898,7 @@ rows:
   - paper_label: "thm:closure:pi-bsd-iff-strong-bsd"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 28
+    source_line: 101
     source_section: "SelShell"
     theorem_title: "pi-bsd-iff-strong-bsd"
     target_paper: "closure"
@@ -911,7 +912,7 @@ rows:
   - paper_label: "thm:closure:aor-instance"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_10_aor_instance.tex"
-    source_line: 30
+    source_line: 81
     source_section: "AORInstance"
     theorem_title: "aor-instance"
     target_paper: "closure"
@@ -925,7 +926,7 @@ rows:
   - paper_label: "def:closure:gamma-higher-gz-fixity"
     env_kind: "definition"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 34
+    source_line: 100
     source_section: "RecognitionSources"
     theorem_title: "gamma-higher-gz-fixity"
     target_paper: "closure"
@@ -936,24 +937,10 @@ rows:
     lean_decl: "SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity"
     semantic_alignment: "narrowed_surrogate"
     notes: ""
-  - paper_label: "thm:closure:master-theorem-applicability"
-    env_kind: "theorem"
-    source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 37
-    source_section: "SelShell"
-    theorem_title: "master-theorem-applicability"
-    target_paper: "closure"
-    target_destination: "body"
-    target_section_hint: "sec:shell-readout"
-    proof_presentation: "lean_substantive"
-    lean_coverage: "theorem"
-    lean_decl: "SixBirdsBSD.Closure.SelShell.masterTheoremApplicability"
-    semantic_alignment: "faithful"
-    notes: ""
   - paper_label: "rmk:closure:aor-partial-status"
     env_kind: "remark"
     source_file: "paper/closure/sections/sec_10_aor_instance.tex"
-    source_line: 40
+    source_line: 101
     source_section: "AORInstance"
     theorem_title: "aor-partial-status"
     target_paper: "closure"
@@ -967,7 +954,7 @@ rows:
   - paper_label: "thm:closure:composite-signature"
     env_kind: "theorem"
     source_file: "paper/closure/sections/sec_04_shell_readout.tex"
-    source_line: 44
+    source_line: 252
     source_section: "SelShell"
     theorem_title: "composite-signature"
     target_paper: "closure"
@@ -981,13 +968,55 @@ rows:
   - paper_label: "nonclaim:closure:recognition-sources-not-derived"
     env_kind: "nonclaim"
     source_file: "paper/closure/sections/sec_03_recognition_sources.tex"
-    source_line: 46
+    source_line: 135
     source_section: "RecognitionSources"
     theorem_title: "recognition-sources-not-derived"
     target_paper: "closure"
     target_destination: "appendix"
     target_section_hint: "sec:recognition-sources"
     proof_presentation: "appendix_only"
+    lean_coverage: "not_mechanized"
+    lean_decl: ""
+    semantic_alignment: "not_applicable"
+    notes: ""
+  - paper_label: "thm:closure:scalar-closure-translation"
+    env_kind: "theorem"
+    source_file: "paper/closure/sections/sec_04_shell_readout.tex"
+    source_line: 144
+    source_section: "SelShell"
+    theorem_title: "scalar-closure-translation"
+    target_paper: "closure"
+    target_destination: "body"
+    target_section_hint: "sec:scalar-closure"
+    proof_presentation: "lean_substantive"
+    lean_coverage: "theorem"
+    lean_decl: "SixBirdsBSD.Closure.ScalarClosure.shellClosedIffResidualZero"
+    semantic_alignment: "faithful"
+    notes: ""
+  - paper_label: "thm:closure:formed-closure-bridge"
+    env_kind: "theorem"
+    source_file: "paper/closure/sections/sec_04_shell_readout.tex"
+    source_line: 197
+    source_section: "SelShell"
+    theorem_title: "formed-closure-bridge"
+    target_paper: "closure"
+    target_destination: "body"
+    target_section_hint: "sec:scalar-closure"
+    proof_presentation: "lean_substantive"
+    lean_coverage: "theorem"
+    lean_decl: "SixBirdsBSD.Closure.ArithmeticClosureBridge.formedClosureForcesStrongBSD"
+    semantic_alignment: "faithful"
+    notes: ""
+  - paper_label: "rmk:closure:sensitivity-not-necessity"
+    env_kind: "remark"
+    source_file: "paper/closure/sections/sec_04_shell_readout.tex"
+    source_line: 276
+    source_section: "SelShell"
+    theorem_title: "sensitivity-not-necessity"
+    target_paper: "closure"
+    target_destination: "body"
+    target_section_hint: "sec:sensitivity"
+    proof_presentation: "body_full"
     lean_coverage: "not_mechanized"
     lean_decl: ""
     semantic_alignment: "not_applicable"

@@ -16,15 +16,15 @@
 #   duplicate_of   = ""              # empty unless this row dedupes another
 
 [[entry]]
-paper_label = "def:apparatus:bk-component-map"
+paper_label = "def:apparatus:analytic-period-map"
 kind = "definition"
-section = "Decomposition"
+section = "AnalyticPeriod"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 19
-source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
-statement_hash = "a9c0dc9816c5d25dce011f70608b3f29f00bff61b7c6a21c3a372f10f0b16a19"
+line_start = 8
+line_end = 30
+source_file = "paper/apparatus/sections/sec_04_analytic_period.tex"
+statement_hash = "9164ee0ce49788f5ddfca1d0190a28218fe06d3b23e207381d05a9753a63b4fe"
 duplicate_of = ""
 
 [[entry]]
@@ -33,58 +33,10 @@ kind = "definition"
 section = "HeightRegulator"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 15
+line_start = 9
+line_end = 38
 source_file = "paper/apparatus/sections/sec_03_height_regulator.tex"
-statement_hash = "a8587c461d2ff6149abade76ea5692ac4e276807e48ca6080df3ae5590bf8939"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:apparatus:analytic-period-map"
-kind = "definition"
-section = "AnalyticPeriod"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 15
-source_file = "paper/apparatus/sections/sec_04_analytic_period.tex"
-statement_hash = "b6157445896095018f448ec6ced2dfbf330f4e327f8072416f0d7163bc6455d9"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:apparatus:finite-source-map"
-kind = "definition"
-section = "FiniteSource"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 18
-source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
-statement_hash = "b1a2fb83be07fd6c95a7316954cc13954a7de0247320f0dfef25d1587c116d1c"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:apparatus:p-adic-map"
-kind = "definition"
-section = "PAdic"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 13
-source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
-statement_hash = "0dd6c1b44d4407515adee8ac6831c6edfb96611a4a2b2b819598655ba4ecdce1"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:apparatus:det-assembly-map"
-kind = "definition"
-section = "DetAssembly"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 13
-source_file = "paper/apparatus/sections/sec_07_det_assembly.tex"
-statement_hash = "d494533f5ee41325cc15efc823251af11a04252cac93f1302cbc97af3afa3593"
+statement_hash = "a3eecb956d39b8ce17032b1bc82a13fd08b6e0c71de6b59db60c63056f45a808"
 duplicate_of = ""
 
 [[entry]]
@@ -93,34 +45,22 @@ kind = "remark"
 section = "Comparison"
 intended_status = "support_only"
 required = true
-line_start = 5
-line_end = 12
+line_start = 9
+line_end = 19
 source_file = "paper/apparatus/sections/sec_08_comparison.tex"
-statement_hash = "2ca5a31bd4bc0c0673d58fc8779608d3e685c1e0db0c22a6e58775d39ad477ba"
+statement_hash = "70efa11653a1c1486cc8fe89f806b11fffd655f8dc857e1ac93e7b6b3f6b4400"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "def:apparatus:rank-two-kummer-source"
+paper_label = "def:apparatus:det-assembly-map"
 kind = "definition"
-section = "HigherRankNoGo"
+section = "DetAssembly"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 10
-source_file = "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
-statement_hash = "d817d0a9bc7d271521554bfef33fde3f9dc3d3b0f89637864d7ae6173f08ad5b"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:apparatus:finite-window-no-go"
-kind = "theorem"
-section = "GlobalAuditNoGo"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 13
-source_file = "paper/apparatus/sections/sec_10_global_audit_no_go.tex"
-statement_hash = "8cf7eebecd3a2724f2b2f889c46e145c8e84b6092ae57c95e4bdca903de6941f"
+line_start = 10
+line_end = 39
+source_file = "paper/apparatus/sections/sec_07_det_assembly.tex"
+statement_hash = "851d2941f53339d8fa9b924af1e390228b5ba28cf64e1d621efb557d6f55ed8a"
 duplicate_of = ""
 
 [[entry]]
@@ -129,10 +69,46 @@ kind = "theorem"
 section = "SupportPrimeNoGo"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 10
+line_start = 10
+line_end = 22
 source_file = "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
-statement_hash = "4a908fd45e6401e07825803ddf7a96075d89ec5f178c6c3a8be05044e250dd8f"
+statement_hash = "c00a38eef71d495e9c3ca3d69f3ada74e7f356f97740d9db13e292601159d819"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:apparatus:p-adic-map"
+kind = "definition"
+section = "PAdic"
+intended_status = "mechanize_now"
+required = true
+line_start = 11
+line_end = 60
+source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
+statement_hash = "438b57601ec22b64bd3e67a9c250194ef7dcd08d7eb993f58431988d90b55f98"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:apparatus:finite-source-map"
+kind = "definition"
+section = "FiniteSource"
+intended_status = "mechanize_now"
+required = true
+line_start = 12
+line_end = 52
+source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
+statement_hash = "0af814f6b462a6bf7822babe243ad46057528094002645b69cc4d8a9027946d4"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:apparatus:finite-window-no-go"
+kind = "theorem"
+section = "GlobalAuditNoGo"
+intended_status = "mechanize_now"
+required = true
+line_start = 12
+line_end = 35
+source_file = "paper/apparatus/sections/sec_10_global_audit_no_go.tex"
+statement_hash = "1b3bc16fbd880e5a5eaaf52969ebc670e04a4049d6eda20d1f34b0c46a162139"
 duplicate_of = ""
 
 [[entry]]
@@ -141,58 +117,22 @@ kind = "definition"
 section = "Vsrc"
 intended_status = "mechanize_now"
 required = true
-line_start = 5
-line_end = 10
+line_start = 13
+line_end = 28
 source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
-statement_hash = "fbc9a960dbc39e1c2d58724d5a14e9c92873d9f2cacb8b7fa62c0208c78ce866"
+statement_hash = "313e7f968e82c1da35ab93c396aa7ccb929adac8745c17db687bf7ae17f29bc4"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:kappa-r-normalization-equivalence"
-kind = "theorem"
-section = "KappaNormalization"
-intended_status = "mechanize_now"
-required = true
-line_start = 5
-line_end = 12
-source_file = "paper/apparatus/sections/sec_13_kappa_normalization.tex"
-statement_hash = "c797212f5bb384de0d9094e8eaaf1e5c3109838ed0ccd47f17aa405580adb0a9"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:apparatus:rank-two-height-schur-collapse"
-kind = "theorem"
+paper_label = "def:apparatus:rank-two-kummer-source"
+kind = "definition"
 section = "HigherRankNoGo"
 intended_status = "mechanize_now"
 required = true
-line_start = 12
-line_end = 17
+line_start = 14
+line_end = 25
 source_file = "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
-statement_hash = "86cd71d173766f4bd1bd99004684d5b8157e25e5d996c04b980a4c7598e5de6a"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:apparatus:support-prime-truncation-residual"
-kind = "definition"
-section = "SupportPrimeNoGo"
-intended_status = "mechanize_now"
-required = true
-line_start = 12
-line_end = 17
-source_file = "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
-statement_hash = "ce4969e2fe4adc515b6f86106531dcdcd188706d89acf9646c9ac52552dc9aa1"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:apparatus:vsrc-stage-i-consistency"
-kind = "theorem"
-section = "Vsrc"
-intended_status = "mechanize_now"
-required = true
-line_start = 12
-line_end = 19
-source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
-statement_hash = "74396b41242f840bb85495138e8503ec12880a0bc963bf8eec17b1951368d172"
+statement_hash = "42dd0d6f11ad2336fe81276b4de8798aa682bba498472e282b455ee43e63a7c1"
 duplicate_of = ""
 
 [[entry]]
@@ -201,46 +141,58 @@ kind = "definition"
 section = "Comparison"
 intended_status = "mechanize_now"
 required = true
-line_start = 14
-line_end = 20
+line_start = 21
+line_end = 50
 source_file = "paper/apparatus/sections/sec_08_comparison.tex"
-statement_hash = "686fad43f04f942f9ee4f5d4fa6135ff844977c0199da116816f85cb6dbb94e9"
+statement_hash = "e7ba0e9ab6e8642b920474dfc61797293b0fa74a2bc0b12675ae9793f5f4b82f"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:ordinary-schur-collapse"
+paper_label = "thm:apparatus:kappa-r-normalization-equivalence"
 kind = "theorem"
-section = "PAdic"
+section = "KappaNormalization"
 intended_status = "mechanize_now"
 required = true
-line_start = 15
-line_end = 21
-source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
-statement_hash = "7040c4c43e71341bbe497cac200fd056b916925495badd956d5fa64858816ef4"
+line_start = 21
+line_end = 53
+source_file = "paper/apparatus/sections/sec_13_kappa_normalization.tex"
+statement_hash = "ad65a2198c942f525adfbb398e11889d17bcf000d0d06bb4de551700350e0e93"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:cascade-completion-signature"
-kind = "theorem"
-section = "DetAssembly"
+paper_label = "def:apparatus:support-prime-truncation-residual"
+kind = "definition"
+section = "SupportPrimeNoGo"
 intended_status = "mechanize_now"
 required = true
-line_start = 15
-line_end = 26
-source_file = "paper/apparatus/sections/sec_07_det_assembly.tex"
-statement_hash = "7e062e9562bff0da64f527948680a686da3b67c1442bcc586e8701317d8cd6b5"
+line_start = 34
+line_end = 51
+source_file = "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
+statement_hash = "691368e5519d137898e933b7b8b5e7d517080aac098c72a605c701f125f9238c"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:height-schur-collapse"
+paper_label = "thm:apparatus:vsrc-stage-i-consistency"
 kind = "theorem"
-section = "HeightRegulator"
+section = "Vsrc"
 intended_status = "mechanize_now"
 required = true
-line_start = 17
-line_end = 25
-source_file = "paper/apparatus/sections/sec_03_height_regulator.tex"
-statement_hash = "f75b3d1e46ade626138776ef534edb6ac63c19200798c816e768072c7651aafc"
+line_start = 34
+line_end = 44
+source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
+statement_hash = "18375c110fb12822d6601dd1d5eca72b56707b50bb4d82ea9fde498febfcbf7c"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "def:apparatus:bk-component-map"
+kind = "definition"
+section = "Decomposition"
+intended_status = "mechanize_now"
+required = true
+line_start = 36
+line_end = 74
+source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
+statement_hash = "dced6cbcbf44c6ab6079d8b9f4b674627dfa6600c1bf0da0158b32c3387b57fd"
 duplicate_of = ""
 
 [[entry]]
@@ -249,70 +201,46 @@ kind = "theorem"
 section = "AnalyticPeriod"
 intended_status = "mechanize_now"
 required = true
-line_start = 17
-line_end = 22
+line_start = 38
+line_end = 53
 source_file = "paper/apparatus/sections/sec_04_analytic_period.tex"
-statement_hash = "0d06c0a9d77c8ae0c4decd623c49c1cf57e1f01326b3dbccb9aece7e0d4f4e3b"
+statement_hash = "652e40f38cc9a12d66d7373a548ddd32143306e4eb0fa673bae14ecf5a6f5429"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:gram-matrix-shadow"
+paper_label = "thm:apparatus:height-schur-collapse"
+kind = "theorem"
+section = "HeightRegulator"
+intended_status = "mechanize_now"
+required = true
+line_start = 45
+line_end = 77
+source_file = "paper/apparatus/sections/sec_03_height_regulator.tex"
+statement_hash = "11526f0f7762d324f3355cd371c2fa9d29cecd3e9f807235f5fb689beeeab618"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:apparatus:cascade-completion-signature"
+kind = "theorem"
+section = "DetAssembly"
+intended_status = "mechanize_now"
+required = true
+line_start = 46
+line_end = 65
+source_file = "paper/apparatus/sections/sec_07_det_assembly.tex"
+statement_hash = "bb37bbf25742d735778111b8d42f3d501e49d0a0be18647c2e9d3b87b742bbdd"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:apparatus:rank-two-height-schur-collapse"
 kind = "theorem"
 section = "HigherRankNoGo"
 intended_status = "mechanize_now"
 required = true
-line_start = 19
-line_end = 27
+line_start = 50
+line_end = 65
 source_file = "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
-statement_hash = "bc2341a463ca6c7c090b49b6032cd41d7ca58dbc1eeb26557eeaaf03e2233051"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "rmk:apparatus:support-prime-atlas"
-kind = "remark"
-section = "SupportPrimeNoGo"
-intended_status = "support_only"
-required = true
-line_start = 19
-line_end = 25
-source_file = "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
-statement_hash = "daf3eb014dd7ac8269e0112b0ca57b847ce43a3a704f9bd424eeba7cedd41396"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "thm:apparatus:finite-source-schur-collapse"
-kind = "theorem"
-section = "FiniteSource"
-intended_status = "mechanize_now"
-required = true
-line_start = 20
-line_end = 27
-source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
-statement_hash = "2ae738c7aa75c76e5d17beae6f53ac0168e4fd02dcfa2ab260eec1756adcf4bc"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "def:apparatus:bridge-defect-equation"
-kind = "definition"
-section = "Decomposition"
-intended_status = "mechanize_now"
-required = true
-line_start = 21
-line_end = 30
-source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
-statement_hash = "5200d1c1ebb8e960e51c827d149b159953ab9dc4fc003f1b692e65cebc137826"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "rmk:apparatus:vsrc-no-licensed-descent"
-kind = "remark"
-section = "Vsrc"
-intended_status = "support_only"
-required = true
-line_start = 21
-line_end = 27
-source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
-statement_hash = "78bfe09981ed7c38ff9349cf08c02593ee51fb62b0a48db15b8997944f7c20e7"
+statement_hash = "6158726ab7e820417975029c73a6feacfdbf683cdf0f4c37d0cd60e9e5a073be"
 duplicate_of = ""
 
 [[entry]]
@@ -321,22 +249,46 @@ kind = "theorem"
 section = "Comparison"
 intended_status = "mechanize_now"
 required = true
-line_start = 22
-line_end = 29
+line_start = 60
+line_end = 83
 source_file = "paper/apparatus/sections/sec_08_comparison.tex"
-statement_hash = "0d4c13cfec75d0fe4bd0197e9fc38c57506699e137958cce227036aecd65375f"
+statement_hash = "152ea7d417dbd22daa7815dc719a6b02db6b9561522886756cafd64535d2ac48"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:signed-schur-collapse"
+paper_label = "rmk:apparatus:support-prime-atlas"
+kind = "remark"
+section = "SupportPrimeNoGo"
+intended_status = "support_only"
+required = true
+line_start = 60
+line_end = 86
+source_file = "paper/apparatus/sections/sec_11_support_prime_no_go.tex"
+statement_hash = "8935f5d5d7f7e984d0cbd4c97a85aaf677dd0e59f2bc4390830ab25f7f588ca0"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "rmk:apparatus:vsrc-no-licensed-descent"
+kind = "remark"
+section = "Vsrc"
+intended_status = "support_only"
+required = true
+line_start = 61
+line_end = 74
+source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
+statement_hash = "92770c04bcb919f78ae87ac5a42a86087ded2c88f1e8b501257bbdeffd303545"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:apparatus:finite-source-schur-collapse"
 kind = "theorem"
-section = "PAdic"
+section = "FiniteSource"
 intended_status = "mechanize_now"
 required = true
-line_start = 23
-line_end = 29
-source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
-statement_hash = "e514b04643da30813e09ab05ac2a9ee081a82d06d87d35dcffc5dbe86d6be785"
+line_start = 65
+line_end = 80
+source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
+statement_hash = "2acdf229e16adc0fff075d9128bf073e38ef65dda148017bf396f816a11c587e"
 duplicate_of = ""
 
 [[entry]]
@@ -345,22 +297,22 @@ kind = "obligation"
 section = "AnalyticPeriod"
 intended_status = "out_of_scope_recognition_source"
 required = true
-line_start = 24
-line_end = 31
+line_start = 69
+line_end = 85
 source_file = "paper/apparatus/sections/sec_04_analytic_period.tex"
-statement_hash = "474cb1d7470e0ca8efd817ad1161361cd2d9f3a9cec42cd2b61bfc9eb93a4730"
+statement_hash = "049b898d01be515c3c16e4a5d93eff5d15f3988f55e184501a60875a15f2ce79"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "obl:apparatus:rho-ht-reg-transport"
-kind = "obligation"
-section = "HeightRegulator"
-intended_status = "out_of_scope_recognition_source"
+paper_label = "thm:apparatus:ordinary-schur-collapse"
+kind = "theorem"
+section = "PAdic"
+intended_status = "mechanize_now"
 required = true
-line_start = 27
-line_end = 34
-source_file = "paper/apparatus/sections/sec_03_height_regulator.tex"
-statement_hash = "6950e2b4a8fcd19818d4992f8a08091a04ee81b9806028ea13ca88d93fbe61a0"
+line_start = 74
+line_end = 88
+source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
+statement_hash = "79917d5d8c3ba3694cd09b243397cbb07fc703101c943854f321ee4f3bc86f31"
 duplicate_of = ""
 
 [[entry]]
@@ -369,22 +321,22 @@ kind = "obligation"
 section = "DetAssembly"
 intended_status = "out_of_scope_recognition_source"
 required = true
-line_start = 28
-line_end = 34
+line_start = 74
+line_end = 100
 source_file = "paper/apparatus/sections/sec_07_det_assembly.tex"
-statement_hash = "6155f69e8bdeddb094675df4ffb0417c9e7644fdda69945cb979f8e15dfcca4b"
+statement_hash = "21b74d268c21172c7f6a347d31242be5ee845f8527771e3d4aca7c3b9be1f01a"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "thm:apparatus:scalar-finite-shadow"
+paper_label = "thm:apparatus:gram-matrix-shadow"
 kind = "theorem"
-section = "FiniteSource"
+section = "HigherRankNoGo"
 intended_status = "mechanize_now"
 required = true
-line_start = 29
-line_end = 34
-source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
-statement_hash = "db1dc72b2cdca9876dec8bbc4288f9b7eeec90e766d5ab5e7bb380fd696513a8"
+line_start = 80
+line_end = 96
+source_file = "paper/apparatus/sections/sec_09_higher_rank_no_go.tex"
+statement_hash = "b9f8ba42106375721f6079b62f5cae5451b45b07e7a3cba69cc23efc98153432"
 duplicate_of = ""
 
 [[entry]]
@@ -393,22 +345,46 @@ kind = "theorem"
 section = "Vsrc"
 intended_status = "mechanize_now"
 required = true
-line_start = 29
-line_end = 36
+line_start = 81
+line_end = 101
 source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
-statement_hash = "955c6c01cb118c0333826dcd8bb0338ef2ac571cca6d241525a38799932f1fb6"
+statement_hash = "89db24c60e68176b77e50bf1963ae52dd053b7d1bf5e776f6bd00f8219190ee2"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "obl:apparatus:rho-p-transport"
-kind = "obligation"
-section = "PAdic"
-intended_status = "out_of_scope_recognition_source"
+paper_label = "def:apparatus:bridge-defect-equation"
+kind = "definition"
+section = "Decomposition"
+intended_status = "mechanize_now"
 required = true
-line_start = 31
-line_end = 37
+line_start = 83
+line_end = 105
+source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
+statement_hash = "c4436f88c02213dc203acc6c22396a4682682174104b401a99037602d521c032"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:apparatus:scalar-finite-shadow"
+kind = "theorem"
+section = "FiniteSource"
+intended_status = "mechanize_now"
+required = true
+line_start = 92
+line_end = 109
+source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
+statement_hash = "c8427a4742e9877622b47731db41b9012fe32e8b7e3e1e526c28119b32f4a36f"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "thm:apparatus:signed-schur-collapse"
+kind = "theorem"
+section = "PAdic"
+intended_status = "mechanize_now"
+required = true
+line_start = 97
+line_end = 109
 source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
-statement_hash = "57e66e40bf90cb25ec074f5f0b79de106a9ef22adc4d20d90f3ca04dcad81370"
+statement_hash = "71c6d37fe11f25003f906ceee4ab4a21581236326c338badbea21e903a9037e5"
 duplicate_of = ""
 
 [[entry]]
@@ -417,22 +393,22 @@ kind = "theorem"
 section = "Decomposition"
 intended_status = "mechanize_now"
 required = true
-line_start = 32
-line_end = 38
+line_start = 107
+line_end = 126
 source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
-statement_hash = "06bc5136bbc4a168ab0eda224446b14e04e5c04bf57be7fbf8cdb11029a50846"
+statement_hash = "7d673b11ae78c5875df894f1ec5b5078b612bdc8e472bcdc309c759d54393ca1"
 duplicate_of = ""
 
 [[entry]]
-paper_label = "warn:apparatus:571a1-carrier"
-kind = "warning"
+paper_label = "obl:apparatus:rho-ht-reg-transport"
+kind = "obligation"
 section = "HeightRegulator"
-intended_status = "nonclaim"
+intended_status = "out_of_scope_recognition_source"
 required = true
-line_start = 36
-line_end = 40
+line_start = 116
+line_end = 133
 source_file = "paper/apparatus/sections/sec_03_height_regulator.tex"
-statement_hash = "48f577f70c06cc830bbcf37f8d08f8bd9e6701780cfa603949df73ace4d0a31d"
+statement_hash = "dbf3dd223fede6e37918758550b3b45f4afc0c3e621fa1eca03d43e849712bca"
 duplicate_of = ""
 
 [[entry]]
@@ -441,10 +417,22 @@ kind = "theorem"
 section = "FiniteSource"
 intended_status = "mechanize_now"
 required = true
-line_start = 36
-line_end = 43
+line_start = 118
+line_end = 141
 source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
-statement_hash = "233ae020338b2dcb26432ea296bc0b25888e78d581a9c1b1afe0bbc4f3d70f81"
+statement_hash = "8cd04f9cf47c8a8249bf9556539bf54b6954ac083f54d4cbf4dfe5b88afdf7c9"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "obl:apparatus:rho-p-transport"
+kind = "obligation"
+section = "PAdic"
+intended_status = "out_of_scope_recognition_source"
+required = true
+line_start = 120
+line_end = 137
+source_file = "paper/apparatus/sections/sec_06_p_adic.tex"
+statement_hash = "55eb062e8048caa025fd17049f2a7627e86d2a760c87600e89c2f475b7bc0b36"
 duplicate_of = ""
 
 [[entry]]
@@ -453,10 +441,22 @@ kind = "theorem"
 section = "Vsrc"
 intended_status = "mechanize_now"
 required = true
-line_start = 38
-line_end = 47
+line_start = 132
+line_end = 144
 source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
-statement_hash = "b78b1b3ded7873f87a921292696ba7e263aff88c7588611d5ef03bac8dab8ab2"
+statement_hash = "65b9e460dec37b6ce5c8f79470df6c6964d0509842477cabe0ceb1ff91a2a4d1"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "warn:apparatus:571a1-carrier"
+kind = "warning"
+section = "HeightRegulator"
+intended_status = "nonclaim"
+required = true
+line_start = 135
+line_end = 144
+source_file = "paper/apparatus/sections/sec_03_height_regulator.tex"
+statement_hash = "0d54c6f86778d3ee209627c6cd8ccb42041cffc3a18854792735b0234b4436c3"
 duplicate_of = ""
 
 [[entry]]
@@ -465,22 +465,10 @@ kind = "theorem"
 section = "Decomposition"
 intended_status = "mechanize_now"
 required = true
-line_start = 40
-line_end = 49
+line_start = 139
+line_end = 158
 source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
-statement_hash = "4d885305a9c9493a812bb7cf809a0ef457981bfffac6035967837ba62a4507ba"
-duplicate_of = ""
-
-[[entry]]
-paper_label = "obl:apparatus:rho-finite-transport"
-kind = "obligation"
-section = "FiniteSource"
-intended_status = "out_of_scope_recognition_source"
-required = true
-line_start = 45
-line_end = 50
-source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
-statement_hash = "7c4e9726e19d73ea47c1652e048314bf6042d9bf9dd65d406418b4c75bf30a2d"
+statement_hash = "f47e427b013acbfe6674e1fb45909e1b92dbb80b5ef4e3061dedbd94b754ab8f"
 duplicate_of = ""
 
 [[entry]]
@@ -489,10 +477,10 @@ kind = "remark"
 section = "Vsrc"
 intended_status = "support_only"
 required = true
-line_start = 49
-line_end = 55
+line_start = 159
+line_end = 167
 source_file = "paper/apparatus/sections/sec_12_vsrc.tex"
-statement_hash = "e554acb6b5c7309577302ba8cc301ff0aeced5ed340c827a13c0cb4a1ebf9aaf"
+statement_hash = "6d3d0d12a6cf9dacfe265f50107d2526908adb5cad0c86adb6755e273d5d8c2d"
 duplicate_of = ""
 
 [[entry]]
@@ -501,8 +489,20 @@ kind = "nonclaim"
 section = "Decomposition"
 intended_status = "nonclaim"
 required = true
-line_start = 51
-line_end = 55
+line_start = 180
+line_end = 189
 source_file = "paper/apparatus/sections/sec_02_decomposition.tex"
-statement_hash = "aa03ff2cb4b83b0d6ab04341ba3403bcb997b607689d79d45874206a3445e24c"
+statement_hash = "b4e04936c498db8b59c4f09dde6364c323987e184c9086b8bcffb3944690622f"
+duplicate_of = ""
+
+[[entry]]
+paper_label = "obl:apparatus:rho-finite-transport"
+kind = "obligation"
+section = "FiniteSource"
+intended_status = "out_of_scope_recognition_source"
+required = true
+line_start = 242
+line_end = 265
+source_file = "paper/apparatus/sections/sec_05_finite_source.tex"
+statement_hash = "bfd28231aee6b2e5014eba31e5ade10cc5ceeed104b92f352e5139cca8d56a39"
 duplicate_of = ""

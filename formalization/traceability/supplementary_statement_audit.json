@@ -1,406 +1,416 @@
 {
-  "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
+  "scope": "The 41 labelled statements outside the 30-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
   "lean_context_hash": "734a74cfbdde0871ca2a25d29b29a8716303441e4518381749d6933fc362a59b",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_02_decomposition.tex",
-      "line_start": 37,
-      "statement_hash": "6451902ee0c4b9b9d9832505e803e9bfa5aa90191a177d9876117b4a3178dfc7",
+      "line_start": 36,
+      "statement_hash": "dced6cbcbf44c6ab6079d8b9f4b674627dfa6600c1bf0da0158b32c3387b57fd",
       "lean_decl": "SixBirdsBSD.Apparatus.Decomposition.bkComponentMap",
       "assessment": "conditional assembly",
-      "notes": "The Lean map consumes all five columns and supplied transports simultaneously. A genuine determinant-line assembly, all-prime support conventions, and arithmetic applicability are additional inputs; the displayed direct-sum notation does not construct them."
+      "notes": "The Lean map consumes all five columns and supplied transports simultaneously. A genuine determinant-line assembly, all-prime support conventions, and arithmetic applicability are additional inputs; the displayed direct-sum notation does not construct them. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:bridge-defect-equation",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_02_decomposition.tex",
-      "line_start": 86,
-      "statement_hash": "9771aaba5f6d96ad675d5119fd6131f9a196cd6551f3e9f091a0ffd62144310e",
+      "line_start": 83,
+      "statement_hash": "c4436f88c02213dc203acc6c22396a4682682174104b401a99037602d521c032",
       "lean_decl": "SixBirdsBSD.Apparatus.Decomposition.bridgeDefectEquation",
       "assessment": "conditional normalization",
-      "notes": "The Lean equation is an integer scalar identity with a supplied local sum. An actual infinite sum requires finite support or convergence. Equivalence with multiplicative coordinates requires a defined logarithmic/trivialization convention and treatment of signs and units."
+      "notes": "The Lean equation is an integer scalar identity with a supplied local sum. An actual infinite sum requires finite support or convergence. Equivalence with multiplicative coordinates requires a defined logarithmic/trivialization convention and treatment of signs and units. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "nonclaim:apparatus:decomposition-scope",
       "env_kind": "nonclaim",
       "source_file": "paper/apparatus/sections/sec_02_decomposition.tex",
-      "line_start": 225,
-      "statement_hash": "589362f45c2bfec6f4e42cfd7a838dca10bcfcf868f5ae0eb4c387044ade0125",
+      "line_start": 180,
+      "statement_hash": "b4e04936c498db8b59c4f09dde6364c323987e184c9086b8bcffb3944690622f",
       "lean_decl": "",
       "assessment": "consistent scope boundary",
-      "notes": "The exclusion of a BSD, Bloch-Kato, or ETNC proof agrees with the actual conditional assembly and narrowed shadow witnesses. The five arithmetic transports remain external obligations."
+      "notes": "The exclusion of a BSD, Bloch-Kato, or ETNC proof agrees with the actual conditional assembly and narrowed shadow witnesses. The five arithmetic transports remain external obligations. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:height-regulator-map",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_03_height_regulator.tex",
-      "line_start": 12,
-      "statement_hash": "214f3b39a3884550abcff62c0667a61167f91bb3d2ac8be3af6f7db8e1c750d7",
+      "line_start": 9,
+      "statement_hash": "a3eecb956d39b8ce17032b1bc82a13fd08b6e0c71de6b59db60c63056f45a808",
       "lean_decl": "SixBirdsBSD.Apparatus.HeightRegulator.heightRegulatorMap",
       "assessment": "supplied determinant operation",
-      "notes": "The generic map still accepts a supplied determinant operation. A concrete rank-two pairing specialization, its bilinear laws, Gram congruence and unimodular determinant invariance are now derived in height_differential_construction.md. The Neron-Tate pairing, Mordell-Weil lattice, intrinsic determinant line and all-rank arithmetic realization remain supplied rather than constructed in Lean."
+      "notes": "The generic map still accepts a supplied determinant operation. A concrete rank-two pairing specialization, its bilinear laws, Gram congruence and unimodular determinant invariance are now derived in height_differential_construction.md. The Neron-Tate pairing, Mordell-Weil lattice, intrinsic determinant line and all-rank arithmetic realization remain supplied rather than constructed in Lean. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "obl:apparatus:rho-ht-reg-transport",
       "env_kind": "obligation",
       "source_file": "paper/apparatus/sections/sec_03_height_regulator.tex",
-      "line_start": 132,
-      "statement_hash": "3a18e40be224a53197465d0c861374dd760412be23043c89bfa7bedb8d638885",
+      "line_start": 116,
+      "statement_hash": "dbf3dd223fede6e37918758550b3b45f4afc0c3e621fa1eca03d43e849712bca",
       "lean_decl": "",
       "assessment": "open arithmetic transport",
-      "notes": "Neron-Tate to Beilinson-Deligne regulator normalization, integral lattice conventions, and compatibility with the other columns are explicitly open. They are not discharged by identity-matrix Schur collapse."
+      "notes": "Neron-Tate to Beilinson-Deligne regulator normalization, integral lattice conventions, and compatibility with the other columns are explicitly open. They are not discharged by identity-matrix Schur collapse. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "warn:apparatus:571a1-carrier",
       "env_kind": "warning",
       "source_file": "paper/apparatus/sections/sec_03_height_regulator.tex",
-      "line_start": 151,
-      "statement_hash": "a0f6ad4eed7a25bd1faeb82fde37655bb8b42958dec18f9bd23f7d2b0d4bfaf8",
+      "line_start": 135,
+      "statement_hash": "0d54c6f86778d3ee209627c6cd8ccb42041cffc3a18854792735b0234b4436c3",
       "lean_decl": "",
       "assessment": "certified two-primary arithmetic witness; full Sha order open",
-      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. Certified PARI two-descent on the primary 571a1 equation now gives torsion order one, rank bounds [0,0], and Cassels-pairing rank two; full bnf certification removes the class-group GRH dependency. Exact quartic maps/local inputs and the pairing-to-two-primary collapse are checked in Lean. Standard descent interpretation identifies its two-primary group with H_2 of order four. The 1309a1 comparison now realizes arithmetic dimension-only loss through unequal finite two-primary orders, four versus at least sixteen, using a nonzero modular symbol and an established finiteness theorem for the partner. A separately checked intermediate eight-descent in Miller's published small-conductor proof now fixes the partner's exact two-primary order sixteen and realizes perfect H_4. The 2045b1 partner preserves every finite Tamagawa number and trivial torsion as well. This eight-descent is imported and not independently rerun locally; Lean derives its primary stabilization return and the finite paired integral normalization. Exact primitive Hecke symbols and optimal integral-lattice normalization justify the analytic branch without numerical calibration. Finiteness and primary decomposition give unequal whole finite factors, with the congruence return checked in Lean, without computing their odd parts. This does not compute exact whole Sha orders or prove the arithmetic determinant-line transport; arithmetic descent completeness and pairing computation remain external to Lean. See finite_pairing_construction.md."
+      "notes": "Cremona labels distinguish rank-zero 571a1 from rank-two 571b1. Certified PARI two-descent on the primary 571a1 equation now gives torsion order one, rank bounds [0,0], and Cassels-pairing rank two; full bnf certification removes the class-group GRH dependency. Exact quartic maps/local inputs and the pairing-to-two-primary collapse are checked in Lean. Standard descent interpretation identifies its two-primary group with H_2 of order four. The 1309a1 comparison now realizes arithmetic dimension-only loss through unequal finite two-primary orders, four versus at least sixteen, using a nonzero modular symbol and an established finiteness theorem for the partner. A separately checked intermediate eight-descent in Miller's published small-conductor proof now fixes the partner's exact two-primary order sixteen and realizes perfect H_4. The 2045b1 partner preserves every finite Tamagawa number and trivial torsion as well. This eight-descent is imported and not independently rerun locally; Lean derives its primary stabilization return and the finite paired integral normalization. Exact primitive Hecke symbols and optimal integral-lattice normalization justify the analytic branch without numerical calibration. Finiteness and primary decomposition give unequal whole finite factors, with the congruence return checked in Lean, without computing their odd parts. This does not compute exact whole Sha orders or prove the arithmetic determinant-line transport; arithmetic descent completeness and pairing computation remain external to Lean. See finite_pairing_construction.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:analytic-period-map",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_04_analytic_period.tex",
-      "line_start": 12,
-      "statement_hash": "f7b8658771b27425cee6dafb2a8156a9c6c1980a525b75aa512359057893954f",
+      "line_start": 8,
+      "statement_hash": "9164ee0ce49788f5ddfca1d0190a28218fe06d3b23e207381d05a9753a63b4fe",
       "lean_decl": "SixBirdsBSD.Apparatus.AnalyticPeriod.analyticPeriodMap",
       "assessment": "conditional scalar readout",
-      "notes": "The leading Taylor coefficient has the correct factorial convention. The Lean map accepts supplied division and scalar multiplication. The positive period generator and connected-component convention must agree with the eventual BSD period; nonzero period is needed for arithmetic division."
+      "notes": "The leading Taylor coefficient has the correct factorial convention. The Lean map accepts supplied division and scalar multiplication. The positive period generator and connected-component convention must agree with the eventual BSD period; nonzero period is needed for arithmetic division. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "obl:apparatus:rho-an-period-transport",
       "env_kind": "obligation",
       "source_file": "paper/apparatus/sections/sec_04_analytic_period.tex",
-      "line_start": 111,
-      "statement_hash": "ccfbedd258a2292e579a8126c77afb886c8b406b4528faf25e8431299b8d2bbe",
+      "line_start": 69,
+      "statement_hash": "049b898d01be515c3c16e4a5d93eff5d15f3988f55e184501a60875a15f2ce79",
       "lean_decl": "",
       "assessment": "open arithmetic transport",
-      "notes": "The analytic zeta-element comparison requires period, rational/integral, real-orientation, and leading-term conventions. Its claimed rank-zero classical applicability must be matched to a precise cited statement; positive-rank content is explicitly supplied."
+      "notes": "The analytic zeta-element comparison requires period, rational/integral, real-orientation, and leading-term conventions. Its claimed rank-zero classical applicability must be matched to a precise cited statement; positive-rank content is explicitly supplied. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:finite-source-map",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_05_finite_source.tex",
-      "line_start": 11,
-      "statement_hash": "0c1fd8e46c52952b7f9233d208d2b9e5c72c53e6af1a007f2e84b5de8041af19",
+      "line_start": 12,
+      "statement_hash": "0af814f6b462a6bf7822babe243ad46057528094002645b69cc4d8a9027946d4",
       "lean_decl": "SixBirdsBSD.Apparatus.FiniteSource.finiteSourceMap",
       "assessment": "normalization obligation",
-      "notes": "The Lean map tensors three supplied readouts. Raw rational Pfaffians depend on lifts and bases. FinitePresentation now constructs integral hyperbolic quotient groups, recovers their pairings with an explicit sign, and proves a determinant-to-cardinality return invariant under unimodular changes. This repairs that finite model, not the arithmetic Selmer-complex identification or determinant-line generator comparison. Rational coefficient 1/n, integral half-order n, and cardinality n^2 must be distinguished. See finite_pairing_construction.md."
+      "notes": "The Lean map tensors three supplied readouts. Raw rational Pfaffians depend on lifts and bases. FinitePresentation now constructs integral hyperbolic quotient groups, recovers their pairings with an explicit sign, and proves a determinant-to-cardinality return invariant under unimodular changes. This repairs that finite model, not the arithmetic Selmer-complex identification or determinant-line generator comparison. Rational coefficient 1/n, integral half-order n, and cardinality n^2 must be distinguished. See finite_pairing_construction.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "obl:apparatus:rho-finite-transport",
       "env_kind": "obligation",
       "source_file": "paper/apparatus/sections/sec_05_finite_source.tex",
-      "line_start": 308,
-      "statement_hash": "a36ce00d376b05bf25a951d456dcc0c0f06764106cdb132ae676efb6295fb2b9",
+      "line_start": 242,
+      "statement_hash": "bfd28231aee6b2e5014eba31e5ade10cc5ceeed104b92f352e5139cca8d56a39",
       "lean_decl": "",
       "assessment": "open arithmetic transport",
-      "notes": "The integral finite comparison must supply local conditions, squared torsion, and a normalized determinant-line Pfaffian. A raw finite pairing does not by itself select a real scalar lift. OddPrimaryBridge also gives a written arithmetic identification of the ordinary compact complex for 1913b1 at three: H1=0, H2=(Z/3)^2, inverse determinant ideal (9). Bases of image nine and eighteen share this ideal but have different square-root behavior. Lean proves the finite presentation, perfect-form normalization and unit obstruction; the arithmetic identification uses external cohomology and primary-bound imports. The subsequent StarkCoreVertices construction establishes rank-one core vertices on this curve using Tate inertia, exact central minus identity, residual cocycle vanishing and cartesian Kummer conditions. Published existence/freeness theorems and the determinant/Stark isomorphism realize bases over Z/27 with the same entire Fitting ladder and different normalized-square rootability. Lean proves the supporting algebra, not the arithmetic existence theorem. Compatible all-level native basis and manuscript orientation comparisons remain open; fixed-lane self-duality is supplied by the subsequent CTDerivedTransport construction. See formalization/odd_primary_selmer_bridge.md and formalization/stark_core_vertex_construction.md. The subsequent StarkInverseLimit construction applies Sakamoto integral coefficient and Fitting theorems on the checked arithmetic lane. It constructs coherent bases at all coefficient levels whose entire component-image ideals agree but whose prescribed normalized-square rootability differs. A written digit-lifting proof gives an exact residue square-class repair and proves independence of the square-image subset from the chosen integral lift of the fixed finite comparison. Lean constructs the full compatible coefficient carrier, its inverse of two and the no-go for an arbitrary entire family of generated ideals. The arithmetic instantiation and general digit-lifting criterion are written proofs. Canonical integral Stark naturality and fixed-lane self-duality are supplied by the subsequent constructions; the prescribed native manuscript generator and final orientation remain open. See formalization/stark_inverse_limit_construction.md. The subsequent CTDerivedTransport construction matches the actual 1913b1 compact local conditions to Nekovar Section 10.8, identifies its Sha lane by the coefficient boundary, and retains the raw minus-Flach sign. Its explicit homotopy lifts finite pairing normalization to the arithmetic derived duality, and equal determinant multipliers preserve the canonical acyclic trivialization. Lean checks integral matrix and linking identities and equation-derived local inputs; arithmetic duality and derived-category transport remain written imported-theorem proofs. The prescribed native manuscript Stark unit, manuscript degree and final Pfaffian orientation, and named-source ablations remain open; canonical integral Stark naturality is supplied by the subsequent construction. See formalization/ct_derived_transport_construction.md. The subsequent StarkCoefficientNaturality construction derives the adjacent coefficient square from actual cochain lifts, the negative degree-two comparison, common-core base change and matching exterior contraction signs. It yields a canonical integral determinant/Stark isomorphism whose basis e_can and 2 e_can still have identical component ideals and different prescribed-square rootability. Lean proves the compatible-family limit return, inverse naturality, both inverse laws, uniqueness and an incompatible finite-isomorphism false control. Arithmetic cochain/determinant naturality is a written proof with external imports. The manuscript independently prescribed generator, final Pfaffian orientation and named-source ablations remain open. See formalization/stark_coefficient_naturality.md. The subsequent CTPfaffianRoot construction derives the actual paired rank-two root line: theta=u I gives skew differential 3u J, Pfaffian 3u and square-line multiplier u^2. Its inverse-unit root squares to the canonical determinant basis and returns scalar three; matching raw/corrected source orientation changes compute the two signs. Frame and lift-change descent are written proofs. Lean checks the integral/rational coordinates, including the factor-four false normalization at u=2. This root is also recoverable from the retained embedded determinant ideal, so pairing-source indispensability for this scalar return is not claimed. The manuscript has no independent formulas selecting its named native root/height/target; those identifications, degree conventions and final native orientation remain open. See formalization/ct_pfaffian_root_construction.md."
+      "notes": "The integral finite comparison must supply local conditions, squared torsion, and a normalized determinant-line Pfaffian. A raw finite pairing does not by itself select a real scalar lift. OddPrimaryBridge also gives a written arithmetic identification of the ordinary compact complex for 1913b1 at three: H1=0, H2=(Z/3)^2, inverse determinant ideal (9). Bases of image nine and eighteen share this ideal but have different square-root behavior. Lean proves the finite presentation, perfect-form normalization and unit obstruction; the arithmetic identification uses external cohomology and primary-bound imports. The subsequent StarkCoreVertices construction establishes rank-one core vertices on this curve using Tate inertia, exact central minus identity, residual cocycle vanishing and cartesian Kummer conditions. Published existence/freeness theorems and the determinant/Stark isomorphism realize bases over Z/27 with the same entire Fitting ladder and different normalized-square rootability. Lean proves the supporting algebra, not the arithmetic existence theorem. Compatible all-level native basis and manuscript orientation comparisons remain open; fixed-lane self-duality is supplied by the subsequent CTDerivedTransport construction. See formalization/odd_primary_selmer_bridge.md and formalization/stark_core_vertex_construction.md. The subsequent StarkInverseLimit construction applies Sakamoto integral coefficient and Fitting theorems on the checked arithmetic lane. It constructs coherent bases at all coefficient levels whose entire component-image ideals agree but whose prescribed normalized-square rootability differs. A written digit-lifting proof gives an exact residue square-class repair and proves independence of the square-image subset from the chosen integral lift of the fixed finite comparison. Lean constructs the full compatible coefficient carrier, its inverse of two and the no-go for an arbitrary entire family of generated ideals. The arithmetic instantiation and general digit-lifting criterion are written proofs. Canonical integral Stark naturality and fixed-lane self-duality are supplied by the subsequent constructions; the prescribed native manuscript generator and final orientation remain open. See formalization/stark_inverse_limit_construction.md. The subsequent CTDerivedTransport construction matches the actual 1913b1 compact local conditions to Nekovar Section 10.8, identifies its Sha lane by the coefficient boundary, and retains the raw minus-Flach sign. Its explicit homotopy lifts finite pairing normalization to the arithmetic derived duality, and equal determinant multipliers preserve the canonical acyclic trivialization. Lean checks integral matrix and linking identities and equation-derived local inputs; arithmetic duality and derived-category transport remain written imported-theorem proofs. The prescribed native manuscript Stark unit, manuscript degree and final Pfaffian orientation, and named-source ablations remain open; canonical integral Stark naturality is supplied by the subsequent construction. See formalization/ct_derived_transport_construction.md. The subsequent StarkCoefficientNaturality construction derives the adjacent coefficient square from actual cochain lifts, the negative degree-two comparison, common-core base change and matching exterior contraction signs. It yields a canonical integral determinant/Stark isomorphism whose basis e_can and 2 e_can still have identical component ideals and different prescribed-square rootability. Lean proves the compatible-family limit return, inverse naturality, both inverse laws, uniqueness and an incompatible finite-isomorphism false control. Arithmetic cochain/determinant naturality is a written proof with external imports. The manuscript independently prescribed generator, final Pfaffian orientation and named-source ablations remain open. See formalization/stark_coefficient_naturality.md. The subsequent CTPfaffianRoot construction derives the actual paired rank-two root line: theta=u I gives skew differential 3u J, Pfaffian 3u and square-line multiplier u^2. Its inverse-unit root squares to the canonical determinant basis and returns scalar three; matching raw/corrected source orientation changes compute the two signs. Frame and lift-change descent are written proofs. Lean checks the integral/rational coordinates, including the factor-four false normalization at u=2. This root is also recoverable from the retained embedded determinant ideal, so pairing-source indispensability for this scalar return is not claimed. The manuscript has no independent formulas selecting its named native root/height/target; those identifications, degree conventions and final native orientation remain open. See formalization/ct_pfaffian_root_construction.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:p-adic-map",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_06_p_adic.tex",
       "line_start": 11,
-      "statement_hash": "9e6cf83973176bed15b3a2cda710f44fa88effe4280d7952b738fc91c1dc23f8",
+      "statement_hash": "438b57601ec22b64bd3e67a9c250194ef7dcd08d7eb993f58431988d90b55f98",
       "lean_decl": "SixBirdsBSD.Apparatus.PAdic.pAdicMap",
       "assessment": "corrected typed interface",
-      "notes": "The manuscript dual exponential has the wrong finite-lane type. Lean now distinguishes the finite exponential/logarithm comparison from the dual exponential and derives finite-lane vanishing of the latter. Signed integral comparisons and small-prime scope remain supplied; see padic_transport_correction.md and support_prime_data_audit.md."
+      "notes": "The manuscript dual exponential has the wrong finite-lane type. Lean now distinguishes the finite exponential/logarithm comparison from the dual exponential and derives finite-lane vanishing of the latter. Signed integral comparisons and small-prime scope remain supplied; see padic_transport_correction.md and support_prime_data_audit.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "obl:apparatus:rho-p-transport",
       "env_kind": "obligation",
       "source_file": "paper/apparatus/sections/sec_06_p_adic.tex",
-      "line_start": 215,
-      "statement_hash": "df5cad31f8d6111916addd0ad0eba876bac521a8a498d09e233a9dceb9cc0540",
+      "line_start": 120,
+      "statement_hash": "55eb062e8048caa025fd17049f2a7627e86d2a760c87600e89c2f475b7bc0b36",
       "lean_decl": "",
       "assessment": "open arithmetic transport",
-      "notes": "Integral Fontaine-Laffaille/Wach, local duality, signed normalization, and local-global compatibility are explicitly open. The finite-coordinate signature and repaired exponential typing do not construct this bridge."
+      "notes": "Integral Fontaine-Laffaille/Wach, local duality, signed normalization, and local-global compatibility are explicitly open. The finite-coordinate signature and repaired exponential typing do not construct this bridge. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:det-assembly-map",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_07_det_assembly.tex",
-      "line_start": 11,
-      "statement_hash": "eb8fa4caf6092b3455804398a22a6250e88371c92cbc16824a54a8334b4e662a",
+      "line_start": 10,
+      "statement_hash": "851d2941f53339d8fa9b924af1e390228b5ba28cf64e1d621efb557d6f55ed8a",
       "lean_decl": "SixBirdsBSD.Apparatus.DetAssembly.detAssemblyMap",
       "assessment": "conditional final assembly",
-      "notes": "Lean consumes four arithmetic inputs and an independent orientation. Arithmetic determinant signs and normalization remain supplied. This final assembled value must not be reused as an independent fifth factor alongside the same four inputs."
+      "notes": "Lean consumes four arithmetic inputs and an independent orientation. Arithmetic determinant signs and normalization remain supplied. This final assembled value must not be reused as an independent fifth factor alongside the same four inputs. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "obl:apparatus:rho-det-assembly",
       "env_kind": "obligation",
       "source_file": "paper/apparatus/sections/sec_07_det_assembly.tex",
-      "line_start": 126,
-      "statement_hash": "bfbca394dd355f1d538d6dd6eed2ddc8ab553c07771698e01560754a4957cd07",
+      "line_start": 74,
+      "statement_hash": "21b74d268c21172c7f6a347d31242be5ee845f8527771e3d4aca7c3b9be1f01a",
       "lean_decl": "",
       "assessment": "open arithmetic transport",
-      "notes": "Knudsen-Mumford signs, common determinant lines, zeta-element normalization, and four-column compatibility remain supplied arithmetic content. Keep the independent determinant input distinct from the resulting final assembly."
+      "notes": "Knudsen-Mumford signs, common determinant lines, zeta-element normalization, and four-column compatibility remain supplied arithmetic content. Keep the independent determinant input distinct from the resulting final assembly. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "rmk:apparatus:five-column-literature-gap",
       "env_kind": "remark",
       "source_file": "paper/apparatus/sections/sec_08_comparison.tex",
-      "line_start": 11,
-      "statement_hash": "3c520116471b87bd7025fad877e2f897951cae61609ce2a238deeab78ca8332a",
+      "line_start": 9,
+      "statement_hash": "70efa11653a1c1486cc8fe89f806b11fffd655f8dc857e1ac93e7b6b3f6b4400",
       "lean_decl": "",
       "assessment": "unverified literature-audit observation",
-      "notes": "This is explicitly an observation about a limited cited corpus, not a mathematical impossibility result. The source-by-source comparison with Bloch-Kato, Fontaine-Perrin-Riou, and Nekovar has not been reproduced here; the novelty observation remains a provenance obligation."
+      "notes": "This is explicitly an observation about a limited cited corpus, not a mathematical impossibility result. The source-by-source comparison with Bloch-Kato, Fontaine-Perrin-Riou, and Nekovar has not been reproduced here; the novelty observation remains a provenance obligation. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:five-column-tensor",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_08_comparison.tex",
-      "line_start": 24,
-      "statement_hash": "7a08280a5258dc4d4946d0bc8a75f8347227a3c75fcb9814f50dd9ecedff4248",
+      "line_start": 21,
+      "statement_hash": "e7ba0e9ab6e8642b920474dfc61797293b0fa74a2bc0b12675ae9793f5f4b82f",
       "lean_decl": "SixBirdsBSD.Apparatus.Comparison.fiveColumnTensor",
       "assessment": "double-counting repair obligation",
-      "notes": "The generic Lean tensor accepts five independent arguments. In the displayed arithmetic definition, rho_det already assembles the other four columns; multiplying all five values duplicates those columns. NormalizationChecks gives exact values 210 versus 44100. Use the independent determinant orientation/trivialization as the fifth input."
+      "notes": "The generic Lean tensor accepts five independent arguments. In the displayed arithmetic definition, rho_det already assembles the other four columns; multiplying all five values duplicates those columns. NormalizationChecks gives exact values 210 versus 44100. Use the independent determinant orientation/trivialization as the fifth input. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:rank-two-kummer-source",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_09_higher_rank_no_go.tex",
-      "line_start": 12,
-      "statement_hash": "d639ce0bb3bd8b0329832cf68073e64e0ce9542d5f51504bdef1b307bab2721c",
+      "line_start": 14,
+      "statement_hash": "42dd0d6f11ad2336fe81276b4de8798aa682bba498472e282b455ee43e63a7c1",
       "lean_decl": "SixBirdsBSD.Apparatus.HigherRankNoGo.rankTwoKummerSource",
       "assessment": "conditional classical source",
-      "notes": "The Kummer source is a valid classical construction given the curve, Mordell-Weil basis, and finite local conditions. Lean composes supplied functions on two points; it does not verify a basis or realize independent Selmer classes. The current Cremona record for 389a1 has rank two."
+      "notes": "The Kummer source is a valid classical construction given the curve, Mordell-Weil basis, and finite local conditions. Lean composes supplied functions on two points; it does not verify a basis or realize independent Selmer classes. The current Cremona record for 389a1 has rank two. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:support-prime-truncation-residual",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_11_support_prime_no_go.tex",
-      "line_start": 48,
-      "statement_hash": "3d0622ff14887214f7de55016330e127806cadff1f56c859def5e0a6c4df5040",
+      "line_start": 34,
+      "statement_hash": "691368e5519d137898e933b7b8b5e7d517080aac098c72a605c701f125f9238c",
       "lean_decl": "SixBirdsBSD.Apparatus.SupportPrimeNoGo.supportPrimeTruncationResidual",
       "assessment": "repaired prime counter",
-      "notes": "Lean now counts only actual prime indices at most B, and proves invariance under changes outside that prime truncation. The recorded below-50 values are computed from supplied R4b flags. Numeric point counts are reconstructed, but arithmetic R4a applicability is not certified."
+      "notes": "Lean now counts only actual prime indices at most B, and proves invariance under changes outside that prime truncation. The recorded below-50 values are computed from supplied R4b flags. Numeric point counts are reconstructed, but arithmetic R4a applicability is not certified. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "rmk:apparatus:support-prime-atlas",
       "env_kind": "remark",
       "source_file": "paper/apparatus/sections/sec_11_support_prime_no_go.tex",
-      "line_start": 72,
-      "statement_hash": "27608cdd0bd17ff1746b855272a36d54feb24011ce397c1233fd935ac3a60f74",
+      "line_start": 60,
+      "statement_hash": "8935f5d5d7f7e984d0cbd4c97a85aaf677dd0e59f2bc4390830ab25f7f588ca0",
       "lean_decl": "",
       "assessment": "numerical reconstruction; classification open",
-      "notes": "The original atlas is absent. A separate 76-row reconstruction checks actual point counts by two algorithms and confirms the supplied bad-prime lists. Five good supersingular small-prime rows need additional signed applicability bridges; the paper R4a classifications are not established by reduction type alone."
+      "notes": "The original atlas is absent. A separate 76-row reconstruction checks actual point counts by two algorithms and confirms the supplied bad-prime lists. Five good supersingular small-prime rows need additional signed applicability bridges; the paper R4a classifications are not established by reduction type alone. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:apparatus:vsrc-algebra",
       "env_kind": "definition",
       "source_file": "paper/apparatus/sections/sec_12_vsrc.tex",
-      "line_start": 11,
-      "statement_hash": "5231da6adc931b250513c4e65c9289801c4f213cfafae19a70fef49a2615ed14",
+      "line_start": 13,
+      "statement_hash": "313e7f968e82c1da35ab93c396aa7ccb929adac8745c17db687bf7ae17f29bc4",
       "lean_decl": "SixBirdsBSD.Apparatus.Vsrc.vsrcAlgebra",
       "assessment": "narrowed algebra",
-      "notes": "Lean constructs the associative rank-two exterior multiplication over integer coordinates, including both additive and scalar bilinearity. It is not the full rational or arbitrary-rank exterior algebra, and virtual basis symbols do not establish arithmetic non-descent or motivic realization."
+      "notes": "Lean constructs the associative rank-two exterior multiplication over integer coordinates, including both additive and scalar bilinearity. It is not the full rational or arbitrary-rank exterior algebra, and virtual basis symbols do not establish arithmetic non-descent or motivic realization. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "rmk:apparatus:vsrc-no-licensed-descent",
       "env_kind": "remark",
       "source_file": "paper/apparatus/sections/sec_12_vsrc.tex",
-      "line_start": 117,
-      "statement_hash": "cbf277528881ef35a231c7d246cd96671532983e99cfece24866f4ff62f54a31",
+      "line_start": 61,
+      "statement_hash": "92770c04bcb919f78ae87ac5a42a86087ded2c88f1e8b501257bbdeffd303545",
       "lean_decl": "",
       "assessment": "ledger observation; arithmetic realization open",
-      "notes": "The declared virtual algebra and Gram metadata do not construct motivic, Selmer, or Mordell-Weil realizations. The cited historical Kato/BDP audit records are not present as executable or proof-bearing source realizations; this remains a limited input-ledger observation."
+      "notes": "The declared virtual algebra and Gram metadata do not construct motivic, Selmer, or Mordell-Weil realizations. The cited historical Kato/BDP audit records are not present as executable or proof-bearing source realizations; this remains a limited input-ledger observation. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "rmk:apparatus:vsrc-rank-r-stronger",
       "env_kind": "remark",
       "source_file": "paper/apparatus/sections/sec_12_vsrc.tex",
-      "line_start": 285,
-      "statement_hash": "56c689327b7e63ddad677b85def24b857b7869d554776e134030df2d68a5469a",
+      "line_start": 159,
+      "statement_hash": "6d3d0d12a6cf9dacfe265f50107d2526908adb5cad0c86adb6755e273d5d8c2d",
       "lean_decl": "",
       "assessment": "appropriately limited interpretation",
-      "notes": "A specified independent source tuple carries more recorded data than a determinant scalar. The remark explicitly avoids a global strict-strength theorem. The Stage-III bridge still requires a fixed-pair hypothesis and a separate reverse construction."
+      "notes": "A specified independent source tuple carries more recorded data than a determinant scalar. The remark explicitly avoids a global strict-strength theorem. The Stage-III bridge still requires a fixed-pair hypothesis and a separate reverse construction. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:chi-ct-p-import",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_02_imports.tex",
-      "line_start": 29,
-      "statement_hash": "4ed4dfbf3a4899bb29f19b773d753d1fe5b782985026ec4889c6f1bd6600a8bc",
+      "line_start": 18,
+      "statement_hash": "8da99c6a32ad678cce7125c42228f4eac135e2e8f3b86f84ac3110e386f05c83",
       "lean_decl": "SixBirdsBSD.Closure.Imports.chiCTpImport",
       "assessment": "supplied arithmetic certificate",
-      "notes": "The CT record is now indexed by a fixed curve/prime family, with numerical primality, matched applicability, and proofs that generator and target equal partial native selections. Native selection consistency and finite positive/false controls are proved. The map, image identity, normalized sign, and eight statement certificates remain supplied; their arithmetic meanings and source assignments are open. Primary torsion-H2/minus-sign, odd-prime Stark, and ordinary derived-height scope do not establish the square-root generator or arithmetic orientation bridge. See ct_import_audit.md. OddPrimaryBridge also gives a written arithmetic identification of the ordinary compact complex for 1913b1 at three: H1=0, H2=(Z/3)^2, inverse determinant ideal (9). Bases of image nine and eighteen share this ideal but have different square-root behavior. Lean proves the finite presentation, perfect-form normalization and unit obstruction; the arithmetic identification uses external cohomology and primary-bound imports. The subsequent StarkCoreVertices construction establishes rank-one core vertices on this curve using Tate inertia, exact central minus identity, residual cocycle vanishing and cartesian Kummer conditions. Published existence/freeness theorems and the determinant/Stark isomorphism realize bases over Z/27 with the same entire Fitting ladder and different normalized-square rootability. Lean proves the supporting algebra, not the arithmetic existence theorem. Compatible all-level native basis and manuscript orientation comparisons remain open; fixed-lane self-duality is supplied by the subsequent CTDerivedTransport construction. See formalization/odd_primary_selmer_bridge.md and formalization/stark_core_vertex_construction.md. The subsequent StarkInverseLimit construction applies Sakamoto integral coefficient and Fitting theorems on the checked arithmetic lane. It constructs coherent bases at all coefficient levels whose entire component-image ideals agree but whose prescribed normalized-square rootability differs. A written digit-lifting proof gives an exact residue square-class repair and proves independence of the square-image subset from the chosen integral lift of the fixed finite comparison. Lean constructs the full compatible coefficient carrier, its inverse of two and the no-go for an arbitrary entire family of generated ideals. The arithmetic instantiation and general digit-lifting criterion are written proofs. Canonical integral Stark naturality and fixed-lane self-duality are supplied by the subsequent constructions; the prescribed native manuscript generator and final orientation remain open. See formalization/stark_inverse_limit_construction.md. The subsequent CTDerivedTransport construction matches the actual 1913b1 compact local conditions to Nekovar Section 10.8, identifies its Sha lane by the coefficient boundary, and retains the raw minus-Flach sign. Its explicit homotopy lifts finite pairing normalization to the arithmetic derived duality, and equal determinant multipliers preserve the canonical acyclic trivialization. Lean checks integral matrix and linking identities and equation-derived local inputs; arithmetic duality and derived-category transport remain written imported-theorem proofs. The prescribed native manuscript Stark unit, manuscript degree and final Pfaffian orientation, and named-source ablations remain open; canonical integral Stark naturality is supplied by the subsequent construction. See formalization/ct_derived_transport_construction.md. The subsequent StarkCoefficientNaturality construction derives the adjacent coefficient square from actual cochain lifts, the negative degree-two comparison, common-core base change and matching exterior contraction signs. It yields a canonical integral determinant/Stark isomorphism whose basis e_can and 2 e_can still have identical component ideals and different prescribed-square rootability. Lean proves the compatible-family limit return, inverse naturality, both inverse laws, uniqueness and an incompatible finite-isomorphism false control. Arithmetic cochain/determinant naturality is a written proof with external imports. The manuscript independently prescribed generator, final Pfaffian orientation and named-source ablations remain open. See formalization/stark_coefficient_naturality.md. The subsequent CTPfaffianRoot construction derives the actual paired rank-two root line: theta=u I gives skew differential 3u J, Pfaffian 3u and square-line multiplier u^2. Its inverse-unit root squares to the canonical determinant basis and returns scalar three; matching raw/corrected source orientation changes compute the two signs. Frame and lift-change descent are written proofs. Lean checks the integral/rational coordinates, including the factor-four false normalization at u=2. This root is also recoverable from the retained embedded determinant ideal, so pairing-source indispensability for this scalar return is not claimed. The manuscript has no independent formulas selecting its named native root/height/target; those identifications, degree conventions and final native orientation remain open. See formalization/ct_pfaffian_root_construction.md."
+      "notes": "The CT record is now indexed by a fixed curve/prime family, with numerical primality, matched applicability, and proofs that generator and target equal partial native selections. Native selection consistency and finite positive/false controls are proved. The map, image identity, normalized sign, and eight statement certificates remain supplied; their arithmetic meanings and source assignments are open. Primary torsion-H2/minus-sign, odd-prime Stark, and ordinary derived-height scope do not establish the square-root generator or arithmetic orientation bridge. See ct_import_audit.md. OddPrimaryBridge also gives a written arithmetic identification of the ordinary compact complex for 1913b1 at three: H1=0, H2=(Z/3)^2, inverse determinant ideal (9). Bases of image nine and eighteen share this ideal but have different square-root behavior. Lean proves the finite presentation, perfect-form normalization and unit obstruction; the arithmetic identification uses external cohomology and primary-bound imports. The subsequent StarkCoreVertices construction establishes rank-one core vertices on this curve using Tate inertia, exact central minus identity, residual cocycle vanishing and cartesian Kummer conditions. Published existence/freeness theorems and the determinant/Stark isomorphism realize bases over Z/27 with the same entire Fitting ladder and different normalized-square rootability. Lean proves the supporting algebra, not the arithmetic existence theorem. Compatible all-level native basis and manuscript orientation comparisons remain open; fixed-lane self-duality is supplied by the subsequent CTDerivedTransport construction. See formalization/odd_primary_selmer_bridge.md and formalization/stark_core_vertex_construction.md. The subsequent StarkInverseLimit construction applies Sakamoto integral coefficient and Fitting theorems on the checked arithmetic lane. It constructs coherent bases at all coefficient levels whose entire component-image ideals agree but whose prescribed normalized-square rootability differs. A written digit-lifting proof gives an exact residue square-class repair and proves independence of the square-image subset from the chosen integral lift of the fixed finite comparison. Lean constructs the full compatible coefficient carrier, its inverse of two and the no-go for an arbitrary entire family of generated ideals. The arithmetic instantiation and general digit-lifting criterion are written proofs. Canonical integral Stark naturality and fixed-lane self-duality are supplied by the subsequent constructions; the prescribed native manuscript generator and final orientation remain open. See formalization/stark_inverse_limit_construction.md. The subsequent CTDerivedTransport construction matches the actual 1913b1 compact local conditions to Nekovar Section 10.8, identifies its Sha lane by the coefficient boundary, and retains the raw minus-Flach sign. Its explicit homotopy lifts finite pairing normalization to the arithmetic derived duality, and equal determinant multipliers preserve the canonical acyclic trivialization. Lean checks integral matrix and linking identities and equation-derived local inputs; arithmetic duality and derived-category transport remain written imported-theorem proofs. The prescribed native manuscript Stark unit, manuscript degree and final Pfaffian orientation, and named-source ablations remain open; canonical integral Stark naturality is supplied by the subsequent construction. See formalization/ct_derived_transport_construction.md. The subsequent StarkCoefficientNaturality construction derives the adjacent coefficient square from actual cochain lifts, the negative degree-two comparison, common-core base change and matching exterior contraction signs. It yields a canonical integral determinant/Stark isomorphism whose basis e_can and 2 e_can still have identical component ideals and different prescribed-square rootability. Lean proves the compatible-family limit return, inverse naturality, both inverse laws, uniqueness and an incompatible finite-isomorphism false control. Arithmetic cochain/determinant naturality is a written proof with external imports. The manuscript independently prescribed generator, final Pfaffian orientation and named-source ablations remain open. See formalization/stark_coefficient_naturality.md. The subsequent CTPfaffianRoot construction derives the actual paired rank-two root line: theta=u I gives skew differential 3u J, Pfaffian 3u and square-line multiplier u^2. Its inverse-unit root squares to the canonical determinant basis and returns scalar three; matching raw/corrected source orientation changes compute the two signs. Frame and lift-change descent are written proofs. Lean checks the integral/rational coordinates, including the factor-four false normalization at u=2. This root is also recoverable from the retained embedded determinant ideal, so pairing-source indispensability for this scalar return is not claimed. The manuscript has no independent formulas selecting its named native root/height/target; those identifications, degree conventions and final native orientation remain open. See formalization/ct_pfaffian_root_construction.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:a-e-import",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_02_imports.tex",
       "line_start": 63,
-      "statement_hash": "bf15caa7cca7db4d9fe1056950e1a30e335c834f4678cb3e01afa4defe72c8db",
+      "statement_hash": "609b19041b8a5fa20fec2311ab98a2764865b0cb8435e835caa5156a28f23f7e",
       "lean_decl": "SixBirdsBSD.Closure.Imports.aEImport",
       "assessment": "supplied substrate",
-      "notes": "The declared native family now fixes category, pairing and imported statements by curve before certificates. The landing takes A_E at shell.E; a nonadditive-pairing instance control rejects substitution. Bilinearity remains a supplied predicate requiring its stated arithmetic interpretation, not a newly derived Selmer-complex or ETNC theorem. This explicit supplied substrate is permitted in the conditional translation. See conditional_translation_audit.md."
+      "notes": "The declared native family now fixes category, pairing and imported statements by curve before certificates. The landing takes A_E at shell.E; a nonadditive-pairing instance control rejects substitution. Bilinearity remains a supplied predicate requiring its stated arithmetic interpretation, not a newly derived Selmer-complex or ETNC theorem. This explicit supplied substrate is permitted in the conditional translation. See conditional_translation_audit.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:beilinson-import",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_02_imports.tex",
-      "line_start": 91,
-      "statement_hash": "0d535bd25786ec99692bee9ddc1968a8689181fedea8894541f971c37f940e3c",
+      "line_start": 80,
+      "statement_hash": "a69d4a34e15a6f0e18aa11c6a97e21a8bb0d3a2afdea5ab4513952ab5d9fb2b8",
       "lean_decl": "SixBirdsBSD.Closure.Imports.beilinsonImport",
       "assessment": "supplied comparison",
-      "notes": "The declared native family now fixes rank, archimedean carriers, map and comparison statement by curve before certificates. The landing takes the import at shell.E, gates it by rank and matches the rank. A same-rank wrong-instance control rejects certificate substitution. Arithmetic determinant comparison remains an explicit hypothesis, which is permitted in the conditional translation; no general elliptic-curve L-value theorem is independently derived. See conditional_translation_audit.md."
+      "notes": "The declared native family now fixes rank, archimedean carriers, map and comparison statement by curve before certificates. The landing takes the import at shell.E, gates it by rank and matches the rank. A same-rank wrong-instance control rejects certificate substitution. Arithmetic determinant comparison remains an explicit hypothesis, which is permitted in the conditional translation; no general elliptic-curve L-value theorem is independently derived. See conditional_translation_audit.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "nonclaim:closure:imports-not-derived",
       "env_kind": "nonclaim",
       "source_file": "paper/closure/sections/sec_02_imports.tex",
-      "line_start": 109,
-      "statement_hash": "d85a6792fe092df4d8665edd2ec8dd82e427497af7d06d67cd9bdb24bddbede5",
+      "line_start": 96,
+      "statement_hash": "78849f3b6fd456d949a8902ec0367eff9df907b3a55a6ccfc922b74621fd6a6a",
       "lean_decl": "",
       "assessment": "consistent conditional boundary",
-      "notes": "The local import structures introduce no project-local axioms, but their hypothesis fields include the hard arithmetic comparisons. Kernel verification of projections does not verify external source provenance or applicability."
+      "notes": "The local import structures introduce no project-local axioms, but their hypothesis fields include the hard arithmetic comparisons. Kernel verification of projections does not verify external source provenance or applicability. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:gamma-padic-descent",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
       "line_start": 26,
-      "statement_hash": "becd2a6db20278f1eca0160ee05227aca1d6543008e6d279e81ec429a2ebf576",
+      "statement_hash": "3fc3e21058f93385613a0687c72d5bed607a3ea802b3aad9e07c11e313799405",
       "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaPadicDescent",
       "assessment": "restricted recognition carrier",
-      "notes": "The local comparison is supplied content, with concrete primality, oddness and c_p=1 or 2; nondivisibility is derived from these numerical conditions, while additive reduction and other arithmetic scope remain supplied. LocalUnitSupport proves both possible factors are units at any odd place; equation-derived 121a1/121b1 branches and an independent PARI run exhibit unequal component numbers with identical unit classes at 11. The full record retains c_p, but the congruence alone cannot normalize tamFactor. Bad-place indices do not automatically bound rational-factor support; coefficient prime 2 needs a separate comparison. Full recognition applicability and global return remain open. The subsequent common-cover construction gives identical unfiltered rational Frobenius modules for these actual additive curves over pi^12=11, despite base component numbers one and two. Inertia/descent, filtration and integral lattices are erased by this lens, not by the full named source. See formalization/additive_frobenius_descent.md. The native tame-inertia actions have exact orders six and four; retaining this descent data repairs the two-curve component readout. Marked coordinate characters recover the scale exponent modulo twelve, and the unit transformed discriminant gives an exact valuation in the declared small-valuation domain. Lean checks the finite character orders and recovery identity. TameComponentReturn derives the exact intrinsic factor det(1-tau) and its basis invariance. Under tame purely additive geometric inertia order four or six, the checked Nicaise Jacobian theorem and Frobenius-fixed component step return c_p=2 or 1. Integral coinvariants are constructed in Lean; arithmetic component/cohomology identifications remain written proofs. An explicit non-CM type-IV three-isogeny pair has c11=3 and 1 despite isomorphic full integral T11 Galois modules, so this return cannot be extrapolated outside its scope. The native OC map/tamFactor and eta comparisons remain open. See formalization/tame_component_return.md. A written compatible digit lift constructs a square root of the isogeny degree three in Z_11, so the isogeny map can also preserve the Weil pairing after scalar rescaling. The no-go can retain that pairing at eleven; this is not a claim of a simultaneously polarized rational isomorphism at every prime. GlobalTameProduct constructs the native two-place product four on y^2=x^3+385x+1225 and proves all-prime discriminant support. Independent Tate outputs account for the remaining places. A single local factor two is not the global Tamagawa four; OC/global normalization and full recognition applicability remain open. See formalization/global_tame_product.md. KummerComponentErasure proves a canonical all-level quotient and completion comparison, and equality of embedded odd-primary Kummer images, between a subgroup with two-killed quotient and the full group. The actual type-III places of y^2=x^3+385x+1225 instantiate this for E_0 and E; the marked-index loss does not imply loss from the full curve or recognition source. A coefficient-two control retains the component direction. The ordinary good-cover restriction/corestriction comparison uses an invariant summand; full point completions have unequal ranks, so a native signed/OC determinant-line comparison remains open. See formalization/kummer_component_erasure.md."
+      "notes": "The local comparison is supplied content, with concrete primality, oddness and c_p=1 or 2; nondivisibility is derived from these numerical conditions, while additive reduction and other arithmetic scope remain supplied. LocalUnitSupport proves both possible factors are units at any odd place; equation-derived 121a1/121b1 branches and an independent PARI run exhibit unequal component numbers with identical unit classes at 11. The full record retains c_p, but the congruence alone cannot normalize tamFactor. Bad-place indices do not automatically bound rational-factor support; coefficient prime 2 needs a separate comparison. Full recognition applicability and global return remain open. The subsequent common-cover construction gives identical unfiltered rational Frobenius modules for these actual additive curves over pi^12=11, despite base component numbers one and two. Inertia/descent, filtration and integral lattices are erased by this lens, not by the full named source. See formalization/additive_frobenius_descent.md. The native tame-inertia actions have exact orders six and four; retaining this descent data repairs the two-curve component readout. Marked coordinate characters recover the scale exponent modulo twelve, and the unit transformed discriminant gives an exact valuation in the declared small-valuation domain. Lean checks the finite character orders and recovery identity. TameComponentReturn derives the exact intrinsic factor det(1-tau) and its basis invariance. Under tame purely additive geometric inertia order four or six, the checked Nicaise Jacobian theorem and Frobenius-fixed component step return c_p=2 or 1. Integral coinvariants are constructed in Lean; arithmetic component/cohomology identifications remain written proofs. An explicit non-CM type-IV three-isogeny pair has c11=3 and 1 despite isomorphic full integral T11 Galois modules, so this return cannot be extrapolated outside its scope. The native OC map/tamFactor and eta comparisons remain open. See formalization/tame_component_return.md. A written compatible digit lift constructs a square root of the isogeny degree three in Z_11, so the isogeny map can also preserve the Weil pairing after scalar rescaling. The no-go can retain that pairing at eleven; this is not a claim of a simultaneously polarized rational isomorphism at every prime. GlobalTameProduct constructs the native two-place product four on y^2=x^3+385x+1225 and proves all-prime discriminant support. Independent Tate outputs account for the remaining places. A single local factor two is not the global Tamagawa four; OC/global normalization and full recognition applicability remain open. See formalization/global_tame_product.md. KummerComponentErasure proves a canonical all-level quotient and completion comparison, and equality of embedded odd-primary Kummer images, between a subgroup with two-killed quotient and the full group. The actual type-III places of y^2=x^3+385x+1225 instantiate this for E_0 and E; the marked-index loss does not imply loss from the full curve or recognition source. A coefficient-two control retains the component direction. The ordinary good-cover restriction/corestriction comparison uses an invariant summand; full point completions have unequal ranks, so a native signed/OC determinant-line comparison remains open. See formalization/kummer_component_erasure.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:gamma-sha-persistence",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
-      "line_start": 63,
-      "statement_hash": "0cc9b764b7d48c16d5e72f87b505939177e5360d617ae0901b54daeae9000ac1",
+      "line_start": 68,
+      "statement_hash": "3e8972f76998de6dd6746cf9c9ecaae6fe4ec2991e6814b20b6bd38d19d2c518",
       "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaShaPersistence",
       "assessment": "corrected cover/base typing",
-      "notes": "Corestriction now maps the cover-side readout to a distinct base-side carrier, and the supplied determinant consumes that composition. A prime-to-p component number disappears modulo p-adic units, as the LocalUnitSupport shallow examples show; this does not erase the exact factor from the full source record. Linearity, equal-rank determinant-line compatibility, actual integral congruence, and the connection of shaFactor to a positive rational global comparison remain open. Actual primality is now required; no extra oddness restriction is imposed. Other arithmetic scope predicates and the global shaFactor comparison remain supplied. KummerComponentErasure proves a canonical all-level quotient and completion comparison, and equality of embedded odd-primary Kummer images, between a subgroup with two-killed quotient and the full group. The actual type-III places of y^2=x^3+385x+1225 instantiate this for E_0 and E; the marked-index loss does not imply loss from the full curve or recognition source. A coefficient-two control retains the component direction. The ordinary good-cover restriction/corestriction comparison uses an invariant summand; full point completions have unequal ranks, so a native signed/OC determinant-line comparison remains open. See formalization/kummer_component_erasure.md. SignedTameTransition now derives the actual quadratic tame/cyclotomic overlap, polynomial uniformizer transition and norm-compatible branch return at seven. Forced root coefficients and the all-level valuation argument exclude an integral power-series branch on these uniformizers. The new potentially supersingular CM preprint is not used to instantiate this non-CM source; its literal transition fails the native checks. The repair uses multiplicative field norm, not elliptic trace or the signed pairing. Generator construction, native determinant normalization and the global Sha comparison remain open. See formalization/signed_tame_transition.md."
+      "notes": "Corestriction now maps the cover-side readout to a distinct base-side carrier, and the supplied determinant consumes that composition. A prime-to-p component number disappears modulo p-adic units, as the LocalUnitSupport shallow examples show; this does not erase the exact factor from the full source record. Linearity, equal-rank determinant-line compatibility, actual integral congruence, and the connection of shaFactor to a positive rational global comparison remain open. Actual primality is now required; no extra oddness restriction is imposed. Other arithmetic scope predicates and the global shaFactor comparison remain supplied. KummerComponentErasure proves a canonical all-level quotient and completion comparison, and equality of embedded odd-primary Kummer images, between a subgroup with two-killed quotient and the full group. The actual type-III places of y^2=x^3+385x+1225 instantiate this for E_0 and E; the marked-index loss does not imply loss from the full curve or recognition source. A coefficient-two control retains the component direction. The ordinary good-cover restriction/corestriction comparison uses an invariant summand; full point completions have unequal ranks, so a native signed/OC determinant-line comparison remains open. See formalization/kummer_component_erasure.md. SignedTameTransition now derives the actual quadratic tame/cyclotomic overlap, polynomial uniformizer transition and norm-compatible branch return at seven. Forced root coefficients and the all-level valuation argument exclude an integral power-series branch on these uniformizers. The new potentially supersingular CM preprint is not used to instantiate this non-CM source; its literal transition fails the native checks. The repair uses multiplicative field norm, not elliptic trace or the signed pairing. Generator construction, native determinant normalization and the global Sha comparison remain open. See formalization/signed_tame_transition.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:gamma-higher-gz-fixity",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
-      "line_start": 95,
-      "statement_hash": "e1813eff633f40f14a4e7982b72a6d604018db50881fe64881519c2b5b13ab80",
+      "line_start": 100,
+      "statement_hash": "d6adf80f667e49f2711efea4d657fa838de7f8dd1d37dc8750ce58a36a818801",
       "lean_decl": "SixBirdsBSD.Closure.RecognitionSources.gammaHigherGZFixity",
       "assessment": "supplied normalized identity",
-      "notes": "For non-CM high rank the recognition record supplies the fixity content. Once kappa, regulator, period, and Tamagawa data match the shell, the scalar BSD identity follows without the other two recognition inputs. A genuinely native version is needed for source-indispensability research."
+      "notes": "For non-CM high rank the recognition record supplies the fixity content. Once kappa, regulator, period, and Tamagawa data match the shell, the scalar BSD identity follows without the other two recognition inputs. A genuinely native version is needed for source-indispensability research. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "nonclaim:closure:recognition-sources-not-derived",
       "env_kind": "nonclaim",
       "source_file": "paper/closure/sections/sec_03_recognition_sources.tex",
-      "line_start": 138,
-      "statement_hash": "8883e2710e6c16523741ad2a77db74f4ae8996a422a1cb7a06608ef6ceccb4ae",
+      "line_start": 135,
+      "statement_hash": "693f08c2458da33eed0a216d5c2476102772b2853cc3d5b667f92242703f3b9d",
       "lean_decl": "",
       "assessment": "consistent conditional boundary",
-      "notes": "The recognition records are explicitly supplied. This is compatible with the conditional endpoint and does not make them derived framework theorems or prove that each named source is indispensable."
+      "notes": "The recognition records are explicitly supplied. This is compatible with the conditional endpoint and does not make them derived framework theorems or prove that each named source is indispensable. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:sel-bsd-shell",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_04_shell_readout.tex",
-      "line_start": 14,
-      "statement_hash": "e25f5858d190c0eaaaad4c4a009294a014153590ff82076d1ff55bd682bdbfa1",
+      "line_start": 15,
+      "statement_hash": "a22347571f9a966e4ea465313453bc09d93abdd5743b8b504d3c637c627738b8",
       "lean_decl": "SixBirdsBSD.Closure.SelShell.selBSDShell",
       "assessment": "supplied closure architecture",
-      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing. Exact Lean equivalences now expose that the master rule, with the supplied smuggle proof, is equivalent to master applicability itself; its nine arbitrary proved propositions supply no additional content. See formalization/master_applicability_audit.md. The separate scalar_closure_translation.md construction derives a sum-conserving idempotent on the analytic/arithmetic coefficient pair, with fixed-original-pair iff scalar BSD. It is not identified with this full shell operator. Final closeout makes the full-carrier/readout comparison and original-state fixedness separate conditional premises in ArithmeticClosureBridge. The legacy opaque receipts remain provenance content and are absent from the extracted ScalarBSD core. See conditional_mathematical_closeout.md."
+      "notes": "The scalar residual is correctly typed by explicit operations and equations. The shell also supplies arbitrary proposition certificates for lawfulness, master applicability, computability, and ablations. An idempotent closure operation alone does not derive the arithmetic residual equation or its vanishing. Exact Lean equivalences now expose that the master rule, with the supplied smuggle proof, is equivalent to master applicability itself; its nine arbitrary proved propositions supply no additional content. See formalization/master_applicability_audit.md. The separate scalar_closure_translation.md construction derives a sum-conserving idempotent on the analytic/arithmetic coefficient pair, with fixed-original-pair iff scalar BSD. It is not identified with this full shell operator. Final closeout makes the full-carrier/readout comparison and original-state fixedness separate conditional premises in ArithmeticClosureBridge. The legacy opaque receipts remain provenance content and are absent from the extracted ScalarBSD core. See conditional_mathematical_closeout.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:pi-bsd",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_04_shell_readout.tex",
-      "line_start": 58,
-      "statement_hash": "359d3f2ab4a11c64c7f3f0458ca478271ca3e9e669a613475511d4de889978b7",
+      "line_start": 66,
+      "statement_hash": "a1ec900798cc20339e1a47b961d078d83ee06692e12987a9baa6adfacf78b30a",
       "lean_decl": "SixBirdsBSD.Closure.SelShell.piBSD",
       "assessment": "quantified conditional record",
-      "notes": "Lean retains prime/lift quantifiers, same-curve comparisons, rank matching, and factor matching. It gives a forward scalar conclusion in all ranks. Scalar equality alone does not reconstruct local recognition records, so a reverse recognition equivalence has not been proved. Matched source indices now inherit concrete primality and, for descent, oddness. Descent inheritance requires both the bad-place and specified-lift hypotheses. The native global product construction shows that the matching of each local tamFactor to global Tam requires a genuine aggregate comparison. Final closeout does not add native applicability beyond these supplied scope and factor comparisons. The normalized scalar argument is isolated and source necessity retired; see conditional_mathematical_closeout.md."
+      "notes": "Lean retains prime/lift quantifiers, same-curve comparisons, rank matching, and factor matching. It gives a forward scalar conclusion in all ranks. Scalar equality alone does not reconstruct local recognition records, so a reverse recognition equivalence has not been proved. Matched source indices now inherit concrete primality and, for descent, oddness. Descent inheritance requires both the bad-place and specified-lift hypotheses. The native global product construction shows that the matching of each local tamFactor to global Tam requires a genuine aggregate comparison. Final closeout does not add native applicability beyond these supplied scope and factor comparisons. The normalized scalar argument is isolated and source necessity retired; see conditional_mathematical_closeout.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
+    },
+    {
+      "latex_label": "rmk:closure:sensitivity-not-necessity",
+      "env_kind": "remark",
+      "source_file": "paper/closure/sections/sec_04_shell_readout.tex",
+      "line_start": 276,
+      "statement_hash": "fe3ca579567e2f1d3bc1616b1a0f79f2e74e48502af76235ce71aa42c42362e3",
+      "lean_decl": "",
+      "assessment": "scope limitation; rational countermodels proved",
+      "notes": "States that factor sensitivity does not imply necessity of any recognition hypothesis, since normalized GZ fixity already implies scalar BSD in rank at least two. The coupled-factor countermodels, the combined-product criterion and the positive comparison-fiber classification are proved over Q in CoupledFactors.lean; they are not elliptic-curve examples. See source_indispensability.md and positive_comparison_fiber.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:eta-published-imports",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_06_eta_formula.tex",
-      "line_start": 11,
-      "statement_hash": "31e9fc6b2b602078426dc7fcb960d1902377bf6724a9290659b582d1c4194c59",
+      "line_start": 9,
+      "statement_hash": "0b4d6ccf485086b14a57b781e7d390f20206ee71f384e55da4c5e44817820f7e",
       "lean_decl": "SixBirdsBSD.Closure.EtaFormula.etaPublishedImports",
       "assessment": "applicability unresolved",
-      "notes": "Lean now indexes the certificate by curve and numerical prime and checks its intended nonzero factors. The full eta equation is still supplied. Half-slope versus critical-slope and direct Lang-Wake scope conflicts remain; see eta_import_audit.md. AdditiveFrobeniusDescent constructs actual good reduction for 121a1 and 121b1 over the same tame cover at eleven, with Frobenius polynomial T^2+11 but different base component numbers. Exact PARI shows original classical U11=0; generalized nonzero-beta specialization to those lines must vanish under equivariance. Quotient coordinates, point counts and specialization algebra are proved in Lean; the arithmetic cohomology bridge is a written proof. A new modular/descent comparison and eta normalization remain open. See formalization/additive_frobenius_descent.md. The native tame-inertia actions have exact orders six and four; retaining this descent data repairs the two-curve component readout. Marked coordinate characters recover the scale exponent modulo twelve, and the unit transformed discriminant gives an exact valuation in the declared small-valuation domain. Lean checks the finite character orders and recovery identity. TameComponentReturn derives the exact intrinsic factor det(1-tau) and its basis invariance. Under tame purely additive geometric inertia order four or six, the checked Nicaise Jacobian theorem and Frobenius-fixed component step return c_p=2 or 1. Integral coinvariants are constructed in Lean; arithmetic component/cohomology identifications remain written proofs. An explicit non-CM type-IV three-isogeny pair has c11=3 and 1 despite isomorphic full integral T11 Galois modules, so this return cannot be extrapolated outside its scope. The native OC map/tamFactor and eta comparisons remain open. See formalization/tame_component_return.md. A written compatible digit lift constructs a square root of the isogeny degree three in Z_11, so the isogeny map can also preserve the Weil pairing after scalar rescaling. The no-go can retain that pairing at eleven; this is not a claim of a simultaneously polarized rational isomorphism at every prime. CoverBetaRefinement now constructs the actual ordinary five-adic and supersingular seven-adic good fibers on y^2=x^3+385x+1225. A characteristic-zero Bezout argument and all-degree trace recurrence exclude the square relation for the ordinary cover. A written complete digit lift realizes two refinements with different inverse-square factors; retaining the selected root's unit/nonunit status repairs both branches. A target prescribing only the unit root has a unique selection already and is outside the two-refinement no-go. Lean proves this algebra over lawful characteristic-zero fields. Cover Frobenius is not identified with the native additive U_p beta, and the leading moment may change with refinement. No eta value or full named-source necessity is inferred. See formalization/cover_beta_refinement.md. Final closeout retains the identity certificate only and excludes cited-stack derivation and anchor verification from the retained proof; see conditional_mathematical_closeout.md."
+      "notes": "Lean now indexes the certificate by curve and numerical prime and checks its intended nonzero factors. The full eta equation is still supplied. Half-slope versus critical-slope and direct Lang-Wake scope conflicts remain; see eta_import_audit.md. AdditiveFrobeniusDescent constructs actual good reduction for 121a1 and 121b1 over the same tame cover at eleven, with Frobenius polynomial T^2+11 but different base component numbers. Exact PARI shows original classical U11=0; generalized nonzero-beta specialization to those lines must vanish under equivariance. Quotient coordinates, point counts and specialization algebra are proved in Lean; the arithmetic cohomology bridge is a written proof. A new modular/descent comparison and eta normalization remain open. See formalization/additive_frobenius_descent.md. The native tame-inertia actions have exact orders six and four; retaining this descent data repairs the two-curve component readout. Marked coordinate characters recover the scale exponent modulo twelve, and the unit transformed discriminant gives an exact valuation in the declared small-valuation domain. Lean checks the finite character orders and recovery identity. TameComponentReturn derives the exact intrinsic factor det(1-tau) and its basis invariance. Under tame purely additive geometric inertia order four or six, the checked Nicaise Jacobian theorem and Frobenius-fixed component step return c_p=2 or 1. Integral coinvariants are constructed in Lean; arithmetic component/cohomology identifications remain written proofs. An explicit non-CM type-IV three-isogeny pair has c11=3 and 1 despite isomorphic full integral T11 Galois modules, so this return cannot be extrapolated outside its scope. The native OC map/tamFactor and eta comparisons remain open. See formalization/tame_component_return.md. A written compatible digit lift constructs a square root of the isogeny degree three in Z_11, so the isogeny map can also preserve the Weil pairing after scalar rescaling. The no-go can retain that pairing at eleven; this is not a claim of a simultaneously polarized rational isomorphism at every prime. CoverBetaRefinement now constructs the actual ordinary five-adic and supersingular seven-adic good fibers on y^2=x^3+385x+1225. A characteristic-zero Bezout argument and all-degree trace recurrence exclude the square relation for the ordinary cover. A written complete digit lift realizes two refinements with different inverse-square factors; retaining the selected root's unit/nonunit status repairs both branches. A target prescribing only the unit root has a unique selection already and is outside the two-refinement no-go. Lean proves this algebra over lawful characteristic-zero fields. Cover Frobenius is not identified with the native additive U_p beta, and the leading moment may change with refinement. No eta value or full named-source necessity is inferred. See formalization/cover_beta_refinement.md. Final closeout retains the identity certificate only and excludes cited-stack derivation and anchor verification from the retained proof; see conditional_mathematical_closeout.md. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:t-cascade-import",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_07_t_cascade.tex",
-      "line_start": 10,
-      "statement_hash": "222209a263511724c7580494b6cefe96559702548c524a6dcf5265c99eb0a30d",
+      "line_start": 12,
+      "statement_hash": "33b0d617a1e43f9ac0ae0eceb2f02095b068bf9f3bc15e17c8a0b171daff4883",
       "lean_decl": "SixBirdsBSD.Closure.TCascade.tCascadeImport",
       "assessment": "supplied implication schema",
-      "notes": "The named stack consists of arbitrary certified propositions. The current theorem needs both branch stacks and a supplied imports-to-valuation identity. This is conditional composition, not a derivation of that identity from source-specific arithmetic statements. The 40 statements are all proved in the legacy record, including both branch stacks. Its extra comparison adapter is exactly the branch-to-valuation implication at inhabited indices, as proved in cascade_dependency_audit.md; uniform index binders alone do not type an arithmetic family."
+      "notes": "The named stack consists of arbitrary certified propositions. The current theorem needs both branch stacks and a supplied imports-to-valuation identity. This is conditional composition, not a derivation of that identity from source-specific arithmetic statements. The 40 statements are all proved in the legacy record, including both branch stacks. Its extra comparison adapter is exactly the branch-to-valuation implication at inhabited indices, as proved in cascade_dependency_audit.md; uniform index binders alone do not type an arithmetic family. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
-      "latex_label": "thm:closure:t-e12-no-go",
-      "env_kind": "theorem",
+      "latex_label": "rmk:closure:t-e12-gap",
+      "env_kind": "remark",
       "source_file": "paper/closure/sections/sec_08_obstructions.tex",
-      "line_start": 16,
-      "statement_hash": "3ab5372f2de019bbbb77bd20b2233bfc6041268b0d9933e7f11503bc3148fc18",
+      "line_start": 9,
+      "statement_hash": "03c1c19d13e3478fd32dd398272353c11ca2831cb106a9db7d8562449b0a3516",
       "lean_decl": "",
       "assessment": "unverified literature-audit observation",
-      "notes": "The Lean module is empty. The public tree does not contain the explicit dated corpus/search ledger needed to substantiate this bounded literature-negative claim. It must not be read as a theorem of nonexistence or as a mechanized obstruction to arbitrary future approaches."
+      "notes": "The Lean module is empty. The public tree does not contain the explicit dated corpus/search ledger needed to substantiate this bounded literature-negative claim. It must not be read as a theorem of nonexistence or as a mechanized obstruction to arbitrary future approaches. In v2 this is stated as a remark phrased as the author's reading of the literature, not as a theorem. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
-      "latex_label": "thm:closure:t-bad-no-go",
-      "env_kind": "theorem",
+      "latex_label": "rmk:closure:t-bad-gap",
+      "env_kind": "remark",
       "source_file": "paper/closure/sections/sec_08_obstructions.tex",
-      "line_start": 33,
-      "statement_hash": "fc6486e975c722fca892b3fdf67952f45b8038b51465ad19fa06e536bf602e59",
+      "line_start": 26,
+      "statement_hash": "d1398976adf316ced7ba754dace7737f4d40f046cf5f50c0f9719f1dcf67f603",
       "lean_decl": "",
       "assessment": "unverified literature-audit observation",
-      "notes": "The Lean module is empty. The particular additive prime-two/three characteristic-ideal equality must be distinguished from good supersingular signed theory and other local constructions. An explicit audited corpus and hypothesis comparison remain missing."
+      "notes": "The Lean module is empty. The particular additive prime-two/three characteristic-ideal equality must be distinguished from good supersingular signed theory and other local constructions. An explicit audited corpus and hypothesis comparison remain missing. In v2 this is stated as a remark phrased as the author's reading of the literature, not as a theorem. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "rmk:closure:mode-b-residuals",
       "env_kind": "remark",
       "source_file": "paper/closure/sections/sec_08_obstructions.tex",
-      "line_start": 43,
-      "statement_hash": "5f2e7522afeddd8dbaa826f402f831cd9f9e66d30e97e7359b5620f3d38df1a9",
+      "line_start": 37,
+      "statement_hash": "5764e6b1a38c54f988bef62519778aef46633a4b9d2bbd786a3cad52de0e1ade",
       "lean_decl": "",
       "assessment": "supplied residual ledger",
-      "notes": "The remark appropriately says these are reorganized source contents, not additional derived theorems. No arithmetic residual elimination follows merely from their renaming or classification."
+      "notes": "The remark appropriately says these are reorganized source contents, not additional derived theorems. No arithmetic residual elimination follows merely from their renaming or classification. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "nonclaim:closure:landing-conditional",
       "env_kind": "nonclaim",
       "source_file": "paper/closure/sections/sec_09_landing.tex",
-      "line_start": 105,
-      "statement_hash": "53939a9ff2734dfa06f379126d98525f89897cc6495b3e37943f43907aa05ee9",
+      "line_start": 94,
+      "statement_hash": "1ad0b366830d54218a3cae300ff6a7c9244675c10757236abd67bd400d844b64",
       "lean_decl": "",
       "assessment": "conditional boundary; provenance still open",
-      "notes": "The conditional reading agrees with the current Lean implication. The further assertions about literature-open problems depend on the bounded literature-audit observations and cannot be independently certified by the landing proof."
+      "notes": "The conditional reading agrees with the current Lean implication. The further assertions about literature-open problems depend on the bounded literature-audit observations and cannot be independently certified by the landing proof. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "def:closure:aor-sel-instance",
       "env_kind": "definition",
       "source_file": "paper/closure/sections/sec_10_aor_instance.tex",
-      "line_start": 18,
-      "statement_hash": "b373b625e8c2bdf38183484ca5d2850ba9aa96e90697a46d72a4640c8b1b4f18",
+      "line_start": 15,
+      "statement_hash": "2dd52717e9a5ffaf0e50bdc6c9e1127123bef635084ac7276731eefe9058d028",
       "lean_decl": "SixBirdsBSD.Closure.AORInstance.aorSelInstance",
       "assessment": "local accounting construction",
-      "notes": "The local carrier, statuses, and specified refinement relation are constructed. Citation approval and arithmetic applicability do not follow from an approved_other status or an unused import field. The object records supplied recognition content and preserves open nonclaims."
+      "notes": "The local carrier, statuses, and specified refinement relation are constructed. Citation approval and arithmetic applicability do not follow from an approved_other status or an unused import field. The object records supplied recognition content and preserves open nonclaims. Paper v2 (3 October 2026) states this item consistently with this assessment."
     },
     {
       "latex_label": "rmk:closure:aor-partial-status",
       "env_kind": "remark",
       "source_file": "paper/closure/sections/sec_10_aor_instance.tex",
-      "line_start": 160,
-      "statement_hash": "e31aca2d9c38d4ff5e5c33b56a7599daee7268f2a0b156bcf78fac176d95d949",
+      "line_start": 101,
+      "statement_hash": "048eedcb2739b865fe8540855dc511babc4800cd96c7e6edb5910c6f05370855",
       "lean_decl": "",
       "assessment": "local scope accurate; provenance still open",
-      "notes": "The distinction between local syntactic audit closure and elimination of open arithmetic is appropriate. The refined register stability is now proved only for the declared local relation. Claims about the current literature still need the separate provenance audit."
+      "notes": "The distinction between local syntactic audit closure and elimination of open arithmetic is appropriate. The refined register stability is now proved only for the declared local relation. Claims about the current literature still need the separate provenance audit. Paper v2 (3 October 2026) states this item consistently with this assessment."
     }
   ]
 }

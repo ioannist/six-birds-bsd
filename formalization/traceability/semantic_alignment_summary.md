@@ -8,23 +8,23 @@ projection-packaged claim, or strengthening obligation.
 
 ## Counts
 
-- Theorem-like audited items: 29
-- Unresolved / packaged / strengthening items: 21
+- Theorem-like audited items: 30
+- Unresolved / packaged / strengthening items: 20
 
 ## Coverage
 
-- `checked_declaration`: 29
+- `checked_declaration`: 30
 
 ## Alignment Status
 
-- `faithful`: 8
+- `faithful`: 10
 - `narrowed_surrogate`: 13
-- `projection_packaged`: 8
+- `projection_packaged`: 7
 
 ## Resolution Actions
 
-- `no_action`: 8
-- `open_obligation`: 17
+- `no_action`: 10
+- `open_obligation`: 16
 - `retain_record_packaging`: 4
 
 ## Unresolved Items
@@ -46,7 +46,6 @@ projection-packaged claim, or strengthening obligation.
 - `thm:closure:aor-recognition-discharge`: `projection_packaged` / `retain_record_packaging` -> `SixBirdsBSD.Closure.AORInstance.aorRecognitionDischarge`
 - `thm:closure:chi-ct-p-comparison`: `projection_packaged` / `retain_record_packaging` -> `SixBirdsBSD.Closure.ChiCTp.chiCTpComparison`
 - `thm:closure:composite-signature`: `projection_packaged` / `open_obligation` -> `SixBirdsBSD.Closure.SelShell.compositeSignature`
-- `thm:closure:master-theorem-applicability`: `projection_packaged` / `open_obligation` -> `SixBirdsBSD.Closure.SelShell.masterTheoremApplicability`
 - `thm:closure:oc-eta-formula`: `projection_packaged` / `open_obligation` -> `SixBirdsBSD.Closure.EtaFormula.ocEtaFormula`
 - `thm:closure:strong-bsd-conditional`: `projection_packaged` / `retain_record_packaging` -> `SixBirdsBSD.Closure.Landing.strongBSDConditional`
 - `thm:closure:t-cascade-rank-le-1`: `projection_packaged` / `open_obligation` -> `SixBirdsBSD.Closure.TCascade.tCascadeRankLeOne`
