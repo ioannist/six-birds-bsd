@@ -418,4 +418,11 @@ example : Closure.CTSignTransport.oddStarkScope 3 := by
 #print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.finiteIsomorphismsNeedNaturality
 #print axioms SixBirdsBSD.Closure.StarkCoefficientNaturality.noIntegralLiftForMismatchedComparisons
 
+#print axioms SixBirdsBSD.Closure.CTPfaffianRoot.pairedSkewPresentation
+#print axioms SixBirdsBSD.Closure.CTPfaffianRoot.rootTrivializationsCommute
+#print axioms SixBirdsBSD.Closure.CTPfaffianRoot.canonicalRootReturn
+#print axioms SixBirdsBSD.Closure.CTPfaffianRoot.rootNegationKeepsDeterminant
+#print axioms SixBirdsBSD.Closure.CTPfaffianRoot.rawCorrectedRootSigns
+#print axioms SixBirdsBSD.Closure.CTPfaffianRoot.actualCoefficientFrameControls
+
 end SixBirdsBSD.Verification.Regression

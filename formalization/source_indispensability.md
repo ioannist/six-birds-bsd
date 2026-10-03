@@ -542,3 +542,34 @@ match its root and target with the specified Pfaffian orientation.
 Supplying that coefficient as a certificate would assume the missing
 return. Named-source arithmetic ablations and the original scalar
 source endpoint remain unresolved.
+
+## A paired Pfaffian root return and a sharper source boundary
+
+`ct_pfaffian_root_construction.md` constructs the actual root line of
+the paired rank-two arithmetic presentation and compares its square
+to the same determinant/Stark line. The coefficient `u` in the
+arithmetic pairing contributes `u^2` to the square comparison. The
+inverse-unit root therefore squares to the canonical determinant
+basis and returns scalar three. A calculation of the raw/corrected
+root orientations retains the raw minus sign and identifies the
+matching source correction. The construction descends through
+frame changes and unit-lift changes on its declared carrier.
+
+The resulting embedded root ideal is `(3)` with square comparison
+into `(9)`. That object and its scalar-three basis can be recovered
+from the canonically trivialized determinant ideal alone. Thus this
+particular return does not require retaining the pairing coefficient.
+Its proof of compatibility with the arithmetic pairing must not be
+converted into indispensability of the pairing source. For an
+arbitrary prescribed Stark basis the square-class bit remains
+necessary: the actual square map is `(u*a)^2 e_can`, so `2e_can`
+has no root while sharing every component ideal with `e_can`.
+
+The original manuscript names the native root and height in its
+import package but has no independent formulas selecting them.
+Identifying them with the root and scalar just constructed would
+therefore require additional native definitions and a theorem,
+including the H1/div degree convention and scalar-line orientation.
+The conditional imported comparison remains valid as a projection.
+The canonical root construction does not fill those native fields
+or repair the normalized GZ predicate's scalar redundancy.

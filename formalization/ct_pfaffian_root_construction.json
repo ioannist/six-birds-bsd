@@ -1,0 +1,44 @@
+{
+  "scope": "Written construction of an ordinary arithmetic Pfaffian root line on the paired rank-two minimal-presentation carrier for 1913b1 at three. It squares to the fixed compact inverse determinant line, maps through the canonical integral Stark comparison, and computes the raw/corrected root orientation. Lean proves integer and rational coordinate identities, not three-adic arithmetic or line descent. No native manuscript generator, classical height or main sign certificate is populated.",
+  "checked": "2026-10-03",
+  "arithmetic_inputs": [
+    "odd_primary_selmer_bridge.json",
+    "ct_derived_transport_construction.json",
+    "stark_coefficient_naturality.json"
+  ],
+  "native_scope_evidence": [
+    "paper/closure/sections/sec_05_chi_ct_p.tex: names the source, target and image equality as components of the imported stack; no independent native selection formula.",
+    "paper/closure/sections/sec_02_imports.tex: proposition fields and the supplied positive sign; no independent native generator or scalar-height construction.",
+    "lean/SixBirdsBSD/Closure/Imports.lean: chiCTpContext supplies carrier types and partial native selections before chiCTpImport supplies the map and image proof."
+  ],
+  "construction": "theta=u I from the actual corrected cup map; theta A=3u J; K=det(V); det(theta)^dual induces K tensor K to L with frame multiplier u^2. The Pfaffian trivialization has frame value 3u and squares to the canonical determinant trivialization. The root u^-1 k is integral and returns scalar three. Basis covariance and unit-lift ratios identify these root lines with the same embedded ideal (3). Raw theta negation reverses the root trivialization; minus identity gives the matching source-orientation correction.",
+  "exact_controls": {
+    "unit_coefficients": [
+      1,
+      2
+    ],
+    "frame_pfaffians": [
+      3,
+      6
+    ],
+    "square_line_multipliers": [
+      1,
+      4
+    ],
+    "normalized_root_coordinates": [
+      [
+        1,
+        1
+      ],
+      [
+        1,
+        2
+      ]
+    ],
+    "normalized_root_return": 3,
+    "wrong_unit_two_frame_square_coefficient": 4,
+    "wrong_unit_two_frame_return": 6,
+    "raw_return_on_corrected_root": -3
+  },
+  "deduction_boundary": "The native selections and degree/Pfaffian-target conventions remain unspecified by the manuscript import. Descent is proved on the declared paired rank-two presentation carrier, not by a general Pfaffian functor. The root object can also be reconstructed from the embedded determinant ideal and trivialization, so this does not prove pairing-source necessity for its scalar return. Arbitrary prescribed Stark-basis square-class loss persists, and normalized GZ alone still entails scalar BSD. Ordinary rank-one module comparisons do not by themselves establish an isomorphism of integer-graded determinant objects."
+}

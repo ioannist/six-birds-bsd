@@ -253,3 +253,26 @@ and derived-category applicability are written imported-theorem proofs,
 not new Lean certificate fields. This does not select the prescribed
 native Stark unit or classical scalar orientation. The full named-source
 endpoint and the eight symbolic T_E assignments remain unresolved.
+
+## Constructed Pfaffian root versus unspecified native selections
+
+`ct_pfaffian_root_construction.md` now derives a root line from the
+actual rank-two paired presentation. The pairing identification
+`theta=u I` gives skew differential `3u J`, frame Pfaffian `3u`
+and square-line multiplier `u^2`. Its inverse-unit root squares to
+the canonical determinant basis and returns scalar three. Frame
+covariance and lift-change ratios prove descent on the declared
+paired rank-two carrier. Negating the raw pairing reverses the
+root trivialization; the matching minus-identity root comparison
+computes the corrected orientation without changing its square.
+
+This is a constructed arithmetic root object and orientation return,
+not a realization of the paper's unnamed `sqrt(F)_E^p`, `h_p^CT(E)`
+or `vctp_p`. Their current occurrences provide no independent
+selection formulas; Lean accepts their carriers and partial selections
+from the context. The H1/div versus compact torsion-H2 convention
+also remains to be matched. The root object itself is recoverable
+from the retained rationally trivialized determinant ideal, so the
+construction supplies no indispensability theorem for its pairing
+source. Lean checks the integral and rational coordinate algebra;
+the arithmetic application and line descent are written proofs.

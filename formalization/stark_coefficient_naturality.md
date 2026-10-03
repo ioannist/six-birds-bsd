@@ -232,6 +232,9 @@ and inverse compatibility and completeness. Canonical integral
 naturality is therefore supplied on this fixed lane. The native
 manuscript selections, degree/target conventions, final Pfaffian
 orientation and named-source arithmetic ablations remain open.
+The subsequent `ct_pfaffian_root_construction.md` constructs a
+paired arithmetic root line and its raw/corrected orientation; its
+identification with these native manuscript selections remains separate.
 
 Fresh checkpoint verification passed `make verify-lean` (89 build
 jobs) and `make validate test public-audit` (26 tests). The seven
