@@ -894,4 +894,71 @@ theorem falseHighRankRecognitionControl :
 #print axioms SixBirdsBSD.Closure.CoupledFactors.noFullPackageFromScalarLens
 #print axioms SixBirdsBSD.Closure.CoupledFactors.comparisonZeroControls
 
+
+private def heightControlMatrix : HeightRegulator.SymmetricHeight2 Rat := ⟨2,1,3⟩
+
+/-- A genuinely fractional derived row, with pre-source energy 17/25,
+instantiates the generalized Schur theorem. -/
+theorem fractionalHeightSchurControl :
+    HeightRegulator.dot (HeightRegulator.logDetRow2 heightControlMatrix)
+      (HeightRegulator.logDetRow2 heightControlMatrix) = (17/25 : Rat) ∧
+    HeightRegulator.dot (HeightRegulator.logDetRow2 heightControlMatrix)
+      (HeightRegulator.logDetRow2 heightControlMatrix) -
+      HeightRegulator.dot (HeightRegulator.logDetRow2 heightControlMatrix)
+        (HeightRegulator.mulVec HeightRegulator.heightKLL
+          (HeightRegulator.logDetRow2 heightControlMatrix)) = 0 := by
+  constructor
+  · decide +kernel
+  · exact HeightRegulator.heightDifferentialSchurCollapse heightControlMatrix (by decide +kernel)
+
+/-- The off-diagonal vech coordinate appears twice in the matrix trace. -/
+theorem offDiagonalHeightControl :
+    HeightRegulator.dot (HeightRegulator.logDetRow2 heightControlMatrix)
+      (HeightRegulator.tangentCoordinates2 (⟨0,1,0⟩ : HeightRegulator.SymmetricHeight2 Rat)) =
+      (-2/5 : Rat) ∧
+    HeightRegulator.dot (HeightRegulator.logDetRow2 heightControlMatrix)
+      (HeightRegulator.tangentCoordinates2 (⟨0,1,0⟩ : HeightRegulator.SymmetricHeight2 Rat)) ≠
+      (-1/5 : Rat) := by decide +kernel
+
+/-- Totalized division at a singular matrix does not create an inverse. -/
+theorem singularHeightInverseControl :
+    let H : HeightRegulator.SymmetricHeight2 Rat := ⟨1,1,1⟩
+    HeightRegulator.det2 H = 0 ∧
+      H.a*(HeightRegulator.inverse2 H).a + H.b*(HeightRegulator.inverse2 H).b ≠ 1 := by
+  decide +kernel
+
+/-- Both unimodular orientations preserve the regulator, while an index-two
+basis scaling multiplies it by four. This is an exact matrix control. -/
+theorem heightBasisChangeControls :
+    HeightRegulator.det2 heightControlMatrix = (5 : Rat) ∧
+    HeightRegulator.det2 (HeightRegulator.heightBasisChange heightControlMatrix 1 1 0 1) = 5 ∧
+    HeightRegulator.det2 (HeightRegulator.heightBasisChange heightControlMatrix 0 1 1 0) = 5 ∧
+    HeightRegulator.det2 (HeightRegulator.heightBasisChange heightControlMatrix 2 0 0 1) = 20 ∧
+    HeightRegulator.det2 (HeightRegulator.heightBasisChange heightControlMatrix 2 0 0 1) ≠ 5 := by
+  decide +kernel
+
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightSchurCollapse
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightKLLSymmetric
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightIdentityLeftProduct
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightIdentityRightProduct
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightIdentityTranspose
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightIdentityPenrose
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightIdentityPenroseUnique
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightZeroRank
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.determinantVariationPolynomial
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.inverse2Correct
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.logDetRow2Correct
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightDifferentialSchurCollapse
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.determinantBasisChange
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.unimodularRegulatorInvariant
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightPairing2Symmetric
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightPairing2Additive
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightPairing2Scalar
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightRegulatorMapRank2
+#print axioms SixBirdsBSD.Apparatus.HeightRegulator.heightBasisChangeFromPairing
+#print axioms fractionalHeightSchurControl
+#print axioms offDiagonalHeightControl
+#print axioms singularHeightInverseControl
+#print axioms heightBasisChangeControls
+
 end SixBirdsBSD.Verification.Regression

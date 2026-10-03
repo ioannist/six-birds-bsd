@@ -1,6 +1,6 @@
 {
   "scope": "The 40 labelled statements outside the existing 29-entry theorem alignment audit. This is a manual mathematical assessment, not a proof of arithmetic closure.",
-  "lean_context_hash": "3da247bd2742526ddff8230da3aa5d309eb7e33091587530041a449ae92d78a6",
+  "lean_context_hash": "c44fd2d07117cb9ac4bf80b5388daf3a156b34e25007d4cad1386a0ab34eb93a",
   "items": [
     {
       "latex_label": "def:apparatus:bk-component-map",
@@ -40,7 +40,7 @@
       "statement_hash": "214f3b39a3884550abcff62c0667a61167f91bb3d2ac8be3af6f7db8e1c750d7",
       "lean_decl": "SixBirdsBSD.Apparatus.HeightRegulator.heightRegulatorMap",
       "assessment": "supplied determinant operation",
-      "notes": "The determinant transformation under an integral unimodular basis change is mathematically valid, including the empty determinant. Lean accepts an arbitrary determinant function and does not construct the Neron-Tate pairing, lattice, dual space, or basis independence."
+      "notes": "The generic map still accepts a supplied determinant operation. A concrete rank-two pairing specialization, its bilinear laws, Gram congruence and unimodular determinant invariance are now derived in height_differential_construction.md. The Neron-Tate pairing, Mordell-Weil lattice, intrinsic determinant line and all-rank arithmetic realization remain supplied rather than constructed in Lean."
     },
     {
       "latex_label": "obl:apparatus:rho-ht-reg-transport",
