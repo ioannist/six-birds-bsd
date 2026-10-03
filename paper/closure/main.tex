@@ -44,16 +44,24 @@
 \usepackage{orcidlink}
 \usepackage{titling}
 
+\usepackage{aliascnt}
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+% Shared-counter environments get alias counters so that cleveref prints the
+% environment name (Definition, Obligation, ...) rather than "Theorem".
+\newcommand{\sharedtheorem}[2]{%
+  \newaliascnt{#1}{theorem}%
+  \newtheorem{#1}[#1]{#2}%
+  \aliascntresetthe{#1}}
+\sharedtheorem{lemma}{Lemma}
+\sharedtheorem{proposition}{Proposition}
+\sharedtheorem{corollary}{Corollary}
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{warning}[theorem]{Warning}
-\newtheorem{obligation}[theorem]{Obligation}
-\newtheorem{nonclaim}[theorem]{Nonclaim}
+\sharedtheorem{definition}{Definition}
+\sharedtheorem{example}{Example}
+\sharedtheorem{remark}{Remark}
+\sharedtheorem{warning}{Warning}
+\sharedtheorem{obligation}{Obligation}
+\sharedtheorem{nonclaim}{Nonclaim}
 
 \urlstyle{same}
 \captionsetup{font=small, labelfont=bf, labelsep=period}
@@ -77,6 +85,10 @@
 \Crefname{obligation}{Obligation}{Obligations}
 \crefname{nonclaim}{nonclaim}{nonclaims}
 \Crefname{nonclaim}{Nonclaim}{Nonclaims}
+\crefname{example}{example}{examples}
+\Crefname{example}{Example}{Examples}
+\crefname{appendix}{appendix}{appendices}
+\Crefname{appendix}{Appendix}{Appendices}
 \setlist[enumerate]{leftmargin=*, itemsep=2pt, topsep=4pt}
 \setlength{\droptitle}{-3.2em}
 \pretitle{\begin{center}\LARGE\bfseries}
@@ -172,6 +184,7 @@ of BSD. The \(\kapr\) normalization is reused from
 \input{sections/sec_12_discussion}
 \input{sections/sec_13_conclusion}
 \appendix
+\crefalias{section}{appendix}
 \input{appendices/app_d_formalization}
 
 % Per-axis bibliography, including the Paper A cross-citation; role-level

@@ -1,13 +1,10 @@
 \section{Height/regulator column}
 \label{sec:height-regulator}
 
-The height/regulator column is the part of the typed BSD carrier that keeps
-the Mordell--Weil lattice and its Neron--Tate pairing~\citep{Neron1965,Silverman2009} before any comparison
-with the global determinant line is made.  In classical BSD notation this is
-the source of the regulator.  In the five-column language of
-\Cref{sec:decomposition}, the native object is the real height pairing on
-the free Mordell--Weil lattice, while the readout is the corresponding
-cohomological determinant factor.
+The height/regulator column keeps the Mordell--Weil lattice and its
+N\'eron--Tate pairing~\citep{Neron1965,Silverman2009} before any comparison
+with the global determinant line.  Its readout is the regulator, viewed as
+the coefficient of a determinant.
 
 \begin{definition}[Real height-regulator map]\label{def:apparatus:height-regulator-map}
 Let
@@ -16,48 +13,40 @@ Let
   \qquad
   V_E=\Lambda_E\otimes_{\Z}\R,
 \]
-and let $\langle\cdot,\cdot\rangle_{\mathrm{NT}}$ be the Neron--Tate
-pairing on $V_E$.  Write
+and let $\langle\cdot,\cdot\rangle_{\mathrm{NT}}$ be the N\'eron--Tate
+pairing on $V_E$, with associated map
 \[
   h_{\mathrm{NT}}:V_E\longrightarrow V_E^*,
   \qquad
-  P\longmapsto \langle P,\cdot\rangle_{\mathrm{NT}},
+  P\longmapsto \langle P,\cdot\rangle_{\mathrm{NT}}.
 \]
-for the associated linear map to the dual space.  The real
-height-regulator map is
+The real height-regulator map sends the triple
+$(V_E,\Lambda_E,\langle\cdot,\cdot\rangle_{\mathrm{NT}})$ to
 \[
-  \rho_{\mathrm{ht/reg}}^{\R}:(V_E,\Lambda_E,\langle\cdot,\cdot\rangle_{\mathrm{NT}})
-  \longmapsto \det(h_{\mathrm{NT}})\in\det(V_E^*)\otimes\det(V_E)^*,
+  \rho_{\mathrm{ht/reg}}^{\R}
+  =\det(h_{\mathrm{NT}})\in\det(V_E^*)\otimes\det(V_E)^*.
 \]
-where the determinant is taken as an element of the indicated determinant
-line.  If $(P_1,\ldots,P_r)$ is a $\Z$-basis of $\Lambda_E$ and
-\[
-  H_E=\bigl(\langle P_i,P_j\rangle_{\mathrm{NT}}\bigr)_{1\leq i,j\leq r},
-\]
-then the scalar coefficient of this determinant element in the induced
-basis is
-\[
-  \det H_E=\Reg(E/\Q),
-\]
-with the empty determinant equal to $1$ when $r=0$.  This coefficient is
-basis-independent: if the basis is changed by
-$A\in\mathrm{GL}_r(\Z)$, then $H_E$ is replaced by
-$A^{\mathsf T}H_EA$, and
-\[
-  \det(A^{\mathsf T}H_EA)
-  =
-  \det(A)^2\det(H_E)
-  =
-  \det(H_E),
-\]
-since $\det(A)=\pm1$.
+If $(P_1,\ldots,P_r)$ is a $\Z$-basis of $\Lambda_E$ and
+$H_E=\bigl(\langle P_i,P_j\rangle_{\mathrm{NT}}\bigr)_{1\le i,j\le r}$ is
+the Gram matrix, the coefficient of this element in the induced basis is
+$\det H_E=\Reg(E/\Q)$, with the empty determinant equal to $1$ when $r=0$.
+The coefficient does not depend on the basis: a change of basis by
+$A\in\mathrm{GL}_r(\Z)$ replaces $H_E$ by $A^{\mathsf T}H_EA$, and
+$\det(A^{\mathsf T}H_EA)=\det(A)^2\det H_E=\det H_E$ because
+$\det A=\pm1$.  (A change of basis of finite index $m>1$ multiplies the
+coefficient by $m^2$, so integrality of the basis matters.)
 \end{definition}
 
+The adequacy test for this column asks whether the full height matrix is
+enough to recover the first-order variation of $\log\Reg$.  It is, for a
+simple reason: the readout is a linear function of the variation, and the
+full source sees every coordinate of the variation.
+
 \begin{theorem}[Height tangent Schur collapse]\label{thm:apparatus:height-schur-collapse}
-On the tangent height carrier $S_r=\operatorname{Sym}_r(\R)$, write
-$x=\operatorname{vech}(\delta H)$ for the coordinate vector of a symmetric
-height variation.  Take the audit energy to be the identity matrix $C=I$.
-With the full native source $L_{\mathrm{full}}(x)=x$ and with readout
+Let $r\ge1$ and let $H$ be a positive definite real symmetric $r\times r$
+matrix.  Identify a symmetric variation $\delta H$ with its coordinate
+vector $x=\operatorname{vech}(\delta H)\in\R^n$, $n=r(r+1)/2$, listing the
+entries $\delta h_{ij}$ with $i\le j$.  Then
 \[
   D_H(\delta H)
   =
@@ -67,92 +56,89 @@ With the full native source $L_{\mathrm{full}}(x)=x$ and with readout
   =
   d_Hx,
 \]
-one has
+where the row $d_H$ has entry $(H^{-1})_{ii}$ at each diagonal
+coordinate and $2(H^{-1})_{ij}$ at each off-diagonal coordinate $i<j$.
+Take the audit energy $C=I_n$ on these coordinates and the full source
+$L_{\mathrm{full}}(x)=x$.  Then
 \[
-  \XiC=d_Hd_H^{\mathsf T}-d_H I d_H^{\mathsf T}=0 .
+  \KDD=\|d_H\|^2,
+  \qquad
+  \XiC=d_Hd_H^{\mathsf T}-d_H\,I_n\,d_H^{\mathsf T}=0 .
 \]
-The pre-source residual is $K_{DD}=\|d_H\|^2$ (e.g.\ $37a1$: $382.79\ldots$);
-rank-$0$ rows are vacuous ($K_{DD}=0$).\footnote{Verified in Lean as
-\texttt{SixBirdsBSD.Apparatus.HeightRegulator.heightSchurCollapse}; see App~\ref{app:formalization}.}
+For $r=0$ the tangent space is zero, $n=0$, and $\KDD=0$: the rank-zero
+row is vacuous.%
+\footnote{Lean proves the algebraic core: for every row $d$ of every
+length over any commutative ring, the identity source gives Schur
+residual zero, and the identity matrix is the unique matrix satisfying
+the four Penrose equations at the identity.  For $r=2$ it also proves
+that the displayed row computes $\tr(H^{-1}\delta H)$ when
+$\det H\neq0$.  The calculus step identifying the row with the derivative
+of $\log\det$, and the general-rank row, are proved here on paper.}
 \end{theorem}
 
 \begin{proof}
-Let $n=\dim S_r=r(r+1)/2$ and identify a tangent vector with its
-half-vectorized coordinate vector $x\in\R^n$.  The differential of
-$\log\det$ at $H$ is the linear functional
+Since $H$ is invertible, $\det(H+t\,\delta H)=\det H\cdot\det(I+tA)$ with
+$A=H^{-1}\delta H$.  In the permutation expansion of $\det(I+tA)$, the
+identity permutation contributes $1+t\tr A+O(t^2)$, and every other
+permutation moves at least two indices and contributes $O(t^2)$.  Since
+$\det H>0$, the chain rule gives $d(\log\det)_H(\delta H)=\tr(H^{-1}\delta
+H)$.  Writing $G=H^{-1}$, which is symmetric,
 \[
-  x\longmapsto d_Hx,
+  \tr(G\,\delta H)=\sum_{i,j}G_{ij}\,\delta h_{ji}
+  =\sum_i G_{ii}\,\delta h_{ii}+\sum_{i<j}2G_{ij}\,\delta h_{ij},
 \]
-where $d_H$ is a row vector with one coordinate for each entry of
-$\operatorname{vech}(\delta H)$.  Before admitting the height source, the
-readout variance is simply
-\[
-  K_{DD}=d_Hd_H^{\mathsf T}
-  =
-  \sum_{i=1}^n (d_H)_i^2
-  =
-  \|d_H\|^2.
-\]
+because the off-diagonal coordinate $\delta h_{ij}$ occurs twice in the
+symmetric matrix $\delta H$.  This is $d_Hx$.
 
-Now admit the full tangent height carrier as the source.  Since
-$L_{\mathrm{full}}(x)=x$ and $C=I$, the source block is
-$K_{LL}=I$, its Moore--Penrose inverse is again $I$, and the cross blocks
-are $K_{DL}=d_H$ and $K_{LD}=d_H^{\mathsf T}$.  The only computation is the
-identity-matrix action.  If $v=(v_1,\ldots,v_n)^{\mathsf T}$, then the
-$i$-th coordinate of $Iv$ is
-\[
-  \sum_{j=1}^n \delta_{ij}v_j=v_i,
-\]
-so $Iv=v$.  Applying this to $v=d_H^{\mathsf T}$ gives
-$I d_H^{\mathsf T}=d_H^{\mathsf T}$, and therefore
-\[
-  K_{DL}K_{LL}^{\dagger}K_{LD}
-  =
-  d_H I d_H^{\mathsf T}
-  =
-  d_Hd_H^{\mathsf T}.
-\]
-Substituting into the Schur-complement residual gives
-\[
-  \XiC
-  =
-  K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}
-  =
-  d_Hd_H^{\mathsf T}-d_Hd_H^{\mathsf T}
-  =
-  0.
-\]
-
-If $r=0$, then $S_0$ is the zero tangent space, $n=0$, and the row vector
-$d_H$ has no coordinates.  The empty sum defining
-$d_Hd_H^{\mathsf T}$ is $0$, so $K_{DD}=0$ already before any source is
-admitted.  Thus rank-$0$ rows are vacuous in exactly the stated sense.
+For the Schur residual, the source block is $\KLL=I_n$, whose
+Moore--Penrose inverse is $I_n$, and the cross blocks are $\KDL=d_H$ and
+$K_{LD}=d_H^{\mathsf T}$.  Hence
+$\KDL\Kdagger K_{LD}=d_H\,I_n\,d_H^{\mathsf T}=d_Hd_H^{\mathsf T}=\KDD$,
+and $\XiC=0$.  If $r=0$, the row $d_H$ is empty and the empty sum
+$d_Hd_H^{\mathsf T}$ is $0$.
 \end{proof}
 
-\begin{obligation}[Refined height-regulator BK transport]\label{obl:apparatus:rho-ht-reg-transport}
-The full Bloch--Kato height/regulator component also requires a comparison
-transport
+For example, when $r=2$ and $H=\bigl(\begin{smallmatrix}a&b\\
+b&c\end{smallmatrix}\bigr)$ with $\Delta=ac-b^2>0$, the row in the
+coordinates $(\delta h_{11},\delta h_{12},\delta h_{22})$ is
+\[
+  d_H=\Bigl(\frac{c}{\Delta},\,-\frac{2b}{\Delta},\,\frac{a}{\Delta}\Bigr),
+\]
+as one also sees from $\det(H+t\,\delta H)=\Delta+t\,(c\,\delta h_{11}-2b\,
+\delta h_{12}+a\,\delta h_{22})+O(t^2)$.  When $r=1$, $d_H=1/\Reg(E/\Q)$
+and $\KDD=\Reg(E/\Q)^{-2}$; for the curve $37a1$, the regulator
+$0.0511114\ldots$ recorded in the LMFDB~\citep{LMFDB} gives
+$\KDD=382.79\ldots$.  The choice $C=I_n$ refers to the chosen
+$\operatorname{vech}$ coordinates; it is not invariant under changes of
+lattice basis, and only the vanishing of $\XiC$, not the value of $\KDD$,
+is used later.
+
+\begin{obligation}[Height/regulator transport]\label{obl:apparatus:rho-ht-reg-transport}
+The Bloch--Kato height/regulator component requires a comparison
 \[
   \beta_{\mathrm{BK,ht}}:
   \det(V_E^*)\otimes\det(V_E)^*
   \longrightarrow
-  \Delta_f(M_E)_{\mathrm{ht/reg}}.
+  \Delta_f(M_E)_{\mathrm{ht/reg}}
 \]
-This transport identifies the Neron--Tate determinant with the
-Beilinson--Deligne regulator normalization~\citep{Beilinson1985,Schneider1982}, including the coefficient
-convention, the archimedean Deligne-cohomology normalization, the determinant
-orientation and trivialization, and compatibility with the finite and
-determinant-assembly columns without absorbing them.  In this paper it is a
-recognition-source carrier: the comparison is named as external arithmetic
-content and carried separately, not derived from the finite typed
-height-column calculation.
+identifying the N\'eron--Tate determinant with the Beilinson--Deligne
+regulator normalization~\citep{Beilinson1985}.  It must fix
+the coefficient and lattice conventions, the archimedean
+Deligne-cohomology normalization, and the orientation and
+trivialization, and it must be compatible with the finite and
+determinant-assembly columns without absorbing them.  This comparison is
+external arithmetic input.  It is not derived from the finite calculation
+above, which only shows that the full height matrix is adequate for the
+first-order regulator readout.
 \end{obligation}
 
-\begin{warning}[Carrier discipline for $571a1$]\label{warn:apparatus:571a1-carrier}
-The curve $571a1$ has Mordell--Weil rank $0$ with nontrivial
-$\Sha[2]$/Cassels--Tate data.  Its lawful height/regulator row is therefore
-the rank-$0$ row described above: no nonzero height tangent is present in
-this column.  Rank-$2$ height/regulator examples in this paper use $389a1$.
+\begin{warning}[Rank-zero carriers]\label{warn:apparatus:571a1-carrier}
+For a curve of rank $0$ the height/regulator column is empty: there is no
+nonzero height variation, and the regulator is the empty determinant $1$.
+The curve $571a1$, which reappears in \Cref{sec:finite-source} because
+its Tate--Shafarevich group has nontrivial $2$-primary part, is such a
+curve: a certified $2$-descent bounds its rank above and below by $0$
+(details in \Cref{sec:finite-source}).  It should not be confused with
+the rank-two curve $571b1$ of the same conductor.  Rank-two
+height/regulator examples in this paper use $389a1$.
 \end{warning}
-
-% ===========================================================================

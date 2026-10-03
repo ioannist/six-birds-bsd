@@ -2,32 +2,39 @@
 \centering
 \begin{tikzpicture}[
   font=\small,
-  column/.style={draw, rounded corners=2pt, align=center, minimum width=2.6cm,
+  column/.style={draw, rounded corners=2pt, align=center, minimum width=2.45cm,
     minimum height=1.05cm, fill=black!3},
-  residual/.style={draw, rounded corners=2pt, align=center, minimum width=7.5cm,
-    minimum height=0.95cm, fill=white},
-  target/.style={draw, rounded corners=2pt, align=center, minimum width=4.1cm,
-    minimum height=1.05cm, fill=black!8},
+  orient/.style={draw, dashed, rounded corners=2pt, align=center,
+    minimum width=2.45cm, minimum height=1.05cm, fill=white},
+  test/.style={align=center, font=\footnotesize},
+  assemble/.style={draw, rounded corners=2pt, align=center, minimum width=5.2cm,
+    minimum height=0.9cm, fill=black!8},
+  target/.style={draw, rounded corners=2pt, align=center, minimum width=5.2cm,
+    minimum height=0.9cm, fill=black!3},
   arrow/.style={-{Latex[length=2mm]}, thick}
 ]
-\node[column] (ht) at (-5.6,1.7) {height\\regulator};
-\node[column] (an) at (-2.8,1.7) {analytic\\period};
-\node[column] (fin) at (0,1.7) {finite\\Tamagawa};
-\node[column] (pad) at (2.8,1.7) {\(p\)-adic\\local};
-\node[column] (det) at (5.6,1.7) {determinant\\assembly};
-\node[residual] (xi) at (0,0) {Schur residual:\quad
-  \(\XiC=K_{DD}-K_{DL}K_{LL}^{\dagger}K_{LD}\)};
-\node[target] (bk) at (0,-1.55) {Bloch--Kato determinant-line target};
+\node[column] (ht) at (-5.6,2.2) {height/\\regulator};
+\node[column] (an) at (-2.8,2.2) {analytic/\\period};
+\node[column] (fin) at (0,2.2) {finite\\source};
+\node[column] (pad) at (2.8,2.2) {local \(p\)-adic\\(each \(p\))};
+\node[orient] (det) at (5.6,2.2) {orientation\\slot \(C_{\det}\)};
 
-\foreach \n/\shift in {ht/-3cm,an/-1.5cm,fin/0cm,pad/1.5cm,det/3cm}
-  \draw[arrow] (\n.south) .. controls +(0,-0.45) and +(0,0.45) ..
-    ([xshift=\shift]xi.north);
+\foreach \n in {ht,an,fin,pad}
+  \node[test] at ([yshift=-0.42cm]\n.south) {adequacy test};
+\node[test] at ([yshift=-0.42cm]det.south) {supplied};
 
-\draw[arrow] (xi.south) -- (bk.north);
-\node[align=center, font=\footnotesize] at (0,-2.6)
-  {adequacy means the admitted native source leaves no Schur residual};
+\node[assemble] (asm) at (0,-0.35) {assemble: \(\rho_{\mathrm{BK}}\)};
+\node[target] (bk) at (0,-1.75) {Bloch--Kato line \(\Delta_f(M_E)\)};
+
+\foreach \n/\shift in {ht/-2.2cm,an/-1.1cm,fin/0cm,pad/1.1cm,det/2.2cm}
+  \draw[arrow] ([yshift=-0.75cm]\n.south) .. controls +(0,-0.55) and +(0,0.55) ..
+    ([xshift=\shift]asm.north);
+\draw[arrow] (asm.south) -- (bk.north);
 \end{tikzpicture}
-\caption{The five native source columns are tested before they are assembled in
-the common determinant-line target.}
+\caption{The five slots of the integrated BSD carrier.  Each of the four
+arithmetic columns is tested for adequacy on its own, by the Schur residual
+\(\XiC\) of \Cref{sec:introduction}.  The assembly then combines the four
+column values with an independent orientation datum; the assembled value is
+not itself fed back in as a fifth factor (\Cref{sec:comparison}).}
 \label{fig:five-column-schematic}
 \end{figure}
