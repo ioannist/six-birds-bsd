@@ -23,8 +23,7 @@ fixed point of an explicit closure and proves a conditional theorem from a
 rank-split recognition hypothesis that has the strength of the identity; it
 is a conditional translation, not an unconditional proof of BSD. Version 2 of
 both papers (4 October 2026) implements the mathematical and Lean audit
-recorded in `formalization/mathematical_audit.md` and
-`formalization/conditional_mathematical_closeout.md`.
+recorded in `formalization/conditional_mathematical_closeout.md`.
 
 ## What This Repository Provides
 

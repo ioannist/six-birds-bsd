@@ -9,8 +9,19 @@ __pycache__/
 *.swo
 .pytest_cache/
 
-# Local secrets
+# Local secrets and credentials (keep only an explicit example file)
 .env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.netrc
+.pypirc
+credentials*.json
+*secret*
+*token*.txt
 
 # Lake build artifacts (do not check vendored Foundations' lake builds either)
 .lake/
@@ -24,13 +35,23 @@ lake-manifest.json
 # codex CLI internal marker file (zero bytes; per-environment)
 /.codex
 
-# Local agent, prompt, and review-harness state
-/.codex/
-/.claude/
+# Local agent, prompt, transcript, and review-harness state (any depth)
+**/.codex/
+**/.claude/
+**/.cursor/
+**/.aider*
+**/.continue/
+**/.specstory/
+**/.windsurf/
 /memory/
 /prompts/
 /reviews/
 /skills/
+**/transcripts/
+**/rollout-*.jsonl
+**/*.transcript*
+**/CLAUDE.local.md
+**/.claude.json
 **/.codex_thread_id*
 **/CODEX_RUNBOOK.md
 **/codex_kickoff.md
@@ -46,3 +67,14 @@ build/
 *.out
 *.synctex.gz
 *.toc
+
+# Local working records kept out of the public tree (session-style audit notes
+# and agent drafting guides); the files remain on disk.
+/formalization/cascade_dependency_audit.md
+/formalization/conditional_translation_audit.md
+/formalization/master_applicability_audit.md
+/formalization/mathematical_audit.md
+/formalization/review_requirement_checkpoint.md
+/formalization/scalar_closure_translation.md
+/paper/apparatus/notation_and_terminology.md
+/paper/closure/notation_and_terminology.md
