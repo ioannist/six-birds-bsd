@@ -1,0 +1,17 @@
+{
+  "action": "created new-version draft",
+  "concept_record_id": "20713980",
+  "dashboard_url": "https://zenodo.org/uploads/23130789",
+  "doi": "10.5281/zenodo.23130789",
+  "doi_reservation": {
+    "client": "datacite",
+    "identifier": "10.5281/zenodo.23130789",
+    "provider": "datacite",
+    "verified_via": "rdm_pid_table"
+  },
+  "draft_id": 23130789,
+  "recorded_at": "2026-10-04T03:27:29+00:00",
+  "source_doi": "10.5281/zenodo.20713981",
+  "source_record_id": 20713981,
+  "source_title": "Decomposing the Bloch-Kato Fundamental Line: Adequacy and No-Go Results for the BSD Invariants"
+}

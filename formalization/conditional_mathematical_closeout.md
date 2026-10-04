@@ -180,7 +180,7 @@ passing gates is not a promotion of any native arithmetic claim.
 * The paper tree has no changes. The preserved Stark and finite-pairing
   constructions are not replaced by this scoped closeout.
 
-## Manuscript v2 (3 October 2026)
+## Manuscript v2 (4 October 2026)
 
 Both papers have since been revised to v2, implementing the decisions
 above: indispensability, the derived master application, general

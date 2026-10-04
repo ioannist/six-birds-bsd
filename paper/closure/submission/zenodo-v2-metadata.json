@@ -1,0 +1,180 @@
+{
+  "title": "A Conditional Proof of the Strong Birch-Swinnerton-Dyer Conjecture",
+  "description": "<p>We formulate the Strong Birch&ndash;Swinnerton-Dyer formula for an elliptic curve E/&#8474; as a fixed-point statement and prove a conditional theorem in that formulation. Let L* be the leading Taylor coefficient of L(E,s) at s = 1 and R<sub>E</sub> the arithmetic side of the formula. We show that the Strong BSD identity holds exactly when the pair (L*, R<sub>E</sub>) is fixed by the averaging closure c(a,b) = ((a+b)/2, (a+b)/2), and we determine what a closure on a richer layer of arithmetic data would need in order to return this statement: a readout intertwining it with c, and fixedness of the original state. The main theorem derives the identity from a recognition hypothesis, which in rank at most one contains the identity and in rank at least two is a leading-term identity with the normalization &kappa;<sub>r</sub> = #&#1064;/#E(&#8474;)<sub>tors</sub><sup>2</sup>. This hypothesis has the strength of the conclusion, so the theorem is a conditional translation of Strong BSD into the closure framework, not an independent derivation. The other inputs, local descent and signed hypotheses and comparison statements from the literature, are carried with their precise scope but are not used for the scalar identity. We show by examples what these inputs contain beyond coarser data: for 121a1 and 121b1 the local congruences cannot see the Tamagawa numbers 1 and 2, and for 1913b1 at p = 3 two generators of the same Selmer-complex determinant ideal differ in whether they have a square root. We also show that sensitivity of the BSD product to its factors does not make any hypothesis necessary, and we record a proposed overconvergent &eta;-formula only as a conditional certificate, explaining why the published results it was modelled on do not apply as stated. The paper does not prove BSD. The scalar algebra and the closure statements are proved in Lean 4; the remaining statements are labelled by the exact extent of their formalization.</p><p><strong>Version 2.</strong> Revised after a statement-by-statement audit of the mathematics and of its Lean formalization: the strength of the main hypothesis is made explicit; the claimed master-theorem application, source indispensability, and computability/falsifiability claims are withdrawn; the fixed-point formulation and the formed-layer conditions are new; the comparison inputs, local hypotheses and &eta;-formula are restated with their verified scope. See the Version history appendix.</p>",
+  "publication_date": "2026-10-04",
+  "version": "Preprint v2.0",
+  "keywords": [
+    "Birch-Swinnerton-Dyer conjecture",
+    "Strong BSD",
+    "closure operator",
+    "conditional theorem",
+    "Cassels-Tate pairing",
+    "Selmer complex",
+    "Iwasawa main conjecture",
+    "formal verification (Lean)",
+    "Six Birds Theory",
+    "emergence calculus"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23130789",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1515/crll.1965.218.79",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01388809",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1070/IM1989v032n03ABEH000779",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/978-0-8176-4574-8_9",
+      "relation": "cites",
+      "resource_type": "publication-section"
+    },
+    {
+      "identifier": "10.4171/DM/113",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.7146/math.scand.a-11642",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1515/crll.1990.412.113",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2307/121064",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2140/ant.2018.12.2295",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.48550/arXiv.2603.23978",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1112/S1461157010000185",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1515/crll.1993.445.109",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF02760675",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01405086",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s00222-013-0448-1",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1016/j.jalgebra.2026.01.016",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01239508",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s00222-002-0265-4",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1215/S0012-7094-03-11835-9",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.24033/asens.2139",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s00222-011-0358-z",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.4310/CJM.2014.v2.n2.a2",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF02105861",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1090/btran/227",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.48550/arXiv.2403.16076",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1112/jlms.70001",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s40316-022-00203-y",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1073/pnas.2500729122",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1112/S0010437X18007273",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://pari.math.u-bordeaux.fr/",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.4007/annals.2004.159.447",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    }
+  ]
+}

@@ -9,10 +9,12 @@ Foundations dependencies.
 
 - **Decomposing the Bloch--Kato Fundamental Line: Adequacy and No-Go
   Results for the BSD Invariants**:
-  DOI: [10.5281/zenodo.20713981](https://doi.org/10.5281/zenodo.20713981)
+  DOI (v2): [10.5281/zenodo.23130789](https://doi.org/10.5281/zenodo.23130789);
+  v1: [10.5281/zenodo.20713981](https://doi.org/10.5281/zenodo.20713981)
 - **A Conditional Proof of the Strong Birch--Swinnerton-Dyer
   Conjecture**:
-  DOI: [10.5281/zenodo.20713968](https://doi.org/10.5281/zenodo.20713968)
+  DOI (v2): [10.5281/zenodo.23130788](https://doi.org/10.5281/zenodo.23130788);
+  v1: [10.5281/zenodo.20713968](https://doi.org/10.5281/zenodo.20713968)
 
 The first paper develops a typed five-column decomposition of the
 Bloch--Kato fundamental line, adequacy diagnostics, and a suite of
@@ -20,7 +22,7 @@ information-loss no-go results. The second formulates the Strong-BSD identity as
 fixed point of an explicit closure and proves a conditional theorem from a
 rank-split recognition hypothesis that has the strength of the identity; it
 is a conditional translation, not an unconditional proof of BSD. Version 2 of
-both papers (3 October 2026) implements the mathematical and Lean audit
+both papers (4 October 2026) implements the mathematical and Lean audit
 recorded in `formalization/mathematical_audit.md` and
 `formalization/conditional_mathematical_closeout.md`.
 

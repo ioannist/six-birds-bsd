@@ -1,0 +1,135 @@
+{
+  "title": "Decomposing the Bloch-Kato Fundamental Line: Adequacy and No-Go Results for the BSD Invariants",
+  "description": "<p>The Birch&ndash;Swinnerton-Dyer formula for an elliptic curve E/&#8474; is a product of pieces of different kinds: a period, a regulator, Tamagawa numbers, torsion and the order of the Tate&ndash;Shafarevich group, which in the Bloch&ndash;Kato formulation are joined with local p-adic data and orientation conventions in one determinant line. Each piece is the image of richer data. We separate these data into five columns (height/regulator, analytic/period, finite source, local p-adic, and determinant assembly) and ask, column by column, which data a given number remembers. The test is a finite Schur complement, which vanishes exactly when the desired readout is a linear function of the admitted data. The full data of each of the first four columns are adequate for their readouts, and the five columns together are adequate for an orientation-normalized Bloch&ndash;Kato scalar, which forgets the orientation. Along the way we fix three normalization points: the invariant finite factor is the order of a paired group, not a numerical Pfaffian of its Cassels&ndash;Tate pairing; on the finite local condition the relevant map is the logarithm, not the dual exponential; and the assembled value must not be reused as a factor. We then identify readouts that lose information. The most concrete is arithmetic: the curves 571a1 and 2045b1 have the same rank, Tamagawa numbers, torsion and dim &#1064;[2], but 2-primary Tate&ndash;Shafarevich groups of orders 4 and 16. Other results, proved on explicit models, concern the scalar finite factor, Gram matrices in rank at least two, and finite lists of curves and of primes. We also identify the normalization &kappa;<sub>r</sub> = #&#1064;/#E(&#8474;)<sub>tors</sub><sup>2</sup> under which a cascade form of the leading term agrees with the standard one. The comparisons from the columns to the Bloch&ndash;Kato line are stated as external inputs. Nothing here proves BSD. Many statements are checked in Lean 4, and each is labelled by the exact extent of that check.</p><p><strong>Version 2.</strong> Revised after a statement-by-statement audit of the mathematics and of its Lean formalization: corrected finite-source normalization with a new arithmetic &#1064; example, the logarithm in place of the dual exponential, an independent orientation factor, recomputed rank-two heights, and Lean coverage stated statement by statement. See the Version history appendix.</p>",
+  "publication_date": "2026-10-04",
+  "version": "Preprint v2.0",
+  "keywords": [
+    "Birch-Swinnerton-Dyer conjecture",
+    "Bloch-Kato fundamental line",
+    "elliptic curves",
+    "Tate-Shafarevich group",
+    "Cassels-Tate pairing",
+    "Schur complement",
+    "regulator",
+    "formal verification (Lean)",
+    "Six Birds Theory",
+    "emergence calculus"
+  ],
+  "related_identifiers": [
+    {
+      "identifier": "10.5281/zenodo.23130788",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1515/crll.1965.218.79",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/978-0-8176-4574-8_9",
+      "relation": "cites",
+      "resource_type": "publication-section"
+    },
+    {
+      "identifier": "10.4171/DM/113",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/978-0-387-09494-6",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.1007/978-1-4612-0851-8",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "10.2307/1970644",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2307/121064",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.7146/math.scand.a-11642",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.2307/2118559",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1090/S0894-0347-01-00370-8",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://www.numdam.org/item/AST_1994__223__59_0/",
+      "relation": "cites",
+      "resource_type": "publication-section"
+    },
+    {
+      "identifier": "10.1007/BF01389815",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/s00222-002-0265-4",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1215/S0012-7094-03-11835-9",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF01388809",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1215/00127094-2142056",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/BF02105861",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1016/0001-8708(86)90081-2",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "10.1007/b105056",
+      "relation": "cites",
+      "resource_type": "publication-book"
+    },
+    {
+      "identifier": "https://www.lmfdb.org",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    },
+    {
+      "identifier": "10.1112/S0010437X18007273",
+      "relation": "cites",
+      "resource_type": "publication-article"
+    },
+    {
+      "identifier": "https://pari.math.u-bordeaux.fr/",
+      "relation": "cites",
+      "resource_type": "publication-preprint"
+    }
+  ]
+}
