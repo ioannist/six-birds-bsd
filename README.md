@@ -11,7 +11,7 @@ Foundations dependencies.
   Results for the BSD Invariants**:
   DOI (v2): [10.5281/zenodo.23130789](https://doi.org/10.5281/zenodo.23130789);
   v1: [10.5281/zenodo.20713981](https://doi.org/10.5281/zenodo.20713981)
-- **A Conditional Proof of the Strong Birch--Swinnerton-Dyer
+- **A Conditional Closure of the Strong Birch--Swinnerton-Dyer
   Conjecture**:
   DOI (v2): [10.5281/zenodo.23130788](https://doi.org/10.5281/zenodo.23130788);
   v1: [10.5281/zenodo.20713968](https://doi.org/10.5281/zenodo.20713968)
