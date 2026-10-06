@@ -78,3 +78,6 @@ build/
 /formalization/scalar_closure_translation.md
 /paper/apparatus/notation_and_terminology.md
 /paper/closure/notation_and_terminology.md
+
+# Compiled root-level paper PDFs (local build copies; the .tex sources are tracked)
+/Tsiokos_2026_*.pdf
